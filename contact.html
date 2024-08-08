@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>ProCode</title>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-logo">
+        <a href="/">
+            <img src="/img/favicon.svg" alt="Logo" />
+        </a>
+    </div>
+
+    <ul class="nav-links">
+        <li class="link"><a href="/index.html">Inicio</a></li>
+        <li id="link1" class="link"><a href="#">Servicios</a></li>
+        <li id="link2" class="link"><a href="#">Afiliacion</a></li>
+        <li id="link3" class="link"><a href="#">Nosotros</a></li>
+    </ul>
+    <button class="btn">Afiliacion</button>
+
+</nav>
+
+<main class="cont">
+    <div class="titulo">
+        <h2>Contacto</h2>
+    </div>
+    <p class="sub">Contactanos para brindarte mas informacion</p>
+
+    <section class="contacto">
+        <div class="contenedor">
+            <div class="contenido">
+                <div class="formulario">
+                    <h3>Formulario de Contacto</h3>
+
+                    <form action="https://formspree.io/f/xwpeejzo" method="POST">
+                        <div class="contenedor-nombre">
+                            <label class="nombre" for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                            <label class="apellido" for="apellido">Apellido:</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                        </div>
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Mensaje" class="mensaje" required></textarea>
+                        <button type="submit" class="btn">Enviar</button>
+                    </form>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="container">
+    <span class="blur"></span>
+    <span class="blur"></span>
+    <div class="column">
+        <div class="logo">
+            <a href="/">
+                <img src="/img/favicon.svg" alt="Logo" />
+            </a>
+        </div>
+        <p>
+            Empresa líder en desarrollo web que se especializa en crear soluciones digitales innovadoras y
+            personalizadas.
+        </p>
+        <div class="socials">
+            <a href="https://github.com/CristianPosada17"><i class="ri-github-fill"></i></a>
+            <a href="https://www.linkedin.com/in/cristian-parra-891401291/"><i class="ri-linkedin-box-fill"></i></i></a>
+            <a href="https://www.instagram.com/cristian.pp/"><i class="ri-instagram-line"></i></i></a>
+        </div>
+    </div>
+    <div class="column">
+        <h4>Company</h4>
+        <a href="">Business</a>
+        <a href="">Partnership</a>
+        <a href="">Network</a>
+    </div>
+    <div class="column">
+        <h4>About Us</h4>
+        <a href="">Blogs</a>
+        <a href="">Channels</a>
+        <a href="">Sponsors</a>
+    </div>
+    <div class="column">
+        <h4>Contact</h4>
+        <a href="">Contact Us</a>
+        <a href="">Privacy Policy</a>
+        <a href="">Terms & Conditions</a>
+    </div>
+</footer>
+
+<div class="copyright">
+    Copyright © 2024 ProCode by Cristian. Todos los Derechos Reservados
+
+</div>
+
+<script src="script.js"></script>
+</body>
+
+</html>
