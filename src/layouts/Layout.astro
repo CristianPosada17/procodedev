@@ -1,23 +1,49 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
+const {
+  title = "ProCode Dev | Desarrollo web estratégico",
+  description = "Creamos sitios web, landing pages, integraciones y sistemas digitales para negocios que buscan crecer con una presencia digital profesional.",
+} = Astro.props;
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="min-h-screen bg-[#020817] font-montserrat text-white antialiased"
+  >
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#020817]">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_35%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.16),transparent_30%),linear-gradient(180deg,#020817_0%,#030B1A_45%,#020817_100%)]"
+      >
+      </div>
+
+      <div
+        class="absolute inset-0 opacity-[0.025] bg-[linear-gradient(to_right,#60A5FA_1px,transparent_1px),linear-gradient(to_bottom,#60A5FA_1px,transparent_1px)] bg-[size:70px_70px]"
+      >
+      </div>
+
+      <div
+        class="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[120px]"
+      >
+      </div>
+    </div>
+
+    <slot />
+  </body>
+</html>

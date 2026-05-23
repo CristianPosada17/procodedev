@@ -1,0 +1,158 @@
+---
+const navLinks = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proceso", href: "#proceso" },
+  { label: "Resultados", href: "#resultados" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contacto", href: "#contacto" },
+];
+
+const services = [
+  "Desarrollo web",
+  "Landing pages",
+  "Integraciones",
+  "Rediseño web",
+  "Soporte y optimización",
+  "Captación digital",
+];
+---
+
+<footer class="relative border-t border-white/10 bg-[#020817]/80 py-12">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.8fr_1fr]">
+      <div>
+        <a href="#inicio" class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center">
+            <img
+              src="/Logo fondo azul.webp"
+              alt="ProCode Dev"
+              class="h-full w-full object-contain"
+            />
+          </div>
+
+          <span class="text-lg font-bold tracking-tight text-white">
+            ProCode <span class="text-blue-400">Dev</span>
+          </span>
+        </a>
+
+        <p class="mt-5 max-w-sm text-sm leading-7 text-slate-400">
+          Desarrollo web estratégico, landing pages, integraciones y sistemas de
+          captación que ayudan a negocios a tener una presencia digital más
+          sólida y funcional.
+        </p>
+
+        <div class="mt-6 flex gap-3">
+          <a
+            href="https://www.instagram.com/procode.systems/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sm text-slate-300 transition hover:border-blue-300/40 hover:text-blue-300"
+          >
+            IG
+          </a>
+          <a
+            href="https://www.linkedin.com/in/cristian-posada-891401291/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sm text-slate-300 transition hover:border-blue-300/40 hover:text-blue-300"
+          >
+            IN
+          </a>
+          <a
+            href="https://www.facebook.com/ProCodeSystems"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sm text-slate-300 transition hover:border-blue-300/40 hover:text-blue-300"
+          >
+            FB
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-white">
+          Navegación
+        </h3>
+
+        <div class="mt-5 grid gap-3">
+          {
+            navLinks.map((item) => (
+              <a
+                href={item.href}
+                class="text-sm text-slate-400 transition hover:text-blue-300"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-white">
+          Servicios
+        </h3>
+
+        <div class="mt-5 grid gap-3">
+          {
+            services.map((service) => (
+              <span class="text-sm text-slate-400">{service}</span>
+            ))
+          }
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-white">
+          Contacto
+        </h3>
+
+        <div class="mt-5 grid gap-3 text-sm text-slate-400">
+          <a
+            href="mailto:info@procodedev.com"
+            class="transition hover:text-blue-300"
+          >
+            info@procodedev.com
+          </a>
+          <a
+            href="https://wa.me/526142414255"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition hover:text-blue-300"
+          >
+            +52 614 241 4255
+          </a>
+          <span>Lunes a Domingo</span>
+          <span>México / Remoto</span>
+        </div>
+
+        <a
+          href="https://calendly.com/procodedev/meeting-procode"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex rounded-xl border border-blue-400/40 bg-blue-500/10 px-5 py-3 text-sm font-bold text-white transition hover:border-blue-300/70 hover:bg-blue-500/20"
+        >
+          Agendar diagnóstico
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between"
+    >
+      <p>© 2026 ProCode Dev. Todos los derechos reservados.</p>
+
+      <div class="flex gap-5">
+        <a href="#" class="transition hover:text-blue-300"
+          >Aviso de privacidad</a
+        >
+        <a href="#" class="transition hover:text-blue-300"
+          >Términos y condiciones</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>

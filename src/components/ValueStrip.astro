@@ -1,0 +1,60 @@
+---
+const values = [
+  {
+    icon: "▣",
+    title: "Diseño que convierte",
+    description:
+      "Experiencias enfocadas en mensajes claros y llamados a la acción efectivos.",
+  },
+  {
+    icon: "⚙",
+    title: "Integraciones inteligentes",
+    description:
+      "Conectamos tus herramientas para automatizar procesos y ahorrar tiempo.",
+  },
+  {
+    icon: "↗",
+    title: "Captación continua",
+    description:
+      "Sistemas digitales pensados para generar prospectos y reuniones.",
+  },
+  {
+    icon: "✓",
+    title: "Soporte que te respalda",
+    description:
+      "Acompañamiento, mantenimiento y optimización para seguir creciendo.",
+  },
+];
+---
+
+<section class="relative -mt-8 pb-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="grid overflow-hidden rounded-3xl border border-blue-400/20 bg-[#061126]/70 shadow-[0_0_70px_rgba(37,99,235,0.16)] backdrop-blur-xl md:grid-cols-2 xl:grid-cols-4"
+    >
+      {
+        values.map((item, index) => (
+          <div
+            class={`relative p-6 ${index !== values.length - 1 ? "xl:border-r xl:border-white/10" : ""}`}
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-xl text-blue-300 shadow-[0_0_30px_rgba(37,99,235,0.18)]">
+                {item.icon}
+              </div>
+
+              <div>
+                <h3 class="text-base font-bold text-white">{item.title}</h3>
+
+                <p class="mt-2 text-sm leading-6 text-slate-400">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

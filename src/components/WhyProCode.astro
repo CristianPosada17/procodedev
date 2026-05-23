@@ -1,0 +1,107 @@
+---
+const benefits = [
+  {
+    icon: "🎯",
+    title: "Enfoque en conversión",
+    description:
+      "Cada sección se diseña para guiar al usuario hacia una acción concreta: contacto, registro, cita o compra.",
+  },
+  {
+    icon: "🛡",
+    title: "Confianza y profesionalismo",
+    description:
+      "Tu sitio debe reflejar el nivel real de tu negocio y transmitir seguridad desde el primer clic.",
+  },
+  {
+    icon: "⚡",
+    title: "Velocidad y rendimiento",
+    description:
+      "Desarrollamos estructuras rápidas, responsivas y optimizadas para una mejor experiencia de usuario.",
+  },
+  {
+    icon: "📱",
+    title: "Experiencia móvil impecable",
+    description:
+      "Tu página se adapta correctamente a celular, tablet y escritorio, cuidando legibilidad y navegación.",
+  },
+  {
+    icon: "✍",
+    title: "Mensajes claros",
+    description:
+      "Ordenamos tu propuesta de valor para que el visitante entienda rápido qué haces y por qué elegirte.",
+  },
+  {
+    icon: "🔗",
+    title: "Integraciones útiles",
+    description:
+      "Conectamos formularios, WhatsApp, CRM, calendario, email o herramientas clave para tu operación.",
+  },
+];
+---
+
+<section class="relative py-20">
+  <div
+    class="mx-auto grid w-full max-w-[1480px] items-start gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="lg:sticky lg:top-28">
+      <div
+        class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
+      >
+        Por qué ProCode Dev
+      </div>
+
+      <h2
+        class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
+      >
+        Más que diseño,
+        <span
+          class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
+        >
+          estructura digital
+        </span>
+        para crecer.
+      </h2>
+
+      <p class="mt-6 text-base leading-8 text-slate-300 sm:text-lg">
+        Una página bonita no es suficiente. Tu negocio necesita claridad,
+        velocidad, confianza, seguimiento y una estructura que facilite
+        convertir visitas en oportunidades reales.
+      </p>
+
+      <div
+        class="mt-8 rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-6 shadow-[0_0_60px_rgba(37,99,235,0.12)] backdrop-blur-xl"
+      >
+        <p
+          class="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300"
+        >
+          Nuestra filosofía
+        </p>
+
+        <p class="mt-4 text-lg font-bold leading-8 text-white">
+          No construimos sitios para llenar espacio. Construimos sistemas
+          digitales que comunican, conectan y ayudan a vender mejor.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        benefits.map((benefit) => (
+          <article class="group rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-300/40 hover:bg-blue-500/[0.06] hover:shadow-[0_0_70px_rgba(37,99,235,0.16)]">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-2xl text-blue-300">
+              {benefit.icon}
+            </div>
+
+            <h3 class="mt-6 text-xl font-extrabold text-white">
+              {benefit.title}
+            </h3>
+
+            <p class="mt-4 text-sm leading-7 text-slate-300">
+              {benefit.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

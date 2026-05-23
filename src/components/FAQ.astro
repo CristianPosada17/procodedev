@@ -1,0 +1,94 @@
+---
+const faqs = [
+  {
+    question: "¿Cuánto tiempo toma desarrollar mi sitio web?",
+    answer:
+      "Depende del alcance del proyecto. Una landing page puede tomar menos tiempo que un sitio completo con varias secciones e integraciones. Después del diagnóstico definimos tiempos claros.",
+  },
+  {
+    question: "¿Incluyen dominio y hosting?",
+    answer:
+      "Podemos orientarte con dominio, hosting y configuración básica. Si ya tienes dominio o hosting, también podemos trabajar sobre tu estructura actual.",
+  },
+  {
+    question: "¿Pueden integrar WhatsApp, formularios o CRM?",
+    answer:
+      "Sí. Podemos conectar formularios, botones de WhatsApp, calendarios, herramientas de seguimiento, CRM o automatizaciones simples según lo que necesite tu negocio.",
+  },
+  {
+    question: "¿Mi sitio web será editable?",
+    answer:
+      "Depende de la tecnología elegida. Podemos construir soluciones estáticas de alto rendimiento o estructuras editables según el tipo de negocio y la frecuencia con la que necesites actualizar contenido.",
+  },
+  {
+    question: "¿Qué necesito para empezar?",
+    answer:
+      "Necesitamos entender tu negocio, tus objetivos, tus servicios, tus clientes ideales y el tipo de acción que quieres generar: mensajes, citas, registros, llamadas o ventas.",
+  },
+  {
+    question: "¿Ofrecen soporte después del lanzamiento?",
+    answer:
+      "Sí. Podemos ofrecer soporte, mantenimiento, optimización y mejoras posteriores para mantener tu sitio estable, actualizado y alineado con tus objetivos comerciales.",
+  },
+];
+---
+
+<section id="faq" class="relative py-20">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+    >
+      <div class="max-w-3xl">
+        <div
+          class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
+        >
+          Preguntas frecuentes
+        </div>
+
+        <h2
+          class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
+        >
+          Resolvemos tus
+          <span
+            class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
+          >
+            dudas principales
+          </span>
+        </h2>
+
+        <p class="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
+          Antes de iniciar cualquier proyecto, buscamos que tengas claridad
+          sobre el proceso, alcance, integraciones y siguientes pasos.
+        </p>
+      </div>
+
+      <a
+        href="#contacto"
+        class="inline-flex w-fit items-center justify-center rounded-xl border border-blue-400/40 bg-blue-500/10 px-5 py-3 text-sm font-bold text-white transition hover:border-blue-300/70 hover:bg-blue-500/20"
+      >
+        ¿Tienes otra pregunta?
+        <span class="ml-2">→</span>
+      </a>
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      {
+        faqs.map((faq) => (
+          <details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition open:border-blue-300/40 open:bg-blue-500/[0.06]">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold text-white">
+              {faq.question}
+
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-blue-300 transition group-open:rotate-45">
+                +
+              </span>
+            </summary>
+
+            <p class="mt-4 text-sm leading-7 text-slate-300">{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
