@@ -42,7 +42,7 @@ const steps = [
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <div class="mx-auto max-w-4xl text-center">
+    <div class="reveal mx-auto max-w-4xl text-center">
       <div
         class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
       >
@@ -61,8 +61,8 @@ const steps = [
       </h2>
 
       <p class="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
-        No trabajamos al azar. Cada proyecto sigue una ruta pensada para crear
-        una base digital sólida, funcional y lista para crecer.
+        No trabajamos al azar. Un proceso claro significa menos vueltas, menos
+        tiempo perdido y una web lista para vender más rápido.
       </p>
     </div>
 
@@ -74,8 +74,11 @@ const steps = [
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
         {
-          steps.map((step) => (
-            <article class="relative rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-6 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl">
+          steps.map((step, index) => (
+            <article
+              class="reveal relative rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-6 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300/50"
+              style={`--reveal-delay: ${index * 90}ms`}
+            >
               <div class="relative z-10">
                 <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-400/25 bg-blue-500/10 text-xl font-bold text-blue-200 shadow-[0_0_40px_rgba(37,99,235,0.18)]">
                   {step.icon}

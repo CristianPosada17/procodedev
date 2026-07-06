@@ -1,0 +1,121 @@
+---
+// Portafolio con proyectos reales. Las miniaturas se generan en vivo con el
+// servicio de capturas de WordPress (mShots) — no requiere subir imágenes.
+const projects = [
+  {
+    name: "Fernanda Silva — Nutrióloga",
+    url: "https://fersilvanutricion.com/",
+    badge: "Salud & bienestar",
+    description:
+      "Sitio profesional que comunica sus servicios, transmite confianza y facilita que nuevos pacientes agenden su consulta.",
+    tags: ["Sitio web", "Salud", "Captación"],
+  },
+  {
+    name: "Cristian Posada — Marca personal",
+    url: "https://cristianposada.com/",
+    badge: "Marca personal",
+    description:
+      "Sitio de marca personal enfocado en posicionar autoridad, mostrar proyectos y convertir visitantes en contactos reales.",
+    tags: ["Marca personal", "Branding", "Conversión"],
+  },
+  {
+    name: "Trejo Landscaping",
+    url: "https://tj-landscaping.com/",
+    badge: "Servicios locales",
+    description:
+      "Sitio de servicios que destaca su trabajo, transmite profesionalismo y capta solicitudes de cotización.",
+    tags: ["Sitio web", "Servicios", "Negocio local"],
+  },
+];
+---
+
+<section id="portafolio" class="relative py-20">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="reveal mx-auto max-w-4xl text-center">
+      <div
+        class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
+      >
+        Portafolio
+      </div>
+
+      <h2
+        class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
+      >
+        Proyectos reales que
+        <span
+          class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
+        >
+          generan oportunidades
+        </span>
+      </h2>
+
+      <p class="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
+        Una selección de sitios web que hemos construido para negocios que
+        querían verse más profesionales y captar mejor. Haz clic para verlos en
+        vivo.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((project, index) => (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="reveal group flex flex-col overflow-hidden rounded-3xl border border-blue-400/20 bg-[#061126]/70 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300/50 hover:shadow-[0_0_80px_rgba(37,99,235,0.20)]"
+            style={`--reveal-delay: ${index * 100}ms`}
+          >
+            <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#0d1a33] to-[#0a1428]">
+              <span class="absolute left-4 top-4 z-10 rounded-lg border border-blue-400/30 bg-[#020817]/75 px-3 py-1 text-xs font-bold text-blue-300 backdrop-blur-sm">
+                {project.badge}
+              </span>
+
+              <img
+                src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=900&h=560`}
+                alt={`Sitio web desarrollado por ProCode Dev: ${project.name}`}
+                loading="lazy"
+                width="900"
+                height="560"
+                class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.06]"
+              />
+            </div>
+
+            <div class="flex flex-1 flex-col p-6">
+              <h3 class="text-xl font-extrabold text-white">{project.name}</h3>
+
+              <p class="mt-3 flex-1 text-sm leading-7 text-slate-300">
+                {project.description}
+              </p>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="rounded-lg border border-white/10 bg-blue-500/10 px-3 py-1 text-xs text-blue-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-300">
+                Ver proyecto
+                <span class="transition group-hover:translate-x-1">↗</span>
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 text-center">
+      <a
+        href="#contacto"
+        class="inline-flex items-center justify-center rounded-xl border border-blue-400/40 bg-blue-500/10 px-6 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-blue-300/70 hover:bg-blue-500/20"
+      >
+        Quiero un sitio así para mi negocio
+        <span class="ml-2">→</span>
+      </a>
+    </div>
+  </div>
+</section>

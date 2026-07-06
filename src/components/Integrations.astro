@@ -40,7 +40,7 @@ const integrations = [
     <div
       class="rounded-[2rem] border border-blue-400/20 bg-[#061126]/60 p-6 shadow-[0_0_70px_rgba(37,99,235,0.12)] backdrop-blur-xl lg:p-8"
     >
-      <div class="mx-auto max-w-3xl text-center">
+      <div class="reveal mx-auto max-w-3xl text-center">
         <div
           class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
         >
@@ -54,8 +54,9 @@ const integrations = [
         </h2>
 
         <p class="mt-5 text-base leading-8 text-slate-300">
-          Tu página no debe vivir aislada. Podemos conectarla con herramientas
-          que ayuden a captar, organizar y dar seguimiento a tus prospectos.
+          Tu página no debe vivir aislada. La conectamos con tus herramientas
+          para que la captación y el seguimiento sucedan solos, sin trabajo
+          manual.
         </p>
       </div>
 
@@ -63,8 +64,11 @@ const integrations = [
         class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
       >
         {
-          integrations.map((item) => (
-            <article class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center transition hover:border-blue-300/40 hover:bg-blue-500/[0.06]">
+          integrations.map((item, index) => (
+            <article
+              class="reveal reveal-scale rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center transition duration-300 hover:-translate-y-1 hover:border-blue-300/40 hover:bg-blue-500/[0.06]"
+              style={`--reveal-delay: ${index * 70}ms`}
+            >
               <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-2xl">
                 {item.icon}
               </div>

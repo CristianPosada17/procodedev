@@ -7,3 +7,55 @@ html {
 section {
     scroll-margin-top: 96px;
 }
+
+/* ============================================================
+   ANIMACIONES — reveal al hacer scroll
+   Aplica la clase `reveal` a cualquier elemento.
+   Para escalonar (stagger) usa: style="--reveal-delay: 120ms"
+   El script del Layout añade `is-visible` cuando entra en viewport.
+   ============================================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Variantes opcionales de dirección */
+.reveal-left {
+    transform: translateX(-26px);
+}
+.reveal-right {
+    transform: translateX(26px);
+}
+.reveal-scale {
+    transform: scale(0.96);
+}
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
+    transform: none;
+}
+
+/* Accesibilidad: sin animación si el usuario lo pidió */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

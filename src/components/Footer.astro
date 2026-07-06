@@ -2,7 +2,8 @@
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
-  { label: "Proceso", href: "#proceso" },
+  { label: "Portafolio", href: "#portafolio" },
+  { label: "Precios", href: "#precios" },
   { label: "Resultados", href: "#resultados" },
   { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },
@@ -22,7 +23,7 @@ const services = [
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.8fr_1fr]">
+    <div class="reveal grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.8fr_1fr]">
       <div>
         <a href="#inicio" class="flex items-center gap-3">
           <div class="flex h-12 w-12 items-center justify-center">
@@ -143,7 +144,7 @@ const services = [
     <div
       class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between"
     >
-      <p>© 2026 ProCode Dev. Todos los derechos reservados.</p>
+      <p>© {new Date().getFullYear()} ProCode Dev. Todos los derechos reservados.</p>
 
       <div class="flex gap-5">
         <a href="#" class="transition hover:text-blue-300"

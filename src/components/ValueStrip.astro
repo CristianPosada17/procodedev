@@ -15,8 +15,9 @@ const values = [
   {
     icon: "↗",
     title: "Captación continua",
+    // copy: refuerza el ángulo de tiempo (capta solo, 24/7)
     description:
-      "Sistemas digitales pensados para generar prospectos y reuniones.",
+      "Sistemas que captan prospectos 24/7, incluso mientras duermes.",
   },
   {
     icon: "✓",
@@ -37,7 +38,8 @@ const values = [
       {
         values.map((item, index) => (
           <div
-            class={`relative p-6 ${index !== values.length - 1 ? "xl:border-r xl:border-white/10" : ""}`}
+            class={`reveal relative p-6 ${index !== values.length - 1 ? "xl:border-r xl:border-white/10" : ""}`}
+            style={`--reveal-delay: ${index * 90}ms`}
           >
             <div class="flex items-start gap-4">
               <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-xl text-blue-300 shadow-[0_0_30px_rgba(37,99,235,0.18)]">

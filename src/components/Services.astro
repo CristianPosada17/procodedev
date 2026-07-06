@@ -4,8 +4,9 @@ const services = [
     icon: "▣",
     category: "Desarrollo web",
     title: "Sitios web enfocados en conversión",
+    // copy: outcome + ahorro de tiempo
     description:
-      "Diseñamos y desarrollamos páginas profesionales pensadas para transmitir confianza, comunicar valor y convertir visitas en oportunidades reales.",
+      "Páginas profesionales que transmiten confianza, comunican tu valor en segundos y convierten visitas en clientes sin que tengas que explicar nada.",
   },
   {
     icon: "◎",
@@ -39,8 +40,9 @@ const services = [
     icon: "↗",
     category: "Captación digital",
     title: "Web + marketing + seguimiento",
+    // copy: filtra prospectos por ti (tiempo)
     description:
-      "Estructuramos sistemas digitales que combinan página, anuncios, formularios y seguimiento para ayudarte a captar mejores prospectos.",
+      "Unimos página, anuncios, formularios y seguimiento en un sistema que capta y filtra prospectos por ti, para que solo hables con quien sí compra.",
   },
 ];
 ---
@@ -49,7 +51,7 @@ const services = [
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <div class="mx-auto max-w-4xl text-center">
+    <div class="reveal mx-auto max-w-4xl text-center">
       <div
         class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
       >
@@ -75,8 +77,11 @@ const services = [
 
     <div class="mt-14 grid gap-6 lg:grid-cols-3">
       {
-        services.map((service) => (
-          <article class="group relative overflow-hidden rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-7 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300/50 hover:shadow-[0_0_80px_rgba(37,99,235,0.20)]">
+        services.map((service, index) => (
+          <article
+            class="reveal group relative overflow-hidden rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-7 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300/50 hover:shadow-[0_0_80px_rgba(37,99,235,0.20)]"
+            style={`--reveal-delay: ${(index % 3) * 100}ms`}
+          >
             <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
 
             <div class="absolute right-6 top-6 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl" />

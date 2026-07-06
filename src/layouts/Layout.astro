@@ -1,27 +1,228 @@
 ---
 import "../styles/global.css";
+
+/**
+ * Layout base con SEO completo.
+ * Props opcionales para personalizar título, descripción, imagen social y URL canónica por página.
+ */
 const {
-  title = "ProCode Dev | Desarrollo web estratégico",
-  description = "Creamos sitios web, landing pages, integraciones y sistemas digitales para negocios que buscan crecer con una presencia digital profesional.",
+  title = "ProCode Dev | Agencia de Desarrollo Web que Convierte Visitas en Clientes",
+  description = "Agencia de desarrollo web enfocada en resultados. Creamos sitios web, landing pages, integraciones y sistemas digitales que convierten visitantes en clientes y automatizan tu negocio. Agenda tu diagnóstico gratuito.",
+  image = "/og-image.jpg",
+  noindex = false,
 } = Astro.props;
+
+// URL canónica y absolutas para redes (requiere `site` configurado en astro.config.mjs)
+const siteUrl = Astro.site ?? new URL("https://procodedev.com");
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const socialImage = new URL(image, siteUrl);
+
+// Datos estructurados (JSON-LD) — ayudan a que Google entienda el negocio y muestre rich results
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}#organization`,
+      name: "ProCode Dev",
+      url: siteUrl.toString(),
+      image: socialImage.toString(),
+      description:
+        "Agencia de desarrollo web que crea sitios web, landing pages, integraciones y sistemas digitales enfocados en conversión y crecimiento de negocios.",
+      email: "info@procodedev.com",
+      telephone: "+52-614-241-4255",
+      priceRange: "$$",
+      areaServed: { "@type": "Country", name: "México" },
+      availableLanguage: "Spanish",
+      sameAs: [
+        "https://www.instagram.com/procode.systems/",
+        "https://www.linkedin.com/in/cristian-posada-891401291/",
+        "https://www.facebook.com/ProCodeSystems",
+      ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Desarrollo web enfocado en conversión",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Landing pages para campañas",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Integraciones y automatización",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Rediseño web estratégico" },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Soporte y optimización continua",
+          },
+        },
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl.toString(),
+      name: "ProCode Dev",
+      description: description,
+      publisher: { "@id": `${siteUrl}#organization` },
+      inLanguage: "es-MX",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "¿Cuánto tiempo toma desarrollar mi sitio web?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Tras el diagnóstico te entregamos un cronograma con fechas y entregables claros.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Cuánto cuesta un sitio web con ustedes?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Nuestros planes van desde $2,500 MXN (landing page) hasta $12,000 MXN (web completa). Puedes ver el detalle en la sección de Precios; en tu diagnóstico gratuito definimos el alcance exacto sin compromiso.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Incluyen dominio y hosting?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Sí. Te orientamos y configuramos dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajamos sobre tu infraestructura actual sin problema.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Pueden integrar WhatsApp, formularios o CRM?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Por supuesto. Conectamos formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Mi sitio web será editable?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Según tus necesidades. Construimos sitios estáticos de alto rendimiento o estructuras editables con panel de administración cuando necesitas actualizar contenido con frecuencia.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Qué necesito para empezar?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Solo una llamada de diagnóstico. En ella entendemos tu negocio, objetivos, servicios, cliente ideal y la acción que quieres generar: mensajes, citas, registros o ventas.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Ofrecen soporte después del lanzamiento?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Sí. Ofrecemos planes de soporte, mantenimiento y optimización continua para mantener tu sitio rápido, seguro, actualizado y alineado con tus objetivos comerciales.",
+          },
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+    <meta name="theme-color" content="#020817" />
 
+    <!-- ============ SEO PRINCIPAL ============ -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="desarrollo web, agencia de desarrollo web, diseño web, landing pages, sistemas digitales, automatización de negocios, integración de WhatsApp, CRM, páginas web que convierten, desarrollo web México, ProCode Dev"
+    />
+    <meta name="author" content="ProCode Dev" />
+    <meta
+      name="robots"
+      content={noindex
+        ? "noindex, nofollow"
+        : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+    />
+    <meta name="language" content="Spanish" />
+    <meta name="geo.region" content="MX" />
+    <meta name="geo.placename" content="México" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="es" href={canonicalURL} />
+
+    <!-- ============ OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ============ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ProCode Dev" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="ProCode Dev — Desarrollo web estratégico"
+    />
+
+    <!-- ============ TWITTER / X ============ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <!-- ============ ICONOS ============ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- ============ FUENTES ============ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- ============ DATOS ESTRUCTURADOS (JSON-LD) ============ -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Fallback: si el usuario no tiene JavaScript, el contenido con animación se muestra igual -->
+    <noscript>
+      <style>
+        .reveal,
+        .reveal-left,
+        .reveal-right,
+        .reveal-scale {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
 
   <body
@@ -45,5 +246,70 @@ const {
     </div>
 
     <slot />
+
+    <!-- ============ ANIMACIONES (reveal al scroll + contadores) ============ -->
+    <script>
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      // 1) Reveal al hacer scroll
+      const revealEls = document.querySelectorAll<HTMLElement>(".reveal");
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        revealEls.forEach((el) => el.classList.add("is-visible"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+        );
+        revealEls.forEach((el) => io.observe(el));
+      }
+
+      // 2) Contadores animados (elementos con [data-count])
+      const counters = document.querySelectorAll<HTMLElement>("[data-count]");
+      const runCounter = (el: HTMLElement) => {
+        const target = parseFloat(el.dataset.count || "0");
+        const prefix = el.dataset.prefix || "";
+        const suffix = el.dataset.suffix || "";
+        const decimals = (el.dataset.count?.split(".")[1] || "").length;
+        if (reduceMotion) {
+          el.textContent = prefix + target.toFixed(decimals) + suffix;
+          return;
+        }
+        const duration = 1500;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      if ("IntersectionObserver" in window) {
+        const cio = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                runCounter(entry.target as HTMLElement);
+                cio.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.6 },
+        );
+        counters.forEach((el) => cio.observe(el));
+      } else {
+        counters.forEach((el) => runCounter(el));
+      }
+    </script>
   </body>
 </html>

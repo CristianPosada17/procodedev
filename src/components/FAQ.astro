@@ -1,34 +1,40 @@
 ---
+// Copy alineado con el JSON-LD del Layout (Google exige que el texto visible coincida con el schema FAQ).
 const faqs = [
   {
     question: "¿Cuánto tiempo toma desarrollar mi sitio web?",
     answer:
-      "Depende del alcance del proyecto. Una landing page puede tomar menos tiempo que un sitio completo con varias secciones e integraciones. Después del diagnóstico definimos tiempos claros.",
+      "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Tras el diagnóstico te entregamos un cronograma con fechas y entregables claros.",
+  },
+  {
+    question: "¿Cuánto cuesta un sitio web con ustedes?",
+    answer:
+      "Nuestros planes van desde $2,500 MXN (landing page) hasta $12,000 MXN (web completa). Puedes ver el detalle en la sección de Precios; en tu diagnóstico gratuito definimos el alcance exacto sin compromiso.",
   },
   {
     question: "¿Incluyen dominio y hosting?",
     answer:
-      "Podemos orientarte con dominio, hosting y configuración básica. Si ya tienes dominio o hosting, también podemos trabajar sobre tu estructura actual.",
+      "Sí. Te orientamos y configuramos dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajamos sobre tu infraestructura actual sin problema.",
   },
   {
     question: "¿Pueden integrar WhatsApp, formularios o CRM?",
     answer:
-      "Sí. Podemos conectar formularios, botones de WhatsApp, calendarios, herramientas de seguimiento, CRM o automatizaciones simples según lo que necesite tu negocio.",
+      "Por supuesto. Conectamos formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático.",
   },
   {
     question: "¿Mi sitio web será editable?",
     answer:
-      "Depende de la tecnología elegida. Podemos construir soluciones estáticas de alto rendimiento o estructuras editables según el tipo de negocio y la frecuencia con la que necesites actualizar contenido.",
+      "Según tus necesidades. Construimos sitios estáticos de alto rendimiento o estructuras editables con panel de administración cuando necesitas actualizar contenido con frecuencia.",
   },
   {
     question: "¿Qué necesito para empezar?",
     answer:
-      "Necesitamos entender tu negocio, tus objetivos, tus servicios, tus clientes ideales y el tipo de acción que quieres generar: mensajes, citas, registros, llamadas o ventas.",
+      "Solo una llamada de diagnóstico. En ella entendemos tu negocio, objetivos, servicios, cliente ideal y la acción que quieres generar: mensajes, citas, registros o ventas.",
   },
   {
     question: "¿Ofrecen soporte después del lanzamiento?",
     answer:
-      "Sí. Podemos ofrecer soporte, mantenimiento, optimización y mejoras posteriores para mantener tu sitio estable, actualizado y alineado con tus objetivos comerciales.",
+      "Sí. Ofrecemos planes de soporte, mantenimiento y optimización continua para mantener tu sitio rápido, seguro, actualizado y alineado con tus objetivos comerciales.",
   },
 ];
 ---
@@ -40,7 +46,7 @@ const faqs = [
     <div
       class="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
     >
-      <div class="max-w-3xl">
+      <div class="reveal max-w-3xl">
         <div
           class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
         >
@@ -75,8 +81,11 @@ const faqs = [
 
     <div class="grid gap-4 lg:grid-cols-2">
       {
-        faqs.map((faq) => (
-          <details class="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition open:border-blue-300/40 open:bg-blue-500/[0.06]">
+        faqs.map((faq, index) => (
+          <details
+            class="reveal group rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition open:border-blue-300/40 open:bg-blue-500/[0.06]"
+            style={`--reveal-delay: ${(index % 2) * 90}ms`}
+          >
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold text-white">
               {faq.question}
 

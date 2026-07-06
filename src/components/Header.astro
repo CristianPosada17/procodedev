@@ -3,7 +3,8 @@ const navItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
   { label: "Proceso", href: "#proceso" },
-  { label: "Resultados", href: "#resultados" },
+  { label: "Portafolio", href: "#portafolio" },
+  { label: "Precios", href: "#precios" },
   { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },
 ];
@@ -15,11 +16,13 @@ const navItems = [
   <div
     class="mx-auto flex w-full max-w-[1480px] items-center justify-between px-4 py-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <a href="#inicio" class="flex items-center gap-3">
+    <a href="#inicio" class="flex items-center gap-3" aria-label="ProCode Dev — Inicio">
       <div class="flex h-14 w-14 items-center justify-center">
         <img
           src="/Logo.webp"
-          alt="ProCode Dev"
+          alt="Logotipo de ProCode Dev, agencia de desarrollo web"
+          width="56"
+          height="56"
           class="h-full w-full object-contain"
         />
       </div>
@@ -29,7 +32,7 @@ const navItems = [
       </span>
     </a>
 
-    <nav class="hidden items-center gap-8 lg:flex">
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
       {
         navItems.map((item) => (
           <a
@@ -48,13 +51,81 @@ const navItems = [
       rel="noopener noreferrer"
       class="hidden rounded-xl border border-blue-400/40 bg-blue-500/15 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_35px_rgba(37,99,235,0.22)] transition hover:border-blue-300/70 hover:bg-blue-500/25 md:inline-flex"
     >
-      Agendar diagnóstico
+      Agendar diagnóstico gratis
     </a>
 
+    <!-- Botón menú móvil (ahora funcional) -->
     <button
+      id="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
       class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
     >
-      <span class="text-xl">☰</span>
+      <span id="menu-icon" class="text-xl">☰</span>
     </button>
   </div>
+
+  <!-- Panel de navegación móvil -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-white/10 bg-[#020817]/95 backdrop-blur-xl lg:hidden"
+  >
+    <nav
+      class="mx-auto flex w-full max-w-[1480px] flex-col gap-1 px-4 py-4 sm:px-6"
+      aria-label="Navegación móvil"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            data-mobile-link
+            class="rounded-xl px-3 py-3 text-base font-semibold text-slate-200 transition hover:bg-blue-500/10 hover:text-blue-300"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <a
+        href="https://calendly.com/procodedev/meeting-procode"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-2 inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-500"
+      >
+        Agendar diagnóstico gratis →
+      </a>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const icon = document.getElementById("menu-icon");
+
+  const closeMenu = () => {
+    menu?.classList.add("hidden");
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Abrir menú");
+    if (icon) icon.textContent = "☰";
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = !menu?.classList.contains("hidden");
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu?.classList.remove("hidden");
+      toggle?.setAttribute("aria-expanded", "true");
+      toggle?.setAttribute("aria-label", "Cerrar menú");
+      if (icon) icon.textContent = "✕";
+    }
+  });
+
+  // Cerrar al tocar cualquier enlace
+  document
+    .querySelectorAll("[data-mobile-link]")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+</script>

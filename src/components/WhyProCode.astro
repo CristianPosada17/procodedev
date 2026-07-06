@@ -15,8 +15,9 @@ const benefits = [
   {
     icon: "⚡",
     title: "Velocidad y rendimiento",
+    // copy: la velocidad como argumento de venta
     description:
-      "Desarrollamos estructuras rápidas, responsivas y optimizadas para una mejor experiencia de usuario.",
+      "Webs que cargan rápido: cada segundo de más te cuesta clientes. La velocidad vende.",
   },
   {
     icon: "📱",
@@ -43,7 +44,7 @@ const benefits = [
   <div
     class="mx-auto grid w-full max-w-[1480px] items-start gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 2xl:max-w-[1600px]"
   >
-    <div class="lg:sticky lg:top-28">
+    <div class="reveal reveal-left lg:sticky lg:top-28">
       <div
         class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
       >
@@ -86,8 +87,11 @@ const benefits = [
 
     <div class="grid gap-6 md:grid-cols-2">
       {
-        benefits.map((benefit) => (
-          <article class="group rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-300/40 hover:bg-blue-500/[0.06] hover:shadow-[0_0_70px_rgba(37,99,235,0.16)]">
+        benefits.map((benefit, index) => (
+          <article
+            class="reveal group rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-300/40 hover:bg-blue-500/[0.06] hover:shadow-[0_0_70px_rgba(37,99,235,0.16)]"
+            style={`--reveal-delay: ${(index % 2) * 90}ms`}
+          >
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10 text-2xl text-blue-300">
               {benefit.icon}
             </div>
