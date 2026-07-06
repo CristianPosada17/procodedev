@@ -1,12 +1,13 @@
 ---
+// Los enlaces usan "/#..." para que funcionen también desde /blog (van al home y hacen scroll).
 const navItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proceso", href: "#proceso" },
-  { label: "Portafolio", href: "#portafolio" },
-  { label: "Precios", href: "#precios" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/#inicio" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Portafolio", href: "/#portafolio" },
+  { label: "Precios", href: "/#precios" },
+  { label: "Blog", href: "/blog" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 ---
 
@@ -16,7 +17,7 @@ const navItems = [
   <div
     class="mx-auto flex w-full max-w-[1480px] items-center justify-between px-4 py-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <a href="#inicio" class="flex items-center gap-3" aria-label="ProCode Dev — Inicio">
+    <a href="/" class="flex items-center gap-3" aria-label="ProCode Dev — Inicio">
       <div class="flex h-14 w-14 items-center justify-center">
         <img
           src="/Logo.webp"

@@ -1,0 +1,18 @@
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+// Colección de artículos del blog (Content Layer API de Astro).
+// Cada archivo .md dentro de src/content/blog/ es un artículo.
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    author: z.string().default("ProCode Dev"),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { blog };

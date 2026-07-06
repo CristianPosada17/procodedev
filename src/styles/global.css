@@ -45,6 +45,84 @@ section {
     transform: none;
 }
 
+/* ============================================================
+   ESTILOS DE ARTÍCULO DEL BLOG (contenido Markdown renderizado)
+   ============================================================ */
+.article-content {
+    color: #cbd5e1; /* slate-300 */
+    font-size: 1.02rem;
+    line-height: 1.85;
+}
+.article-content > * + * {
+    margin-top: 1.25rem;
+}
+.article-content h2 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.25rem;
+}
+.article-content h3 {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 1.75rem;
+}
+.article-content p {
+    color: #cbd5e1;
+}
+.article-content a {
+    color: #93c5fd; /* blue-300 */
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+.article-content a:hover {
+    color: #bfdbfe;
+}
+.article-content strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+.article-content ul,
+.article-content ol {
+    padding-left: 1.4rem;
+    color: #cbd5e1;
+}
+.article-content ul {
+    list-style: disc;
+}
+.article-content ol {
+    list-style: decimal;
+}
+.article-content li {
+    margin-top: 0.5rem;
+}
+.article-content li::marker {
+    color: #60a5fa; /* blue-400 */
+}
+.article-content blockquote {
+    border-left: 3px solid rgba(96, 165, 250, 0.5);
+    padding-left: 1rem;
+    color: #e2e8f0;
+    font-style: italic;
+}
+.article-content hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+.article-content code {
+    background: rgba(96, 165, 250, 0.12);
+    color: #bfdbfe;
+    padding: 0.15rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
 /* Accesibilidad: sin animación si el usuario lo pidió */
 @media (prefers-reduced-motion: reduce) {
     html {

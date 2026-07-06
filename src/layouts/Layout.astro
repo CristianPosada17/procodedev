@@ -1,5 +1,26 @@
 ---
 import "../styles/global.css";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+
+// ====== IDs DE MEDICIÓN (rellena cuando los tengas; si quedan vacíos, no cargan) ======
+// Google Analytics 4 → https://analytics.google.com  (formato "G-XXXXXXXXXX")
+const GA_MEASUREMENT_ID = "";
+// Meta Pixel (Facebook/Instagram Ads) → Administrador de eventos  (solo el número)
+const META_PIXEL_ID = "1741784446953946";
+// Google Search Console → verificación por etiqueta HTML (solo el valor de "content")
+const GSC_VERIFICATION = "";
+
+// Scripts de medición como cadenas (se arman aquí; quedan vacías si no hay IDs).
+const gaSnippet = GA_MEASUREMENT_ID
+  ? `var gse=document.createElement('script');gse.async=true;gse.src='https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';document.head.appendChild(gse);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`
+  : "";
+const pixelSnippet = META_PIXEL_ID
+  ? `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`
+  : "";
+const analyticsBootstrap = [gaSnippet, pixelSnippet].filter(Boolean).join("\n");
+const pixelNoscript = META_PIXEL_ID
+  ? `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"/>`
+  : "";
 
 /**
  * Layout base con SEO completo.
@@ -155,6 +176,9 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#020817" />
+    {GSC_VERIFICATION && (
+      <meta name="google-site-verification" content={GSC_VERIFICATION} />
+    )}
 
     <!-- ============ SEO PRINCIPAL ============ -->
     <title>{title}</title>
@@ -219,7 +243,7 @@ const jsonLd = {
     />
 
     <!-- ============ DATOS ESTRUCTURADOS (JSON-LD) ============ -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
 
     <!-- Fallback: si el usuario no tiene JavaScript, el contenido con animación se muestra igual -->
     <noscript>
@@ -233,6 +257,11 @@ const jsonLd = {
         }
       </style>
     </noscript>
+
+    <!-- ============ MEDICIÓN: Google Analytics 4 + Meta Pixel ============ -->
+    <!-- Se activan solo cuando defines GA_MEASUREMENT_ID / META_PIXEL_ID arriba. -->
+    <script is:inline set:html={analyticsBootstrap}></script>
+    <noscript set:html={pixelNoscript}></noscript>
   </head>
 
   <body
@@ -256,6 +285,8 @@ const jsonLd = {
     </div>
 
     <slot />
+
+    <WhatsAppFloat />
 
     <!-- ============ ANIMACIONES (reveal al scroll + contadores) ============ -->
     <script>

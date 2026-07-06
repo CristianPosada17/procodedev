@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("es-MX", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+
+<Layout
+  title="Blog | ProCode Dev — Ideas para vender más con tu página web"
+  description="Guías y consejos prácticos de desarrollo web, captación de clientes y automatización para negocios y emprendedores en México."
+>
+  <Header />
+
+  <main
+    class="mx-auto w-full max-w-[1480px] px-4 py-20 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="mx-auto max-w-3xl text-center">
+      <div
+        class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
+      >
+        Blog
+      </div>
+
+      <h1
+        class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+      >
+        Ideas para vender más con tu
+        <span
+          class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
+        >
+          presencia digital
+        </span>
+      </h1>
+
+      <p class="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
+        Consejos claros sobre desarrollo web, captación de clientes y
+        automatización para que tu negocio crezca y te ahorre tiempo.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <a
+            href={`/blog/${post.id}/`}
+            class="group flex flex-col rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-7 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300/50 hover:shadow-[0_0_80px_rgba(37,99,235,0.20)]"
+          >
+            <p class="text-xs font-semibold uppercase tracking-wide text-blue-300">
+              {formatDate(post.data.pubDate)}
+            </p>
+
+            <h2 class="mt-3 text-xl font-extrabold leading-tight text-white">
+              {post.data.title}
+            </h2>
+
+            <p class="mt-3 flex-1 text-sm leading-7 text-slate-300">
+              {post.data.description}
+            </p>
+
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-300">
+              Leer artículo
+              <span class="transition group-hover:translate-x-1">→</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    {
+      posts.length === 0 && (
+        <p class="mt-14 text-center text-slate-400">
+          Pronto publicaremos nuevos artículos.
+        </p>
+      )
+    }
+  </main>
+
+  <Footer />
+</Layout>
