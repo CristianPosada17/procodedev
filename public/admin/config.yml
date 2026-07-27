@@ -8,9 +8,7 @@ backend:
   repo: CristianPosada17/procodedev
   branch: main
   # URL del "portero" de login con GitHub (worker de Cloudflare).
-  # Reemplaza esto por la URL real de tu worker cuando lo crees.
-  # Ver la guía: GUIA-PANEL-BLOG.md, paso 2.
-  base_url: https://REEMPLAZAR-CON-TU-WORKER.workers.dev
+  base_url: https://sveltia-cms-auth.cristianposadadev.workers.dev
 
 # Idioma del panel
 locale: es
