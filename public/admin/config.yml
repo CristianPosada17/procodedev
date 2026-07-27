@@ -50,16 +50,6 @@ collections:
           picker_utc: true,
         }
       - {
-          name: "updatedDate",
-          label: "Fecha de actualización (opcional)",
-          widget: "datetime",
-          date_format: "YYYY-MM-DD",
-          time_format: false,
-          format: "YYYY-MM-DD",
-          picker_utc: true,
-          required: false,
-        }
-      - {
           name: "author",
           label: "Autor",
           widget: "string",

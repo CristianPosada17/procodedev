@@ -9,7 +9,18 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
+    // Fecha de actualización opcional. Si viene vacía (o como valor vacío
+    // desde el panel), se ignora en vez de romper la compilación.
+    updatedDate: z
+      .preprocess(
+        (v) =>
+          v instanceof Date
+            ? v
+            : typeof v === "string" && v.trim() !== ""
+              ? v
+              : undefined,
+        z.coerce.date().optional()
+      ),
     author: z.string().default("ProCode Dev"),
     tags: z.array(z.string()).default([]),
   }),
