@@ -1,0 +1,44 @@
+name: Compilar y publicar en Hostinger
+
+# Se ejecuta cada vez que se sube algo a la rama main
+# (por ejemplo, cuando publicas un artículo desde el panel /admin),
+# o manualmente desde la pestaña "Actions" de GitHub.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Evita despliegues simultáneos que se pisen entre sí
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar el sitio (Astro)
+        run: npm run build
+
+      - name: Subir a Hostinger por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Carpeta local generada por Astro
+          local-dir: ./dist/
+          # Carpeta en Hostinger donde vive tu web (normalmente /public_html/)
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}

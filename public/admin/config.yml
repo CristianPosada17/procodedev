@@ -1,0 +1,82 @@
+# Configuración del panel de contenido (Sveltia CMS)
+# Guarda cada artículo como un archivo .md dentro de src/content/blog/,
+# igual que los que ya tienes. No cambia nada de tu blog: solo le pone
+# un formulario por encima para no tocar código.
+
+backend:
+  name: github
+  repo: CristianPosada17/procodedev
+  branch: main
+  # URL del "portero" de login con GitHub (worker de Cloudflare).
+  # Reemplaza esto por la URL real de tu worker cuando lo crees.
+  # Ver la guía: GUIA-PANEL-BLOG.md, paso 2.
+  base_url: https://REEMPLAZAR-CON-TU-WORKER.workers.dev
+
+# Idioma del panel
+locale: es
+
+# Dónde se guardan las imágenes que subas desde el panel.
+# media_folder = ruta real en el proyecto; public_folder = cómo se
+# referencia en la web publicada.
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "blog"
+    label: "Artículos del blog"
+    label_singular: "Artículo"
+    description: "Crea y edita los artículos del blog de ProCode Dev."
+    folder: "src/content/blog"
+    create: true
+    # El nombre del archivo se genera del título (ej: mi-articulo.md)
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter-yaml"
+    # Vista previa de la ruta pública del artículo
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { name: "title", label: "Título", widget: "string" }
+      - {
+          name: "description",
+          label: "Descripción (resumen para Google y redes)",
+          widget: "text",
+          hint: "1 o 2 frases. Es lo que aparece en Google y al compartir el enlace.",
+        }
+      - {
+          name: "pubDate",
+          label: "Fecha de publicación",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          format: "YYYY-MM-DD",
+          picker_utc: true,
+        }
+      - {
+          name: "updatedDate",
+          label: "Fecha de actualización (opcional)",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          format: "YYYY-MM-DD",
+          picker_utc: true,
+          required: false,
+        }
+      - {
+          name: "author",
+          label: "Autor",
+          widget: "string",
+          default: "ProCode Dev",
+        }
+      - {
+          name: "tags",
+          label: "Tags (etiquetas)",
+          widget: "list",
+          default: [],
+          hint: "Escribe cada etiqueta y presiona Enter. Ej: conversión, SEO.",
+        }
+      - {
+          name: "body",
+          label: "Contenido del artículo",
+          widget: "markdown",
+          hint: "El texto principal. Puedes usar títulos, negritas, listas e imágenes.",
+        }
