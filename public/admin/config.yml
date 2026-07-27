@@ -29,7 +29,7 @@ collections:
     # El nombre del archivo se genera del título (ej: mi-articulo.md)
     slug: "{{slug}}"
     extension: "md"
-    format: "frontmatter-yaml"
+    format: "yaml-frontmatter"
     # Vista previa de la ruta pública del artículo
     preview_path: "blog/{{slug}}"
     fields:
