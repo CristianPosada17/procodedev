@@ -2,43 +2,33 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
 import ValueStrip from "../components/ValueStrip.astro";
 import Services from "../components/Services.astro";
-import Process from "../components/Process.astro";
 import WhyProCode from "../components/WhyProCode.astro";
 import CaseStudy from "../components/CaseStudy.astro";
-import Portfolio from "../components/Portfolio.astro";
-import Pricing from "../components/Pricing.astro";
-import Calendly from "../components/Calendly.astro";
-import FreeAudit from "../components/FreeAudit.astro";
 import Integrations from "../components/Integrations.astro";
-import FAQ from "../components/FAQ.astro";
 import Testimonials from "../components/Testimonials.astro";
-import Contact from "../components/Contact.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import Footer from "../components/Footer.astro";
+import { translations } from "../i18n/ui";
+
+const lang = "es";
+const meta = translations[lang].pageMeta.home;
 ---
 
-<Layout>
-  <Header />
-
+<Layout lang={lang} page="home" title={meta.title} description={meta.description}>
+  <Header lang={lang} page="home" />
   <main>
-    <Hero />
-    <ValueStrip />
-    <Services />
-    <Process />
-    <WhyProCode />
-    <CaseStudy />
-    <Portfolio />
-    <Pricing />
-    <Calendly />
-    <FreeAudit />
-    <Integrations />
-    <FAQ />
-    <Testimonials />
-    <Contact />
-    <FinalCTA />
+    <Hero lang={lang} />
+    <Marquee lang={lang} />
+    <ValueStrip lang={lang} />
+    <Services lang={lang} />
+    <WhyProCode lang={lang} />
+    <CaseStudy lang={lang} />
+    <Integrations lang={lang} />
+    <Testimonials lang={lang} />
+    <FinalCTA lang={lang} />
   </main>
-
-  <Footer />
+  <Footer lang={lang} />
 </Layout>

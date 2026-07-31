@@ -1,283 +1,91 @@
 ---
-// Sección de precios enfocada en vender TIEMPO al emprendedor / negocio pequeño.
-// Copy y estructura pensados para reducir fricción y facilitar la decisión de compra.
-
-const packages = [
-  {
-    name: "Landing Page",
-    price: "2,500",
-    currency: "MXN",
-    priceValue: 2500,
-    tagline: "Empieza a captar clientes ya",
-    description:
-      "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio o campaña sin complicarte.",
-    timeBenefit: "Deja de perder contactos por no tener dónde enviarlos.",
-    features: [
-      "Página única de alta conversión",
-      "Copy de ventas + llamada a la acción clara",
-      "Botón directo a WhatsApp",
-      "Diseño impecable en móvil",
-    ],
-    cta: "Quiero mi landing",
-    highlighted: false,
-  },
-  {
-    name: "Sitio Web 4–6 secciones",
-    price: "5,500",
-    currency: "MXN",
-    priceValue: 5500,
-    tagline: "El favorito de negocios en crecimiento",
-    description:
-      "Tu negocio completo en línea, con una estructura pensada para vender y transmitir confianza desde el primer clic.",
-    timeBenefit:
-      "Ahorra horas cada semana explicando lo que haces: tu web lo hace por ti.",
-    features: [
-      "4 a 6 secciones estratégicas",
-      "Estructura de ventas y confianza",
-      "WhatsApp + formularios conectados",
-      "SEO base para que te encuentren",
-      "Diseño profesional y rápido",
-    ],
-    cta: "Empezar mi sitio",
-    highlighted: true,
-  },
-  {
-    name: "Sitio Web 8–12 secciones",
-    price: "12,000",
-    currency: "MXN",
-    priceValue: 12000,
-    tagline: "Presencia y sistema digital completo",
-    description:
-      "Una web robusta para negocios más grandes: más secciones, integraciones y una operación digital ordenada.",
-    timeBenefit:
-      "Automatiza captación y seguimiento para que tú te dediques a cerrar.",
-    features: [
-      "8 a 12 secciones completas",
-      "Integraciones y automatización",
-      "Sistema de captación + seguimiento",
-      "SEO técnico avanzado",
-      "Acompañamiento en el lanzamiento",
-    ],
-    cta: "Cotizar mi web",
-    highlighted: false,
-  },
-];
-
-const extras = [
-  {
-    name: "Rediseño web",
-    price: "$3,000 – $12,000",
-    unit: "MXN",
-    description:
-      "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
-  },
-  {
-    name: "Optimización web",
-    price: "$3,000",
-    unit: "MXN",
-    description:
-      "Más velocidad, mejor experiencia y CTAs que sí convierten visitas en mensajes.",
-  },
-  {
-    name: "Página adicional",
-    price: "$900",
-    unit: "MXN",
-    description: "Suma una sección extra a un sitio que ya tienes con nosotros.",
-  },
-  {
-    name: "Soporte web mensual",
-    price: "Desde $699",
-    unit: "MXN / mes",
-    description:
-      "Mantenimiento y cambios menores. Tu sitio siempre al día sin que te quite tiempo.",
-  },
-  {
-    name: "Ajustes urgentes",
-    price: "$500 – $1,000",
-    unit: "MXN",
-    description:
-      "Cambios rápidos fuera de alcance, resueltos con prioridad el mismo día.",
-  },
-];
-
-// JSON-LD: catálogo de ofertas para SEO (rich results de precios/servicios).
-const offersJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "OfferCatalog",
-  name: "Precios de desarrollo web — ProCode Dev",
-  itemListElement: [
-    ...packages.map((p) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: p.name, description: p.description },
-      price: p.priceValue,
-      priceCurrency: "MXN",
-      availability: "https://schema.org/InStock",
-    })),
-    {
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: "Rediseño web" },
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        minPrice: 3000,
-        maxPrice: 12000,
-        priceCurrency: "MXN",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: "Optimización web" },
-      price: 3000,
-      priceCurrency: "MXN",
-    },
-    {
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: "Página adicional" },
-      price: 900,
-      priceCurrency: "MXN",
-    },
-    {
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: "Soporte web mensual" },
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: 699,
-        priceCurrency: "MXN",
-        unitText: "MES",
-      },
-    },
-  ],
-};
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import SectionHeading from "./SectionHeading.astro";
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const p = t.pricing;
 ---
 
 <section id="precios" class="relative py-20">
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
-    <div class="reveal mx-auto max-w-4xl text-center">
-      <div
-        class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
-      >
-        Precios
-      </div>
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={p.eyebrow} max="max-w-3xl">
+      <Fragment slot="title">
+        {p.titleA}{" "}<span class="grad-text">{p.titleHighlight}</span>{" "}{p.titleB}
+      </Fragment>
+      <Fragment slot="subtitle">{p.subtitle}</Fragment>
+    </SectionHeading>
 
-      <h2
-        class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
-      >
-        Invierte una vez y recupera tu
-        <span
-          class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
-        >
-          tiempo
-        </span>
-        cada día.
-      </h2>
-
-      <p class="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
-        Cada hora que pasas explicando tu negocio, respondiendo lo mismo por
-        WhatsApp o persiguiendo prospectos, es tiempo que no inviertes en vender.
-        Construimos la estructura que trabaja por ti — precios claros, sin
-        sorpresas.
-      </p>
-    </div>
-
-    <!-- Paquetes principales -->
-    <div class="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
       {
-        packages.map((pkg, index) => (
-          <article
-            class={`reveal group relative flex flex-col rounded-3xl border p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 ${
+        p.packages.map((pkg, i) => (
+          <div
+            class:list={[
+              "reveal relative flex flex-col rounded-[var(--radius-lg)] border p-8 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
               pkg.highlighted
-                ? "border-blue-300/60 bg-[#08183a]/80 shadow-[0_0_90px_rgba(37,99,235,0.28)] lg:-mt-4 lg:mb-4"
-                : "border-blue-400/20 bg-[#061126]/70 shadow-[0_0_60px_rgba(37,99,235,0.10)] hover:border-blue-300/50"
-            }`}
-            style={`--reveal-delay: ${index * 100}ms`}
+                ? "border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 shadow-[0_30px_80px_-40px_rgba(37,99,235,0.7)]"
+                : "border-[color:var(--border)] bg-[var(--surface)]/60",
+            ]}
+            style={`--reveal-delay: ${i * 90}ms`}
           >
             {pkg.highlighted && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-blue-300/50 bg-blue-600 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(37,99,235,0.5)]">
-                Más elegido
+              <span class="absolute -top-3 left-8 rounded-full bg-[var(--brand)] px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white">
+                {p.popular}
               </span>
             )}
-
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-blue-300">
-              {pkg.tagline}
-            </p>
-
-            <h3 class="mt-4 text-2xl font-extrabold text-white">{pkg.name}</h3>
-
-            <div class="mt-5 flex items-end gap-2">
-              <span class="text-4xl font-black text-white">${pkg.price}</span>
-              <span class="pb-1 text-sm font-semibold text-slate-400">
-                {pkg.currency}
+            <h3 class="text-lg font-bold text-[var(--text)]">{pkg.name}</h3>
+            <p class="mt-1 text-sm text-[var(--accent)]">{pkg.tagline}</p>
+            <div class="mt-5 flex items-end gap-1.5">
+              <span class="font-mono text-4xl font-bold text-[var(--text)]">
+                ${pkg.price}
               </span>
+              <span class="mb-1.5 text-xs text-[var(--muted)]">{pkg.currency}</span>
             </div>
-
-            <p class="mt-4 text-sm leading-7 text-slate-300">
+            <p class="mt-4 text-sm leading-6 text-[var(--muted)]">
               {pkg.description}
             </p>
-
-            <div class="mt-5 flex items-start gap-3 rounded-2xl border border-blue-400/20 bg-blue-500/[0.07] p-4">
-              <span class="text-lg leading-none">⏱️</span>
-              <p class="text-sm font-semibold leading-6 text-blue-100">
-                {pkg.timeBenefit}
-              </p>
-            </div>
-
-            <ul class="mt-6 flex-1 space-y-3">
-              {pkg.features.map((feature) => (
-                <li class="flex items-start gap-3 text-sm text-slate-200">
-                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-blue-500/15 text-xs text-blue-300">
+            <ul class="mt-6 grid flex-1 gap-3">
+              {pkg.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
+                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
                     ✓
                   </span>
-                  {feature}
+                  {f}
                 </li>
               ))}
             </ul>
-
             <a
-              href="#agendar"
-              class={`mt-8 inline-flex items-center justify-center rounded-xl px-6 py-4 text-sm font-bold text-white transition ${
+              href={PAGES.contact[lang]}
+              class:list={[
+                "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold transition",
                 pkg.highlighted
-                  ? "bg-blue-600 shadow-[0_0_45px_rgba(37,99,235,0.45)] hover:bg-blue-500"
-                  : "border border-white/15 bg-white/5 hover:border-blue-300/50 hover:bg-blue-500/10"
-              }`}
+                  ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
+                  : "border border-[color:var(--border-strong)] bg-white/5 text-[var(--text)] hover:bg-[var(--brand)]/10",
+              ]}
             >
               {pkg.cta}
-              <span class="ml-2">→</span>
             </a>
-          </article>
+          </div>
         ))
       }
     </div>
 
-    <!-- Servicios adicionales -->
-    <div class="mt-8 rounded-3xl border border-white/10 bg-white/[0.03] p-6 lg:p-8">
-      <div class="reveal mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <h3 class="text-xl font-extrabold text-white">
-          Servicios adicionales
-        </h3>
-        <p class="text-sm text-slate-400">
-          Complementos para mantener tu sitio creciendo y actualizado.
-        </p>
-      </div>
-
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div class="reveal mt-14">
+      <h3 class="text-lg font-bold text-[var(--text)]">{p.extrasTitle}</h3>
+      <p class="mt-1 text-sm text-[var(--muted)]">{p.extrasSubtitle}</p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
-          extras.map((extra, index) => (
-            <div
-              class="reveal flex flex-col rounded-2xl border border-white/10 bg-[#061126]/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-300/40"
-              style={`--reveal-delay: ${index * 70}ms`}
-            >
+          p.extras.map((ex) => (
+            <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
               <div class="flex items-baseline justify-between gap-3">
-                <h4 class="text-base font-bold text-white">{extra.name}</h4>
+                <h4 class="text-sm font-bold text-[var(--text)]">{ex.name}</h4>
+                <span class="font-mono text-xs text-[var(--accent)]">{ex.price}</span>
               </div>
-              <p class="mt-2 flex-1 text-sm leading-6 text-slate-400">
-                {extra.description}
-              </p>
-              <p class="mt-4 text-lg font-black text-blue-300">
-                {extra.price}
-                <span class="ml-1 text-xs font-semibold text-slate-500">
-                  {extra.unit}
-                </span>
+              <p class="mt-2 text-sm leading-6 text-[var(--muted)]">{ex.description}</p>
+              <p class="mt-2 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                {ex.unit}
               </p>
             </div>
           ))
@@ -285,16 +93,8 @@ const offersJsonLd = {
       </div>
     </div>
 
-    <!-- Nota de confianza -->
-    <p class="reveal mx-auto mt-8 max-w-2xl text-center text-sm text-slate-400">
-      Precios de referencia en pesos mexicanos (MXN). Cada proyecto se cotiza
-      según su alcance real: en tu diagnóstico gratuito lo definimos juntos, sin
-      compromiso.
+    <p class="reveal mt-8 max-w-3xl text-xs leading-6 text-[var(--muted)]">
+      {p.note}
     </p>
   </div>
-
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify(offersJsonLd)}
-  ></script>
 </section>

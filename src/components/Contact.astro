@@ -1,296 +1,184 @@
 ---
-// Formulario de contacto funcional para sitio estático usando Web3Forms.
-//
-// 👉 CONFIGURACIÓN (1 minuto):
-//   1. Entra a https://web3forms.com y pon tu correo (info@procodedev.com).
-//   2. Te llega un "Access Key" gratis.
-//   3. Reemplaza TU_ACCESS_KEY_DE_WEB3FORMS abajo por esa clave.
-// Los mensajes del formulario llegarán directo a tu correo. La clave es
-// pública y segura de exponer (no es una contraseña).
-const WEB3FORMS_ACCESS_KEY = "9659bbb8-915d-4842-8981-a261c0faf9ff";
+import { translations, CONTACT, type Lang } from "../i18n/ui";
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const c = t.contact;
+const waMsg = encodeURIComponent(
+  lang === "es"
+    ? "Hola ProCode, quiero información para mi negocio."
+    : "Hi ProCode, I'd like info for my business.",
+);
 
-const projectTypes = [
-  "Landing Page",
-  "Sitio Web 4–6 secciones",
-  "Sitio Web 8–12 secciones",
-  "Rediseño web",
-  "Automatización / integraciones",
-  "Otro / No estoy seguro",
-];
-
-const inputClass =
-  "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition focus:border-blue-300/50 focus:bg-white/[0.06]";
-const labelClass =
-  "mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-400";
+// Script del formulario construido como cadena en el frontmatter (evita que
+// las llaves / ${} de un template literal rompan el parser de Astro).
+const contactScript = `
+  (function(){
+    var form = document.getElementById('contact-form');
+    var status = document.getElementById('contact-status');
+    var btn = document.getElementById('contact-submit');
+    if(!form) return;
+    var SENDING = ${JSON.stringify(c.sending)};
+    var OK = ${JSON.stringify(c.success)};
+    var FAIL = ${JSON.stringify(c.error)};
+    var LABEL = ${JSON.stringify(c.submit)};
+    function show(msg, ok){
+      if(!status) return;
+      status.textContent = msg;
+      status.classList.remove('hidden');
+      status.style.color = ok ? '#4ade80' : '#f87171';
+    }
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      if(btn){ btn.disabled = true; btn.textContent = SENDING; }
+      try {
+        var data = Object.fromEntries(new FormData(form));
+        var res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await res.json();
+        if(result.success){
+          show(OK, true);
+          form.reset();
+          if(window.fbq) window.fbq('track','Lead');
+          if(window.gtag) window.gtag('event','generate_lead',{ origen:'formulario_contacto' });
+        } else { show(FAIL, false); }
+      } catch(err){ show(FAIL, false); }
+      finally { if(btn){ btn.disabled = false; btn.textContent = LABEL; } }
+    });
+  })();
+`;
 ---
 
 <section id="contacto" class="relative py-20">
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-      <!-- Columna izquierda: copy -->
-      <div class="reveal reveal-left">
-        <div
-          class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
-        >
-          Contacto
-        </div>
-
-        <h2
-          class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
-        >
-          Cuéntanos tu proyecto y te
-          <span
-            class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
-          >
-            respondemos rápido
-          </span>
+      <div class="reveal">
+        <span class="eyebrow">{c.eyebrow}</span>
+        <h2 class="mt-5 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">
+          {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
         </h2>
+        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{c.subtitle}</p>
 
-        <p class="mt-5 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
-          Llena el formulario y te contactamos con una propuesta clara. Sin
-          compromiso y sin tecnicismos: solo cómo tu negocio puede ahorrar
-          tiempo y vender más.
-        </p>
-
-        <ul class="mt-8 space-y-4">
-          <li class="flex items-center gap-3 text-sm text-slate-200">
-            <span
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/15 text-blue-300"
-              >⚡</span
-            >
-            Respuesta en menos de 24 horas
-          </li>
-          <li class="flex items-center gap-3 text-sm text-slate-200">
-            <span
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/15 text-blue-300"
-              >✓</span
-            >
-            Diagnóstico inicial gratuito
-          </li>
-          <li class="flex items-center gap-3 text-sm text-slate-200">
-            <span
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/15 text-blue-300"
-              >💬</span
-            >
-            Atención directa, sin intermediarios
-          </li>
+        <ul class="mt-8 grid gap-3">
+          {
+            c.perks.map((perk) => (
+              <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
+                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
+                  ✓
+                </span>
+                {perk}
+              </li>
+            ))
+          }
         </ul>
 
-        <div class="mt-8 flex flex-col gap-3 text-sm text-slate-400">
-          <span>¿Prefieres escribirnos directo?</span>
-          <div class="flex flex-wrap gap-3">
+        <div class="mt-8 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
+          <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+            {c.directTitle}
+          </p>
+          <div class="mt-4 flex flex-col gap-3 text-sm">
             <a
-              href="https://wa.me/526142414255"
+              href={`https://wa.me/${CONTACT.whatsapp}?text=${waMsg}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-5 py-3 text-sm font-bold text-white transition hover:border-emerald-300/70 hover:bg-emerald-500/20"
+              class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
             >
-              WhatsApp
+              💬 WhatsApp · {CONTACT.whatsappDisplay}
             </a>
             <a
-              href="mailto:info@procodedev.com"
-              class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:border-blue-300/50 hover:bg-blue-500/10"
+              href={`mailto:${CONTACT.email}`}
+              class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
             >
-              info@procodedev.com
+              ✉️ {CONTACT.email}
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Columna derecha: formulario -->
-      <div
-        class="reveal reveal-right rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-6 shadow-[0_0_70px_rgba(37,99,235,0.14)] backdrop-blur-xl sm:p-8"
-        style="--reveal-delay: 120ms"
-      >
-        <form id="contact-form" class="grid gap-5">
-          <!-- Web3Forms: configuración -->
-          <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <div class="reveal reveal-right">
+        <form
+          id="contact-form"
+          class="rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl lg:p-8"
+        >
+          <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
           <input
             type="hidden"
             name="subject"
-            value="Nuevo mensaje desde ProCodeDev.com"
+            value="Nuevo contacto desde procodedev.com"
           />
-          <input type="hidden" name="from_name" value="Sitio web ProCode Dev" />
-          <!-- Honeypot anti-spam (oculto para humanos) -->
-          <input
-            type="checkbox"
-            name="botcheck"
-            class="hidden"
-            style="display:none"
-            tabindex="-1"
-            autocomplete="off"
-          />
+          <input type="hidden" name="from_name" value="ProCode Dev — Web" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label class={labelClass} for="name">Nombre</label>
+          <div class="grid gap-5">
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-[var(--text)]">{c.fieldName}</span>
               <input
-                id="name"
                 type="text"
                 name="name"
                 required
-                placeholder="Tu nombre"
-                class={inputClass}
+                class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
               />
-            </div>
-            <div>
-              <label class={labelClass} for="email">Correo</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                required
-                placeholder="tucorreo@ejemplo.com"
-                class={inputClass}
-              />
-            </div>
-          </div>
-
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label class={labelClass} for="phone">WhatsApp / Teléfono</label>
-              <input
-                id="phone"
-                type="tel"
-                name="phone"
-                placeholder="Opcional"
-                class={inputClass}
-              />
-            </div>
-            <div>
-              <label class={labelClass} for="project">Tipo de proyecto</label>
-              <select id="project" name="project" class={inputClass}>
-                {
-                  projectTypes.map((type) => (
-                    <option value={type} class="bg-[#061126]">
-                      {type}
-                    </option>
-                  ))
-                }
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class={labelClass} for="message">
-              Cuéntanos sobre tu negocio
             </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              required
-              placeholder="¿Qué necesitas y qué te gustaría lograr?"
-              class={inputClass}></textarea>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2">
+                <span class="text-sm font-medium text-[var(--text)]">{c.fieldEmail}</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
+                />
+              </label>
+              <label class="grid gap-2">
+                <span class="text-sm font-medium text-[var(--text)]">{c.fieldPhone}</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
+                />
+              </label>
+            </div>
+
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-[var(--text)]">{c.fieldType}</span>
+              <select
+                name="project_type"
+                class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition focus:border-[color:var(--border-strong)]"
+              >
+                {c.types.map((ty) => <option value={ty}>{ty}</option>)}
+              </select>
+            </label>
+
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-[var(--text)]">{c.fieldMessage}</span>
+              <textarea
+                name="message"
+                rows="4"
+                required
+                class="resize-none rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
+              ></textarea>
+            </label>
+
+            <button
+              id="contact-submit"
+              type="submit"
+              class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)] disabled:opacity-60"
+            >
+              {c.submit}
+            </button>
+
+            <p id="contact-status" class="hidden text-sm" role="status"></p>
           </div>
-
-          <button
-            type="submit"
-            id="contact-submit"
-            class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_rgba(37,99,235,0.45)] transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            Enviar mensaje
-            <span class="ml-2">→</span>
-          </button>
-
-          <!-- Mensaje de estado -->
-          <p
-            id="contact-status"
-            class="hidden rounded-xl px-4 py-3 text-sm font-semibold"
-            role="status"
-            aria-live="polite"
-          >
-          </p>
         </form>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  const form = document.getElementById(
-    "contact-form",
-  ) as HTMLFormElement | null;
-  const status = document.getElementById("contact-status");
-  const submitBtn = document.getElementById(
-    "contact-submit",
-  ) as HTMLButtonElement | null;
-
-  const showStatus = (message: string, ok: boolean) => {
-    if (!status) return;
-    status.textContent = message;
-    status.classList.remove(
-      "hidden",
-      "bg-emerald-500/15",
-      "text-emerald-300",
-      "bg-red-500/15",
-      "text-red-300",
-    );
-    status.classList.add(
-      ok ? "bg-emerald-500/15" : "bg-red-500/15",
-      ok ? "text-emerald-300" : "text-red-300",
-    );
-  };
-
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!form) return;
-
-    const data = Object.fromEntries(new FormData(form));
-
-    if ((data.access_key as string)?.includes("TU_ACCESS_KEY")) {
-      showStatus(
-        "El formulario aún no está configurado. Agrega tu Access Key de Web3Forms.",
-        false,
-      );
-      return;
-    }
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Enviando...";
-    }
-
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await res.json();
-
-      if (result.success) {
-        showStatus(
-          "¡Gracias! Recibimos tu mensaje y te contactamos en menos de 24 horas.",
-          true,
-        );
-        // Registrar el lead en Meta Pixel y Google Analytics (si están activos)
-        (window as any).fbq?.("track", "Lead");
-        (window as any).gtag?.("event", "generate_lead", {
-          origen: "formulario_contacto",
-        });
-        form.reset();
-      } else {
-        showStatus(
-          "Hubo un problema al enviar. Escríbenos por WhatsApp y lo resolvemos.",
-          false,
-        );
-      }
-    } catch {
-      showStatus(
-        "No se pudo enviar. Revisa tu conexión o escríbenos por WhatsApp.",
-        false,
-      );
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Enviar mensaje <span class="ml-2">→</span>';
-      }
-    }
-  });
-</script>
+<script is:inline set:html={contactScript}></script>

@@ -1,225 +1,95 @@
 ---
-// Métricas como datos numéricos para animarlas como contadores (data-count).
-const metrics = [
-  { count: 248, prefix: "+", suffix: "%", label: "Más prospectos generados" },
-  { count: 9.8, prefix: "", suffix: "%", label: "Tasa de conversión promedio" },
-  { count: 72, prefix: "-", suffix: "%", label: "Tiempo de respuesta" },
-];
-
-const features = [
-  "Sitio web profesional",
-  "Página de captación",
-  "Formulario conectado",
-  "Agenda de citas",
-  "Seguimiento por WhatsApp",
-];
+import { translations, PAGES, type Lang } from "../i18n/ui";
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const c = t.caseStudy;
 ---
 
-<section id="resultados" class="relative py-20">
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
-    <div class="reveal mb-12 max-w-3xl">
-      <div
-        class="mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-300"
-      >
-        Proyecto destacado
-      </div>
+<section class="relative py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl"
+    >
+      <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="p-8 lg:p-12">
+          <span class="eyebrow">{c.eyebrow}</span>
+          <h2 class="mt-5 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">
+            {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
+          </h2>
+          <p class="mt-5 text-base leading-8 text-[var(--muted)]">
+            {c.subtitle}
+          </p>
 
-      <h2
-        class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
-      >
-        Una estructura digital pensada para
-        <span
-          class="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent"
-        >
-          generar oportunidades
-        </span>
-      </h2>
+          <p class="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+            {c.includesTitle}
+          </p>
+          <ul class="mt-4 grid gap-3">
+            {
+              c.includes.map((it) => (
+                <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
+                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
+                    ✓
+                  </span>
+                  {it}
+                </li>
+              ))
+            }
+          </ul>
 
-      <p class="mt-5 text-base leading-8 text-slate-300 sm:text-lg">
-        Así se ve un sistema digital completo: presencia profesional, captación,
-        agenda e integraciones trabajando juntas para venderte mientras tú te
-        ocupas del negocio.
-      </p>
-    </div>
-
-    <div class="grid gap-6 lg:grid-cols-[0.9fr_1.4fr_0.7fr]">
-      <article
-        class="reveal reveal-left rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-7 shadow-[0_0_70px_rgba(37,99,235,0.13)] backdrop-blur-xl"
-      >
-        <p class="text-xs font-bold uppercase tracking-[0.22em] text-blue-300">
-          Qué incluye un sistema
-        </p>
-
-        <h3 class="mt-4 text-2xl font-extrabold text-white">
-          Sistema digital para negocio de servicios
-        </h3>
-
-        <p class="mt-4 text-sm leading-7 text-slate-300">
-          Se diseñó una experiencia enfocada en explicar la oferta, transmitir
-          confianza, captar datos del prospecto y facilitar el seguimiento
-          comercial.
-        </p>
-
-        <div class="mt-7 grid gap-4">
-          {
-            features.map((feature) => (
-              <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-slate-300">
-                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/10 text-blue-300">
-                  ✓
-                </span>
-                {feature}
-              </div>
-            ))
-          }
-        </div>
-
-        <a
-          href="#contacto"
-          class="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.35)] transition hover:bg-blue-500"
-        >
-          Quiero algo similar
-          <span class="ml-2">→</span>
-        </a>
-      </article>
-
-      <article
-        class="reveal relative overflow-hidden rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-4 shadow-[0_0_80px_rgba(37,99,235,0.16)] backdrop-blur-xl"
-        style="--reveal-delay: 120ms"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-blue-500/12 via-transparent to-transparent"
-        >
-        </div>
-
-        <div
-          class="relative rounded-[1.5rem] border border-white/10 bg-[#030B1A] p-4"
-        >
-          <div
-            class="mb-4 flex items-center justify-between border-b border-white/10 pb-4"
+          <a
+            href={PAGES.contact[lang]}
+            class="mt-8 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
           >
-            <div class="flex items-center gap-2">
-              <span class="h-3 w-3 rounded-full bg-red-400/80"></span>
-              <span class="h-3 w-3 rounded-full bg-yellow-400/80"></span>
-              <span class="h-3 w-3 rounded-full bg-green-400/80"></span>
-            </div>
+            {c.cta} <span class="ml-2">→</span>
+          </a>
+        </div>
 
-            <div class="hidden gap-5 text-xs text-slate-500 sm:flex">
-              <span>Inicio</span>
-              <span>Servicios</span>
-              <span>Agenda</span>
-            </div>
-          </div>
-
-          <div class="grid gap-5 lg:grid-cols-[1fr_0.7fr]">
-            <div
-              class="rounded-2xl border border-blue-400/20 bg-gradient-to-br from-white/[0.06] to-blue-500/[0.08] p-7"
-            >
-              <p
-                class="text-xs font-bold uppercase tracking-[0.2em] text-blue-300"
-              >
-                Página de captación
+        <div class="relative border-t border-[color:var(--border)] bg-[var(--bg-2)] p-8 lg:border-l lg:border-t-0 lg:p-12">
+          <div class="tech-grid absolute inset-0 opacity-30"></div>
+          <div class="relative grid gap-4">
+            <div class="rounded-2xl border border-[color:var(--border-strong)] bg-gradient-to-br from-[var(--brand)]/20 to-transparent p-6">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
+                01
               </p>
-
-              <h3 class="mt-5 text-3xl font-extrabold leading-tight text-white">
-                Tu negocio visible, claro y listo para convertir.
+              <h3 class="mt-2 text-lg font-bold text-[var(--text)]">
+                {lang === "es" ? "Presencia profesional" : "Professional presence"}
               </h3>
-
-              <p class="mt-4 text-sm leading-7 text-slate-300">
-                Una estructura diseñada para que el visitante entienda tu valor,
-                confíe en tu negocio y tome acción.
+              <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
+                {lang === "es"
+                  ? "Tu negocio visible, claro y listo para convertir."
+                  : "Your business visible, clear and ready to convert."}
               </p>
-
-              <div
-                class="mt-7 inline-flex rounded-xl bg-blue-600 px-5 py-4 text-sm font-bold text-white"
-              >
-                Agendar diagnóstico
-              </div>
-
-              <div class="mt-8 grid gap-3 sm:grid-cols-3">
-                <div
-                  class="rounded-2xl border border-white/10 bg-white/[0.04] p-4"
-                >
-                  <p class="text-2xl font-black text-blue-300">24/7</p>
-                  <p class="mt-1 text-xs text-slate-400">Captación activa</p>
-                </div>
-
-                <div
-                  class="rounded-2xl border border-white/10 bg-white/[0.04] p-4"
-                >
-                  <p class="text-2xl font-black text-white">3s</p>
-                  <p class="mt-1 text-xs text-slate-400">Mensaje claro</p>
-                </div>
-
-                <div
-                  class="rounded-2xl border border-white/10 bg-white/[0.04] p-4"
-                >
-                  <p class="text-2xl font-black text-blue-300">CRM</p>
-                  <p class="mt-1 text-xs text-slate-400">Seguimiento</p>
-                </div>
-              </div>
             </div>
-
-            <div class="space-y-4">
-              <div
-                class="rounded-2xl border border-white/10 bg-white/[0.04] p-5"
-              >
-                <p class="text-sm font-bold text-white">Agenda tu cita</p>
-
-                <div class="mt-4 space-y-3">
-                  <div class="h-10 rounded-xl bg-white/10"></div>
-                  <div class="h-10 rounded-xl bg-white/10"></div>
-                  <div class="h-10 rounded-xl bg-white/10"></div>
-                  <div class="h-11 rounded-xl bg-blue-600"></div>
-                </div>
-
-                <p class="mt-4 text-xs text-slate-500">
-                  Formulario conectado a WhatsApp o CRM.
+            <div class="grid grid-cols-2 gap-4">
+              <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-5">
+                <p class="font-mono text-2xl font-bold text-[var(--accent)]">24/7</p>
+                <p class="mt-1 text-xs text-[var(--muted)]">
+                  {lang === "es" ? "Captación activa" : "Active capture"}
                 </p>
               </div>
-
-              <div
-                class="rounded-2xl border border-white/10 bg-white/[0.04] p-5"
-              >
-                <p class="text-xs text-slate-400">Seguimiento</p>
-                <p class="mt-2 text-2xl font-black text-blue-300">Automático</p>
-
-                <div
-                  class="mt-4 h-20 rounded-xl bg-gradient-to-tr from-blue-600/30 to-cyan-400/10"
-                >
-                </div>
+              <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-5">
+                <p class="font-mono text-2xl font-bold text-[var(--text)]">CRM</p>
+                <p class="mt-1 text-xs text-[var(--muted)]">
+                  {lang === "es" ? "Seguimiento" : "Follow-up"}
+                </p>
               </div>
+            </div>
+            <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-5">
+              <p class="text-xs text-[var(--muted)]">
+                {lang === "es" ? "Agenda tu cita" : "Book your appointment"}
+              </p>
+              <p class="mt-1 text-sm text-[var(--text)]/90">
+                {lang === "es"
+                  ? "Formulario conectado a WhatsApp o CRM."
+                  : "Form connected to WhatsApp or CRM."}
+              </p>
             </div>
           </div>
         </div>
-      </article>
-
-      <aside class="grid gap-6">
-        {
-          metrics.map((metric, index) => (
-            <div
-              class="reveal reveal-right rounded-3xl border border-blue-400/20 bg-[#061126]/70 p-6 shadow-[0_0_60px_rgba(37,99,235,0.10)] backdrop-blur-xl"
-              style={`--reveal-delay: ${index * 110}ms`}
-            >
-              <p
-                class="text-4xl font-black text-blue-300"
-                data-count={metric.count}
-                data-prefix={metric.prefix}
-                data-suffix={metric.suffix}
-              >
-                {metric.prefix}0{metric.suffix}
-              </p>
-
-              <p class="mt-2 text-sm font-semibold text-white">
-                {metric.label}
-              </p>
-
-              <div class="mt-5 h-20 rounded-2xl bg-gradient-to-tr from-blue-600/30 via-blue-400/10 to-transparent" />
-            </div>
-          ))
-        }
-      </aside>
+      </div>
     </div>
   </div>
 </section>

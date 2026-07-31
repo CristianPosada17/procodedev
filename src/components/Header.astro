@@ -1,44 +1,70 @@
 ---
-// Los enlaces usan "/#..." para que funcionen también desde /blog (van al home y hacen scroll).
+import {
+  translations,
+  PAGES,
+  getAltPath,
+  type Lang,
+  type PageKey,
+} from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+  page?: PageKey;
+}
+const { lang = "es", page = "home" } = Astro.props as Props;
+const t = translations[lang];
+
 const navItems = [
-  { label: "Inicio", href: "/#inicio" },
-  { label: "Servicios", href: "/#servicios" },
-  { label: "Portafolio", href: "/#portafolio" },
-  { label: "Precios", href: "/#precios" },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: t.nav.home, href: PAGES.home[lang], key: "home" },
+  { label: t.nav.services, href: PAGES.services[lang], key: "services" },
+  { label: t.nav.portfolio, href: PAGES.portfolio[lang], key: "portfolio" },
+  { label: t.nav.pricing, href: PAGES.pricing[lang], key: "pricing" },
+  { label: t.nav.blog, href: "/blog", key: "blog" },
+  { label: t.nav.contact, href: PAGES.contact[lang], key: "contact" },
 ];
+
+const altHref = getAltPath(page, lang);
+const otherLang = lang === "es" ? "EN" : "ES";
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-white/10 bg-[#020817]/80 backdrop-blur-xl"
+  class="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl"
 >
   <div
     class="mx-auto flex w-full max-w-[1480px] items-center justify-between px-4 py-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <a href="/" class="flex items-center gap-3" aria-label="ProCode Dev — Inicio">
-      <div class="flex h-14 w-14 items-center justify-center">
+    <a
+      href={PAGES.home[lang]}
+      class="flex items-center gap-3"
+      aria-label="ProCode Dev — Inicio"
+    >
+      <div class="flex h-12 w-12 items-center justify-center">
         <img
           src="/Logo.webp"
           alt="Logotipo de ProCode Dev, agencia de desarrollo web"
-          width="56"
-          height="56"
+          width="48"
+          height="48"
           class="h-full w-full object-contain"
         />
       </div>
-
-      <span class="text-lg font-bold tracking-tight text-white">
-        ProCode <span class="text-blue-400">Dev</span>
+      <span class="text-lg font-bold tracking-tight text-[var(--text)]">
+        ProCode <span class="text-[var(--accent)]">Dev</span>
       </span>
     </a>
 
-    <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
+    <nav
+      class="hidden items-center gap-8 lg:flex"
+      aria-label="Navegación principal"
+    >
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="text-sm font-medium text-slate-300 transition hover:text-blue-300"
+            aria-current={item.key === page ? "page" : undefined}
+            class:list={[
+              "text-sm font-medium transition hover:text-[var(--accent)]",
+              item.key === page ? "text-[var(--accent)]" : "text-[var(--muted)]",
+            ]}
           >
             {item.label}
           </a>
@@ -46,30 +72,38 @@ const navItems = [
       }
     </nav>
 
-    <a
-      href="/#agendar"
-      class="hidden rounded-xl border border-blue-400/40 bg-blue-500/15 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_35px_rgba(37,99,235,0.22)] transition hover:border-blue-300/70 hover:bg-blue-500/25 md:inline-flex"
-    >
-      Agendar diagnóstico gratis
-    </a>
+    <div class="hidden items-center gap-3 md:flex">
+      <a
+        href={altHref}
+        class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-white/[0.03] px-3 py-2 font-mono text-xs font-medium text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+        aria-label="Change language"
+      >
+        <span aria-hidden="true">🌐</span>
+        {otherLang}
+      </a>
+      <a
+        href={PAGES.contact[lang]}
+        class="inline-flex rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white shadow-[0_0_35px_rgba(37,99,235,0.28)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+      >
+        {t.nav.cta}
+      </a>
+    </div>
 
-    <!-- Botón menú móvil (ahora funcional) -->
     <button
       id="menu-toggle"
       type="button"
-      aria-label="Abrir menú"
+      aria-label="Menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/5 text-[var(--text)] lg:hidden"
     >
       <span id="menu-icon" class="text-xl">☰</span>
     </button>
   </div>
 
-  <!-- Panel de navegación móvil -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-white/10 bg-[#020817]/95 backdrop-blur-xl lg:hidden"
+    class="hidden border-t border-[color:var(--border)] bg-[var(--bg)]/95 backdrop-blur-xl lg:hidden"
   >
     <nav
       class="mx-auto flex w-full max-w-[1480px] flex-col gap-1 px-4 py-4 sm:px-6"
@@ -79,21 +113,28 @@ const navItems = [
         navItems.map((item) => (
           <a
             href={item.href}
-            data-mobile-link
-            class="rounded-xl px-3 py-3 text-base font-semibold text-slate-200 transition hover:bg-blue-500/10 hover:text-blue-300"
+            class="rounded-lg px-2 py-3 text-sm font-medium text-[var(--muted)] transition hover:bg-white/5 hover:text-[var(--accent)]"
           >
             {item.label}
           </a>
         ))
       }
-
-      <a
-        href="/#agendar"
-        data-mobile-link
-        class="mt-2 inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-500"
+      <div
+        class="mt-2 flex items-center gap-3 border-t border-[color:var(--border)] pt-4"
       >
-        Agendar diagnóstico gratis →
-      </a>
+        <a
+          href={altHref}
+          class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-white/[0.03] px-3 py-2.5 font-mono text-xs font-medium text-[var(--muted)]"
+        >
+          🌐 {otherLang}
+        </a>
+        <a
+          href={PAGES.contact[lang]}
+          class="inline-flex flex-1 items-center justify-center rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white"
+        >
+          {t.nav.cta}
+        </a>
+      </div>
     </nav>
   </div>
 </header>
@@ -102,28 +143,9 @@ const navItems = [
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
   const icon = document.getElementById("menu-icon");
-
-  const closeMenu = () => {
-    menu?.classList.add("hidden");
-    toggle?.setAttribute("aria-expanded", "false");
-    toggle?.setAttribute("aria-label", "Abrir menú");
-    if (icon) icon.textContent = "☰";
-  };
-
   toggle?.addEventListener("click", () => {
-    const isOpen = !menu?.classList.contains("hidden");
-    if (isOpen) {
-      closeMenu();
-    } else {
-      menu?.classList.remove("hidden");
-      toggle?.setAttribute("aria-expanded", "true");
-      toggle?.setAttribute("aria-label", "Cerrar menú");
-      if (icon) icon.textContent = "✕";
-    }
+    const open = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+    if (icon) icon.textContent = open ? "✕" : "☰";
   });
-
-  // Cerrar al tocar cualquier enlace
-  document
-    .querySelectorAll("[data-mobile-link]")
-    .forEach((link) => link.addEventListener("click", closeMenu));
 </script>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  eyebrow?: string;
+  align?: "left" | "center";
+  max?: string;
+}
+const { eyebrow, align = "left", max = "max-w-3xl" } = Astro.props as Props;
+const alignClasses =
+  align === "center" ? "mx-auto text-center items-center" : "items-start";
+---
+
+<div class:list={["reveal flex flex-col gap-4", alignClasses, max]}>
+  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+  <h2
+    class="text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl"
+  >
+    <slot name="title" />
+  </h2>
+  <p class="text-base leading-8 text-[var(--muted)] sm:text-lg">
+    <slot name="subtitle" />
+  </p>
+</div>

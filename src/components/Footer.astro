@@ -1,89 +1,84 @@
 ---
+import {
+  translations,
+  PAGES,
+  CONTACT,
+  type Lang,
+} from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+
 const navLinks = [
-  { label: "Inicio", href: "/#inicio" },
-  { label: "Servicios", href: "/#servicios" },
-  { label: "Portafolio", href: "/#portafolio" },
-  { label: "Precios", href: "/#precios" },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: t.nav.home, href: PAGES.home[lang] },
+  { label: t.nav.services, href: PAGES.services[lang] },
+  { label: t.nav.portfolio, href: PAGES.portfolio[lang] },
+  { label: t.nav.pricing, href: PAGES.pricing[lang] },
+  { label: t.nav.blog, href: "/blog" },
+  { label: t.nav.contact, href: PAGES.contact[lang] },
 ];
 
-const services = [
-  "Desarrollo web",
-  "Landing pages",
-  "Integraciones",
-  "Rediseño web",
-  "Soporte y optimización",
-  "Captación digital",
+const socials = [
+  { label: "IG", href: CONTACT.instagram },
+  { label: "IN", href: CONTACT.linkedin },
+  { label: "FB", href: CONTACT.facebook },
 ];
 ---
 
-<footer class="relative border-t border-white/10 bg-[#020817]/80 py-12">
+<footer
+  class="relative border-t border-[color:var(--border)] bg-[var(--bg)]/80 py-14"
+>
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
     <div class="reveal grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.8fr_1fr]">
       <div>
-        <a href="/" class="flex items-center gap-3">
-          <div class="flex h-12 w-12 items-center justify-center">
+        <a href={PAGES.home[lang]} class="flex items-center gap-3">
+          <div class="flex h-11 w-11 items-center justify-center">
             <img
               src="/Logo.webp"
               alt="ProCode Dev"
               class="h-full w-full object-contain"
             />
           </div>
-
-          <span class="text-lg font-bold tracking-tight text-white">
-            ProCode <span class="text-blue-400">Dev</span>
+          <span class="text-lg font-bold tracking-tight text-[var(--text)]">
+            ProCode <span class="text-[var(--accent)]">Dev</span>
           </span>
         </a>
 
-        <p class="mt-5 max-w-sm text-sm leading-7 text-slate-400">
-          Desarrollo web estratégico, landing pages, integraciones y sistemas de
-          captación que ayudan a negocios a tener una presencia digital más
-          sólida y funcional.
+        <p class="mt-5 max-w-sm text-sm leading-7 text-[var(--muted)]">
+          {t.footer.tagline}
         </p>
 
         <div class="mt-6 flex gap-3">
-          <a
-            href="https://www.instagram.com/procode.systems/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sm text-slate-300 transition hover:border-blue-300/40 hover:text-blue-300"
-          >
-            IG
-          </a>
-          <a
-            href="https://www.linkedin.com/in/cristian-posada-891401291/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sm text-slate-300 transition hover:border-blue-300/40 hover:text-blue-300"
-          >
-            IN
-          </a>
-          <a
-            href="https://www.facebook.com/ProCodeSystems"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sm text-slate-300 transition hover:border-blue-300/40 hover:text-blue-300"
-          >
-            FB
-          </a>
+          {
+            socials.map((s) => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/[0.04] font-mono text-xs text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+              >
+                {s.label}
+              </a>
+            ))
+          }
         </div>
       </div>
 
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-white">
-          Navegación
+        <h3 class="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[var(--text)]">
+          {t.footer.navTitle}
         </h3>
-
         <div class="mt-5 grid gap-3">
           {
             navLinks.map((item) => (
               <a
                 href={item.href}
-                class="text-sm text-slate-400 transition hover:text-blue-300"
+                class="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
               >
                 {item.label}
               </a>
@@ -93,64 +88,57 @@ const services = [
       </div>
 
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-white">
-          Servicios
+        <h3 class="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[var(--text)]">
+          {t.footer.servicesTitle}
         </h3>
-
         <div class="mt-5 grid gap-3">
           {
-            services.map((service) => (
-              <span class="text-sm text-slate-400">{service}</span>
+            t.footer.servicesList.map((service) => (
+              <span class="text-sm text-[var(--muted)]">{service}</span>
             ))
           }
         </div>
       </div>
 
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-[0.18em] text-white">
-          Contacto
+        <h3 class="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[var(--text)]">
+          {t.footer.contactTitle}
         </h3>
-
-        <div class="mt-5 grid gap-3 text-sm text-slate-400">
+        <div class="mt-5 grid gap-3 text-sm text-[var(--muted)]">
           <a
-            href="mailto:info@procodedev.com"
-            class="transition hover:text-blue-300"
+            href={`mailto:${CONTACT.email}`}
+            class="transition hover:text-[var(--accent)]"
           >
-            info@procodedev.com
+            {CONTACT.email}
           </a>
           <a
-            href="https://wa.me/526142414255"
+            href={`https://wa.me/${CONTACT.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="transition hover:text-blue-300"
+            class="transition hover:text-[var(--accent)]"
           >
-            +52 614 241 4255
+            {CONTACT.whatsappDisplay}
           </a>
-          <span>Lunes a Domingo</span>
-          <span>México / Remoto</span>
+          <span>{t.footer.hours}</span>
+          <span>{t.footer.location}</span>
         </div>
 
         <a
-          href="/#agendar"
-          class="mt-6 inline-flex rounded-xl border border-blue-400/40 bg-blue-500/10 px-5 py-3 text-sm font-bold text-white transition hover:border-blue-300/70 hover:bg-blue-500/20"
+          href={PAGES.contact[lang]}
+          class="mt-6 inline-flex rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
         >
-          Agendar diagnóstico
+          {t.footer.cta}
         </a>
       </div>
     </div>
 
     <div
-      class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between"
+      class="mt-12 flex flex-col gap-4 border-t border-[color:var(--border)] pt-6 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between"
     >
-      <p>© {new Date().getFullYear()} ProCode Dev. Todos los derechos reservados.</p>
-
+      <p>© {new Date().getFullYear()} ProCode Dev. {t.footer.rights}</p>
       <div class="flex gap-5">
-        <a href="#" class="transition hover:text-blue-300"
-          >Aviso de privacidad</a
-        >
-        <a href="#" class="transition hover:text-blue-300"
-          >Términos y condiciones</a
-        >
+        <a href="#" class="transition hover:text-[var(--accent)]">{t.footer.privacy}</a>
+        <a href="#" class="transition hover:text-[var(--accent)]">{t.footer.terms}</a>
       </div>
     </div>
   </div>

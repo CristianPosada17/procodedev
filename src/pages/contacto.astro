@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import PageHero from "../components/PageHero.astro";
+import Contact from "../components/Contact.astro";
+import Calendly from "../components/Calendly.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+import { translations } from "../i18n/ui";
+
+const lang = "es";
+const t = translations[lang];
+const meta = t.pageMeta.contact;
+---
+
+<Layout lang={lang} page="contact" title={meta.title} description={meta.description}>
+  <Header lang={lang} page="contact" />
+  <main>
+    <PageHero
+      eyebrow={t.contact.eyebrow}
+      titleA={meta.heroTitleA}
+      highlight={meta.heroHighlight}
+      subtitle={meta.heroSubtitle}
+    />
+    <Contact lang={lang} />
+    <Calendly lang={lang} />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

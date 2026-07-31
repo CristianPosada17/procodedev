@@ -1,0 +1,26 @@
+---
+import { translations, type Lang } from "../i18n/ui";
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+// Etiquetas de servicios para la tira; se duplican para un loop continuo.
+const items = t.services.items.map((s) => s.category);
+const seq = [...items, ...items];
+---
+
+<section class="relative py-8" aria-hidden="true">
+  <div class="marquee-x relative overflow-hidden">
+    <div class="marquee-track-x flex w-max items-center gap-4 pr-4">
+      {
+        seq.map((label) => (
+          <span class="flex items-center gap-3 whitespace-nowrap rounded-full border border-[color:var(--border)] bg-[var(--surface)]/50 px-5 py-2.5 text-sm text-[var(--muted)] backdrop-blur-sm">
+            <span class="text-[var(--accent)]">◆</span>
+            {label}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

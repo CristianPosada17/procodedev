@@ -1,29 +1,31 @@
 ---
-// Botón flotante de WhatsApp — visible en toda la página (móvil y escritorio).
-// El mensaje va pre-llenado para bajar la fricción del primer contacto.
-const phone = "526142414255";
+import { CONTACT, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+
 const message = encodeURIComponent(
-  "Hola ProCode, me interesa una página web para mi negocio."
+  lang === "es"
+    ? "Hola ProCode, me interesa una página web para mi negocio."
+    : "Hi ProCode, I'm interested in a website for my business.",
 );
-const href = `https://wa.me/${phone}?text=${message}`;
+const href = `https://wa.me/${CONTACT.whatsapp}?text=${message}`;
+const label = lang === "es" ? "Escríbenos por WhatsApp" : "Message us on WhatsApp";
 ---
 
 <a
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Escríbenos por WhatsApp"
+  aria-label={label}
   class="group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 shadow-[0_10px_30px_-8px_rgba(16,185,129,0.7)] transition hover:scale-110"
 >
   <span
     class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-50"
   ></span>
-
-  <svg
-    class="relative h-7 w-7 fill-white"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
+  <svg class="relative h-7 w-7 fill-white" viewBox="0 0 24 24" aria-hidden="true">
     <path
       d="M17.5 14.4c-.3-.2-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.4.1-.6l.5-.5.3-.5v-.5L9 6.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.3 9a5 5 0 0 0 1 2.6 11 11 0 0 0 4.4 3.9c2.6 1 2.6.7 3 .7a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"
     ></path>

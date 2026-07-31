@@ -1,0 +1,60 @@
+---
+import { translations, type Lang } from "../i18n/ui";
+
+interface Props {
+  eyebrow: string;
+  titleA: string;
+  highlight: string;
+  subtitle: string;
+  lang?: Lang;
+}
+const { eyebrow, titleA, highlight, subtitle, lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+// Columna vertical que se desplaza sola (llena el espacio a la derecha del título).
+const cards = t.services.items;
+const seq = [...cards, ...cards];
+---
+
+<section class="relative overflow-hidden pt-16 pb-10 lg:pt-20 lg:pb-14">
+  <div
+    class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="reveal max-w-2xl">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1
+        class="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl"
+      >
+        {titleA}{" "}<span class="grad-text">{highlight}</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+        {subtitle}
+      </p>
+    </div>
+
+    <div
+      class="marquee-y reveal reveal-right relative hidden h-[440px] overflow-hidden lg:block"
+      style="--marquee-duration: 30s"
+    >
+      <div class="absolute -inset-6 rounded-[2rem] bg-[var(--brand)]/5 blur-3xl"></div>
+      <div class="marquee-track-y relative flex flex-col gap-4">
+        {
+          seq.map((card) => (
+            <div class="flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl">
+              <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-lg text-[var(--accent)]">
+                {card.icon}
+              </span>
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+                  {card.category}
+                </p>
+                <h3 class="mt-1 text-sm font-bold leading-snug text-[var(--text)]">
+                  {card.title}
+                </h3>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

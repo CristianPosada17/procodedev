@@ -1,13 +1,16 @@
 ---
 import "../styles/global.css";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import {
+  translations,
+  PAGES,
+  type Lang,
+  type PageKey,
+} from "../i18n/ui";
 
 // ====== IDs DE MEDICIÓN (rellena cuando los tengas; si quedan vacíos, no cargan) ======
-// Google Analytics 4 → https://analytics.google.com  (formato "G-XXXXXXXXXX")
 const GA_MEASUREMENT_ID = "";
-// Meta Pixel (Facebook/Instagram Ads) → Administrador de eventos  (solo el número)
 const META_PIXEL_ID = "1741784446953946";
-// Google Search Console → verificación por etiqueta HTML (solo el valor de "content")
 const GSC_VERIFICATION = "";
 
 // Scripts de medición como cadenas (se arman aquí; quedan vacías si no hay IDs).
@@ -22,170 +25,104 @@ const pixelNoscript = META_PIXEL_ID
   ? `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"/>`
   : "";
 
-/**
- * Layout base con SEO completo.
- * Props opcionales para personalizar título, descripción, imagen social y URL canónica por página.
- */
+interface Props {
+  lang?: Lang;
+  page?: PageKey;
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  includeFaq?: boolean;
+}
+
 const {
-  title = "ProCode Dev | Agencia de Desarrollo Web que Convierte Visitas en Clientes",
-  description = "Agencia de desarrollo web enfocada en resultados. Creamos sitios web, landing pages, integraciones y sistemas digitales que convierten visitantes en clientes y automatizan tu negocio. Agenda tu diagnóstico gratuito.",
+  lang = "es",
+  page = "home",
+  title,
+  description,
   image = "/og-image.jpg",
   noindex = false,
-} = Astro.props;
+  includeFaq = false,
+} = Astro.props as Props;
 
-// URL canónica y absolutas para redes (requiere `site` configurado en astro.config.mjs)
+const t = translations[lang];
+const htmlLang = lang === "es" ? "es" : "en";
+const ogLocale = lang === "es" ? "es_MX" : "en_US";
+
+const metaTitle = title ?? t.pageMeta.home.title;
+const metaDescription = description ?? t.pageMeta.home.description;
+
+// URLs canónicas y alternas para hreflang.
 const siteUrl = Astro.site ?? new URL("https://procodedev.com");
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const socialImage = new URL(image, siteUrl);
+const esAltURL = new URL(PAGES[page].es, siteUrl);
+const enAltURL = new URL(PAGES[page].en, siteUrl);
 
-// Datos estructurados (JSON-LD) — ayudan a que Google entienda el negocio y muestre rich results
+// Datos estructurados (JSON-LD)
+const orgNode = {
+  "@type": "ProfessionalService",
+  "@id": `${siteUrl}#organization`,
+  name: "ProCode Dev",
+  url: siteUrl.toString(),
+  image: socialImage.toString(),
+  description: metaDescription,
+  email: "info@procodedev.com",
+  telephone: "+52-614-241-4255",
+  priceRange: "$$",
+  areaServed: { "@type": "Country", name: "México" },
+  availableLanguage: ["Spanish", "English"],
+  sameAs: [
+    "https://www.instagram.com/procode.systems/",
+    "https://www.linkedin.com/in/cristian-posada-891401291/",
+    "https://www.facebook.com/ProCodeSystems",
+  ],
+};
+
+const websiteNode = {
+  "@type": "WebSite",
+  "@id": `${siteUrl}#website`,
+  url: siteUrl.toString(),
+  name: "ProCode Dev",
+  description: metaDescription,
+  publisher: { "@id": `${siteUrl}#organization` },
+  inLanguage: lang === "es" ? "es-MX" : "en-US",
+};
+
+const faqNode = includeFaq
+  ? {
+      "@type": "FAQPage",
+      "@id": `${canonicalURL}#faq`,
+      mainEntity: t.faq.items.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
+    }
+  : null;
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": `${siteUrl}#organization`,
-      name: "ProCode Dev",
-      url: siteUrl.toString(),
-      image: socialImage.toString(),
-      description:
-        "Agencia de desarrollo web que crea sitios web, landing pages, integraciones y sistemas digitales enfocados en conversión y crecimiento de negocios.",
-      email: "info@procodedev.com",
-      telephone: "+52-614-241-4255",
-      priceRange: "$$",
-      areaServed: { "@type": "Country", name: "México" },
-      availableLanguage: "Spanish",
-      sameAs: [
-        "https://www.instagram.com/procode.systems/",
-        "https://www.linkedin.com/in/cristian-posada-891401291/",
-        "https://www.facebook.com/ProCodeSystems",
-      ],
-      makesOffer: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Desarrollo web enfocado en conversión",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Landing pages para campañas",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Integraciones y automatización",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Rediseño web estratégico" },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Soporte y optimización continua",
-          },
-        },
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}#website`,
-      url: siteUrl.toString(),
-      name: "ProCode Dev",
-      description: description,
-      publisher: { "@id": `${siteUrl}#organization` },
-      inLanguage: "es-MX",
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${siteUrl}#faq`,
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "¿Cuánto tiempo toma desarrollar mi sitio web?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Tras el diagnóstico te entregamos un cronograma con fechas y entregables claros.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Cuánto cuesta un sitio web con ustedes?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Nuestros planes van desde $2,500 MXN (landing page) hasta $12,000 MXN (web completa). Puedes ver el detalle en la sección de Precios; en tu diagnóstico gratuito definimos el alcance exacto sin compromiso.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Incluyen dominio y hosting?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Sí. Te orientamos y configuramos dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajamos sobre tu infraestructura actual sin problema.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Pueden integrar WhatsApp, formularios o CRM?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Por supuesto. Conectamos formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Mi sitio web será editable?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Según tus necesidades. Construimos sitios estáticos de alto rendimiento o estructuras editables con panel de administración cuando necesitas actualizar contenido con frecuencia.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Qué necesito para empezar?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Solo una llamada de diagnóstico. En ella entendemos tu negocio, objetivos, servicios, cliente ideal y la acción que quieres generar: mensajes, citas, registros o ventas.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Ofrecen soporte después del lanzamiento?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Sí. Ofrecemos planes de soporte, mantenimiento y optimización continua para mantener tu sitio rápido, seguro, actualizado y alineado con tus objetivos comerciales.",
-          },
-        },
-      ],
-    },
-  ],
+  "@graph": [orgNode, websiteNode, ...(faqNode ? [faqNode] : [])],
 };
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#020817" />
+    <meta name="theme-color" content="#060b18" />
     {GSC_VERIFICATION && (
       <meta name="google-site-verification" content={GSC_VERIFICATION} />
     )}
 
     <!-- ============ SEO PRINCIPAL ============ -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
     <meta
       name="keywords"
-      content="desarrollo web, agencia de desarrollo web, diseño web, landing pages, sistemas digitales, automatización de negocios, integración de WhatsApp, CRM, páginas web que convierten, desarrollo web México, ProCode Dev"
+      content="desarrollo web, agencia de desarrollo web, diseño web, web development agency, landing pages, sistemas digitales, automatización de negocios, integración de WhatsApp, CRM, páginas web que convierten, desarrollo web México, ProCode Dev"
     />
     <meta name="author" content="ProCode Dev" />
     <meta
@@ -194,58 +131,50 @@ const jsonLd = {
         ? "noindex, nofollow"
         : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
     />
-    <meta name="language" content="Spanish" />
     <meta name="geo.region" content="MX" />
     <meta name="geo.placename" content="México" />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="es" href={canonicalURL} />
+    <link rel="alternate" hreflang="es" href={esAltURL} />
+    <link rel="alternate" hreflang="en" href={enAltURL} />
+    <link rel="alternate" hreflang="x-default" href={esAltURL} />
 
-    <!-- ============ OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ============ -->
+    <!-- ============ OPEN GRAPH ============ -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ProCode Dev" />
-    <meta property="og:locale" content="es_MX" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="ProCode Dev — Desarrollo web estratégico"
-    />
+    <meta property="og:image:alt" content="ProCode Dev — Desarrollo web estratégico" />
 
     <!-- ============ TWITTER / X ============ -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={socialImage} />
 
     <!-- ============ ICONOS ============ -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Ícono para "Añadir a pantalla de inicio" en iPhone/iPad (PNG 180x180) -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <!-- Nombre y comportamiento como app al abrirlo desde el inicio -->
     <meta name="apple-mobile-web-app-title" content="ProCode Dev" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- ============ FUENTES ============ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
     <!-- ============ DATOS ESTRUCTURADOS (JSON-LD) ============ -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
 
-    <!-- Fallback: si el usuario no tiene JavaScript, el contenido con animación se muestra igual -->
     <noscript>
       <style>
         .reveal,
@@ -258,35 +187,31 @@ const jsonLd = {
       </style>
     </noscript>
 
-    <!-- ============ MEDICIÓN: Google Analytics 4 + Meta Pixel ============ -->
-    <!-- Se activan solo cuando defines GA_MEASUREMENT_ID / META_PIXEL_ID arriba. -->
+    <!-- ============ MEDICIÓN ============ -->
     <script is:inline set:html={analyticsBootstrap}></script>
     <noscript set:html={pixelNoscript}></noscript>
   </head>
 
   <body
-    class="min-h-screen bg-[#020817] font-montserrat text-white antialiased"
+    class="min-h-screen bg-[var(--bg)] text-[var(--text)] antialiased"
   >
-    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#020817]">
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[var(--bg)]">
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_35%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.16),transparent_30%),linear-gradient(180deg,#020817_0%,#030B1A_45%,#020817_100%)]"
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_38%),radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_32%),linear-gradient(180deg,#060b18_0%,#0a1224_45%,#060b18_100%)]"
       >
       </div>
 
-      <div
-        class="absolute inset-0 opacity-[0.025] bg-[linear-gradient(to_right,#60A5FA_1px,transparent_1px),linear-gradient(to_bottom,#60A5FA_1px,transparent_1px)] bg-[size:70px_70px]"
-      >
-      </div>
+      <div class="tech-grid absolute inset-0 opacity-40"></div>
 
       <div
-        class="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[120px]"
+        class="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[130px]"
       >
       </div>
     </div>
 
     <slot />
 
-    <WhatsAppFloat />
+    <WhatsAppFloat lang={lang} />
 
     <!-- ============ ANIMACIONES (reveal al scroll + contadores) ============ -->
     <script>
@@ -294,7 +219,6 @@ const jsonLd = {
         "(prefers-reduced-motion: reduce)",
       ).matches;
 
-      // 1) Reveal al hacer scroll
       const revealEls = document.querySelectorAll<HTMLElement>(".reveal");
       if (reduceMotion || !("IntersectionObserver" in window)) {
         revealEls.forEach((el) => el.classList.add("is-visible"));
@@ -313,7 +237,6 @@ const jsonLd = {
         revealEls.forEach((el) => io.observe(el));
       }
 
-      // 2) Contadores animados (elementos con [data-count])
       const counters = document.querySelectorAll<HTMLElement>("[data-count]");
       const runCounter = (el: HTMLElement) => {
         const target = parseFloat(el.dataset.count || "0");
