@@ -292,6 +292,24 @@ export const translations = {
             "Sitio de servicios que destaca su trabajo, transmite profesionalismo y capta solicitudes de cotización.",
           tags: ["Sitio web", "Servicios", "Negocio local"],
         },
+        {
+          name: "Mariana Cervantes — Asesora Inmobiliaria",
+          url: "https://demoinmobiliaria.procodedev.com/",
+          image: "/images/demo-inmobiliaria.jpg",
+          badge: "Inmobiliaria · Demo",
+          description:
+            "Sitio inmobiliario con catálogo de propiedades, fichas detalladas, agenda de llamadas y captación directa por WhatsApp.",
+          tags: ["Sitio web", "Inmobiliaria", "Catálogo"],
+        },
+        {
+          name: "Herrera Tax & Advisory — TaxPro",
+          url: "https://demo-taxpro.procodedev.com/",
+          image: "/images/demo-taxpro.jpg",
+          badge: "Servicios fiscales · Demo",
+          description:
+            "Sitio bilingüe para un despacho fiscal y contable en EE. UU.: servicios, agenda de consulta gratuita y captación enfocada en confianza.",
+          tags: ["Sitio web", "Bilingüe", "Servicios profesionales"],
+        },
       ],
     },
     pricing: {
@@ -870,6 +888,24 @@ export const translations = {
           description:
             "A services site that highlights their work, conveys professionalism and captures quote requests.",
           tags: ["Website", "Services", "Local business"],
+        },
+        {
+          name: "Mariana Cervantes — Real Estate Advisor",
+          url: "https://demoinmobiliaria.procodedev.com/",
+          image: "/images/demo-inmobiliaria.jpg",
+          badge: "Real estate · Demo",
+          description:
+            "A real estate site with a property catalog, detailed listings, call booking and direct WhatsApp capture.",
+          tags: ["Website", "Real estate", "Listings"],
+        },
+        {
+          name: "Herrera Tax & Advisory — TaxPro",
+          url: "https://demo-taxpro.procodedev.com/",
+          image: "/images/demo-taxpro.jpg",
+          badge: "Tax services · Demo",
+          description:
+            "A bilingual site for a U.S. tax and accounting firm: services, free-consult booking and trust-focused lead capture.",
+          tags: ["Website", "Bilingual", "Professional services"],
         },
       ],
     },
