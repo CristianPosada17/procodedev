@@ -323,12 +323,13 @@ export const translations = {
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Precios de referencia en pesos mexicanos (MXN). Cada proyecto se cotiza según su alcance real: en tu diagnóstico gratuito lo definimos juntos, sin compromiso.",
+      note: "Precios de referencia en dólares estadounidenses (USD). Cada proyecto se cotiza según su alcance real: en tu diagnóstico gratuito lo definimos juntos, sin compromiso.",
       packages: [
         {
           name: "Landing Page",
-          price: "2,500",
-          currency: "MXN",
+          price: "299",
+          currency: "USD",
+          pricePrefix: "",
           tagline: "Empieza a captar clientes ya",
           description:
             "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio o campaña sin complicarte.",
@@ -342,9 +343,10 @@ export const translations = {
           highlighted: false,
         },
         {
-          name: "Sitio Web 4–6 secciones",
-          price: "5,500",
-          currency: "MXN",
+          name: "Sitio Web 4–6 páginas",
+          price: "599",
+          currency: "USD",
+          pricePrefix: "",
           tagline: "El favorito de negocios en crecimiento",
           description:
             "Tu negocio completo en línea, con una estructura pensada para vender y transmitir confianza desde el primer clic.",
@@ -359,9 +361,10 @@ export const translations = {
           highlighted: true,
         },
         {
-          name: "Sitio Web 8–12 secciones",
-          price: "12,000",
-          currency: "MXN",
+          name: "Sitio Web 8–12 páginas",
+          price: "1,199",
+          currency: "USD",
+          pricePrefix: "desde",
           tagline: "Presencia y sistema digital completo",
           description:
             "Una web robusta para negocios más grandes: más secciones, integraciones y una operación digital ordenada.",
@@ -379,36 +382,36 @@ export const translations = {
       extras: [
         {
           name: "Rediseño web",
-          price: "$3,000 – $12,000",
-          unit: "MXN",
+          price: "$299 – $1,199",
+          unit: "USD o más",
           description:
             "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
         },
         {
           name: "Optimización web",
-          price: "$3,000",
-          unit: "MXN",
+          price: "$299",
+          unit: "USD",
           description:
             "Más velocidad, mejor experiencia y CTAs que sí convierten visitas en mensajes.",
         },
         {
           name: "Página adicional",
-          price: "$900",
-          unit: "MXN",
+          price: "$199",
+          unit: "USD",
           description:
             "Suma una sección extra a un sitio que ya tienes con nosotros.",
         },
         {
           name: "Soporte web mensual",
-          price: "Desde $699",
-          unit: "MXN / mes",
+          price: "Desde $59",
+          unit: "USD / mes",
           description:
             "Mantenimiento y cambios menores. Tu sitio siempre al día sin que te quite tiempo.",
         },
         {
           name: "Ajustes urgentes",
-          price: "$500 – $1,000",
-          unit: "MXN",
+          price: "$99",
+          unit: "USD",
           description:
             "Cambios rápidos fuera de alcance, resueltos con prioridad el mismo día.",
         },
@@ -444,7 +447,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta un sitio web con ustedes?",
           answer:
-            "Nuestros planes van desde $2,500 MXN (landing page) hasta $12,000 MXN (web completa). Puedes ver el detalle en la sección de Precios; en tu diagnóstico gratuito definimos el alcance exacto sin compromiso.",
+            "Nuestros planes van desde $299 USD (landing page) hasta $1,199 USD (web completa). Puedes ver el detalle en la sección de Precios; en tu diagnóstico gratuito definimos el alcance exacto sin compromiso.",
         },
         {
           question: "¿Incluyen dominio y hosting?",
@@ -919,12 +922,13 @@ export const translations = {
       popular: "Most chosen",
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "Reference prices in Mexican pesos (MXN). Every project is quoted by its real scope: in your free diagnosis we define it together, no commitment.",
+      note: "Reference prices in US dollars (USD). Every project is quoted by its real scope: in your free diagnosis we define it together, no commitment.",
       packages: [
         {
           name: "Landing Page",
-          price: "2,500",
-          currency: "MXN",
+          price: "299",
+          currency: "USD",
+          pricePrefix: "",
           tagline: "Start capturing clients now",
           description:
             "A single page, 100% focused on converting. Ideal to launch a service or campaign without complications.",
@@ -938,9 +942,10 @@ export const translations = {
           highlighted: false,
         },
         {
-          name: "Website 4–6 sections",
-          price: "5,500",
-          currency: "MXN",
+          name: "Website 4–6 pages",
+          price: "599",
+          currency: "USD",
+          pricePrefix: "",
           tagline: "The favorite of growing businesses",
           description:
             "Your whole business online, with a structure built to sell and build trust from the first click.",
@@ -955,9 +960,10 @@ export const translations = {
           highlighted: true,
         },
         {
-          name: "Website 8–12 sections",
-          price: "12,000",
-          currency: "MXN",
+          name: "Website 8–12 pages",
+          price: "1,199",
+          currency: "USD",
+          pricePrefix: "from",
           tagline: "Full presence and digital system",
           description:
             "A robust site for larger businesses: more sections, integrations and a clean digital operation.",
@@ -975,35 +981,35 @@ export const translations = {
       extras: [
         {
           name: "Website redesign",
-          price: "$3,000 – $12,000",
-          unit: "MXN",
+          price: "$299 – $1,199",
+          unit: "USD or more",
           description:
             "Renew image, structure and conversion on your current site without starting from scratch.",
         },
         {
           name: "Website optimization",
-          price: "$3,000",
-          unit: "MXN",
+          price: "$299",
+          unit: "USD",
           description:
             "More speed, better experience and CTAs that actually turn visits into messages.",
         },
         {
           name: "Extra page",
-          price: "$900",
-          unit: "MXN",
+          price: "$199",
+          unit: "USD",
           description: "Add an extra section to a site you already have with us.",
         },
         {
           name: "Monthly web support",
-          price: "From $699",
-          unit: "MXN / mo",
+          price: "From $59",
+          unit: "USD / mo",
           description:
             "Maintenance and minor changes. Your site always up to date without taking your time.",
         },
         {
           name: "Urgent tweaks",
-          price: "$500 – $1,000",
-          unit: "MXN",
+          price: "$99",
+          unit: "USD",
           description:
             "Fast out-of-scope changes, resolved with priority the same day.",
         },
@@ -1039,7 +1045,7 @@ export const translations = {
         {
           question: "How much does a website cost with you?",
           answer:
-            "Our plans range from $2,500 MXN (landing page) to $12,000 MXN (full site). You can see the detail in the Pricing section; in your free diagnosis we define the exact scope with no commitment.",
+            "Our plans range from $299 USD (landing page) to $1,199 USD (full site). You can see the detail in the Pricing section; in your free diagnosis we define the exact scope with no commitment.",
         },
         {
           question: "Do you include domain and hosting?",

@@ -38,6 +38,11 @@ const p = t.pricing;
             <h3 class="text-lg font-bold text-[var(--text)]">{pkg.name}</h3>
             <p class="mt-1 text-sm text-[var(--accent)]">{pkg.tagline}</p>
             <div class="mt-5 flex items-end gap-1.5">
+              {pkg.pricePrefix && (
+                <span class="mb-1.5 text-xs font-medium text-[var(--muted)]">
+                  {pkg.pricePrefix}
+                </span>
+              )}
               <span class="font-mono text-4xl font-bold text-[var(--text)]">
                 ${pkg.price}
               </span>
