@@ -314,16 +314,78 @@ export const translations = {
     },
     pricing: {
       eyebrow: "// precios",
-      titleA: "Invierte una vez y recupera tu",
-      titleHighlight: "tiempo",
-      titleB: "cada día.",
+      titleA: "Elige el punto de partida y deja que tu web",
+      titleHighlight: "venda por ti.",
+      titleB: "",
       subtitle:
-        "Cada hora que pasas explicando tu negocio, respondiendo lo mismo por WhatsApp o persiguiendo prospectos, es tiempo que no inviertes en vender. Construimos la estructura que trabaja por ti — precios claros, sin sorpresas.",
+        "Desde una asesoría para tener claridad, hasta un sitio completo con seguimiento automático. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
+      advisory: {
+        badge: "Nuevo · Ideal para empezar",
+        name: "Asesoría de Presencia Digital",
+        price: "75",
+        currency: "USD",
+        priceNote: "pago único · acreditable a tu proyecto",
+        hook: "¿No sabes por dónde empezar? Empieza aquí.",
+        description:
+          "Analizo a fondo cómo te encuentra hoy un cliente en Google, redes y WhatsApp, entiendo tu negocio por dentro y te entrego un plan claro de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
+        homeEyebrow: "// el primer paso",
+        homeTitle: "¿No sabes por dónde empezar?",
+        viewPricing: "Ver todos los precios",
+        waText:
+          "Hola ProCode 👋 Me interesa la Asesoría de Presencia Digital ($75). Quiero saber cómo me encuentran hoy mis clientes en Google, redes y WhatsApp y recibir un plan de mejoras. ¿Cómo empezamos?",
+        stepsTitle: "Cómo funciona (3 fases)",
+        steps: [
+          {
+            name: "Fase 1 · Conocemos tu negocio",
+            description:
+              "Llamada + cuestionario breve: qué vendes, tu cliente ideal y cómo captas clientes hoy.",
+          },
+          {
+            name: "Fase 2 · Diagnóstico a fondo",
+            description:
+              "Revisamos tu presencia en Google, Maps, reseñas, redes, tu web actual y tu WhatsApp.",
+          },
+          {
+            name: "Fase 3 · Plan de soluciones",
+            description:
+              "Recibes de 3 a 5 mejoras priorizadas y una propuesta clara de cómo llevarlas a cabo.",
+          },
+        ],
+        creditNote:
+          "Los $75 se te acreditan completos si decides hacer tu proyecto con nosotros. En la práctica, la asesoría te sale gratis si avanzas.",
+        cta: "Agendar mi asesoría",
+      },
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Precios de referencia en dólares estadounidenses (USD). Cada proyecto se cotiza según su alcance real: en tu diagnóstico gratuito lo definimos juntos, sin compromiso.",
+      note: "Precios de referencia en dólares estadounidenses (USD). Cada proyecto se cotiza según su alcance real; en tu diagnóstico gratuito lo definimos juntos, sin compromiso.",
+      maintenance: {
+        badge: "Recomendado · Continuidad",
+        name: "Soporte web mensual",
+        pricePrefix: "desde",
+        price: "59",
+        currency: "USD / mes",
+        priceNote: "sin contrato forzoso",
+        hook: "Tu página siempre al día, y tú siempre enterado de cómo trabaja.",
+        description:
+          'No pagas "por si algo se rompe". Cada mes recibes un reporte de cómo trabajó tu página —cuánta gente entró y cuántos te escribieron por WhatsApp— y yo la mantengo rápida, segura y actualizada, además de hacerte los cambios que necesites sin que aprendas nada técnico.',
+        featuresTitle: "Cada mes incluye:",
+        features: [
+          "Reporte mensual de desempeño: visitas, clics al botón de WhatsApp, formularios recibidos y páginas más vistas.",
+          "Monitoreo de disponibilidad y velocidad (uptime): tu sitio siempre en línea y rápido.",
+          "Respaldo mensual del sitio: si algo falla, se restaura.",
+          "Actualizaciones de seguridad y de plataforma.",
+          "Hasta 3–4 cambios menores: textos, fotos, precios, horarios, promociones.",
+          "1 recomendación de mejora al mes, basada en los números de tu reporte.",
+          "Prioridad en soporte ante cualquier urgencia.",
+        ],
+        footNote:
+          "Sin contrato forzoso. Lo cancelas cuando quieras. Es tener un encargado de tu presencia digital por menos de lo que cuesta una comida.",
+        waText:
+          "Hola ProCode 👋 Me interesa el Soporte web mensual (desde $59). Quiero mantener mi sitio rápido y seguro y recibir el reporte mensual de desempeño. ¿Cómo lo activo?",
+        cta: "Activar mi mantenimiento",
+      },
       packages: [
         {
           name: "Landing Page",
@@ -332,14 +394,17 @@ export const translations = {
           pricePrefix: "",
           tagline: "Empieza a captar clientes ya",
           description:
-            "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio o campaña sin complicarte.",
+            "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio, una promoción o una campaña sin complicarte.",
           features: [
             "Página única de alta conversión",
             "Copy de ventas + llamada a la acción clara",
             "Botón directo a WhatsApp",
             "Diseño impecable en móvil",
+            "Carga rápida y SEO base",
           ],
           cta: "Quiero mi landing",
+          waText:
+            "Hola ProCode 👋 Me interesa la Landing Page ($299). Quiero una página enfocada 100% en captar clientes. ¿Me pueden dar más información?",
           highlighted: false,
         },
         {
@@ -358,6 +423,8 @@ export const translations = {
             "Diseño profesional y rápido",
           ],
           cta: "Empezar mi sitio",
+          waText:
+            "Hola ProCode 👋 Me interesa el Sitio Web de 4 a 6 páginas ($599). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
           highlighted: true,
         },
         {
@@ -376,6 +443,8 @@ export const translations = {
             "Acompañamiento en el lanzamiento",
           ],
           cta: "Cotizar mi web",
+          waText:
+            "Hola ProCode 👋 Me interesa el Sitio Web de 8 a 12 páginas (desde $1,199) con integraciones y seguimiento. Me gustaría cotizarlo. ¿Podemos platicar?",
           highlighted: false,
         },
       ],
@@ -400,13 +469,6 @@ export const translations = {
           unit: "USD",
           description:
             "Suma una sección extra a un sitio que ya tienes con nosotros.",
-        },
-        {
-          name: "Soporte web mensual",
-          price: "Desde $59",
-          unit: "USD / mes",
-          description:
-            "Mantenimiento y cambios menores. Tu sitio siempre al día sin que te quite tiempo.",
         },
         {
           name: "Ajustes urgentes",
@@ -447,7 +509,23 @@ export const translations = {
         {
           question: "¿Cuánto cuesta un sitio web con ustedes?",
           answer:
-            "Nuestros planes van desde $299 USD (landing page) hasta $1,199 USD (web completa). Puedes ver el detalle en la sección de Precios; en tu diagnóstico gratuito definimos el alcance exacto sin compromiso.",
+            "Nuestros planes van desde $299 USD (landing page) hasta $1,199 USD (web completa), y puedes empezar con una asesoría de $75 si quieres claridad antes de invertir. En tu diagnóstico gratuito definimos el alcance exacto, sin compromiso.",
+        },
+        {
+          question:
+            "¿Qué es la Asesoría de Presencia Digital y en qué se diferencia de un proyecto?",
+          answer:
+            "Es un análisis a fondo de cómo te encuentra hoy un cliente en Google, redes y WhatsApp. En tres fases conocemos tu negocio, diagnosticamos tu presencia y te entregamos un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Cuesta $75 y, si luego haces tu proyecto con nosotros, se te acredita completo.",
+        },
+        {
+          question: "¿La asesoría tiene costo si después contrato un proyecto?",
+          answer:
+            "No. Los $75 de la asesoría se descuentan por completo del precio de tu proyecto. Si decides avanzar, la asesoría te sale gratis; y si no, te quedas con el plan de mejoras de todos modos.",
+        },
+        {
+          question: "¿Qué incluye el mantenimiento mensual?",
+          answer:
+            "Cada mes recibes un reporte de desempeño de tu sitio (visitas, clics a WhatsApp, formularios y páginas más vistas), además de monitoreo de velocidad y disponibilidad, respaldo, actualizaciones de seguridad, hasta 3–4 cambios menores y una recomendación de mejora. Todo sin contrato forzoso: lo cancelas cuando quieras.",
         },
         {
           question: "¿Incluyen dominio y hosting?",
@@ -472,7 +550,7 @@ export const translations = {
         {
           question: "¿Ofrecen soporte después del lanzamiento?",
           answer:
-            "Sí. Ofrecemos planes de soporte, mantenimiento y optimización continua para mantener tu sitio rápido, seguro, actualizado y alineado con tus objetivos comerciales.",
+            "Sí. El plan de soporte mensual (desde $59) mantiene tu sitio rápido, seguro y actualizado, y cada mes te enviamos un reporte de cómo está trabajando tu página. Sin contrato forzoso.",
         },
       ],
     },
@@ -620,13 +698,13 @@ export const translations = {
           "Sitios reales, en vivo, construidos para verse profesionales y captar mejor.",
       },
       pricing: {
-        title: "Precios de Desarrollo Web | ProCode Dev",
+        title: "Precios de Desarrollo Web y Asesoría Digital | ProCode Dev",
         description:
-          "Precios claros de desarrollo web: landing pages, sitios completos, integraciones y soporte. Sin sorpresas. Agenda tu diagnóstico gratuito y define tu alcance.",
-        heroTitleA: "Precios claros para",
-        heroHighlight: "recuperar tu tiempo",
+          "Precios claros: asesoría de presencia digital, landing pages, sitios completos, integraciones y soporte mensual con reporte de desempeño. Agenda tu diagnóstico gratuito.",
+        heroTitleA: "Precios claros para convertir tu web en",
+        heroHighlight: "tu mejor vendedor",
         heroSubtitle:
-          "Invierte una vez y deja que tu web trabaje por ti todos los días.",
+          "Invierte una vez y deja que tu web trabaje por ti todos los días. Sin sorpresas: cada proyecto se cotiza según su alcance real y lo definimos juntos en tu diagnóstico gratuito.",
       },
       contact: {
         title: "Contacto | Agenda tu Diagnóstico Gratuito | ProCode Dev",
@@ -914,15 +992,77 @@ export const translations = {
     },
     pricing: {
       eyebrow: "// pricing",
-      titleA: "Invest once and get your",
-      titleHighlight: "time",
-      titleB: "back every day.",
+      titleA: "Pick your starting point and let your website",
+      titleHighlight: "sell for you.",
+      titleB: "",
       subtitle:
-        "Every hour you spend explaining your business, repeating yourself on WhatsApp or chasing leads is time you're not spending selling. We build the structure that works for you — clear pricing, no surprises.",
+        "From an advisory to get clarity, to a full site with automatic follow-up. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
+      advisory: {
+        badge: "New · Great to start",
+        name: "Digital Presence Advisory",
+        price: "75",
+        currency: "USD",
+        priceNote: "one-time · credited to your project",
+        hook: "Not sure where to start? Start here.",
+        description:
+          "I take a deep look at how a client finds you today on Google, social media and WhatsApp, understand your business from the inside and hand you a clear plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
+        homeEyebrow: "// the first step",
+        homeTitle: "Not sure where to start?",
+        viewPricing: "See all pricing",
+        waText:
+          "Hi ProCode 👋 I'm interested in the Digital Presence Advisory ($75). I'd like to know how clients find me today on Google, social media and WhatsApp and get an improvement plan. How do we start?",
+        stepsTitle: "How it works (3 phases)",
+        steps: [
+          {
+            name: "Phase 1 · We get to know your business",
+            description:
+              "Call + short questionnaire: what you sell, your ideal client and how you capture clients today.",
+          },
+          {
+            name: "Phase 2 · In-depth diagnosis",
+            description:
+              "We review your presence on Google, Maps, reviews, social media, your current site and your WhatsApp.",
+          },
+          {
+            name: "Phase 3 · Solutions plan",
+            description:
+              "You get 3 to 5 prioritized improvements and a clear proposal on how to carry them out.",
+          },
+        ],
+        creditNote:
+          "The $75 is credited in full if you decide to do your project with us. In practice, the advisory is free if you move forward.",
+        cta: "Book my advisory",
+      },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "Reference prices in US dollars (USD). Every project is quoted by its real scope: in your free diagnosis we define it together, no commitment.",
+      note: "Reference prices in US dollars (USD). Every project is quoted by its real scope; in your free diagnosis we define it together, no commitment.",
+      maintenance: {
+        badge: "Recommended · Continuity",
+        name: "Monthly web support",
+        pricePrefix: "from",
+        price: "59",
+        currency: "USD / mo",
+        priceNote: "no lock-in contract",
+        hook: "Your site always up to date, and you always aware of how it's working.",
+        description:
+          'You don\'t pay "in case something breaks". Every month you get a report on how your site performed —how many people came in and how many messaged you on WhatsApp— and I keep it fast, secure and updated, plus make the changes you need without you learning anything technical.',
+        featuresTitle: "Every month includes:",
+        features: [
+          "Monthly performance report: visits, WhatsApp button clicks, forms received and most-viewed pages.",
+          "Uptime and speed monitoring: your site always online and fast.",
+          "Monthly site backup: if something fails, it's restored.",
+          "Security and platform updates.",
+          "Up to 3–4 minor changes: text, photos, prices, hours, promotions.",
+          "1 improvement recommendation per month, based on your report's numbers.",
+          "Priority support for any urgent issue.",
+        ],
+        footNote:
+          "No lock-in contract. Cancel whenever you want. It's like having someone in charge of your digital presence for less than the cost of a meal.",
+        waText:
+          "Hi ProCode 👋 I'm interested in the Monthly web support (from $59). I want to keep my site fast and secure and get the monthly performance report. How do I activate it?",
+        cta: "Activate my support",
+      },
       packages: [
         {
           name: "Landing Page",
@@ -931,14 +1071,17 @@ export const translations = {
           pricePrefix: "",
           tagline: "Start capturing clients now",
           description:
-            "A single page, 100% focused on converting. Ideal to launch a service or campaign without complications.",
+            "A single page, 100% focused on converting. Ideal to launch a service, a promotion or a campaign without complications.",
           features: [
             "Single high-conversion page",
             "Sales copy + clear call to action",
             "Direct WhatsApp button",
             "Flawless mobile design",
+            "Fast loading and base SEO",
           ],
           cta: "I want my landing",
+          waText:
+            "Hi ProCode 👋 I'm interested in the Landing Page ($299). I want a page 100% focused on capturing clients. Can you tell me more?",
           highlighted: false,
         },
         {
@@ -957,6 +1100,8 @@ export const translations = {
             "Fast, professional design",
           ],
           cta: "Start my site",
+          waText:
+            "Hi ProCode 👋 I'm interested in the 4–6 page Website ($599). I want to take my whole business online with a structure that sells. How do we start?",
           highlighted: true,
         },
         {
@@ -975,6 +1120,8 @@ export const translations = {
             "Launch support",
           ],
           cta: "Quote my site",
+          waText:
+            "Hi ProCode 👋 I'm interested in the 8–12 page Website (from $1,199) with integrations and follow-up. I'd like a quote. Can we talk?",
           highlighted: false,
         },
       ],
@@ -998,13 +1145,6 @@ export const translations = {
           price: "$199",
           unit: "USD",
           description: "Add an extra section to a site you already have with us.",
-        },
-        {
-          name: "Monthly web support",
-          price: "From $59",
-          unit: "USD / mo",
-          description:
-            "Maintenance and minor changes. Your site always up to date without taking your time.",
         },
         {
           name: "Urgent tweaks",
@@ -1045,7 +1185,23 @@ export const translations = {
         {
           question: "How much does a website cost with you?",
           answer:
-            "Our plans range from $299 USD (landing page) to $1,199 USD (full site). You can see the detail in the Pricing section; in your free diagnosis we define the exact scope with no commitment.",
+            "Our plans range from $299 USD (landing page) to $1,199 USD (full site), and you can start with a $75 advisory if you want clarity before investing. In your free diagnosis we define the exact scope, no commitment.",
+        },
+        {
+          question:
+            "What is the Digital Presence Advisory and how is it different from a project?",
+          answer:
+            "It's an in-depth analysis of how a client finds you today on Google, social media and WhatsApp. In three phases we get to know your business, diagnose your presence and hand you a prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. It costs $75 and, if you later do your project with us, it's credited in full.",
+        },
+        {
+          question: "Is the advisory free if I later hire a project?",
+          answer:
+            "Yes. The $75 advisory is fully deducted from the price of your project. If you decide to move forward, the advisory is free; and if not, you keep the improvement plan anyway.",
+        },
+        {
+          question: "What does the monthly maintenance include?",
+          answer:
+            "Every month you get a performance report for your site (visits, WhatsApp clicks, forms and most-viewed pages), plus speed and uptime monitoring, backup, security updates, up to 3–4 minor changes and an improvement recommendation. All with no lock-in contract: cancel whenever you want.",
         },
         {
           question: "Do you include domain and hosting?",
@@ -1070,7 +1226,7 @@ export const translations = {
         {
           question: "Do you offer support after launch?",
           answer:
-            "Yes. We offer support, maintenance and continuous optimization plans to keep your site fast, secure, updated and aligned with your business goals.",
+            "Yes. The monthly support plan (from $59) keeps your site fast, secure and updated, and every month we send you a report on how your page is working. No lock-in contract.",
         },
       ],
     },
@@ -1217,13 +1373,13 @@ export const translations = {
           "Real, live sites built to look professional and capture better.",
       },
       pricing: {
-        title: "Web Development Pricing | ProCode Dev",
+        title: "Web Development & Digital Advisory Pricing | ProCode Dev",
         description:
-          "Clear web development pricing: landing pages, full sites, integrations and support. No surprises. Book your free diagnosis and define your scope.",
-        heroTitleA: "Clear pricing to",
-        heroHighlight: "get your time back",
+          "Clear pricing: digital presence advisory, landing pages, full sites, integrations and monthly support with a performance report. Book your free diagnosis.",
+        heroTitleA: "Clear pricing to turn your website into",
+        heroHighlight: "your best salesperson",
         heroSubtitle:
-          "Invest once and let your site work for you every single day.",
+          "Invest once and let your site work for you every single day. No surprises: every project is quoted by its real scope and we define it together in your free diagnosis.",
       },
       contact: {
         title: "Contact | Book Your Free Diagnosis | ProCode Dev",

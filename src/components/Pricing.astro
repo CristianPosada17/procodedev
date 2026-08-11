@@ -1,5 +1,5 @@
 ---
-import { translations, PAGES, type Lang } from "../i18n/ui";
+import { translations, CONTACT, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 interface Props {
   lang?: Lang;
@@ -7,6 +7,10 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const p = t.pricing;
+const adv = p.advisory;
+const maint = p.maintenance;
+const waLink = (text: string) =>
+  `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 ---
 
 <section id="precios" class="relative py-20">
@@ -18,6 +22,76 @@ const p = t.pricing;
       <Fragment slot="subtitle">{p.subtitle}</Fragment>
     </SectionHeading>
 
+    {/* ── Asesoría de Presencia Digital ── */}
+    <div
+      class="reveal relative mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-10"
+    >
+      <div
+        class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"
+      >
+      </div>
+      <div class="relative grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+        <div>
+          <span
+            class="inline-flex items-center rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/15 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]"
+          >
+            {adv.badge}
+          </span>
+          <h3 class="mt-4 text-2xl font-bold text-[var(--text)]">{adv.name}</h3>
+          <div class="mt-4 flex items-end gap-1.5">
+            <span class="font-mono text-4xl font-bold text-[var(--text)]">
+              ${adv.price}
+            </span>
+            <span class="mb-1.5 text-xs text-[var(--muted)]">{adv.currency}</span>
+          </div>
+          <p class="mt-1 text-xs text-[var(--muted)]">{adv.priceNote}</p>
+          <p class="mt-5 text-base font-bold text-[var(--text)]">{adv.hook}</p>
+          <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
+            {adv.description}
+          </p>
+          <div
+            class="mt-6 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-4"
+          >
+            <p class="text-sm leading-6 text-[var(--text)]/90">{adv.creditNote}</p>
+          </div>
+          <a
+            href={waLink(adv.waText)}
+            target="_blank"
+            rel="noopener"
+            class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+          >
+            {adv.cta}
+          </a>
+        </div>
+
+        <div>
+          <p
+            class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
+          >
+            {adv.stepsTitle}
+          </p>
+          <ol class="mt-5 grid gap-4">
+            {
+              adv.steps.map((s, i) => (
+                <li class="flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5">
+                  <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/15 font-mono text-sm font-bold text-[var(--accent)]">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h4 class="text-sm font-bold text-[var(--text)]">{s.name}</h4>
+                    <p class="mt-1 text-sm leading-6 text-[var(--muted)]">
+                      {s.description}
+                    </p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    {/* ── Paquetes principales ── */}
     <div class="mt-12 grid gap-6 lg:grid-cols-3">
       {
         p.packages.map((pkg, i) => (
@@ -62,7 +136,9 @@ const p = t.pricing;
               ))}
             </ul>
             <a
-              href={PAGES.contact[lang]}
+              href={waLink(pkg.waText)}
+              target="_blank"
+              rel="noopener"
               class:list={[
                 "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold transition",
                 pkg.highlighted
@@ -77,10 +153,11 @@ const p = t.pricing;
       }
     </div>
 
+    {/* ── Servicios adicionales ── */}
     <div class="reveal mt-14">
       <h3 class="text-lg font-bold text-[var(--text)]">{p.extrasTitle}</h3>
       <p class="mt-1 text-sm text-[var(--muted)]">{p.extrasSubtitle}</p>
-      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {
           p.extras.map((ex) => (
             <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
@@ -95,6 +172,71 @@ const p = t.pricing;
             </div>
           ))
         }
+      </div>
+    </div>
+
+    {/* ── Plan de Mantenimiento ── */}
+    <div
+      class="reveal relative mt-14 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-10"
+    >
+      <div
+        class="pointer-events-none absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"
+      >
+      </div>
+      <div class="relative grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+        <div>
+          <span
+            class="inline-flex items-center rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/15 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]"
+          >
+            {maint.badge}
+          </span>
+          <h3 class="mt-4 text-2xl font-bold text-[var(--text)]">{maint.name}</h3>
+          <div class="mt-4 flex items-end gap-1.5">
+            {maint.pricePrefix && (
+              <span class="mb-1.5 text-xs font-medium text-[var(--muted)]">
+                {maint.pricePrefix}
+              </span>
+            )}
+            <span class="font-mono text-4xl font-bold text-[var(--text)]">
+              ${maint.price}
+            </span>
+            <span class="mb-1.5 text-xs text-[var(--muted)]">{maint.currency}</span>
+          </div>
+          <p class="mt-1 text-xs text-[var(--muted)]">{maint.priceNote}</p>
+          <p class="mt-5 text-base font-bold text-[var(--text)]">{maint.hook}</p>
+          <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
+            {maint.description}
+          </p>
+          <p class="mt-6 text-sm leading-6 text-[var(--muted)]">{maint.footNote}</p>
+          <a
+            href={waLink(maint.waText)}
+            target="_blank"
+            rel="noopener"
+            class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+          >
+            {maint.cta}
+          </a>
+        </div>
+
+        <div>
+          <p
+            class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
+          >
+            {maint.featuresTitle}
+          </p>
+          <ul class="mt-5 grid gap-3">
+            {
+              maint.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
+                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
+                    ✓
+                  </span>
+                  {f}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     </div>
 

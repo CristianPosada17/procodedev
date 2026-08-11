@@ -1,0 +1,96 @@
+---
+import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const adv = t.pricing.advisory;
+const waLink = (text: string) =>
+  `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+---
+
+<section class="relative py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-10"
+    >
+      <div
+        class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"
+      >
+      </div>
+      <div class="relative grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+        <div>
+          <span
+            class="eyebrow"
+          >
+            {adv.homeEyebrow}
+          </span>
+          <h2
+            class="mt-4 text-3xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-4xl"
+          >
+            {adv.homeTitle}
+          </h2>
+          <p class="mt-4 text-base leading-7 text-[var(--muted)]">
+            {adv.description}
+          </p>
+          <div class="mt-6 flex items-end gap-2">
+            <span
+              class="inline-flex items-center rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/15 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]"
+            >
+              {adv.badge}
+            </span>
+            <span class="font-mono text-3xl font-bold text-[var(--text)]">
+              ${adv.price}
+            </span>
+            <span class="mb-1 text-xs text-[var(--muted)]">{adv.priceNote}</span>
+          </div>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href={waLink(adv.waText)}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+            >
+              {adv.cta}
+            </a>
+            <a
+              href={PAGES.pricing[lang]}
+              class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/10"
+            >
+              {adv.viewPricing}
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p
+            class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
+          >
+            {adv.stepsTitle}
+          </p>
+          <ol class="mt-5 grid gap-4">
+            {
+              adv.steps.map((s, i) => (
+                <li class="flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5">
+                  <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/15 font-mono text-sm font-bold text-[var(--accent)]">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 class="text-sm font-bold text-[var(--text)]">{s.name}</h3>
+                    <p class="mt-1 text-sm leading-6 text-[var(--muted)]">
+                      {s.description}
+                    </p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="mt-5 text-xs leading-6 text-[var(--muted)]">
+            {adv.creditNote}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
