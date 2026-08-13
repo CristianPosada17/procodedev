@@ -5,11 +5,13 @@ import Hero from "../components/Hero.astro";
 import Marquee from "../components/Marquee.astro";
 import ValueStrip from "../components/ValueStrip.astro";
 import Services from "../components/Services.astro";
-import AdvisoryBanner from "../components/AdvisoryBanner.astro";
+import PriceAnchor from "../components/PriceAnchor.astro";
 import WhyProCode from "../components/WhyProCode.astro";
-import CaseStudy from "../components/CaseStudy.astro";
+import ProofStrip from "../components/ProofStrip.astro";
+import Founder from "../components/Founder.astro";
 import Integrations from "../components/Integrations.astro";
 import Testimonials from "../components/Testimonials.astro";
+import FAQ from "../components/FAQ.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import Footer from "../components/Footer.astro";
 import { translations } from "../i18n/ui";
@@ -18,6 +20,15 @@ const lang = "es";
 const meta = translations[lang].pageMeta.home;
 ---
 
+<!--
+  Cambios de la auditoría CRO en esta página:
+  #1  Fuera el AdvisoryBanner de $75: la única puerta de entrada es el
+      diagnóstico gratuito. La asesoría vive en /precios como paso 2.
+  #4  Entra ProofStrip con 3 proyectos reales (antes el home no tenía ni una
+      imagen de trabajo propio) y sale CaseStudy, que ilustraba sin probar.
+  #10 Entra PriceAnchor con el «desde $X».
+  #18 Entra el FAQ de objeciones justo antes del CTA final.
+-->
 <Layout lang={lang} page="home" title={meta.title} description={meta.description}>
   <Header lang={lang} page="home" />
   <main>
@@ -25,11 +36,13 @@ const meta = translations[lang].pageMeta.home;
     <Marquee lang={lang} />
     <ValueStrip lang={lang} />
     <Services lang={lang} />
-    <AdvisoryBanner lang={lang} />
+    <PriceAnchor lang={lang} />
     <WhyProCode lang={lang} />
-    <CaseStudy lang={lang} />
+    <ProofStrip lang={lang} />
+    <Founder lang={lang} />
     <Integrations lang={lang} />
     <Testimonials lang={lang} />
+    <FAQ lang={lang} variant="home" />
     <FinalCTA lang={lang} />
   </main>
   <Footer lang={lang} />

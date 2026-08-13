@@ -6,7 +6,6 @@ import Services from "../../components/Services.astro";
 import Process from "../../components/Process.astro";
 import Integrations from "../../components/Integrations.astro";
 import WhyProCode from "../../components/WhyProCode.astro";
-import FreeAudit from "../../components/FreeAudit.astro";
 import FinalCTA from "../../components/FinalCTA.astro";
 import Footer from "../../components/Footer.astro";
 import { translations } from "../../i18n/ui";
@@ -25,11 +24,10 @@ const meta = t.pageMeta.services;
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
     />
-    <Services lang={lang} />
+    <Services lang={lang} showHeading={false} />
     <Process lang={lang} />
     <Integrations lang={lang} />
     <WhyProCode lang={lang} />
-    <FreeAudit lang={lang} />
     <FinalCTA lang={lang} />
   </main>
   <Footer lang={lang} />

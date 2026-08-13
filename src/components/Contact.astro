@@ -1,16 +1,11 @@
 ---
-import { translations, CONTACT, type Lang } from "../i18n/ui";
+import { translations, CONTACT, waHref, type Lang } from "../i18n/ui";
 interface Props {
   lang?: Lang;
 }
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const c = t.contact;
-const waMsg = encodeURIComponent(
-  lang === "es"
-    ? "Hola ProCode, quiero información para mi negocio."
-    : "Hi ProCode, I'd like info for my business.",
-);
 
 // Script del formulario construido como cadena en el frontmatter (evita que
 // las llaves / ${} de un template literal rompan el parser de Astro).
@@ -52,58 +47,88 @@ const contactScript = `
     });
   })();
 `;
+
+const inputClass =
+  "rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[color:var(--border-strong)]";
 ---
 
-<section id="contacto" class="relative py-20">
+{/*
+  Hallazgo #2: todos los CTAs del sitio prometen «agendar», así que el
+  calendario va primero en /contacto y este bloque queda como alternativa,
+  colapsado, para quien no encuentre horario.
+  Hallazgo #3: `message` era obligatorio (redacción libre, el campo más caro)
+  y `phone` opcional — justo al revés de lo que conviene. Invertido.
+*/}
+<section id="contacto" class="relative pb-20 pt-4">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
-    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-      <div class="reveal">
-        <span class="eyebrow">{c.eyebrow}</span>
-        <h2 class="mt-5 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">
-          {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
-        </h2>
-        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{c.subtitle}</p>
+    <details
+      class="reveal group mx-auto max-w-4xl overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/50 backdrop-blur-xl transition open:border-[color:var(--border-strong)]"
+    >
+      <summary
+        class="flex cursor-pointer items-center justify-between gap-4 p-6 text-left marker:content-[''] lg:p-7"
+      >
+        <span>
+          <span class="block text-base font-bold text-[var(--text)]">
+            {c.toggle}
+          </span>
+          <span class="mt-1 block text-sm text-[var(--muted)]">
+            {c.toggleNote}
+          </span>
+        </span>
+        <span
+          class="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-[color:var(--border-strong)] text-lg text-[var(--accent)] transition group-open:rotate-45"
+          aria-hidden="true"
+        >
+          +
+        </span>
+      </summary>
 
-        <ul class="mt-8 grid gap-3">
-          {
-            c.perks.map((perk) => (
-              <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
-                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
-                  ✓
-                </span>
-                {perk}
-              </li>
-            ))
-          }
-        </ul>
+      <div class="grid gap-10 border-t border-[color:var(--border)] p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-7">
+        <div>
+          <h2 class="text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)]">
+            {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
+          </h2>
+          <p class="mt-4 text-sm leading-7 text-[var(--muted)]">{c.subtitle}</p>
 
-        <div class="mt-8 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
-          <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
-            {c.directTitle}
-          </p>
-          <div class="mt-4 flex flex-col gap-3 text-sm">
-            <a
-              href={`https://wa.me/${CONTACT.whatsapp}?text=${waMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
-            >
-              💬 WhatsApp · {CONTACT.whatsappDisplay}
-            </a>
-            <a
-              href={`mailto:${CONTACT.email}`}
-              class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
-            >
-              ✉️ {CONTACT.email}
-            </a>
+          <ul class="mt-6 grid gap-3">
+            {
+              c.perks.map((perk) => (
+                <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
+                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
+                    ✓
+                  </span>
+                  {perk}
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="mt-7 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-5">
+            <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+              {c.directTitle}
+            </p>
+            <div class="mt-4 flex flex-col gap-3 text-sm">
+              <a
+                href={waHref("contact", lang)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
+              >
+                💬 WhatsApp · {CONTACT.whatsappDisplay}
+              </a>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
+              >
+                ✉️ {CONTACT.email}
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="reveal reveal-right">
         <form
           id="contact-form"
-          class="rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl lg:p-8"
+          class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-6 lg:p-7"
         >
           <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
           <input
@@ -112,7 +137,14 @@ const contactScript = `
             value="Nuevo contacto desde procodedev.com"
           />
           <input type="hidden" name="from_name" value="ProCode Dev — Web" />
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display:none"
+            tabindex="-1"
+            autocomplete="off"
+          />
 
           <div class="grid gap-5">
             <label class="grid gap-2">
@@ -121,26 +153,34 @@ const contactScript = `
                 type="text"
                 name="name"
                 required
-                class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
+                autocomplete="name"
+                placeholder={c.phName}
+                class={inputClass}
               />
             </label>
 
             <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2">
+                {/* `phone` pasa a requerido: es el dato con el que se cierra. */}
+                <span class="text-sm font-medium text-[var(--text)]">{c.fieldPhone}</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  autocomplete="tel"
+                  placeholder={c.phPhone}
+                  class={inputClass}
+                />
+              </label>
               <label class="grid gap-2">
                 <span class="text-sm font-medium text-[var(--text)]">{c.fieldEmail}</span>
                 <input
                   type="email"
                   name="email"
                   required
-                  class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
-                />
-              </label>
-              <label class="grid gap-2">
-                <span class="text-sm font-medium text-[var(--text)]">{c.fieldPhone}</span>
-                <input
-                  type="tel"
-                  name="phone"
-                  class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
+                  autocomplete="email"
+                  placeholder={c.phEmail}
+                  class={inputClass}
                 />
               </label>
             </div>
@@ -156,13 +196,19 @@ const contactScript = `
             </label>
 
             <label class="grid gap-2">
-              <span class="text-sm font-medium text-[var(--text)]">{c.fieldMessage}</span>
+              {/* `message` deja de ser obligatorio: redacción libre es el
+                  campo de mayor costo cognitivo del formulario. */}
+              <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
+                {c.fieldMessage}
+                <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                  {c.optionalTag}
+                </span>
+              </span>
               <textarea
                 name="message"
-                rows="4"
-                required
-                class="resize-none rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[color:var(--border-strong)]"
-              ></textarea>
+                rows="3"
+                placeholder={c.phMessage}
+                class:list={["resize-none", inputClass]}></textarea>
             </label>
 
             <button
@@ -177,7 +223,7 @@ const contactScript = `
           </div>
         </form>
       </div>
-    </div>
+    </details>
   </div>
 </section>
 

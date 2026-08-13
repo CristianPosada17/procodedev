@@ -1,0 +1,46 @@
+---
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import SectionHeading from "./SectionHeading.astro";
+import PortfolioCard from "./PortfolioCard.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const p = t.proof;
+const pf = t.portfolio;
+
+// Hallazgo #4 (crítico): el home entero tenía 2 imágenes y las dos eran el
+// logo. Una agencia que vende diseño web pedía confiar en la afirmación en vez
+// de en la evidencia. Aquí van los 3 proyectos con cliente real detrás.
+const projects = pf.projects.filter((proj) => proj.kind !== "demo").slice(0, 3);
+---
+
+<section id="trabajo" class="relative py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={p.eyebrow}>
+      <Fragment slot="title">
+        {p.titleA}{" "}<span class="grad-text">{p.titleHighlight}</span>
+      </Fragment>
+      <Fragment slot="subtitle">{p.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        projects.map((proj, i) => (
+          <PortfolioCard project={proj} viewProject={pf.viewProject} resultLabel={pf.resultLabel} delay={i * 90} />
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 text-center">
+      <a
+        href={PAGES.portfolio[lang]}
+        class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
+      >
+        {p.cta} <span class="ml-2">→</span>
+      </a>
+    </div>
+  </div>
+</section>

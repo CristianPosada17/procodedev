@@ -1,0 +1,70 @@
+---
+import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const f = t.founder;
+
+// Hallazgos #11 y #16: el copy alternaba entre «diseñamos / nosotros»
+// (agencia) y «analizo / yo la mantengo» (persona), y el sitio no decía
+// desde dónde se trabaja. Para un negocio local, la cara y la ciudad
+// convierten más que la palabra «agencia».
+const initials = f.name
+  .split(" ")
+  .map((w) => w[0])
+  .slice(0, 2)
+  .join("");
+---
+
+<section id="quien" class="relative py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    {/* La foto ocupa una columna propia y el texto rellena el resto, para que
+        ambos bloques terminen a la misma altura en escritorio. */}
+    <div
+      class="reveal mx-auto grid max-w-6xl gap-8 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-8 backdrop-blur-xl sm:grid-cols-[auto_1fr] sm:items-center sm:gap-10 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-14 lg:p-12"
+    >
+      <div
+        class="relative h-32 w-32 flex-none overflow-hidden rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--brand)]/10 sm:h-44 sm:w-44 lg:h-auto lg:w-full lg:flex-auto"
+      >
+        <span
+          class="absolute inset-0 flex items-center justify-center font-mono text-3xl font-bold text-[var(--accent)] lg:text-6xl"
+          aria-hidden="true"
+        >
+          {initials}
+        </span>
+        <img
+          src={CONTACT.founderPhoto}
+          alt={`${f.name} — ${f.role}`}
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="600"
+          class="relative h-full w-full object-cover lg:aspect-square lg:h-auto"
+          onerror="this.remove()"
+        />
+      </div>
+
+      <div>
+        <span class="eyebrow">{f.eyebrow}</span>
+        <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl">
+          {f.title}
+        </h2>
+        <p class="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-[var(--accent)]">
+          {f.name} · {f.role}
+        </p>
+        <p class="mt-6 text-base leading-8 text-[var(--muted)] lg:text-lg lg:leading-9">
+          {f.body}
+        </p>
+        <a
+          href={PAGES.contact[lang]}
+          class="mt-8 inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
+        >
+          {f.cta} <span class="ml-2">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

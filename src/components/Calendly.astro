@@ -2,26 +2,37 @@
 import { translations, CONTACT, type Lang } from "../i18n/ui";
 interface Props {
   lang?: Lang;
+  showHeading?: boolean;
 }
-const { lang = "es" } = Astro.props as Props;
+const { lang = "es", showHeading = true } = Astro.props as Props;
 const t = translations[lang];
 const cal = t.calendly;
 ---
 
-<section id="agendar" class="relative py-20">
+{/* Hallazgo #2: en /contacto este bloque va inmediatamente después del hero.
+    Ahí el H1 ya anuncia el agendado, así que el encabezado propio se oculta
+    para no repetir el mismo mensaje dos veces (hallazgo #13). */}
+<section id="agendar" class:list={[showHeading ? "py-20" : "pb-10 pt-4", "relative"]}>
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
-    <div class="reveal mx-auto max-w-3xl text-center">
-      <span class="eyebrow">{cal.eyebrow}</span>
-      <h2 class="mt-5 text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
-        {cal.titleA}{" "}<span class="grad-text">{cal.titleHighlight}</span>
-      </h2>
-      <p class="mx-auto mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">
-        {cal.subtitle}
-      </p>
-    </div>
+    {
+      showHeading && (
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <span class="eyebrow">{cal.eyebrow}</span>
+          <h2 class="mt-5 text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
+            {cal.titleA} <span class="grad-text">{cal.titleHighlight}</span>
+          </h2>
+          <p class="mx-auto mt-5 max-w-2xl text-base leading-8 text-[var(--muted)]">
+            {cal.subtitle}
+          </p>
+        </div>
+      )
+    }
 
     <div
-      class="reveal mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-2 backdrop-blur-xl"
+      class:list={[
+        showHeading ? "mt-10" : "mt-0",
+        "reveal overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-2 backdrop-blur-xl",
+      ]}
     >
       <div
         class="calendly-inline-widget rounded-[1.25rem] overflow-hidden"

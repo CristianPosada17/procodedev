@@ -33,7 +33,15 @@ export const CONTACT = {
   instagram: "https://www.instagram.com/procode.systems/",
   linkedin: "https://www.linkedin.com/in/cristian-posada-891401291/",
   facebook: "https://www.facebook.com/ProCodeSystems",
+  city: "Durango",
+  cityFull: "Durango, México",
+  founderName: "Cristian Posada",
+  founderPhoto: "/images/cristian-posada.jpg",
 };
+
+// Tipo de cambio fijo para mostrar precios en MXN (hallazgo #9 de la auditoría CRO).
+// Se fija arriba del spot (~17.1) para absorber movimiento cambiario sin retocar precios.
+export const FX_USD_MXN = 18;
 
 export const translations = {
   es: {
@@ -56,12 +64,12 @@ export const translations = {
       viewServices: "Ver servicios",
     },
     hero: {
-      eyebrow: "// agencia de desarrollo web",
+      eyebrow: "// desarrollo web · durango, méxico",
       titleA: "Sitios web y sistemas digitales que",
       titleHighlight: "hacen crecer",
       titleB: "tu negocio.",
       subtitle:
-        "Diseñamos sitios web y sistemas digitales que convierten visitantes en clientes y automatizan tu operación. Deja de perder horas respondiendo lo mismo y persiguiendo prospectos: tu web trabaja por ti mientras tú vendes.",
+        "Soy Cristian Posada y diseño sitios web y sistemas digitales que convierten visitantes en clientes y automatizan tu operación. Deja de perder horas respondiendo lo mismo y persiguiendo prospectos: tu web trabaja por ti mientras tú vendes.",
       badges: [
         "Diseño profesional",
         "Enfoque en resultados",
@@ -72,8 +80,13 @@ export const translations = {
       cardText:
         "Sitios web, formularios, WhatsApp, agenda y seguimiento conectados en una sola estructura.",
       cardCta: "Solicitar propuesta",
-      statLeads: "Leads generados",
-      statConversion: "Conversión estimada",
+      panelTitle: "Lo que queda funcionando",
+      panelItems: [
+        "Página que explica tu servicio sin que tú lo repitas",
+        "Botón de WhatsApp con el mensaje ya escrito",
+        "Agenda en línea conectada a tu calendario",
+        "Formularios que te llegan al correo al instante",
+      ],
       chips: ["Landing pages", "Integraciones", "Automatización"],
     },
     values: {
@@ -89,7 +102,7 @@ export const translations = {
           icon: "⚙",
           title: "Integraciones inteligentes",
           description:
-            "Conectamos tus herramientas para automatizar procesos y ahorrar tiempo.",
+            "Conecto tus herramientas para automatizar procesos y ahorrar tiempo.",
         },
         {
           icon: "⚡",
@@ -106,7 +119,7 @@ export const translations = {
       ],
     },
     services: {
-      eyebrow: "// nuestros servicios",
+      eyebrow: "// lo que hago",
       titleA: "Soluciones digitales enfocadas en",
       titleHighlight: "crecimiento",
       subtitle:
@@ -124,14 +137,14 @@ export const translations = {
           category: "Landing pages",
           title: "Páginas de captación para campañas",
           description:
-            "Creamos landing pages estratégicas para anuncios, promociones o servicios específicos, optimizadas para generar mensajes, registros o citas.",
+            "Creo landing pages estratégicas para anuncios, promociones o servicios específicos, optimizadas para generar mensajes, registros o citas.",
         },
         {
           icon: "⚙",
           category: "Integraciones y automatización",
           title: "Automatización e integración de herramientas",
           description:
-            "Conectamos formularios, WhatsApp, calendarios, CRM y otras herramientas para que tu operación digital sea más ordenada y eficiente.",
+            "Conecto formularios, WhatsApp, calendarios, CRM y otras herramientas para que tu operación digital sea más ordenada y eficiente.",
         },
         {
           icon: "✎",
@@ -157,11 +170,11 @@ export const translations = {
       ],
     },
     process: {
-      eyebrow: "// nuestro proceso",
+      eyebrow: "// cómo trabajo",
       titleA: "Un proceso claro, estratégico y enfocado en",
       titleHighlight: "resultados",
       subtitle:
-        "No trabajamos al azar. Un proceso claro significa menos vueltas, menos tiempo perdido y una web lista para vender más rápido.",
+        "No trabajo al azar. Un proceso claro significa menos vueltas, menos tiempo perdido y una web lista para vender más rápido.",
       steps: [
         {
           number: "01",
@@ -179,19 +192,19 @@ export const translations = {
           number: "03",
           title: "Diseño y desarrollo",
           description:
-            "Construimos una experiencia digital profesional, clara, rápida y alineada con tu marca.",
+            "Construyo una experiencia digital profesional, clara, rápida y alineada con tu marca.",
         },
         {
           number: "04",
           title: "Integración y lanzamiento",
           description:
-            "Conectamos formularios, WhatsApp, calendario, CRM o herramientas necesarias para operar mejor.",
+            "Conecto formularios, WhatsApp, calendario, CRM o herramientas necesarias para operar mejor.",
         },
         {
           number: "05",
           title: "Optimización",
           description:
-            "Revisamos resultados, detectamos mejoras y mantenemos la estructura digital en evolución.",
+            "Reviso resultados, detecto mejoras y mantengo la estructura digital en evolución.",
         },
       ],
     },
@@ -202,9 +215,9 @@ export const translations = {
       titleB: "para crecer.",
       subtitle:
         "Una página bonita no es suficiente. Tu negocio necesita claridad, velocidad, confianza, seguimiento y una estructura que facilite convertir visitas en oportunidades reales.",
-      philosophyTitle: "Nuestra filosofía",
+      philosophyTitle: "Mi filosofía",
       philosophyText:
-        "No construimos sitios para llenar espacio. Construimos sistemas digitales que comunican, conectan y ayudan a vender mejor.",
+        "No construyo sitios para llenar espacio. Construyo sistemas digitales que comunican, conectan y ayudan a vender mejor.",
       items: [
         {
           icon: "🎯",
@@ -240,16 +253,16 @@ export const translations = {
           icon: "🔗",
           title: "Integraciones útiles",
           description:
-            "Conectamos formularios, WhatsApp, CRM, calendario, email o herramientas clave para tu operación.",
+            "Conecto formularios, WhatsApp, CRM, calendario, email o herramientas clave para tu operación.",
         },
       ],
     },
     caseStudy: {
       eyebrow: "// proyecto destacado",
-      titleA: "Una estructura digital pensada para",
-      titleHighlight: "generar oportunidades",
+      titleA: "Qué lleva dentro un sitio",
+      titleHighlight: "que sí vende",
       subtitle:
-        "Así se ve un sistema digital completo: presencia profesional, captación, agenda e integraciones trabajando juntas para venderte mientras tú te ocupas del negocio.",
+        "Todos los proyectos de arriba comparten la misma estructura por debajo: presencia profesional, captación, agenda e integraciones trabajando juntas para venderte mientras tú te ocupas del negocio.",
       includesTitle: "Qué incluye un sistema",
       includes: [
         "Presencia profesional que transmite confianza",
@@ -264,13 +277,22 @@ export const translations = {
       titleA: "Proyectos reales que",
       titleHighlight: "generan oportunidades",
       subtitle:
-        "Una selección de sitios web que hemos construido para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos en vivo.",
+        "Una selección de sitios que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos en vivo.",
       viewProject: "Ver proyecto",
+      resultLabel: "Resultado",
       cta: "Quiero un sitio así para mi negocio",
+      clientsTitle: "Clientes reales",
+      clientsNote: "Sitios en vivo, con negocios atendiendo por ellos hoy.",
+      demosTitle: "Demos y conceptos",
+      demosNote:
+        "Proyectos que construí por mi cuenta para mostrar lo que se puede hacer en cada sector. No son clientes: los marco como demo para que no haya confusión.",
       projects: [
         {
           name: "Fernanda Silva — Nutrióloga",
+          kind: "client",
+          result: "",
           url: "https://fersilvanutricion.com/",
+          image: "/images/proyecto-fersilva.jpg",
           badge: "Salud & bienestar",
           description:
             "Sitio profesional que comunica sus servicios, transmite confianza y facilita que nuevos pacientes agenden su consulta.",
@@ -278,7 +300,10 @@ export const translations = {
         },
         {
           name: "Cristian Posada — Marca personal",
+          kind: "own",
+          result: "",
           url: "https://cristianposada.com/",
+          image: "/images/proyecto-cristian-posada.jpg",
           badge: "Marca personal",
           description:
             "Sitio de marca personal enfocado en posicionar autoridad, mostrar proyectos y convertir visitantes en contactos reales.",
@@ -286,7 +311,10 @@ export const translations = {
         },
         {
           name: "Trejo Landscaping",
+          kind: "client",
+          result: "",
           url: "https://tj-landscaping.com/",
+          image: "/images/proyecto-trejo-landscaping.jpg",
           badge: "Servicios locales",
           description:
             "Sitio de servicios que destaca su trabajo, transmite profesionalismo y capta solicitudes de cotización.",
@@ -294,6 +322,8 @@ export const translations = {
         },
         {
           name: "Mariana Cervantes — Asesora Inmobiliaria",
+          kind: "demo",
+          result: "",
           url: "https://demoinmobiliaria.procodedev.com/",
           image: "/images/demo-inmobiliaria.jpg",
           badge: "Inmobiliaria · Demo",
@@ -303,6 +333,8 @@ export const translations = {
         },
         {
           name: "Herrera Tax & Advisory — TaxPro",
+          kind: "demo",
+          result: "",
           url: "https://demo-taxpro.procodedev.com/",
           image: "/images/demo-taxpro.jpg",
           badge: "Servicios fiscales · Demo",
@@ -320,31 +352,42 @@ export const translations = {
       subtitle:
         "Desde una asesoría para tener claridad, hasta un sitio completo con seguimiento automático. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
+      currencyLabel: "Ver precios en",
+      currencyMxn: "MXN",
+      currencyUsd: "USD",
+      currencyNoteMxn:
+        "Precios en pesos mexicanos, a tipo de cambio fijo de $18 MXN por dólar.",
+      currencyNoteUsd: "Precios en dólares estadounidenses.",
+      mxnUnit: "MXN",
+      mxnUnitMonth: "MXN / mes",
       advisory: {
-        badge: "Nuevo · Ideal para empezar",
+        badge: "Paso 2 · Después del diagnóstico",
         name: "Asesoría de Presencia Digital",
         price: "75",
+        priceMxn: "1,390",
         currency: "USD",
         priceNote: "pago único · acreditable a tu proyecto",
-        hook: "¿No sabes por dónde empezar? Empieza aquí.",
+        hook: "Cuando ya hablamos y quieres el plan completo por escrito.",
         description:
-          "Analizo a fondo cómo te encuentra hoy un cliente en Google, redes y WhatsApp, entiendo tu negocio por dentro y te entrego un plan claro de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
-        homeEyebrow: "// el primer paso",
-        homeTitle: "¿No sabes por dónde empezar?",
+          "El diagnóstico gratuito de 15 minutos te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente en Google, redes y WhatsApp, entro en tu negocio por dentro y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
+        homeEyebrow: "// el siguiente paso",
+        homeTitle: "¿Quieres el plan completo por escrito?",
+        prereq:
+          "Empieza siempre por el diagnóstico gratuito de 15 minutos. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
         viewPricing: "Ver todos los precios",
         waText:
-          "Hola ProCode 👋 Me interesa la Asesoría de Presencia Digital ($75). Quiero saber cómo me encuentran hoy mis clientes en Google, redes y WhatsApp y recibir un plan de mejoras. ¿Cómo empezamos?",
+          "Hola Cristian 👋 Me interesa la Asesoría de Presencia Digital ($1,390 MXN). Quiero saber cómo me encuentran hoy mis clientes en Google, redes y WhatsApp y recibir un plan de mejoras. ¿Cómo empezamos?",
         stepsTitle: "Cómo funciona (3 fases)",
         steps: [
           {
-            name: "Fase 1 · Conocemos tu negocio",
+            name: "Fase 1 · Conozco tu negocio",
             description:
               "Llamada + cuestionario breve: qué vendes, tu cliente ideal y cómo captas clientes hoy.",
           },
           {
             name: "Fase 2 · Diagnóstico a fondo",
             description:
-              "Revisamos tu presencia en Google, Maps, reseñas, redes, tu web actual y tu WhatsApp.",
+              "Reviso tu presencia en Google, Maps, reseñas, redes, tu web actual y tu WhatsApp.",
           },
           {
             name: "Fase 3 · Plan de soluciones",
@@ -353,18 +396,19 @@ export const translations = {
           },
         ],
         creditNote:
-          "Los $75 se te acreditan completos si decides hacer tu proyecto con nosotros. En la práctica, la asesoría te sale gratis si avanzas.",
+          "El costo se te acredita completo si decides hacer tu proyecto conmigo. En la práctica, la asesoría te sale gratis si avanzas.",
         cta: "Agendar mi asesoría",
       },
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Precios de referencia en dólares estadounidenses (USD). Cada proyecto se cotiza según su alcance real; en tu diagnóstico gratuito lo definimos juntos, sin compromiso.",
+      note: "Estos son los precios reales, no un rango de referencia: lo que ves es lo que pagas por el alcance descrito en cada plan. Si tu proyecto se sale de ese alcance, te lo digo antes de empezar y te paso el número exacto — nunca a mitad del trabajo.",
       maintenance: {
         badge: "Recomendado · Continuidad",
         name: "Soporte web mensual",
         pricePrefix: "desde",
         price: "59",
+        priceMxn: "1,090",
         currency: "USD / mes",
         priceNote: "sin contrato forzoso",
         hook: "Tu página siempre al día, y tú siempre enterado de cómo trabaja.",
@@ -383,13 +427,14 @@ export const translations = {
         footNote:
           "Sin contrato forzoso. Lo cancelas cuando quieras. Es tener un encargado de tu presencia digital por menos de lo que cuesta una comida.",
         waText:
-          "Hola ProCode 👋 Me interesa el Soporte web mensual (desde $59). Quiero mantener mi sitio rápido y seguro y recibir el reporte mensual de desempeño. ¿Cómo lo activo?",
+          "Hola Cristian 👋 Me interesa el Soporte web mensual (desde $1,090 MXN al mes). Quiero mantener mi sitio rápido y seguro y recibir el reporte mensual de desempeño. ¿Cómo lo activo?",
         cta: "Activar mi mantenimiento",
       },
       packages: [
         {
           name: "Landing Page",
           price: "299",
+          priceMxn: "5,490",
           currency: "USD",
           pricePrefix: "",
           tagline: "Empieza a captar clientes ya",
@@ -404,12 +449,13 @@ export const translations = {
           ],
           cta: "Quiero mi landing",
           waText:
-            "Hola ProCode 👋 Me interesa la Landing Page ($299). Quiero una página enfocada 100% en captar clientes. ¿Me pueden dar más información?",
+            "Hola Cristian 👋 Me interesa la Landing Page ($5,490 MXN). Quiero una página enfocada 100% en captar clientes. ¿Me pueden dar más información?",
           highlighted: false,
         },
         {
           name: "Sitio Web 4–6 páginas",
           price: "599",
+          priceMxn: "10,900",
           currency: "USD",
           pricePrefix: "",
           tagline: "El favorito de negocios en crecimiento",
@@ -424,12 +470,13 @@ export const translations = {
           ],
           cta: "Empezar mi sitio",
           waText:
-            "Hola ProCode 👋 Me interesa el Sitio Web de 4 a 6 páginas ($599). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
+            "Hola Cristian 👋 Me interesa el Sitio Web de 4 a 6 páginas ($10,900 MXN). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
           highlighted: true,
         },
         {
           name: "Sitio Web 8–12 páginas",
           price: "1,199",
+          priceMxn: "21,900",
           currency: "USD",
           pricePrefix: "desde",
           tagline: "Presencia y sistema digital completo",
@@ -444,7 +491,7 @@ export const translations = {
           ],
           cta: "Cotizar mi web",
           waText:
-            "Hola ProCode 👋 Me interesa el Sitio Web de 8 a 12 páginas (desde $1,199) con integraciones y seguimiento. Me gustaría cotizarlo. ¿Podemos platicar?",
+            "Hola Cristian 👋 Me interesa el Sitio Web de 8 a 12 páginas (desde $21,900 MXN) con integraciones y seguimiento. Me gustaría cotizarlo. ¿Podemos platicar?",
           highlighted: false,
         },
       ],
@@ -452,6 +499,7 @@ export const translations = {
         {
           name: "Rediseño web",
           price: "$299 – $1,199",
+          priceMxn: "$5,490 – $21,900",
           unit: "USD o más",
           description:
             "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
@@ -459,6 +507,7 @@ export const translations = {
         {
           name: "Optimización web",
           price: "$299",
+          priceMxn: "$5,490",
           unit: "USD",
           description:
             "Más velocidad, mejor experiencia y CTAs que sí convierten visitas en mensajes.",
@@ -466,13 +515,15 @@ export const translations = {
         {
           name: "Página adicional",
           price: "$199",
+          priceMxn: "$3,690",
           unit: "USD",
           description:
-            "Suma una sección extra a un sitio que ya tienes con nosotros.",
+            "Suma una sección extra a un sitio que ya hicimos juntos.",
         },
         {
           name: "Ajustes urgentes",
           price: "$99",
+          priceMxn: "$1,890",
           unit: "USD",
           description:
             "Cambios rápidos fuera de alcance, resueltos con prioridad el mismo día.",
@@ -481,9 +532,9 @@ export const translations = {
     },
     integrations: {
       eyebrow: "// integraciones",
-      title: "Conectamos tus herramientas favoritas",
+      title: "Conecto tus herramientas favoritas",
       subtitle:
-        "Tu página no debe vivir aislada. La conectamos con tus herramientas para que la captación y el seguimiento sucedan solos, sin trabajo manual.",
+        "Tu página no debe vivir aislada. La conecto con tus herramientas para que la captación y el seguimiento sucedan solos, sin trabajo manual.",
       items: [
         { icon: "💬", name: "WhatsApp", description: "Captación y seguimiento" },
         { icon: "📝", name: "Formularios", description: "Registro de prospectos" },
@@ -495,32 +546,32 @@ export const translations = {
     },
     faq: {
       eyebrow: "// preguntas frecuentes",
-      titleA: "Resolvemos tus",
+      titleA: "Resuelvo tus",
       titleHighlight: "dudas principales",
       subtitle:
-        "Antes de iniciar cualquier proyecto, buscamos que tengas claridad sobre el proceso, alcance, integraciones y siguientes pasos.",
+        "Antes de iniciar cualquier proyecto quiero que tengas claridad sobre el proceso, el alcance, las integraciones y los siguientes pasos.",
       moreQuestion: "¿Tienes otra pregunta?",
       items: [
         {
           question: "¿Cuánto tiempo toma desarrollar mi sitio web?",
           answer:
-            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Tras el diagnóstico te entregamos un cronograma con fechas y entregables claros.",
+            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Tras el diagnóstico te entrego un cronograma con fechas y entregables claros.",
         },
         {
           question: "¿Cuánto cuesta un sitio web con ustedes?",
           answer:
-            "Nuestros planes van desde $299 USD (landing page) hasta $1,199 USD (web completa), y puedes empezar con una asesoría de $75 si quieres claridad antes de invertir. En tu diagnóstico gratuito definimos el alcance exacto, sin compromiso.",
+            "Los planes van desde $5,490 MXN (landing page) hasta $21,900 MXN (web completa de 8 a 12 páginas). Empieza por el diagnóstico gratuito de 15 minutos: ahí definimos el alcance exacto y te digo el número real, sin compromiso.",
         },
         {
           question:
             "¿Qué es la Asesoría de Presencia Digital y en qué se diferencia de un proyecto?",
           answer:
-            "Es un análisis a fondo de cómo te encuentra hoy un cliente en Google, redes y WhatsApp. En tres fases conocemos tu negocio, diagnosticamos tu presencia y te entregamos un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Cuesta $75 y, si luego haces tu proyecto con nosotros, se te acredita completo.",
+            "El diagnóstico gratuito es una llamada de 15 minutos: la puerta de entrada, sin costo. La Asesoría ($1,390 MXN) es el paso que sigue si quieres profundidad: analizo a fondo tu presencia en Google, redes y WhatsApp y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completa.",
         },
         {
           question: "¿La asesoría tiene costo si después contrato un proyecto?",
           answer:
-            "No. Los $75 de la asesoría se descuentan por completo del precio de tu proyecto. Si decides avanzar, la asesoría te sale gratis; y si no, te quedas con el plan de mejoras de todos modos.",
+            "No. Los $1,390 MXN de la asesoría se descuentan por completo del precio de tu proyecto. Si decides avanzar, la asesoría te sale gratis; y si no, te quedas con el plan de mejoras de todos modos.",
         },
         {
           question: "¿Qué incluye el mantenimiento mensual?",
@@ -530,27 +581,27 @@ export const translations = {
         {
           question: "¿Incluyen dominio y hosting?",
           answer:
-            "Sí. Te orientamos y configuramos dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajamos sobre tu infraestructura actual sin problema.",
+            "Sí. Te oriento y configuro dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajo sobre tu infraestructura actual sin problema.",
         },
         {
           question: "¿Pueden integrar WhatsApp, formularios o CRM?",
           answer:
-            "Por supuesto. Conectamos formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático.",
+            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático.",
         },
         {
           question: "¿Mi sitio web será editable?",
           answer:
-            "Según tus necesidades. Construimos sitios estáticos de alto rendimiento o estructuras editables con panel de administración cuando necesitas actualizar contenido con frecuencia.",
+            "Según tus necesidades. Construyo sitios estáticos de alto rendimiento o estructuras editables con panel de administración cuando necesitas actualizar contenido con frecuencia.",
         },
         {
           question: "¿Qué necesito para empezar?",
           answer:
-            "Solo una llamada de diagnóstico. En ella entendemos tu negocio, objetivos, servicios, cliente ideal y la acción que quieres generar: mensajes, citas, registros o ventas.",
+            "Solo la llamada de diagnóstico gratuita de 15 minutos. En ella entiendo tu negocio, objetivos, servicios, cliente ideal y la acción que quieres generar: mensajes, citas, registros o ventas.",
         },
         {
           question: "¿Ofrecen soporte después del lanzamiento?",
           answer:
-            "Sí. El plan de soporte mensual (desde $59) mantiene tu sitio rápido, seguro y actualizado, y cada mes te enviamos un reporte de cómo está trabajando tu página. Sin contrato forzoso.",
+            "Sí. El plan de soporte mensual (desde $1,090 MXN al mes) mantiene tu sitio rápido, seguro y actualizado, y cada mes te envío un reporte de cómo está trabajando tu página. Sin contrato forzoso.",
         },
       ],
     },
@@ -558,9 +609,10 @@ export const translations = {
       eyebrow: "// testimonios",
       titleA: "Negocios que ya",
       titleHighlight: "ganan tiempo",
-      titleB: "con nosotros",
+      titleB: "trabajando conmigo",
       subtitle:
-        "No solo entregamos una página: entregamos tranquilidad y resultados. Esto es lo que dicen quienes ya trabajan con ProCode Dev.",
+        "No entrego solo una página: entrego tranquilidad. Esto es lo que dicen quienes ya trabajan conmigo — con el enlace a su sitio para que lo compruebes.",
+      visitSite: "Ver su sitio",
       items: [
         {
           quote:
@@ -568,6 +620,8 @@ export const translations = {
           name: "Fernanda Silva",
           role: "Nutrióloga",
           initials: "FS",
+          url: "https://fersilvanutricion.com/",
+          urlLabel: "fersilvanutricion.com",
           service: "Sitio web + agenda de citas",
         },
         {
@@ -576,6 +630,8 @@ export const translations = {
           name: "Trejo Landscaping",
           role: "Servicios de jardinería y paisajismo",
           initials: "TL",
+          url: "https://tj-landscaping.com/",
+          urlLabel: "tj-landscaping.com",
           service: "Sitio web + captación de cotizaciones",
         },
         {
@@ -584,6 +640,8 @@ export const translations = {
           name: "Constructora Izcalli",
           role: "Construcción y desarrollo",
           initials: "CI",
+          url: "",
+          urlLabel: "",
           service: "Hosting de correos, automatizaciones y soporte",
         },
       ],
@@ -603,32 +661,40 @@ export const translations = {
       sending: "Enviando…",
       success:
         "¡Listo! Recibimos tu solicitud. Te enviamos tus 3 mejoras en 24–48 h.",
-      error: "Hubo un problema. Escríbenos por WhatsApp y lo resolvemos.",
+      error: "Hubo un problema. Escríbeme por WhatsApp y lo resolvemos.",
     },
     calendly: {
       eyebrow: "🗓️ agenda en línea",
       titleA: "Reserva tu",
       titleHighlight: "diagnóstico gratuito",
       subtitle:
-        "Elige el horario que mejor te acomode. En 15 minutos revisamos tu negocio y te decimos exactamente qué necesita tu presencia digital.",
+        "Elige el horario que mejor te acomode. En 15 minutos revisamos tu negocio y te digo exactamente qué necesita tu presencia digital. Sin costo y sin compromiso.",
     },
     contact: {
       eyebrow: "// contacto",
-      titleA: "Cuéntanos tu proyecto y te",
-      titleHighlight: "respondemos rápido",
+      titleA: "¿No te acomoda ningún horario? Déjame tus",
+      titleHighlight: "datos",
       subtitle:
-        "Llena el formulario y te contactamos con una propuesta clara. Sin compromiso y sin tecnicismos: solo cómo tu negocio puede ahorrar tiempo y vender más.",
+        "Déjame tu WhatsApp y te escribo yo. Sin compromiso y sin tecnicismos: solo cómo tu negocio puede ahorrar tiempo y vender más.",
+      toggle: "Prefiero dejar mis datos y que me contacten",
+      toggleNote: "Respondo en menos de 24 horas.",
       perks: [
         "Respuesta en menos de 24 horas",
-        "Diagnóstico inicial gratuito",
-        "Atención directa, sin intermediarios",
+        "Te atiendo yo directo, sin intermediarios",
+        "Sin costo ni compromiso",
       ],
-      directTitle: "¿Prefieres escribirnos directo?",
+      directTitle: "¿Prefieres escribirme directo?",
       fieldName: "Nombre",
       fieldEmail: "Correo",
-      fieldPhone: "WhatsApp / Teléfono",
+      fieldPhone: "WhatsApp",
       fieldType: "Tipo de proyecto",
-      fieldMessage: "Cuéntanos sobre tu negocio",
+      fieldMessage: "Cuéntame sobre tu negocio",
+      optionalTag: "opcional",
+      phName: "Ej: María González",
+      phEmail: "maria@minegocio.com",
+      phPhone: "614 123 4567",
+      phMessage:
+        "Ej: tengo un consultorio dental y quiero que los pacientes agenden solos.",
       types: [
         "Sitio web",
         "Landing page",
@@ -639,25 +705,25 @@ export const translations = {
       submit: "Enviar mensaje",
       sending: "Enviando…",
       success: "¡Gracias! Recibimos tu mensaje y te contactamos muy pronto.",
-      error: "No se pudo enviar. Escríbenos por WhatsApp y te atendemos.",
+      error: "No se pudo enviar. Escríbeme por WhatsApp y te atiendo.",
     },
     finalCta: {
       eyebrow: "// agenda tu diagnóstico",
       title:
         "¿Listo para dejar de perder tiempo y convertir tu web en tu mejor vendedor?",
       subtitle:
-        "Agenda una llamada y revisemos juntos qué necesita tu negocio: una página más profesional, una landing para captar prospectos, integraciones o una estructura digital más completa.",
-      ctaPrimary: "Solicitar propuesta",
+        "Agenda una llamada de 15 minutos y revisamos juntos qué necesita tu negocio: una página más profesional, una landing para captar prospectos, integraciones o una estructura digital más completa.",
+      ctaPrimary: "Agendar diagnóstico gratuito",
       ctaWhatsapp: "Hablar por WhatsApp",
     },
     footer: {
       tagline:
-        "Desarrollo web estratégico, landing pages, integraciones y sistemas de captación que ayudan a negocios a tener una presencia digital más sólida y funcional.",
+        "Soy Cristian Posada. Desde Durango construyo sitios web, landing pages, integraciones y sistemas de captación para negocios que quieren una presencia digital más sólida y funcional.",
       navTitle: "Navegación",
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
       hours: "Lunes a Domingo",
-      location: "México / Remoto",
+      location: "Durango, México · trabajo remoto con todo el país",
       cta: "Agendar diagnóstico",
       rights: "Todos los derechos reservados.",
       privacy: "Aviso de privacidad",
@@ -671,18 +737,78 @@ export const translations = {
         "Captación digital",
       ],
     },
+    // ── Franja de proyectos reales en el home (hallazgo #4) ──
+    proof: {
+      eyebrow: "// trabajo real",
+      titleA: "Sitios que ya están",
+      titleHighlight: "trabajando",
+      subtitle:
+        "No te pido que confíes en lo que digo. Estos sitios están en vivo ahora mismo — ábrelos y júzgalos tú.",
+      cta: "Ver todo el portafolio",
+    },
+    // ── Anclaje de precio en el home (hallazgo #10) ──
+    priceAnchor: {
+      eyebrow: "// inversión",
+      title: "Precios claros, publicados, sin cotización sorpresa",
+      subtitle:
+        "No tienes que escribirme para saber cuánto cuesta. Los precios están en la página, con lo que incluye cada plan.",
+      fromLabel: "desde",
+      amount: "5,490",
+      currency: "MXN",
+      amountNote: "landing page completa · pago único",
+      cta: "Ver todos los precios",
+    },
+    // ── Quién está detrás (hallazgos #11 y #16) ──
+    founder: {
+      eyebrow: "// quién lo hace",
+      name: "Cristian Posada",
+      role: "Desarrollador web · Durango, México",
+      title: "No es una agencia. Soy yo.",
+      body:
+        "Cuando me escribes, te contesto yo. Cuando revisamos tu negocio, lo reviso yo. Y cuando tu sitio esté en línea, sigo siendo yo quien lo mantiene. Trabajo desde Durango con negocios de todo México y de Estados Unidos, y prefiero llevar pocos proyectos bien que muchos a medias.",
+      cta: "Agenda 15 minutos conmigo",
+    },
+    // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
+    homeFaq: {
+      eyebrow: "// antes de agendar",
+      titleA: "Las dudas que casi",
+      titleHighlight: "siempre me hacen",
+      subtitle: "",
+      items: [
+        {
+          question: "¿Cuánto cuesta y por qué no lo veo hasta el final?",
+          answer:
+            "Sí lo ves: los precios están publicados. Desde $5,490 MXN una landing page hasta $21,900 MXN un sitio completo de 8 a 12 páginas. En la llamada solo confirmamos cuál te corresponde.",
+        },
+        {
+          question: "¿La llamada de 15 minutos tiene costo o compromiso?",
+          answer:
+            "Ninguno de los dos. Son 15 minutos para entender tu negocio y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
+        },
+        {
+          question: "No sé nada de tecnología. ¿Voy a poder?",
+          answer:
+            "Esa es justo la idea. Yo me encargo de dominio, hosting, correo y configuración. Tú solo me dices qué vendes y a quién.",
+        },
+        {
+          question: "¿Y si ya tengo página pero no me sirve?",
+          answer:
+            "Es el caso más común. En la llamada revisamos si conviene rescatarla o rehacerla, y te digo cuál sale más barato para ti — no cuál me conviene a mí.",
+        },
+      ],
+    },
     pageMeta: {
       home: {
         title:
-          "ProCode Dev | Agencia de Desarrollo Web que Convierte Visitas en Clientes",
+          "ProCode Dev | Desarrollo Web en Durango que Convierte Visitas en Clientes",
         description:
-          "Agencia de desarrollo web enfocada en resultados. Creamos sitios web, landing pages, integraciones y sistemas digitales que convierten visitantes en clientes y automatizan tu negocio. Agenda tu diagnóstico gratuito.",
+          "Desarrollo web enfocado en resultados desde Durango. Construyo sitios web, landing pages, integraciones y sistemas digitales que convierten visitantes en clientes y automatizan tu negocio. Agenda tu diagnóstico gratuito de 15 minutos.",
         heroKicker: "Inicio",
       },
       services: {
         title: "Servicios de Desarrollo Web y Automatización | ProCode Dev",
         description:
-          "Sitios web, landing pages, integraciones, rediseño y soporte. Conoce nuestros servicios y el proceso con el que construimos sistemas digitales que venden.",
+          "Sitios web, landing pages, integraciones, rediseño y soporte. Conoce los servicios y el proceso con el que construyo sistemas digitales que venden.",
         heroTitleA: "Servicios que convierten tu presencia digital en",
         heroHighlight: "un sistema de ventas",
         heroSubtitle:
@@ -691,11 +817,11 @@ export const translations = {
       portfolio: {
         title: "Portafolio de Sitios Web | ProCode Dev",
         description:
-          "Proyectos reales de sitios web y landing pages que hemos construido para negocios que querían verse más profesionales y captar mejores clientes.",
-        heroTitleA: "Proyectos que",
+          "Proyectos reales de sitios web y landing pages que construí para negocios que querían verse más profesionales y captar mejores clientes.",
+        heroTitleA: "Proyectos reales que",
         heroHighlight: "generan oportunidades",
         heroSubtitle:
-          "Sitios reales, en vivo, construidos para verse profesionales y captar mejor.",
+          "Sitios en vivo que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos funcionando.",
       },
       pricing: {
         title: "Precios de Desarrollo Web y Asesoría Digital | ProCode Dev",
@@ -709,11 +835,11 @@ export const translations = {
       contact: {
         title: "Contacto | Agenda tu Diagnóstico Gratuito | ProCode Dev",
         description:
-          "Cuéntanos tu proyecto y te respondemos rápido. Agenda un diagnóstico gratuito o escríbenos por WhatsApp — sin compromiso y sin tecnicismos.",
-        heroTitleA: "Hablemos de tu",
-        heroHighlight: "proyecto",
+          "Agenda tu diagnóstico gratuito de 15 minutos, o escríbeme por WhatsApp si prefieres. Sin compromiso y sin tecnicismos.",
+        heroTitleA: "Agenda 15 minutos",
+        heroHighlight: "conmigo",
         heroSubtitle:
-          "Agenda tu diagnóstico gratuito o escríbenos directo. Te respondemos en menos de 24 horas.",
+          "Elige el horario que te acomode y platicamos 15 minutos. Sin costo, sin compromiso.",
       },
     },
   },
@@ -738,7 +864,7 @@ export const translations = {
       viewServices: "View services",
     },
     hero: {
-      eyebrow: "// web development agency",
+      eyebrow: "// web development · durango, mexico",
       titleA: "Websites and digital systems that",
       titleHighlight: "grow",
       titleB: "your business.",
@@ -750,8 +876,13 @@ export const translations = {
       cardText:
         "Website, forms, WhatsApp, booking and follow-up connected into a single structure.",
       cardCta: "Request a proposal",
-      statLeads: "Leads generated",
-      statConversion: "Estimated conversion",
+      panelTitle: "What you end up with",
+      panelItems: [
+        "A page that explains your service so you don't have to",
+        "A WhatsApp button with the message already written",
+        "Online booking wired to your calendar",
+        "Form submissions in your inbox instantly",
+      ],
       chips: ["Landing pages", "Integrations", "Automation"],
     },
     values: {
@@ -924,8 +1055,8 @@ export const translations = {
     },
     caseStudy: {
       eyebrow: "// featured project",
-      titleA: "A digital structure built to",
-      titleHighlight: "generate opportunities",
+      titleA: "What's inside a site",
+      titleHighlight: "that actually sells",
       subtitle:
         "This is what a complete digital system looks like: professional presence, lead capture, booking and integrations working together to sell for you while you run the business.",
       includesTitle: "What a system includes",
@@ -944,11 +1075,20 @@ export const translations = {
       subtitle:
         "A selection of websites we've built for businesses that wanted to look more professional and capture better. Click to see them live.",
       viewProject: "View project",
+      resultLabel: "Result",
+      clientsTitle: "Real clients",
+      clientsNote: "Live sites, with businesses running on them today.",
+      demosTitle: "Demos & concepts",
+      demosNote:
+        "Projects I built on my own to show what's possible in each sector. They're not clients: I label them as demos so there's no confusion.",
       cta: "I want a site like this for my business",
       projects: [
         {
           name: "Fernanda Silva — Nutritionist",
+          kind: "client",
+          result: "",
           url: "https://fersilvanutricion.com/",
+          image: "/images/proyecto-fersilva.jpg",
           badge: "Health & wellness",
           description:
             "A professional site that communicates her services, builds trust and makes it easy for new patients to book a consultation.",
@@ -956,7 +1096,10 @@ export const translations = {
         },
         {
           name: "Cristian Posada — Personal brand",
+          kind: "own",
+          result: "",
           url: "https://cristianposada.com/",
+          image: "/images/proyecto-cristian-posada.jpg",
           badge: "Personal brand",
           description:
             "A personal brand site focused on positioning authority, showcasing projects and turning visitors into real contacts.",
@@ -964,7 +1107,10 @@ export const translations = {
         },
         {
           name: "Trejo Landscaping",
+          kind: "client",
+          result: "",
           url: "https://tj-landscaping.com/",
+          image: "/images/proyecto-trejo-landscaping.jpg",
           badge: "Local services",
           description:
             "A services site that highlights their work, conveys professionalism and captures quote requests.",
@@ -972,6 +1118,8 @@ export const translations = {
         },
         {
           name: "Mariana Cervantes — Real Estate Advisor",
+          kind: "demo",
+          result: "",
           url: "https://demoinmobiliaria.procodedev.com/",
           image: "/images/demo-inmobiliaria.jpg",
           badge: "Real estate · Demo",
@@ -981,6 +1129,8 @@ export const translations = {
         },
         {
           name: "Herrera Tax & Advisory — TaxPro",
+          kind: "demo",
+          result: "",
           url: "https://demo-taxpro.procodedev.com/",
           image: "/images/demo-taxpro.jpg",
           badge: "Tax services · Demo",
@@ -998,20 +1148,31 @@ export const translations = {
       subtitle:
         "From an advisory to get clarity, to a full site with automatic follow-up. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
+      currencyLabel: "Show prices in",
+      currencyMxn: "MXN",
+      currencyUsd: "USD",
+      currencyNoteMxn:
+        "Prices in Mexican pesos, at a fixed rate of $18 MXN per US dollar.",
+      currencyNoteUsd: "Prices in US dollars.",
+      mxnUnit: "MXN",
+      mxnUnitMonth: "MXN / month",
       advisory: {
-        badge: "New · Great to start",
+        badge: "Step 2 · After the diagnosis",
         name: "Digital Presence Advisory",
         price: "75",
+        priceMxn: "1,390",
         currency: "USD",
         priceNote: "one-time · credited to your project",
-        hook: "Not sure where to start? Start here.",
+        hook: "For when we have already talked and you want the full plan in writing.",
         description:
-          "I take a deep look at how a client finds you today on Google, social media and WhatsApp, understand your business from the inside and hand you a clear plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
-        homeEyebrow: "// the first step",
-        homeTitle: "Not sure where to start?",
+          "The free 15-minute diagnosis gives you a first read. This is what comes next if you want depth: I take a deep look at how a client finds you today on Google, social media and WhatsApp, get inside your business and hand you a written plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
+        homeEyebrow: "// the next step",
+        homeTitle: "Want the full plan in writing?",
+        prereq:
+          "Always start with the free 15-minute diagnosis. If we see there that you need an in-depth plan, this is the step that follows.",
         viewPricing: "See all pricing",
         waText:
-          "Hi ProCode 👋 I'm interested in the Digital Presence Advisory ($75). I'd like to know how clients find me today on Google, social media and WhatsApp and get an improvement plan. How do we start?",
+          "Hi Cristian 👋 I'm interested in the Digital Presence Advisory ($75 USD). I'd like to know how clients find me today on Google, social media and WhatsApp and get an improvement plan. How do we start?",
         stepsTitle: "How it works (3 phases)",
         steps: [
           {
@@ -1036,12 +1197,13 @@ export const translations = {
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "Reference prices in US dollars (USD). Every project is quoted by its real scope; in your free diagnosis we define it together, no commitment.",
+      note: "These are the real prices, not a reference range: what you see is what you pay for the scope described in each plan. If your project falls outside that scope, I tell you before we start and give you the exact number — never halfway through the work.",
       maintenance: {
         badge: "Recommended · Continuity",
         name: "Monthly web support",
         pricePrefix: "from",
         price: "59",
+        priceMxn: "1,090",
         currency: "USD / mo",
         priceNote: "no lock-in contract",
         hook: "Your site always up to date, and you always aware of how it's working.",
@@ -1060,13 +1222,14 @@ export const translations = {
         footNote:
           "No lock-in contract. Cancel whenever you want. It's like having someone in charge of your digital presence for less than the cost of a meal.",
         waText:
-          "Hi ProCode 👋 I'm interested in the Monthly web support (from $59). I want to keep my site fast and secure and get the monthly performance report. How do I activate it?",
+          "Hi Cristian 👋 I'm interested in the Monthly web support (from $59 USD/mo). I want to keep my site fast and secure and get the monthly performance report. How do I activate it?",
         cta: "Activate my support",
       },
       packages: [
         {
           name: "Landing Page",
           price: "299",
+          priceMxn: "5,490",
           currency: "USD",
           pricePrefix: "",
           tagline: "Start capturing clients now",
@@ -1081,12 +1244,13 @@ export const translations = {
           ],
           cta: "I want my landing",
           waText:
-            "Hi ProCode 👋 I'm interested in the Landing Page ($299). I want a page 100% focused on capturing clients. Can you tell me more?",
+            "Hi Cristian 👋 I'm interested in the Landing Page ($299 USD). I want a page 100% focused on capturing clients. Can you tell me more?",
           highlighted: false,
         },
         {
           name: "Website 4–6 pages",
           price: "599",
+          priceMxn: "10,900",
           currency: "USD",
           pricePrefix: "",
           tagline: "The favorite of growing businesses",
@@ -1101,12 +1265,13 @@ export const translations = {
           ],
           cta: "Start my site",
           waText:
-            "Hi ProCode 👋 I'm interested in the 4–6 page Website ($599). I want to take my whole business online with a structure that sells. How do we start?",
+            "Hi Cristian 👋 I'm interested in the 4–6 page Website ($599 USD). I want to take my whole business online with a structure that sells. How do we start?",
           highlighted: true,
         },
         {
           name: "Website 8–12 pages",
           price: "1,199",
+          priceMxn: "21,900",
           currency: "USD",
           pricePrefix: "from",
           tagline: "Full presence and digital system",
@@ -1121,7 +1286,7 @@ export const translations = {
           ],
           cta: "Quote my site",
           waText:
-            "Hi ProCode 👋 I'm interested in the 8–12 page Website (from $1,199) with integrations and follow-up. I'd like a quote. Can we talk?",
+            "Hi Cristian 👋 I'm interested in the 8–12 page Website (from $1,199 USD) with integrations and follow-up. I'd like a quote. Can we talk?",
           highlighted: false,
         },
       ],
@@ -1129,6 +1294,7 @@ export const translations = {
         {
           name: "Website redesign",
           price: "$299 – $1,199",
+          priceMxn: "$5,490 – $21,900",
           unit: "USD or more",
           description:
             "Renew image, structure and conversion on your current site without starting from scratch.",
@@ -1136,6 +1302,7 @@ export const translations = {
         {
           name: "Website optimization",
           price: "$299",
+          priceMxn: "$5,490",
           unit: "USD",
           description:
             "More speed, better experience and CTAs that actually turn visits into messages.",
@@ -1143,12 +1310,14 @@ export const translations = {
         {
           name: "Extra page",
           price: "$199",
+          priceMxn: "$3,690",
           unit: "USD",
           description: "Add an extra section to a site you already have with us.",
         },
         {
           name: "Urgent tweaks",
           price: "$99",
+          priceMxn: "$1,890",
           unit: "USD",
           description:
             "Fast out-of-scope changes, resolved with priority the same day.",
@@ -1185,13 +1354,13 @@ export const translations = {
         {
           question: "How much does a website cost with you?",
           answer:
-            "Our plans range from $299 USD (landing page) to $1,199 USD (full site), and you can start with a $75 advisory if you want clarity before investing. In your free diagnosis we define the exact scope, no commitment.",
+            "Plans range from $299 USD (landing page) to $1,199 USD (full 8–12 page site). Start with the free 15-minute diagnosis: that's where we define the exact scope and I give you the real number, no commitment.",
         },
         {
           question:
             "What is the Digital Presence Advisory and how is it different from a project?",
           answer:
-            "It's an in-depth analysis of how a client finds you today on Google, social media and WhatsApp. In three phases we get to know your business, diagnose your presence and hand you a prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. It costs $75 and, if you later do your project with us, it's credited in full.",
+            "The free diagnosis is a 15-minute call: the entry point, at no cost. The Advisory ($75 USD) is the step that follows if you want depth: I analyze your presence on Google, social media and WhatsApp in detail and hand you a written, prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. If you later do your project with me, it's credited in full.",
         },
         {
           question: "Is the advisory free if I later hire a project?",
@@ -1226,7 +1395,7 @@ export const translations = {
         {
           question: "Do you offer support after launch?",
           answer:
-            "Yes. The monthly support plan (from $59) keeps your site fast, secure and updated, and every month we send you a report on how your page is working. No lock-in contract.",
+            "Yes. The monthly support plan (from $59 USD/mo) keeps your site fast, secure and updated, and every month we send you a report on how your page is working. No lock-in contract.",
         },
       ],
     },
@@ -1236,7 +1405,8 @@ export const translations = {
       titleHighlight: "saving time",
       titleB: "with us",
       subtitle:
-        "We don't just deliver a page: we deliver peace of mind and results. Here's what those already working with ProCode Dev have to say.",
+        "I don't just deliver a page: I deliver peace of mind. Here's what the businesses already working with me say — with a link to their site so you can check.",
+      visitSite: "Visit their site",
       items: [
         {
           quote:
@@ -1244,6 +1414,8 @@ export const translations = {
           name: "Fernanda Silva",
           role: "Nutritionist",
           initials: "FS",
+          url: "https://fersilvanutricion.com/",
+          urlLabel: "fersilvanutricion.com",
           service: "Website + appointment booking",
         },
         {
@@ -1252,6 +1424,8 @@ export const translations = {
           name: "Trejo Landscaping",
           role: "Landscaping & gardening services",
           initials: "TL",
+          url: "https://tj-landscaping.com/",
+          urlLabel: "tj-landscaping.com",
           service: "Website + quote capture",
         },
         {
@@ -1260,6 +1434,8 @@ export const translations = {
           name: "Constructora Izcalli",
           role: "Construction & development",
           initials: "CI",
+          url: "",
+          urlLabel: "",
           service: "Email hosting, automations and support",
         },
       ],
@@ -1286,25 +1462,33 @@ export const translations = {
       titleA: "Book your",
       titleHighlight: "free diagnosis",
       subtitle:
-        "Pick the time that works best for you. In 15 minutes we review your business and tell you exactly what your digital presence needs.",
+        "Pick the time that works best for you. In 15 minutes we review your business and I tell you exactly what your digital presence needs. Free, no commitment.",
     },
     contact: {
       eyebrow: "// contact",
-      titleA: "Tell us about your project and we'll",
-      titleHighlight: "reply fast",
+      titleA: "No time slot works? Leave me your",
+      titleHighlight: "details",
       subtitle:
-        "Fill out the form and we'll get back to you with a clear proposal. No commitment and no jargon: just how your business can save time and sell more.",
+        "Leave me your WhatsApp and I'll reach out. No commitment and no jargon: just how your business can save time and sell more.",
+      toggle: "I'd rather leave my details and be contacted",
+      toggleNote: "I reply in under 24 hours.",
       perks: [
         "Reply in under 24 hours",
-        "Free initial diagnosis",
-        "Direct attention, no middlemen",
+        "You deal with me directly, no middlemen",
+        "Free, no commitment",
       ],
-      directTitle: "Prefer to message us directly?",
+      directTitle: "Prefer to message me directly?",
       fieldName: "Name",
       fieldEmail: "Email",
-      fieldPhone: "WhatsApp / Phone",
+      fieldPhone: "WhatsApp",
       fieldType: "Project type",
-      fieldMessage: "Tell us about your business",
+      fieldMessage: "Tell me about your business",
+      optionalTag: "optional",
+      phName: "e.g. Maria Gonzalez",
+      phEmail: "maria@mybusiness.com",
+      phPhone: "+1 555 123 4567",
+      phMessage:
+        "e.g. I run a dental practice and I want patients to book on their own.",
       types: [
         "Website",
         "Landing page",
@@ -1322,18 +1506,18 @@ export const translations = {
       title:
         "Ready to stop wasting time and turn your site into your best salesperson?",
       subtitle:
-        "Book a call and let's review together what your business needs: a more professional page, a landing page to capture leads, integrations or a more complete digital structure.",
-      ctaPrimary: "Request a proposal",
+        "Book a 15-minute call and let's review together what your business needs: a more professional page, a landing page to capture leads, integrations or a more complete digital structure.",
+      ctaPrimary: "Book a free diagnosis",
       ctaWhatsapp: "Chat on WhatsApp",
     },
     footer: {
       tagline:
-        "Strategic web development, landing pages, integrations and lead-capture systems that help businesses build a stronger, more functional digital presence.",
+        "I'm Cristian Posada. From Durango, Mexico, I build websites, landing pages, integrations and lead-capture systems for businesses that want a stronger, more functional digital presence.",
       navTitle: "Navigation",
       servicesTitle: "Services",
       contactTitle: "Contact",
       hours: "Monday to Sunday",
-      location: "Mexico / Remote",
+      location: "Durango, Mexico · working remotely across the country",
       cta: "Book a diagnosis",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
@@ -1345,6 +1529,66 @@ export const translations = {
         "Website redesign",
         "Support & optimization",
         "Digital lead-gen",
+      ],
+    },
+    // ── Real-project strip on the home page (finding #4) ──
+    proof: {
+      eyebrow: "// real work",
+      titleA: "Sites already",
+      titleHighlight: "at work",
+      subtitle:
+        "I'm not asking you to take my word for it. These sites are live right now — open them and judge for yourself.",
+      cta: "See the full portfolio",
+    },
+    // ── Price anchor on the home page (finding #10) ──
+    priceAnchor: {
+      eyebrow: "// investment",
+      title: "Clear, published pricing — no surprise quote",
+      subtitle:
+        "You don't have to message me to find out what it costs. The prices are on the page, with exactly what each plan includes.",
+      fromLabel: "from",
+      amount: "299",
+      currency: "USD",
+      amountNote: "complete landing page · one-time",
+      cta: "See all pricing",
+    },
+    // ── Who's behind it (findings #11 and #16) ──
+    founder: {
+      eyebrow: "// who does it",
+      name: "Cristian Posada",
+      role: "Web developer · Durango, Mexico",
+      title: "It's not an agency. It's me.",
+      body:
+        "When you message me, I'm the one who answers. When we review your business, I'm the one reviewing it. And once your site is live, I'm still the one maintaining it. I work from Durango with businesses across Mexico and the United States, and I'd rather take on few projects and do them well than many done halfway.",
+      cta: "Book 15 minutes with me",
+    },
+    // ── Objection FAQ before the home page's final CTA (finding #18) ──
+    homeFaq: {
+      eyebrow: "// before you book",
+      titleA: "The questions I get",
+      titleHighlight: "almost every time",
+      subtitle: "",
+      items: [
+        {
+          question: "What does it cost, and why don't I see it until the end?",
+          answer:
+            "You do see it: pricing is published. From $299 USD for a landing page to $1,199 USD for a full 8–12 page site. On the call we just confirm which one fits you.",
+        },
+        {
+          question: "Does the 15-minute call cost anything or commit me?",
+          answer:
+            "Neither. It's 15 minutes to understand your business and tell you what you need — even if the answer is that you don't need a site from me yet.",
+        },
+        {
+          question: "I'm not technical at all. Will I manage?",
+          answer:
+            "That's exactly the point. I handle domain, hosting, email and setup. You just tell me what you sell and to whom.",
+        },
+        {
+          question: "What if I already have a site but it isn't working?",
+          answer:
+            "That's the most common case. On the call we look at whether it's worth rescuing or rebuilding, and I tell you which is cheaper for you — not which is better for me.",
+        },
       ],
     },
     pageMeta: {
@@ -1367,10 +1611,10 @@ export const translations = {
         title: "Website Portfolio | ProCode Dev",
         description:
           "Real website and landing page projects we've built for businesses that wanted to look more professional and capture better clients.",
-        heroTitleA: "Projects that",
+        heroTitleA: "Real projects that",
         heroHighlight: "generate opportunities",
         heroSubtitle:
-          "Real, live sites built to look professional and capture better.",
+          "Live sites I built for businesses that wanted to look more professional and capture better. Click to see them running.",
       },
       pricing: {
         title: "Web Development & Digital Advisory Pricing | ProCode Dev",
@@ -1385,10 +1629,10 @@ export const translations = {
         title: "Contact | Book Your Free Diagnosis | ProCode Dev",
         description:
           "Tell us about your project and we'll reply fast. Book a free diagnosis or message us on WhatsApp — no commitment and no jargon.",
-        heroTitleA: "Let's talk about your",
-        heroHighlight: "project",
+        heroTitleA: "Book 15 minutes",
+        heroHighlight: "with me",
         heroSubtitle:
-          "Book your free diagnosis or message us directly. We reply in under 24 hours.",
+          "Pick a time that works for you and we'll talk for 15 minutes. Free, no commitment.",
       },
     },
   },
@@ -1398,4 +1642,41 @@ export type Dict = (typeof translations)[Lang];
 
 export function useTranslations(lang: Lang): Dict {
   return translations[lang];
+}
+
+// ============================================================
+// Mensaje precargado de WhatsApp según la página (hallazgo #17).
+// Antes las 6 páginas mandaban el mismo texto genérico y se perdía
+// el contexto de qué estaba viendo el prospecto al escribir.
+// ============================================================
+const WA_BY_PAGE: Record<PageKey | "blog", Record<Lang, string>> = {
+  home: {
+    es: "Hola Cristian 👋 Vi tu página y me interesa una web para mi negocio. ¿Podemos platicar?",
+    en: "Hi Cristian 👋 I saw your site and I'm interested in a website for my business. Can we talk?",
+  },
+  services: {
+    es: "Hola Cristian 👋 Estaba viendo tus servicios y quiero saber cuál le queda a mi negocio.",
+    en: "Hi Cristian 👋 I was looking at your services and I want to know which one fits my business.",
+  },
+  portfolio: {
+    es: "Hola Cristian 👋 Vi tu portafolio y quiero algo parecido para mi negocio. ¿Cómo empezamos?",
+    en: "Hi Cristian 👋 I saw your portfolio and I want something similar for my business. How do we start?",
+  },
+  pricing: {
+    es: "Hola Cristian 👋 Estoy viendo tus precios y tengo una duda antes de agendar.",
+    en: "Hi Cristian 👋 I'm looking at your pricing and I have a question before booking.",
+  },
+  contact: {
+    es: "Hola Cristian 👋 Prefiero escribirte por aquí en vez de agendar. Te cuento qué necesito.",
+    en: "Hi Cristian 👋 I'd rather message you here than book a slot. Let me tell you what I need.",
+  },
+  blog: {
+    es: "Hola Cristian 👋 Estaba leyendo un artículo de tu blog y me surgió una duda sobre mi negocio.",
+    en: "Hi Cristian 👋 I was reading an article on your blog and a question about my business came up.",
+  },
+};
+
+export function waHref(page: PageKey | "blog", lang: Lang): string {
+  const text = WA_BY_PAGE[page]?.[lang] ?? WA_BY_PAGE.home[lang];
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }

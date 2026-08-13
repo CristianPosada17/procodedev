@@ -19,7 +19,9 @@ const seq = [...cards, ...cards];
   <div
     class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 2xl:max-w-[1600px]"
   >
-    <div class="reveal max-w-2xl">
+    {/* Above-the-fold sin `.reveal`: el H1 y el subtítulo no deben depender
+        de JS para ser visibles (hallazgo #14). */}
+    <div class="max-w-2xl">
       <span class="eyebrow">{eyebrow}</span>
       <h1
         class="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl"

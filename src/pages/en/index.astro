@@ -5,11 +5,13 @@ import Hero from "../../components/Hero.astro";
 import Marquee from "../../components/Marquee.astro";
 import ValueStrip from "../../components/ValueStrip.astro";
 import Services from "../../components/Services.astro";
-import AdvisoryBanner from "../../components/AdvisoryBanner.astro";
+import PriceAnchor from "../../components/PriceAnchor.astro";
 import WhyProCode from "../../components/WhyProCode.astro";
-import CaseStudy from "../../components/CaseStudy.astro";
+import ProofStrip from "../../components/ProofStrip.astro";
+import Founder from "../../components/Founder.astro";
 import Integrations from "../../components/Integrations.astro";
 import Testimonials from "../../components/Testimonials.astro";
+import FAQ from "../../components/FAQ.astro";
 import FinalCTA from "../../components/FinalCTA.astro";
 import Footer from "../../components/Footer.astro";
 import { translations } from "../../i18n/ui";
@@ -25,11 +27,13 @@ const meta = translations[lang].pageMeta.home;
     <Marquee lang={lang} />
     <ValueStrip lang={lang} />
     <Services lang={lang} />
-    <AdvisoryBanner lang={lang} />
+    <PriceAnchor lang={lang} />
     <WhyProCode lang={lang} />
-    <CaseStudy lang={lang} />
+    <ProofStrip lang={lang} />
+    <Founder lang={lang} />
     <Integrations lang={lang} />
     <Testimonials lang={lang} />
+    <FAQ lang={lang} variant="home" />
     <FinalCTA lang={lang} />
   </main>
   <Footer lang={lang} />

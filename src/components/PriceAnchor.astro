@@ -1,0 +1,52 @@
+---
+import { translations, PAGES, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const pa = t.priceAnchor;
+---
+
+{/* Hallazgo #10: el home nunca mencionaba un precio, aunque /precios es la
+    página más fuerte del sitio. Sin ancla, el visitante asume «caro» y se va
+    antes de llegar a la tabla. */}
+<section class="relative py-14">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal grid gap-8 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-8 backdrop-blur-xl lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:p-10"
+    >
+      <div>
+        <span class="eyebrow">{pa.eyebrow}</span>
+        <h2 class="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-3xl">
+          {pa.title}
+        </h2>
+        <p class="mt-4 max-w-xl text-base leading-7 text-[var(--muted)]">
+          {pa.subtitle}
+        </p>
+      </div>
+
+      <div
+        class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-7 text-center"
+      >
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">
+          {pa.fromLabel}
+        </p>
+        <p class="mt-2 flex items-end justify-center gap-1.5">
+          <span class="font-mono text-4xl font-bold text-[var(--text)] sm:text-5xl">
+            ${pa.amount}
+          </span>
+          <span class="mb-1.5 text-sm text-[var(--muted)]">{pa.currency}</span>
+        </p>
+        <p class="mt-2 text-xs leading-5 text-[var(--muted)]">{pa.amountNote}</p>
+        <a
+          href={PAGES.pricing[lang]}
+          class="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+        >
+          {pa.cta} <span class="ml-2">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

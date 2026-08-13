@@ -2,9 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
-import Contact from "../components/Contact.astro";
 import Calendly from "../components/Calendly.astro";
-import FinalCTA from "../components/FinalCTA.astro";
+import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import { translations } from "../i18n/ui";
 
@@ -13,18 +12,25 @@ const t = translations[lang];
 const meta = t.pageMeta.contact;
 ---
 
+<!--
+  Hallazgo #2 (crítico): ~40 CTAs del sitio dicen «Agendar diagnóstico» y
+  apuntan aquí, pero el calendario estaba en y=2272 de una página de 5069px
+  móvil — 2.8 pantallas de scroll entre la promesa y su cumplimiento.
+  Ahora el Calendly es el primer bloque tras el hero y el formulario queda
+  colapsado debajo. También sale el FinalCTA: mandaba a /contacto desde
+  /contacto.
+-->
 <Layout lang={lang} page="contact" title={meta.title} description={meta.description}>
   <Header lang={lang} page="contact" />
   <main>
     <PageHero
-      eyebrow={t.contact.eyebrow}
+      eyebrow={t.calendly.eyebrow}
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
     />
+    <Calendly lang={lang} showHeading={false} />
     <Contact lang={lang} />
-    <Calendly lang={lang} />
-    <FinalCTA lang={lang} />
   </main>
   <Footer lang={lang} />
 </Layout>

@@ -6,17 +6,22 @@ interface Project {
   description: string;
   tags: readonly string[];
   image?: string;
+  kind?: string;
+  result?: string;
 }
 interface Props {
   project: Project;
   viewProject: string;
+  /** Etiqueta del mini-caso con resultado medible (hallazgo #7). */
+  resultLabel?: string;
   delay?: number;
 }
-const { project, viewProject, delay = 0 } = Astro.props as Props;
+const { project, viewProject, resultLabel, delay = 0 } = Astro.props as Props;
 
-const shot = (url: string) =>
-  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=900&h=560`;
-const img = project.image ?? shot(project.url);
+// Hallazgo #15: antes 3 de 5 thumbnails venían de s.wordpress.com/mshots,
+// un servicio gratuito de terceros que devuelve placeholders grises y aplica
+// rate-limits. Ahora todos los proyectos tienen screenshot propio en /public.
+const img = project.image;
 ---
 
 <a
@@ -29,8 +34,11 @@ const img = project.image ?? shot(project.url);
   <div class="relative aspect-[16/10] overflow-hidden border-b border-[color:var(--border)] bg-[var(--bg-2)]">
     <img
       src={img}
-      alt={project.name}
+      alt={`Sitio web de ${project.name}`}
       loading="lazy"
+      decoding="async"
+      width="1200"
+      height="600"
       class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
     />
     <span class="absolute left-3 top-3 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur">
@@ -42,6 +50,20 @@ const img = project.image ?? shot(project.url);
     <p class="mt-2 flex-1 text-sm leading-6 text-[var(--muted)]">
       {project.description}
     </p>
+    {/* Hallazgo #7: «genera oportunidades» sin un solo número no mueve nada.
+        En cuanto haya una cifra real, se llena `result` en src/i18n/ui.ts y
+        este bloque aparece solo. Sin dato, no se inventa nada. */}
+    {
+      project.result && (
+        <p class="mt-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--brand)]/[0.07] px-4 py-3 text-sm leading-6 text-[var(--text)]/90">
+          <span class="mr-1.5 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]">
+            {resultLabel}
+          </span>
+          {project.result}
+        </p>
+      )
+    }
+
     <div class="mt-4 flex flex-wrap gap-2">
       {
         project.tags.map((tag) => (

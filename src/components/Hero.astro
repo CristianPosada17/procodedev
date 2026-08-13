@@ -19,13 +19,14 @@ const waMsg = encodeURIComponent(
     class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.92fr] lg:px-10 2xl:max-w-[1600px]"
   >
     <div>
-      <div class="reveal">
+      {/* Above-the-fold: sin `.reveal`. Nada de lo que decide la conversión
+          en el primer scroll debe esperar a que corra JS (hallazgo #14). */}
+      <div>
         <span class="eyebrow">{h.eyebrow}</span>
       </div>
 
       <h1
-        class="reveal mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl xl:text-7xl"
-        style="--reveal-delay: 80ms"
+        class="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl xl:text-7xl"
       >
         {h.titleA}{" "}
         <span class="grad-text">{h.titleHighlight}</span>{" "}
@@ -33,15 +34,13 @@ const waMsg = encodeURIComponent(
       </h1>
 
       <p
-        class="reveal mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg"
-        style="--reveal-delay: 160ms"
+        class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg"
       >
         {h.subtitle}
       </p>
 
       <div
-        class="reveal mt-9 flex flex-col gap-4 sm:flex-row"
-        style="--reveal-delay: 240ms"
+        class="mt-9 flex flex-col gap-4 sm:flex-row"
       >
         <a
           href={PAGES.contact[lang]}
@@ -59,8 +58,7 @@ const waMsg = encodeURIComponent(
       </div>
 
       <div
-        class="reveal mt-10 grid gap-4 text-sm text-[var(--muted)] sm:grid-cols-3"
-        style="--reveal-delay: 320ms"
+        class="mt-10 grid gap-4 text-sm text-[var(--muted)] sm:grid-cols-3"
       >
         {
           h.badges.map((b, i) => (
@@ -114,32 +112,25 @@ const waMsg = encodeURIComponent(
               </a>
             </div>
 
-            <div class="space-y-4">
-              <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-4">
-                <p class="text-xs text-[var(--muted)]">{h.statLeads}</p>
-                <p
-                  class="mt-2 text-3xl font-bold text-[var(--accent)]"
-                  data-count="248"
-                  data-prefix="+"
-                  data-suffix="%"
-                >
-                  +0%
-                </p>
-                <div
-                  class="mt-4 h-16 rounded-xl bg-gradient-to-tr from-[var(--brand)]/30 to-[var(--accent)]/10"
-                >
-                </div>
-              </div>
-              <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-4">
-                <p class="text-xs text-[var(--muted)]">{h.statConversion}</p>
-                <p
-                  class="mt-2 text-3xl font-bold text-[var(--text)]"
-                  data-count="9.8"
-                  data-suffix="%"
-                >
-                  0%
-                </p>
-              </div>
+            {/* Antes aquí había dos cifras inventadas («+248% leads», «9.8%
+                conversión estimada»). Sin cliente al que atribuirlas, restaban
+                credibilidad en vez de sumarla (hallazgo #8). */}
+            <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-4">
+              <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+                {h.panelTitle}
+              </p>
+              <ul class="mt-4 grid gap-3">
+                {
+                  h.panelItems.map((item) => (
+                    <li class="flex items-start gap-2.5 text-xs leading-5 text-[var(--muted)]">
+                      <span class="mt-0.5 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[9px] text-[var(--accent)]">
+                        ✓
+                      </span>
+                      {item}
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
           </div>
 

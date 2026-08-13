@@ -28,6 +28,9 @@ const pixelNoscript = META_PIXEL_ID
 interface Props {
   lang?: Lang;
   page?: PageKey;
+  /** Contexto del botón flotante de WhatsApp (hallazgo #17). El blog no es
+   *  una PageKey —no tiene equivalente hreflang— pero sí necesita su mensaje. */
+  waPage?: PageKey | "blog";
   title?: string;
   description?: string;
   image?: string;
@@ -38,6 +41,7 @@ interface Props {
 const {
   lang = "es",
   page = "home",
+  waPage,
   title,
   description,
   image = "/og-image.jpg",
@@ -70,7 +74,17 @@ const orgNode = {
   email: "info@procodedev.com",
   telephone: "+52-614-241-4255",
   priceRange: "$$",
-  areaServed: { "@type": "Country", name: "México" },
+  founder: { "@type": "Person", name: "Cristian Posada" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Durango",
+    addressRegion: "Durango",
+    addressCountry: "MX",
+  },
+  areaServed: [
+    { "@type": "City", name: "Durango" },
+    { "@type": "Country", name: "México" },
+  ],
   availableLanguage: ["Spanish", "English"],
   sameAs: [
     "https://www.instagram.com/procode.systems/",
@@ -131,8 +145,8 @@ const jsonLd = {
         ? "noindex, nofollow"
         : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
     />
-    <meta name="geo.region" content="MX" />
-    <meta name="geo.placename" content="México" />
+    <meta name="geo.region" content="MX-DUR" />
+    <meta name="geo.placename" content="Durango, México" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="es" href={esAltURL} />
     <link rel="alternate" hreflang="en" href={enAltURL} />
@@ -211,9 +225,9 @@ const jsonLd = {
 
     <slot />
 
-    <WhatsAppFloat lang={lang} />
+    <WhatsAppFloat lang={lang} page={waPage ?? page} />
 
-    <!-- ============ ANIMACIONES (reveal al scroll + contadores) ============ -->
+    <!-- ============ ANIMACIONES (reveal al hacer scroll) ============ -->
     <script>
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -237,43 +251,9 @@ const jsonLd = {
         revealEls.forEach((el) => io.observe(el));
       }
 
-      const counters = document.querySelectorAll<HTMLElement>("[data-count]");
-      const runCounter = (el: HTMLElement) => {
-        const target = parseFloat(el.dataset.count || "0");
-        const prefix = el.dataset.prefix || "";
-        const suffix = el.dataset.suffix || "";
-        const decimals = (el.dataset.count?.split(".")[1] || "").length;
-        if (reduceMotion) {
-          el.textContent = prefix + target.toFixed(decimals) + suffix;
-          return;
-        }
-        const duration = 1500;
-        const start = performance.now();
-        const tick = (now: number) => {
-          const p = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      };
-
-      if ("IntersectionObserver" in window) {
-        const cio = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                runCounter(entry.target as HTMLElement);
-                cio.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.6 },
-        );
-        counters.forEach((el) => cio.observe(el));
-      } else {
-        counters.forEach((el) => runCounter(el));
-      }
+      // El contador animado de [data-count] se retiró junto con las cifras
+      // sin fuente del hero (+248% leads / 9.8% conversión estimada), que la
+      // auditoría marcó como bandera roja de credibilidad (hallazgo #8).
     </script>
   </body>
 </html>

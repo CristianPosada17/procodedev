@@ -1,18 +1,16 @@
 ---
-import { CONTACT, type Lang } from "../i18n/ui";
+import { waHref, type Lang, type PageKey } from "../i18n/ui";
 
 interface Props {
   lang?: Lang;
+  page?: PageKey | "blog";
 }
-const { lang = "es" } = Astro.props as Props;
+const { lang = "es", page = "home" } = Astro.props as Props;
 
-const message = encodeURIComponent(
-  lang === "es"
-    ? "Hola ProCode, me interesa una página web para mi negocio."
-    : "Hi ProCode, I'm interested in a website for my business.",
-);
-const href = `https://wa.me/${CONTACT.whatsapp}?text=${message}`;
-const label = lang === "es" ? "Escríbenos por WhatsApp" : "Message us on WhatsApp";
+// El mensaje precargado cambia según la página para no perder el contexto
+// de lo que el prospecto estaba viendo al escribir (hallazgo #17).
+const href = waHref(page, lang);
+const label = lang === "es" ? "Escríbeme por WhatsApp" : "Message me on WhatsApp";
 ---
 
 <a

@@ -3,13 +3,23 @@ import { translations, PAGES, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 interface Props {
   lang?: Lang;
+  /**
+   * "full"  → el FAQ completo de /precios.
+   * "home"  → 4 objeciones justo antes del CTA final del home (hallazgo #18):
+   *           el home y /contacto son donde se decide y no respondían nada.
+   */
+  variant?: "full" | "home";
 }
-const { lang = "es" } = Astro.props as Props;
+const { lang = "es", variant = "full" } = Astro.props as Props;
 const t = translations[lang];
-const f = t.faq;
+const f = variant === "home" ? t.homeFaq : t.faq;
+const items = f.items;
 ---
 
-<section id="faq" class="relative py-20">
+<section
+  id={variant === "home" ? "dudas" : "faq"}
+  class:list={[variant === "home" ? "py-16" : "py-20", "relative"]}
+>
   <div class="mx-auto w-full max-w-[900px] px-4 sm:px-6 lg:px-8">
     <SectionHeading eyebrow={f.eyebrow} align="center" max="max-w-2xl">
       <Fragment slot="title">
@@ -20,7 +30,7 @@ const f = t.faq;
 
     <div class="mt-10 grid gap-3">
       {
-        f.items.map((item, i) => (
+        items.map((item, i) => (
           <details
             class="reveal group rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl transition hover:border-[color:var(--border-strong)] open:border-[color:var(--border-strong)]"
             style={`--reveal-delay: ${i * 50}ms`}
@@ -37,11 +47,18 @@ const f = t.faq;
       }
     </div>
 
-    <div class="reveal mt-8 text-center text-sm text-[var(--muted)]">
-      {f.moreQuestion}{" "}
-      <a href={PAGES.contact[lang]} class="font-semibold text-[var(--accent)] hover:underline">
-        {t.nav.contact} →
-      </a>
-    </div>
+    {
+      variant === "full" && (
+        <div class="reveal mt-8 text-center text-sm text-[var(--muted)]">
+          {t.faq.moreQuestion}{" "}
+          <a
+            href={PAGES.contact[lang]}
+            class="font-semibold text-[var(--accent)] hover:underline"
+          >
+            {t.nav.contact} →
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>
