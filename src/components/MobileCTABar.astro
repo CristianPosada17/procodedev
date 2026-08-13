@@ -1,0 +1,47 @@
+---
+import { translations, PAGES, waHref, type Lang, type PageKey } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+  page?: PageKey | "blog";
+}
+const { lang = "es", page = "home" } = Astro.props as Props;
+const t = translations[lang];
+
+// El 80% del tráfico es móvil y ahí el header no muestra ningún CTA (queda
+// escondido tras el menú hamburguesa). Con un home de ~20 pantallas, la acción
+// tiene que estar disponible siempre, no solo donde el scroll la deposite.
+// Solo móvil: en lg+ el header ya tiene su botón y el FAB flotante.
+const waLabel = lang === "es" ? "WhatsApp" : "WhatsApp";
+const waAria = lang === "es" ? "Escríbeme por WhatsApp" : "Message me on WhatsApp";
+---
+
+<div
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-[color:var(--border-strong)] bg-[var(--bg)]/95 backdrop-blur-xl lg:hidden"
+  style="padding-bottom: env(safe-area-inset-bottom);"
+>
+  <div class="flex items-center gap-2.5 px-4 py-3">
+    <a
+      href={PAGES.contact[lang]}
+      class="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-xl bg-[var(--brand)] px-5 text-sm font-bold text-white shadow-[0_0_35px_rgba(37,99,235,0.35)] transition active:scale-[0.98]"
+    >
+      {t.nav.cta}
+      <span class="ml-2" aria-hidden="true">→</span>
+    </a>
+
+    <a
+      href={waHref(page, lang)}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={waAria}
+      class="inline-flex h-[52px] w-[52px] flex-none items-center justify-center rounded-xl bg-emerald-500 text-white transition active:scale-[0.98]"
+    >
+      <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M17.5 14.4c-.3-.2-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.4.1-.6l.5-.5.3-.5v-.5L9 6.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.3 9a5 5 0 0 0 1 2.6 11 11 0 0 0 4.4 3.9c2.6 1 2.6.7 3 .7a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .2-1.2c-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"
+        ></path>
+      </svg>
+      <span class="sr-only">{waLabel}</span>
+    </a>
+  </div>
+</div>

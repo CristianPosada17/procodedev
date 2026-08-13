@@ -108,6 +108,31 @@ tecnología», «ya tengo página») justo antes del CTA final del home.
 
 ---
 
+## Segunda ronda — experiencia móvil
+
+El escritorio no se tocó: cada reducción tiene su contraparte `sm:` o `lg:` que
+restaura el valor original a partir de 1024px.
+
+**Barra CTA fija en móvil** — `MobileCTABar.astro`, `lg:hidden`: botón
+«Agendar diagnóstico» a todo el ancho más botón de WhatsApp. El header móvil
+esconde su CTA tras el menú hamburguesa, así que con ~20 pantallas de scroll la
+acción no estaba disponible casi nunca. El FAB flotante pasa a `lg:flex` para
+no chocar con la barra, y el `body` lleva `pb-24 lg:pb-0`.
+
+**Hero móvil** — el mockup decorativo (ventana falsa, tarjeta y chips) se oculta
+bajo `lg`. Ocupaba casi una pantalla antes del primer contenido con sustancia.
+
+**Altura de secciones** — `py-20 → py-12 lg:py-20` en las 18 secciones, más
+`mt-12 → mt-8 lg:mt-12` en las rejillas. `ValueStrip` e `Integrations` pasan a
+2 columnas en móvil en vez de apilarse.
+
+**Orden móvil** — `main.home-flow` usa flex + `order` bajo 1024px para subir la
+franja de proyectos justo después de la tira de valores. La primera evidencia
+visual aparece en la segunda pantalla en lugar de la sexta. En `lg+` el flex se
+apaga y vuelve el orden del DOM, idéntico al de antes.
+
+---
+
 ## Lo que falta y depende de ti
 
 1. **Las cifras de resultado (#7).** Cuando tengas un número real de Fernanda o

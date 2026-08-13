@@ -17,7 +17,7 @@ const pf = t.portfolio;
 const projects = pf.projects.filter((proj) => proj.kind !== "demo").slice(0, 3);
 ---
 
-<section id="trabajo" class="relative py-20">
+<section id="trabajo" class="relative py-12 lg:py-20">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <SectionHeading eyebrow={p.eyebrow}>
       <Fragment slot="title">
@@ -26,7 +26,7 @@ const projects = pf.projects.filter((proj) => proj.kind !== "demo").slice(0, 3);
       <Fragment slot="subtitle">{p.subtitle}</Fragment>
     </SectionHeading>
 
-    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-8 grid lg:mt-12 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         projects.map((proj, i) => (
           <PortfolioCard project={proj} viewProject={pf.viewProject} resultLabel={pf.resultLabel} delay={i * 90} />

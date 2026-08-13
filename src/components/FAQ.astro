@@ -18,7 +18,10 @@ const items = f.items;
 
 <section
   id={variant === "home" ? "dudas" : "faq"}
-  class:list={[variant === "home" ? "py-16" : "py-20", "relative"]}
+  class:list={[
+    variant === "home" ? "py-10 lg:py-16" : "py-12 lg:py-20",
+    "relative",
+  ]}
 >
   <div class="mx-auto w-full max-w-[900px] px-4 sm:px-6 lg:px-8">
     <SectionHeading eyebrow={f.eyebrow} align="center" max="max-w-2xl">

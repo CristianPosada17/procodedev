@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import MobileCTABar from "../components/MobileCTABar.astro";
 import {
   translations,
   PAGES,
@@ -206,8 +207,9 @@ const jsonLd = {
     <noscript set:html={pixelNoscript}></noscript>
   </head>
 
+  <!-- pb-24 en móvil deja aire para la barra CTA fija; en lg+ no existe. -->
   <body
-    class="min-h-screen bg-[var(--bg)] text-[var(--text)] antialiased"
+    class="min-h-screen bg-[var(--bg)] pb-24 text-[var(--text)] antialiased lg:pb-0"
   >
     <div class="fixed inset-0 -z-10 overflow-hidden bg-[var(--bg)]">
       <div
@@ -226,6 +228,7 @@ const jsonLd = {
     <slot />
 
     <WhatsAppFloat lang={lang} page={waPage ?? page} />
+    <MobileCTABar lang={lang} page={waPage ?? page} />
 
     <!-- ============ ANIMACIONES (reveal al hacer scroll) ============ -->
     <script>

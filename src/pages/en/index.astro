@@ -22,7 +22,7 @@ const meta = translations[lang].pageMeta.home;
 
 <Layout lang={lang} page="home" title={meta.title} description={meta.description}>
   <Header lang={lang} page="home" />
-  <main>
+  <main class="home-flow">
     <Hero lang={lang} />
     <Marquee lang={lang} />
     <ValueStrip lang={lang} />
@@ -38,3 +38,26 @@ const meta = translations[lang].pageMeta.home;
   </main>
   <Footer lang={lang} />
 </Layout>
+
+<style is:global>
+  /* Mismo reordenado solo-móvil que en la home en español. */
+  @media (max-width: 1023px) {
+    main.home-flow {
+      display: flex;
+      flex-direction: column;
+    }
+    /* Evita que un hijo con contenido ancho (la tira animada) desborde. */
+    main.home-flow > * {
+      min-width: 0;
+    }
+    main.home-flow > #trabajo { order: 1; }
+    main.home-flow > #servicios { order: 2; }
+    main.home-flow > #inversion { order: 3; }
+    main.home-flow > #por-que { order: 4; }
+    main.home-flow > #quien { order: 5; }
+    main.home-flow > #integraciones { order: 6; }
+    main.home-flow > #testimonios { order: 7; }
+    main.home-flow > #dudas { order: 8; }
+    main.home-flow > #final-cta { order: 9; }
+  }
+</style>

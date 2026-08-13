@@ -9,18 +9,18 @@ const t = translations[lang];
 const ig = t.integrations;
 ---
 
-<section id="integraciones" class="relative py-20">
+<section id="integraciones" class="relative py-12 lg:py-20">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <SectionHeading eyebrow={ig.eyebrow} align="center" max="max-w-2xl">
       <Fragment slot="title">{ig.title}</Fragment>
       <Fragment slot="subtitle">{ig.subtitle}</Fragment>
     </SectionHeading>
 
-    <div class="mt-12 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
+    <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:mt-12 lg:grid-cols-6">
       {
         ig.items.map((it, i) => (
           <div
-            class="reveal flex flex-col items-center gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 text-center backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            class="reveal flex flex-col items-center gap-2 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-4 text-center sm:gap-3 sm:p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
             style={`--reveal-delay: ${i * 60}ms`}
           >
             <span class="text-2xl">{it.icon}</span>

@@ -7,20 +7,20 @@ const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 ---
 
-<section class="relative py-12">
+<section class="relative py-8 lg:py-12">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
       {
         t.values.items.map((v, i) => (
           <div
-            class="reveal group flex flex-col gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            class="reveal group flex flex-col gap-2.5 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-4 backdrop-blur-xl sm:gap-3 sm:p-6 transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
             style={`--reveal-delay: ${i * 80}ms`}
           >
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-lg text-[var(--accent)]">
+            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-base text-[var(--accent)] sm:h-11 sm:w-11 sm:text-lg">
               {v.icon}
             </span>
-            <h3 class="text-base font-bold text-[var(--text)]">{v.title}</h3>
-            <p class="text-sm leading-6 text-[var(--muted)]">{v.description}</p>
+            <h3 class="text-sm font-bold leading-snug text-[var(--text)] sm:text-base">{v.title}</h3>
+            <p class="text-xs leading-5 text-[var(--muted)] sm:text-sm sm:leading-6">{v.description}</p>
           </div>
         ))
       }

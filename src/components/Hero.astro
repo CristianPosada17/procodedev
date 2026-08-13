@@ -14,7 +14,7 @@ const waMsg = encodeURIComponent(
 );
 ---
 
-<section id="inicio" class="relative overflow-hidden pt-10 pb-16 lg:pt-16 lg:pb-24">
+<section id="inicio" class="relative overflow-hidden pb-10 pt-6 lg:pb-24 lg:pt-16">
   <div
     class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.92fr] lg:px-10 2xl:max-w-[1600px]"
   >
@@ -73,7 +73,10 @@ const waMsg = encodeURIComponent(
       </div>
     </div>
 
-    <div class="reveal reveal-right relative" style="--reveal-delay: 200ms">
+    {/* El mockup es decorativo: en móvil ocupaba casi una pantalla completa
+        antes del primer contenido con sustancia, así que solo se muestra en
+        lg+. En escritorio queda exactamente igual. */}
+    <div class="reveal reveal-right relative hidden lg:block" style="--reveal-delay: 200ms">
       <div class="absolute -inset-6 rounded-[2rem] bg-[var(--brand)]/10 blur-3xl"></div>
 
       <div
