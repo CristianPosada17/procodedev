@@ -41,6 +41,12 @@ interface Props {
    *  `variant` del componente FAQ que renderiza la página: Google exige que el
    *  marcado de FAQPage corresponda al contenido visible. */
   faqVariant?: "full" | "home";
+  /** FAQ propia de la página (segmentos). Tiene prioridad sobre `faqVariant`. */
+  faqItems?: readonly { question: string; answer: string }[];
+  /** Migas de pan para el JSON-LD; el `name` es el texto visible en la página. */
+  breadcrumbs?: { name: string; path: string }[];
+  /** Servicio concreto que describe la página, para el nodo Service. */
+  serviceName?: string;
 }
 
 const {
@@ -53,6 +59,9 @@ const {
   noindex = false,
   includeFaq = false,
   faqVariant = "full",
+  faqItems,
+  breadcrumbs,
+  serviceName,
 } = Astro.props as Props;
 
 const t = translations[lang];
@@ -66,8 +75,13 @@ const metaDescription = description ?? t.pageMeta.home.description;
 const siteUrl = Astro.site ?? new URL("https://procodedev.com");
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const socialImage = new URL(image, siteUrl);
-const esAltURL = new URL(PAGES[page].es, siteUrl);
-const enAltURL = new URL(PAGES[page].en, siteUrl);
+// La canónica sale de `Astro.url.pathname`, que en build estático siempre
+// lleva barra final. Los hreflang salen de PAGES, que no la lleva. Dos formas
+// distintas de la misma URL en la misma página es exactamente la señal
+// contradictoria que hay que evitar, así que se normalizan aquí.
+const withSlash = (path: string) => (path.endsWith("/") ? path : `${path}/`);
+const esAltURL = new URL(withSlash(PAGES[page].es), siteUrl);
+const enAltURL = new URL(withSlash(PAGES[page].en), siteUrl);
 
 // Datos estructurados (JSON-LD)
 const orgNode = {
@@ -88,16 +102,28 @@ const orgNode = {
     { "@type": "Country", name: "United States" },
     { "@type": "Country", name: "México" },
   ],
+  slogan: "Digital Growth Systems for Tax & Accounting Firms",
   serviceType: [
-    "Website design for tax preparers",
+    "Website design for tax and accounting firms",
+    "Client acquisition and local SEO",
+    "Client intake and document collection",
+    "Marketing automation and follow-up",
     "Google Business Profile management",
     "Review management",
-    "Local SEO",
+    "Marketing analytics and reporting",
+  ],
+  knowsAbout: [
+    "Tax professionals",
+    "Enrolled Agents",
+    "CPAs",
+    "Bookkeepers",
+    "Tax resolution firms",
+    "Accounting firms",
   ],
   audience: {
     "@type": "Audience",
     audienceType:
-      "Tax preparers, bookkeepers, enrolled agents and CPAs in the United States",
+      "Tax professionals, enrolled agents, CPAs, bookkeepers, tax resolution and accounting firms in the United States",
   },
   availableLanguage: ["Spanish", "English"],
   sameAs: [
@@ -117,13 +143,13 @@ const websiteNode = {
   inLanguage: lang === "es" ? "es-US" : "en-US",
 };
 
-const faqSource = faqVariant === "home" ? t.homeFaq : t.faq;
+const faqSource = faqItems ?? (faqVariant === "home" ? t.homeFaq : t.faq).items;
 
 const faqNode = includeFaq
   ? {
       "@type": "FAQPage",
       "@id": `${canonicalURL}#faq`,
-      mainEntity: faqSource.items.map((f) => ({
+      mainEntity: faqSource.map((f) => ({
         "@type": "Question",
         name: f.question,
         acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -131,9 +157,50 @@ const faqNode = includeFaq
     }
   : null;
 
+// Migas de pan: las páginas de oficio cuelgan del hub del nicho, y decírselo
+// a Google explícitamente es lo que evita que las trate como seis landings
+// sueltas compitiendo entre sí.
+const breadcrumbNode = breadcrumbs?.length
+  ? {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalURL}#breadcrumb`,
+      itemListElement: breadcrumbs.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: b.name,
+        item: new URL(b.path, siteUrl).toString(),
+      })),
+    }
+  : null;
+
+const serviceNode = serviceName
+  ? {
+      "@type": "Service",
+      "@id": `${canonicalURL}#service`,
+      name: serviceName,
+      description: metaDescription,
+      serviceType: "Digital growth systems for tax and accounting firms",
+      provider: { "@id": `${siteUrl}#organization` },
+      areaServed: { "@type": "Country", name: "United States" },
+      availableLanguage: ["English", "Spanish"],
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        price: "349",
+        url: new URL(PAGES.pricing[lang], siteUrl).toString(),
+      },
+    }
+  : null;
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [orgNode, websiteNode, ...(faqNode ? [faqNode] : [])],
+  "@graph": [
+    orgNode,
+    websiteNode,
+    ...(breadcrumbNode ? [breadcrumbNode] : []),
+    ...(serviceNode ? [serviceNode] : []),
+    ...(faqNode ? [faqNode] : []),
+  ],
 };
 ---
 
@@ -152,7 +219,7 @@ const jsonLd = {
     <meta name="description" content={metaDescription} />
     <meta
       name="keywords"
-      content="paginas web para preparadores de impuestos, website for tax preparers, bookkeeper website, tax office website, paginas web en español, perfil de empresa en google, google business profile, gestión de reseñas, SEO local, landing pages, ProCode Dev"
+      content="digital growth systems for tax firms, sistemas digitales para firmas fiscales, tax professional website, enrolled agent website, CPA firm website, bookkeeper website, tax resolution marketing, accounting firm website, paginas web para preparadores de impuestos, intake para despachos fiscales, google business profile, SEO local, automatización de seguimiento, ProCode Dev"
     />
     <meta name="author" content="ProCode Dev" />
     <meta
@@ -178,7 +245,7 @@ const jsonLd = {
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="ProCode Dev — Desarrollo web estratégico" />
+    <meta property="og:image:alt" content="ProCode Dev — Digital Growth Systems for Tax & Accounting Firms" />
 
     <!-- ============ TWITTER / X ============ -->
     <meta name="twitter:card" content="summary_large_image" />

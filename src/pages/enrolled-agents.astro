@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import SegmentPage from "../components/SegmentPage.astro";
+import ProofStrip from "../components/ProofStrip.astro";
+import Founder from "../components/Founder.astro";
+import Footer from "../components/Footer.astro";
+import { translations, PAGES } from "../i18n/ui";
+import { getSegment } from "../i18n/segments";
+
+const lang = "es";
+const key = "enrolledAgents" as const;
+const t = translations[lang];
+const seg = getSegment(lang, key);
+---
+
+<Layout
+  lang={lang}
+  page={key}
+  waPage="tax"
+  title={seg.meta.title}
+  description={seg.meta.description}
+  includeFaq={true}
+  faqItems={seg.faq}
+  serviceName={seg.intro}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.tax, path: PAGES.tax[lang] },
+    { name: seg.navLabel, path: PAGES[key][lang] },
+  ]}
+>
+  <Header lang={lang} page={key} />
+  <main>
+    <SegmentPage lang={lang} segment={key} />
+    <ProofStrip lang={lang} />
+    <Founder lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

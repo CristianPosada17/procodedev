@@ -1,0 +1,299 @@
+---
+import { translations, PAGES, waHref, type Lang, type SegmentKey } from "../i18n/ui";
+import { getSegment } from "../i18n/segments";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang: Lang;
+  segment: SegmentKey;
+}
+const { lang, segment } = Astro.props as Props;
+const t = translations[lang];
+const x = getSegment(lang, segment);
+---
+
+{/*
+  Plantilla única para las seis páginas de oficio. El contenido vive en
+  src/i18n/segments.ts: la estructura se comparte, el copy no. Si dos
+  segmentos terminaran diciendo lo mismo, la culpa sería del texto, no de
+  esta plantilla — y sería motivo para fusionar las dos páginas.
+*/}
+
+<!-- ── Hero ── -->
+<section class="relative overflow-hidden pb-8 pt-8 lg:pb-14 lg:pt-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <nav
+      class="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]"
+      aria-label="Breadcrumb"
+    >
+      <a href={PAGES.home[lang]} class="transition hover:text-[var(--accent)]">
+        {t.nav.home}
+      </a>
+      <span aria-hidden="true">/</span>
+      <a href={PAGES.tax[lang]} class="transition hover:text-[var(--accent)]">
+        {t.nav.tax}
+      </a>
+      <span aria-hidden="true">/</span>
+      <span class="text-[var(--accent)]">{x.navLabel}</span>
+    </nav>
+
+    <div class="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div class="max-w-2xl">
+        <span class="eyebrow">{x.heroEyebrow}</span>
+        <h1
+          class="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl"
+        >
+          {x.heroTitleA}{" "}<span class="grad-text">{x.heroHighlight}</span>
+        </h1>
+        <p
+          class="mt-6 text-base leading-8 text-[var(--muted)] sm:text-lg"
+        >
+          {x.heroSubtitle}
+        </p>
+
+        <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+          <a
+            href={PAGES.contact[lang]}
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+          >
+            {t.common.ctaPrimary}
+            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+          </a>
+          <a
+            href={PAGES.pricing[lang]}
+            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[var(--brand)]/10"
+          >
+            {t.priceAnchor.cta}
+          </a>
+        </div>
+        <p
+          class="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]"
+        >
+          {t.common.free}
+        </p>
+      </div>
+
+      {/* Calendario del oficio: lo primero que demuestra que la página no es
+          una plantilla rellenada con el nombre del segmento. */}
+      <div
+        class="reveal reveal-right rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl lg:p-8"
+      >
+        <div class="flex items-start gap-4">
+          <span
+            class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]"
+          >
+            <Icon name="calendar" class="h-6 w-6" />
+          </span>
+          <div>
+            <h2 class="text-base font-bold leading-snug text-[var(--text)]">
+              {x.cycleTitle}
+            </h2>
+            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {x.cycleBody}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+          {
+            x.cycleMonths.map((m) => (
+              <div class="rounded-xl border border-[color:var(--border)] bg-white/[0.03] p-4">
+                <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">
+                  {m.label}
+                </p>
+                <p class="mt-1.5 text-xs leading-5 text-[var(--muted)]">
+                  {m.note}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Dolores del segmento ── -->
+<section class="relative py-10 lg:py-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="reveal max-w-3xl">
+      <h2
+        class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl"
+      >
+        {x.painTitle}
+      </h2>
+      <p class="mt-4 text-base leading-8 text-[var(--muted)]">
+        {x.painSubtitle}
+      </p>
+    </div>
+
+    <ul class="mt-8 grid gap-3 md:grid-cols-2">
+      {
+        x.pains.map((pain, i) => (
+          <li
+            class="reveal flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-5 backdrop-blur-xl"
+            style={`--reveal-delay: ${i * 60}ms`}
+          >
+            <span
+              class="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-lg bg-white/[0.06] text-[var(--muted)]"
+              aria-hidden="true"
+            >
+              <Icon name="minus" class="h-3.5 w-3.5" />
+            </span>
+            <p class="text-sm leading-6 text-[var(--text)]/85">{pain}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ── Qué construyo para este oficio ── -->
+<section class="relative py-10 lg:py-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="reveal max-w-3xl">
+      <h2
+        class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl"
+      >
+        {x.systemTitle}
+      </h2>
+      <p class="mt-4 text-base leading-8 text-[var(--muted)]">
+        {x.systemSubtitle}
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        x.system.map((block, i) => (
+          <article
+            class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+              <Icon name={block.icon as any} class="h-6 w-6" />
+            </span>
+            <h3 class="mt-5 text-base font-bold leading-snug text-[var(--text)]">
+              {block.title}
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-[var(--muted)]">
+              {block.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── Servicios que se pueden posicionar ── -->
+<section class="relative py-10 lg:py-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="reveal grid gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-8 backdrop-blur-xl lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:p-12"
+    >
+      <div>
+        <h2
+          class="text-xl font-bold tracking-tight text-[var(--text)] sm:text-2xl"
+        >
+          {x.offerTitle}
+        </h2>
+        <p class="mt-4 text-sm leading-7 text-[var(--muted)]">
+          {x.offerSubtitle}
+        </p>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {
+          x.offers.map((offer) => (
+            <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+              <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
+                <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
+              </span>
+              {offer}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ del oficio ── -->
+<section class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[900px] px-4 sm:px-6 lg:px-8">
+    <h2
+      class="reveal text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl"
+    >
+      {x.faqTitle}
+    </h2>
+    <div class="mt-8 grid gap-3">
+      {
+        x.faq.map((item, i) => (
+          <details
+            class="reveal group rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl transition hover:border-[color:var(--border-strong)] open:border-[color:var(--border-strong)]"
+            style={`--reveal-delay: ${i * 50}ms`}
+          >
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-semibold text-[var(--text)] marker:content-['']">
+              {item.question}
+              <span class="flex-none text-[var(--accent)] transition group-open:rotate-45">
+                <Icon name="plus" class="h-4 w-4" strokeWidth={2.2} />
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-7 text-[var(--muted)]">
+              {item.answer}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="relative py-10 lg:py-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 text-center backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-14"
+    >
+      <div
+        class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--brand)]/10 blur-3xl"
+      >
+      </div>
+      <div class="relative mx-auto max-w-2xl">
+        <h2
+          class="text-2xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-3xl"
+        >
+          {x.ctaTitle}
+        </h2>
+        <p class="mt-4 text-base leading-8 text-[var(--muted)]">{x.ctaBody}</p>
+        <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href={PAGES.contact[lang]}
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+          >
+            {t.common.ctaPrimary}
+            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+          </a>
+          <a
+            href={waHref(segment, lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+          >
+            <Icon name="whatsapp" class="mr-2 h-4 w-4" />
+            {t.common.ctaWhatsapp}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

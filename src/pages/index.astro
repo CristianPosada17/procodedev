@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Marquee from "../components/Marquee.astro";
 import ValueStrip from "../components/ValueStrip.astro";
+import GrowthSystem from "../components/GrowthSystem.astro";
 import Services from "../components/Services.astro";
 import PriceAnchor from "../components/PriceAnchor.astro";
 import WhyProCode from "../components/WhyProCode.astro";
@@ -33,12 +34,20 @@ const meta = translations[lang].pageMeta.home;
   · El H1 nombra al cliente y al oficio (despachos de impuestos en EE. UU.)
     en vez del genérico «sitios web que hacen crecer tu negocio».
 -->
-<Layout lang={lang} page="home" title={meta.title} description={meta.description}>
+<Layout
+  lang={lang}
+  page="home"
+  title={meta.title}
+  description={meta.description}
+  includeFaq={true}
+  faqVariant="home"
+>
   <Header lang={lang} page="home" />
   <main class="home-flow">
     <Hero lang={lang} />
     <Marquee lang={lang} />
     <ValueStrip lang={lang} />
+    <GrowthSystem lang={lang} />
     <Services lang={lang} />
     <PriceAnchor lang={lang} />
     <WhyProCode lang={lang} />
@@ -71,29 +80,32 @@ const meta = translations[lang].pageMeta.home;
     main.home-flow > #trabajo {
       order: 1;
     }
-    main.home-flow > #servicios {
+    main.home-flow > #sistema {
       order: 2;
     }
-    main.home-flow > #inversion {
+    main.home-flow > #servicios {
       order: 3;
     }
-    main.home-flow > #por-que {
+    main.home-flow > #inversion {
       order: 4;
     }
-    main.home-flow > #quien {
+    main.home-flow > #por-que {
       order: 5;
     }
-    main.home-flow > #integraciones {
+    main.home-flow > #quien {
       order: 6;
     }
-    main.home-flow > #testimonios {
+    main.home-flow > #integraciones {
       order: 7;
     }
-    main.home-flow > #dudas {
+    main.home-flow > #testimonios {
       order: 8;
     }
-    main.home-flow > #final-cta {
+    main.home-flow > #dudas {
       order: 9;
+    }
+    main.home-flow > #final-cta {
+      order: 10;
     }
   }
 </style>

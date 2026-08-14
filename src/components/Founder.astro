@@ -1,5 +1,6 @@
 ---
 import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
 
 interface Props {
   lang?: Lang;
@@ -62,7 +63,7 @@ const initials = f.name
           href={PAGES.contact[lang]}
           class="mt-8 inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
         >
-          {f.cta} <span class="ml-2">→</span>
+          {f.cta} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
         </a>
       </div>
     </div>

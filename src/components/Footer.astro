@@ -2,9 +2,12 @@
 import {
   translations,
   PAGES,
+  SEGMENT_KEYS,
   CONTACT,
   type Lang,
 } from "../i18n/ui";
+import { segments } from "../i18n/segments";
+import Icon from "./Icon.astro";
 
 interface Props {
   lang?: Lang;
@@ -22,11 +25,21 @@ const navLinks = [
   { label: t.nav.contact, href: PAGES.contact[lang] },
 ];
 
+// Antes eran tres cuadros con las siglas «IG / IN / FB». Los logos reales
+// se reconocen sin leerlos y no dependen de que el usuario decodifique unas
+// iniciales.
 const socials = [
-  { label: "IG", href: CONTACT.instagram },
-  { label: "IN", href: CONTACT.linkedin },
-  { label: "FB", href: CONTACT.facebook },
+  { label: "Instagram", icon: "instagram" as const, href: CONTACT.instagram },
+  { label: "LinkedIn", icon: "linkedin" as const, href: CONTACT.linkedin },
+  { label: "Facebook", icon: "facebook" as const, href: CONTACT.facebook },
 ];
+
+// Las seis páginas de oficio también viven en el footer: es donde Google
+// encuentra los enlaces internos en cada página del sitio.
+const segmentLinks = SEGMENT_KEYS.map((key) => ({
+  href: PAGES[key][lang],
+  label: segments[lang][key].navLabel,
+}));
 ---
 
 <footer
@@ -61,9 +74,10 @@ const socials = [
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/[0.04] font-mono text-xs text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+                aria-label={s.label}
+                class="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/[0.04] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
               >
-                {s.label}
+                <Icon name={s.icon} class="h-4 w-4" />
               </a>
             ))
           }
@@ -96,6 +110,28 @@ const socials = [
           {
             t.footer.servicesList.map((service) => (
               <span class="text-sm text-[var(--muted)]">{service}</span>
+            ))
+          }
+        </div>
+
+        <h3 class="mt-8 font-mono text-xs font-bold uppercase tracking-[0.18em] text-[var(--text)]">
+          {t.footer.segmentsTitle}
+        </h3>
+        <div class="mt-5 grid gap-3">
+          <a
+            href={PAGES.tax[lang]}
+            class="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
+          >
+            {t.nav.tax}
+          </a>
+          {
+            segmentLinks.map((item) => (
+              <a
+                href={item.href}
+                class="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
+              >
+                {item.label}
+              </a>
             ))
           }
         </div>
@@ -138,8 +174,14 @@ const socials = [
     >
       <p>© {new Date().getFullYear()} ProCode Dev. {t.footer.rights}</p>
       <div class="flex gap-5">
-        <a href="#" class="transition hover:text-[var(--accent)]">{t.footer.privacy}</a>
-        <a href="#" class="transition hover:text-[var(--accent)]">{t.footer.terms}</a>
+        <a
+          href={PAGES.privacy[lang]}
+          class="transition hover:text-[var(--accent)]">{t.footer.privacy}</a
+        >
+        <a
+          href={PAGES.terms[lang]}
+          class="transition hover:text-[var(--accent)]">{t.footer.terms}</a
+        >
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 ---
 import { translations, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
 interface Props {
   lang?: Lang;
 }
@@ -37,8 +38,8 @@ const w = t.why;
               class="reveal flex flex-col gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
               style={`--reveal-delay: ${i * 70}ms`}
             >
-              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-lg">
-                {b.icon}
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                <Icon name={b.icon as any} class="h-6 w-6" />
               </span>
               <h3 class="text-base font-bold text-[var(--text)]">{b.title}</h3>
               <p class="text-sm leading-6 text-[var(--muted)]">{b.description}</p>

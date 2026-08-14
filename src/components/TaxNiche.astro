@@ -1,5 +1,13 @@
 ---
-import { translations, PAGES, waHref, type Lang } from "../i18n/ui";
+import {
+  translations,
+  PAGES,
+  SEGMENT_KEYS,
+  waHref,
+  type Lang,
+} from "../i18n/ui";
+import { segments } from "../i18n/segments";
+import Icon from "./Icon.astro";
 
 interface Props {
   lang?: Lang;
@@ -7,6 +15,16 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const x = t.tax;
+
+// El hub deja de ser una landing suelta: es el índice de las seis páginas de
+// oficio. Sin este bloque, las páginas hijas solo se alcanzarían desde el
+// menú, que es el peor sitio para que Google reparta autoridad.
+const segmentCards = SEGMENT_KEYS.map((key) => ({
+  href: PAGES[key][lang],
+  icon: segments[lang][key].icon,
+  label: segments[lang][key].navLabel,
+  hint: segments[lang][key].navHint,
+}));
 ---
 
 {/*
@@ -47,8 +65,8 @@ const x = t.tax;
             class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl"
             style={`--reveal-delay: ${i * 80}ms`}
           >
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-lg text-[var(--accent)]">
-              {item.icon}
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
+              <Icon name={item.icon as any} class="h-6 w-6" />
             </span>
             <h3 class="mt-5 text-base font-bold text-[var(--text)]">{item.title}</h3>
             <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
@@ -83,23 +101,68 @@ const x = t.tax;
             </h3>
             <p class="mt-4 flex items-start gap-3 text-sm leading-6 text-[var(--muted)]">
               <span
-                class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-white/[0.06] text-xs"
+                class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-white/[0.06] text-[var(--muted)]"
                 aria-hidden="true"
               >
-                –
+                <Icon name="minus" class="h-3.5 w-3.5" />
               </span>
               {row.them}
             </p>
             <p class="mt-3 flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
               <span
-                class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]"
+                class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]"
                 aria-hidden="true"
               >
-                ✓
+                <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
               </span>
               {row.us}
             </p>
           </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── Las seis páginas de oficio ── -->
+<section id="segmentos" class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl">
+        {x.segmentsTitle}
+      </h2>
+      <p class="mt-4 text-base leading-8 text-[var(--muted)]">
+        {x.segmentsSubtitle}
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        segmentCards.map((card, i) => (
+          <a
+            href={card.href}
+            class="reveal group flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+              <Icon name={card.icon as any} class="h-6 w-6" />
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-base font-bold text-[var(--text)]">
+                {card.label}
+              </span>
+              <span class="mt-1 block text-sm leading-6 text-[var(--muted)]">
+                {card.hint}
+              </span>
+              <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)]">
+                {x.segmentsCta}
+                <Icon
+                  name="arrow-right"
+                  class="h-3.5 w-3.5 transition group-hover:translate-x-0.5"
+                />
+              </span>
+            </span>
+          </a>
         ))
       }
     </div>
@@ -120,8 +183,8 @@ const x = t.tax;
           {
             x.forItems.map((item) => (
               <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
-                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
-                  ✓
+                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
+                  <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
                 </span>
                 {item}
               </li>
@@ -161,7 +224,7 @@ const x = t.tax;
             class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
           >
             {t.common.ctaPrimary}
-            <span class="ml-2">→</span>
+            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
           </a>
           <a
             href={waHref("tax", lang)}

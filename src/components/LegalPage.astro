@@ -1,0 +1,82 @@
+---
+import { PAGES, CONTACT, type Lang } from "../i18n/ui";
+import { legal } from "../i18n/legal";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang: Lang;
+  doc: "privacy" | "terms";
+}
+const { lang, doc } = Astro.props as Props;
+const d = legal[lang][doc];
+---
+
+<article class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[820px] px-4 sm:px-6 lg:px-8">
+    <span class="eyebrow">{d.eyebrow}</span>
+    <h1
+      class="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-5xl"
+    >
+      {d.title}
+    </h1>
+    <p class="mt-5 text-base leading-8 text-[var(--muted)]">{d.subtitle}</p>
+    <p
+      class="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[var(--surface)]/60 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]"
+    >
+      <Icon name="calendar" class="h-3.5 w-3.5" />
+      {d.updatedLabel}: {d.updated}
+    </p>
+
+    <div class="mt-12 grid gap-10">
+      {
+        d.sections.map((section) => (
+          <section class="reveal">
+            <h2 class="text-xl font-bold tracking-tight text-[var(--text)]">
+              {section.title}
+            </h2>
+            {section.body?.map((paragraph) => (
+              <p class="mt-4 text-sm leading-7 text-[var(--muted)]">
+                {paragraph}
+              </p>
+            ))}
+            {section.list && (
+              <ul class="mt-4 grid gap-3">
+                {section.list.map((item) => (
+                  <li class="flex items-start gap-3 text-sm leading-6 text-[var(--muted)]">
+                    <span class="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[var(--accent)]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))
+      }
+    </div>
+
+    <div
+      class="reveal mt-14 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--brand)]/[0.06] p-8"
+    >
+      <h2 class="text-lg font-bold tracking-tight text-[var(--text)]">
+        {d.contactTitle}
+      </h2>
+      <p class="mt-3 text-sm leading-7 text-[var(--muted)]">{d.contactBody}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href={`mailto:${CONTACT.email}`}
+          class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+        >
+          <Icon name="mail" class="mr-2 h-4 w-4" />
+          {CONTACT.email}
+        </a>
+        <a
+          href={PAGES.contact[lang]}
+          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/10"
+        >
+          {lang === "es" ? "Ir a contacto" : "Go to contact"}
+          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

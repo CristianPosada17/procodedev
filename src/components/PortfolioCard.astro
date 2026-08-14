@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Project {
   name: string;
   url: string;
@@ -75,7 +77,10 @@ const img = project.image;
     </div>
     <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--accent)]">
       {viewProject}
-      <span class="transition group-hover:translate-x-0.5">→</span>
+      <Icon
+        name="arrow-up-right"
+        class="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      />
     </span>
   </div>
 </a>

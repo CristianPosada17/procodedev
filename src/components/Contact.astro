@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import { translations, CONTACT, waHref, type Lang } from "../i18n/ui";
 interface Props {
   lang?: Lang;
@@ -95,7 +96,7 @@ const inputClass =
               c.perks.map((perk) => (
                 <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
                   <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
-                    ✓
+                    <Icon name="check" class="h-3 w-3" strokeWidth={2.6} />
                   </span>
                   {perk}
                 </li>
@@ -114,13 +115,15 @@ const inputClass =
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
               >
-                💬 WhatsApp · {CONTACT.whatsappDisplay}
+                <Icon name="whatsapp" class="h-4 w-4 text-emerald-400" />
+                WhatsApp · {CONTACT.whatsappDisplay}
               </a>
               <a
                 href={`mailto:${CONTACT.email}`}
                 class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
               >
-                ✉️ {CONTACT.email}
+                <Icon name="mail" class="h-4 w-4 text-[var(--accent)]" />
+                {CONTACT.email}
               </a>
             </div>
           </div>

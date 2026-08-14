@@ -1,5 +1,6 @@
 ---
 import { translations, PAGES, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 import PortfolioCard from "./PortfolioCard.astro";
 
@@ -39,7 +40,7 @@ const projects = pf.projects.filter((proj) => proj.kind !== "demo").slice(0, 3);
         href={PAGES.portfolio[lang]}
         class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
       >
-        {p.cta} <span class="ml-2">→</span>
+        {p.cta} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
       </a>
     </div>
   </div>

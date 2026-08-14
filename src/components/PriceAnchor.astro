@@ -1,5 +1,6 @@
 ---
 import { translations, PAGES, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
 
 interface Props {
   lang?: Lang;
@@ -44,7 +45,7 @@ const pa = t.priceAnchor;
           href={PAGES.pricing[lang]}
           class="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
         >
-          {pa.cta} <span class="ml-2">→</span>
+          {pa.cta} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
         </a>
       </div>
     </div>

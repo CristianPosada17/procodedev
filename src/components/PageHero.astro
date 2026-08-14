@@ -1,5 +1,6 @@
 ---
 import { translations, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
 
 interface Props {
   eyebrow: string;
@@ -42,8 +43,8 @@ const seq = [...cards, ...cards];
         {
           seq.map((card) => (
             <div class="flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl">
-              <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-lg text-[var(--accent)]">
-                {card.icon}
+              <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                <Icon name={card.icon as any} class="h-5 w-5" />
               </span>
               <div>
                 <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">

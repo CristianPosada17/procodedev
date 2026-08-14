@@ -1,6 +1,7 @@
 ---
 import { translations, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
 interface Props {
   lang?: Lang;
   /** En /servicios el H1 de PageHero ya dice esto: no repetirlo (hallazgo #13). */
@@ -17,7 +18,7 @@ const s = t.services;
       showHeading && (
         <SectionHeading eyebrow={s.eyebrow}>
           <Fragment slot="title">
-            {s.titleA} <span class="grad-text">{s.titleHighlight}</span>
+            {s.titleA} <span class="grad-text">{s.titleHighlight}</span>{" "}{s.titleB}
           </Fragment>
           <Fragment slot="subtitle">{s.subtitle}</Fragment>
         </SectionHeading>
@@ -32,8 +33,8 @@ const s = t.services;
             style={`--reveal-delay: ${i * 70}ms`}
           >
             <div class="flex items-center justify-between">
-              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-xl text-[var(--accent)]">
-                {item.icon}
+              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                <Icon name={item.icon as any} class="h-6 w-6" />
               </span>
               <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
                 {String(i + 1).padStart(2, "0")}

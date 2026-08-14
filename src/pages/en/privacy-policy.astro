@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import LegalPage from "../../components/LegalPage.astro";
+import Footer from "../../components/Footer.astro";
+import { legal } from "../../i18n/legal";
+
+const lang = "en";
+const doc = "privacy" as const;
+const d = legal[lang][doc];
+---
+
+<Layout
+  lang={lang}
+  page="privacy"
+  waPage="contact"
+  title={d.meta.title}
+  description={d.meta.description}
+>
+  <Header lang={lang} page="privacy" />
+  <main>
+    <LegalPage lang={lang} doc={doc} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

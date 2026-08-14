@@ -1,5 +1,8 @@
 ---
 import { translations, PAGES, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
+import SectionHeading from "./SectionHeading.astro";
+
 interface Props {
   lang?: Lang;
 }
@@ -8,88 +11,146 @@ const t = translations[lang];
 const c = t.caseStudy;
 ---
 
-<section class="relative py-12 lg:py-20">
-  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+{/*
+  El bloque «proyecto destacado» llevaba meses sin destacar ningún proyecto:
+  describía en abstracto lo que lleva dentro un buen sitio. Ahora es un caso
+  concreto, con captura, enlace en vivo, problema, solución y stack. Si el
+  visitante quiere comprobarlo, puede abrirlo en otra pestaña — que es
+  exactamente el punto.
+*/}
+<section id="destacado" class="relative py-12 lg:py-20">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <SectionHeading eyebrow={c.eyebrow}>
+      <Fragment slot="title">
+        {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
+      </Fragment>
+      <Fragment slot="subtitle">{c.summary}</Fragment>
+    </SectionHeading>
+
     <div
-      class="reveal overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl"
+      class="reveal mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl"
     >
       <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+        {/* ── Captura del proyecto ── */}
+        <a
+          href={c.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative block border-b border-[color:var(--border)] bg-[var(--bg-2)] lg:border-b-0 lg:border-r"
+        >
+          <img
+            src={c.image}
+            alt={`Sitio web de ${c.name}`}
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="750"
+            class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+          />
+          <span
+            class="absolute left-4 top-4 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/85 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur"
+          >
+            {c.badge}
+          </span>
+          <span
+            class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[var(--bg)]/85 px-4 py-2 text-xs font-semibold text-[var(--text)] backdrop-blur transition group-hover:bg-[var(--brand)]"
+          >
+            {c.visit}
+            <span class="font-mono text-[10px] text-[var(--muted)]">
+              {c.urlLabel}
+            </span>
+            <Icon name="arrow-up-right" class="h-3.5 w-3.5" />
+          </span>
+        </a>
+
+        {/* ── Lectura del caso ── */}
         <div class="p-8 lg:p-12">
-          <span class="eyebrow">{c.eyebrow}</span>
-          <h2 class="mt-5 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">
-            {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
-          </h2>
-          <p class="mt-5 text-base leading-8 text-[var(--muted)]">
-            {c.subtitle}
+          <h3 class="text-2xl font-bold tracking-tight text-[var(--text)]">
+            {c.name}
+          </h3>
+
+          <p
+            class="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]"
+          >
+            {c.challengeTitle}
+          </p>
+          <p class="mt-3 text-sm leading-7 text-[var(--muted)]">
+            {c.challengeBody}
           </p>
 
-          <p class="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
-            {c.includesTitle}
+          <p
+            class="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]"
+          >
+            {c.solutionTitle}
           </p>
           <ul class="mt-4 grid gap-3">
             {
-              c.includes.map((it) => (
-                <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
-                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
-                    ✓
+              c.solution.map((item) => (
+                <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
+                    <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
                   </span>
-                  {it}
+                  {item}
                 </li>
               ))
             }
           </ul>
 
-          <a
-            href={PAGES.contact[lang]}
-            class="mt-8 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+          <p
+            class="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]"
           >
-            {c.cta} <span class="ml-2">→</span>
-          </a>
-        </div>
-
-        <div class="relative border-t border-[color:var(--border)] bg-[var(--bg-2)] p-8 lg:border-l lg:border-t-0 lg:p-12">
-          <div class="tech-grid absolute inset-0 opacity-30"></div>
-          <div class="relative grid gap-4">
-            <div class="rounded-2xl border border-[color:var(--border-strong)] bg-gradient-to-br from-[var(--brand)]/20 to-transparent p-6">
-              <p class="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-                01
-              </p>
-              <h3 class="mt-2 text-lg font-bold text-[var(--text)]">
-                {lang === "es" ? "Presencia profesional" : "Professional presence"}
-              </h3>
-              <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
-                {lang === "es"
-                  ? "Tu negocio visible, claro y listo para convertir."
-                  : "Your business visible, clear and ready to convert."}
-              </p>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-5">
-                <p class="font-mono text-2xl font-bold text-[var(--accent)]">24/7</p>
-                <p class="mt-1 text-xs text-[var(--muted)]">
-                  {lang === "es" ? "Captación activa" : "Active capture"}
-                </p>
-              </div>
-              <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-5">
-                <p class="font-mono text-2xl font-bold text-[var(--text)]">CRM</p>
-                <p class="mt-1 text-xs text-[var(--muted)]">
-                  {lang === "es" ? "Seguimiento" : "Follow-up"}
-                </p>
-              </div>
-            </div>
-            <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-5">
-              <p class="text-xs text-[var(--muted)]">
-                {lang === "es" ? "Agenda tu cita" : "Book your appointment"}
-              </p>
-              <p class="mt-1 text-sm text-[var(--text)]/90">
-                {lang === "es"
-                  ? "Formulario conectado a WhatsApp o CRM."
-                  : "Form connected to WhatsApp or CRM."}
-              </p>
-            </div>
+            {c.stackTitle}
+          </p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            {
+              c.stack.map((tech) => (
+                <span class="rounded-full border border-[color:var(--border)] px-3 py-1 text-[11px] text-[var(--muted)]">
+                  {tech}
+                </span>
+              ))
+            }
           </div>
         </div>
       </div>
+
+      {/* ── Cifras verificables (nada estimado, nada inventado) ── */}
+      <div
+        class="grid gap-px border-t border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-3"
+      >
+        {
+          c.facts.map((fact) => (
+            <div class="bg-[var(--bg-2)] px-6 py-6 text-center">
+              <p class="font-mono text-3xl font-bold text-[var(--accent)]">
+                {fact.value}
+              </p>
+              <p class="mt-1 text-xs leading-5 text-[var(--muted)]">
+                {fact.label}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="reveal mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+      <a
+        href={PAGES.contact[lang]}
+        class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+      >
+        {c.cta}
+        <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+      </a>
+      <a
+        href={c.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
+      >
+        {c.visit}
+        <Icon name="arrow-up-right" class="ml-2 h-4 w-4" />
+      </a>
     </div>
   </div>
 </section>
