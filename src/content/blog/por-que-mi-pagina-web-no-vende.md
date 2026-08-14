@@ -16,7 +16,7 @@ Una página web no vende cuando **no le deja claro al visitante qué haces, por 
 
 El visitante llega y no sabe si vende, a quién le sirve o qué gana. Si tu encabezado dice algo genérico como "Bienvenido a nuestro sitio", perdiste la venta.
 
-**Cómo arreglarlo:** en la parte de arriba pon una frase clara de qué haces y para quién, más el beneficio. Por ejemplo: "Diseñamos sitios web que convierten visitas en clientes para negocios en México."
+**Cómo arreglarlo:** en la parte de arriba pon una frase clara de qué haces y para quién, más el beneficio. Por ejemplo: "Páginas web para despachos de impuestos que convierten visitas en clientes."
 
 ## 2. No hay una llamada a la acción clara
 
@@ -71,4 +71,4 @@ Los cambios de conversión (mensaje, botones, velocidad) se notan casi de inmedi
 
 ---
 
-En **ProCode Dev** rediseñamos y optimizamos páginas para que dejen de ser un adorno y empiecen a captar clientes. Pide una [auditoría gratis de tu web actual](/#auditoria), revisa [nuestros precios claros](/#precios) o [agenda un diagnóstico sin compromiso](/#agendar) y te decimos exactamente qué está frenando tus ventas.
+En **ProCode Dev** rediseño y optimizo páginas para que dejen de ser un adorno y empiecen a captar clientes. Revisa [nuestros precios](/precios) o [agenda una llamada gratis de 15 minutos](/contacto) y te digo exactamente qué está frenando tus ventas.

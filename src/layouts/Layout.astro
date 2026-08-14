@@ -37,6 +37,10 @@ interface Props {
   image?: string;
   noindex?: boolean;
   includeFaq?: boolean;
+  /** Qué set de preguntas emitir en el JSON-LD. Debe coincidir con el
+   *  `variant` del componente FAQ que renderiza la página: Google exige que el
+   *  marcado de FAQPage corresponda al contenido visible. */
+  faqVariant?: "full" | "home";
 }
 
 const {
@@ -48,11 +52,12 @@ const {
   image = "/og-image.jpg",
   noindex = false,
   includeFaq = false,
+  faqVariant = "full",
 } = Astro.props as Props;
 
 const t = translations[lang];
 const htmlLang = lang === "es" ? "es" : "en";
-const ogLocale = lang === "es" ? "es_MX" : "en_US";
+const ogLocale = lang === "es" ? "es_US" : "en_US";
 
 const metaTitle = title ?? t.pageMeta.home.title;
 const metaDescription = description ?? t.pageMeta.home.description;
@@ -74,18 +79,26 @@ const orgNode = {
   description: metaDescription,
   email: "info@procodedev.com",
   telephone: "+52-614-241-4255",
-  priceRange: "$$",
+  priceRange: "$349-$1499",
   founder: { "@type": "Person", name: "Cristian Posada" },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Durango",
-    addressRegion: "Durango",
-    addressCountry: "MX",
-  },
+  // El mercado principal es el negocio de servicios latino en EE. UU.
+  // (análisis de mercado de agosto de 2026). El servicio se presta en remoto,
+  // así que no se declara una dirección física de atención al público.
   areaServed: [
-    { "@type": "City", name: "Durango" },
+    { "@type": "Country", name: "United States" },
     { "@type": "Country", name: "México" },
   ],
+  serviceType: [
+    "Website design for tax preparers",
+    "Google Business Profile management",
+    "Review management",
+    "Local SEO",
+  ],
+  audience: {
+    "@type": "Audience",
+    audienceType:
+      "Tax preparers, bookkeepers, enrolled agents and CPAs in the United States",
+  },
   availableLanguage: ["Spanish", "English"],
   sameAs: [
     "https://www.instagram.com/procode.systems/",
@@ -101,14 +114,16 @@ const websiteNode = {
   name: "ProCode Dev",
   description: metaDescription,
   publisher: { "@id": `${siteUrl}#organization` },
-  inLanguage: lang === "es" ? "es-MX" : "en-US",
+  inLanguage: lang === "es" ? "es-US" : "en-US",
 };
+
+const faqSource = faqVariant === "home" ? t.homeFaq : t.faq;
 
 const faqNode = includeFaq
   ? {
       "@type": "FAQPage",
       "@id": `${canonicalURL}#faq`,
-      mainEntity: t.faq.items.map((f) => ({
+      mainEntity: faqSource.items.map((f) => ({
         "@type": "Question",
         name: f.question,
         acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -137,7 +152,7 @@ const jsonLd = {
     <meta name="description" content={metaDescription} />
     <meta
       name="keywords"
-      content="desarrollo web, agencia de desarrollo web, diseño web, web development agency, landing pages, sistemas digitales, automatización de negocios, integración de WhatsApp, CRM, páginas web que convierten, desarrollo web México, ProCode Dev"
+      content="paginas web para preparadores de impuestos, website for tax preparers, bookkeeper website, tax office website, paginas web en español, perfil de empresa en google, google business profile, gestión de reseñas, SEO local, landing pages, ProCode Dev"
     />
     <meta name="author" content="ProCode Dev" />
     <meta
@@ -146,8 +161,8 @@ const jsonLd = {
         ? "noindex, nofollow"
         : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
     />
-    <meta name="geo.region" content="MX-DUR" />
-    <meta name="geo.placename" content="Durango, México" />
+    <meta name="geo.region" content="US" />
+    <meta name="geo.placename" content="United States" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="es" href={esAltURL} />
     <link rel="alternate" hreflang="en" href={enAltURL} />

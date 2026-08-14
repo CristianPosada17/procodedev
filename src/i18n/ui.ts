@@ -9,10 +9,17 @@ export const DEFAULT_LANG: Lang = "es";
 export const LANGS: Lang[] = ["es", "en"];
 
 // Rutas equivalentes por página (para nav, hreflang y toggle de idioma).
-export type PageKey = "home" | "services" | "portfolio" | "pricing" | "contact";
+export type PageKey =
+  | "home"
+  | "services"
+  | "tax"
+  | "portfolio"
+  | "pricing"
+  | "contact";
 export const PAGES: Record<PageKey, Record<Lang, string>> = {
   home: { es: "/", en: "/en/" },
   services: { es: "/servicios", en: "/en/services" },
+  tax: { es: "/impuestos", en: "/en/tax-pros" },
   portfolio: { es: "/portafolio", en: "/en/portfolio" },
   pricing: { es: "/precios", en: "/en/pricing" },
   contact: { es: "/contacto", en: "/en/contact" },
@@ -33,14 +40,16 @@ export const CONTACT = {
   instagram: "https://www.instagram.com/procode.systems/",
   linkedin: "https://www.linkedin.com/in/cristian-posada-891401291/",
   facebook: "https://www.facebook.com/ProCodeSystems",
-  city: "Durango",
-  cityFull: "Durango, México",
+  city: "Estados Unidos",
+  cityFull: "Estados Unidos · atención remota en español",
   founderName: "Cristian Posada",
   founderPhoto: "/images/cristian-posada.jpg",
 };
 
-// Tipo de cambio fijo para mostrar precios en MXN (hallazgo #9 de la auditoría CRO).
-// Se fija arriba del spot (~17.1) para absorber movimiento cambiario sin retocar precios.
+// Moneda: tras el análisis de mercado de agosto de 2026, el mercado principal
+// pasa a ser el negocio de servicios latino en EE. UU. USD es ahora la vista
+// por defecto y MXN queda como opción (tipo de cambio fijo, arriba del spot
+// para absorber movimiento cambiario sin retocar precios).
 export const FX_USD_MXN = 18;
 
 export const translations = {
@@ -50,44 +59,46 @@ export const translations = {
     nav: {
       home: "Inicio",
       services: "Servicios",
+      tax: "Para despachos",
       portfolio: "Portafolio",
       pricing: "Precios",
       blog: "Blog",
       contact: "Contacto",
-      cta: "Agendar diagnóstico",
+      cta: "Agendar llamada gratis",
     },
     common: {
-      ctaPrimary: "Agendar diagnóstico gratuito",
+      // Una sola oferta de entrada y una sola etiqueta de botón en todo el
+      // sitio: la llamada gratis de 15 min. El Diagnóstico de $149 vive solo
+      // en /precios como paso 2.
+      ctaPrimary: "Agendar llamada gratis",
       ctaWhatsapp: "Escribir por WhatsApp",
-      ctaProposal: "Solicitar propuesta",
-      free: "Gratis · sin compromiso",
+      free: "Gratis · 15 min · sin compromiso",
       viewServices: "Ver servicios",
     },
     hero: {
-      eyebrow: "// desarrollo web · durango, méxico",
-      titleA: "Sitios web y sistemas digitales que",
-      titleHighlight: "hacen crecer",
-      titleB: "tu negocio.",
+      eyebrow: "// páginas web para despachos de impuestos · ee. uu.",
+      titleA: "Tu despacho de impuestos, con la página que",
+      titleHighlight: "gana los clientes grandes",
       subtitle:
-        "Soy Cristian Posada y diseño sitios web y sistemas digitales que convierten visitantes en clientes y automatizan tu operación. Deja de perder horas respondiendo lo mismo y persiguiendo prospectos: tu web trabaja por ti mientras tú vendes.",
+        "Soy Cristian Posada. Hago que tu despacho se vea —y se encuentre— como la empresa seria que ya eres, para que dejes de perder los business returns y el bookkeeping mensual contra el preparador de al lado que solo tiene mejor página. Todo en español, por WhatsApp, con una sola persona responsable.",
       badges: [
-        "Diseño profesional",
-        "Enfoque en resultados",
-        "Soporte continuo",
+        "Precios públicos",
+        "Sin contrato de permanencia",
+        "Todo en español",
       ],
       cardLabel: "Sistema digital",
-      cardTitle: "Impulsa tu negocio en línea",
+      cardTitle: "Que te encuentren antes del tax season",
       cardText:
-        "Sitios web, formularios, WhatsApp, agenda y seguimiento conectados en una sola estructura.",
-      cardCta: "Solicitar propuesta",
+        "Página, Perfil de Empresa en Google, reseñas, WhatsApp y agenda conectados en una sola estructura.",
+      cardCta: "Agendar llamada gratis",
       panelTitle: "Lo que queda funcionando",
       panelItems: [
-        "Página que explica tu servicio sin que tú lo repitas",
+        "Página que explica tus servicios sin que tú los repitas",
         "Botón de WhatsApp con el mensaje ya escrito",
         "Agenda en línea conectada a tu calendario",
-        "Formularios que te llegan al correo al instante",
+        "Perfil de Google que aparece cuando buscan 'taxes cerca de mí'",
       ],
-      chips: ["Landing pages", "Integraciones", "Automatización"],
+      chips: ["Despachos de impuestos", "Bookkeeping", "EA & CPA"],
     },
     values: {
       eyebrow: "// por qué funciona",
@@ -155,10 +166,17 @@ export const translations = {
         },
         {
           icon: "◈",
-          category: "Soporte y optimización",
-          title: "Mejora continua y mantenimiento",
+          category: "Perfil de Empresa en Google",
+          title: "Que aparezcas cuando busquen cerca de ti",
           description:
-            "Damos seguimiento técnico y estratégico para mantener tu sitio actualizado, estable y alineado con los objetivos del negocio.",
+            "Creo, verifico y optimizo tu Perfil de Empresa en Google, publico cada mes y monto un sistema para pedir y responder reseñas. Es de donde salen la mayoría de las llamadas de un negocio local.",
+        },
+        {
+          icon: "✦",
+          category: "Búsqueda con IA",
+          title: "Que ChatGPT y Google AI te citen",
+          description:
+            "Cada vez más gente pregunta a una IA en vez de buscar en Google. Estructuro tu información para que te mencionen cuando alguien pregunte por un negocio como el tuyo.",
         },
         {
           icon: "↗",
@@ -350,44 +368,44 @@ export const translations = {
       titleHighlight: "venda por ti.",
       titleB: "",
       subtitle:
-        "Desde una asesoría para tener claridad, hasta un sitio completo con seguimiento automático. Elige por dónde empezar y crece a tu ritmo.",
+        "Precios públicos, en dólares, sin llamada de ventas para conocerlos y sin contrato de permanencia. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
       currencyLabel: "Ver precios en",
       currencyMxn: "MXN",
       currencyUsd: "USD",
       currencyNoteMxn:
-        "Precios en pesos mexicanos, a tipo de cambio fijo de $18 MXN por dólar.",
+        "Equivalencia en pesos mexicanos a tipo de cambio fijo de $18 MXN por dólar. La facturación se hace en USD.",
       currencyNoteUsd: "Precios en dólares estadounidenses.",
       mxnUnit: "MXN",
       mxnUnitMonth: "MXN / mes",
       advisory: {
-        badge: "Paso 2 · Después del diagnóstico",
-        name: "Asesoría de Presencia Digital",
-        price: "75",
-        priceMxn: "1,390",
+        badge: "Paso 2 · Después de la llamada",
+        name: "Diagnóstico de Presencia Digital",
+        price: "149",
+        priceMxn: "2,690",
         currency: "USD",
         priceNote: "pago único · acreditable a tu proyecto",
         hook: "Cuando ya hablamos y quieres el plan completo por escrito.",
         description:
-          "El diagnóstico gratuito de 15 minutos te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente en Google, redes y WhatsApp, entro en tu negocio por dentro y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
+          "La llamada gratis de 15 minutos te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente cuando busca 'tax preparer near me' —Google, Maps, reseñas, redes y tu web actual—, comparo tu presencia con la de los despachos que te están ganando y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
         homeEyebrow: "// el siguiente paso",
         homeTitle: "¿Quieres el plan completo por escrito?",
         prereq:
-          "Empieza siempre por el diagnóstico gratuito de 15 minutos. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
+          "Empieza siempre por la llamada gratis de 15 minutos. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
         viewPricing: "Ver todos los precios",
         waText:
-          "Hola Cristian 👋 Me interesa la Asesoría de Presencia Digital ($1,390 MXN). Quiero saber cómo me encuentran hoy mis clientes en Google, redes y WhatsApp y recibir un plan de mejoras. ¿Cómo empezamos?",
+          "Hola Cristian 👋 Me interesa el Diagnóstico de Presencia Digital ($149 USD). Quiero saber cómo me encuentran hoy mis clientes y recibir un plan de mejoras. ¿Cómo empezamos?",
         stepsTitle: "Cómo funciona (3 fases)",
         steps: [
           {
-            name: "Fase 1 · Conozco tu negocio",
+            name: "Fase 1 · Conozco tu despacho",
             description:
-              "Llamada + cuestionario breve: qué vendes, tu cliente ideal y cómo captas clientes hoy.",
+              "Llamada + cuestionario breve: qué servicios das, tu cliente ideal y cómo llegan hoy tus clientes.",
           },
           {
             name: "Fase 2 · Diagnóstico a fondo",
             description:
-              "Reviso tu presencia en Google, Maps, reseñas, redes, tu web actual y tu WhatsApp.",
+              "Reviso tu Perfil de Empresa en Google, Maps, reseñas, redes, tu web actual, tu WhatsApp y cómo te ve la búsqueda con IA.",
           },
           {
             name: "Fase 3 · Plan de soluciones",
@@ -396,50 +414,112 @@ export const translations = {
           },
         ],
         creditNote:
-          "El costo se te acredita completo si decides hacer tu proyecto conmigo. En la práctica, la asesoría te sale gratis si avanzas.",
-        cta: "Agendar mi asesoría",
+          "Los $149 se te acreditan completos si decides hacer tu proyecto conmigo. En la práctica, el diagnóstico te sale gratis si avanzas.",
+        cta: "Quiero mi diagnóstico",
       },
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Estos son los precios reales, no un rango de referencia: lo que ves es lo que pagas por el alcance descrito en cada plan. Si tu proyecto se sale de ese alcance, te lo digo antes de empezar y te paso el número exacto — nunca a mitad del trabajo.",
-      maintenance: {
-        badge: "Recomendado · Continuidad",
-        name: "Soporte web mensual",
-        pricePrefix: "desde",
-        price: "59",
-        priceMxn: "1,090",
-        currency: "USD / mes",
-        priceNote: "sin contrato forzoso",
-        hook: "Tu página siempre al día, y tú siempre enterado de cómo trabaja.",
-        description:
-          'No pagas "por si algo se rompe". Cada mes recibes un reporte de cómo trabajó tu página —cuánta gente entró y cuántos te escribieron por WhatsApp— y yo la mantengo rápida, segura y actualizada, además de hacerte los cambios que necesites sin que aprendas nada técnico.',
-        featuresTitle: "Cada mes incluye:",
-        features: [
-          "Reporte mensual de desempeño: visitas, clics al botón de WhatsApp, formularios recibidos y páginas más vistas.",
-          "Monitoreo de disponibilidad y velocidad (uptime): tu sitio siempre en línea y rápido.",
-          "Respaldo mensual del sitio: si algo falla, se restaura.",
-          "Actualizaciones de seguridad y de plataforma.",
-          "Hasta 3–4 cambios menores: textos, fotos, precios, horarios, promociones.",
-          "1 recomendación de mejora al mes, basada en los números de tu reporte.",
-          "Prioridad en soporte ante cualquier urgencia.",
-        ],
-        footNote:
-          "Sin contrato forzoso. Lo cancelas cuando quieras. Es tener un encargado de tu presencia digital por menos de lo que cuesta una comida.",
-        waText:
-          "Hola Cristian 👋 Me interesa el Soporte web mensual (desde $1,090 MXN al mes). Quiero mantener mi sitio rápido y seguro y recibir el reporte mensual de desempeño. ¿Cómo lo activo?",
-        cta: "Activar mi mantenimiento",
-      },
+      note: "Estos son los precios reales, no un rango de referencia: lo que ves es lo que pagas por el alcance descrito en cada plan. Si tu proyecto se sale de ese alcance, te lo digo antes de empezar y te paso el número exacto — nunca a mitad del trabajo. Todos los planes mensuales son sin contrato de permanencia: los cancelas cuando quieras.",
+      // ── Escalera mensual: soporte → crecimiento → todo incluido ──
+      // Sustituye al bloque único de mantenimiento. El objetivo del análisis de
+      // mercado era crear techo de expansión: un cliente de $79 puede subir a
+      // $349 y de ahí a $1,100 sin cambiar de proveedor.
+      monthlyTitle: "Planes mensuales",
+      monthlySubtitle:
+        "Tu página lanzada es el punto de partida, no la meta. Estos planes la mantienen viva, te consiguen reseñas y hacen que te encuentren — con un reporte mensual de contactos y llamadas reales, no de visitas.",
+      monthlyNote:
+        "Sin contrato de permanencia en ninguno de los tres. Puedes subir, bajar o cancelar de un mes a otro. Todos incluyen un reporte mensual con los contactos y llamadas que generó tu presencia digital.",
+      monthly: [
+        {
+          badge: "Base · Continuidad",
+          name: "Soporte Web",
+          pricePrefix: "desde",
+          price: "79",
+          priceMxn: "1,430",
+          currency: "USD / mes",
+          currencyMonth: true,
+          priceNote: "según el tamaño de tu página",
+          tagline: "Tu página siempre al día",
+          description:
+            "No pagas «por si algo se rompe». Yo mantengo tu sitio rápido, seguro y actualizado, te hago los cambios que necesites y cada mes te digo cómo trabajó tu página.",
+          features: [
+            "Reporte mensual: contactos, llamadas, clics a WhatsApp y formularios recibidos.",
+            "Monitoreo de disponibilidad y velocidad: tu sitio siempre en línea.",
+            "Respaldo mensual del sitio: si algo falla, se restaura.",
+            "Actualizaciones de seguridad y de plataforma.",
+            "Hasta 3–4 cambios menores al mes: textos, fotos, precios, horarios, promociones.",
+            "1 recomendación de mejora al mes, basada en tus números.",
+            "Prioridad en soporte ante cualquier urgencia.",
+          ],
+          cta: "Activar mi soporte",
+          waText:
+            "Hola Cristian 👋 Me interesa el plan de Soporte Web (desde $79 USD al mes). Quiero mantener mi sitio rápido y seguro y recibir el reporte mensual. ¿Cómo lo activo?",
+          highlighted: false,
+        },
+        {
+          badge: "Nuevo · Más recomendado",
+          name: "Crecimiento+",
+          pricePrefix: "",
+          price: "349",
+          priceMxn: "6,290",
+          currency: "USD / mes",
+          currencyMonth: true,
+          priceNote: "incluye todo el Soporte Web",
+          tagline: "Que te encuentren, no solo que existas",
+          description:
+            "Tener página no sirve si nadie te encuentra. Este plan trabaja tu Perfil de Empresa en Google, tus reseñas y tu visibilidad en las búsquedas con IA, que es por donde ya llega una parte de tus clientes.",
+          features: [
+            "Todo lo del plan Soporte Web.",
+            "Perfil de Empresa en Google: creación, verificación y optimización completa.",
+            "Publicaciones mensuales en tu Perfil de Google y actualización de servicios y horarios.",
+            "Gestión de reseñas: sistema para pedirlas y respuesta a todas las que llegan.",
+            "Optimización para búsqueda con IA (ChatGPT, Google AI): que te citen cuando pregunten por un despacho como el tuyo.",
+            "Contenido y SEO local: te posiciono para las búsquedas de tu ciudad.",
+            "Reporte mensual ampliado: llamadas desde Google, direcciones solicitadas y reseñas nuevas.",
+          ],
+          cta: "Quiero Crecimiento+",
+          waText:
+            "Hola Cristian 👋 Me interesa el plan Crecimiento+ ($349 USD al mes) con Perfil de Empresa en Google, gestión de reseñas y optimización para búsqueda con IA. ¿Cómo empezamos?",
+          highlighted: true,
+        },
+        {
+          badge: "Techo · Todo incluido",
+          name: "Web + Marketing + SEO",
+          pricePrefix: "desde",
+          price: "1,100",
+          priceMxn: "19,800",
+          currency: "USD / mes",
+          currencyMonth: true,
+          priceNote: "presupuesto de anuncios aparte",
+          tagline: "Un sistema completo de captación",
+          description:
+            "Para el despacho que ya no quiere depender de la temporada. Página, anuncios, contenido y SEO trabajando juntos, con seguimiento de cada prospecto hasta que agenda.",
+          features: [
+            "Todo lo del plan Crecimiento+.",
+            "Gestión de campañas en Google Ads y Meta, con landing pages dedicadas.",
+            "SEO continuo: contenido mensual, enlaces y páginas por servicio y por ciudad.",
+            "Automatización de seguimiento: cada prospecto recibe respuesta aunque tú estés en temporada.",
+            "Landing pages nuevas para promociones o servicios sin costo extra.",
+            "Reporte mensual de costo por prospecto y por cliente cerrado.",
+            "Llamada estratégica mensual conmigo.",
+          ],
+          cta: "Cotizar mi paquete",
+          waText:
+            "Hola Cristian 👋 Me interesa el paquete Web + Marketing + SEO (desde $1,100 USD al mes). Quiero un sistema completo de captación para mi despacho. ¿Podemos platicar?",
+          highlighted: false,
+        },
+      ],
       packages: [
         {
           name: "Landing Page",
-          price: "299",
-          priceMxn: "5,490",
+          price: "349",
+          priceMxn: "6,290",
           currency: "USD",
           pricePrefix: "",
           tagline: "Empieza a captar clientes ya",
           description:
-            "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio, una promoción o una campaña sin complicarte.",
+            "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio, una promoción de temporada o una campaña sin complicarte.",
           features: [
             "Página única de alta conversión",
             "Copy de ventas + llamada a la acción clara",
@@ -449,65 +529,65 @@ export const translations = {
           ],
           cta: "Quiero mi landing",
           waText:
-            "Hola Cristian 👋 Me interesa la Landing Page ($5,490 MXN). Quiero una página enfocada 100% en captar clientes. ¿Me pueden dar más información?",
+            "Hola Cristian 👋 Me interesa la Landing Page ($349 USD). Quiero una página enfocada 100% en captar clientes. ¿Me pueden dar más información?",
           highlighted: false,
         },
         {
           name: "Sitio Web 4–6 páginas",
-          price: "599",
-          priceMxn: "10,900",
+          price: "899",
+          priceMxn: "16,190",
           currency: "USD",
           pricePrefix: "",
-          tagline: "El favorito de negocios en crecimiento",
+          tagline: "El favorito de los despachos en crecimiento",
           description:
-            "Tu negocio completo en línea, con una estructura pensada para vender y transmitir confianza desde el primer clic.",
+            "Tu despacho completo en línea: una página por servicio, estructura pensada para vender y confianza desde el primer clic.",
           features: [
-            "4 a 6 secciones estratégicas",
+            "4 a 6 páginas estratégicas (una por servicio)",
             "Estructura de ventas y confianza",
             "WhatsApp + formularios conectados",
-            "SEO base para que te encuentren",
-            "Diseño profesional y rápido",
+            "Bilingüe español/inglés si lo necesitas",
+            "SEO base para que te encuentren en tu ciudad",
           ],
           cta: "Empezar mi sitio",
           waText:
-            "Hola Cristian 👋 Me interesa el Sitio Web de 4 a 6 páginas ($10,900 MXN). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
+            "Hola Cristian 👋 Me interesa el Sitio Web de 4 a 6 páginas ($899 USD). Quiero llevar mi despacho completo a internet con una estructura que venda. ¿Cómo iniciamos?",
           highlighted: true,
         },
         {
           name: "Sitio Web 8–12 páginas",
-          price: "1,199",
-          priceMxn: "21,900",
+          price: "1,499",
+          priceMxn: "26,990",
           currency: "USD",
           pricePrefix: "desde",
           tagline: "Presencia y sistema digital completo",
           description:
-            "Una web robusta para negocios más grandes: más secciones, integraciones y una operación digital ordenada.",
+            "Una web robusta para despachos con varias oficinas o servicios: más páginas, integraciones y una operación digital ordenada.",
           features: [
-            "8 a 12 secciones completas",
+            "8 a 12 páginas completas",
+            "Páginas por servicio y por ciudad",
             "Integraciones y automatización",
             "Sistema de captación + seguimiento",
-            "SEO técnico avanzado",
-            "Acompañamiento en el lanzamiento",
+            "SEO técnico avanzado y acompañamiento en el lanzamiento",
           ],
           cta: "Cotizar mi web",
           waText:
-            "Hola Cristian 👋 Me interesa el Sitio Web de 8 a 12 páginas (desde $21,900 MXN) con integraciones y seguimiento. Me gustaría cotizarlo. ¿Podemos platicar?",
+            "Hola Cristian 👋 Me interesa el Sitio Web de 8 a 12 páginas (desde $1,499 USD) con integraciones y seguimiento. Me gustaría cotizarlo. ¿Podemos platicar?",
           highlighted: false,
         },
       ],
       extras: [
         {
           name: "Rediseño web",
-          price: "$299 – $1,199",
-          priceMxn: "$5,490 – $21,900",
+          price: "$349 – $1,499",
+          priceMxn: "$6,290 – $26,990",
           unit: "USD o más",
           description:
             "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
         },
         {
           name: "Optimización web",
-          price: "$299",
-          priceMxn: "$5,490",
+          price: "$349",
+          priceMxn: "$6,290",
           unit: "USD",
           description:
             "Más velocidad, mejor experiencia y CTAs que sí convierten visitas en mensajes.",
@@ -515,15 +595,15 @@ export const translations = {
         {
           name: "Página adicional",
           price: "$199",
-          priceMxn: "$3,690",
+          priceMxn: "$3,590",
           unit: "USD",
           description:
-            "Suma una sección extra a un sitio que ya hicimos juntos.",
+            "Suma una página extra a un sitio que ya hicimos juntos.",
         },
         {
           name: "Ajustes urgentes",
           price: "$99",
-          priceMxn: "$1,890",
+          priceMxn: "$1,790",
           unit: "USD",
           description:
             "Cambios rápidos fuera de alcance, resueltos con prioridad el mismo día.",
@@ -555,28 +635,43 @@ export const translations = {
         {
           question: "¿Cuánto tiempo toma desarrollar mi sitio web?",
           answer:
-            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Tras el diagnóstico te entrego un cronograma con fechas y entregables claros.",
+            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Después de la llamada te entrego un cronograma con fechas y entregables claros. Si estamos cerca de temporada, lo priorizamos para que esté listo antes del 15 de enero.",
         },
         {
           question: "¿Cuánto cuesta un sitio web con ustedes?",
           answer:
-            "Los planes van desde $5,490 MXN (landing page) hasta $21,900 MXN (web completa de 8 a 12 páginas). Empieza por el diagnóstico gratuito de 15 minutos: ahí definimos el alcance exacto y te digo el número real, sin compromiso.",
+            "Los planes van desde $349 USD (landing page) hasta $1,499 USD (web completa de 8 a 12 páginas), con el sitio de 4 a 6 páginas en $899 USD. Los precios están publicados: no necesitas una llamada de ventas para conocerlos. En la llamada gratis de 15 minutos solo confirmamos cuál te corresponde.",
         },
         {
           question:
-            "¿Qué es la Asesoría de Presencia Digital y en qué se diferencia de un proyecto?",
+            "¿Qué es el Diagnóstico de Presencia Digital y en qué se diferencia de un proyecto?",
           answer:
-            "El diagnóstico gratuito es una llamada de 15 minutos: la puerta de entrada, sin costo. La Asesoría ($1,390 MXN) es el paso que sigue si quieres profundidad: analizo a fondo tu presencia en Google, redes y WhatsApp y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completa.",
+            "La llamada de 15 minutos es gratis: es la puerta de entrada. El Diagnóstico ($149 USD) es el paso que sigue si quieres profundidad: analizo a fondo cómo te encuentran hoy en Google, Maps, reseñas y búsqueda con IA, te comparo con los despachos que te están ganando y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completo.",
         },
         {
-          question: "¿La asesoría tiene costo si después contrato un proyecto?",
+          question: "¿El diagnóstico tiene costo si después contrato un proyecto?",
           answer:
-            "No. Los $1,390 MXN de la asesoría se descuentan por completo del precio de tu proyecto. Si decides avanzar, la asesoría te sale gratis; y si no, te quedas con el plan de mejoras de todos modos.",
+            "No. Los $149 USD del diagnóstico se descuentan por completo del precio de tu proyecto. Si decides avanzar, el diagnóstico te sale gratis; y si no, te quedas con el plan de mejoras de todos modos.",
         },
         {
-          question: "¿Qué incluye el mantenimiento mensual?",
+          question: "¿Qué diferencia hay entre Soporte Web y Crecimiento+?",
           answer:
-            "Cada mes recibes un reporte de desempeño de tu sitio (visitas, clics a WhatsApp, formularios y páginas más vistas), además de monitoreo de velocidad y disponibilidad, respaldo, actualizaciones de seguridad, hasta 3–4 cambios menores y una recomendación de mejora. Todo sin contrato forzoso: lo cancelas cuando quieras.",
+            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ ($349 USD/mes) incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, publicaciones, gestión de reseñas, SEO local y optimización para que las búsquedas con IA te citen. Uno cuida lo que ya tienes; el otro te trae clientes nuevos.",
+        },
+        {
+          question: "¿Hay contrato de permanencia?",
+          answer:
+            "En ninguno de los planes. Los mensuales se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. Prefiero que te quedes porque funciona, no porque firmaste.",
+        },
+        {
+          question: "¿Trabajas con despachos en Estados Unidos aunque no estés aquí?",
+          answer:
+            "Sí, y es la mayor parte de mi trabajo. Todo se hace en remoto y en español, por WhatsApp, en tu horario. La diferencia con una agencia grande es que hablas siempre conmigo, no con un ejecutivo de cuenta distinto cada mes.",
+        },
+        {
+          question: "¿Puede ser bilingüe, en inglés y español?",
+          answer:
+            "Sí, y para un despacho latino en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Construyo las dos versiones con URLs separadas para que Google indexe ambas — este mismo sitio funciona así.",
         },
         {
           question: "¿Incluyen dominio y hosting?",
@@ -586,7 +681,7 @@ export const translations = {
         {
           question: "¿Pueden integrar WhatsApp, formularios o CRM?",
           answer:
-            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático.",
+            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático — algo que agradeces en plena temporada.",
         },
         {
           question: "¿Mi sitio web será editable?",
@@ -596,12 +691,7 @@ export const translations = {
         {
           question: "¿Qué necesito para empezar?",
           answer:
-            "Solo la llamada de diagnóstico gratuita de 15 minutos. En ella entiendo tu negocio, objetivos, servicios, cliente ideal y la acción que quieres generar: mensajes, citas, registros o ventas.",
-        },
-        {
-          question: "¿Ofrecen soporte después del lanzamiento?",
-          answer:
-            "Sí. El plan de soporte mensual (desde $1,090 MXN al mes) mantiene tu sitio rápido, seguro y actualizado, y cada mes te envío un reporte de cómo está trabajando tu página. Sin contrato forzoso.",
+            "Solo la llamada gratis de 15 minutos. En ella entiendo tu despacho, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
         },
       ],
     },
@@ -646,29 +736,12 @@ export const translations = {
         },
       ],
     },
-    freeAudit: {
-      badge: "🎁 Gratis · sin compromiso",
-      titleA: "¿Ya tienes web? Te decimos",
-      titleHighlight: "3 cosas",
-      titleB: "para que venda más.",
-      subtitle:
-        "Revisamos tu sitio actual sin costo y te enviamos 3 mejoras concretas de diseño, velocidad o conversión que puedes aplicar de inmediato. Y si aún no tienes web, te decimos por dónde empezar.",
-      bullets: ["✓ Sin costo", "✓ Sin compromiso", "✓ En 24–48 h"],
-      fieldName: "Nombre",
-      fieldWhatsapp: "WhatsApp",
-      fieldSite: "Tu sitio web (opcional)",
-      cta: "Quiero mi auditoría gratis",
-      sending: "Enviando…",
-      success:
-        "¡Listo! Recibimos tu solicitud. Te enviamos tus 3 mejoras en 24–48 h.",
-      error: "Hubo un problema. Escríbeme por WhatsApp y lo resolvemos.",
-    },
     calendly: {
       eyebrow: "🗓️ agenda en línea",
       titleA: "Reserva tu",
-      titleHighlight: "diagnóstico gratuito",
+      titleHighlight: "llamada gratis de 15 min",
       subtitle:
-        "Elige el horario que mejor te acomode. En 15 minutos revisamos tu negocio y te digo exactamente qué necesita tu presencia digital. Sin costo y sin compromiso.",
+        "Elige el horario que mejor te acomode. En 15 minutos revisamos tu despacho y te digo exactamente qué necesita tu presencia digital. Sin costo, sin compromiso y sin llamada de ventas — los precios ya están publicados.",
     },
     contact: {
       eyebrow: "// contacto",
@@ -708,33 +781,33 @@ export const translations = {
       error: "No se pudo enviar. Escríbeme por WhatsApp y te atiendo.",
     },
     finalCta: {
-      eyebrow: "// agenda tu diagnóstico",
+      eyebrow: "// agenda tu llamada",
       title:
-        "¿Listo para dejar de perder tiempo y convertir tu web en tu mejor vendedor?",
+        "¿Listo para dejar de perder los clientes grandes contra alguien que solo tiene mejor página?",
       subtitle:
-        "Agenda una llamada de 15 minutos y revisamos juntos qué necesita tu negocio: una página más profesional, una landing para captar prospectos, integraciones o una estructura digital más completa.",
-      ctaPrimary: "Agendar diagnóstico gratuito",
+        "Agenda una llamada de 15 minutos y revisamos juntos qué necesita tu despacho: una página más profesional, tu Perfil de Empresa en Google, un sistema de reseñas o una estructura digital completa. Sin costo y sin llamada de ventas.",
+      ctaPrimary: "Agendar llamada gratis",
       ctaWhatsapp: "Hablar por WhatsApp",
     },
     footer: {
       tagline:
-        "Soy Cristian Posada. Desde Durango construyo sitios web, landing pages, integraciones y sistemas de captación para negocios que quieren una presencia digital más sólida y funcional.",
+        "Soy Cristian Posada. Construyo sitios web, Perfiles de Empresa en Google y sistemas de captación para despachos de impuestos, bookkeepers y negocios de servicios latinos en Estados Unidos. Todo en español, por WhatsApp, con una sola persona responsable.",
       navTitle: "Navegación",
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
       hours: "Lunes a Domingo",
-      location: "Durango, México · trabajo remoto con todo el país",
-      cta: "Agendar diagnóstico",
+      location: "Atención remota en español a todo Estados Unidos",
+      cta: "Agendar llamada gratis",
       rights: "Todos los derechos reservados.",
       privacy: "Aviso de privacidad",
       terms: "Términos y condiciones",
       servicesList: [
-        "Desarrollo web",
+        "Webs para despachos de impuestos",
         "Landing pages",
-        "Integraciones",
-        "Rediseño web",
+        "Perfil de Empresa en Google",
+        "Gestión de reseñas",
+        "SEO local y búsqueda con IA",
         "Soporte y optimización",
-        "Captación digital",
       ],
     },
     // ── Franja de proyectos reales en el home (hallazgo #4) ──
@@ -753,8 +826,8 @@ export const translations = {
       subtitle:
         "No tienes que escribirme para saber cuánto cuesta. Los precios están en la página, con lo que incluye cada plan.",
       fromLabel: "desde",
-      amount: "5,490",
-      currency: "MXN",
+      amount: "349",
+      currency: "USD",
       amountNote: "landing page completa · pago único",
       cta: "Ver todos los precios",
     },
@@ -762,11 +835,11 @@ export const translations = {
     founder: {
       eyebrow: "// quién lo hace",
       name: "Cristian Posada",
-      role: "Desarrollador web · Durango, México",
+      role: "Desarrollador web · atención en español a EE. UU.",
       title: "No es una agencia. Soy yo.",
       body:
-        "Cuando me escribes, te contesto yo. Cuando revisamos tu negocio, lo reviso yo. Y cuando tu sitio esté en línea, sigo siendo yo quien lo mantiene. Trabajo desde Durango con negocios de todo México y de Estados Unidos, y prefiero llevar pocos proyectos bien que muchos a medias.",
-      cta: "Agenda 15 minutos conmigo",
+        "Cuando me escribes, te contesto yo. Cuando revisamos tu despacho, lo reviso yo. Y cuando tu sitio esté en línea, sigo siendo yo quien lo mantiene — también en el mes seis, cuando la agencia de turno ya te cambió de ejecutivo tres veces. Trabajo en remoto y en español con despachos de impuestos y negocios de servicios en Estados Unidos, y prefiero llevar pocos proyectos bien que muchos a medias.",
+      cta: "Agendar llamada gratis",
     },
     // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
     homeFaq: {
@@ -778,17 +851,22 @@ export const translations = {
         {
           question: "¿Cuánto cuesta y por qué no lo veo hasta el final?",
           answer:
-            "Sí lo ves: los precios están publicados. Desde $5,490 MXN una landing page hasta $21,900 MXN un sitio completo de 8 a 12 páginas. En la llamada solo confirmamos cuál te corresponde.",
+            "Sí lo ves: los precios están publicados. Desde $349 USD una landing page hasta $1,499 USD un sitio completo de 8 a 12 páginas. No hay llamada de ventas para conocerlos ni contrato de permanencia; en la llamada solo confirmamos cuál te corresponde.",
         },
         {
           question: "¿La llamada de 15 minutos tiene costo o compromiso?",
           answer:
-            "Ninguno de los dos. Son 15 minutos para entender tu negocio y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
+            "Ninguno de los dos. Son 15 minutos para entender tu despacho y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
+        },
+        {
+          question: "Estoy en EE. UU. y tú no. ¿Cómo funciona eso?",
+          answer:
+            "En remoto, en español y por WhatsApp, en tu horario. Es como trabajas ya con la mayoría de tus proveedores. La diferencia frente a una agencia es que siempre hablas conmigo, y frente a Fiverr, que en el mes seis sigo contestando.",
         },
         {
           question: "No sé nada de tecnología. ¿Voy a poder?",
           answer:
-            "Esa es justo la idea. Yo me encargo de dominio, hosting, correo y configuración. Tú solo me dices qué vendes y a quién.",
+            "Esa es justo la idea. Yo me encargo de dominio, hosting, correo, Perfil de Google y configuración. Tú solo me dices qué servicios das y a quién.",
         },
         {
           question: "¿Y si ya tengo página pero no me sirve?",
@@ -800,19 +878,29 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "ProCode Dev | Desarrollo Web en Durango que Convierte Visitas en Clientes",
+          "Páginas Web para Despachos de Impuestos en EE. UU. | ProCode Dev",
         description:
-          "Desarrollo web enfocado en resultados desde Durango. Construyo sitios web, landing pages, integraciones y sistemas digitales que convierten visitantes en clientes y automatizan tu negocio. Agenda tu diagnóstico gratuito de 15 minutos.",
+          "Sitios web, Perfil de Empresa en Google y captación de clientes para despachos de impuestos, bookkeepers y EAs latinos en Estados Unidos. Precios públicos desde $349 USD, sin contrato de permanencia y todo en español. Agenda tu llamada gratis de 15 minutos.",
         heroKicker: "Inicio",
       },
-      services: {
-        title: "Servicios de Desarrollo Web y Automatización | ProCode Dev",
+      tax: {
+        title:
+          "Páginas Web para Preparadores de Impuestos y Bookkeepers | ProCode Dev",
         description:
-          "Sitios web, landing pages, integraciones, rediseño y soporte. Conoce los servicios y el proceso con el que construyo sistemas digitales que venden.",
+          "Página web, Perfil de Empresa en Google y gestión de reseñas para despachos de impuestos, bookkeepers, EAs y CPAs latinos en EE. UU. Precios públicos desde $349 USD, sin contrato de permanencia, todo en español por WhatsApp.",
+        heroTitleA: "Para preparadores de impuestos, bookkeepers y",
+        heroHighlight: "despachos contables",
+        heroSubtitle:
+          "El oficio que mejor conozco. Sé qué busca tu cliente, en qué mes lo busca y por qué elige al de al lado.",
+      },
+      services: {
+        title: "Servicios de Desarrollo Web y Presencia en Google | ProCode Dev",
+        description:
+          "Sitios web, landing pages, Perfil de Empresa en Google, gestión de reseñas, SEO local y soporte mensual para despachos de impuestos y negocios de servicios latinos en EE. UU.",
         heroTitleA: "Servicios que convierten tu presencia digital en",
         heroHighlight: "un sistema de ventas",
         heroSubtitle:
-          "Desarrollo web, captación e integraciones — todo con un proceso claro y enfocado en resultados.",
+          "Desarrollo web, presencia en Google y captación — todo con un proceso claro y enfocado en resultados.",
       },
       portfolio: {
         title: "Portafolio de Sitios Web | ProCode Dev",
@@ -824,23 +912,98 @@ export const translations = {
           "Sitios en vivo que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos funcionando.",
       },
       pricing: {
-        title: "Precios de Desarrollo Web y Asesoría Digital | ProCode Dev",
+        title: "Precios en USD de Páginas Web y Presencia Digital | ProCode Dev",
         description:
-          "Precios claros: asesoría de presencia digital, landing pages, sitios completos, integraciones y soporte mensual con reporte de desempeño. Agenda tu diagnóstico gratuito.",
-        heroTitleA: "Precios claros para convertir tu web en",
-        heroHighlight: "tu mejor vendedor",
+          "Precios públicos en dólares: landing $349, sitio de 4–6 páginas $899, sitio grande desde $1,499. Soporte desde $79/mes, Crecimiento+ $349/mes y paquete Web + Marketing + SEO desde $1,100/mes. Sin contrato de permanencia.",
+        heroTitleA: "Precios públicos, en dólares, sin",
+        heroHighlight: "llamada de ventas",
         heroSubtitle:
-          "Invierte una vez y deja que tu web trabaje por ti todos los días. Sin sorpresas: cada proyecto se cotiza según su alcance real y lo definimos juntos en tu diagnóstico gratuito.",
+          "Lo que ves es lo que pagas. Sin cotización sorpresa, sin precio oculto y sin contrato de 12 meses: los planes mensuales se cancelan cuando quieras.",
       },
       contact: {
-        title: "Contacto | Agenda tu Diagnóstico Gratuito | ProCode Dev",
+        title: "Contacto | Agenda tu Llamada Gratis de 15 Min | ProCode Dev",
         description:
-          "Agenda tu diagnóstico gratuito de 15 minutos, o escríbeme por WhatsApp si prefieres. Sin compromiso y sin tecnicismos.",
+          "Agenda tu llamada gratis de 15 minutos, o escríbeme por WhatsApp si prefieres. En español, sin compromiso y sin tecnicismos.",
         heroTitleA: "Agenda 15 minutos",
         heroHighlight: "conmigo",
         heroSubtitle:
-          "Elige el horario que te acomode y platicamos 15 minutos. Sin costo, sin compromiso.",
+          "Elige el horario que te acomode y platicamos 15 minutos. Sin costo, sin compromiso y sin llamada de ventas: los precios ya están publicados.",
       },
+    },
+    // ── Landing de nicho: preparadores de impuestos, bookkeepers, EA y CPA ──
+    tax: {
+      promiseEyebrow: "// la promesa",
+      promiseTitle:
+        "Dejas de perder los business returns contra el despacho que solo tiene mejor página.",
+      promiseBody:
+        "Tu despacho ya hace el trabajo serio: corporaciones, payroll, bookkeeping mensual, representación ante el IRS. Pero cuando alguien te busca en Google encuentra una página de Facebook sin actualizar, tres reseñas y un número de teléfono. El cliente de $2,000 se va con quien se ve como una firma — aunque tú tengas veinte años más de oficio. Eso es lo que arreglo.",
+      rtbTitle: "Por qué puedes creerme",
+      rtb: [
+        {
+          icon: "◎",
+          title: "Casos en el mismo oficio",
+          description:
+            "No aprendo tu negocio contigo. Ya construí para despachos fiscales y contables, y puedes abrir los sitios y juzgarlos tú.",
+        },
+        {
+          icon: "▣",
+          title: "Precios públicos",
+          description:
+            "Están en la página, en dólares. Sin llamada de ventas para conocerlos y sin contrato de permanencia.",
+        },
+        {
+          icon: "💬",
+          title: "Todo en español, por WhatsApp",
+          description:
+            "Una sola persona responsable, en tu idioma y en tu horario. No un ticket ni un ejecutivo de cuenta distinto cada mes.",
+        },
+        {
+          icon: "📈",
+          title: "Reporte de contactos reales",
+          description:
+            "Cada mes te digo cuántas llamadas y mensajes generó tu presencia digital. No cuántas visitas: cuántos clientes potenciales.",
+        },
+      ],
+      vsTitle: "Frente a lo que ya consideraste",
+      vsSubtitle:
+        "Casi todos los despachos con los que hablo probaron una de estas cuatro. Esto es lo que cambia conmigo.",
+      vs: [
+        {
+          name: "Wix o Squarespace",
+          them: "Barato, pero lo armas tú y lo mantienes tú.",
+          us: "No tienes que hacerlo tú, ni mantenerlo. En temporada eso vale más que la diferencia de precio.",
+        },
+        {
+          name: "Fiverr",
+          them: "Entregan y desaparecen. En el mes seis nadie contesta.",
+          us: "Una persona con nombre que sigue respondiendo el mes seis, y el año siguiente.",
+        },
+        {
+          name: "Hibu y similares",
+          them: "Contrato de 12 meses, precio que no ves hasta la llamada.",
+          us: "Sin contrato de permanencia y con los precios publicados en esta misma página.",
+        },
+        {
+          name: "Agencia de $3,000/mes",
+          them: "Buen trabajo, pero fuera del presupuesto de un despacho.",
+          us: "Una décima parte del costo, con el mismo enfoque en captar clientes reales.",
+        },
+      ],
+      forTitle: "Trabajo con",
+      forItems: [
+        "Preparadores de impuestos independientes",
+        "Bookkeepers y despachos contables",
+        "Enrolled Agents (EA)",
+        "CPAs de práctica pequeña y mediana",
+        "Despachos con servicios de payroll",
+        "Oficinas con ITIN, notary y multiservicios",
+      ],
+      seasonTitle: "El calendario manda, y lo sé",
+      seasonBody:
+        "Tu año no es como el de otros negocios: enero a abril decide casi todo. Si empezamos en verano u otoño, llegas a la temporada con la página, el Perfil de Google y las reseñas ya trabajando. Si me escribes en febrero, priorizamos lo que se puede lanzar en dos semanas y el resto lo hacemos después del 15 de abril.",
+      ctaTitle: "15 minutos, en español, sin compromiso",
+      ctaBody:
+        "Te digo qué está frenando a tu despacho hoy — aunque la respuesta sea que todavía no necesitas una página conmigo.",
     },
   },
 
@@ -850,40 +1013,42 @@ export const translations = {
     nav: {
       home: "Home",
       services: "Services",
+      tax: "For tax pros",
       portfolio: "Portfolio",
       pricing: "Pricing",
       blog: "Blog",
       contact: "Contact",
-      cta: "Book a diagnosis",
+      cta: "Book a free call",
     },
     common: {
-      ctaPrimary: "Book a free diagnosis",
+      // One entry offer, one button label across the whole site: the free
+      // 15-minute call. The $149 Diagnosis lives only on /pricing as step 2.
+      ctaPrimary: "Book a free call",
       ctaWhatsapp: "Message on WhatsApp",
-      ctaProposal: "Request a proposal",
-      free: "Free · no commitment",
+      free: "Free · 15 min · no commitment",
       viewServices: "View services",
     },
     hero: {
-      eyebrow: "// web development · durango, mexico",
-      titleA: "Websites and digital systems that",
-      titleHighlight: "grow",
-      titleB: "your business.",
+      eyebrow: "// websites for tax firms · united states",
+      titleA: "Your tax practice, with the website that",
+      titleHighlight: "wins the bigger clients",
+
       subtitle:
-        "We design websites and digital systems that turn visitors into customers and automate your operation. Stop losing hours repeating yourself and chasing leads: your site works for you while you sell.",
-      badges: ["Professional design", "Results-focused", "Ongoing support"],
+        "I'm Cristian Posada. I make your practice look —and get found— like the serious firm you already are, so you stop losing business returns and monthly bookkeeping to the preparer down the street who just has a better website. In Spanish or English, over WhatsApp, with one person accountable.",
+      badges: ["Public pricing", "No lock-in contract", "One person accountable"],
       cardLabel: "Digital system",
-      cardTitle: "Grow your business online",
+      cardTitle: "Get found before tax season",
       cardText:
-        "Website, forms, WhatsApp, booking and follow-up connected into a single structure.",
-      cardCta: "Request a proposal",
+        "Website, Google Business Profile, reviews, WhatsApp and booking connected into a single structure.",
+      cardCta: "Book a free call",
       panelTitle: "What you end up with",
       panelItems: [
-        "A page that explains your service so you don't have to",
+        "A page that explains your services so you don't have to",
         "A WhatsApp button with the message already written",
         "Online booking wired to your calendar",
-        "Form submissions in your inbox instantly",
+        "A Google profile that shows up for 'tax preparer near me'",
       ],
-      chips: ["Landing pages", "Integrations", "Automation"],
+      chips: ["Tax firms", "Bookkeeping", "EA & CPA"],
     },
     values: {
       eyebrow: "// why it works",
@@ -951,10 +1116,17 @@ export const translations = {
         },
         {
           icon: "◈",
-          category: "Support & optimization",
-          title: "Continuous improvement and maintenance",
+          category: "Google Business Profile",
+          title: "Show up when they search near you",
           description:
-            "We provide technical and strategic follow-up to keep your site updated, stable and aligned with your business goals.",
+            "I create, verify and optimize your Google Business Profile, post every month and set up a system to request and answer reviews. It's where most calls to a local business come from.",
+        },
+        {
+          icon: "✦",
+          category: "AI search",
+          title: "Get cited by ChatGPT and Google AI",
+          description:
+            "More and more people ask an AI instead of searching Google. I structure your information so you get mentioned when someone asks for a business like yours.",
         },
         {
           icon: "↗",
@@ -1146,44 +1318,44 @@ export const translations = {
       titleHighlight: "sell for you.",
       titleB: "",
       subtitle:
-        "From an advisory to get clarity, to a full site with automatic follow-up. Choose where to start and grow at your own pace.",
+        "Public pricing, in US dollars, with no sales call to find out and no lock-in contract. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
       currencyLabel: "Show prices in",
       currencyMxn: "MXN",
       currencyUsd: "USD",
       currencyNoteMxn:
-        "Prices in Mexican pesos, at a fixed rate of $18 MXN per US dollar.",
+        "Mexican peso equivalent at a fixed rate of $18 MXN per US dollar. Billing is in USD.",
       currencyNoteUsd: "Prices in US dollars.",
       mxnUnit: "MXN",
       mxnUnitMonth: "MXN / month",
       advisory: {
-        badge: "Step 2 · After the diagnosis",
-        name: "Digital Presence Advisory",
-        price: "75",
-        priceMxn: "1,390",
+        badge: "Step 2 · After the call",
+        name: "Digital Presence Diagnosis",
+        price: "149",
+        priceMxn: "2,690",
         currency: "USD",
         priceNote: "one-time · credited to your project",
         hook: "For when we have already talked and you want the full plan in writing.",
         description:
-          "The free 15-minute diagnosis gives you a first read. This is what comes next if you want depth: I take a deep look at how a client finds you today on Google, social media and WhatsApp, get inside your business and hand you a written plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
+          "The free 15-minute call gives you a first read. This is what comes next if you want depth: I take a deep look at how a client finds you today when they search 'tax preparer near me' —Google, Maps, reviews, social and your current site—, compare your presence against the firms beating you, and hand you a written plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
         homeEyebrow: "// the next step",
         homeTitle: "Want the full plan in writing?",
         prereq:
-          "Always start with the free 15-minute diagnosis. If we see there that you need an in-depth plan, this is the step that follows.",
+          "Always start with the free 15-minute call. If we see there that you need an in-depth plan, this is the step that follows.",
         viewPricing: "See all pricing",
         waText:
-          "Hi Cristian 👋 I'm interested in the Digital Presence Advisory ($75 USD). I'd like to know how clients find me today on Google, social media and WhatsApp and get an improvement plan. How do we start?",
+          "Hi Cristian 👋 I'm interested in the Digital Presence Diagnosis ($149 USD). I'd like to know how clients find me today and get an improvement plan. How do we start?",
         stepsTitle: "How it works (3 phases)",
         steps: [
           {
-            name: "Phase 1 · We get to know your business",
+            name: "Phase 1 · I get to know your practice",
             description:
-              "Call + short questionnaire: what you sell, your ideal client and how you capture clients today.",
+              "Call + short questionnaire: what services you offer, your ideal client and how clients reach you today.",
           },
           {
             name: "Phase 2 · In-depth diagnosis",
             description:
-              "We review your presence on Google, Maps, reviews, social media, your current site and your WhatsApp.",
+              "I review your Google Business Profile, Maps, reviews, social media, your current site, your WhatsApp and how AI search sees you.",
           },
           {
             name: "Phase 3 · Solutions plan",
@@ -1192,49 +1364,111 @@ export const translations = {
           },
         ],
         creditNote:
-          "The $75 is credited in full if you decide to do your project with us. In practice, the advisory is free if you move forward.",
-        cta: "Book my advisory",
+          "The $149 is credited in full if you decide to do your project with me. In practice, the diagnosis is free if you move forward.",
+        cta: "I want my diagnosis",
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "These are the real prices, not a reference range: what you see is what you pay for the scope described in each plan. If your project falls outside that scope, I tell you before we start and give you the exact number — never halfway through the work.",
-      maintenance: {
-        badge: "Recommended · Continuity",
-        name: "Monthly web support",
-        pricePrefix: "from",
-        price: "59",
-        priceMxn: "1,090",
-        currency: "USD / mo",
-        priceNote: "no lock-in contract",
-        hook: "Your site always up to date, and you always aware of how it's working.",
-        description:
-          'You don\'t pay "in case something breaks". Every month you get a report on how your site performed —how many people came in and how many messaged you on WhatsApp— and I keep it fast, secure and updated, plus make the changes you need without you learning anything technical.',
-        featuresTitle: "Every month includes:",
-        features: [
-          "Monthly performance report: visits, WhatsApp button clicks, forms received and most-viewed pages.",
-          "Uptime and speed monitoring: your site always online and fast.",
-          "Monthly site backup: if something fails, it's restored.",
-          "Security and platform updates.",
-          "Up to 3–4 minor changes: text, photos, prices, hours, promotions.",
-          "1 improvement recommendation per month, based on your report's numbers.",
-          "Priority support for any urgent issue.",
-        ],
-        footNote:
-          "No lock-in contract. Cancel whenever you want. It's like having someone in charge of your digital presence for less than the cost of a meal.",
-        waText:
-          "Hi Cristian 👋 I'm interested in the Monthly web support (from $59 USD/mo). I want to keep my site fast and secure and get the monthly performance report. How do I activate it?",
-        cta: "Activate my support",
-      },
+      note: "These are the real prices, not a reference range: what you see is what you pay for the scope described in each plan. If your project falls outside that scope, I tell you before we start and give you the exact number — never halfway through the work. Every monthly plan is lock-in free: cancel whenever you want.",
+      // ── Monthly ladder: support → growth → all-in ──
+      // Replaces the single maintenance block. The market analysis called for a
+      // ceiling to expand into: a $79 client can move to $349 and then $1,100
+      // without ever changing vendors.
+      monthlyTitle: "Monthly plans",
+      monthlySubtitle:
+        "Launching your site is the starting point, not the goal. These plans keep it alive, bring in reviews and get you found — with a monthly report of real contacts and calls, not page views.",
+      monthlyNote:
+        "No lock-in contract on any of the three. You can move up, down or cancel from one month to the next. All of them include a monthly report of the contacts and calls your digital presence generated.",
+      monthly: [
+        {
+          badge: "Base · Continuity",
+          name: "Web Support",
+          pricePrefix: "from",
+          price: "79",
+          priceMxn: "1,430",
+          currency: "USD / mo",
+          currencyMonth: true,
+          priceNote: "depending on the size of your site",
+          tagline: "Your site always up to date",
+          description:
+            "You don't pay \"in case something breaks\". I keep your site fast, secure and updated, make the changes you need, and every month I tell you how your page performed.",
+          features: [
+            "Monthly report: contacts, calls, WhatsApp clicks and forms received.",
+            "Uptime and speed monitoring: your site always online.",
+            "Monthly site backup: if something fails, it's restored.",
+            "Security and platform updates.",
+            "Up to 3–4 minor changes a month: text, photos, prices, hours, promotions.",
+            "1 improvement recommendation per month, based on your numbers.",
+            "Priority support for any urgent issue.",
+          ],
+          cta: "Activate my support",
+          waText:
+            "Hi Cristian 👋 I'm interested in the Web Support plan (from $79 USD/mo). I want to keep my site fast and secure and get the monthly report. How do I activate it?",
+          highlighted: false,
+        },
+        {
+          badge: "New · Most recommended",
+          name: "Growth+",
+          pricePrefix: "",
+          price: "349",
+          priceMxn: "6,290",
+          currency: "USD / mo",
+          currencyMonth: true,
+          priceNote: "includes everything in Web Support",
+          tagline: "Get found, not just exist",
+          description:
+            "Having a website doesn't help if nobody finds you. This plan works your Google Business Profile, your reviews and your visibility in AI search, which is already where part of your clients come from.",
+          features: [
+            "Everything in the Web Support plan.",
+            "Google Business Profile: setup, verification and full optimization.",
+            "Monthly posts on your Google profile plus service and hours updates.",
+            "Review management: a system to request them and a reply to every one that lands.",
+            "AI search optimization (ChatGPT, Google AI): so you get cited when someone asks for a firm like yours.",
+            "Local SEO and content: I position you for searches in your city.",
+            "Extended monthly report: calls from Google, direction requests and new reviews.",
+          ],
+          cta: "I want Growth+",
+          waText:
+            "Hi Cristian 👋 I'm interested in the Growth+ plan ($349 USD/mo) with Google Business Profile, review management and AI search optimization. How do we start?",
+          highlighted: true,
+        },
+        {
+          badge: "Ceiling · All-in",
+          name: "Web + Marketing + SEO",
+          pricePrefix: "from",
+          price: "1,100",
+          priceMxn: "19,800",
+          currency: "USD / mo",
+          currencyMonth: true,
+          priceNote: "ad budget billed separately",
+          tagline: "A complete client-acquisition system",
+          description:
+            "For the practice that no longer wants to depend on the season. Website, ads, content and SEO working together, with every lead tracked until they book.",
+          features: [
+            "Everything in the Growth+ plan.",
+            "Google Ads and Meta campaign management, with dedicated landing pages.",
+            "Ongoing SEO: monthly content, links, and pages per service and per city.",
+            "Follow-up automation: every lead gets a reply even when you're deep in season.",
+            "New landing pages for promotions or services at no extra cost.",
+            "Monthly report of cost per lead and per closed client.",
+            "Monthly strategy call with me.",
+          ],
+          cta: "Quote my package",
+          waText:
+            "Hi Cristian 👋 I'm interested in the Web + Marketing + SEO package (from $1,100 USD/mo). I want a complete client-acquisition system for my practice. Can we talk?",
+          highlighted: false,
+        },
+      ],
       packages: [
         {
           name: "Landing Page",
-          price: "299",
-          priceMxn: "5,490",
+          price: "349",
+          priceMxn: "6,290",
           currency: "USD",
           pricePrefix: "",
           tagline: "Start capturing clients now",
           description:
-            "A single page, 100% focused on converting. Ideal to launch a service, a promotion or a campaign without complications.",
+            "A single page, 100% focused on converting. Ideal to launch a service, a seasonal promotion or a campaign without complications.",
           features: [
             "Single high-conversion page",
             "Sales copy + clear call to action",
@@ -1244,65 +1478,65 @@ export const translations = {
           ],
           cta: "I want my landing",
           waText:
-            "Hi Cristian 👋 I'm interested in the Landing Page ($299 USD). I want a page 100% focused on capturing clients. Can you tell me more?",
+            "Hi Cristian 👋 I'm interested in the Landing Page ($349 USD). I want a page 100% focused on capturing clients. Can you tell me more?",
           highlighted: false,
         },
         {
           name: "Website 4–6 pages",
-          price: "599",
-          priceMxn: "10,900",
+          price: "899",
+          priceMxn: "16,190",
           currency: "USD",
           pricePrefix: "",
-          tagline: "The favorite of growing businesses",
+          tagline: "The favorite of growing practices",
           description:
-            "Your whole business online, with a structure built to sell and build trust from the first click.",
+            "Your whole practice online: a page per service, a structure built to sell and trust from the first click.",
           features: [
-            "4 to 6 strategic sections",
+            "4 to 6 strategic pages (one per service)",
             "Sales and trust structure",
             "WhatsApp + connected forms",
-            "Base SEO so you get found",
-            "Fast, professional design",
+            "Bilingual English/Spanish if you need it",
+            "Base SEO so you get found in your city",
           ],
           cta: "Start my site",
           waText:
-            "Hi Cristian 👋 I'm interested in the 4–6 page Website ($599 USD). I want to take my whole business online with a structure that sells. How do we start?",
+            "Hi Cristian 👋 I'm interested in the 4–6 page Website ($899 USD). I want to take my whole practice online with a structure that sells. How do we start?",
           highlighted: true,
         },
         {
           name: "Website 8–12 pages",
-          price: "1,199",
-          priceMxn: "21,900",
+          price: "1,499",
+          priceMxn: "26,990",
           currency: "USD",
           pricePrefix: "from",
           tagline: "Full presence and digital system",
           description:
-            "A robust site for larger businesses: more sections, integrations and a clean digital operation.",
+            "A robust site for practices with several offices or services: more pages, integrations and a clean digital operation.",
           features: [
-            "8 to 12 complete sections",
+            "8 to 12 complete pages",
+            "Pages per service and per city",
             "Integrations and automation",
             "Lead capture + follow-up system",
-            "Advanced technical SEO",
-            "Launch support",
+            "Advanced technical SEO and launch support",
           ],
           cta: "Quote my site",
           waText:
-            "Hi Cristian 👋 I'm interested in the 8–12 page Website (from $1,199 USD) with integrations and follow-up. I'd like a quote. Can we talk?",
+            "Hi Cristian 👋 I'm interested in the 8–12 page Website (from $1,499 USD) with integrations and follow-up. I'd like a quote. Can we talk?",
           highlighted: false,
         },
       ],
       extras: [
         {
           name: "Website redesign",
-          price: "$299 – $1,199",
-          priceMxn: "$5,490 – $21,900",
+          price: "$349 – $1,499",
+          priceMxn: "$6,290 – $26,990",
           unit: "USD or more",
           description:
             "Renew image, structure and conversion on your current site without starting from scratch.",
         },
         {
           name: "Website optimization",
-          price: "$299",
-          priceMxn: "$5,490",
+          price: "$349",
+          priceMxn: "$6,290",
           unit: "USD",
           description:
             "More speed, better experience and CTAs that actually turn visits into messages.",
@@ -1310,14 +1544,14 @@ export const translations = {
         {
           name: "Extra page",
           price: "$199",
-          priceMxn: "$3,690",
+          priceMxn: "$3,590",
           unit: "USD",
-          description: "Add an extra section to a site you already have with us.",
+          description: "Add an extra page to a site you already have with me.",
         },
         {
           name: "Urgent tweaks",
           price: "$99",
-          priceMxn: "$1,890",
+          priceMxn: "$1,790",
           unit: "USD",
           description:
             "Fast out-of-scope changes, resolved with priority the same day.",
@@ -1349,53 +1583,63 @@ export const translations = {
         {
           question: "How long does it take to build my website?",
           answer:
-            "It depends on scope. A landing page usually takes 1 to 2 weeks, and a full site with integrations 3 to 6 weeks. After the diagnosis we give you a timeline with clear dates and deliverables.",
+            "It depends on scope. A landing page usually takes 1 to 2 weeks, and a full site with integrations 3 to 6 weeks. After the call I give you a timeline with clear dates and deliverables. If we're close to season, we prioritize so it's live before January 15.",
         },
         {
           question: "How much does a website cost with you?",
           answer:
-            "Plans range from $299 USD (landing page) to $1,199 USD (full 8–12 page site). Start with the free 15-minute diagnosis: that's where we define the exact scope and I give you the real number, no commitment.",
+            "Plans range from $349 USD (landing page) to $1,499 USD (full 8–12 page site), with the 4–6 page site at $899 USD. Pricing is published: you don't need a sales call to see it. The free 15-minute call is just to confirm which one fits you.",
         },
         {
           question:
-            "What is the Digital Presence Advisory and how is it different from a project?",
+            "What is the Digital Presence Diagnosis and how is it different from a project?",
           answer:
-            "The free diagnosis is a 15-minute call: the entry point, at no cost. The Advisory ($75 USD) is the step that follows if you want depth: I analyze your presence on Google, social media and WhatsApp in detail and hand you a written, prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. If you later do your project with me, it's credited in full.",
+            "The 15-minute call is free: that's the entry point. The Diagnosis ($149 USD) is the step that follows if you want depth: I analyze in detail how people find you today on Google, Maps, reviews and AI search, compare you against the firms beating you, and hand you a written, prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. If you later do your project with me, it's credited in full.",
         },
         {
-          question: "Is the advisory free if I later hire a project?",
+          question: "Is the diagnosis free if I later hire a project?",
           answer:
-            "Yes. The $75 advisory is fully deducted from the price of your project. If you decide to move forward, the advisory is free; and if not, you keep the improvement plan anyway.",
+            "Yes. The $149 diagnosis is fully deducted from the price of your project. If you decide to move forward, the diagnosis is free; and if not, you keep the improvement plan anyway.",
         },
         {
-          question: "What does the monthly maintenance include?",
+          question: "What's the difference between Web Support and Growth+?",
           answer:
-            "Every month you get a performance report for your site (visits, WhatsApp clicks, forms and most-viewed pages), plus speed and uptime monitoring, backup, security updates, up to 3–4 minor changes and an improvement recommendation. All with no lock-in contract: cancel whenever you want.",
+            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ ($349 USD/mo) includes all of that and also works to get you found: Google Business Profile, posts, review management, local SEO and optimization so AI search cites you. One protects what you have; the other brings you new clients.",
+        },
+        {
+          question: "Is there a lock-in contract?",
+          answer:
+            "Not on any plan. Monthly plans cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. I'd rather you stay because it works than because you signed.",
+        },
+        {
+          question: "Do you work with U.S. practices even though you're not here?",
+          answer:
+            "Yes, and it's most of my work. Everything is done remotely, in Spanish or English, over WhatsApp, on your schedule. The difference from a large agency is that you always talk to me, not to a different account executive every month.",
+        },
+        {
+          question: "Can the site be bilingual, English and Spanish?",
+          answer:
+            "Yes, and for a Latino practice in the U.S. that's usually the right call: your current clients search in Spanish and many new ones search in English. I build both versions with separate URLs so Google indexes each one — this very site works that way.",
         },
         {
           question: "Do you include domain and hosting?",
           answer:
-            "Yes. We guide and set up your domain, hosting and professional email. If you already have them, we work on your current infrastructure without issue.",
+            "Yes. I guide and set up your domain, hosting and professional email. If you already have them, I work on your current infrastructure without issue.",
         },
         {
           question: "Can you integrate WhatsApp, forms or CRM?",
           answer:
-            "Absolutely. We connect forms, WhatsApp buttons, booking calendars, CRM and automations so every lead is registered and followed up automatically.",
+            "Absolutely. I connect forms, WhatsApp buttons, booking calendars, CRM and automations so every lead is registered and followed up automatically — which you'll appreciate in the middle of season.",
         },
         {
           question: "Will my website be editable?",
           answer:
-            "Depending on your needs. We build high-performance static sites or editable structures with an admin panel when you need to update content frequently.",
+            "Depending on your needs. I build high-performance static sites or editable structures with an admin panel when you need to update content frequently.",
         },
         {
           question: "What do I need to get started?",
           answer:
-            "Just a diagnosis call. In it we understand your business, goals, services, ideal client and the action you want to drive: messages, bookings, sign-ups or sales.",
-        },
-        {
-          question: "Do you offer support after launch?",
-          answer:
-            "Yes. The monthly support plan (from $59 USD/mo) keeps your site fast, secure and updated, and every month we send you a report on how your page is working. No lock-in contract.",
+            "Just the free 15-minute call. In it I understand your practice, your services, your ideal client and the action you want to drive: calls, bookings or messages.",
         },
       ],
     },
@@ -1440,29 +1684,12 @@ export const translations = {
         },
       ],
     },
-    freeAudit: {
-      badge: "🎁 Free · no commitment",
-      titleA: "Already have a site? We'll tell you",
-      titleHighlight: "3 things",
-      titleB: "to make it sell more.",
-      subtitle:
-        "We review your current site for free and send you 3 concrete improvements in design, speed or conversion you can apply right away. And if you don't have a site yet, we tell you where to start.",
-      bullets: ["✓ Free", "✓ No commitment", "✓ In 24–48 h"],
-      fieldName: "Name",
-      fieldWhatsapp: "WhatsApp",
-      fieldSite: "Your website (optional)",
-      cta: "I want my free audit",
-      sending: "Sending…",
-      success:
-        "Done! We got your request. We'll send your 3 improvements in 24–48 h.",
-      error: "There was a problem. Message us on WhatsApp and we'll sort it out.",
-    },
     calendly: {
       eyebrow: "🗓️ book online",
       titleA: "Book your",
-      titleHighlight: "free diagnosis",
+      titleHighlight: "free 15-min call",
       subtitle:
-        "Pick the time that works best for you. In 15 minutes we review your business and I tell you exactly what your digital presence needs. Free, no commitment.",
+        "Pick the time that works best for you. In 15 minutes we review your practice and I tell you exactly what your digital presence needs. Free, no commitment and no sales call — pricing is already published.",
     },
     contact: {
       eyebrow: "// contact",
@@ -1502,33 +1729,33 @@ export const translations = {
       error: "Couldn't send. Message us on WhatsApp and we'll help you.",
     },
     finalCta: {
-      eyebrow: "// book your diagnosis",
+      eyebrow: "// book your call",
       title:
-        "Ready to stop wasting time and turn your site into your best salesperson?",
+        "Ready to stop losing the bigger clients to someone who just has a better website?",
       subtitle:
-        "Book a 15-minute call and let's review together what your business needs: a more professional page, a landing page to capture leads, integrations or a more complete digital structure.",
-      ctaPrimary: "Book a free diagnosis",
+        "Book a 15-minute call and let's review together what your practice needs: a more professional page, your Google Business Profile, a review system or a complete digital structure. Free, and no sales call.",
+      ctaPrimary: "Book a free call",
       ctaWhatsapp: "Chat on WhatsApp",
     },
     footer: {
       tagline:
-        "I'm Cristian Posada. From Durango, Mexico, I build websites, landing pages, integrations and lead-capture systems for businesses that want a stronger, more functional digital presence.",
+        "I'm Cristian Posada. I build websites, Google Business Profiles and lead-capture systems for tax firms, bookkeepers and Latino service businesses across the United States. In Spanish or English, over WhatsApp, with one person accountable.",
       navTitle: "Navigation",
       servicesTitle: "Services",
       contactTitle: "Contact",
       hours: "Monday to Sunday",
-      location: "Durango, Mexico · working remotely across the country",
-      cta: "Book a diagnosis",
+      location: "Serving the United States remotely, in Spanish and English",
+      cta: "Book a free call",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
       terms: "Terms & conditions",
       servicesList: [
-        "Web development",
+        "Websites for tax firms",
         "Landing pages",
-        "Integrations",
-        "Website redesign",
+        "Google Business Profile",
+        "Review management",
+        "Local SEO & AI search",
         "Support & optimization",
-        "Digital lead-gen",
       ],
     },
     // ── Real-project strip on the home page (finding #4) ──
@@ -1547,7 +1774,7 @@ export const translations = {
       subtitle:
         "You don't have to message me to find out what it costs. The prices are on the page, with exactly what each plan includes.",
       fromLabel: "from",
-      amount: "299",
+      amount: "349",
       currency: "USD",
       amountNote: "complete landing page · one-time",
       cta: "See all pricing",
@@ -1556,11 +1783,11 @@ export const translations = {
     founder: {
       eyebrow: "// who does it",
       name: "Cristian Posada",
-      role: "Web developer · Durango, Mexico",
+      role: "Web developer · serving U.S. practices remotely",
       title: "It's not an agency. It's me.",
       body:
-        "When you message me, I'm the one who answers. When we review your business, I'm the one reviewing it. And once your site is live, I'm still the one maintaining it. I work from Durango with businesses across Mexico and the United States, and I'd rather take on few projects and do them well than many done halfway.",
-      cta: "Book 15 minutes with me",
+        "When you message me, I'm the one who answers. When we review your practice, I'm the one reviewing it. And once your site is live, I'm still the one maintaining it — including in month six, when the agency of the moment has already switched your account manager three times. I work remotely, in Spanish and English, with tax firms and service businesses across the United States, and I'd rather take on few projects and do them well than many done halfway.",
+      cta: "Book a free call",
     },
     // ── Objection FAQ before the home page's final CTA (finding #18) ──
     homeFaq: {
@@ -1572,17 +1799,22 @@ export const translations = {
         {
           question: "What does it cost, and why don't I see it until the end?",
           answer:
-            "You do see it: pricing is published. From $299 USD for a landing page to $1,199 USD for a full 8–12 page site. On the call we just confirm which one fits you.",
+            "You do see it: pricing is published. From $349 USD for a landing page to $1,499 USD for a full 8–12 page site. There's no sales call to find out and no lock-in contract; on the call we just confirm which one fits you.",
         },
         {
           question: "Does the 15-minute call cost anything or commit me?",
           answer:
-            "Neither. It's 15 minutes to understand your business and tell you what you need — even if the answer is that you don't need a site from me yet.",
+            "Neither. It's 15 minutes to understand your practice and tell you what you need — even if the answer is that you don't need a site from me yet.",
+        },
+        {
+          question: "I'm in the U.S. and you're not. How does that work?",
+          answer:
+            "Remotely, over WhatsApp, in Spanish or English, on your schedule. It's how you already work with most of your vendors. The difference from an agency is that you always talk to me, and from Fiverr, that I'm still answering in month six.",
         },
         {
           question: "I'm not technical at all. Will I manage?",
           answer:
-            "That's exactly the point. I handle domain, hosting, email and setup. You just tell me what you sell and to whom.",
+            "That's exactly the point. I handle domain, hosting, email, Google profile and setup. You just tell me what services you offer and to whom.",
         },
         {
           question: "What if I already have a site but it isn't working?",
@@ -1593,19 +1825,28 @@ export const translations = {
     },
     pageMeta: {
       home: {
-        title: "ProCode Dev | Web Development Agency that Turns Visits into Clients",
+        title: "Websites for U.S. Tax Firms & Bookkeepers | ProCode Dev",
         description:
-          "Results-focused web development agency. We build websites, landing pages, integrations and digital systems that turn visitors into clients and automate your business. Book your free diagnosis.",
+          "Websites, Google Business Profile and client acquisition for tax preparers, bookkeepers and EAs across the United States. Public pricing from $349 USD, no lock-in contract, in Spanish or English. Book your free 15-minute call.",
         heroKicker: "Home",
       },
-      services: {
-        title: "Web Development & Automation Services | ProCode Dev",
+      tax: {
+        title: "Websites for Tax Preparers, Bookkeepers & EAs | ProCode Dev",
         description:
-          "Websites, landing pages, integrations, redesign and support. Discover our services and the process we use to build digital systems that sell.",
+          "Website, Google Business Profile and review management for tax firms, bookkeepers, EAs and CPAs across the U.S. Public pricing from $349 USD, no lock-in contract, in Spanish or English over WhatsApp.",
+        heroTitleA: "For tax preparers, bookkeepers and",
+        heroHighlight: "accounting practices",
+        heroSubtitle:
+          "The trade I know best. I know what your client searches for, which month they search, and why they pick the firm next door.",
+      },
+      services: {
+        title: "Web Development & Google Presence Services | ProCode Dev",
+        description:
+          "Websites, landing pages, Google Business Profile, review management, local SEO and monthly support for tax firms and Latino service businesses in the U.S.",
         heroTitleA: "Services that turn your digital presence into",
         heroHighlight: "a sales system",
         heroSubtitle:
-          "Web development, lead capture and integrations — all with a clear, results-focused process.",
+          "Web development, Google presence and lead capture — all with a clear, results-focused process.",
       },
       portfolio: {
         title: "Website Portfolio | ProCode Dev",
@@ -1617,23 +1858,98 @@ export const translations = {
           "Live sites I built for businesses that wanted to look more professional and capture better. Click to see them running.",
       },
       pricing: {
-        title: "Web Development & Digital Advisory Pricing | ProCode Dev",
+        title: "Website & Digital Presence Pricing in USD | ProCode Dev",
         description:
-          "Clear pricing: digital presence advisory, landing pages, full sites, integrations and monthly support with a performance report. Book your free diagnosis.",
-        heroTitleA: "Clear pricing to turn your website into",
-        heroHighlight: "your best salesperson",
+          "Public pricing in US dollars: landing $349, 4–6 page site $899, large site from $1,499. Support from $79/mo, Growth+ $349/mo and a Web + Marketing + SEO package from $1,100/mo. No lock-in contract.",
+        heroTitleA: "Public pricing, in dollars, with no",
+        heroHighlight: "sales call",
         heroSubtitle:
-          "Invest once and let your site work for you every single day. No surprises: every project is quoted by its real scope and we define it together in your free diagnosis.",
+          "What you see is what you pay. No surprise quote, no hidden price and no 12-month contract: monthly plans cancel whenever you want.",
       },
       contact: {
-        title: "Contact | Book Your Free Diagnosis | ProCode Dev",
+        title: "Contact | Book Your Free 15-Min Call | ProCode Dev",
         description:
-          "Tell us about your project and we'll reply fast. Book a free diagnosis or message us on WhatsApp — no commitment and no jargon.",
+          "Book your free 15-minute call, or message me on WhatsApp if you prefer. No commitment and no jargon.",
         heroTitleA: "Book 15 minutes",
         heroHighlight: "with me",
         heroSubtitle:
-          "Pick a time that works for you and we'll talk for 15 minutes. Free, no commitment.",
+          "Pick a time that works for you and we'll talk for 15 minutes. Free, no commitment and no sales call: pricing is already published.",
       },
+    },
+    // ── Niche landing: tax preparers, bookkeepers, EAs and CPAs ──
+    tax: {
+      promiseEyebrow: "// the promise",
+      promiseTitle:
+        "You stop losing business returns to the firm that just has a better website.",
+      promiseBody:
+        "Your practice already does the serious work: corporations, payroll, monthly bookkeeping, IRS representation. But when someone looks you up on Google they find an outdated Facebook page, three reviews and a phone number. The $2,000 client goes to whoever looks like a firm — even if you have twenty more years in the trade. That's what I fix.",
+      rtbTitle: "Why you can believe me",
+      rtb: [
+        {
+          icon: "◎",
+          title: "Work in the same trade",
+          description:
+            "I'm not learning your business on your dime. I've already built for tax and accounting practices, and you can open the sites and judge for yourself.",
+        },
+        {
+          icon: "▣",
+          title: "Public pricing",
+          description:
+            "It's on the page, in dollars. No sales call to find out and no lock-in contract.",
+        },
+        {
+          icon: "💬",
+          title: "Spanish or English, over WhatsApp",
+          description:
+            "One person accountable, in your language and on your schedule. Not a ticket queue or a different account manager every month.",
+        },
+        {
+          icon: "📈",
+          title: "A report of real contacts",
+          description:
+            "Every month I tell you how many calls and messages your digital presence generated. Not page views: actual prospects.",
+        },
+      ],
+      vsTitle: "Compared to what you already considered",
+      vsSubtitle:
+        "Almost every practice I talk to tried one of these four. Here's what changes with me.",
+      vs: [
+        {
+          name: "Wix or Squarespace",
+          them: "Cheap, but you build it and you maintain it.",
+          us: "You don't have to do it, or maintain it. During season that's worth more than the price difference.",
+        },
+        {
+          name: "Fiverr",
+          them: "They deliver and disappear. By month six nobody answers.",
+          us: "A person with a name who still answers in month six, and the year after.",
+        },
+        {
+          name: "Hibu and similar",
+          them: "12-month contract and a price you don't see until the call.",
+          us: "No lock-in contract, and the pricing published right on this page.",
+        },
+        {
+          name: "A $3,000/mo agency",
+          them: "Good work, but outside a practice's budget.",
+          us: "A tenth of the cost, with the same focus on capturing real clients.",
+        },
+      ],
+      forTitle: "I work with",
+      forItems: [
+        "Independent tax preparers",
+        "Bookkeepers and accounting practices",
+        "Enrolled Agents (EA)",
+        "Small and mid-size CPA practices",
+        "Practices offering payroll services",
+        "ITIN, notary and multi-service offices",
+      ],
+      seasonTitle: "The calendar rules, and I know it",
+      seasonBody:
+        "Your year isn't like other businesses': January through April decides almost everything. If we start in summer or fall, you reach the season with your website, Google profile and reviews already working. If you message me in February, we prioritize what can launch in two weeks and do the rest after April 15.",
+      ctaTitle: "15 minutes, no commitment",
+      ctaBody:
+        "I'll tell you what's holding your practice back today — even if the answer is that you don't need a website from me yet.",
     },
   },
 } as const;
@@ -1651,12 +1967,16 @@ export function useTranslations(lang: Lang): Dict {
 // ============================================================
 const WA_BY_PAGE: Record<PageKey | "blog", Record<Lang, string>> = {
   home: {
-    es: "Hola Cristian 👋 Vi tu página y me interesa una web para mi negocio. ¿Podemos platicar?",
-    en: "Hi Cristian 👋 I saw your site and I'm interested in a website for my business. Can we talk?",
+    es: "Hola Cristian 👋 Vi tu página y me interesa una web para mi despacho. ¿Podemos platicar?",
+    en: "Hi Cristian 👋 I saw your site and I'm interested in a website for my practice. Can we talk?",
   },
   services: {
     es: "Hola Cristian 👋 Estaba viendo tus servicios y quiero saber cuál le queda a mi negocio.",
     en: "Hi Cristian 👋 I was looking at your services and I want to know which one fits my business.",
+  },
+  tax: {
+    es: "Hola Cristian 👋 Tengo un despacho de impuestos y vi tu página para preparadores. Quiero saber cómo me puedes ayudar.",
+    en: "Hi Cristian 👋 I run a tax practice and saw your page for tax pros. I'd like to know how you can help.",
   },
   portfolio: {
     es: "Hola Cristian 👋 Vi tu portafolio y quiero algo parecido para mi negocio. ¿Cómo empezamos?",

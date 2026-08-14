@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import PageHero from "../../components/PageHero.astro";
+import TaxNiche from "../../components/TaxNiche.astro";
+import ProofStrip from "../../components/ProofStrip.astro";
+import PriceAnchor from "../../components/PriceAnchor.astro";
+import Founder from "../../components/Founder.astro";
+import FAQ from "../../components/FAQ.astro";
+import Footer from "../../components/Footer.astro";
+import { translations } from "../../i18n/ui";
+
+const lang = "en";
+const t = translations[lang];
+const meta = t.pageMeta.tax;
+---
+
+<Layout
+  lang={lang}
+  page="tax"
+  title={meta.title}
+  description={meta.description}
+  includeFaq={true}
+  faqVariant="home"
+>
+  <Header lang={lang} page="tax" />
+  <main>
+    <PageHero
+      eyebrow="// for tax practices"
+      titleA={meta.heroTitleA}
+      highlight={meta.heroHighlight}
+      subtitle={meta.heroSubtitle}
+    />
+    <TaxNiche lang={lang} />
+    <ProofStrip lang={lang} />
+    <PriceAnchor lang={lang} />
+    <Founder lang={lang} />
+    <FAQ lang={lang} variant="home" />
+  </main>
+  <Footer lang={lang} />
+</Layout>

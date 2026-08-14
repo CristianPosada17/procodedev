@@ -20,6 +20,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios" />
   </url>
   <url>
+    <loc>https://procodedev.com/impuestos</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/impuestos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/tax-pros" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/impuestos" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/tax-pros</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/impuestos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/tax-pros" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/impuestos" />
+  </url>
+  <url>
     <loc>https://procodedev.com/portafolio</loc>
     <lastmod>2026-07-31</lastmod>
     <priority>0.9</priority>

@@ -10,18 +10,17 @@ const { lang = "es", showHeading = true } = Astro.props as Props;
 const t = translations[lang];
 const p = t.pricing;
 const adv = p.advisory;
-const maint = p.maintenance;
 const waLink = (text: string) =>
   `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 
-// Hallazgo #9: los precios estaban solo en USD para una audiencia
-// mayoritariamente mexicana. MXN pasa a ser la vista por defecto, con toggle
-// a USD para los clientes de EE. UU. Sin JS se ven ambas monedas.
+// Análisis de mercado de agosto de 2026: el mercado principal pasa a ser el
+// negocio de servicios latino en EE. UU., así que USD vuelve a ser la vista por
+// defecto y MXN queda como opción. Sin JS se ven ambas monedas.
 const currencyScript = `
   (function(){
     var root = document.getElementById('pricing');
     if(!root) return;
-    root.setAttribute('data-currency','mxn');
+    root.setAttribute('data-currency','usd');
     root.querySelectorAll('[data-currency-btn]').forEach(function(btn){
       btn.addEventListener('click', function(){
         var cur = btn.getAttribute('data-currency-btn');
@@ -48,7 +47,7 @@ const currencyScript = `
       )
     }
 
-    {/* Selector de moneda — MXN por defecto (hallazgo #9) */}
+    {/* Selector de moneda — USD por defecto, MXN como opción */}
     <div class="reveal mt-8 flex flex-wrap items-center gap-3">
       <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]">
         {p.currencyLabel}
@@ -59,26 +58,26 @@ const currencyScript = `
       >
         <button
           type="button"
-          data-currency-btn="mxn"
+          data-currency-btn="usd"
           aria-pressed="true"
           class="cur-btn px-4 py-2 text-sm font-bold transition"
         >
-          {p.currencyMxn}
+          {p.currencyUsd}
         </button>
         <button
           type="button"
-          data-currency-btn="usd"
+          data-currency-btn="mxn"
           aria-pressed="false"
           class="cur-btn border-l border-[color:var(--border-strong)] px-4 py-2 text-sm font-bold transition"
         >
-          {p.currencyUsd}
+          {p.currencyMxn}
         </button>
       </div>
       <span class="cur-note-mxn text-xs text-[var(--muted)]">{p.currencyNoteMxn}</span>
       <span class="cur-note-usd text-xs text-[var(--muted)]">{p.currencyNoteUsd}</span>
     </div>
 
-    {/* ── Asesoría de Presencia Digital ── */}
+    {/* ── Diagnóstico de Presencia Digital · paso 2, solo en /precios ── */}
     <div
       class="reveal relative mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-10"
     >
@@ -95,14 +94,14 @@ const currencyScript = `
           </span>
           <h3 class="mt-4 text-2xl font-bold text-[var(--text)]">{adv.name}</h3>
           <div class="mt-4 flex items-end gap-1.5">
-            <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
-              ${adv.priceMxn}
-            </span>
-            <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">{p.mxnUnit}</span>
             <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
               ${adv.price}
             </span>
             <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">{adv.currency}</span>
+            <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
+              ${adv.priceMxn}
+            </span>
+            <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">{p.mxnUnit}</span>
           </div>
           <p class="mt-1 text-xs text-[var(--muted)]">{adv.priceNote}</p>
           <p class="mt-5 text-base font-bold text-[var(--text)]">{adv.hook}</p>
@@ -177,14 +176,14 @@ const currencyScript = `
                   {pkg.pricePrefix}
                 </span>
               )}
-              <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
-                ${pkg.priceMxn}
-              </span>
-              <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">{p.mxnUnit}</span>
               <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
                 ${pkg.price}
               </span>
               <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">{pkg.currency}</span>
+              <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
+                ${pkg.priceMxn}
+              </span>
+              <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">{p.mxnUnit}</span>
             </div>
             <p class="mt-4 text-sm leading-6 text-[var(--muted)]">
               {pkg.description}
@@ -227,16 +226,16 @@ const currencyScript = `
             <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
               <div class="flex items-baseline justify-between gap-3">
                 <h4 class="text-sm font-bold text-[var(--text)]">{ex.name}</h4>
-                <span class="price-mxn font-mono text-xs text-[var(--accent)]">
-                  {ex.priceMxn}
-                </span>
                 <span class="price-usd font-mono text-xs text-[var(--accent)]">
                   {ex.price}
+                </span>
+                <span class="price-mxn font-mono text-xs text-[var(--accent)]">
+                  {ex.priceMxn}
                 </span>
               </div>
               <p class="mt-2 text-sm leading-6 text-[var(--muted)]">{ex.description}</p>
               <p class="mt-2 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                <span class="price-mxn">{p.mxnUnit}</span><span class="price-usd">{ex.unit}</span>
+                <span class="price-usd">{ex.unit}</span><span class="price-mxn">{p.mxnUnit}</span>
               </p>
             </div>
           ))
@@ -244,76 +243,95 @@ const currencyScript = `
       </div>
     </div>
 
-    {/* ── Plan de Mantenimiento ── */}
-    <div
-      class="reveal relative mt-14 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-10"
-    >
-      <div
-        class="pointer-events-none absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"
-      >
-      </div>
-      <div class="relative grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start">
-        <div>
-          <span
-            class="inline-flex items-center rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/15 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]"
-          >
-            {maint.badge}
-          </span>
-          <h3 class="mt-4 text-2xl font-bold text-[var(--text)]">{maint.name}</h3>
-          <div class="mt-4 flex items-end gap-1.5">
-            {maint.pricePrefix && (
-              <span class="mb-1.5 text-xs font-medium text-[var(--muted)]">
-                {maint.pricePrefix}
-              </span>
-            )}
-            <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
-              ${maint.priceMxn}
-            </span>
-            <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">
-              {p.mxnUnitMonth}
-            </span>
-            <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
-              ${maint.price}
-            </span>
-            <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">{maint.currency}</span>
-          </div>
-          <p class="mt-1 text-xs text-[var(--muted)]">{maint.priceNote}</p>
-          <p class="mt-5 text-base font-bold text-[var(--text)]">{maint.hook}</p>
-          <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
-            {maint.description}
-          </p>
-          <p class="mt-6 text-sm leading-6 text-[var(--muted)]">{maint.footNote}</p>
-          <a
-            href={waLink(maint.waText)}
-            target="_blank"
-            rel="noopener"
-            class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
-          >
-            {maint.cta}
-          </a>
-        </div>
+    {/* ── Escalera de planes mensuales: Soporte → Crecimiento+ → Todo incluido ──
+        Antes había un único plan de mantenimiento, así que el cliente no tenía
+        a dónde subir. Estos tres crean el techo de expansión que pedía el
+        análisis de mercado. */}
+    <div class="reveal mt-16">
+      <h3 class="text-2xl font-bold text-[var(--text)]">{p.monthlyTitle}</h3>
+      <p class="mt-2 max-w-3xl text-sm leading-6 text-[var(--muted)]">
+        {p.monthlySubtitle}
+      </p>
+    </div>
 
-        <div>
-          <p
-            class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
+    <div class="mt-8 grid gap-6 lg:grid-cols-3">
+      {
+        p.monthly.map((plan, i) => (
+          <div
+            class:list={[
+              "reveal relative flex flex-col rounded-[var(--radius-lg)] border p-8 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
+              plan.highlighted
+                ? "border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 shadow-[0_30px_80px_-40px_rgba(37,99,235,0.7)]"
+                : "border-[color:var(--border)] bg-[var(--surface)]/60",
+            ]}
+            style={`--reveal-delay: ${i * 90}ms`}
           >
-            {maint.featuresTitle}
-          </p>
-          <ul class="mt-5 grid gap-3">
-            {
-              maint.features.map((f) => (
-                <li class="flex items-start gap-3 text-sm text-[var(--text)]/90">
+            <span
+              class:list={[
+                "inline-flex w-fit items-center rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-wider",
+                plan.highlighted
+                  ? "border-[color:var(--border-strong)] bg-[var(--brand)]/20 text-[var(--accent)]"
+                  : "border-[color:var(--border)] bg-white/[0.04] text-[var(--muted)]",
+              ]}
+            >
+              {plan.badge}
+            </span>
+            <h4 class="mt-4 text-xl font-bold text-[var(--text)]">{plan.name}</h4>
+            <p class="mt-1 text-sm text-[var(--accent)]">{plan.tagline}</p>
+            <div class="mt-5 flex flex-wrap items-end gap-1.5">
+              {plan.pricePrefix && (
+                <span class="mb-1.5 text-xs font-medium text-[var(--muted)]">
+                  {plan.pricePrefix}
+                </span>
+              )}
+              <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
+                ${plan.price}
+              </span>
+              <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">
+                {plan.currency}
+              </span>
+              <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
+                ${plan.priceMxn}
+              </span>
+              <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">
+                {p.mxnUnitMonth}
+              </span>
+            </div>
+            <p class="mt-1 text-xs text-[var(--muted)]">{plan.priceNote}</p>
+            <p class="mt-5 text-sm leading-6 text-[var(--muted)]">
+              {plan.description}
+            </p>
+            <ul class="mt-6 grid flex-1 gap-3">
+              {plan.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
                   <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
                     ✓
                   </span>
                   {f}
                 </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
+              ))}
+            </ul>
+            <a
+              href={waLink(plan.waText)}
+              target="_blank"
+              rel="noopener"
+              class:list={[
+                "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold transition",
+                plan.highlighted
+                  ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
+                  : "border border-[color:var(--border-strong)] bg-white/5 text-[var(--text)] hover:bg-[var(--brand)]/10",
+              ]}
+            >
+              {plan.cta}
+            </a>
+          </div>
+        ))
+      }
     </div>
+
+    <p class="reveal mt-6 max-w-3xl text-xs leading-6 text-[var(--muted)]">
+      {p.monthlyNote}
+    </p>
 
     <p class="reveal mt-8 max-w-3xl text-xs leading-6 text-[var(--muted)]">
       {p.note}
@@ -338,7 +356,7 @@ const currencyScript = `
     background: var(--brand);
     color: #fff;
   }
-  #pricing[data-currency="both"] .price-usd::before {
+  #pricing[data-currency="both"] .price-mxn::before {
     content: "/ ";
     color: var(--muted);
   }

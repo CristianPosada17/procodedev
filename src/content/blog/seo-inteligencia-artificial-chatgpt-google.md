@@ -66,4 +66,4 @@ Como el SEO, no es inmediato. Construir presencia, reseñas y contenido consiste
 
 ---
 
-En **ProCode Dev** construimos páginas web listas para el SEO de hoy y para las búsquedas con IA: claras, rápidas, confiables y bien estructuradas. Pide una [auditoría gratis](/#auditoria), mira [nuestros precios](/#precios) o [agenda un diagnóstico sin compromiso](/#agendar) y preparamos tu negocio para que Google —y la IA— te recomienden.
+En **ProCode Dev** construyo páginas listas para el SEO de hoy y para las búsquedas con IA: claras, rápidas, confiables y bien estructuradas. Revisa [nuestros precios](/precios) o [agenda una llamada gratis de 15 minutos](/contacto) y preparamos tu negocio para que Google —y la IA— te recomienden.

@@ -42,4 +42,4 @@ Una forma sencilla de decidir:
 
 ---
 
-En **ProCode Dev** te ayudamos a decidir sin que te cueste: revisa nuestros [precios claros](/#precios) o pide una [auditoría gratis](/#auditoria). Si prefieres platicarlo, [agenda un diagnóstico sin compromiso](/#contacto) y te decimos exactamente qué necesita tu negocio.
+En **ProCode Dev** te ayudo a decidir sin que te cueste: revisa los [precios publicados](/precios) o [agenda una llamada gratis de 15 minutos](/contacto) y te digo exactamente qué necesita tu negocio.

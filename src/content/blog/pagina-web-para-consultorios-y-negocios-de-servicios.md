@@ -70,4 +70,4 @@ Depende del alcance. Puedes ver rangos reales en [cuánto cuesta una página web
 
 ---
 
-En **ProCode Dev** creamos páginas web para consultorios y negocios de servicios en México, con agenda en línea, WhatsApp y SEO local para llenar tu calendario de clientes. Pide una [auditoría gratis](/#auditoria), revisa [nuestros precios](/#precios) o [agenda un diagnóstico sin compromiso](/#agendar) y te decimos cómo atraer más citas.
+En **ProCode Dev** creo páginas web para consultorios y negocios de servicios, con agenda en línea, WhatsApp y SEO local para llenar tu calendario. Revisa [nuestros precios](/precios) o [agenda una llamada gratis de 15 minutos](/contacto) y te digo cómo atraer más citas.

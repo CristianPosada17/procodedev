@@ -1,0 +1,181 @@
+---
+import { translations, PAGES, waHref, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+const x = t.tax;
+---
+
+{/*
+  Landing de nicho (agosto 2026). El análisis de mercado señaló que el mensaje
+  de portada —«sitios web que hacen crecer tu negocio»— lo podría firmar
+  cualquiera de los 202.692 competidores. Esta página nombra al cliente y al
+  oficio, y contrasta explícitamente con las cuatro alternativas que el
+  prospecto ya consideró.
+*/}
+
+<!-- ── Promesa ── -->
+<section id="promesa" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal mx-auto max-w-4xl text-center">
+      <span class="eyebrow">{x.promiseEyebrow}</span>
+      <h2
+        class="mt-5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl"
+      >
+        {x.promiseTitle}
+      </h2>
+      <p class="mt-6 text-base leading-8 text-[var(--muted)] sm:text-lg">
+        {x.promiseBody}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Motivos para creer ── -->
+<section id="motivos" class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <h2 class="reveal text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">
+      {x.rtbTitle}
+    </h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        x.rtb.map((item, i) => (
+          <div
+            class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl"
+            style={`--reveal-delay: ${i * 80}ms`}
+          >
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-lg text-[var(--accent)]">
+              {item.icon}
+            </span>
+            <h3 class="mt-5 text-base font-bold text-[var(--text)]">{item.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {item.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── Frente a cada alternativa ── -->
+<section id="alternativas" class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">
+        {x.vsTitle}
+      </h2>
+      <p class="mt-3 text-base leading-7 text-[var(--muted)]">{x.vsSubtitle}</p>
+    </div>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        x.vs.map((row, i) => (
+          <div
+            class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <h3 class="font-mono text-xs uppercase tracking-[0.14em] text-[var(--accent)]">
+              {row.name}
+            </h3>
+            <p class="mt-4 flex items-start gap-3 text-sm leading-6 text-[var(--muted)]">
+              <span
+                class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-white/[0.06] text-xs"
+                aria-hidden="true"
+              >
+                –
+              </span>
+              {row.them}
+            </p>
+            <p class="mt-3 flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+              <span
+                class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+              {row.us}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── Con quién trabajo + calendario fiscal ── -->
+<section id="para-quien" class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal grid gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-8 backdrop-blur-xl lg:grid-cols-2 lg:gap-14 lg:p-12"
+    >
+      <div>
+        <h2 class="text-xl font-bold tracking-tight text-[var(--text)] sm:text-2xl">
+          {x.forTitle}
+        </h2>
+        <ul class="mt-6 grid gap-3">
+          {
+            x.forItems.map((item) => (
+              <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-xs text-[var(--accent)]">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="lg:border-l lg:border-[color:var(--border)] lg:pl-14">
+        <h2 class="text-xl font-bold tracking-tight text-[var(--text)] sm:text-2xl">
+          {x.seasonTitle}
+        </h2>
+        <p class="mt-6 text-base leading-8 text-[var(--muted)]">{x.seasonBody}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA: la única oferta de entrada, la llamada gratis ── -->
+<section id="cta-nicho" class="relative py-10 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 text-center backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-14"
+    >
+      <div
+        class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--brand)]/10 blur-3xl"
+      >
+      </div>
+      <div class="relative mx-auto max-w-2xl">
+        <h2 class="text-2xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-3xl">
+          {x.ctaTitle}
+        </h2>
+        <p class="mt-4 text-base leading-8 text-[var(--muted)]">{x.ctaBody}</p>
+        <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href={PAGES.contact[lang]}
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+          >
+            {t.common.ctaPrimary}
+            <span class="ml-2">→</span>
+          </a>
+          <a
+            href={waHref("tax", lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+          >
+            {t.common.ctaWhatsapp}
+          </a>
+        </div>
+        <p class="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]">
+          {t.common.free}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

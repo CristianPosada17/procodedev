@@ -1,5 +1,5 @@
 ---
-import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
+import { translations, PAGES, type Lang } from "../i18n/ui";
 
 interface Props {
   lang?: Lang;
@@ -7,11 +7,6 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const h = t.hero;
-const waMsg = encodeURIComponent(
-  lang === "es"
-    ? "Hola ProCode, quiero una propuesta para mi negocio."
-    : "Hi ProCode, I'd like a proposal for my business.",
-);
 ---
 
 <section id="inicio" class="relative overflow-hidden pb-10 pt-6 lg:pb-24 lg:pt-16">
@@ -105,10 +100,11 @@ const waMsg = encodeURIComponent(
               <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
                 {h.cardText}
               </p>
+              {/* Antes este botón decía «Solicitar propuesta»: una cuarta
+                  oferta de entrada compitiendo con la llamada gratis. Ahora
+                  apunta a la misma y única puerta que el resto del sitio. */}
               <a
-                href={`https://wa.me/${CONTACT.whatsapp}?text=${waMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={PAGES.contact[lang]}
                 class="mt-6 inline-flex rounded-lg bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
               >
                 {h.cardCta}
