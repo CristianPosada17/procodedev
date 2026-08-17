@@ -8,6 +8,7 @@ import {
 } from "../i18n/ui";
 import { segments } from "../i18n/segments";
 import Icon from "./Icon.astro";
+import OfferNote from "./OfferNote.astro";
 
 interface Props {
   lang?: Lang;
@@ -235,9 +236,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
             {t.common.ctaWhatsapp}
           </a>
         </div>
-        <p class="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]">
-          {t.common.free}
-        </p>
+        <OfferNote lang={lang} align="center" />
       </div>
     </div>
   </div>

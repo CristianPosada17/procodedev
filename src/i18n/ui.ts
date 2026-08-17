@@ -105,16 +105,23 @@ export const translations = {
       pricing: "Precios",
       blog: "Blog",
       contact: "Contacto",
-      cta: "Agendar llamada gratis",
+      cta: "Revisión de Temporada",
     },
     common: {
-      // Una sola oferta de entrada y una sola etiqueta de botón en todo el
-      // sitio: la llamada gratis de 15 min. El Diagnóstico de $149 vive solo
-      // en /precios como paso 2.
-      ctaPrimary: "Agendar llamada gratis",
+      // Una sola oferta de entrada y un solo nombre en todo el sitio, el
+      // Calendly y los correos: la Revisión de Temporada. El Diagnóstico de
+      // $149 vive solo en /precios como paso 2 (es otra cosa: un análisis
+      // profundo por escrito, no la revisión de 3 min que se regala aquí).
+      ctaPrimary: "Agendar Revisión de Temporada",
       ctaWhatsapp: "Escribir por WhatsApp",
-      free: "Gratis · 15 min · sin compromiso",
+      free: "Gratis · 15 min · revisión en vídeo incluida",
       viewServices: "Ver servicios",
+      // Diferenciador principal, hasta hoy no escrito en ninguna parte.
+      // Va pegado a cada botón de agenda vía <OfferNote />.
+      guarantee: "Respondo cualquier mensaje en menos de 24 horas.",
+      // Fecha límite visible en el home y en las páginas de nicho.
+      deadline:
+        "Última fecha de contratación para estar listo antes de temporada: 1 de diciembre.",
     },
     // ── Posicionamiento (agosto 2026) ──────────────────────────────
     // ProCode dejó de venderse como «páginas web para despachos de
@@ -147,7 +154,7 @@ export const translations = {
       cardTitle: "De prospecto a cliente que regresa cada año",
       cardText:
         "Sitio, Perfil de Empresa en Google, formularios, agenda, WhatsApp y seguimiento trabajando como una sola pieza.",
-      cardCta: "Agendar llamada gratis",
+      cardCta: "Agendar Revisión de Temporada",
       panelTitle: "Lo que queda funcionando",
       panelItems: [
         "Una página por servicio, para que llegue el cliente correcto",
@@ -563,11 +570,11 @@ export const translations = {
         priceNote: "pago único · acreditable a tu proyecto",
         hook: "Cuando ya hablamos y quieres el plan completo por escrito.",
         description:
-          "La llamada gratis de 15 minutos te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente cuando busca 'tax preparer near me' —Google, Maps, reseñas, redes y tu web actual—, comparo tu presencia con la de los despachos que te están ganando y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
+          "La Revisión de Temporada te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente cuando busca 'tax preparer near me' —Google, Maps, reseñas, redes y tu web actual—, comparo tu presencia con la de los despachos que te están ganando y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
         homeEyebrow: "// el siguiente paso",
         homeTitle: "¿Quieres el plan completo por escrito?",
         prereq:
-          "Empieza siempre por la llamada gratis de 15 minutos. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
+          "Empieza siempre por la Revisión de Temporada. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
         viewPricing: "Ver todos los precios",
         waText:
           "Hola Cristian, Me interesa el Diagnóstico de Presencia Digital ($149 USD). Quiero saber cómo me encuentran hoy mis clientes y recibir un plan de mejoras. ¿Cómo empezamos?",
@@ -816,7 +823,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta un sitio web con ustedes?",
           answer:
-            "Los planes van desde $349 USD (landing page) hasta $1,499 USD (web completa de 8 a 12 páginas), con el sitio de 4 a 6 páginas en $899 USD. Los precios están publicados: no necesitas una llamada de ventas para conocerlos. En la llamada gratis de 15 minutos solo confirmamos cuál te corresponde.",
+            "Los planes van desde $349 USD (landing page) hasta $1,499 USD (web completa de 8 a 12 páginas), con el sitio de 4 a 6 páginas en $899 USD. Los precios están publicados: no necesitas una llamada de ventas para conocerlos. En la Revisión de Temporada solo confirmamos cuál te corresponde.",
         },
         {
           question:
@@ -867,7 +874,7 @@ export const translations = {
         {
           question: "¿Qué necesito para empezar?",
           answer:
-            "Solo la llamada gratis de 15 minutos. En ella entiendo tu despacho, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
+            "Solo la Revisión de Temporada. En ella entiendo tu despacho, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
         },
       ],
     },
@@ -915,9 +922,9 @@ export const translations = {
     calendly: {
       eyebrow: "// agenda en línea",
       titleA: "Reserva tu",
-      titleHighlight: "llamada gratis de 15 min",
+      titleHighlight: "Revisión de Temporada",
       subtitle:
-        "Elige el horario que mejor te acomode. En 15 minutos revisamos tu despacho y te digo exactamente qué necesita tu presencia digital. Sin costo, sin compromiso y sin llamada de ventas — los precios ya están publicados.",
+        "Elige el horario que mejor te acomode. Antes de la llamada reviso qué encuentra un contribuyente cuando busca un preparador de impuestos en tu ciudad, dónde apareces tú y qué te está costando en clientes, y te lo grabo en un vídeo de tres minutos. En la llamada lo repasamos juntos y te digo qué haría yo antes de que abra la temporada. Sin costo y sin llamada de ventas — los precios ya están publicados.",
     },
     contact: {
       eyebrow: "// contacto",
@@ -957,12 +964,12 @@ export const translations = {
       error: "No se pudo enviar. Escríbeme por WhatsApp y te atiendo.",
     },
     finalCta: {
-      eyebrow: "// agenda tu llamada",
+      eyebrow: "// revisión de temporada",
       title:
         "¿Listo para que tu firma deje de perder oportunidades entre correo y correo?",
       subtitle:
-        "Agenda una llamada de 15 minutos y revisamos juntos qué pieza le falta a tu firma: el sitio, la captación, el intake, la automatización, el seguimiento o la medición. Sin costo y sin llamada de ventas.",
-      ctaPrimary: "Agendar llamada gratis",
+        "Reviso qué encuentra un contribuyente cuando busca un preparador de impuestos en tu ciudad, dónde apareces tú y qué te está costando en clientes. Te lo grabo en un vídeo de tres minutos. Si quieres, lo comentamos quince minutos y te digo qué haría yo antes de que abra la temporada.",
+      ctaPrimary: "Agendar Revisión de Temporada",
       ctaWhatsapp: "Hablar por WhatsApp",
     },
     footer: {
@@ -973,7 +980,7 @@ export const translations = {
       contactTitle: "Contacto",
       hours: "Lunes a Domingo",
       location: "Atención remota en español a todo Estados Unidos",
-      cta: "Agendar llamada gratis",
+      cta: "Agendar Revisión de Temporada",
       rights: "Todos los derechos reservados.",
       privacy: "Aviso de privacidad",
       terms: "Términos y condiciones",
@@ -1016,7 +1023,7 @@ export const translations = {
       title: "No es una agencia. Soy yo.",
       body:
         "Cuando me escribes, te contesto yo. Cuando revisamos tu firma, la reviso yo. Y cuando tu sistema esté en línea, sigo siendo yo quien lo mantiene — también en el mes seis, cuando la agencia de turno ya te cambió de ejecutivo tres veces. Trabajo en remoto, en inglés y español, con firmas fiscales y contables en Estados Unidos, y prefiero llevar pocos proyectos bien que muchos a medias.",
-      cta: "Agendar llamada gratis",
+      cta: "Agendar Revisión de Temporada",
     },
     // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
     homeFaq: {
@@ -1101,7 +1108,7 @@ export const translations = {
       contact: {
         title: "Contacto | Agenda tu Llamada Gratis de 15 Min | ProCode Dev",
         description:
-          "Agenda tu llamada gratis de 15 minutos, o escríbeme por WhatsApp si prefieres. En español, sin compromiso y sin tecnicismos.",
+          "Agenda tu Revisión de Temporada, o escríbeme por WhatsApp si prefieres. En español, sin compromiso y sin tecnicismos.",
         heroTitleA: "Agenda 15 minutos",
         heroHighlight: "conmigo",
         heroSubtitle:
@@ -1202,15 +1209,20 @@ export const translations = {
       pricing: "Pricing",
       blog: "Blog",
       contact: "Contact",
-      cta: "Book a free call",
+      cta: "Pre-Season Review",
     },
     common: {
-      // One entry offer, one button label across the whole site: the free
-      // 15-minute call. The $149 Diagnosis lives only on /pricing as step 2.
-      ctaPrimary: "Book a free call",
+      // One entry offer and one name across the site, Calendly and email:
+      // the Pre-Season Review. The $149 Diagnosis lives only on /pricing as
+      // step 2 (a different thing: a deep written analysis, not the 3-minute
+      // review given away here).
+      ctaPrimary: "Book my Pre-Season Review",
       ctaWhatsapp: "Message on WhatsApp",
-      free: "Free · 15 min · no commitment",
+      free: "Free · 15 min · video review included",
       viewServices: "View services",
+      guarantee: "I reply to any message in under 24 hours.",
+      deadline:
+        "Last day to start and still be ready before the season opens: December 1.",
     },
     brand: {
       line: "Digital Growth Systems for Tax & Accounting Firms",
@@ -1231,7 +1243,7 @@ export const translations = {
       cardTitle: "From prospect to a client who comes back every year",
       cardText:
         "Website, Google Business Profile, forms, scheduling, WhatsApp and follow-up working as a single piece.",
-      cardCta: "Book a free call",
+      cardCta: "Book my Pre-Season Review",
       panelTitle: "What you end up with",
       panelItems: [
         "One page per service, so the right client is the one who lands",
@@ -1982,9 +1994,9 @@ export const translations = {
     calendly: {
       eyebrow: "// book online",
       titleA: "Book your",
-      titleHighlight: "free 15-min call",
+      titleHighlight: "Pre-Season Review",
       subtitle:
-        "Pick the time that works best for you. In 15 minutes we review your practice and I tell you exactly what your digital presence needs. Free, no commitment and no sales call — pricing is already published.",
+        "Pick the time that works best for you. Before the call I look at what a taxpayer finds when they search for a tax preparer in your city, where you show up and what it's costing you in clients — and I record it for you in a three-minute video. On the call we go through it together and I tell you what I'd do before the season opens. Free, and no sales call — pricing is already published.",
     },
     contact: {
       eyebrow: "// contact",
@@ -2024,12 +2036,12 @@ export const translations = {
       error: "Couldn't send. Message us on WhatsApp and we'll help you.",
     },
     finalCta: {
-      eyebrow: "// book your call",
+      eyebrow: "// pre-season review",
       title:
         "Ready to stop losing the bigger clients to someone who just has a better website?",
       subtitle:
-        "Book a 15-minute call and let's review together what your practice needs: a more professional page, your Google Business Profile, a review system or a complete digital structure. Free, and no sales call.",
-      ctaPrimary: "Book a free call",
+        "I look at what a taxpayer finds when they search for a tax preparer in your city, where you show up and what it's costing you in clients. I record it for you in a three-minute video. If you want, we spend fifteen minutes on it and I tell you what I'd do before the season opens.",
+      ctaPrimary: "Book my Pre-Season Review",
       ctaWhatsapp: "Chat on WhatsApp",
     },
     footer: {
@@ -2040,7 +2052,7 @@ export const translations = {
       contactTitle: "Contact",
       hours: "Monday to Sunday",
       location: "Serving the United States remotely, in Spanish and English",
-      cta: "Book a free call",
+      cta: "Book my Pre-Season Review",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
       terms: "Terms & conditions",
@@ -2083,7 +2095,7 @@ export const translations = {
       title: "It's not an agency. It's me.",
       body:
         "When you message me, I'm the one who answers. When we review your practice, I'm the one reviewing it. And once your site is live, I'm still the one maintaining it — including in month six, when the agency of the moment has already switched your account manager three times. I work remotely, in Spanish and English, with tax firms and service businesses across the United States, and I'd rather take on few projects and do them well than many done halfway.",
-      cta: "Book a free call",
+      cta: "Book my Pre-Season Review",
     },
     // ── Objection FAQ before the home page's final CTA (finding #18) ──
     homeFaq: {

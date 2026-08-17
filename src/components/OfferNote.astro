@@ -1,0 +1,65 @@
+---
+/**
+ * Nota que acompaña a TODO botón de agenda del sitio.
+ *
+ * Tres líneas, siempre en el mismo orden y con el mismo texto (viene de
+ * `common` en i18n/ui.ts, así que no hay forma de que se desincronicen):
+ *   1. qué es    → gratis, 15 min, con la revisión en vídeo incluida
+ *   2. garantía  → respuesta en menos de 24 h (el diferenciador más fuerte,
+ *                  y hasta ahora no estaba escrito en ninguna parte)
+ *   3. urgencia  → última fecha de contratación antes de temporada
+ *
+ * Si cambia la fecha límite, se cambia en un solo sitio: `common.deadline`.
+ */
+import { translations, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+  align?: "left" | "center";
+  class?: string;
+}
+const { lang = "es", align = "left", class: extra = "" } = Astro.props as Props;
+const c = translations[lang].common;
+const centered = align === "center";
+---
+
+<div
+  class:list={[
+    "mt-6 grid gap-2.5",
+    centered && "justify-items-center text-center",
+    extra,
+  ]}
+>
+  <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]">
+    {c.free}
+  </p>
+
+  <p
+    class:list={[
+      "flex items-start gap-2.5 text-[13px] leading-6 text-[var(--muted)]",
+      centered && "justify-center",
+    ]}
+  >
+    <span
+      class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]"
+    >
+      <Icon name="check" class="h-3 w-3" strokeWidth={2.6} />
+    </span>
+    <span>{c.guarantee}</span>
+  </p>
+
+  <p
+    class:list={[
+      "flex items-start gap-2.5 text-[13px] font-semibold leading-6 text-[var(--accent)]",
+      centered && "justify-center",
+    ]}
+  >
+    <span
+      class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded bg-[var(--accent)]/15"
+    >
+      <Icon name="calendar" class="h-3 w-3" strokeWidth={2.6} />
+    </span>
+    <span>{c.deadline}</span>
+  </p>
+</div>

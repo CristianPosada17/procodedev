@@ -1,6 +1,7 @@
 ---
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import Icon from "./Icon.astro";
+import OfferNote from "./OfferNote.astro";
 
 interface Props {
   lang?: Lang;
@@ -52,6 +53,8 @@ const h = t.hero;
           {t.common.viewServices}
         </a>
       </div>
+
+      <OfferNote lang={lang} />
 
       <div
         class="mt-10 grid gap-4 text-sm text-[var(--muted)] sm:grid-cols-3"

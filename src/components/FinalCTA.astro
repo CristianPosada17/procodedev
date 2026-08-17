@@ -1,6 +1,7 @@
 ---
 import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
 import Icon from "./Icon.astro";
+import OfferNote from "./OfferNote.astro";
 interface Props {
   lang?: Lang;
 }
@@ -9,8 +10,8 @@ const t = translations[lang];
 const fc = t.finalCta;
 const waMsg = encodeURIComponent(
   lang === "es"
-    ? "Hola Cristian 👋 Quiero agendar la llamada gratis de 15 minutos."
-    : "Hi Cristian 👋 I'd like to book the free 15-minute call.",
+    ? "Hola Cristian 👋 Quiero mi Revisión de Temporada."
+    : "Hi Cristian 👋 I'd like my Pre-Season Review.",
 );
 ---
 
@@ -43,6 +44,8 @@ const waMsg = encodeURIComponent(
             {fc.ctaWhatsapp}
           </a>
         </div>
+
+        <OfferNote lang={lang} align="center" />
       </div>
     </div>
   </div>
