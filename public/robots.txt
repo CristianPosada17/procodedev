@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /formulario
 
 Sitemap: https://procodedev.com/sitemap.xml

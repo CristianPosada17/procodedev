@@ -1,0 +1,718 @@
+---
+// Formulario de onboarding de clientes. Es HTML plano a proposito:
+// no usa Layout ni componentes para poder abrirse y editarse por separado.
+// is:inline mantiene el <style> y el <script> tal cual, sin que Astro los procese.
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="robots" content="noindex, nofollow">
+<title>Información para tu página web · ProCode Dev</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style is:inline>
+  :root{
+    /* Tokens alineados con el sistema de diseño de ProCode Dev */
+    --brand:#2563eb; --brand-strong:#1d4ed8; --accent:#0ea5e9;
+    --tinta:#0f172a; --gris:#475569; --gris2:#94a3b8;
+    --linea:#e2e8f0; --linea2:#eef2f7;
+    --fondo:#f6f8fc; --fondo2:#eef4ff;
+    --ok:#0f8b53;
+    --font-head:"Space Grotesk",system-ui,sans-serif;
+    --font-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;font-family:var(--font-body);
+    background:var(--fondo);color:var(--tinta);font-size:16px;line-height:1.5;
+    padding-bottom:96px;
+  }
+  h1,h2{font-family:var(--font-head);letter-spacing:-.02em}
+
+  /* ===== BARRA SUPERIOR ===== */
+  .top{
+    position:sticky;top:0;z-index:50;background:#fff;
+    border-bottom:1px solid var(--linea);
+    padding:12px 18px 0;
+  }
+  .top-in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:9px}
+  .top img{width:30px;height:30px;flex-shrink:0;object-fit:contain}
+  .top b{font-family:var(--font-head);color:var(--brand);font-size:16px;letter-spacing:-.3px}
+  .bar{max-width:640px;margin:11px auto 0;height:4px;background:var(--linea2);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--brand));border-radius:99px;transition:width .35s ease}
+  .bar-t{max-width:640px;margin:5px auto 0;font-size:11px;color:var(--gris2);letter-spacing:.4px;padding-bottom:9px}
+
+  .wrap{max-width:640px;margin:0 auto;padding:22px 18px 0}
+
+  /* ===== PORTADA ===== */
+  .hero h1{font-size:25px;line-height:1.22;margin:0 0 10px;color:var(--brand);letter-spacing:-.6px}
+  .hero p{color:var(--gris);margin:0 0 14px;font-size:15px}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .chip{background:#fff;border:1px solid var(--linea);border-radius:99px;padding:6px 12px;font-size:12.5px;color:var(--gris)}
+  .chip b{color:var(--brand);font-weight:600}
+
+  /* ===== SECCIONES ===== */
+  .sec{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:18px 16px;margin-bottom:14px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .num{
+    flex-shrink:0;width:25px;height:25px;border-radius:50%;
+    background:var(--fondo2);color:var(--brand);
+    font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center
+  }
+  .sec-h h2{font-size:16.5px;margin:0;color:var(--brand);letter-spacing:-.3px}
+  .sec-d{font-size:13.5px;color:var(--gris);margin:0 0 15px 35px}
+
+  .f{margin-bottom:17px}
+  .f:last-child{margin-bottom:0}
+  label{display:block;font-size:14.5px;font-weight:600;margin-bottom:3px}
+  .hint{font-size:12.5px;color:var(--gris2);margin-bottom:7px;line-height:1.45}
+  .opt{font-weight:400;color:var(--gris2);font-size:12.5px}
+
+  input[type=text],input[type=tel],input[type=email],input[type=url],textarea,select{
+    width:100%;padding:12px 13px;border:1.5px solid var(--linea);border-radius:9px;
+    font-size:16px;font-family:inherit;background:#fff;color:var(--tinta);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  textarea{min-height:88px;resize:vertical;line-height:1.5}
+  input:focus,textarea:focus,select:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.13)}
+  select{appearance:none;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:17px;padding-right:38px}
+
+  /* opciones tipo tarjeta */
+  .cards{display:flex;flex-direction:column;gap:8px}
+  .card{
+    display:flex;align-items:flex-start;gap:11px;padding:12px 13px;
+    border:1.5px solid var(--linea);border-radius:9px;cursor:pointer;background:#fff;
+    transition:border-color .15s, background .15s;
+  }
+  .card:has(input:checked){border-color:var(--brand);background:var(--fondo2)}
+  .card input{margin:2px 0 0;accent-color:var(--brand);width:17px;height:17px;flex-shrink:0}
+  .card span{font-size:14.5px;line-height:1.4}
+  .card span i{display:block;font-size:12.5px;color:var(--gris2);font-style:normal;margin-top:1px}
+
+  /* servicios repetibles */
+  .serv{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+  .serv .n{flex-shrink:0;width:22px;font-size:13px;color:var(--gris2);font-weight:600;text-align:center}
+  .serv input{flex:1}
+  .serv button{
+    flex-shrink:0;width:34px;height:34px;border:1px solid var(--linea);background:#fff;
+    border-radius:8px;color:var(--gris2);font-size:19px;line-height:1;cursor:pointer
+  }
+  .serv button:active{background:var(--fondo)}
+  .add{
+    width:100%;padding:10px;border:1.5px dashed var(--linea);background:transparent;
+    border-radius:9px;color:var(--brand);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+  }
+  .add:disabled{color:var(--gris2);cursor:default}
+
+  .aviso{background:var(--fondo2);border-left:3px solid var(--brand);border-radius:0 8px 8px 0;padding:11px 13px;font-size:13.5px;color:#3d4657;margin-top:13px}
+  .aviso b{color:var(--brand)}
+
+  /* ===== BARRA INFERIOR ===== */
+  .foot{
+    position:fixed;bottom:0;left:0;right:0;z-index:50;background:#fff;
+    border-top:1px solid var(--linea);padding:11px 18px;
+    padding-bottom:calc(11px + env(safe-area-inset-bottom));
+    box-shadow:0 -3px 14px rgba(15,23,42,.08)
+  }
+  .foot-in{max-width:640px;margin:0 auto;display:flex;gap:9px}
+  .btn{
+    flex:1;padding:14px;border:0;border-radius:10px;font-size:15.5px;font-weight:700;
+    font-family:inherit;cursor:pointer;letter-spacing:-.2px
+  }
+  .btn-wa{background:#25D366;color:#fff}
+  .btn-cp{background:var(--brand);color:#fff;flex:0 0 46%}
+  .btn:active{transform:scale(.985)}
+  .btn[disabled]{opacity:.6;cursor:default}
+  .saved{max-width:640px;margin:0 auto 7px;font-size:11.5px;color:var(--gris2);text-align:center;height:14px}
+  .saved.on{color:var(--ok)}
+
+  .end{text-align:center;padding:26px 0 8px;font-size:12px;color:var(--gris2);line-height:1.7}
+  .end a{color:var(--gris2)}
+
+  .toast{
+    position:fixed;left:50%;bottom:110px;transform:translate(-50%,14px);
+    background:var(--tinta);color:#fff;padding:11px 19px;border-radius:99px;
+    font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.28s;z-index:99;
+    max-width:88vw;text-align:center
+  }
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+
+  /* ===== PANTALLA DE GRACIAS ===== */
+  .gracias{display:none;text-align:center;padding:40px 0}
+  .gracias.on{display:block}
+  .gracias .tick{
+    width:56px;height:56px;border-radius:50%;background:var(--fondo2);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+    color:var(--ok);font-size:28px;font-weight:700
+  }
+  .gracias h1{font-size:24px;color:var(--brand);margin:0 0 8px}
+  .gracias p{color:var(--gris);font-size:15px;margin:0 auto;max-width:420px}
+
+  @media(min-width:700px){
+    .wrap{padding-top:30px}
+    .hero h1{font-size:30px}
+    .sec{padding:22px 22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="top" id="topBar">
+  <div class="top-in">
+    <img src="/Logo.webp" alt="ProCode Dev" width="30" height="30">
+    <b>ProCode Dev</b>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="bar-t" id="barT">0% completado</div>
+</div>
+
+<div class="wrap" id="form">
+
+  <div class="hero">
+    <h1>La información para tu página web</h1>
+    <p id="intro">Con esto arranco el desarrollo. Puedes contestar desde el celular y salirte cuando quieras — se guarda solo y al volver sigues donde ibas.</p>
+    <div class="meta">
+      <span class="chip">⏱ <b>8 minutos</b></span>
+      <span class="chip">💾 <b>Se guarda solo</b></span>
+      <span class="chip">📱 <b>Desde el celular</b></span>
+    </div>
+  </div>
+
+  <!-- 0 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">0</span><h2>Tu despacho</h2></div>
+    <p class="sec-d">Para saber de quién viene esta información.</p>
+    <div class="f">
+      <label>Tu nombre</label>
+      <input type="text" name="nombre" placeholder="Nombre y apellido" autocomplete="name">
+    </div>
+    <div class="f">
+      <label>Nombre del despacho o negocio</label>
+      <div class="hint">Como quieres que aparezca en la página.</div>
+      <input type="text" name="negocio" placeholder="Ejemplo: Delgado Tax Services LLC">
+    </div>
+    <div class="f">
+      <label>Ciudad y estado donde operas</label>
+      <input type="text" name="ciudad" placeholder="Ejemplo: Houston, Texas">
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">1</span><h2>Idioma de la página</h2></div>
+    <p class="sec-d">Es la primera decisión y la que más define todo lo demás.</p>
+    <div class="f">
+      <label>¿En qué idioma quieres tu página?</label>
+      <div class="hint">Piensa en el cliente que quieres atraer, no en el que ya tienes.</div>
+      <div class="cards">
+        <label class="card"><input type="radio" name="idioma" value="Español"><span>Solo español<i>Para la comunidad hispanohablante de tu zona</i></span></label>
+        <label class="card"><input type="radio" name="idioma" value="Inglés"><span>Solo inglés<i>Para el mercado general</i></span></label>
+        <label class="card"><input type="radio" name="idioma" value="Bilingüe"><span>Los dos<i>Español e inglés, sin costo adicional</i></span></label>
+      </div>
+    </div>
+    <div class="f">
+      <label>¿Hasta dónde atiendes clientes? <span class="opt">— opcional</span></label>
+      <div class="hint">Define si la página se enfoca en tu ciudad o en todo el país.</div>
+      <select name="cobertura">
+        <option value="">Elige una opción</option>
+        <option>Solo mi ciudad y el área</option>
+        <option>Todo mi estado</option>
+        <option>Cualquier estado de EE. UU.</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">2</span><h2>Tu trayectoria</h2></div>
+    <p class="sec-d">Esto es lo que genera confianza. Es la parte más importante del formulario.</p>
+    <div class="f">
+      <label>¿Cuántos años llevas ejerciendo?</label>
+      <input type="text" name="anios" placeholder="Ejemplo: 12 años" inputmode="numeric">
+    </div>
+    <div class="f">
+      <label>¿Qué certificaciones o licencias tienes?</label>
+      <div class="hint">CPA, EA, PTIN, licencia estatal, membresías. Escribe solo las que quieras mostrar.</div>
+      <input type="text" name="cert" placeholder="Ejemplo: CPA, PTIN activo">
+    </div>
+    <div class="f">
+      <label>Cuéntame tu historia en unas líneas</label>
+      <div class="hint">Por qué elegiste esta profesión, a quién ayudas, qué te motiva. Escríbelo como si me lo contaras hablando — yo le doy forma después. No te preocupes por la redacción.</div>
+      <textarea name="historia" placeholder="Empecé en esto porque..."></textarea>
+    </div>
+    <div class="f">
+      <label>¿Qué te distingue de otros despachos de tu zona?</label>
+      <div class="hint">Lo que tus clientes valoran y que otros no ofrecen.</div>
+      <textarea name="diferencia" placeholder="Mis clientes suelen decirme que..."></textarea>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">3</span><h2>Tus servicios</h2></div>
+    <p class="sec-d">Máximo 6, del más importante al menos. Una lista corta comunica especialidad; una larga comunica «hago de todo».</p>
+    <div class="f">
+      <label>Lista de servicios</label>
+      <div class="hint">Con el nombre basta. Si quieres, agrega media línea de descripción.</div>
+      <div id="servs"></div>
+      <button type="button" class="add" id="addServ">+ Agregar otro servicio</button>
+    </div>
+    <div class="f">
+      <label>¿Hay algún servicio que NO quieras mostrar? <span class="opt">— opcional</span></label>
+      <div class="hint">Aunque lo ofrezcas, tal vez no quieras atraer ese tipo de cliente.</div>
+      <input type="text" name="noMostrar" placeholder="Ejemplo: auditorías">
+    </div>
+    <div class="f">
+      <label>¿Manejas precios públicos?</label>
+      <div class="cards">
+        <label class="card"><input type="radio" name="precios" value="Sí, mostrar precios"><span>Sí, quiero mostrarlos<i>Filtra clientes que no encajan en tu rango</i></span></label>
+        <label class="card"><input type="radio" name="precios" value="No mostrar precios"><span>No, prefiero cotizar caso por caso<i>Genera más consultas pero menos filtradas</i></span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">4</span><h2>Cómo quieres que te contacten</h2></div>
+    <p class="sec-d">La página entera se ordena alrededor de esta decisión.</p>
+    <div class="f">
+      <label>¿Cuál quieres que sea el botón principal?</label>
+      <div class="cards">
+        <label class="card"><input type="radio" name="cta" value="WhatsApp"><span>Escribirme por WhatsApp<i>El más usado. Contacto inmediato y sin fricción</i></span></label>
+        <label class="card"><input type="radio" name="cta" value="Agendar cita"><span>Agendar una cita en mi calendario<i>Filtra mejor, pero contacta menos gente</i></span></label>
+        <label class="card"><input type="radio" name="cta" value="Formulario"><span>Llenar un formulario<i>Te llega la info completa, pero es el más lento</i></span></label>
+        <label class="card"><input type="radio" name="cta" value="Llamada"><span>Llamarme por teléfono<i>Directo, pero exige que estés disponible</i></span></label>
+      </div>
+    </div>
+    <div class="f">
+      <label>¿A qué correo quieres que lleguen los mensajes del formulario?</label>
+      <input type="email" name="correoForm" placeholder="tucorreo@ejemplo.com" inputmode="email" autocomplete="email">
+    </div>
+    <div class="f">
+      <label>¿Qué días y horarios atiendes?</label>
+      <div class="hint">Se muestra en la página y configura tu agenda de citas.</div>
+      <input type="text" name="horario" placeholder="Ejemplo: Lunes a viernes de 9 a 6, sábados de 9 a 1">
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">5</span><h2>Tus datos de contacto</h2></div>
+    <p class="sec-d">Solo lo que quieras que sea público en la página.</p>
+    <div class="f">
+      <label>Teléfono público</label>
+      <div class="hint">Si es distinto al que usamos para hablar tú y yo.</div>
+      <input type="tel" name="telPub" placeholder="+1 (000) 000-0000" inputmode="tel">
+    </div>
+    <div class="f">
+      <label>Correo público</label>
+      <input type="email" name="correoPub" placeholder="contacto@ejemplo.com" inputmode="email">
+    </div>
+    <div class="f">
+      <label>Dirección de oficina <span class="opt">— opcional</span></label>
+      <div class="hint">Mostrarla ayuda mucho a aparecer en Google local. Déjalo vacío si atiendes solo en línea.</div>
+      <input type="text" name="direccion" placeholder="Calle, ciudad, estado, ZIP">
+    </div>
+    <div class="f">
+      <label>Tus redes sociales <span class="opt">— opcional</span></label>
+      <div class="hint">Pega los enlaces o solo el nombre de usuario.</div>
+      <input type="text" name="redes" placeholder="Facebook, Instagram, LinkedIn">
+    </div>
+    <div class="f">
+      <label>¿Tienes perfil de Google Business?</label>
+      <div class="hint">Es lo que hace que aparezcas en el mapa cuando alguien busca «contador cerca de mí».</div>
+      <select name="gbp">
+        <option value="">Elige una opción</option>
+        <option>Sí, y tengo acceso</option>
+        <option>Sí, pero no tengo el acceso</option>
+        <option>No tengo</option>
+        <option>No sé qué es</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">6</span><h2>Dominio y correos</h2></div>
+    <p class="sec-d">Incluidos por un año en lo que ya contrataste.</p>
+    <div class="f">
+      <label>¿Ya tienes un dominio comprado?</label>
+      <select name="dominioTiene">
+        <option value="">Elige una opción</option>
+        <option>Sí, ya lo tengo y tengo el acceso</option>
+        <option>Sí, ya lo tengo pero no tengo el acceso</option>
+        <option>No, quiero que lo registres tú</option>
+      </select>
+    </div>
+    <div class="f">
+      <label>Nombre del dominio</label>
+      <div class="hint">Si ya lo tienes, escríbelo. Si no, dame 3 opciones en orden de preferencia y yo reviso cuál está libre.</div>
+      <textarea name="dominio" placeholder="1. minegocio.com&#10;2. minegociotax.com&#10;3. contadorminegocio.com" style="min-height:74px"></textarea>
+    </div>
+    <div class="f">
+      <label>¿Qué correos profesionales quieres?</label>
+      <div class="hint">Tienes hasta 5 incluidos. Escribe solo la parte de antes del @.</div>
+      <input type="text" name="correos" placeholder="info, citas, contacto">
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">7</span><h2>Confianza y referencias</h2></div>
+    <p class="sec-d">Lo que más convence a alguien que no te conoce.</p>
+    <div class="f">
+      <label>¿Tienes testimonios de clientes?</label>
+      <div class="hint">Con 2 o 3 basta. Si no los tienes a mano, pídele a clientes de confianza un par de líneas por WhatsApp — es rápido y vale mucho. Si no se puede, seguimos sin ellos.</div>
+      <textarea name="testimonios" placeholder="«Me ayudó a...» — Nombre, dueño de negocio"></textarea>
+    </div>
+    <div class="f">
+      <label>Sitios web que te gusten <span class="opt">— opcional</span></label>
+      <div class="hint">De cualquier industria, no tienen que ser de despachos. Dime qué te gusta de cada uno: los colores, lo simple que es, el tono.</div>
+      <textarea name="referencias" placeholder="ejemplo.com — me gusta que se ve limpio y serio" style="min-height:74px"></textarea>
+    </div>
+    <div class="f">
+      <label>¿Qué te preguntan más tus clientes nuevos? <span class="opt">— opcional</span></label>
+      <div class="hint">Con esto armo la sección de preguntas frecuentes, que además ayuda a que Google te encuentre.</div>
+      <textarea name="faq" placeholder="Ejemplo: cuánto cuesta, qué papeles necesito, si atienden en español" style="min-height:74px"></textarea>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="sec">
+    <div class="sec-h"><span class="num">8</span><h2>Un último detalle</h2></div>
+    <p class="sec-d">Para que no haya cruces con otros proyectos que ya tengas.</p>
+    <div class="f">
+      <label>¿Ya tienes otro sitio web o página del negocio?</label>
+      <select name="relacion">
+        <option value="">Elige una opción</option>
+        <option>No, esta es la primera</option>
+        <option>Sí, y son independientes — no se enlazan</option>
+        <option>Sí, y esta página debe enlazar al otro sitio</option>
+        <option>Todavía no lo tengo claro</option>
+      </select>
+    </div>
+    <div class="f">
+      <label>¿Hay algo que deba respetar de ese proyecto? <span class="opt">— opcional</span></label>
+      <div class="hint">Colores, tipografía, mensajes o nombres que deban coincidir.</div>
+      <input type="text" name="respetar" placeholder="Ejemplo: usar el mismo azul del logo">
+    </div>
+    <div class="f">
+      <label>¿Algo más que quieras que sepa? <span class="opt">— opcional</span></label>
+      <textarea name="extra" placeholder="Cualquier cosa que te parezca importante" style="min-height:74px"></textarea>
+    </div>
+
+    <div class="aviso">
+      <b>La foto y el logo mándamelos por WhatsApp.</b> Es más fácil que subirlos aquí: entra al chat, adjunta y listo. Si tienes el logo en el archivo original (.ai, .svg o .png con fondo transparente), ese es el ideal. Si solo tienes una captura, también sirve.
+    </div>
+  </div>
+
+  <div class="end">
+    ProCode Dev · <a href="mailto:info@procodedev.com">info@procodedev.com</a><br>
+    Tus respuestas se guardan solo en tu teléfono hasta que las envías.
+  </div>
+
+</div>
+
+<div class="wrap gracias" id="gracias">
+  <div class="tick">✓</div>
+  <h1>¡Recibido!</h1>
+  <p>Ya tengo tu información. Si no se abrió WhatsApp, no te preocupes: la copia me llegó por correo. Te escribo en menos de 24 horas con los siguientes pasos.</p>
+</div>
+
+<div class="foot" id="foot">
+  <div class="saved" id="saved"></div>
+  <div class="foot-in">
+    <button class="btn btn-cp" id="copiar">Copiar respuestas</button>
+    <button class="btn btn-wa" id="enviar">Enviar</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script is:inline>
+(function(){
+  "use strict";
+
+  /* ============ CONFIGURACIÓN — lo único que se edita ============ */
+  /* OJO: este número es a propósito distinto al de CONTACT en src/i18n/ui.ts.
+     El formulario usa el 618 (línea directa con clientes); el sitio público
+     usa el 614. No los "empates" sin preguntarle a Cristian. */
+  var WHATSAPP  = "5216182302938";  // 618, sin + ni espacios
+  var W3F_KEY   = "9659bbb8-915d-4842-8981-a261c0faf9ff";  // = CONTACT.web3formsKey en ui.ts
+  var CORREO_CC = "info@procodedev.com";
+  /* ============================================================== */
+
+  var KEY = "procode_form_web_v2";
+  var MAX_SERV = 6;
+  var servBox = document.getElementById("servs");
+  var addBtn  = document.getElementById("addServ");
+
+  /* ---------- saludo personalizable por URL: ?n=José ---------- */
+  (function saludo(){
+    var p = new URLSearchParams(location.search);
+    var n = (p.get("n") || p.get("nombre") || "").trim().slice(0,40);
+    if(!n) return;
+    n = n.replace(/[<>&"]/g, "");
+    var el = document.getElementById("intro");
+    el.textContent = n + ", con esto arranco el desarrollo. Puedes contestar desde el celular y salirte cuando quieras — se guarda solo y al volver sigues donde ibas.";
+    var campoNombre = document.querySelector('[name="nombre"]');
+    if(campoNombre && !campoNombre.value) campoNombre.value = n;
+  })();
+
+  /* ---------- servicios dinámicos ---------- */
+  function pinta(){
+    var filas = servBox.querySelectorAll(".serv");
+    filas.forEach(function(f,i){
+      f.querySelector(".n").textContent = (i+1);
+      f.querySelector("button").style.visibility = filas.length > 1 ? "visible" : "hidden";
+    });
+    addBtn.disabled = filas.length >= MAX_SERV;
+    addBtn.textContent = filas.length >= MAX_SERV
+      ? "Llegaste al máximo de 6 servicios"
+      : "+ Agregar otro servicio";
+  }
+  function addServ(val){
+    if(servBox.querySelectorAll(".serv").length >= MAX_SERV) return;
+    var d = document.createElement("div");
+    d.className = "serv";
+    d.innerHTML = '<span class="n"></span>'
+      + '<input type="text" class="sv" placeholder="Nombre del servicio">'
+      + '<button type="button" aria-label="Quitar">&times;</button>';
+    if(val) d.querySelector("input").value = val;
+    d.querySelector("button").addEventListener("click", function(){
+      d.remove(); pinta(); guarda(); progreso();
+    });
+    d.querySelector("input").addEventListener("input", function(){ guarda(); progreso(); });
+    servBox.appendChild(d);
+    pinta();
+  }
+  addBtn.addEventListener("click", function(){ addServ(); progreso(); });
+
+  /* ---------- guardado local ---------- */
+  var campos = function(){
+    return document.querySelectorAll("input[name], textarea[name], select[name]");
+  };
+  var tSave;
+  function guarda(){
+    var d = {servicios:[]};
+    campos().forEach(function(el){
+      if(el.type === "radio"){ if(el.checked) d[el.name] = el.value; }
+      else d[el.name] = el.value;
+    });
+    servBox.querySelectorAll(".sv").forEach(function(i){
+      if(i.value.trim()) d.servicios.push(i.value.trim());
+    });
+    try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
+    var s = document.getElementById("saved");
+    s.textContent = "Guardado"; s.className = "saved on";
+    clearTimeout(tSave);
+    tSave = setTimeout(function(){ s.textContent = ""; s.className = "saved"; }, 1600);
+  }
+  function carga(){
+    var raw;
+    try{ raw = localStorage.getItem(KEY); }catch(e){ raw = null; }
+    if(!raw){ addServ(); addServ(); addServ(); return; }
+    var d;
+    try{ d = JSON.parse(raw); }catch(e){ addServ(); addServ(); addServ(); return; }
+    campos().forEach(function(el){
+      if(el.type === "radio"){ if(d[el.name] === el.value) el.checked = true; }
+      else if(d[el.name] != null && d[el.name] !== "") el.value = d[el.name];
+    });
+    var sv = (d.servicios && d.servicios.length) ? d.servicios : ["","",""];
+    sv.forEach(function(v){ addServ(v); });
+    if(!servBox.querySelectorAll(".serv").length) addServ();
+  }
+
+  /* ---------- progreso ---------- */
+  var CLAVE = ["nombre","negocio","ciudad","idioma","anios","cert","historia","diferencia",
+               "precios","cta","correoForm","horario","telPub","correoPub","dominioTiene",
+               "dominio","correos","relacion"];
+  function progreso(){
+    var hechos = 0, total = CLAVE.length + 1;
+    CLAVE.forEach(function(n){
+      var el = document.querySelector('[name="'+n+'"]');
+      if(!el) return;
+      if(el.type === "radio"){
+        if(document.querySelector('[name="'+n+'"]:checked')) hechos++;
+      } else if(el.value.trim()) hechos++;
+    });
+    var hayServ = false;
+    servBox.querySelectorAll(".sv").forEach(function(i){ if(i.value.trim()) hayServ = true; });
+    if(hayServ) hechos++;
+    var pct = Math.round(hechos / total * 100);
+    document.getElementById("bar").style.width = pct + "%";
+    document.getElementById("barT").textContent = pct === 100
+      ? "Listo — ya puedes enviarlo"
+      : pct + "% completado";
+  }
+
+  document.addEventListener("input", function(e){
+    if(e.target.name || e.target.classList.contains("sv")){ guarda(); progreso(); }
+  });
+  document.addEventListener("change", function(e){
+    if(e.target.name){ guarda(); progreso(); }
+  });
+
+  /* ---------- armar el texto ---------- */
+  var MAPA = [
+    ["DESPACHO", [["nombre","Nombre"],["negocio","Negocio"],["ciudad","Ciudad"]]],
+    ["IDIOMA Y COBERTURA", [["idioma","Idioma"],["cobertura","Atiende"]]],
+    ["TRAYECTORIA", [["anios","Años ejerciendo"],["cert","Certificaciones"],
+                     ["historia","Su historia"],["diferencia","Qué lo distingue"]]],
+    ["SERVICIOS", "SERV"],
+    ["CONTACTO PRINCIPAL", [["cta","Botón principal"],["correoForm","Correo del formulario"],
+                            ["horario","Horario"]]],
+    ["DATOS PÚBLICOS", [["telPub","Teléfono"],["correoPub","Correo"],["direccion","Dirección"],
+                        ["redes","Redes"],["gbp","Google Business"]]],
+    ["DOMINIO Y CORREOS", [["dominioTiene","Estado del dominio"],["dominio","Dominio"],
+                           ["correos","Correos deseados"]]],
+    ["CONFIANZA", [["testimonios","Testimonios"],["referencias","Sitios de referencia"],
+                   ["faq","Preguntas frecuentes"]]],
+    ["OTROS", [["noMostrar","No mostrar"],["precios","Precios"],["relacion","Otro sitio web"],
+               ["respetar","Respetar"],["extra","Notas extra"]]]
+  ];
+  function val(n){
+    var el = document.querySelector('[name="'+n+'"]');
+    if(!el) return "";
+    if(el.type === "radio"){
+      var c = document.querySelector('[name="'+n+'"]:checked');
+      return c ? c.value : "";
+    }
+    return el.value.trim();
+  }
+  function texto(negrita){
+    var b = negrita ? "*" : "";
+    var quien = val("nombre") || val("negocio") || "Cliente";
+    var out = [b+"INFORMACIÓN PARA MI PÁGINA WEB"+b, quien, ""];
+    MAPA.forEach(function(blq){
+      var titulo = blq[0], def = blq[1], lineas = [];
+      if(def === "SERV"){
+        var sv = [];
+        servBox.querySelectorAll(".sv").forEach(function(i){
+          if(i.value.trim()) sv.push(i.value.trim());
+        });
+        sv.forEach(function(s,i){ lineas.push((i+1)+". "+s); });
+      } else {
+        def.forEach(function(par){
+          var v = val(par[0]);
+          if(v) lineas.push(par[1]+": "+v);
+        });
+      }
+      if(lineas.length){
+        out.push(b+titulo+b);
+        out.push.apply(out, lineas);
+        out.push("");
+      }
+    });
+    out.push("— Enviado desde el formulario de ProCode Dev");
+    return out.join("\n");
+  }
+
+  /* ---------- avisos ---------- */
+  var tToast;
+  function toast(m){
+    var t = document.getElementById("toast");
+    t.textContent = m; t.className = "toast on";
+    clearTimeout(tToast);
+    tToast = setTimeout(function(){ t.className = "toast"; }, 2600);
+  }
+
+  function faltan(){
+    var f = [];
+    if(!val("nombre"))   f.push("tu nombre");
+    if(!val("idioma"))   f.push("el idioma");
+    if(!val("historia")) f.push("tu historia");
+    var hay = false;
+    servBox.querySelectorAll(".sv").forEach(function(i){ if(i.value.trim()) hay = true; });
+    if(!hay) f.push("tus servicios");
+    return f;
+  }
+
+  function copiar(t, cb){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(cb, manual);
+    } else manual();
+    function manual(){
+      var a = document.createElement("textarea");
+      a.value = t; a.style.position = "fixed"; a.style.opacity = "0";
+      document.body.appendChild(a); a.focus(); a.select();
+      try{ document.execCommand("copy"); cb(); }
+      catch(e){ toast("No se pudo copiar, selecciona el texto a mano"); }
+      document.body.removeChild(a);
+    }
+  }
+
+  /* ---------- copia al correo (Web3Forms) ---------- */
+  function mandaCorreo(){
+    if(!W3F_KEY) return Promise.resolve(false);
+    var quien = val("nombre") || val("negocio") || "Cliente";
+    return fetch("https://api.web3forms.com/submit", {
+      method:"POST",
+      headers:{"Content-Type":"application/json", "Accept":"application/json"},
+      body: JSON.stringify({
+        access_key: W3F_KEY,
+        subject: "Formulario web — " + quien,
+        from_name: "Formulario ProCode Dev",
+        email: val("correoPub") || val("correoForm") || CORREO_CC,
+        message: texto(false)
+      })
+    }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+  }
+
+  /* ---------- botones ---------- */
+  document.getElementById("copiar").addEventListener("click", function(){
+    copiar(texto(true), function(){ toast("Respuestas copiadas"); });
+  });
+
+  var btnEnviar = document.getElementById("enviar");
+  btnEnviar.addEventListener("click", function(){
+    var f = faltan();
+    if(f.length){ toast("Aún falta " + f.join(", ")); return; }
+
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = "Enviando...";
+
+    var t = texto(true);
+    var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t);
+    var largo = url.length > 1900;
+
+    /* La ventana de WhatsApp se abre de inmediato: si se abre después
+       del fetch, el navegador la bloquea por falta de gesto del usuario. */
+    var win = null;
+    if(largo){
+      copiar(t, function(){});
+      win = window.open("https://wa.me/" + WHATSAPP, "_blank");
+      toast("Respuestas copiadas — pégalas en el chat");
+    } else {
+      win = window.open(url, "_blank");
+    }
+
+    mandaCorreo().then(function(ok){
+      btnEnviar.disabled = false;
+      btnEnviar.textContent = "Enviar";
+      if(ok || win){
+        document.getElementById("form").style.display = "none";
+        document.getElementById("foot").style.display = "none";
+        document.getElementById("gracias").className = "gracias on";
+        window.scrollTo(0,0);
+      } else {
+        toast("No se pudo enviar. Usa «Copiar respuestas» y mándamelas por WhatsApp");
+      }
+    });
+  });
+
+  /* ---------- arranque ---------- */
+  carga();
+  progreso();
+  document.getElementById("saved").textContent = "";
+})();
+</script>
+
+</body>
+</html>
