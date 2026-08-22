@@ -2,36 +2,51 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
-import TaxNiche from "../components/TaxNiche.astro";
+import SectorsHub from "../components/SectorsHub.astro";
 import ProofStrip from "../components/ProofStrip.astro";
 import PriceAnchor from "../components/PriceAnchor.astro";
 import Founder from "../components/Founder.astro";
 import FAQ from "../components/FAQ.astro";
 import Footer from "../components/Footer.astro";
-import { translations } from "../i18n/ui";
+import { translations, PAGES, SEGMENT_KEYS } from "../i18n/ui";
+import { segments } from "../i18n/segments";
 
 const lang = "es";
 const t = translations[lang];
-const meta = t.pageMeta.tax;
+const meta = t.pageMeta.sectors;
+// La lista explícita de giros alimenta el nodo ItemList: es lo que hace
+// que un buscador lea esta página como índice y no como una landing más.
+const sectorList = SEGMENT_KEYS.map((key) => ({
+  name: segments[lang][key].navLabel,
+  description: segments[lang][key].navHint,
+  url: PAGES[key][lang],
+}));
 ---
 
 <Layout
   lang={lang}
-  page="tax"
+  page="sectors"
   title={meta.title}
   description={meta.description}
   includeFaq={true}
   faqVariant="home"
+  keywords={meta.keywords}
+  itemList={sectorList}
+  serviceName={meta.heroSubtitle}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.sectors, path: PAGES.sectors[lang] },
+  ]}
 >
-  <Header lang={lang} page="tax" />
+  <Header lang={lang} page="sectors" />
   <main>
     <PageHero
-      eyebrow="// para despachos de impuestos"
+      eyebrow="// para dueños de negocio"
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
     />
-    <TaxNiche lang={lang} />
+    <SectorsHub lang={lang} />
     <ProofStrip lang={lang} />
     <PriceAnchor lang={lang} />
     <Founder lang={lang} />

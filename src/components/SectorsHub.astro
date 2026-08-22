@@ -15,7 +15,7 @@ interface Props {
 }
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
-const x = t.tax;
+const x = t.sectors;
 
 // El hub deja de ser una landing suelta: es el índice de las seis páginas de
 // oficio. Sin este bloque, las páginas hijas solo se alcanzarían desde el
@@ -228,7 +228,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
             <Icon name="arrow-right" class="ml-2 h-4 w-4" />
           </a>
           <a
-            href={waHref("tax", lang)}
+            href={waHref("sectors", lang)}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"

@@ -26,8 +26,7 @@ const h = t.hero;
         class="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl xl:text-7xl"
       >
         {h.titleA}{" "}
-        <span class="grad-text">{h.titleHighlight}</span>{" "}
-        {h.titleB}
+        <span class="grad-text">{h.titleHighlight}</span>{h.titleB && " " + h.titleB}
       </h1>
 
       <p
@@ -57,7 +56,7 @@ const h = t.hero;
       <OfferNote lang={lang} />
 
       <div
-        class="mt-10 grid gap-4 text-sm text-[var(--muted)] sm:grid-cols-3"
+        class="mt-10 flex flex-col flex-wrap gap-x-6 gap-y-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center"
       >
         {
           h.badges.map((b, i) => (

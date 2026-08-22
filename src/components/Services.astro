@@ -18,7 +18,7 @@ const s = t.services;
       showHeading && (
         <SectionHeading eyebrow={s.eyebrow}>
           <Fragment slot="title">
-            {s.titleA} <span class="grad-text">{s.titleHighlight}</span>{" "}{s.titleB}
+            {s.titleA}{" "}<span class="grad-text">{s.titleHighlight}</span>{s.titleB && " " + s.titleB}
           </Fragment>
           <Fragment slot="subtitle">{s.subtitle}</Fragment>
         </SectionHeading>

@@ -1,6 +1,8 @@
 ---
 title: "¿Página web o redes sociales? Por qué tu negocio necesita ambas"
 description: "Comparamos página web y redes sociales para negocios: qué hace cada una, por qué no son lo mismo y cómo combinarlas para vender más."
+seoTitle: "¿Página Web o Redes Sociales? | ProCode Dev"
+seoDescription: "Qué hace cada una, por qué no son lo mismo y cómo combinar página web y redes sociales para que tu negocio venda más sin duplicar el esfuerzo."
 pubDate: 2026-06-16
 author: "ProCode Dev"
 tags: ["redes sociales", "sitio web", "estrategia"]

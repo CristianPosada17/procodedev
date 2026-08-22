@@ -1,6 +1,8 @@
 ---
 title: "Cómo aparecer en Google Maps: guía del Perfil de Empresa para tu negocio"
 description: "Aprende cómo aparecer en Google Maps y en las búsquedas locales con el Perfil de Empresa de Google. Guía paso a paso para que más clientes de tu zona te encuentren."
+seoTitle: "Cómo Aparecer en Google Maps con tu Negocio | ProCode Dev"
+seoDescription: "Guía paso a paso del Perfil de Empresa de Google para aparecer en Maps y en las búsquedas locales, y que más clientes de tu zona te encuentren."
 pubDate: 2026-07-13
 author: "ProCode Dev"
 tags: ["SEO local", "Google", "negocios"]

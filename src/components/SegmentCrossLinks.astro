@@ -1,0 +1,71 @@
+---
+/*
+  Enlaces a los demás giros desde una página de giro.
+
+  Sirve a dos cosas a la vez: al visitante que aterrizó en la página
+  equivocada desde Google, y al rastreo — cinco páginas hermanas enlazadas
+  entre sí y al hub se leen como un cluster temático, no como cinco landings
+  sueltas compitiendo por lo mismo.
+*/
+import { translations, PAGES, SEGMENT_KEYS, type Lang, type SegmentKey } from "../i18n/ui";
+import { segments } from "../i18n/segments";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+  current: SegmentKey;
+}
+const { lang = "es", current } = Astro.props as Props;
+const t = translations[lang];
+const others = SEGMENT_KEYS.filter((key) => key !== current);
+---
+
+<section class="relative pb-12 lg:pb-20">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-10"
+    >
+      <div class="flex flex-col gap-2">
+        <h2 class="text-xl font-bold text-[var(--text)] sm:text-2xl">
+          {t.sectors.crossTitle}
+        </h2>
+        <p class="text-sm leading-7 text-[var(--muted)]">
+          {t.sectors.crossSubtitle}
+        </p>
+      </div>
+
+      <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          others.map((key) => (
+            <a
+              href={PAGES[key][lang]}
+              class="group flex items-start gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-4 transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[var(--brand)]/[0.07]"
+            >
+              <span class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
+                <Icon name={segments[lang][key].icon as any} class="h-4.5 w-4.5" />
+              </span>
+              <span class="flex flex-col gap-1">
+                <span class="text-sm font-bold text-[var(--text)]">
+                  {segments[lang][key].navLabel}
+                </span>
+                <span class="text-xs leading-6 text-[var(--muted)]">
+                  {segments[lang][key].navHint}
+                </span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <a
+        href={PAGES.sectors[lang]}
+        class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] transition hover:gap-2.5"
+      >
+        {t.nav.sectorsOverview}
+        <Icon name="arrow-right" class="h-4 w-4" />
+      </a>
+    </div>
+  </div>
+</section>

@@ -2,14 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import SegmentPage from "../components/SegmentPage.astro";
-import ProofStrip from "../components/ProofStrip.astro";
+import SegmentProject from "../components/SegmentProject.astro";
+import SegmentCrossLinks from "../components/SegmentCrossLinks.astro";
 import Founder from "../components/Founder.astro";
 import Footer from "../components/Footer.astro";
 import { translations, PAGES } from "../i18n/ui";
 import { getSegment } from "../i18n/segments";
 
 const lang = "es";
-const key = "cpas" as const;
+const key = "accounting" as const;
 const t = translations[lang];
 const seg = getSegment(lang, key);
 ---
@@ -17,22 +18,27 @@ const seg = getSegment(lang, key);
 <Layout
   lang={lang}
   page={key}
-  waPage="tax"
+  waPage="sectors"
   title={seg.meta.title}
   description={seg.meta.description}
   includeFaq={true}
   faqItems={seg.faq}
   serviceName={seg.intro}
+  keywords={seg.meta.keywords}
+  offerCatalog={seg.system}
+  audience={seg.navLabel}
   breadcrumbs={[
     { name: t.nav.home, path: PAGES.home[lang] },
-    { name: t.nav.tax, path: PAGES.tax[lang] },
+    { name: t.nav.sectors, path: PAGES.sectors[lang] },
     { name: seg.navLabel, path: PAGES[key][lang] },
   ]}
 >
   <Header lang={lang} page={key} />
   <main>
-    <SegmentPage lang={lang} segment={key} />
-    <ProofStrip lang={lang} />
+    <SegmentPage lang={lang} segment={key}>
+      <SegmentProject lang={lang} segment={key} />
+    </SegmentPage>
+    <SegmentCrossLinks lang={lang} current={key} />
     <Founder lang={lang} />
   </main>
   <Footer lang={lang} />

@@ -8,14 +8,20 @@ import Integrations from "../../components/Integrations.astro";
 import WhyProCode from "../../components/WhyProCode.astro";
 import FinalCTA from "../../components/FinalCTA.astro";
 import Footer from "../../components/Footer.astro";
-import { translations } from "../../i18n/ui";
+import { translations, PAGES } from "../../i18n/ui";
 
 const lang = "en";
 const t = translations[lang];
 const meta = t.pageMeta.services;
 ---
 
-<Layout lang={lang} page="services" title={meta.title} description={meta.description}>
+<Layout lang={lang} page="services" title={meta.title} description={meta.description} keywords={meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.services, path: PAGES.services[lang] },
+  ]}
+  serviceName={meta.heroSubtitle}
+>
   <Header lang={lang} page="services" />
   <main>
     <PageHero

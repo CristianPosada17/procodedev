@@ -10,23 +10,26 @@ export const LANGS: Lang[] = ["es", "en"];
 
 // Rutas equivalentes por página (para nav, hreflang y toggle de idioma).
 //
-// Arquitectura de contenido (reposicionamiento de agosto de 2026):
-//   /impuestos  ·  /en/tax-pros   → hub del nicho «Tax & Accounting Firms»
-//   └── 6 páginas de segmento colgando del hub, una por oficio. Cada una
-//       existe porque el prospecto se busca a sí mismo por su título
-//       («enrolled agent website», «bookkeeper website»), no por la
-//       categoría genérica. Las URLs del hub NO se renombraron: ya están
-//       indexadas y el coste de romperlas supera la ganancia semántica.
+// Arquitectura de contenido (reposicionamiento de agosto de 2026, revisado):
+//   /negocios · /en/industries → hub de giros
+//   └── 5 páginas de segmento colgando del hub, una por giro. Cada una
+//       existe porque el dueño de negocio se busca a sí mismo por su oficio
+//       («página web para contratistas», «real estate agent website»), no
+//       por la categoría genérica «pequeño negocio».
+//
+//   Las 14 URLs del nicho fiscal anterior (impuestos, cpas, bookkeepers,
+//   enrolled-agents, resolucion-fiscal, despachos-contables y equivalentes
+//   en inglés) redirigen a /contabilidad-e-impuestos, que ahora es un giro
+//   más entre cinco y no el eje del sitio.
 export type PageKey =
   | "home"
   | "services"
-  | "tax"
-  | "taxProfessionals"
-  | "enrolledAgents"
-  | "cpas"
-  | "bookkeepers"
-  | "taxResolution"
-  | "accountingFirms"
+  | "sectors"
+  | "contractors"
+  | "health"
+  | "professional"
+  | "realEstate"
+  | "accounting"
   | "portfolio"
   | "pricing"
   | "contact"
@@ -36,16 +39,15 @@ export type PageKey =
 export const PAGES: Record<PageKey, Record<Lang, string>> = {
   home: { es: "/", en: "/en/" },
   services: { es: "/servicios", en: "/en/services" },
-  tax: { es: "/impuestos", en: "/en/tax-pros" },
-  taxProfessionals: {
-    es: "/preparadores-de-impuestos",
-    en: "/en/tax-professionals",
+  sectors: { es: "/negocios", en: "/en/industries" },
+  contractors: { es: "/contratistas", en: "/en/contractors" },
+  health: { es: "/salud-y-bienestar", en: "/en/health-and-wellness" },
+  professional: {
+    es: "/servicios-profesionales",
+    en: "/en/professional-services",
   },
-  enrolledAgents: { es: "/enrolled-agents", en: "/en/enrolled-agents" },
-  cpas: { es: "/cpas", en: "/en/cpas" },
-  bookkeepers: { es: "/bookkeepers", en: "/en/bookkeepers" },
-  taxResolution: { es: "/resolucion-fiscal", en: "/en/tax-resolution" },
-  accountingFirms: { es: "/despachos-contables", en: "/en/accounting-firms" },
+  realEstate: { es: "/inmobiliarias", en: "/en/real-estate" },
+  accounting: { es: "/contabilidad-e-impuestos", en: "/en/accounting-and-tax" },
   portfolio: { es: "/portafolio", en: "/en/portfolio" },
   pricing: { es: "/precios", en: "/en/pricing" },
   contact: { es: "/contacto", en: "/en/contact" },
@@ -53,14 +55,13 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   terms: { es: "/terminos-y-condiciones", en: "/en/terms-of-service" },
 };
 
-/** Segmentos que cuelgan del hub del nicho (orden del menú desplegable). */
+/** Giros que cuelgan del hub (orden del menú desplegable). */
 export const SEGMENT_KEYS = [
-  "taxProfessionals",
-  "enrolledAgents",
-  "cpas",
-  "bookkeepers",
-  "taxResolution",
-  "accountingFirms",
+  "contractors",
+  "health",
+  "professional",
+  "realEstate",
+  "accounting",
 ] as const;
 export type SegmentKey = (typeof SEGMENT_KEYS)[number];
 
@@ -79,16 +80,16 @@ export const CONTACT = {
   instagram: "https://www.instagram.com/procode.systems/",
   linkedin: "https://www.linkedin.com/in/cristian-posada-891401291/",
   facebook: "https://www.facebook.com/ProCodeSystems",
-  city: "Estados Unidos",
-  cityFull: "Estados Unidos · atención remota en español",
+  city: "Estados Unidos y México",
+  cityFull: "Estados Unidos y México · atención remota en español",
   founderName: "Cristian Posada",
   founderPhoto: "/images/cristian-posada.jpg",
 };
 
-// Moneda: tras el análisis de mercado de agosto de 2026, el mercado principal
-// pasa a ser el negocio de servicios latino en EE. UU. USD es ahora la vista
-// por defecto y MXN queda como opción (tipo de cambio fijo, arriba del spot
-// para absorber movimiento cambiario sin retocar precios).
+// Moneda: el mercado principal es el dueño de negocio hispano en EE. UU.,
+// con México como mercado secundario. USD es la vista por defecto y MXN
+// queda como opción (tipo de cambio fijo, arriba del spot para absorber
+// movimiento cambiario sin retocar precios).
 export const FX_USD_MXN = 18;
 
 export const translations = {
@@ -98,71 +99,72 @@ export const translations = {
     nav: {
       home: "Inicio",
       services: "Servicios",
-      tax: "Firmas fiscales",
-      taxOverview: "Ver todo el nicho",
-      taxMenuNote: "Una página por oficio, con lo que cada uno necesita.",
+      sectors: "Giros",
+      sectorsOverview: "Ver todos los giros",
+      sectorsMenuNote: "Una página por giro, con lo que cada negocio necesita.",
       portfolio: "Portafolio",
       pricing: "Precios",
       blog: "Blog",
       contact: "Contacto",
-      cta: "Revisión de Temporada",
+      cta: "Revisión Express",
     },
     common: {
       // Una sola oferta de entrada y un solo nombre en todo el sitio, el
-      // Calendly y los correos: la Revisión de Temporada. El Diagnóstico de
-      // $149 vive solo en /precios como paso 2 (es otra cosa: un análisis
-      // profundo por escrito, no la revisión de 3 min que se regala aquí).
-      ctaPrimary: "Agendar Revisión de Temporada",
+      // Calendly y los correos: la Revisión Express. El Diagnóstico de $149
+      // vive solo en /precios como paso 2 (es otra cosa: un análisis profundo
+      // por escrito, no la revisión de 3 minutos que se regala aquí).
+      ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Escribir por WhatsApp",
       free: "Gratis · 15 min · revisión en vídeo incluida",
       viewServices: "Ver servicios",
-      // Diferenciador principal, hasta hoy no escrito en ninguna parte.
-      // Va pegado a cada botón de agenda vía <OfferNote />.
+      // Diferenciador principal. Va pegado a cada botón de agenda vía
+      // <OfferNote />.
       guarantee: "Respondo cualquier mensaje en menos de 24 horas.",
-      // Fecha límite visible en el home y en las páginas de nicho.
+      // Sustituye a la fecha límite fiscal: la escasez ahora es de agenda,
+      // no de calendario. Si cambias el número, cámbialo también en el EN.
       deadline:
-        "Última fecha de contratación para estar listo antes de temporada: 1 de diciembre.",
+        "Tomo 4 proyectos al mes para que cada uno reciba atención real.",
     },
     // ── Posicionamiento (agosto 2026) ──────────────────────────────
-    // ProCode dejó de venderse como «páginas web para despachos de
-    // impuestos». Una página es un entregable; el problema del cliente es
-    // el sistema completo con el que consigue, recibe, atiende y retiene
-    // clientes. La categoría nueva es «sistemas digitales de crecimiento
-    // para firmas fiscales y contables», y todo el copy del sitio cuelga de
-    // esa frase.
+    // ProCode no vende «páginas web». Una página es un entregable; el
+    // problema del cliente es el sistema completo con el que consigue,
+    // recibe, atiende y retiene clientes. La categoría es «sistemas
+    // digitales de crecimiento para dueños de negocio», y todo el copy del
+    // sitio cuelga de esa frase. El giro (contratista, clínica, despacho)
+    // cambia los ejemplos, no la promesa.
     brand: {
-      line: "Digital Growth Systems for Tax & Accounting Firms",
-      lineEs: "Sistemas digitales de crecimiento para firmas fiscales y contables",
+      line: "Digital Growth Systems for Small Businesses",
+      lineEs: "Sistemas digitales de crecimiento para dueños de negocio",
       stack:
-        "Sitio web · Captación · Intake · Automatización · Seguimiento · Analítica",
+        "Sitio web · Captación · Contacto · Automatización · Seguimiento · Analítica",
       audience:
-        "Preparadores de impuestos · Enrolled Agents · CPAs · Bookkeepers · Resolución fiscal · Despachos contables",
+        "Contratistas · Clínicas y consultorios · Servicios profesionales · Inmobiliarias · Contadores y despachos",
     },
     hero: {
-      eyebrow: "// digital growth systems · tax & accounting firms · ee. uu.",
+      eyebrow: "// sistemas digitales de crecimiento · negocios y pymes",
       titleA: "Sistemas digitales de crecimiento para",
-      titleHighlight: "firmas fiscales y contables",
+      titleHighlight: "dueños de negocio",
       titleB: "",
       subtitle:
-        "Soy Cristian Posada. No entrego solo una página: conecto tu sitio, tu captación, tu intake, tus citas y tu seguimiento en un sistema, para que tu firma consiga y atienda más clientes con menos trabajo manual. Todo en español, por WhatsApp, con una sola persona responsable.",
+        "Soy Cristian Posada. No entrego solo una página: conecto tu sitio, tu presencia en Google, tus formularios, tu agenda y tu seguimiento en un solo sistema, para que tu negocio consiga y atienda más clientes con menos trabajo manual. Todo en español, por WhatsApp, con una sola persona responsable.",
       badges: [
         "Precios públicos",
         "Sin contrato de permanencia",
         "Bilingüe inglés/español",
       ],
       cardLabel: "El sistema",
-      cardTitle: "De prospecto a cliente que regresa cada año",
+      cardTitle: "De una búsqueda en Google a un cliente que regresa",
       cardText:
         "Sitio, Perfil de Empresa en Google, formularios, agenda, WhatsApp y seguimiento trabajando como una sola pieza.",
-      cardCta: "Agendar Revisión de Temporada",
+      cardCta: "Agendar Revisión Express",
       panelTitle: "Lo que queda funcionando",
       panelItems: [
         "Una página por servicio, para que llegue el cliente correcto",
-        "Intake que recoge los datos antes de la primera llamada",
+        "Formularios que recogen los datos antes de la primera llamada",
         "Agenda en línea conectada a tu calendario",
         "Seguimiento automático a quien no respondió",
       ],
-      chips: ["Tax Pros & EA", "CPAs & Bookkeepers", "Tax Resolution"],
+      chips: ["Contratistas", "Salud y bienestar", "Servicios profesionales"],
     },
     // Las seis capacidades que forman el sistema. Es la traducción visual
     // de la frase de marca: Websites + Client Acquisition + Intake +
@@ -180,43 +182,43 @@ export const translations = {
           icon: "target",
           title: "Captación",
           description:
-            "Perfil de Empresa en Google, SEO local, reseñas y campañas para que el prospecto correcto te encuentre.",
+            "Perfil de Empresa en Google, SEO local, reseñas y campañas para que el cliente correcto te encuentre en tu zona.",
         },
         {
           icon: "clipboard-check",
-          title: "Intake",
+          title: "Contacto y cotización",
           description:
-            "Formularios que recogen documentos y datos antes de la primera llamada, no después de tres correos.",
+            "Formularios que recogen fotos, medidas o datos del caso antes de la primera llamada, no después de tres mensajes.",
         },
         {
           icon: "workflow",
           title: "Automatización",
           description:
-            "Cada contacto entra a tu CRM, recibe respuesta y queda registrado, aunque tú estés en plena temporada.",
+            "Cada contacto entra a tu CRM, recibe respuesta y queda registrado, aunque tú estés en obra, en consulta o con un cliente.",
         },
         {
           icon: "repeat",
           title: "Seguimiento",
           description:
-            "Recordatorios de cita, reactivación de clientes del año pasado y avisos de fechas límite por email o WhatsApp.",
+            "Recordatorios de cita, reactivación de clientes viejos y avisos de servicio por correo o WhatsApp.",
         },
         {
           icon: "trending-up",
           title: "Analítica",
           description:
-            "Leads, llamadas, citas y de dónde vinieron. Números de negocio, no «1,400 visitas este mes».",
+            "Contactos, llamadas, citas y de dónde vinieron. Números de negocio, no «1,400 visitas este mes».",
         },
       ],
     },
-    // ── El ciclo del cliente de una firma fiscal ──────────────────
-    // La diferenciación #1: diseñamos alrededor del recorrido del cliente y
-    // del calendario fiscal, no alrededor de una lista de páginas.
+    // ── El recorrido del cliente de un negocio ───────────────────
+    // La diferenciación #1: diseñamos alrededor del recorrido del cliente,
+    // no alrededor de una lista de páginas.
     system: {
       eyebrow: "// cómo lo pensamos",
       titleA: "No diseñamos páginas. Diseñamos el",
       titleHighlight: "recorrido de tu cliente",
       subtitle:
-        "Una firma fiscal no vive de visitas: vive de retornos presentados y de clientes que regresan en enero. Por eso construimos hacia atrás, desde el cliente que ya se quedó contigo, y cada pieza del sistema resuelve una etapa concreta de ese recorrido.",
+        "Un negocio no vive de visitas: vive de trabajos cerrados y de clientes que vuelven y te recomiendan. Por eso construimos hacia atrás, desde el cliente que ya se quedó contigo, y cada pieza del sistema resuelve una etapa concreta de ese recorrido.",
       stagesLabel: "Etapas",
       buildLabel: "Qué construimos aquí",
       stages: [
@@ -226,7 +228,7 @@ export const translations = {
           name: "Te encuentran",
           summary: "Prospecto → servicio correcto",
           description:
-            "Quien busca «tax resolution» no busca lo mismo que quien busca «bookkeeping mensual». Si aterrizan en la misma página genérica, pierdes a los dos.",
+            "Quien busca «remodelación de baño» no busca lo mismo que quien busca «reparación urgente». Si aterrizan en la misma página genérica, pierdes a los dos.",
           build: [
             "Página por servicio y por ciudad",
             "Perfil de Empresa en Google optimizado",
@@ -239,24 +241,24 @@ export const translations = {
           name: "Te creen",
           summary: "Confianza",
           description:
-            "Antes de darte sus W-2 o el estado de cuenta de su negocio, necesitan ver credenciales, reseñas y una firma que se ve seria.",
+            "Antes de dejarte entrar a su casa, darte sus datos o pagarte un anticipo, necesitan ver trabajos terminados, reseñas y un negocio que se ve serio.",
           build: [
-            "Credenciales visibles: PTIN, EA, CPA, años de práctica",
+            "Trabajos y antes/después con fotos reales",
             "Sistema para pedir y responder reseñas",
-            "Contenido que explica el proceso sin tecnicismos",
+            "Licencias, seguro, años de experiencia y garantías visibles",
           ],
         },
         {
           icon: "clipboard-check",
           step: "03",
           name: "Te contactan",
-          summary: "Lead → intake",
+          summary: "Contacto → cotización",
           description:
-            "El punto donde más se pierde. Un formulario de «nombre y mensaje» te obliga a tres correos para saber si el caso te sirve.",
+            "El punto donde más se pierde. Un formulario de «nombre y mensaje» te obliga a tres mensajes de ida y vuelta para saber si el trabajo te sirve.",
           build: [
-            "Formulario de intake por tipo de servicio",
-            "Carga de documentos segura",
-            "Calificación previa: individual, negocio o resolución",
+            "Formulario de cotización por tipo de servicio",
+            "Carga de fotos, medidas o documentos",
+            "Preguntas de calificación: zona, presupuesto y urgencia",
           ],
         },
         {
@@ -265,7 +267,7 @@ export const translations = {
           name: "Te agendan",
           summary: "Cita → seguimiento",
           description:
-            "En temporada nadie tiene tiempo de perseguir a quien llenó un formulario y no volvió a escribir.",
+            "Nadie tiene tiempo de perseguir a quien pidió una cotización y no volvió a escribir. Menos si estás en obra o atendiendo.",
           build: [
             "Agenda en línea conectada a tu calendario",
             "Recordatorios automáticos de cita y de documentos",
@@ -276,11 +278,11 @@ export const translations = {
           icon: "repeat",
           step: "05",
           name: "Se quedan",
-          summary: "Cliente → retención → referidos",
+          summary: "Cliente → recompra → referidos",
           description:
-            "Un cliente de tax prep vale una vez al año. El mismo cliente con bookkeeping, payroll o tax planning vale todo el año.",
+            "Un trabajo cerrado vale una vez. El mismo cliente con mantenimiento, seguimiento o una segunda etapa vale varias veces, y trae a su vecino.",
           build: [
-            "Campañas de reactivación antes de cada temporada",
+            "Campañas de reactivación a tu lista de clientes",
             "Servicios recurrentes presentados en el momento correcto",
             "Sistema de reseñas y referidos después de cada entrega",
           ],
@@ -292,8 +294,8 @@ export const translations = {
     },
     services: {
       eyebrow: "// lo que construyo",
-      titleA: "Cada pieza del sistema, y por qué la necesita una",
-      titleHighlight: "firma fiscal",
+      titleA: "Cada pieza del sistema, y por qué la necesita",
+      titleHighlight: "tu negocio",
       titleB: "",
       subtitle:
         "Puedes empezar por una sola pieza o montar el sistema completo. Lo que no hago es venderte una página bonita y dejarte el resto del problema.",
@@ -303,49 +305,42 @@ export const translations = {
           category: "Sitio web",
           title: "Un sitio con una página por servicio",
           description:
-            "Tax prep individual, business returns, bookkeeping, payroll, resolución: cada servicio con su propia página, su propio mensaje y su propio formulario. Es lo que hace que llegue el cliente que quieres, no cualquiera.",
+            "Cada servicio que vendes con su propia página, su propio mensaje y su propio formulario. Es lo que hace que llegue el cliente que quieres, y no cualquiera que después no cierra.",
         },
         {
           icon: "target",
           category: "Captación de clientes",
           title: "Que te encuentren cuando buscan tu servicio",
           description:
-            "Perfil de Empresa en Google creado y optimizado, SEO local por ciudad y por servicio, gestión de reseñas y, si tiene sentido, campañas con landing dedicada. La mayoría de las llamadas de una firma local salen de aquí.",
+            "Perfil de Empresa en Google creado y optimizado, SEO local por ciudad y por servicio, gestión de reseñas y, si tiene sentido, campañas con landing dedicada. La mayoría de las llamadas de un negocio local salen de aquí.",
         },
         {
           icon: "clipboard-check",
-          category: "Intake",
+          category: "Contacto y cotización",
           title: "Formularios que hacen la primera entrevista por ti",
           description:
-            "Intake por tipo de servicio, con carga de documentos y preguntas de calificación. Llegas a la primera llamada sabiendo si el caso te conviene y con la mitad de la información ya capturada.",
+            "Formularios por tipo de servicio, con carga de fotos o documentos y preguntas de calificación. Llegas a la primera llamada sabiendo si el trabajo te conviene y con la mitad de la información ya capturada.",
         },
         {
           icon: "workflow",
           category: "Automatización",
-          title: "Nada se queda sin respuesta en temporada",
+          title: "Nada se queda sin respuesta cuando estás ocupado",
           description:
             "Conecto formularios, WhatsApp, calendario, CRM y correo para que cada prospecto entre registrado, reciba respuesta inmediata y quede en una lista con seguimiento — sin que dependas de acordarte.",
-        },
-        {
-          icon: "repeat",
-          category: "Seguimiento y retención",
-          title: "Clientes que regresan cada enero",
-          description:
-            "Recordatorios de cita y de documentos, reactivación de los clientes del año pasado, avisos de fechas límite y presentación de servicios recurrentes en el momento en que sí los escuchan.",
         },
         {
           icon: "sparkles",
           category: "Búsqueda con IA",
           title: "Que ChatGPT y Google AI te citen",
           description:
-            "Cada vez más contribuyentes preguntan a una IA en vez de buscar en Google. Estructuro tu información y tus credenciales para que te mencionen cuando alguien pregunte por una firma como la tuya.",
+            "Cada vez más personas preguntan a una IA en vez de buscar en Google. Estructuro tu información, tus servicios y tu zona para que te mencionen cuando alguien pregunte por un negocio como el tuyo.",
         },
         {
           icon: "trending-up",
           category: "Analítica",
           title: "Medimos negocio, no visitas",
           description:
-            "Leads, llamadas, formularios, citas agendadas y de qué fuente vino cada una. Cada mes recibes el reporte con los números que sí deciden si esto te está funcionando.",
+            "Contactos, llamadas, formularios, citas agendadas y de qué fuente vino cada una. Cada mes recibes el reporte con los números que sí deciden si esto te está funcionando.",
         },
       ],
     },
@@ -391,47 +386,47 @@ export const translations = {
     // Las cinco capas de diferenciación. Sustituyen a seis afirmaciones que
     // podría firmar cualquier estudio de diseño («velocidad», «móvil»,
     // «mensajes claros»). Estas cinco solo las puede sostener alguien que
-    // trabaja con firmas fiscales.
+    // trabaja con negocios reales y ve sus números cada mes.
     why: {
       eyebrow: "// por qué ProCode Dev",
       titleA: "Technology + Growth + Operations",
-      titleHighlight: "para firmas fiscales",
-      titleB: "y contables.",
+      titleHighlight: "para dueños de negocio",
+      titleB: "",
       subtitle:
-        "Cualquiera puede hacerte una página. Estas cinco cosas son las que cambian cuando quien la construye entiende cómo factura realmente una firma fiscal.",
+        "Cualquiera puede hacerte una página. Estas cinco cosas son las que cambian cuando quien la construye entiende cómo factura realmente un negocio.",
       philosophyTitle: "En una frase",
       philosophyText:
-        "ProCode construye sistemas digitales de crecimiento para firmas fiscales y contables, conectando captación, sitio web, intake, citas y seguimiento para generar y atender más oportunidades con menos trabajo manual.",
+        "ProCode construye sistemas digitales de crecimiento para dueños de negocio y pymes, conectando captación, sitio web, formularios, citas y seguimiento para generar y atender más oportunidades con menos trabajo manual.",
       items: [
         {
-          icon: "calendar",
-          title: "Diseñamos alrededor del ciclo fiscal",
+          icon: "search",
+          title: "Diseñamos alrededor de cómo compra tu cliente",
           description:
-            "Temporada alta, extensiones, bookkeeping recurrente, resolución, advisory y clientes que vuelven cada año. La estacionalidad del sector está documentada; tu infraestructura digital debería reconocerla en vez de ignorarla.",
+            "Tu cliente no llega a tu página a leer: llega a decidir si te llama. Cada sección existe para responder una duda concreta que hoy te hace perder trabajos, en el orden en que aparece esa duda.",
         },
         {
           icon: "workflow",
           title: "Conectamos marketing con operación",
           description:
-            "Landing → formulario → agenda → CRM → seguimiento → email, SMS o WhatsApp → analítica. La promesa no es una web bonita: es eliminar la fricción entre alguien interesado y una oportunidad atendida.",
+            "Landing → formulario → agenda → CRM → seguimiento → correo, SMS o WhatsApp → analítica. La promesa no es una web bonita: es eliminar la fricción entre alguien interesado y una oportunidad atendida.",
         },
         {
           icon: "repeat",
-          title: "Convertimos una práctica estacional en negocio de todo el año",
+          title: "Convertimos un trabajo suelto en un cliente recurrente",
           description:
-            "Muchas firmas viven de enero a abril. Estructuramos y presentamos los servicios que ya ofreces —bookkeeping, payroll, tax planning, formación de empresas, representación— para que el resto del calendario también produzca.",
+            "Muchos negocios viven de recomendaciones sueltas y de meses buenos. Estructuramos y presentamos los servicios que ya ofreces —mantenimiento, seguimiento, segundas etapas, paquetes— para que el resto del año también produzca.",
         },
         {
           icon: "bar-chart",
           title: "Medimos negocio, no métricas de vanidad",
           description:
-            "Leads, consultas, llamadas, citas y fuente de adquisición. No «1,400 visitantes este mes». Si no puedes tomar una decisión con un número, ese número no va en tu reporte.",
+            "Contactos, llamadas, formularios, citas y fuente de adquisición. No «1,400 visitantes este mes». Si no puedes tomar una decisión con un número, ese número no va en tu reporte.",
         },
         {
           icon: "globe",
           title: "Bilingüe como ventaja, no como producto",
           description:
-            "Si atiendes comunidad hispana, construimos captación y experiencia en inglés y español con la misma naturalidad. No es todo lo que somos; es algo que muchas agencias no ejecutan bien.",
+            "Si tu negocio atiende en español pero tus clientes nuevos buscan en inglés, construimos captación y experiencia en los dos idiomas con la misma naturalidad. Es algo que muchas agencias no ejecutan bien.",
         },
       ],
     },
@@ -489,6 +484,7 @@ export const translations = {
         "Proyectos que construí por mi cuenta para mostrar lo que se puede hacer en cada sector. No son clientes: los marco como demo para que no haya confusión.",
       projects: [
         {
+          id: "fersilva",
           name: "Fernanda Silva — Nutrióloga",
           kind: "client",
           result: "",
@@ -500,6 +496,7 @@ export const translations = {
           tags: ["Sitio web", "Salud", "Captación"],
         },
         {
+          id: "cristian-posada",
           name: "Cristian Posada — Marca personal",
           kind: "own",
           result: "",
@@ -511,6 +508,7 @@ export const translations = {
           tags: ["Marca personal", "Branding", "Conversión"],
         },
         {
+          id: "trejo",
           name: "Trejo Landscaping",
           kind: "client",
           result: "",
@@ -522,6 +520,7 @@ export const translations = {
           tags: ["Sitio web", "Servicios", "Negocio local"],
         },
         {
+          id: "demo-inmobiliaria",
           name: "Mariana Cervantes — Asesora Inmobiliaria",
           kind: "demo",
           result: "",
@@ -533,14 +532,15 @@ export const translations = {
           tags: ["Sitio web", "Inmobiliaria", "Catálogo"],
         },
         {
+          id: "demo-taxpro",
           name: "Herrera Tax & Advisory — TaxPro",
           kind: "demo",
           result: "",
           url: "https://demo-taxpro.procodedev.com/",
           image: "/images/demo-taxpro.jpg",
-          badge: "Servicios fiscales · Demo",
+          badge: "Contabilidad e impuestos · Demo",
           description:
-            "Sitio bilingüe para un despacho fiscal y contable en EE. UU.: servicios, agenda de consulta gratuita y captación enfocada en confianza.",
+            "Sitio bilingüe para un despacho contable y fiscal en EE. UU.: servicios, agenda de consulta gratuita y captación enfocada en confianza.",
           tags: ["Sitio web", "Bilingüe", "Servicios profesionales"],
         },
       ],
@@ -570,18 +570,18 @@ export const translations = {
         priceNote: "pago único · acreditable a tu proyecto",
         hook: "Cuando ya hablamos y quieres el plan completo por escrito.",
         description:
-          "La Revisión de Temporada te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente cuando busca 'tax preparer near me' —Google, Maps, reseñas, redes y tu web actual—, comparo tu presencia con la de los despachos que te están ganando y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
+          "La Revisión Express te da una primera lectura. Esto es lo que sigue si quieres profundidad: analizo a fondo cómo te encuentra hoy un cliente cuando busca tu servicio en tu ciudad —Google, Maps, reseñas, redes y tu web actual—, comparo tu presencia con la de los negocios que te están ganando y te entrego por escrito un plan de qué mejorar y en qué orden. Te quedas con el plan, decidas o no trabajar conmigo.",
         homeEyebrow: "// el siguiente paso",
         homeTitle: "¿Quieres el plan completo por escrito?",
         prereq:
-          "Empieza siempre por la Revisión de Temporada. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
+          "Empieza siempre por la Revisión Express. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
         viewPricing: "Ver todos los precios",
         waText:
           "Hola Cristian, Me interesa el Diagnóstico de Presencia Digital ($149 USD). Quiero saber cómo me encuentran hoy mis clientes y recibir un plan de mejoras. ¿Cómo empezamos?",
         stepsTitle: "Cómo funciona (3 fases)",
         steps: [
           {
-            name: "Fase 1 · Conozco tu despacho",
+            name: "Fase 1 · Conozco tu negocio",
             description:
               "Llamada + cuestionario breve: qué servicios das, tu cliente ideal y cómo llegan hoy tus clientes.",
           },
@@ -657,7 +657,7 @@ export const translations = {
             "Perfil de Empresa en Google: creación, verificación y optimización completa.",
             "Publicaciones mensuales en tu Perfil de Google y actualización de servicios y horarios.",
             "Gestión de reseñas: sistema para pedirlas y respuesta a todas las que llegan.",
-            "Optimización para búsqueda con IA (ChatGPT, Google AI): que te citen cuando pregunten por un despacho como el tuyo.",
+            "Optimización para búsqueda con IA (ChatGPT, Google AI): que te citen cuando pregunten por un negocio como el tuyo.",
             "Contenido y SEO local: te posiciono para las búsquedas de tu ciudad.",
             "Reporte mensual ampliado: llamadas desde Google, direcciones solicitadas y reseñas nuevas.",
           ],
@@ -677,19 +677,19 @@ export const translations = {
           priceNote: "presupuesto de anuncios aparte",
           tagline: "Un sistema completo de captación",
           description:
-            "Para el despacho que ya no quiere depender de la temporada. Página, anuncios, contenido y SEO trabajando juntos, con seguimiento de cada prospecto hasta que agenda.",
+            "Para el negocio que ya no quiere depender de las recomendaciones y los meses buenos. Página, anuncios, contenido y SEO trabajando juntos, con seguimiento de cada prospecto hasta que agenda.",
           features: [
             "Todo lo del plan Crecimiento+.",
             "Gestión de campañas en Google Ads y Meta, con landing pages dedicadas.",
             "SEO continuo: contenido mensual, enlaces y páginas por servicio y por ciudad.",
-            "Automatización de seguimiento: cada prospecto recibe respuesta aunque tú estés en temporada.",
+            "Automatización de seguimiento: cada prospecto recibe respuesta aunque tú estés en obra, en consulta o con un cliente.",
             "Landing pages nuevas para promociones o servicios sin costo extra.",
             "Reporte mensual de costo por prospecto y por cliente cerrado.",
             "Llamada estratégica mensual conmigo.",
           ],
           cta: "Cotizar mi paquete",
           waText:
-            "Hola Cristian, Me interesa el paquete Web + Marketing + SEO (desde $1,100 USD al mes). Quiero un sistema completo de captación para mi despacho. ¿Podemos platicar?",
+            "Hola Cristian, Me interesa el paquete Web + Marketing + SEO (desde $1,100 USD al mes). Quiero un sistema completo de captación para mi negocio. ¿Podemos platicar?",
           highlighted: false,
         },
       ],
@@ -702,7 +702,7 @@ export const translations = {
           pricePrefix: "",
           tagline: "Empieza a captar clientes ya",
           description:
-            "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio, una promoción de temporada o una campaña sin complicarte.",
+            "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio, una promoción o una campaña sin complicarte.",
           features: [
             "Página única de alta conversión",
             "Copy de ventas + llamada a la acción clara",
@@ -721,9 +721,9 @@ export const translations = {
           priceMxn: "16,190",
           currency: "USD",
           pricePrefix: "",
-          tagline: "El favorito de los despachos en crecimiento",
+          tagline: "El favorito de los negocios en crecimiento",
           description:
-            "Tu despacho completo en línea: una página por servicio, estructura pensada para vender y confianza desde el primer clic.",
+            "Tu negocio completo en línea: una página por servicio, estructura pensada para vender y confianza desde el primer clic.",
           features: [
             "4 a 6 páginas estratégicas (una por servicio)",
             "Estructura de ventas y confianza",
@@ -733,7 +733,7 @@ export const translations = {
           ],
           cta: "Empezar mi sitio",
           waText:
-            "Hola Cristian, Me interesa el Sitio Web de 4 a 6 páginas ($899 USD). Quiero llevar mi despacho completo a internet con una estructura que venda. ¿Cómo iniciamos?",
+            "Hola Cristian, Me interesa el Sitio Web de 4 a 6 páginas ($899 USD). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
           highlighted: true,
         },
         {
@@ -744,7 +744,7 @@ export const translations = {
           pricePrefix: "desde",
           tagline: "Presencia y sistema digital completo",
           description:
-            "Una web robusta para despachos con varias oficinas o servicios: más páginas, integraciones y una operación digital ordenada.",
+            "Una web robusta para negocios con varias sucursales o líneas de servicio: más páginas, integraciones y una operación digital ordenada.",
           features: [
             "8 a 12 páginas completas",
             "Páginas por servicio y por ciudad",
@@ -818,18 +818,18 @@ export const translations = {
         {
           question: "¿Cuánto tiempo toma desarrollar mi sitio web?",
           answer:
-            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Después de la llamada te entrego un cronograma con fechas y entregables claros. Si estamos cerca de temporada, lo priorizamos para que esté listo antes del 15 de enero.",
+            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Después de la llamada te entrego un cronograma con fechas y entregables claros. Si tienes una fecha que no se mueve —una apertura, una temporada alta, una campaña—, trabajamos hacia atrás desde ella.",
         },
         {
           question: "¿Cuánto cuesta un sitio web con ustedes?",
           answer:
-            "Los planes van desde $349 USD (landing page) hasta $1,499 USD (web completa de 8 a 12 páginas), con el sitio de 4 a 6 páginas en $899 USD. Los precios están publicados: no necesitas una llamada de ventas para conocerlos. En la Revisión de Temporada solo confirmamos cuál te corresponde.",
+            "Los planes van desde $349 USD (landing page) hasta $1,499 USD (web completa de 8 a 12 páginas), con el sitio de 4 a 6 páginas en $899 USD. Los precios están publicados: no necesitas una llamada de ventas para conocerlos. En la Revisión Express solo confirmamos cuál te corresponde.",
         },
         {
           question:
             "¿Qué es el Diagnóstico de Presencia Digital y en qué se diferencia de un proyecto?",
           answer:
-            "La llamada de 15 minutos es gratis: es la puerta de entrada. El Diagnóstico ($149 USD) es el paso que sigue si quieres profundidad: analizo a fondo cómo te encuentran hoy en Google, Maps, reseñas y búsqueda con IA, te comparo con los despachos que te están ganando y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completo.",
+            "La llamada de 15 minutos es gratis: es la puerta de entrada. El Diagnóstico ($149 USD) es el paso que sigue si quieres profundidad: analizo a fondo cómo te encuentran hoy en Google, Maps, reseñas y búsqueda con IA, te comparo con los negocios que te están ganando y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completo.",
         },
         {
           question: "¿El diagnóstico tiene costo si después contrato un proyecto?",
@@ -847,14 +847,14 @@ export const translations = {
             "En ninguno de los planes. Los mensuales se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. Prefiero que te quedes porque funciona, no porque firmaste.",
         },
         {
-          question: "¿Trabajas con despachos en Estados Unidos aunque no estés aquí?",
+          question: "¿Trabajas con negocios en Estados Unidos aunque no estés aquí?",
           answer:
             "Sí, y es la mayor parte de mi trabajo. Todo se hace en remoto y en español, por WhatsApp, en tu horario. La diferencia con una agencia grande es que hablas siempre conmigo, no con un ejecutivo de cuenta distinto cada mes.",
         },
         {
           question: "¿Puede ser bilingüe, en inglés y español?",
           answer:
-            "Sí, y para un despacho latino en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Construyo las dos versiones con URLs separadas para que Google indexe ambas — este mismo sitio funciona así.",
+            "Sí, y para un negocio hispano en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Construyo las dos versiones con URLs separadas para que Google indexe ambas — este mismo sitio funciona así.",
         },
         {
           question: "¿Incluyen dominio y hosting?",
@@ -864,7 +864,7 @@ export const translations = {
         {
           question: "¿Pueden integrar WhatsApp, formularios o CRM?",
           answer:
-            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático — algo que agradeces en plena temporada.",
+            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático — algo que agradeces cuando tienes el día lleno.",
         },
         {
           question: "¿Mi sitio web será editable?",
@@ -874,7 +874,7 @@ export const translations = {
         {
           question: "¿Qué necesito para empezar?",
           answer:
-            "Solo la Revisión de Temporada. En ella entiendo tu despacho, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
+            "Solo la Revisión Express. En ella entiendo tu negocio, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
         },
       ],
     },
@@ -922,9 +922,9 @@ export const translations = {
     calendly: {
       eyebrow: "// agenda en línea",
       titleA: "Reserva tu",
-      titleHighlight: "Revisión de Temporada",
+      titleHighlight: "Revisión Express",
       subtitle:
-        "Elige el horario que mejor te acomode. Antes de la llamada reviso qué encuentra un contribuyente cuando busca un preparador de impuestos en tu ciudad, dónde apareces tú y qué te está costando en clientes, y te lo grabo en un vídeo de tres minutos. En la llamada lo repasamos juntos y te digo qué haría yo antes de que abra la temporada. Sin costo y sin llamada de ventas — los precios ya están publicados.",
+        "Elige el horario que mejor te acomode. Antes de la llamada reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, dónde apareces tú y qué te está costando en trabajos perdidos, y te lo grabo en un vídeo de tres minutos. En la llamada lo repasamos juntos y te digo qué haría yo primero. Sin costo y sin llamada de ventas — los precios ya están publicados.",
     },
     contact: {
       eyebrow: "// contacto",
@@ -964,35 +964,35 @@ export const translations = {
       error: "No se pudo enviar. Escríbeme por WhatsApp y te atiendo.",
     },
     finalCta: {
-      eyebrow: "// revisión de temporada",
+      eyebrow: "// revisión express",
       title:
-        "¿Listo para que tu firma deje de perder oportunidades entre correo y correo?",
+        "¿Listo para que tu negocio deje de perder clientes entre mensaje y mensaje?",
       subtitle:
-        "Reviso qué encuentra un contribuyente cuando busca un preparador de impuestos en tu ciudad, dónde apareces tú y qué te está costando en clientes. Te lo grabo en un vídeo de tres minutos. Si quieres, lo comentamos quince minutos y te digo qué haría yo antes de que abra la temporada.",
-      ctaPrimary: "Agendar Revisión de Temporada",
+        "Reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, dónde apareces tú y qué te está costando en trabajos perdidos. Te lo grabo en un vídeo de tres minutos. Si quieres, lo comentamos quince minutos y te digo por dónde empezaría yo.",
+      ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Hablar por WhatsApp",
     },
     footer: {
       tagline:
-        "Soy Cristian Posada. Construyo sistemas digitales de crecimiento para firmas fiscales y contables en Estados Unidos —preparadores de impuestos, Enrolled Agents, CPAs, bookkeepers y firmas de resolución fiscal— conectando sitio web, captación, intake, citas y seguimiento. En inglés y español, con una sola persona responsable.",
+        "Soy Cristian Posada. Construyo sistemas digitales de crecimiento para dueños de negocio y pymes en Estados Unidos y México —contratistas, clínicas y consultorios, servicios profesionales, inmobiliarias y despachos contables— conectando sitio web, captación, formularios, citas y seguimiento. En español e inglés, con una sola persona responsable.",
       navTitle: "Navegación",
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
       hours: "Lunes a Domingo",
-      location: "Atención remota en español a todo Estados Unidos",
-      cta: "Agendar Revisión de Temporada",
+      location: "Atención remota en español en Estados Unidos y México",
+      cta: "Agendar Revisión Express",
       rights: "Todos los derechos reservados.",
       privacy: "Aviso de privacidad",
       terms: "Términos y condiciones",
       servicesList: [
         "Sitios web por servicio",
         "Captación y Perfil de Empresa en Google",
-        "Intake y carga de documentos",
+        "Formularios y cotización en línea",
         "Automatización y CRM",
         "Seguimiento y retención",
         "Analítica y reportes de negocio",
       ],
-      segmentsTitle: "Por oficio",
+      segmentsTitle: "Por giro",
     },
     // ── Franja de proyectos reales en el home (hallazgo #4) ──
     proof: {
@@ -1019,11 +1019,11 @@ export const translations = {
     founder: {
       eyebrow: "// quién lo hace",
       name: "Cristian Posada",
-      role: "Desarrollador · sistemas digitales para firmas fiscales en EE. UU.",
+      role: "Desarrollador · sistemas digitales para dueños de negocio",
       title: "No es una agencia. Soy yo.",
       body:
-        "Cuando me escribes, te contesto yo. Cuando revisamos tu firma, la reviso yo. Y cuando tu sistema esté en línea, sigo siendo yo quien lo mantiene — también en el mes seis, cuando la agencia de turno ya te cambió de ejecutivo tres veces. Trabajo en remoto, en inglés y español, con firmas fiscales y contables en Estados Unidos, y prefiero llevar pocos proyectos bien que muchos a medias.",
-      cta: "Agendar Revisión de Temporada",
+        "Cuando me escribes, te contesto yo. Cuando revisamos tu negocio, lo reviso yo. Y cuando tu sistema esté en línea, sigo siendo yo quien lo mantiene — también en el mes seis, cuando la agencia de turno ya te cambió de ejecutivo tres veces. Trabajo en remoto, en español e inglés, con dueños de negocio en Estados Unidos y México, y prefiero llevar pocos proyectos bien que muchos a medias.",
+      cta: "Agendar Revisión Express",
     },
     // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
     homeFaq: {
@@ -1040,7 +1040,7 @@ export const translations = {
         {
           question: "¿La llamada de 15 minutos tiene costo o compromiso?",
           answer:
-            "Ninguno de los dos. Son 15 minutos para entender tu despacho y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
+            "Ninguno de los dos. Son 15 minutos para entender tu negocio y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
         },
         {
           question: "Estoy en EE. UU. y tú no. ¿Cómo funciona eso?",
@@ -1062,73 +1062,88 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Sistemas Digitales de Crecimiento para Firmas Fiscales y Contables | ProCode Dev",
+          "Páginas Web para Negocios y PyMEs | ProCode Dev",
         description:
-          "Sitio web, captación de clientes, intake, agenda, automatización y seguimiento para firmas fiscales y contables en EE. UU.: preparadores de impuestos, Enrolled Agents, CPAs, bookkeepers y resolución fiscal. Precios públicos desde $349 USD, sin contrato de permanencia, en inglés y español.",
+          "Sitio web, Google, formularios y seguimiento en un solo sistema para tu negocio. Precios públicos desde $349 USD y respuesta en menos de 24 horas.",
+        keywords:
+          "sistemas digitales de crecimiento, páginas web para negocios, sitios web para pymes, captación de clientes, perfil de empresa en google, SEO local, automatización de seguimiento, desarrollador web en español, ProCode Dev",
         heroKicker: "Inicio",
       },
-      tax: {
+      sectors: {
         title:
-          "Tax & Accounting Firms: Sitios Web y Sistemas de Captación | ProCode Dev",
+          "Páginas Web por Giro de Negocio | ProCode Dev",
         description:
-          "Sistemas digitales de crecimiento para preparadores de impuestos, Enrolled Agents, CPAs, bookkeepers, firmas de resolución fiscal y despachos contables en Estados Unidos. Sitio web, Perfil de Empresa en Google, intake, citas, seguimiento y analítica. Precios públicos, sin contrato.",
+          "Sitios web y captación de clientes por giro: contratistas, consultorios, servicios profesionales, inmobiliarias y despachos contables. Precios públicos.",
+        keywords:
+          "páginas web por giro, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, sitios web para negocios locales, marketing para pymes",
         heroTitleA: "Un sistema digital pensado para",
-        heroHighlight: "firmas fiscales y contables",
+        heroHighlight: "tu giro",
         heroSubtitle:
-          "Preparadores de impuestos, Enrolled Agents, CPAs, bookkeepers, firmas de resolución fiscal y despachos contables. Elige tu oficio y verás exactamente qué cambia en tu caso.",
+          "Contratistas, clínicas y consultorios, servicios profesionales, inmobiliarias y despachos contables. Elige tu giro y verás exactamente qué cambia en tu caso.",
       },
       services: {
         title:
-          "Servicios: Web, Captación, Intake, Automatización y Analítica | ProCode Dev",
+          "Servicios: Web, SEO Local y Automatización | ProCode Dev",
         description:
-          "Las seis piezas del sistema para una firma fiscal o contable: sitio web por servicio, captación con Perfil de Empresa en Google y SEO local, intake con carga de documentos, automatización, seguimiento y reportes de negocio.",
+          "Sitio web por servicio, Perfil de Empresa en Google, formularios de cotización, automatización y reportes de contactos reales. Empieza por una pieza o todo.",
+        keywords:
+          "diseño web para negocios, captación de clientes, formularios de cotización en línea, automatización de seguimiento, analítica de marketing, SEO local, perfil de empresa en google, búsqueda con IA",
         heroTitleA: "Servicios que convierten tu presencia digital en",
         heroHighlight: "un sistema de captación",
         heroSubtitle:
-          "Sitio web, captación, intake, automatización, seguimiento y analítica. Puedes empezar por una pieza o montar el sistema completo.",
+          "Sitio web, captación, formularios, automatización, seguimiento y analítica. Puedes empezar por una pieza o montar el sistema completo.",
       },
       portfolio: {
-        title: "Portafolio de Sitios Web | ProCode Dev",
+        title:
+          "Portafolio de Páginas Web | ProCode Dev",
         description:
-          "Proyectos reales de sitios web y landing pages que construí para negocios que querían verse más profesionales y captar mejores clientes.",
+          "Sitios en vivo que construí para negocios de servicios, salud, construcción e inmobiliaria. Ábrelos y juzga el trabajo tú mismo antes de escribirme.",
+        keywords:
+          "portafolio de páginas web, ejemplos de sitios web para negocios, casos de sitios web pymes, diseño web para negocios locales",
         heroTitleA: "Proyectos reales que",
         heroHighlight: "generan oportunidades",
         heroSubtitle:
           "Sitios en vivo que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos funcionando.",
       },
       pricing: {
-        title: "Precios en USD de Páginas Web y Presencia Digital | ProCode Dev",
+        title:
+          "Precios de Páginas Web en USD | ProCode Dev",
         description:
-          "Precios públicos en dólares: landing $349, sitio de 4–6 páginas $899, sitio grande desde $1,499. Soporte desde $79/mes, Crecimiento+ $349/mes y paquete Web + Marketing + SEO desde $1,100/mes. Sin contrato de permanencia.",
+          "Landing $349, sitio de 4–6 páginas $899 y sitio grande desde $1,499. Planes mensuales desde $79. Precios públicos, sin contrato de permanencia.",
+        keywords:
+          "cuánto cuesta una página web, precio de un sitio web, precios de diseño web en dólares, mantenimiento web mensual, plan de SEO local precio",
         heroTitleA: "Precios públicos, en dólares, sin",
         heroHighlight: "llamada de ventas",
         heroSubtitle:
           "Lo que ves es lo que pagas. Sin cotización sorpresa, sin precio oculto y sin contrato de 12 meses: los planes mensuales se cancelan cuando quieras.",
       },
       contact: {
-        title: "Contacto | Agenda tu Llamada Gratis de 15 Min | ProCode Dev",
+        title:
+          "Contacto y Agenda de 15 Minutos | ProCode Dev",
         description:
-          "Agenda tu Revisión de Temporada, o escríbeme por WhatsApp si prefieres. En español, sin compromiso y sin tecnicismos.",
+          "Agenda tu Revisión Express o escríbeme por WhatsApp. En español, sin costo y sin llamada de ventas: los precios ya están publicados en el sitio.",
+        keywords:
+          "contacto ProCode Dev, agendar llamada diseño web, asesoría web gratis en español, desarrollador web para negocios",
         heroTitleA: "Agenda 15 minutos",
         heroHighlight: "conmigo",
         heroSubtitle:
           "Elige el horario que te acomode y platicamos 15 minutos. Sin costo, sin compromiso y sin llamada de ventas: los precios ya están publicados.",
       },
     },
-    // ── Landing de nicho: preparadores de impuestos, bookkeepers, EA y CPA ──
-    tax: {
+    // ── Hub de giros: /negocios ─────────────────────────────────
+    sectors: {
       promiseEyebrow: "// la promesa",
       promiseTitle:
-        "Tu firma deja de depender de que alguien se acuerde de darle seguimiento.",
+        "Tu negocio deja de depender de que alguien se acuerde de darle seguimiento.",
       promiseBody:
-        "Tu firma ya hace el trabajo serio: corporaciones, payroll, bookkeeping mensual, representación ante el IRS. Pero entre el momento en que alguien se interesa y el momento en que se convierte en cliente hay una cadena de pasos manuales —contestar, calificar, pedir documentos, agendar, recordar, dar seguimiento— y en temporada esa cadena se rompe. Construyo la infraestructura para que no se rompa, y para que quien te busca encuentre a la firma que ya eres.",
+        "Tu negocio ya hace el trabajo bien: por eso te recomiendan. Pero entre el momento en que alguien se interesa y el momento en que se convierte en cliente hay una cadena de pasos manuales —contestar, cotizar, agendar, recordar, dar seguimiento— y cuando tienes el día lleno esa cadena se rompe. Construyo la infraestructura para que no se rompa, y para que quien te busca encuentre al negocio que ya eres.",
       rtbTitle: "Por qué puedes creerme",
       rtb: [
         {
           icon: "briefcase",
-          title: "Casos en el mismo oficio",
+          title: "Casos en el mismo giro",
           description:
-            "No aprendo tu negocio contigo. Ya construí para despachos fiscales y contables, y puedes abrir los sitios y juzgarlos tú.",
+            "No aprendo tu negocio contigo. Ya construí para negocios de servicios como el tuyo, y puedes abrir los sitios y juzgarlos tú.",
         },
         {
           icon: "receipt",
@@ -1151,12 +1166,12 @@ export const translations = {
       ],
       vsTitle: "Frente a lo que ya consideraste",
       vsSubtitle:
-        "Casi todos los despachos con los que hablo probaron una de estas cuatro. Esto es lo que cambia conmigo.",
+        "Casi todos los negocios con los que hablo probaron una de estas cuatro. Esto es lo que cambia conmigo.",
       vs: [
         {
           name: "Wix o Squarespace",
           them: "Barato, pero lo armas tú y lo mantienes tú.",
-          us: "No tienes que hacerlo tú, ni mantenerlo. En temporada eso vale más que la diferencia de precio.",
+          us: "No tienes que hacerlo tú, ni mantenerlo. Cuando tu semana está llena eso vale más que la diferencia de precio.",
         },
         {
           name: "Fiverr",
@@ -1170,29 +1185,32 @@ export const translations = {
         },
         {
           name: "Agencia de $3,000/mes",
-          them: "Buen trabajo, pero fuera del presupuesto de un despacho.",
+          them: "Buen trabajo, pero fuera del presupuesto de un negocio pequeño.",
           us: "Una décima parte del costo, con el mismo enfoque en captar clientes reales.",
         },
       ],
       forTitle: "Trabajo con",
       forItems: [
-        "Preparadores de impuestos independientes",
-        "Enrolled Agents (EA)",
-        "CPAs de práctica pequeña y mediana",
-        "Bookkeepers y contabilidad recurrente",
-        "Firmas de resolución fiscal y representación",
-        "Despachos contables con payroll, ITIN y advisory",
+        "Contratistas, constructoras y oficios de casa",
+        "Clínicas, consultorios y profesionales de la salud",
+        "Abogados, aseguradoras y consultores",
+        "Asesores inmobiliarios y desarrolladoras",
+        "Despachos de contabilidad e impuestos",
+        "Negocios de servicios que venden por recomendación",
       ],
-      segmentsTitle: "Elige tu oficio",
+      crossTitle: "¿Tu negocio no es de este giro?",
+      crossSubtitle:
+        "El sistema es el mismo; cambian los ejemplos y el calendario. Estas son las otras páginas.",
+      segmentsTitle: "Elige tu giro",
       segmentsSubtitle:
-        "Cada uno vende algo distinto, en un mes distinto, a un cliente distinto. Estas son las seis páginas con lo que cambia en cada caso.",
+        "Cada giro vende algo distinto, en un momento distinto, a un cliente distinto. Estas son las cinco páginas con lo que cambia en cada caso.",
       segmentsCta: "Ver la página",
-      seasonTitle: "El calendario manda, y lo sé",
+      seasonTitle: "Tu calendario manda, y lo sé",
       seasonBody:
-        "Tu año no es como el de otros negocios: enero a abril decide casi todo, y el resto del calendario tiene su propia lógica —extensiones en octubre, bookkeeping todos los meses, resolución cuando llega la carta del IRS—. Si empezamos en verano u otoño, llegas a la temporada con el sistema completo trabajando. Si me escribes en febrero, priorizamos lo que se puede lanzar en dos semanas y el resto lo hacemos después del 15 de abril.",
+        "Casi ningún negocio factura parejo todo el año: el contratista tiene su temporada de obra, la clínica su mes de arranque, el inmobiliario su ciclo de mudanzas y el despacho su temporada. Si empezamos con tiempo, llegas a tu mes fuerte con el sistema completo trabajando. Si me escribes justo cuando ya estás saturado, priorizamos lo que se puede lanzar en dos semanas y el resto lo hacemos cuando baje la carga.",
       ctaTitle: "15 minutos, en español, sin compromiso",
       ctaBody:
-        "Te digo qué está frenando a tu despacho hoy — aunque la respuesta sea que todavía no necesitas una página conmigo.",
+        "Te digo qué está frenando a tu negocio hoy — aunque la respuesta sea que todavía no necesitas una página conmigo.",
     },
   },
 
@@ -1202,95 +1220,97 @@ export const translations = {
     nav: {
       home: "Home",
       services: "Services",
-      tax: "Tax & Accounting",
-      taxOverview: "See the whole niche",
-      taxMenuNote: "One page per practice type, with what each one needs.",
+      sectors: "Industries",
+      sectorsOverview: "See all industries",
+      sectorsMenuNote: "One page per industry, with what each business needs.",
       portfolio: "Portfolio",
       pricing: "Pricing",
       blog: "Blog",
       contact: "Contact",
-      cta: "Pre-Season Review",
+      cta: "Express Review",
     },
     common: {
-      // One entry offer and one name across the site, Calendly and email:
-      // the Pre-Season Review. The $149 Diagnosis lives only on /pricing as
-      // step 2 (a different thing: a deep written analysis, not the 3-minute
-      // review given away here).
-      ctaPrimary: "Book my Pre-Season Review",
-      ctaWhatsapp: "Message on WhatsApp",
+      ctaPrimary: "Book my Express Review",
+      ctaWhatsapp: "Message me on WhatsApp",
       free: "Free · 15 min · video review included",
-      viewServices: "View services",
-      guarantee: "I reply to any message in under 24 hours.",
-      deadline:
-        "Last day to start and still be ready before the season opens: December 1.",
+      viewServices: "See services",
+      guarantee: "I answer every message in under 24 hours.",
+      // Scarcity is calendar-free now: it's my capacity, not tax season.
+      // If you change the number here, change it in the ES too.
+      deadline: "I take on 4 projects a month so each one gets real attention.",
     },
     brand: {
-      line: "Digital Growth Systems for Tax & Accounting Firms",
-      lineEs: "Digital Growth Systems for Tax & Accounting Firms",
-      stack: "Websites · Client Acquisition · Intake · Automation · Follow-Up · Analytics",
+      line: "Digital Growth Systems for Small Businesses",
+      lineEs: "Digital Growth Systems for Small Businesses",
+      stack:
+        "Website · Acquisition · Intake · Automation · Follow-Up · Analytics",
       audience:
-        "Tax Professionals · Enrolled Agents · CPAs · Bookkeepers · Tax Resolution · Accounting Firms",
+        "Contractors · Clinics & Practices · Professional Services · Real Estate · Accounting & Tax",
     },
     hero: {
-      eyebrow: "// digital growth systems · tax & accounting firms · united states",
+      eyebrow: "// digital growth systems · small business owners",
       titleA: "Digital growth systems for",
-      titleHighlight: "tax & accounting firms",
+      titleHighlight: "business owners",
       titleB: "",
       subtitle:
-        "I'm Cristian Posada. I don't just build a website: I connect your site, client acquisition, intake, scheduling and follow-up into one system, so your firm wins and serves more clients with less manual work. In English or Spanish, over WhatsApp, with one person accountable.",
-      badges: ["Public pricing", "No lock-in contract", "Bilingual English/Spanish"],
-      cardLabel: "The system",
-      cardTitle: "From prospect to a client who comes back every year",
-      cardText:
-        "Website, Google Business Profile, forms, scheduling, WhatsApp and follow-up working as a single piece.",
-      cardCta: "Book my Pre-Season Review",
-      panelTitle: "What you end up with",
-      panelItems: [
-        "One page per service, so the right client is the one who lands",
-        "Intake that collects the details before the first call",
-        "Online booking wired to your calendar",
-        "Automatic follow-up for anyone who went quiet",
+        "I'm Cristian Posada. I don't just hand over a website: I connect your site, your Google presence, your forms, your calendar and your follow-up into one system, so your business wins and serves more clients with less manual work. All in English or Spanish, over WhatsApp, with one person accountable.",
+      badges: [
+        "Public pricing",
+        "No lock-in contract",
+        "Bilingual English/Spanish",
       ],
-      chips: ["Tax Pros & EA", "CPAs & Bookkeepers", "Tax Resolution"],
+      cardLabel: "The system",
+      cardTitle: "From a Google search to a client who comes back",
+      cardText:
+        "Website, Google Business Profile, forms, calendar, WhatsApp and follow-up working as one piece.",
+      cardCta: "Book my Express Review",
+      panelTitle: "What stays running",
+      panelItems: [
+        "A page per service, so the right client is the one who lands",
+        "Forms that collect the details before the first call",
+        "Online booking connected to your calendar",
+        "Automatic follow-up for anyone who didn't reply",
+      ],
+      chips: ["Contractors", "Health & Wellness", "Professional Services"],
     },
     values: {
-      eyebrow: "// the system, part by part",
+      eyebrow: "// the system, piece by piece",
       items: [
         {
           icon: "layout",
           title: "Website",
           description:
-            "One page per service, in English and Spanish, built to get you chosen — not just seen.",
+            "A page per service, in English and Spanish, built to get you chosen — not just seen.",
         },
         {
           icon: "target",
           title: "Client acquisition",
           description:
-            "Google Business Profile, local SEO, reviews and campaigns so the right prospect finds you first.",
+            "Google Business Profile, local SEO, reviews and campaigns so the right client finds you in your area.",
         },
         {
           icon: "clipboard-check",
-          title: "Intake",
+          title: "Intake & quoting",
           description:
-            "Forms that collect documents and details before the first call, not after three emails.",
+            "Forms that collect photos, measurements or case details before the first call — not after three messages.",
         },
         {
           icon: "workflow",
           title: "Automation",
           description:
-            "Every contact lands in your CRM, gets an answer and stays on record — even mid-season.",
+            "Every contact lands in your CRM, gets an answer and stays on record — even when you're on a job site or with a client.",
         },
         {
           icon: "repeat",
           title: "Follow-up",
           description:
-            "Appointment reminders, reactivation of last year's clients and deadline notices by email or WhatsApp.",
+            "Appointment reminders, reactivation of past clients and service notices by email or WhatsApp.",
         },
         {
           icon: "trending-up",
           title: "Analytics",
           description:
-            "Leads, calls, appointments and where each one came from. Business numbers, not «1,400 visits».",
+            "Contacts, calls, bookings and where they came from. Business numbers, not «1,400 visits this month».",
         },
       ],
     },
@@ -1299,7 +1319,7 @@ export const translations = {
       titleA: "We don't design pages. We design your",
       titleHighlight: "client's journey",
       subtitle:
-        "A tax firm doesn't live on traffic: it lives on returns filed and clients who come back in January. So we build backwards, starting from the client who already stayed, and every piece of the system solves one specific stage of that journey.",
+        "A business doesn't live on visits: it lives on jobs closed and clients who come back and refer you. So we build backwards, starting from the client who already stayed, and every piece of the system solves one concrete stage of that journey.",
       stagesLabel: "Stages",
       buildLabel: "What we build here",
       stages: [
@@ -1309,7 +1329,7 @@ export const translations = {
           name: "They find you",
           summary: "Prospect → right service",
           description:
-            "Someone searching «tax resolution» isn't searching for the same thing as someone searching «monthly bookkeeping». Land them on the same generic page and you lose both.",
+            "Someone searching «bathroom remodel» isn't searching for the same thing as someone searching «emergency repair». Land them on the same generic page and you lose both.",
           build: [
             "A page per service and per city",
             "Optimized Google Business Profile",
@@ -1322,113 +1342,106 @@ export const translations = {
           name: "They believe you",
           summary: "Trust",
           description:
-            "Before handing over their W-2s or their business statements, they need to see credentials, reviews and a firm that looks like a firm.",
+            "Before letting you into their home, handing over their details or paying a deposit, they need to see finished work, reviews and a business that looks like a business.",
           build: [
-            "Visible credentials: PTIN, EA, CPA, years in practice",
+            "Completed work and before/after with real photos",
             "A system to request and answer reviews",
-            "Content that explains the process without jargon",
+            "Visible license, insurance, years in business and guarantees",
           ],
         },
         {
           icon: "clipboard-check",
           step: "03",
-          name: "They reach out",
-          summary: "Lead → intake",
+          name: "They contact you",
+          summary: "Contact → quote",
           description:
-            "Where most firms lose people. A «name and message» form forces three emails just to learn whether the case is a fit.",
+            "Where most businesses lose people. A «name and message» form forces three rounds of messages just to learn whether the job is a fit.",
           build: [
-            "Intake forms by service type",
-            "Secure document upload",
-            "Pre-qualification: individual, business or resolution",
+            "A quote form per service type",
+            "Photo, measurement or document upload",
+            "Qualifying questions: area, budget and urgency",
           ],
         },
         {
           icon: "calendar",
           step: "04",
-          name: "They book",
-          summary: "Appointment → follow-up",
+          name: "They book you",
+          summary: "Booking → follow-up",
           description:
-            "In season, nobody has time to chase the person who filled out a form and never wrote back.",
+            "Nobody has time to chase the person who asked for a quote and never wrote back — least of all when you're on a job or seeing clients.",
           build: [
-            "Online booking wired to your calendar",
+            "Online booking connected to your calendar",
             "Automatic appointment and document reminders",
-            "Follow-up for the ones who went quiet, without you doing it",
+            "Follow-up for anyone who didn't reply, without you doing it",
           ],
         },
         {
           icon: "repeat",
           step: "05",
           name: "They stay",
-          summary: "Client → retention → referrals",
+          summary: "Client → repeat → referrals",
           description:
-            "A tax prep client is worth something once a year. That same client with bookkeeping, payroll or tax planning is worth something all year.",
+            "A closed job is worth something once. That same client with maintenance, a second phase or an ongoing plan is worth several times more — and brings their neighbor.",
           build: [
-            "Reactivation campaigns before each season",
+            "Reactivation campaigns to your client list",
             "Recurring services presented at the right moment",
-            "Reviews and referrals requested after every delivery",
+            "A review and referral system after every delivery",
           ],
         },
       ],
-      closingTitle: "The outcome",
+      closingTitle: "The result",
       closingBody:
-        "Less manual work between the moment someone gets interested and the moment they become an opportunity you've actually handled. That's what gets measured, and that's what shows up in your monthly report.",
+        "Less manual work between the moment someone gets interested and the moment they become an opportunity you actually served. That's what gets measured, and that's what shows up in your monthly report.",
     },
     services: {
       eyebrow: "// what I build",
-      titleA: "Every piece of the system, and why a",
-      titleHighlight: "tax firm",
+      titleA: "Every piece of the system, and why",
+      titleHighlight: "your business",
       titleB: "needs it",
       subtitle:
-        "You can start with a single piece or build the whole system. What I won't do is sell you a pretty website and leave you the rest of the problem.",
+        "You can start with a single piece or build the whole system. What I won't do is sell you a pretty page and leave you the rest of the problem.",
       items: [
         {
           icon: "layout",
           category: "Website",
-          title: "A site with one page per service",
+          title: "A site with a page per service",
           description:
-            "Individual tax prep, business returns, bookkeeping, payroll, resolution: each service with its own page, its own message and its own form. That's what makes the client you want the one who lands.",
+            "Every service you sell with its own page, its own message and its own form. That's what makes the client you want the one who lands — instead of the one who never closes.",
         },
         {
           icon: "target",
           category: "Client acquisition",
           title: "Get found when they search for your service",
           description:
-            "Google Business Profile created and optimized, local SEO by city and by service, review management and, where it makes sense, campaigns with a dedicated landing page. Most calls to a local firm start here.",
+            "Google Business Profile created and optimized, local SEO by city and by service, review management and, where it makes sense, campaigns with a dedicated landing page. Most calls to a local business start here.",
         },
         {
           icon: "clipboard-check",
-          category: "Intake",
+          category: "Intake & quoting",
           title: "Forms that run the first interview for you",
           description:
-            "Intake by service type, with document upload and qualifying questions. You reach the first call already knowing whether the case fits, with half the information captured.",
+            "Forms per service type, with photo or document upload and qualifying questions. You reach the first call already knowing whether the job is a fit, with half the information captured.",
         },
         {
           icon: "workflow",
           category: "Automation",
-          title: "Nothing goes unanswered in season",
+          title: "Nothing goes unanswered when you're busy",
           description:
-            "I connect forms, WhatsApp, calendar, CRM and email so every prospect is logged, answered immediately and queued for follow-up — without depending on you remembering.",
-        },
-        {
-          icon: "repeat",
-          category: "Follow-up & retention",
-          title: "Clients who come back every January",
-          description:
-            "Appointment and document reminders, reactivation of last year's clients, deadline notices and recurring services offered at the moment people actually listen.",
+            "I connect forms, WhatsApp, calendar, CRM and email so every lead lands on record, gets an immediate reply and ends up on a follow-up list — without depending on you remembering.",
         },
         {
           icon: "sparkles",
           category: "AI search",
           title: "Get cited by ChatGPT and Google AI",
           description:
-            "More and more taxpayers ask an AI instead of searching Google. I structure your information and credentials so you get mentioned when someone asks for a firm like yours.",
+            "More and more people ask an AI instead of searching Google. I structure your information, services and service area so you get mentioned when someone asks for a business like yours.",
         },
         {
           icon: "trending-up",
           category: "Analytics",
-          title: "We measure business, not traffic",
+          title: "We measure business, not visits",
           description:
-            "Leads, calls, forms, booked appointments and the source of each one. Every month you get the report with the numbers that actually decide whether this is working.",
+            "Contacts, calls, forms, bookings and the source each one came from. Every month you get the report with the numbers that actually decide whether this is working.",
         },
       ],
     },
@@ -1474,43 +1487,43 @@ export const translations = {
     why: {
       eyebrow: "// why ProCode Dev",
       titleA: "Technology + Growth + Operations",
-      titleHighlight: "for tax & accounting",
-      titleB: "firms.",
+      titleHighlight: "for business owners",
+      titleB: "",
       subtitle:
-        "Anyone can build you a website. These five things change when the person building it understands how a tax firm actually bills.",
+        "Anyone can build you a page. These five things change when the person building it understands how a business actually gets paid.",
       philosophyTitle: "In one sentence",
       philosophyText:
-        "ProCode builds digital growth systems for tax & accounting firms — connecting your website, client acquisition, intake, scheduling and follow-up so your firm can win and serve more clients with less manual work.",
+        "ProCode builds digital growth systems for small business owners — connecting your website, client acquisition, intake, scheduling and follow-up so your business can win and serve more clients with less manual work.",
       items: [
         {
-          icon: "calendar",
-          title: "We design around the tax cycle",
+          icon: "search",
+          title: "We design around how your client buys",
           description:
-            "Busy season, extensions, recurring bookkeeping, resolution, advisory and clients who return every year. The seasonality of this sector is well documented; your digital infrastructure should acknowledge it instead of ignoring it.",
+            "Your client doesn't land on your page to read: they land to decide whether to call you. Every section exists to answer one concrete doubt that costs you jobs today, in the order that doubt shows up.",
         },
         {
           icon: "workflow",
           title: "We connect marketing to operations",
           description:
-            "Landing → form → scheduling → CRM → follow-up → email, SMS or WhatsApp → analytics. The promise isn't a pretty website: it's removing the friction between someone interested and an opportunity actually handled.",
+            "Landing → form → booking → CRM → follow-up → email, SMS or WhatsApp → analytics. The promise isn't a pretty site: it's removing the friction between someone interested and an opportunity served.",
         },
         {
           icon: "repeat",
-          title: "We turn a seasonal practice into a year-round business",
+          title: "We turn a one-off job into a recurring client",
           description:
-            "Many firms live from January to April. We structure and present the services you already offer — bookkeeping, payroll, tax planning, business formation, representation — so the rest of the calendar produces too.",
+            "Many businesses live on scattered referrals and good months. We structure and present the services you already offer — maintenance, follow-up, second phases, packages — so the rest of the year produces too.",
         },
         {
           icon: "bar-chart",
           title: "We measure business, not vanity metrics",
           description:
-            "Leads, consultations, calls, appointments and acquisition source. Not «1,400 visitors this month». If you can't make a decision with a number, that number doesn't belong in your report.",
+            "Contacts, calls, forms, bookings and acquisition source. Not «1,400 visitors this month». If you can't make a decision with a number, that number doesn't go in your report.",
         },
         {
           icon: "globe",
-          title: "Bilingual as an advantage, not as the product",
+          title: "Bilingual as an edge, not as a product",
           description:
-            "If you serve Hispanic communities, we build acquisition and experience in English and Spanish with equal fluency. It isn't all we are; it's something many agencies don't execute well.",
+            "If your business serves in Spanish but your new clients search in English, we build acquisition and experience in both languages with the same care. It's something most agencies don't execute well.",
         },
       ],
     },
@@ -1563,6 +1576,7 @@ export const translations = {
       cta: "I want a site like this for my business",
       projects: [
         {
+          id: "fersilva",
           name: "Fernanda Silva — Nutritionist",
           kind: "client",
           result: "",
@@ -1574,6 +1588,7 @@ export const translations = {
           tags: ["Website", "Health", "Lead capture"],
         },
         {
+          id: "cristian-posada",
           name: "Cristian Posada — Personal brand",
           kind: "own",
           result: "",
@@ -1585,6 +1600,7 @@ export const translations = {
           tags: ["Personal brand", "Branding", "Conversion"],
         },
         {
+          id: "trejo",
           name: "Trejo Landscaping",
           kind: "client",
           result: "",
@@ -1596,6 +1612,7 @@ export const translations = {
           tags: ["Website", "Services", "Local business"],
         },
         {
+          id: "demo-inmobiliaria",
           name: "Mariana Cervantes — Real Estate Advisor",
           kind: "demo",
           result: "",
@@ -1607,14 +1624,15 @@ export const translations = {
           tags: ["Website", "Real estate", "Listings"],
         },
         {
+          id: "demo-taxpro",
           name: "Herrera Tax & Advisory — TaxPro",
           kind: "demo",
           result: "",
           url: "https://demo-taxpro.procodedev.com/",
           image: "/images/demo-taxpro.jpg",
-          badge: "Tax services · Demo",
+          badge: "Accounting & tax · Demo",
           description:
-            "A bilingual site for a U.S. tax and accounting firm: services, free-consult booking and trust-focused lead capture.",
+            "A bilingual site for a U.S. accounting and tax practice: services, free-consult booking and trust-focused lead capture.",
           tags: ["Website", "Bilingual", "Professional services"],
         },
       ],
@@ -1644,7 +1662,7 @@ export const translations = {
         priceNote: "one-time · credited to your project",
         hook: "For when we have already talked and you want the full plan in writing.",
         description:
-          "The free 15-minute call gives you a first read. This is what comes next if you want depth: I take a deep look at how a client finds you today when they search 'tax preparer near me' —Google, Maps, reviews, social and your current site—, compare your presence against the firms beating you, and hand you a written plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
+          "The free 15-minute call gives you a first read. This is what comes next if you want depth: I take a deep look at how a client finds you today when they search for your service in your city —Google, Maps, reviews, social and your current site—, compare your presence against the businesses beating you, and hand you a written plan of what to improve and in what order. You keep the plan, whether or not you work with me.",
         homeEyebrow: "// the next step",
         homeTitle: "Want the full plan in writing?",
         prereq:
@@ -1655,7 +1673,7 @@ export const translations = {
         stepsTitle: "How it works (3 phases)",
         steps: [
           {
-            name: "Phase 1 · I get to know your practice",
+            name: "Phase 1 · I get to know your business",
             description:
               "Call + short questionnaire: what services you offer, your ideal client and how clients reach you today.",
           },
@@ -1730,7 +1748,7 @@ export const translations = {
             "Google Business Profile: setup, verification and full optimization.",
             "Monthly posts on your Google profile plus service and hours updates.",
             "Review management: a system to request them and a reply to every one that lands.",
-            "AI search optimization (ChatGPT, Google AI): so you get cited when someone asks for a firm like yours.",
+            "AI search optimization (ChatGPT, Google AI): so you get cited when someone asks for a business like yours.",
             "Local SEO and content: I position you for searches in your city.",
             "Extended monthly report: calls from Google, direction requests and new reviews.",
           ],
@@ -1750,19 +1768,19 @@ export const translations = {
           priceNote: "ad budget billed separately",
           tagline: "A complete client-acquisition system",
           description:
-            "For the practice that no longer wants to depend on the season. Website, ads, content and SEO working together, with every lead tracked until they book.",
+            "For the business that no longer wants to depend on referrals and good months. Website, ads, content and SEO working together, with every lead tracked until they book.",
           features: [
             "Everything in the Growth+ plan.",
             "Google Ads and Meta campaign management, with dedicated landing pages.",
             "Ongoing SEO: monthly content, links, and pages per service and per city.",
-            "Follow-up automation: every lead gets a reply even when you're deep in season.",
+            "Follow-up automation: every lead gets a reply even when you're on a job site or with a client.",
             "New landing pages for promotions or services at no extra cost.",
             "Monthly report of cost per lead and per closed client.",
             "Monthly strategy call with me.",
           ],
           cta: "Quote my package",
           waText:
-            "Hi Cristian, I'm interested in the Web + Marketing + SEO package (from $1,100 USD/mo). I want a complete client-acquisition system for my practice. Can we talk?",
+            "Hi Cristian, I'm interested in the Web + Marketing + SEO package (from $1,100 USD/mo). I want a complete client-acquisition system for my business. Can we talk?",
           highlighted: false,
         },
       ],
@@ -1775,7 +1793,7 @@ export const translations = {
           pricePrefix: "",
           tagline: "Start capturing clients now",
           description:
-            "A single page, 100% focused on converting. Ideal to launch a service, a seasonal promotion or a campaign without complications.",
+            "A single page, 100% focused on converting. Ideal to launch a service, a promotion or a campaign without complications.",
           features: [
             "Single high-conversion page",
             "Sales copy + clear call to action",
@@ -1794,9 +1812,9 @@ export const translations = {
           priceMxn: "16,190",
           currency: "USD",
           pricePrefix: "",
-          tagline: "The favorite of growing practices",
+          tagline: "The favorite of growing businesses",
           description:
-            "Your whole practice online: a page per service, a structure built to sell and trust from the first click.",
+            "Your whole business online: a page per service, a structure built to sell and trust from the first click.",
           features: [
             "4 to 6 strategic pages (one per service)",
             "Sales and trust structure",
@@ -1806,7 +1824,7 @@ export const translations = {
           ],
           cta: "Start my site",
           waText:
-            "Hi Cristian, I'm interested in the 4–6 page Website ($899 USD). I want to take my whole practice online with a structure that sells. How do we start?",
+            "Hi Cristian, I'm interested in the 4–6 page Website ($899 USD). I want to take my whole business online with a structure that sells. How do we start?",
           highlighted: true,
         },
         {
@@ -1817,7 +1835,7 @@ export const translations = {
           pricePrefix: "from",
           tagline: "Full presence and digital system",
           description:
-            "A robust site for practices with several offices or services: more pages, integrations and a clean digital operation.",
+            "A robust site for businesses with several locations or service lines: more pages, integrations and a clean digital operation.",
           features: [
             "8 to 12 complete pages",
             "Pages per service and per city",
@@ -1890,7 +1908,7 @@ export const translations = {
         {
           question: "How long does it take to build my website?",
           answer:
-            "It depends on scope. A landing page usually takes 1 to 2 weeks, and a full site with integrations 3 to 6 weeks. After the call I give you a timeline with clear dates and deliverables. If we're close to season, we prioritize so it's live before January 15.",
+            "It depends on scope. A landing page usually takes 1 to 2 weeks, and a full site with integrations 3 to 6 weeks. After the call I give you a timeline with clear dates and deliverables. If you have a date that doesn't move — an opening, a busy season, a campaign — we work backwards from it.",
         },
         {
           question: "How much does a website cost with you?",
@@ -1901,7 +1919,7 @@ export const translations = {
           question:
             "What is the Digital Presence Diagnosis and how is it different from a project?",
           answer:
-            "The 15-minute call is free: that's the entry point. The Diagnosis ($149 USD) is the step that follows if you want depth: I analyze in detail how people find you today on Google, Maps, reviews and AI search, compare you against the firms beating you, and hand you a written, prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. If you later do your project with me, it's credited in full.",
+            "The 15-minute call is free: that's the entry point. The Diagnosis ($149 USD) is the step that follows if you want depth: I analyze in detail how people find you today on Google, Maps, reviews and AI search, compare you against the businesses beating you, and hand you a written, prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. If you later do your project with me, it's credited in full.",
         },
         {
           question: "Is the diagnosis free if I later hire a project?",
@@ -1919,14 +1937,14 @@ export const translations = {
             "Not on any plan. Monthly plans cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. I'd rather you stay because it works than because you signed.",
         },
         {
-          question: "Do you work with U.S. practices even though you're not here?",
+          question: "Do you work with U.S. businesses even though you're not here?",
           answer:
             "Yes, and it's most of my work. Everything is done remotely, in Spanish or English, over WhatsApp, on your schedule. The difference from a large agency is that you always talk to me, not to a different account executive every month.",
         },
         {
           question: "Can the site be bilingual, English and Spanish?",
           answer:
-            "Yes, and for a Latino practice in the U.S. that's usually the right call: your current clients search in Spanish and many new ones search in English. I build both versions with separate URLs so Google indexes each one — this very site works that way.",
+            "Yes, and for a Hispanic-owned business in the U.S. that's usually the right call: your current clients search in Spanish and many new ones search in English. I build both versions with separate URLs so Google indexes each one — this very site works that way.",
         },
         {
           question: "Do you include domain and hosting?",
@@ -1936,7 +1954,7 @@ export const translations = {
         {
           question: "Can you integrate WhatsApp, forms or CRM?",
           answer:
-            "Absolutely. I connect forms, WhatsApp buttons, booking calendars, CRM and automations so every lead is registered and followed up automatically — which you'll appreciate in the middle of season.",
+            "Absolutely. I connect forms, WhatsApp buttons, booking calendars, CRM and automations so every lead is registered and followed up automatically — which you'll appreciate when your day is full.",
         },
         {
           question: "Will my website be editable?",
@@ -1946,7 +1964,7 @@ export const translations = {
         {
           question: "What do I need to get started?",
           answer:
-            "Just the free 15-minute call. In it I understand your practice, your services, your ideal client and the action you want to drive: calls, bookings or messages.",
+            "Just the free 15-minute call. In it I understand your business, your services, your ideal client and the action you want to drive: calls, bookings or messages.",
         },
       ],
     },
@@ -1994,9 +2012,9 @@ export const translations = {
     calendly: {
       eyebrow: "// book online",
       titleA: "Book your",
-      titleHighlight: "Pre-Season Review",
+      titleHighlight: "Express Review",
       subtitle:
-        "Pick the time that works best for you. Before the call I look at what a taxpayer finds when they search for a tax preparer in your city, where you show up and what it's costing you in clients — and I record it for you in a three-minute video. On the call we go through it together and I tell you what I'd do before the season opens. Free, and no sales call — pricing is already published.",
+        "Pick the time that works best for you. Before the call I look at what a client finds when they search for your service in your city, where you show up and what it's costing you in lost jobs — and I record it for you in a three-minute video. On the call we go through it together and I tell you what I'd do first. Free, and no sales call — pricing is already published.",
     },
     contact: {
       eyebrow: "// contact",
@@ -2036,23 +2054,23 @@ export const translations = {
       error: "Couldn't send. Message us on WhatsApp and we'll help you.",
     },
     finalCta: {
-      eyebrow: "// pre-season review",
+      eyebrow: "// express review",
       title:
         "Ready to stop losing the bigger clients to someone who just has a better website?",
       subtitle:
-        "I look at what a taxpayer finds when they search for a tax preparer in your city, where you show up and what it's costing you in clients. I record it for you in a three-minute video. If you want, we spend fifteen minutes on it and I tell you what I'd do before the season opens.",
-      ctaPrimary: "Book my Pre-Season Review",
+        "I look at what a client finds when they search for your service in your city, where you show up and what it's costing you in lost jobs. I record it for you in a three-minute video. If you want, we spend fifteen minutes on it and I tell you where I'd start.",
+      ctaPrimary: "Book my Express Review",
       ctaWhatsapp: "Chat on WhatsApp",
     },
     footer: {
       tagline:
-        "I'm Cristian Posada. I build digital growth systems for tax and accounting firms across the United States — tax professionals, enrolled agents, CPAs, bookkeepers and tax resolution practices — connecting website, acquisition, intake, scheduling and follow-up. In English and Spanish, with one person accountable.",
+        "I'm Cristian Posada. I build digital growth systems for small business owners in the United States and Mexico — contractors, clinics and practices, professional services, real estate and accounting firms — connecting website, acquisition, intake, scheduling and follow-up. In English and Spanish, with one person accountable.",
       navTitle: "Navigation",
       servicesTitle: "Services",
       contactTitle: "Contact",
       hours: "Monday to Sunday",
       location: "Serving the United States remotely, in Spanish and English",
-      cta: "Book my Pre-Season Review",
+      cta: "Book my Express Review",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
       terms: "Terms & conditions",
@@ -2064,7 +2082,7 @@ export const translations = {
         "Follow-up & retention",
         "Analytics & business reporting",
       ],
-      segmentsTitle: "By practice",
+      segmentsTitle: "By industry",
     },
     // ── Real-project strip on the home page (finding #4) ──
     proof: {
@@ -2091,11 +2109,11 @@ export const translations = {
     founder: {
       eyebrow: "// who does it",
       name: "Cristian Posada",
-      role: "Developer · digital systems for U.S. tax firms",
+      role: "Developer · digital systems for U.S. businesss",
       title: "It's not an agency. It's me.",
       body:
-        "When you message me, I'm the one who answers. When we review your practice, I'm the one reviewing it. And once your site is live, I'm still the one maintaining it — including in month six, when the agency of the moment has already switched your account manager three times. I work remotely, in Spanish and English, with tax firms and service businesses across the United States, and I'd rather take on few projects and do them well than many done halfway.",
-      cta: "Book my Pre-Season Review",
+        "When you message me, I'm the one who answers. When we review your business, I'm the one reviewing it. And once your site is live, I'm still the one maintaining it — including in month six, when the agency of the moment has already switched your account manager three times. I work remotely, in Spanish and English, with businesss and service businesses across the United States, and I'd rather take on few projects and do them well than many done halfway.",
+      cta: "Book my Express Review",
     },
     // ── Objection FAQ before the home page's final CTA (finding #18) ──
     homeFaq: {
@@ -2112,7 +2130,7 @@ export const translations = {
         {
           question: "Does the 15-minute call cost anything or commit me?",
           answer:
-            "Neither. It's 15 minutes to understand your practice and tell you what you need — even if the answer is that you don't need a site from me yet.",
+            "Neither. It's 15 minutes to understand your business and tell you what you need — even if the answer is that you don't need a site from me yet.",
         },
         {
           question: "I'm in the U.S. and you're not. How does that work?",
@@ -2134,72 +2152,88 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Digital Growth Systems for Tax & Accounting Firms | ProCode Dev",
+          "Websites for Small Businesses | ProCode Dev",
         description:
-          "Website, client acquisition, intake, scheduling, automation and follow-up for U.S. tax and accounting firms: tax professionals, enrolled agents, CPAs, bookkeepers and tax resolution practices. Public pricing from $349 USD, no lock-in contract, English and Spanish.",
+          "Website, Google presence, forms and follow-up in one system for your business. Public pricing from $349 USD and a reply in under 24 hours.",
+        keywords:
+          "digital growth systems, small business website, websites for small business, client acquisition, google business profile, local SEO, follow-up automation, bilingual web developer, ProCode Dev",
         heroKicker: "Home",
       },
-      tax: {
-        title: "Tax & Accounting Firms: Websites & Growth Systems | ProCode Dev",
+      sectors: {
+        title:
+          "Websites by Industry | ProCode Dev",
         description:
-          "Digital growth systems for tax professionals, enrolled agents, CPAs, bookkeepers, tax resolution firms and accounting practices in the United States. Website, Google Business Profile, intake, scheduling, follow-up and analytics. Public pricing, no contract.",
+          "Websites and client acquisition by industry: contractors, clinics, professional services, real estate and accounting practices. Public pricing, no contract.",
+        keywords:
+          "websites by industry, contractor website, clinic website, real estate agent website, accounting firm website, local business websites, small business marketing",
         heroTitleA: "A digital system built for",
-        heroHighlight: "tax & accounting firms",
+        heroHighlight: "your industry",
         heroSubtitle:
-          "Tax professionals, enrolled agents, CPAs, bookkeepers, tax resolution firms and accounting practices. Pick your practice type and you'll see exactly what changes in your case.",
+          "Contractors, clinics and practices, professional services, real estate and accounting firms. Pick your industry and you'll see exactly what changes in your case.",
       },
       services: {
         title:
-          "Services: Web, Acquisition, Intake, Automation & Analytics | ProCode Dev",
+          "Web, Local SEO & Automation Services | ProCode Dev",
         description:
-          "The six pieces of the system for a tax or accounting firm: a website with a page per service, acquisition via Google Business Profile and local SEO, intake with document upload, automation, follow-up and business reporting.",
+          "A page per service, Google Business Profile, quote forms, automation and reporting on real contacts. Start with one piece or build the whole system.",
+        keywords:
+          "small business web design, client acquisition, online quote forms, follow-up automation, marketing analytics, local SEO, google business profile, AI search optimization",
         heroTitleA: "Services that turn your digital presence into",
-        heroHighlight: "a client acquisition system",
+        heroHighlight: "a client-acquisition system",
         heroSubtitle:
-          "Website, acquisition, intake, automation, follow-up and analytics. Start with one piece or build the whole system.",
+          "Website, acquisition, intake, automation, follow-up and analytics. You can start with one piece or build the whole system.",
       },
       portfolio: {
-        title: "Website Portfolio | ProCode Dev",
+        title:
+          "Website Portfolio | ProCode Dev",
         description:
-          "Real website and landing page projects we've built for businesses that wanted to look more professional and capture better clients.",
+          "Live sites I built for service, health, construction and real estate businesses. Open them and judge the work yourself before you message me.",
+        keywords:
+          "website portfolio, small business website examples, local business web design case studies",
         heroTitleA: "Real projects that",
         heroHighlight: "generate opportunities",
         heroSubtitle:
-          "Live sites I built for businesses that wanted to look more professional and capture better. Click to see them running.",
+          "Live sites I built for businesses that wanted to look more professional and capture better. Click to see them working.",
       },
       pricing: {
-        title: "Website & Digital Presence Pricing in USD | ProCode Dev",
+        title:
+          "Website Pricing in USD | ProCode Dev",
         description:
-          "Public pricing in US dollars: landing $349, 4–6 page site $899, large site from $1,499. Support from $79/mo, Growth+ $349/mo and a Web + Marketing + SEO package from $1,100/mo. No lock-in contract.",
+          "Landing $349, 4–6 page site $899 and large sites from $1,499. Monthly plans from $79. Public pricing, no lock-in contract and no sales call.",
+        keywords:
+          "how much does a website cost, small business website pricing, web design prices in USD, monthly website maintenance, local SEO plan pricing",
         heroTitleA: "Public pricing, in dollars, with no",
         heroHighlight: "sales call",
         heroSubtitle:
           "What you see is what you pay. No surprise quote, no hidden price and no 12-month contract: monthly plans cancel whenever you want.",
       },
       contact: {
-        title: "Contact | Book Your Free 15-Min Call | ProCode Dev",
+        title:
+          "Contact & 15-Minute Call | ProCode Dev",
         description:
-          "Book your free 15-minute call, or message me on WhatsApp if you prefer. No commitment and no jargon.",
+          "Book your Express Review or message me on WhatsApp. In English or Spanish, free and with no sales call: pricing is already published on the site.",
+        keywords:
+          "contact ProCode Dev, book a web design call, free website consultation, bilingual web developer",
         heroTitleA: "Book 15 minutes",
         heroHighlight: "with me",
         heroSubtitle:
-          "Pick a time that works for you and we'll talk for 15 minutes. Free, no commitment and no sales call: pricing is already published.",
+          "Pick a time that works for you and we talk for 15 minutes. Free, no commitment and no sales call: pricing is already published.",
       },
     },
-    // ── Niche landing: tax preparers, bookkeepers, EAs and CPAs ──
-    tax: {
+    // ── Industry hub: /en/industries ───────────────────────────
+    sectors: {
       promiseEyebrow: "// the promise",
       promiseTitle:
-        "Your firm stops depending on someone remembering to follow up.",
+        "Your business stops depending on someone remembering to follow up.",
       promiseBody:
-        "Your practice already does the serious work: corporations, payroll, monthly bookkeeping, IRS representation. But between the moment someone gets interested and the moment they become a client there's a chain of manual steps — answer, qualify, request documents, schedule, remind, follow up — and in season that chain breaks. I build the infrastructure so it doesn't, and so the person searching for you finds the firm you already are.",
+        "Your business already does the work well — that's why people refer you. But between the moment someone gets interested and the moment they become a client there's a chain of manual steps — answer, quote, schedule, remind, follow up — and when your day is full that chain breaks. I build the infrastructure so it doesn't, and so the person searching for you finds the business you already are.",
       rtbTitle: "Why you can believe me",
       rtb: [
         {
           icon: "briefcase",
-          title: "Work in the same trade",
+          title: "Work in your own industry",
           description:
-            "I'm not learning your business on your dime. I've already built for tax and accounting practices, and you can open the sites and judge for yourself.",
+            "I'm not learning your business on your dime. I've already built for service businesses like yours, and you can open the sites and judge for yourself.",
         },
         {
           icon: "receipt",
@@ -2209,61 +2243,64 @@ export const translations = {
         },
         {
           icon: "message-circle",
-          title: "Spanish or English, over WhatsApp",
+          title: "One person, on WhatsApp",
           description:
-            "One person accountable, in your language and on your schedule. Not a ticket queue or a different account manager every month.",
+            "One person accountable, in your language and on your schedule. Not a ticket or a different account executive every month.",
         },
         {
           icon: "trending-up",
-          title: "A report of real contacts",
+          title: "Real contact reporting",
           description:
-            "Every month I tell you how many calls and messages your digital presence generated. Not page views: actual prospects.",
+            "Every month I tell you how many calls and messages your digital presence generated. Not how many visits: how many potential clients.",
         },
       ],
-      vsTitle: "Compared to what you already considered",
+      vsTitle: "Against what you already considered",
       vsSubtitle:
-        "Almost every practice I talk to tried one of these four. Here's what changes with me.",
+        "Almost every business owner I talk to tried one of these four. Here's what changes with me.",
       vs: [
         {
           name: "Wix or Squarespace",
           them: "Cheap, but you build it and you maintain it.",
-          us: "You don't have to do it, or maintain it. During season that's worth more than the price difference.",
+          us: "You don't have to do it, or maintain it. When your week is full that's worth more than the price difference.",
         },
         {
           name: "Fiverr",
-          them: "They deliver and disappear. By month six nobody answers.",
-          us: "A person with a name who still answers in month six, and the year after.",
+          them: "They deliver and disappear. In month six nobody answers.",
+          us: "One person with a name who still answers in month six, and the year after.",
         },
         {
           name: "Hibu and similar",
-          them: "12-month contract and a price you don't see until the call.",
-          us: "No lock-in contract, and the pricing published right on this page.",
+          them: "12-month contract, price you don't see until the call.",
+          us: "No lock-in contract, and pricing published on this very page.",
         },
         {
           name: "A $3,000/mo agency",
-          them: "Good work, but outside a practice's budget.",
-          us: "A tenth of the cost, with the same focus on capturing real clients.",
+          them: "Good work, but outside a small business's budget.",
+          us: "A tenth of the cost, with the same focus on winning real clients.",
         },
       ],
       forTitle: "I work with",
       forItems: [
-        "Independent tax professionals",
-        "Enrolled Agents (EA)",
-        "Small and mid-size CPA practices",
-        "Bookkeepers and recurring accounting",
-        "Tax resolution and representation firms",
-        "Accounting firms with payroll, ITIN and advisory",
+        "Contractors, builders and home-service trades",
+        "Clinics, private practices and health professionals",
+        "Attorneys, insurance agents and consultants",
+        "Real estate agents and developers",
+        "Accounting and tax practices",
+        "Service businesses that sell on referrals",
       ],
-      segmentsTitle: "Pick your practice",
+      crossTitle: "Not your industry?",
+      crossSubtitle:
+        "The system is the same; the examples and the calendar change. Here are the other pages.",
+      segmentsTitle: "Pick your industry",
       segmentsSubtitle:
-        "Each one sells something different, in a different month, to a different client. These are the six pages covering what changes in each case.",
+        "Each industry sells something different, at a different moment, to a different client. These are the five pages with what changes in each case.",
       segmentsCta: "See the page",
-      seasonTitle: "The calendar rules, and I know it",
+      seasonTitle: "Your calendar rules, and I know it",
       seasonBody:
-        "Your year isn't like other businesses': January through April decides almost everything. If we start in summer or fall, you reach the season with your website, Google profile and reviews already working. If you message me in February, we prioritize what can launch in two weeks and do the rest after April 15.",
+        "Almost no business bills evenly all year: the contractor has a building season, the clinic its ramp-up month, the real estate agent the moving cycle and the accounting practice its tax season. If we start early, you reach your strong month with the whole system already working. If you message me when you're already swamped, we prioritize what can launch in two weeks and do the rest when the load drops.",
       ctaTitle: "15 minutes, no commitment",
       ctaBody:
-        "I'll tell you what's holding your practice back today — even if the answer is that you don't need a website from me yet.",
+        "I'll tell you what's holding your business back today — even if the answer is that you don't need a website from me yet.",
     },
   },
 } as const;
@@ -2281,16 +2318,16 @@ export function useTranslations(lang: Lang): Dict {
 // ============================================================
 const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
   home: {
-    es: "Hola Cristian, Vi tu página y me interesa una web para mi despacho. ¿Podemos platicar?",
-    en: "Hi Cristian, I saw your site and I'm interested in a website for my practice. Can we talk?",
+    es: "Hola Cristian, Vi tu página y me interesa una web para mi negocio. ¿Podemos platicar?",
+    en: "Hi Cristian, I saw your site and I'm interested in a website for my business. Can we talk?",
   },
   services: {
     es: "Hola Cristian, Estaba viendo tus servicios y quiero saber cuál le queda a mi negocio.",
     en: "Hi Cristian, I was looking at your services and I want to know which one fits my business.",
   },
-  tax: {
-    es: "Hola Cristian, Tengo un despacho de impuestos y vi tu página para preparadores. Quiero saber cómo me puedes ayudar.",
-    en: "Hi Cristian, I run a tax practice and saw your page for tax pros. I'd like to know how you can help.",
+  sectors: {
+    es: "Hola Cristian, Vi tu página para mi giro y quiero saber cómo me puedes ayudar con la presencia digital de mi negocio.",
+    en: "Hi Cristian, I saw your page for my industry and I'd like to know how you can help my business online.",
   },
   portfolio: {
     es: "Hola Cristian, Vi tu portafolio y quiero algo parecido para mi negocio. ¿Cómo empezamos?",
@@ -2312,9 +2349,11 @@ const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
 
 export function waHref(page: PageKey | "blog", lang: Lang): string {
   // Las páginas de segmento heredan el mensaje del hub del nicho: el contexto
-  // («tengo una firma fiscal») es el mismo y evita mantener seis textos casi
+  // («tengo un negocio») es el mismo y evita mantener seis textos casi
   // idénticos que se desincronizan a la primera edición.
-  const key = (SEGMENT_KEYS as readonly string[]).includes(page) ? "tax" : page;
+  const key = (SEGMENT_KEYS as readonly string[]).includes(page)
+    ? "sectors"
+    : page;
   const text =
     WA_BY_PAGE[key as PageKey | "blog"]?.[lang] ?? WA_BY_PAGE.home![lang];
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;

@@ -8,6 +8,29 @@ const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+const siteUrl = Astro.site ?? new URL("https://procodedev.com");
+// Índice del blog declarado como Blog + lista de artículos: sin esto, una
+// página que solo enlaza a otras nueve se lee como una landing más.
+const blogLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": `${new URL("/blog/", siteUrl)}#blog`,
+  name: "Blog de ProCode Dev",
+  description:
+    "Guías sobre páginas web, SEO local, Google Maps, automatización y precios para dueños de negocio.",
+  url: new URL("/blog/", siteUrl).toString(),
+  inLanguage: "es-MX",
+  publisher: { "@id": `${siteUrl}#organization` },
+  blogPost: posts.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    url: new URL(`/blog/${post.id}/`, siteUrl).toString(),
+  })),
+};
+
 const formatDate = (date: Date) =>
   date.toLocaleDateString("es-MX", {
     year: "numeric",
@@ -18,9 +41,15 @@ const formatDate = (date: Date) =>
 
 <Layout
   waPage="blog"
-  title="Blog | ProCode Dev — Ideas para vender más con tu página web"
-  description="Guías y consejos prácticos de desarrollo web, captación de clientes y automatización para despachos de impuestos y negocios de servicios en Estados Unidos."
+  title="Blog de Páginas Web y SEO Local | ProCode Dev"
+  description="Guías prácticas de páginas web, SEO local, Google Maps, automatización y precios para dueños de negocio y pymes en Estados Unidos y México."
+  keywords="blog de diseño web, SEO local para negocios, cómo aparecer en google maps, precios de páginas web, automatización para pymes"
+  breadcrumbs={[
+    { name: "Inicio", path: "/" },
+    { name: "Blog", path: "/blog" },
+  ]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(blogLd)} is:inline />
   <Header />
 
   <main

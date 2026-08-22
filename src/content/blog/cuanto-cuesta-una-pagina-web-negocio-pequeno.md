@@ -1,6 +1,8 @@
 ---
 title: "¿Cuánto cuesta una página web para un negocio pequeño en 2026?"
 description: "Guía clara de precios de páginas web para negocios y emprendedores en Estados Unidos: qué incluye cada tipo, qué esperar según tu presupuesto y cómo elegir sin pagar de más."
+seoTitle: "¿Cuánto Cuesta una Página Web en 2026? | ProCode Dev"
+seoDescription: "Precios reales de páginas web para negocios pequeños en Estados Unidos: qué incluye cada tipo, qué esperar según tu presupuesto y cómo elegir bien."
 pubDate: 2026-07-06
 author: "ProCode Dev"
 tags: ["precios", "desarrollo web", "negocios"]

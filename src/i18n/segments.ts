@@ -1,14 +1,15 @@
 // ============================================================
-// PÁGINAS DE SEGMENTO — «Tax & Accounting Firms»
+// PÁGINAS DE GIRO — negocios y pymes
 // ------------------------------------------------------------
-// El hub (/impuestos · /en/tax-pros) habla del nicho completo. Estas seis
-// páginas hablan de un solo oficio cada una, porque el prospecto no se busca
-// a sí mismo por la categoría: se busca por su título. Un Enrolled Agent
-// escribe «enrolled agent website», no «página para firmas fiscales».
+// El hub (/negocios · /en/industries) habla de dueños de negocio en
+// general. Estas cinco páginas hablan de un solo giro cada una, porque el
+// dueño no se busca a sí mismo por la categoría: se busca por su oficio.
+// Un contratista escribe «página web para contratistas», no «sitio para
+// pequeño negocio».
 //
-// Cada segmento tiene su propio dolor, su propio calendario y sus propios
-// servicios recurrentes. Si el copy fuera intercambiable entre las seis,
-// no habría razón para que existieran seis páginas — ni para que Google
+// Cada giro tiene su propio dolor, su propio calendario y sus propios
+// servicios recurrentes. Si el copy fuera intercambiable entre los cinco,
+// no habría razón para que existieran cinco páginas — ni para que Google
 // las trate como algo distinto de contenido duplicado.
 // ============================================================
 
@@ -26,13 +27,20 @@ export interface Segment {
   /** Línea de apoyo bajo la etiqueta del menú. */
   navHint: string;
   icon: string;
-  meta: { title: string; description: string };
+  meta: { title: string; description: string; keywords: string };
   heroEyebrow: string;
   heroTitleA: string;
   heroHighlight: string;
   heroSubtitle: string;
   /** Frase corta bajo el hero, para el JSON-LD y el resumen. */
   intro: string;
+  /** id del proyecto de `portfolio.projects` (ui.ts) que se destaca aquí. */
+  projectId: string;
+  projectEyebrow: string;
+  projectTitle: string;
+  projectHighlight: string;
+  projectWhy: string;
+  projectPoints: string[];
   painTitle: string;
   painSubtitle: string;
   pains: string[];
@@ -55,71 +63,632 @@ type SegmentDict = Record<SegmentKey, Segment>;
 
 const es: SegmentDict = {
   // ────────────────────────────────────────────────────────────
-  taxProfessionals: {
-    navLabel: "Preparadores de impuestos",
-    navHint: "Temporada, business returns y clientes que regresan",
-    icon: "receipt",
+  contractors: {
+    navLabel: "Contratistas y construcción",
+    navHint: "Cotizaciones, trabajos grandes y clientes que sí pagan",
+    icon: "building",
     meta: {
       title:
-        "Sitios Web y Sistemas para Preparadores de Impuestos en EE. UU. | ProCode Dev",
+        "Páginas Web para Contratistas | ProCode Dev",
       description:
-        "Sitio web, captación, intake y seguimiento para preparadores de impuestos en Estados Unidos. Llega a la temporada con la agenda llena, deja de perder business returns y convierte clientes de una vez al año en clientes de todo el año. Precios públicos desde $349 USD.",
+        "Sitio web, Perfil de Empresa en Google y formulario de cotización para contratistas y constructoras. Deja de perder trabajos grandes por no verte formal.",
+      keywords:
+        "página web para contratistas, sitio web para constructoras, página web para plomeros, página web para electricistas, página web para techos, marketing para contratistas, cotizaciones en línea, SEO local construcción",
     },
-    heroEyebrow: "// tax professionals",
+    heroEyebrow: "// contratistas y construcción",
     heroTitleA: "Sistemas digitales para",
-    heroHighlight: "preparadores de impuestos",
+    heroHighlight: "contratistas y constructoras",
     heroSubtitle:
-      "Tu año se juega en catorce semanas. Construyo la infraestructura para que llegues a enero con la agenda ya empezando a llenarse, y para que los clientes de este año sigan siendo clientes el próximo.",
+      "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google. Construyo la infraestructura para que quien busca tu oficio en tu ciudad te encuentre, te crea y te pida cotización — con las fotos y la dirección ya adjuntas.",
     intro:
-      "Sitio web, Perfil de Empresa en Google, intake, agenda y seguimiento para preparadores de impuestos independientes en Estados Unidos.",
+      "Sitio web, Perfil de Empresa en Google, formulario de cotización y seguimiento para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
+    projectId: "trejo",
+    projectEyebrow: "// proyecto en tu giro",
+    projectTitle: "Un negocio de tu oficio que ya está",
+    projectHighlight: "trabajando en línea",
+    projectWhy:
+      "Trejo Landscaping es exactamente el caso de un contratista: un oficio que vivía de la recomendación y que hoy recibe solicitudes de cotización desde su propia página. Está en vivo — ábrelo y júzgalo tú.",
+    projectPoints: [
+      "Trabajos terminados con fotos reales, que es la prueba que pide el cliente antes de dejarte entrar a su casa.",
+      "Formulario de cotización conectado a WhatsApp, para no perder al que escribe fuera de horario.",
+      "Estructura por servicio, para que cada tipo de trabajo se venda con su propio mensaje.",
+    ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
       "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
     pains: [
-      "El 80% de tus ingresos entra entre enero y abril, y el resto del año la operación se apaga.",
-      "Los business returns —los retornos que de verdad pagan— se van con quien se ve como una firma, no con quien tiene más oficio.",
-      "Contestas los mismos mensajes de WhatsApp cincuenta veces: qué documentos, cuánto cuesta, cuándo estará listo.",
-      "En marzo pierdes prospectos porque nadie tuvo tiempo de contestarles en 24 horas.",
-      "El cliente del año pasado no regresó y no te enteraste hasta abril, cuando ya presentó con otro.",
+      "Vives de recomendaciones: cuando el teléfono deja de sonar, no hay una segunda fuente de trabajos.",
+      "El cliente que paga bien te compara con una empresa que tiene página, reseñas y seguro visible — y se va con ella aunque trabaje peor.",
+      "Contestas los mismos mensajes: «¿cuánto cobras?», «¿vienes a mi zona?», «¿mandas cotización?».",
+      "Cotizas trabajos que nunca iban a cerrar porque nadie preguntó presupuesto ni zona antes de que manejaras 40 minutos.",
+      "Terminas una obra excelente y no queda ni una foto ordenada ni una reseña pedida.",
     ],
-    systemTitle: "Lo que construyo para un preparador",
+    systemTitle: "Lo que construyo para un contratista",
     systemSubtitle:
-      "Las mismas seis piezas del sistema, aplicadas a cómo factura realmente tu práctica.",
+      "Las mismas seis piezas del sistema, aplicadas a cómo se cierra realmente un trabajo de construcción.",
     system: [
       {
         icon: "layout",
-        title: "Una página por servicio, no una sola de «impuestos»",
+        title: "Una página por servicio, no una sola de «construcción»",
         description:
-          "Individual returns, business returns, ITIN, enmiendas y amended returns, extensiones. Cada una con su propio mensaje y su propio precio de referencia, para que el business return no compita en la misma página que el 1040 sencillo.",
+          "Remodelación de cocina, baño completo, techos, concreto, cercas, adiciones. Cada trabajo con su propia página, sus propias fotos y su propio rango de inversión, para que la remodelación grande no compita en la misma página que la reparación de $300.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "Formulario de cotización que filtra antes de que manejes",
+        description:
+          "Tipo de trabajo, código postal, fotos del espacio, medidas aproximadas, cuándo quiere empezar y rango de presupuesto. Llegas a la llamada sabiendo si el trabajo te conviene, y dejas de cotizar gratis a quien solo estaba preguntando.",
+      },
+      {
+        icon: "star",
+        title: "Galería de trabajos y antes/después que vende sola",
+        description:
+          "Tus obras ordenadas por tipo de trabajo, con fotos reales, ciudad y una línea de qué resolviste. Es la prueba que un cliente necesita para dejarte entrar a su casa y darte un anticipo.",
+      },
+      {
+        icon: "shield",
+        title: "Licencia, seguro y garantía visibles",
+        description:
+          "Licencia, seguro de responsabilidad, años trabajando, zonas que cubres y qué pasa si algo sale mal. Es exactamente lo que el cliente busca y casi nunca encuentra en la página de un contratista.",
+      },
+      {
+        icon: "target",
+        title: "Perfil de Empresa en Google trabajando tu zona",
+        description:
+          "Optimizado para «contractor near me» y su equivalente en español, con fotos de obra, servicios cargados, zonas de cobertura y un sistema para pedir reseñas justo al entregar el trabajo, que es cuando el cliente está contento.",
+      },
+    ],
+    cycleTitle: "Tu año de obra, y qué hace el sistema en cada tramo",
+    cycleBody:
+      "El clima manda en tu facturación. El sistema se monta antes y trabaja solo cuando tú estás en obra de sol a sol.",
+    cycleMonths: [
+      {
+        label: "Ene – Mar",
+        note: "Interiores y remodelación; captación para llenar la primavera.",
+      },
+      {
+        label: "Abr – Jun",
+        note: "Temporada alta: cotizaciones automáticas y respuesta en el día.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Exteriores, techos y concreto; reseñas y referidos de cada obra.",
+      },
+      {
+        label: "Oct – Dic",
+        note: "Mantenimiento, preparación de invierno y reactivación de clientes.",
+      },
+    ],
+    offerTitle: "Trabajos que puedes vender al mismo cliente",
+    offerSubtitle:
+      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya sabes hacer, en el momento en que el cliente sí los escucha.",
+    offers: [
+      "Segunda etapa de la obra que ya empezaste",
+      "Mantenimiento anual para clientes anteriores",
+      "Revisión de techo o plomería antes del invierno",
+      "Trabajos pequeños de temporada para llenar semanas flojas",
+      "Referidos del vecino, pedidos al entregar y no dos meses después",
+      "Contratos recurrentes con administradores de propiedades",
+    ],
+    faqTitle: "Dudas de un contratista",
+    faq: [
+      {
+        question: "Todo mi trabajo viene por recomendación. ¿Para qué una página?",
+        answer:
+          "Porque la recomendación ya no cierra sola: el cliente que te recomendaron te busca en Google antes de llamarte, y lo que encuentra decide si marca o no. Una página no reemplaza tus referidos — hace que se conviertan, y te da una segunda fuente cuando el teléfono se calla.",
+      },
+      {
+        question: "¿Puedo mandar las fotos desde el celular?",
+        answer:
+          "Sí, y es como trabajamos. Me mandas fotos de obra por WhatsApp y yo las recorto, las ordeno por tipo de trabajo y las subo. No necesitas fotógrafo ni saber de computadoras.",
+      },
+      {
+        question: "¿Sirve si trabajo solo o con dos ayudantes?",
+        answer:
+          "Es donde más rinde. Un contratista solo no puede contestar mientras está en el techo: el formulario y la respuesta automática son el asistente que no puedes contratar todavía.",
+      },
+      {
+        question: "¿Puede quedar en inglés y en español?",
+        answer:
+          "Sí, y para la mayoría de los contratistas hispanos es lo correcto: tus clientes actuales te buscan en español y los trabajos grandes, muchas veces, llegan en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
+      },
+    ],
+    ctaTitle: "15 minutos antes de tu próxima temporada fuerte",
+    ctaBody:
+      "Te digo qué encuentra hoy un cliente que busca tu oficio en tu ciudad, y qué pieza te falta para que te elija a ti.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  health: {
+    navLabel: "Salud y bienestar",
+    navHint: "Agenda llena, pacientes que regresan y menos mensajes",
+    icon: "users",
+    meta: {
+      title:
+        "Páginas Web para Consultorios | ProCode Dev",
+      description:
+        "Sitio web, agenda en línea y recordatorios para consultorios, clínicas y profesionales de la salud. Menos mensajes repetidos y menos citas perdidas.",
+      keywords:
+        "página web para consultorios, sitio web para clínicas, página web para nutriólogos, página web para dentistas, agenda en línea para pacientes, marketing para consultorios, citas en línea",
+    },
+    heroEyebrow: "// salud y bienestar",
+    heroTitleA: "Sistemas digitales para",
+    heroHighlight: "consultorios y clínicas",
+    heroSubtitle:
+      "Un paciente nuevo te evalúa antes de escribirte: mira tu formación, tus reseñas y si puede agendar sin tener que preguntar precios por mensaje. Construyo la infraestructura para que llegue informado, agende solo y regrese.",
+    intro:
+      "Sitio web, agenda en línea, formulario de primera consulta, recordatorios y seguimiento para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
+    projectId: "fersilva",
+    projectEyebrow: "// proyecto en tu giro",
+    projectTitle: "Una práctica de salud que ya está",
+    projectHighlight: "trabajando en línea",
+    projectWhy:
+      "Fernanda Silva es el caso de un consultorio: explicaba su servicio por mensaje una y otra vez, y hoy los pacientes llegan informados y agendan solos. Está en vivo — ábrelo y júzgalo tú.",
+    projectPoints: [
+      "Servicios explicados con lo que incluyen y cuánto duran, que es lo que quita la mitad de los mensajes.",
+      "Agenda en línea para que el paciente elija horario sin tener que preguntarte.",
+      "Formación y enfoque visibles, porque en salud la confianza se decide antes del primer contacto.",
+    ],
+    painTitle: "Lo que veo una y otra vez",
+    painSubtitle:
+      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+    pains: [
+      "Explicas por mensaje lo mismo cien veces: precio de la consulta, qué incluye, cuánto dura, si aceptas seguro.",
+      "Pierdes pacientes que escribieron un domingo por la noche y no recibieron respuesta hasta el martes.",
+      "Las citas perdidas te cuestan huecos en la agenda que ya no se llenan.",
+      "El paciente viene una vez y no regresa, y no hay nada que se lo recuerde.",
+      "Tu formación y tu experiencia no se ven por ningún lado, y compites de tú a tú con quien apenas empieza.",
+    ],
+    systemTitle: "Lo que construyo para un consultorio",
+    systemSubtitle:
+      "Las mismas seis piezas del sistema, aplicadas a cómo llena realmente su agenda una práctica de salud.",
+    system: [
+      {
+        icon: "layout",
+        title: "Una página por servicio, no una sola de «consultas»",
+        description:
+          "Primera consulta, seguimiento, paquetes, tratamiento específico. Cada servicio con su propia página, su propio precio de referencia y su propia explicación de qué incluye y cuánto dura. Eso es lo que evita la mitad de los mensajes.",
+      },
+      {
+        icon: "calendar",
+        title: "Agenda en línea conectada a tu calendario",
+        description:
+          "El paciente elige horario disponible sin preguntarte, con bloques distintos para primera vez y seguimiento, y la cita cae directo en tu calendario. Sin ida y vuelta de mensajes para cuadrar una hora.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "Formulario de primera consulta antes de la cita",
+        description:
+          "Datos, motivo de consulta, antecedentes y lo que necesites preguntar, contestado antes de que el paciente llegue. Empiezas la consulta con la historia media armada en vez de con una hoja en blanco.",
+      },
+      {
+        icon: "repeat",
+        title: "Recordatorios y recuperación de pacientes",
+        description:
+          "Recordatorio automático 24 horas antes para reducir las citas perdidas, y aviso a los pacientes que no vuelven desde hace meses de que ya pueden agendar su seguimiento.",
+      },
+      {
+        icon: "shield",
+        title: "Formación, cédula y reseñas visibles",
+        description:
+          "Tu cédula, tus certificaciones, tu enfoque y las reseñas de pacientes reales, presentados con criterio profesional. Es lo que hace que alguien confíe en ti para algo tan personal como su salud.",
+      },
+    ],
+    cycleTitle: "Tu año de consulta, y qué hace el sistema en cada tramo",
+    cycleBody:
+      "La demanda de salud tiene picos claros. El sistema los aprovecha sin que tú tengas que acordarte.",
+    cycleMonths: [
+      {
+        label: "Ene – Mar",
+        note: "Pico de pacientes nuevos: agenda abierta y captación al máximo.",
+      },
+      {
+        label: "Abr – Jun",
+        note: "Seguimiento, paquetes y venta de tratamientos a la base actual.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Meses flojos: reactivación de pacientes y contenido que atrae.",
+      },
+      {
+        label: "Oct – Dic",
+        note: "Cierre de año, revisiones y agenda preparada para enero.",
+      },
+    ],
+    offerTitle: "Servicios que puedes ofrecer a los pacientes que ya tienes",
+    offerSubtitle:
+      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya das, en el momento en que el paciente sí los escucha.",
+    offers: [
+      "Paquetes de seguimiento en vez de consultas sueltas",
+      "Consulta en línea para quien vive lejos o viaja",
+      "Revisión anual o de control para pacientes anteriores",
+      "Programas de varias semanas con precio cerrado",
+      "Talleres o sesiones grupales con cupo limitado",
+      "Convenios con empresas o gimnasios de tu zona",
+    ],
+    faqTitle: "Dudas de un profesional de la salud",
+    faq: [
+      {
+        question: "¿Puedo poner precios o es mejor no publicarlos?",
+        answer:
+          "Depende de tu práctica, y lo decidimos juntos. Publicar el precio de la primera consulta filtra a quien no iba a agendar y te quita la mitad de los mensajes. En tratamientos que se cotizan caso por caso, usamos rangos o «desde», que da claridad sin cerrarte.",
+      },
+      {
+        question: "¿La agenda en línea se conecta con la que ya uso?",
+        answer:
+          "Sí. Se conecta con tu Google Calendar o con la herramienta de citas que ya tengas, para que no acabes con dos agendas que no coinciden. Si aún no usas ninguna, te dejo una configurada.",
+      },
+      {
+        question: "¿Y los datos de mis pacientes?",
+        answer:
+          "El formulario recoge lo mínimo necesario para la primera cita, con conexión segura y aviso de privacidad. La historia clínica completa se queda donde ya la manejas, no en la página.",
+      },
+      {
+        question: "¿Puede quedar en inglés y en español?",
+        answer:
+          "Sí, y para un consultorio hispano en EE. UU. suele ser lo correcto: tus pacientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
+      },
+    ],
+    ctaTitle: "15 minutos para revisar tu agenda",
+    ctaBody:
+      "Te digo qué encuentra hoy un paciente que busca tu especialidad en tu ciudad, y qué pieza te falta para que te elija a ti.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  professional: {
+    navLabel: "Servicios profesionales",
+    navHint: "Autoridad, casos calificados y consultas que sí cierran",
+    icon: "scale",
+    meta: {
+      title:
+        "Páginas Web para Servicios Profesionales | ProCode Dev",
+      description:
+        "Sitio web y formulario de calificación para abogados, consultores y agentes de seguros. Atrae el caso correcto y deja de dar consultas gratis sin filtro.",
+      keywords:
+        "página web para abogados, sitio web para consultores, página web para agentes de seguros, marketing para servicios profesionales, captación de clientes para abogados, marca personal profesional",
+    },
+    heroEyebrow: "// servicios profesionales",
+    heroTitleA: "Sistemas digitales para",
+    heroHighlight: "servicios profesionales",
+    heroSubtitle:
+      "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema. Construyo la infraestructura para que esa confianza se vea antes de la primera llamada, y para que llegue a tu agenda el caso que sí te conviene.",
+    intro:
+      "Sitio web, captación, formulario de calificación, agenda y seguimiento para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
+    projectId: "cristian-posada",
+    projectEyebrow: "// proyecto en tu giro",
+    projectTitle: "Un profesional que vende criterio, y lo",
+    projectHighlight: "demuestra en su sitio",
+    projectWhy:
+      "Mi propia marca personal es el caso de alguien que no vende un producto, sino su trabajo: trayectoria, proyectos y contenido en un solo lugar que convierte al visitante en una conversación. Está en vivo — ábrelo y júzgalo tú.",
+    projectPoints: [
+      "Autoridad demostrable —proyectos, trayectoria y contenido— en vez de adjetivos.",
+      "Un solo hub al que apuntan todos los enlaces de redes, en vez de perfiles sueltos.",
+      "Contacto que abre WhatsApp con el mensaje ya redactado: cero formularios sin responder.",
+    ],
+    painTitle: "Lo que veo una y otra vez",
+    painSubtitle:
+      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+    pains: [
+      "Das consultas gratis a personas que nunca iban a contratarte, y no te queda tiempo para las que sí.",
+      "Tu experiencia y tus resultados no se ven: pareces igual que cualquier otro que abrió el mes pasado.",
+      "El prospecto pregunta «¿cuánto cobras?» antes de entender lo que resuelves, y la conversación muere ahí.",
+      "Mandas una propuesta y no vuelves a saber nada, porque nadie hace el seguimiento.",
+      "Tu contenido y tu reputación viven en redes sociales, no en un sitio que trabaje para ti.",
+    ],
+    systemTitle: "Lo que construyo para un profesional",
+    systemSubtitle:
+      "Las mismas seis piezas del sistema, aplicadas a cómo se gana realmente un cliente que compra criterio.",
+    system: [
+      {
+        icon: "layout",
+        title: "Una página por área de práctica, no una sola de «servicios»",
+        description:
+          "Cada área con su propia página, su propio lenguaje y su propio caso de uso. Quien busca ayuda con un problema concreto necesita leer ese problema, no una lista genérica donde el suyo aparece en tercer lugar.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "Formulario que califica antes de la consulta",
+        description:
+          "Tipo de asunto, situación actual, urgencia y presupuesto o expectativa. Llegas a la llamada sabiendo si el caso es para ti, y las consultas gratis dejan de comerse tu semana.",
+      },
+      {
+        icon: "briefcase",
+        title: "Autoridad demostrable, no adjetivos",
+        description:
+          "Años de práctica, credenciales, tipos de caso resueltos, publicaciones y reseñas. Sustituimos «profesional y confiable» por hechos que el prospecto puede verificar.",
+      },
+      {
+        icon: "calendar",
+        title: "Agenda de consulta conectada y con filtro",
+        description:
+          "Consulta inicial en línea con las preguntas de calificación por delante, para que solo agende quien tiene un asunto que puedes tomar. Con recordatorio automático para reducir ausencias.",
+      },
+      {
+        icon: "repeat",
+        title: "Seguimiento de propuestas que no se cae solo",
+        description:
+          "Cada prospecto que pidió una propuesta y no respondió recibe seguimiento en los días correctos, con un mensaje que no suena a cobranza. Es donde se recupera más dinero con menos esfuerzo.",
+      },
+    ],
+    cycleTitle: "Tu año profesional, y qué hace el sistema en cada tramo",
+    cycleBody:
+      "Tu demanda no es pareja, pero sí es previsible. El sistema aprovecha los meses buenos y sostiene los flojos.",
+    cycleMonths: [
+      {
+        label: "Ene – Mar",
+        note: "Arranque de año: prospectos decidiendo y presupuestos nuevos.",
+      },
+      {
+        label: "Abr – Jun",
+        note: "Captación activa, contenido y propuestas con seguimiento.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Meses lentos: reactivación de clientes y casos en pausa.",
+      },
+      {
+        label: "Oct – Dic",
+        note: "Cierre de año, renovaciones y agenda preparada para enero.",
+      },
+    ],
+    offerTitle: "Servicios que puedes ofrecer a tu base actual",
+    offerSubtitle:
+      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya das, en el momento en que el cliente sí los escucha.",
+    offers: [
+      "Iguala mensual o asesoría continua en vez de trabajos sueltos",
+      "Revisión anual de documentos, pólizas o contratos",
+      "Segunda fase del asunto que ya resolviste",
+      "Paquetes cerrados para trámites que se repiten",
+      "Consulta express de pago para filtrar y monetizar la primera llamada",
+      "Referidos pedidos al cerrar, no seis meses después",
+    ],
+    faqTitle: "Dudas de un profesional",
+    faq: [
+      {
+        question: "Mi trabajo es delicado. ¿Puedo mostrar casos?",
+        answer:
+          "Sin nombres ni detalles identificables. Se muestran tipos de asunto, contexto general y resultado, que es lo que el prospecto necesita para reconocerse. Nunca publicamos nada que comprometa a un cliente.",
+      },
+      {
+        question: "¿No es mejor cobrar la primera consulta?",
+        answer:
+          "En muchos casos sí, y el sistema lo soporta: consulta de pago con agenda y cobro en línea. Lo decidimos en la llamada según tu tipo de asunto y tu volumen. Lo que no funciona es dar consultas gratis sin ningún filtro previo.",
+      },
+      {
+        question: "¿Sirve si trabajo solo, sin equipo?",
+        answer:
+          "Es donde más rinde. Un profesional solo no puede contestar mientras está en audiencia o con un cliente: la calificación previa y el seguimiento automático son el asistente que no puedes contratar todavía.",
+      },
+      {
+        question: "¿Puede quedar en inglés y en español?",
+        answer:
+          "Sí, y para un profesional hispano en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
+      },
+    ],
+    ctaTitle: "15 minutos para revisar tu captación",
+    ctaBody:
+      "Te digo qué encuentra hoy alguien que busca tu servicio en tu ciudad, y qué pieza te falta para que te elija a ti.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  realEstate: {
+    navLabel: "Inmobiliarias",
+    navHint: "Catálogo, prospectos calificados y compradores que vuelven",
+    icon: "map-pin",
+    meta: {
+      title:
+        "Páginas Web para Inmobiliarias | ProCode Dev",
+      description:
+        "Sitio web con catálogo de propiedades, fichas detalladas y captación directa para asesores inmobiliarios. Deja de vivir dentro de los portales.",
+      keywords:
+        "página web para inmobiliarias, sitio web para asesores inmobiliarios, catálogo de propiedades en línea, marketing inmobiliario, captación de prospectos inmobiliarios, página web bienes raíces",
+    },
+    heroEyebrow: "// inmobiliarias",
+    heroTitleA: "Sistemas digitales para",
+    heroHighlight: "asesores inmobiliarios",
+    heroSubtitle:
+      "Tus propiedades viven en portales y en redes, pero tu marca no vive en ninguna parte. Construyo el sitio donde el comprador ve tu catálogo, entiende con quién está tratando y te deja sus datos a ti — no al portal.",
+    intro:
+      "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, agenda de visitas y seguimiento para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
+    projectId: "demo-inmobiliaria",
+    projectEyebrow: "// proyecto en tu giro",
+    projectTitle: "Cómo se ve un catálogo inmobiliario",
+    projectHighlight: "bien estructurado",
+    projectWhy:
+      "Un sitio inmobiliario completo con catálogo de propiedades, fichas detalladas y captación directa. Lo construí por mi cuenta para mostrar cómo se ordena el inventario de un asesor: es una demo, no un cliente, y lo digo para que no haya confusión.",
+    projectPoints: [
+      "Ficha propia por propiedad, con galería, características y mapa: un enlace que se ve profesional al mandarlo por WhatsApp.",
+      "Filtros por zona, precio y tipo de operación, para que el comprador llegue solo a lo suyo.",
+      "Captación directa del prospecto, sin que el dato se quede en el portal.",
+    ],
+    painTitle: "Lo que veo una y otra vez",
+    painSubtitle:
+      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+    pains: [
+      "Todo tu inventario vive en un portal que te cobra por los prospectos que tú generaste.",
+      "Recibes mensajes de gente que no califica y pierdes tardes enteras enseñando propiedades a quien no puede comprar.",
+      "Cada propiedad se anuncia con fotos sueltas en redes y desaparece del muro en dos días.",
+      "El comprador que no compró este año no vuelve a saber de ti, aunque sí compre el siguiente.",
+      "Tu experiencia y tus operaciones cerradas no se ven, y compites con quien acaba de sacar la licencia.",
+    ],
+    systemTitle: "Lo que construyo para un asesor inmobiliario",
+    systemSubtitle:
+      "Las mismas seis piezas del sistema, aplicadas a cómo se cierra realmente una operación inmobiliaria.",
+    system: [
+      {
+        icon: "layout",
+        title: "Catálogo con ficha propia por propiedad",
+        description:
+          "Cada propiedad con su página: galería, plano, características, colonia, mapa y precio. Es un enlace que puedes mandar por WhatsApp y que se ve profesional, en vez de doce fotos sueltas.",
+      },
+      {
+        icon: "search",
+        title: "Filtros que llevan al comprador a lo suyo",
+        description:
+          "Por zona, precio, recámaras y tipo de operación. El comprador encuentra en un minuto lo que en un chat le tomaría veinte mensajes, y tú ves qué está buscando la gente.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "Formulario que califica antes de la visita",
+        description:
+          "Presupuesto, forma de pago —crédito, contado o precalificado—, zona y tiempo de compra. Sales a enseñar propiedades solo a quien puede comprarlas.",
+      },
+      {
+        icon: "briefcase",
+        title: "Tu perfil de asesor, no solo tu inventario",
+        description:
+          "Quién eres, cuántas operaciones has cerrado, en qué zonas te especializas y qué dicen tus clientes. El inventario cambia cada mes; tu reputación es lo que hace que te escriban a ti.",
+      },
+      {
+        icon: "repeat",
+        title: "Seguimiento a compradores de ciclo largo",
+        description:
+          "Un comprador puede tardar un año en decidirse. El sistema mantiene el contacto con nuevas propiedades de su zona y su rango, para que cuando esté listo te escriba a ti y no al portal.",
+      },
+    ],
+    cycleTitle: "Tu año inmobiliario, y qué hace el sistema en cada tramo",
+    cycleBody:
+      "El mercado tiene estacionalidad clara. El sistema trabaja el ciclo completo, incluso cuando tú estás cerrando.",
+    cycleMonths: [
+      {
+        label: "Ene – Mar",
+        note: "Compradores planeando el año: captación y lista de espera.",
+      },
+      {
+        label: "Abr – Jun",
+        note: "Temporada alta de mudanzas: visitas, filtros y respuesta rápida.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Cierres de verano, reseñas y captación de nuevos propietarios.",
+      },
+      {
+        label: "Oct – Dic",
+        note: "Ciclo lento: contenido de zona y seguimiento a prospectos tibios.",
+      },
+    ],
+    offerTitle: "Servicios que puedes ofrecer además de la venta",
+    offerSubtitle:
+      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya das, en el momento en que el cliente sí los escucha.",
+    offers: [
+      "Captación de propiedades de dueños que quieren vender",
+      "Administración y renta para inversionistas",
+      "Asesoría de crédito y precalificación",
+      "Valuación gratuita como puerta de entrada del vendedor",
+      "Asesoría a compradores primerizos, paso a paso",
+      "Cartera de inversión para clientes que ya te compraron",
+    ],
+    faqTitle: "Dudas de un asesor inmobiliario",
+    faq: [
+      {
+        question: "¿Puedo cargar y quitar propiedades yo mismo?",
+        answer:
+          "Sí. Te dejo un panel donde subes fotos, precio y características sin tocar código, o lo conectamos con la fuente de inventario que ya usas. Lo definimos según cuántas propiedades muevas al mes.",
+      },
+      {
+        question: "¿Vale la pena si ya publico en los portales?",
+        answer:
+          "Los portales te dan volumen, pero el prospecto es de ellos y lo comparten con otros asesores. Tu sitio es donde ese mismo prospecto te encuentra a ti, ve tu trayectoria y te escribe directo. Lo uno no sustituye a lo otro: el sitio es lo que hace que el portal no sea tu única fuente.",
+      },
+      {
+        question: "¿Sirve si trabajo bajo una marca o franquicia?",
+        answer:
+          "Sí, y es común. Construimos tu presencia personal respetando los lineamientos de la marca. El comprador elige a un asesor con nombre y cara, no a un logo.",
+      },
+      {
+        question: "¿Puede quedar en inglés y en español?",
+        answer:
+          "Sí, y para un asesor hispano en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los compradores nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
+      },
+    ],
+    ctaTitle: "15 minutos para revisar tu catálogo",
+    ctaBody:
+      "Te digo qué encuentra hoy un comprador que busca en tu zona, y qué pieza te falta para que te escriba a ti.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  // Este giro engloba lo que antes eran seis páginas separadas
+  // (preparadores de impuestos, EAs, CPAs, bookkeepers, resolución
+  // fiscal y despachos contables). Sigue siendo un nicho fuerte, pero
+  // ahora es un giro más entre cinco, no el eje del sitio.
+  accounting: {
+    navLabel: "Contabilidad e impuestos",
+    navHint: "Temporada, clientes de todo el año y menos trabajo manual",
+    icon: "calculator",
+    meta: {
+      title:
+        "Páginas Web para Despachos Contables | ProCode Dev",
+      description:
+        "Sitio web, intake de documentos y seguimiento para despachos contables, contadores y preparadores de impuestos. Llega a la temporada con la agenda llena.",
+      keywords:
+        "página web para despachos contables, sitio web para contadores, página web para preparadores de impuestos, marketing para despachos fiscales, intake de documentos, página web para CPA",
+    },
+    heroEyebrow: "// contabilidad e impuestos",
+    heroTitleA: "Sistemas digitales para",
+    heroHighlight: "despachos de contabilidad e impuestos",
+    heroSubtitle:
+      "Tu año se concentra en unas pocas semanas y el resto del calendario se apaga. Construyo la infraestructura para que llegues a la temporada con la agenda llenándose sola, y para que los clientes de este año sigan siendo clientes el próximo.",
+    intro:
+      "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y seguimiento para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
+    projectId: "demo-taxpro",
+    projectEyebrow: "// proyecto en tu giro",
+    projectTitle: "Cómo se ve un despacho contable",
+    projectHighlight: "bien presentado",
+    projectWhy:
+      "Un sitio bilingüe para un despacho fiscal y contable: servicios separados, agenda de consulta y captación enfocada en confianza. Lo construí por mi cuenta como demostración del sector: es una demo, no un cliente, y lo digo para que no haya confusión.",
+    projectPoints: [
+      "Una página por servicio, para que la declaración de negocio no compita con la de persona física.",
+      "Agenda de consulta y captación construidas alrededor de la confianza, que es lo que decide en este giro.",
+      "Versión en inglés y en español, con URLs separadas para que Google indexe las dos.",
+    ],
+    painTitle: "Lo que veo una y otra vez",
+    painSubtitle:
+      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+    pains: [
+      "La mayor parte de tus ingresos entra en unas semanas, y el resto del año la operación se apaga.",
+      "Los clientes con negocio —los que de verdad pagan— se van con quien se ve como un despacho formal, no con quien tiene más oficio.",
+      "Contestas los mismos mensajes cincuenta veces: qué documentos, cuánto cuesta, cuándo estará listo.",
+      "En plena temporada pierdes prospectos porque nadie tuvo tiempo de contestarles en 24 horas.",
+      "El cliente del año pasado no regresó y te enteraste tarde, cuando ya presentó con otro.",
+    ],
+    systemTitle: "Lo que construyo para un despacho",
+    systemSubtitle:
+      "Las mismas seis piezas del sistema, aplicadas a cómo factura realmente una práctica contable.",
+    system: [
+      {
+        icon: "layout",
+        title: "Una página por servicio, no una sola de «contabilidad»",
+        description:
+          "Declaraciones de personas, de negocio, contabilidad mensual, nómina, trámites y representación. Cada servicio con su propio mensaje y su propio precio de referencia, para que el cliente con negocio no compita en la misma página que la declaración sencilla.",
       },
       {
         icon: "clipboard-check",
         title: "Intake que pide los documentos antes de la cita",
         description:
-          "Formulario por tipo de retorno con la lista de documentos, carga segura de archivos y preguntas de calificación. Llegas a la cita con el expediente medio armado en vez de con una hoja en blanco.",
+          "Formulario por tipo de servicio con la lista de documentos, carga segura de archivos y preguntas de calificación. Llegas a la cita con el expediente medio armado en vez de con una hoja en blanco.",
       },
       {
         icon: "calendar",
         title: "Agenda que sobrevive a la temporada",
         description:
-          "Citas en línea conectadas a tu calendario, con bloques distintos para individual y para negocio, recordatorios automáticos y aviso de documentos faltantes 48 horas antes.",
+          "Citas en línea conectadas a tu calendario, con bloques distintos para personas y para negocios, recordatorios automáticos y aviso de documentos faltantes 48 horas antes.",
       },
       {
         icon: "repeat",
         title: "Reactivación de la base del año pasado",
         description:
-          "En diciembre y enero, tus clientes anteriores reciben el aviso de que ya puedes recibirlos, con el enlace para agendar. Es el ingreso más barato que existe y casi nadie lo trabaja.",
+          "Antes de que arranque la temporada, tus clientes anteriores reciben el aviso de que ya puedes recibirlos, con el enlace para agendar. Es el ingreso más barato que existe y casi nadie lo trabaja.",
       },
       {
         icon: "target",
         title: "Perfil de Empresa en Google trabajando en temporada",
         description:
-          "Optimizado para «tax preparer near me» y su equivalente en español, con publicaciones durante la temporada, horario extendido y un sistema para pedir reseñas justo cuando el cliente está contento: al entregar el refund.",
+          "Optimizado para las búsquedas de tu servicio en tu ciudad, en inglés y español, con publicaciones durante la temporada, horario extendido y un sistema para pedir reseñas justo cuando el cliente está contento.",
       },
     ],
     cycleTitle: "Tu calendario, y qué hace el sistema en cada tramo",
     cycleBody:
-      "Nada de esto se improvisa en febrero. El sistema se monta antes y trabaja solo cuando tú no tienes tiempo de mirarlo.",
+      "Nada de esto se improvisa en plena temporada. El sistema se monta antes y trabaja solo cuando tú no tienes tiempo de mirarlo.",
     cycleMonths: [
       {
         label: "Nov – Dic",
@@ -131,7 +700,7 @@ const es: SegmentDict = {
       },
       {
         label: "May – Ago",
-        note: "Venta de bookkeeping, payroll y tax planning a la base existente.",
+        note: "Venta de contabilidad mensual y nómina a la base existente.",
       },
       {
         label: "Sep – Oct",
@@ -142,699 +711,678 @@ const es: SegmentDict = {
     offerSubtitle:
       "No te propongo que inventes servicios nuevos: te propongo presentar los que ya podrías dar, en el momento en que el cliente sí los escucha.",
     offers: [
-      "Bookkeeping mensual para tus clientes con negocio",
-      "Payroll para los que ya tienen empleados",
-      "Tax planning antes del cierre del año",
-      "Formación de LLC y S-Corp para el que se independiza",
-      "Enmiendas y años anteriores sin presentar",
+      "Contabilidad mensual para tus clientes con negocio",
+      "Nómina para los que ya tienen empleados",
+      "Planeación fiscal antes del cierre del año",
+      "Constitución de empresas para el que se independiza",
+      "Años anteriores sin presentar y correcciones",
       "Estados financieros para trámites de crédito",
     ],
-    faqTitle: "Dudas de un preparador",
+    faqTitle: "Dudas de un despacho",
     faq: [
       {
         question: "Estoy en plena temporada. ¿Vale la pena empezar ahora?",
         answer:
-          "Depende del mes. De enero a abril priorizamos lo que se lanza en dos semanas y produce de inmediato: Perfil de Empresa en Google, agenda en línea, intake y el botón de WhatsApp con el mensaje ya escrito. El sitio completo lo hacemos después del 15 de abril, con calma y con datos reales de la temporada.",
+          "Depende del mes. En temporada priorizamos lo que se lanza en dos semanas y produce de inmediato: Perfil de Empresa en Google, agenda en línea, intake y el botón de WhatsApp con el mensaje ya escrito. El sitio completo lo hacemos cuando baje la carga, con datos reales de la temporada.",
       },
       {
         question: "¿Esto me sirve si trabajo solo, desde mi casa?",
         answer:
-          "Es justo donde más rinde. Un preparador solo no tiene a nadie que conteste mientras está preparando un retorno: la automatización es el asistente que no puedes contratar en marzo.",
+          "Es justo donde más rinde. Un contador solo no tiene a nadie que conteste mientras está preparando una declaración: la automatización es el asistente que no puedes contratar en plena temporada.",
+      },
+      {
+        question: "¿Sirve igual en México que en Estados Unidos?",
+        answer:
+          "El sistema es el mismo; cambian los servicios y el vocabulario de cada país. Trabajo con despachos de los dos lados y adapto la estructura, los nombres de los servicios y el calendario a donde estés.",
       },
       {
         question: "¿Puede quedar en inglés y en español?",
         answer:
-          "Sí, y para la mayoría de los preparadores es lo correcto: los clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
+          "Sí, y para la mayoría de los despachos hispanos en EE. UU. es lo correcto: los clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
       },
     ],
     ctaTitle: "15 minutos antes de que empiece la temporada",
     ctaBody:
-      "Te digo qué pieza le falta a tu práctica hoy y qué se puede tener listo antes del 15 de enero.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  enrolledAgents: {
-    navLabel: "Enrolled Agents",
-    navHint: "Credencial federal, representación y casos de todo el país",
-    icon: "shield",
-    meta: {
-      title: "Sitios Web y Captación para Enrolled Agents (EA) | ProCode Dev",
-      description:
-        "Sitio web, posicionamiento y sistema de captación para Enrolled Agents en Estados Unidos. Haz visible tu credencial federal, capta casos de representación ante el IRS de cualquier estado y filtra al prospecto correcto antes de la primera llamada.",
-    },
-    heroEyebrow: "// enrolled agents",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "Enrolled Agents",
-    heroSubtitle:
-      "Tienes la única credencial fiscal reconocida a nivel federal y puedes representar a un contribuyente en cualquier estado. Tu presencia digital debería explotar exactamente eso — y casi nunca lo hace.",
-    intro:
-      "Sitio web, autoridad y captación de casos de representación para Enrolled Agents licenciados por el Departamento del Tesoro de EE. UU.",
-    painTitle: "El problema del EA no es de diseño, es de percepción",
-    painSubtitle:
-      "El contribuyente promedio no sabe qué es un Enrolled Agent. Ese desconocimiento es tu mayor fuga de ingresos.",
-    pains: [
-      "El cliente no distingue entre tú y el preparador de la esquina, así que compara por precio.",
-      "Tu credencial federal —la que te permite representar ante el IRS en los 50 estados— no aparece en ningún lado o aparece como una sigla suelta.",
-      "Podrías atender casos de todo el país, pero tu presencia solo te posiciona en tu ciudad.",
-      "Los casos de representación llegan por referido, nunca por búsqueda, y por eso el volumen no crece.",
-      "Recibes consultas que no te convienen y descubres que no calificaban después de 40 minutos de llamada.",
-    ],
-    systemTitle: "Lo que construyo para un EA",
-    systemSubtitle:
-      "El objetivo es que quien llegue entienda en diez segundos qué puedes hacer tú que otro no puede.",
-    system: [
-      {
-        icon: "shield",
-        title: "Tu credencial, explicada en lenguaje de cliente",
-        description:
-          "Una sección que traduce «Enrolled Agent» a lo que al contribuyente le importa: autorización federal, derecho de representación ilimitado ante el IRS y validez en cualquier estado. Con tu número y tu educación continua a la vista.",
-      },
-      {
-        icon: "scale",
-        title: "Páginas por tipo de caso, no por tipo de servicio",
-        description:
-          "Auditorías, cartas CP2000, deuda con el IRS, planes de pago, penalty abatement, poder de representación. Quien recibe una carta del IRS busca la carta, no busca «servicios fiscales».",
-      },
-      {
-        icon: "map-pin",
-        title: "Alcance nacional, sin perder lo local",
-        description:
-          "Tu Perfil de Empresa en Google trabaja tu ciudad, y el sitio se estructura para captar casos de representación de cualquier estado, que es donde tu credencial vale más.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Calificación antes de la llamada",
-        description:
-          "Un intake que pregunta tipo de aviso, año fiscal, monto aproximado y si ya hay acuerdo con el IRS. Llegas a la consulta sabiendo si el caso te sirve, y el que no califica no te consume una hora.",
-      },
-      {
-        icon: "sparkles",
-        title: "Visibilidad en búsqueda con IA",
-        description:
-          "Cada vez más contribuyentes le preguntan a una IA qué hacer con una carta del IRS. Estructuro tus contenidos y credenciales para aparecer citado en esas respuestas.",
-      },
-    ],
-    cycleTitle: "Tu calendario no es solo la temporada",
-    cycleBody:
-      "El trabajo de representación no depende del 15 de abril: depende de cuándo el IRS manda avisos. Eso hace tu negocio menos estacional que el de un preparador, si la captación está montada para aprovecharlo.",
-    cycleMonths: [
-      { label: "Ene – Abr", note: "Temporada y captación de clientes nuevos." },
-      {
-        label: "May – Jul",
-        note: "Llega la ola de avisos del IRS de la temporada anterior.",
-      },
-      { label: "Ago – Oct", note: "Extensiones, resolución y planes de pago." },
-      {
-        label: "Nov – Dic",
-        note: "Tax planning, educación continua y contenido de autoridad.",
-      },
-    ],
-    offerTitle: "Servicios que un EA puede posicionar todo el año",
-    offerSubtitle:
-      "Tu credencial da acceso a trabajo que un preparador sin licencia no puede tomar. La página debería decirlo.",
-    offers: [
-      "Representación ante el IRS y respuesta a auditorías",
-      "Resolución de deuda: planes de pago y penalty abatement",
-      "Años sin presentar y reconstrucción de expedientes",
-      "Tax planning para dueños de negocio",
-      "Segunda opinión sobre retornos preparados por terceros",
-      "Consultoría para contribuyentes con ingresos de varios estados",
-    ],
-    faqTitle: "Dudas de un Enrolled Agent",
-    faq: [
-      {
-        question:
-          "¿Puedo captar casos de otros estados o me conviene enfocarme en mi ciudad?",
-        answer:
-          "Las dos cosas, y en ese orden. El Perfil de Empresa en Google te trae el volumen local, que sostiene la temporada; la estructura de contenido por tipo de caso es la que te trae representación de otros estados, que es el trabajo mejor pagado. Una cosa financia la otra.",
-      },
-      {
-        question: "¿Es un problema no ser CPA?",
-        answer:
-          "No, si la página lo explica bien. Ante el IRS tu derecho de representación es el mismo, y esa equivalencia es exactamente lo que el sitio tiene que comunicar en la primera pantalla. El problema no es la credencial: es que nadie la conoce.",
-      },
-      {
-        question: "¿Cómo evito consultas de gente que no puede pagar?",
-        answer:
-          "Con el intake y con el precio. El formulario pregunta monto de deuda, tipo de aviso y estado del caso antes de agendar, y la página puede publicar un rango de referencia para la consulta inicial. Filtras antes de invertir tu tiempo.",
-      },
-    ],
-    ctaTitle: "15 minutos para revisar cómo te ve un contribuyente hoy",
-    ctaBody:
-      "Te digo qué está comunicando tu presencia actual sobre tu credencial — y qué no.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  cpas: {
-    navLabel: "CPAs",
-    navHint: "Advisory, clientes de mayor ticket y referidos",
-    icon: "briefcase",
-    meta: {
-      title:
-        "Sitios Web y Sistemas de Crecimiento para Firmas de CPA | ProCode Dev",
-      description:
-        "Sitio web, captación e intake para prácticas de CPA pequeñas y medianas en EE. UU. Posiciona advisory y servicios de mayor valor, filtra al cliente que sí encaja y convierte el referido en una experiencia digital a la altura de tus honorarios.",
-    },
-    heroEyebrow: "// cpas",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "prácticas de CPA",
-    heroSubtitle:
-      "Cobras honorarios de firma profesional. Si tu presencia digital no está a esa altura, cada referido que te busca en Google antes de llamarte pone tu precio en duda.",
-    intro:
-      "Sitio web, autoridad profesional, intake y captación para prácticas de CPA pequeñas y medianas en Estados Unidos.",
-    painTitle: "Dónde se cae una práctica de CPA",
-    painSubtitle:
-      "El problema rara vez es falta de trabajo. Es la mezcla del trabajo y el proceso para conseguirlo.",
-    pains: [
-      "El 100% del negocio llega por referido, así que el crecimiento depende de la suerte y no del sistema.",
-      "El referido te busca en Google antes de llamar, encuentra un sitio de 2016 y llega a la llamada dudando de tus honorarios.",
-      "Tu tiempo se va en compliance de bajo valor mientras el advisory —lo que mejor pagas y mejor haces— no se comunica en ningún lado.",
-      "Recibes consultas de clientes que no encajan con tu práctica y no puedes filtrarlas sin quedar mal.",
-      "El paso de «me interesa» a «firmó el engagement letter» toma semanas de correos de ida y vuelta.",
-    ],
-    systemTitle: "Lo que construyo para una firma de CPA",
-    systemSubtitle:
-      "Menos volumen, mejor cliente, menos fricción entre el interés y el engagement.",
-    system: [
-      {
-        icon: "briefcase",
-        title: "Posicionamiento por especialidad y por industria",
-        description:
-          "Restaurantes, construcción, e-commerce, consultorios, real estate. Una firma que dice para quién trabaja cobra más que una que dice que trabaja para todos, y aparece en las búsquedas que sí convierten.",
-      },
-      {
-        icon: "trending-up",
-        title: "El advisory al frente, no escondido bajo «servicios»",
-        description:
-          "Tax planning, CFO fraccional, análisis financiero y consultoría estructurados como oferta propia, con su propia página y su propio proceso. Es la diferencia entre facturar por hora y facturar por valor.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Intake que filtra antes de la primera reunión",
-        description:
-          "Tipo de entidad, facturación aproximada, software contable, servicios que necesita y si ya tiene contador. El que no encaja con tu práctica lo sabes antes de agendar; el que encaja llega con el contexto listo.",
-      },
-      {
-        icon: "shield",
-        title: "Credenciales y prueba profesional visibles",
-        description:
-          "Licencia estatal, años de práctica, membresías, especializaciones y casos de industria. Es lo que sostiene tu precio cuando el prospecto está comparando tres firmas en pestañas distintas.",
-      },
-      {
-        icon: "workflow",
-        title: "Del interés al engagement, sin veinte correos",
-        description:
-          "Agenda conectada, documentos solicitados de forma automática y seguimiento estructurado. La firma que responde primero y con orden gana el cliente, aunque la otra sea igual de buena.",
-      },
-    ],
-    cycleTitle: "El año de una firma de CPA",
-    cycleBody:
-      "Tu estacionalidad es real, pero es más suave que la de un preparador. La oportunidad está en usar los meses tranquilos para vender advisory a la base que ya tienes.",
-    cycleMonths: [
-      {
-        label: "Ene – Abr",
-        note: "Compliance a tope; el sistema absorbe consultas sin quitarte tiempo.",
-      },
-      {
-        label: "May – Ago",
-        note: "Advisory, planeación y captación de clientes de negocio.",
-      },
-      {
-        label: "Sep – Oct",
-        note: "Extensiones y cierre del ciclo de las entidades.",
-      },
-      {
-        label: "Nov – Dic",
-        note: "Tax planning de fin de año: la venta de mayor margen del calendario.",
-      },
-    ],
-    offerTitle: "Servicios de mayor valor que conviene posicionar",
-    offerSubtitle:
-      "Todo esto ya lo puedes ofrecer. La pregunta es si tu presencia digital lo comunica o si te deja como el CPA que hace retornos.",
-    offers: [
-      "Tax planning y proyecciones de fin de año",
-      "CFO fraccional y acompañamiento financiero mensual",
-      "Elección de entidad y reestructuración (LLC, S-Corp, C-Corp)",
-      "Estados financieros y acompañamiento en solicitudes de crédito",
-      "Due diligence en compraventa de negocios",
-      "Consultoría de nómina y cumplimiento multiestatal",
-    ],
-    faqTitle: "Dudas de una firma de CPA",
-    faq: [
-      {
-        question: "Ya tengo suficientes clientes. ¿Para qué quiero esto?",
-        answer:
-          "Casi ninguna práctica establecida necesita más clientes: necesita mejores. El sistema sirve para que llegue el perfil que quieres, para que el que no encaja se filtre solo y para reducir el tiempo administrativo por cliente. Si tu problema es capacidad y no demanda, esto se nota más en el margen que en el volumen.",
-      },
-      {
-        question: "¿Qué tanto de esto puede vivir en mi software actual?",
-        answer:
-          "Bastante. Trabajo sobre lo que ya usas —portal de cliente, software de preparación, calendario, CRM— y conecto el sitio con eso. La idea no es que cambies de herramientas: es que dejen de estar desconectadas entre sí.",
-      },
-      {
-        question: "¿Publicar precios no me perjudica en una práctica de CPA?",
-        answer:
-          "En advisory y compliance complejo, normalmente no publicamos precio final: publicamos rangos de referencia o un precio de partida por servicio. Filtra a quien busca lo más barato sin comprometerte, y evita la llamada de 40 minutos que termina en «es más de lo que pensaba».",
-      },
-    ],
-    ctaTitle: "15 minutos para ver qué está comunicando tu firma",
-    ctaBody:
-      "Reviso cómo te ve hoy un referido que te busca antes de llamarte, y qué cambiaría eso.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  bookkeepers: {
-    navLabel: "Bookkeepers",
-    navHint: "Ingreso recurrente, clientes mensuales y cleanups",
-    icon: "calculator",
-    meta: {
-      title:
-        "Sitios Web y Captación para Bookkeepers y Contabilidad Mensual | ProCode Dev",
-      description:
-        "Sitio web, captación e intake para bookkeepers en Estados Unidos. Vende contabilidad mensual como suscripción, capta cleanups y catch-ups, y consigue clientes recurrentes en lugar de trabajos sueltos. Precios públicos desde $349 USD.",
-    },
-    heroEyebrow: "// bookkeepers",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "bookkeepers",
-    heroSubtitle:
-      "Tu servicio es el único de todo el nicho que se cobra doce veces al año. Eso convierte cada cliente nuevo en ingreso recurrente — y hace que valga la pena montar el sistema una sola vez.",
-    intro:
-      "Sitio web, captación e intake para bookkeepers y servicios de contabilidad mensual en Estados Unidos.",
-    painTitle: "Lo que frena a un bookkeeper",
-    painSubtitle:
-      "Vender contabilidad mensual es distinto a vender un retorno: no es una transacción, es una relación.",
-    pains: [
-      "Cobras por hora o por trabajo suelto, cuando tu servicio es naturalmente una suscripción mensual.",
-      "El dueño de negocio no sabe qué incluye «bookkeeping» y por eso compara tu precio con el de un software de $30 al mes.",
-      "Los cleanups y catch-ups —lo mejor pagado y lo más urgente para el cliente— no están posicionados en ningún lado.",
-      "Tomas clientes con dieciocho meses de desorden por el precio de un mes normal, porque no hubo forma de calificarlo antes.",
-      "Un preparador de impuestos te manda referidos, pero no hay nada en tu presencia que le facilite recomendarte.",
-    ],
-    systemTitle: "Lo que construyo para un bookkeeper",
-    systemSubtitle:
-      "Todo apunta al mismo objetivo: convertir consultas sueltas en clientes que pagan cada mes.",
-    system: [
-      {
-        icon: "repeat",
-        title: "Paquetes mensuales, no tarifas por hora",
-        description:
-          "Tres niveles con lo que incluye cada uno y un precio de partida visible. La suscripción se vende como suscripción: si el cliente no ve el paquete, negocia por hora y siempre a la baja.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Intake que califica el desorden",
-        description:
-          "Meses sin conciliar, software actual, número de cuentas, volumen de transacciones y tipo de entidad. Sabes si es un cleanup de tres meses o de dos años antes de dar un precio.",
-      },
-      {
-        icon: "search",
-        title: "Cleanups y catch-ups como servicio propio",
-        description:
-          "Su propia página, su propio precio de entrada y su propio formulario. Es el trabajo más urgente para el cliente, el mejor pagado y la puerta natural hacia el contrato mensual.",
-      },
-      {
-        icon: "handshake",
-        title: "Alianzas con preparadores y CPAs",
-        description:
-          "Una página pensada para que un preparador te mande a su cliente de bookkeeping sin fricción: qué haces, qué no haces y cómo se coordinan. El referido profesional es tu canal más rentable.",
-      },
-      {
-        icon: "trending-up",
-        title: "Reportes que justifican el pago mensual",
-        description:
-          "El cliente que recibe algo cada mes renueva. Estructuro la entrega y la comunicación para que tu trabajo sea visible, no un cargo silencioso en la tarjeta.",
-      },
-    ],
-    cycleTitle: "El bookkeeper es quien menos depende del calendario",
-    cycleBody:
-      "Y esa es exactamente tu ventaja: mientras el resto del nicho vive de catorce semanas, tú puedes construir ingreso estable los doce meses. El calendario solo cambia dónde está la oportunidad de captación.",
-    cycleMonths: [
-      {
-        label: "Ene – Abr",
-        note: "Los desordenados descubren su problema al preparar impuestos.",
-      },
-      {
-        label: "May – Ago",
-        note: "Temporada alta de cleanups y contratos mensuales nuevos.",
-      },
-      {
-        label: "Sep – Oct",
-        note: "Extensiones: otra ola de negocios sin libros al día.",
-      },
-      {
-        label: "Nov – Dic",
-        note: "Cierre de año y venta del paquete mensual para enero.",
-      },
-    ],
-    offerTitle: "Servicios que sostienen el ingreso recurrente",
-    offerSubtitle:
-      "Cada uno se puede empaquetar y presentar como parte de un plan mensual en vez de como un trabajo suelto.",
-    offers: [
-      "Contabilidad mensual y conciliación bancaria",
-      "Cleanup y catch-up de meses o años atrasados",
-      "Procesamiento de nómina",
-      "Cuentas por pagar y por cobrar",
-      "Reportes financieros mensuales con lectura del número",
-      "Migración y configuración de QuickBooks o Xero",
-    ],
-    faqTitle: "Dudas de un bookkeeper",
-    faq: [
-      {
-        question: "¿Publico mis precios mensuales o los dejo a cotización?",
-        answer:
-          "Publica al menos un precio de partida por paquete. En contabilidad mensual, «pide cotización» hace que el dueño de negocio asuma que es caro y siga buscando. Un «desde $X al mes» filtra a quien nunca iba a pagar y sube la calidad de las consultas que sí llegan.",
-      },
-      {
-        question: "Trabajo con clientes de varios estados. ¿Eso cambia algo?",
-        answer:
-          "Cambia el enfoque de captación. En vez de apostar todo al Perfil de Empresa en Google local, trabajamos contenido por industria y por software —restaurantes, contratistas, e-commerce, QuickBooks Online— que es como te busca alguien que no necesita que estés en su ciudad.",
-      },
-      {
-        question: "¿Cómo evito los cleanups que se convierten en pesadilla?",
-        answer:
-          "Con el intake. El formulario pregunta meses sin conciliar, número de cuentas y volumen mensual antes de que agendes. Con eso das un rango honesto desde el primer mensaje, en vez de descubrir el tamaño real del problema cuando ya aceptaste el trabajo.",
-      },
-    ],
-    ctaTitle: "15 minutos para armar tu oferta mensual",
-    ctaBody:
-      "Revisamos cómo estás cobrando hoy y cómo se vería empaquetado como suscripción.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  taxResolution: {
-    navLabel: "Resolución fiscal",
-    navHint: "Casos urgentes, deuda con el IRS y ticket alto",
-    icon: "scale",
-    meta: {
-      title:
-        "Marketing y Sitios Web para Firmas de Resolución Fiscal | ProCode Dev",
-      description:
-        "Sitio web, captación e intake para firmas de tax resolution en Estados Unidos. Capta contribuyentes con deuda del IRS en el momento de urgencia, califica el caso antes de la consulta y responde en minutos, no en días.",
-    },
-    heroEyebrow: "// tax resolution",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "firmas de resolución fiscal",
-    heroSubtitle:
-      "Tu cliente no está planeando: está asustado, con una carta del IRS en la mano, buscando a las once de la noche. Gana quien responde primero y quien se ve capaz de resolverlo.",
-    intro:
-      "Sitio web, captación, calificación e intake para firmas de resolución fiscal y representación ante el IRS en Estados Unidos.",
-    painTitle: "La resolución fiscal se pierde en la velocidad",
-    painSubtitle:
-      "Es el segmento con el ticket más alto del nicho y también el más competido. La diferencia casi nunca está en la técnica.",
-    pains: [
-      "El contribuyente con una carta del IRS contacta a tres firmas la misma noche y contrata a la primera que le contesta.",
-      "Compites contra empresas nacionales con presupuestos de publicidad enormes y promesas de «pennies on the dollar».",
-      "Recibes consultas de gente que debe $800 y no califica para nada, y te consumen el mismo tiempo que un caso de $50,000.",
-      "El prospecto no sabe distinguir entre una firma seria y las que salen en los anuncios de radio, así que desconfía de todas.",
-      "El caso llega por teléfono a las 9 de la noche y no hay nada montado para capturarlo fuera de horario.",
-    ],
-    systemTitle: "Lo que construyo para una firma de resolución",
-    systemSubtitle:
-      "Velocidad, calificación y credibilidad. En este segmento, en ese orden.",
-    system: [
-      {
-        icon: "scale",
-        title: "Una página por tipo de problema",
-        description:
-          "Wage garnishment, bank levy, lien, CP2000, deuda acumulada, años sin presentar, Offer in Compromise, planes de pago, innocent spouse. El contribuyente busca el nombre de su problema, no «resolución fiscal».",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Calificación antes de que te quite una hora",
-        description:
-          "Monto aproximado de deuda, tipo de aviso recibido, años sin presentar y si ya hay embargo activo. El caso que no califica recibe una respuesta útil sin consumir tu agenda; el que sí, entra con expediente.",
-      },
-      {
-        icon: "zap",
-        title: "Respuesta inmediata, a cualquier hora",
-        description:
-          "Confirmación automática al enviar el formulario, aviso instantáneo a tu equipo y opción de WhatsApp o llamada. En un segmento donde el prospecto contacta a tres firmas, contestar en cinco minutos es la mitad de la venta.",
-      },
-      {
-        icon: "shield",
-        title: "Credibilidad frente a las promesas infladas",
-        description:
-          "Credenciales verificables, explicación honesta de qué se puede y qué no se puede conseguir, y reseñas reales. Diferenciarte del anuncio de radio es tu mejor argumento de venta.",
-      },
-      {
-        icon: "target",
-        title: "Captación de intención alta",
-        description:
-          "SEO por tipo de aviso y, cuando el presupuesto lo justifica, campañas con landing dedicada y seguimiento de costo por caso firmado — no por clic.",
-      },
-    ],
-    cycleTitle: "Cuándo llegan los casos",
-    cycleBody:
-      "La resolución fiscal sigue el calendario del IRS, no el del 15 de abril. Saber cuándo salen los avisos permite tener la captación lista antes de la ola.",
-    cycleMonths: [
-      {
-        label: "Ene – Abr",
-        note: "Descubren la deuda al preparar el retorno del año.",
-      },
-      {
-        label: "May – Jul",
-        note: "Llegan los avisos y las cartas de la temporada anterior.",
-      },
-      {
-        label: "Ago – Oct",
-        note: "Escalan las acciones de cobro: liens y embargos.",
-      },
-      {
-        label: "Nov – Dic",
-        note: "Cierre de acuerdos antes del año fiscal siguiente.",
-      },
-    ],
-    offerTitle: "Servicios que conviene posicionar por separado",
-    offerSubtitle:
-      "Cada uno tiene su propia búsqueda, su propia urgencia y su propio ticket. Mezclarlos en una sola página cuesta casos.",
-    offers: [
-      "Liberación de embargo de salario y de cuentas bancarias",
-      "Planes de pago y acuerdos a plazos con el IRS",
-      "Offer in Compromise cuando el caso realmente califica",
-      "Penalty abatement por causa razonable",
-      "Años sin presentar y reconstrucción de declaraciones",
-      "Representación en auditorías y respuesta a avisos",
-    ],
-    faqTitle: "Dudas de una firma de resolución",
-    faq: [
-      {
-        question: "¿Publico precios en resolución fiscal?",
-        answer:
-          "No el precio final —cada caso es distinto— pero sí un precio de partida para la investigación o la consulta inicial. Es lo que te separa de las firmas que esconden todo hasta tenerte al teléfono, y filtra al que busca que le resuelvan $500 de deuda.",
-      },
-      {
-        question: "¿Vale la pena invertir en anuncios en este segmento?",
-        answer:
-          "A veces, pero solo con el sistema montado antes. Pagar por clics que caen en un formulario que nadie contesta en dos horas es tirar el presupuesto. Primero intake, calificación y respuesta automática; después campañas, midiendo costo por caso firmado y no por lead.",
-      },
-      {
-        question: "¿Cómo compito con las firmas nacionales de televisión?",
-        answer:
-          "No compitiendo en su terreno. Ellos ganan en volumen y en promesa; tú ganas en proximidad, credencial verificable, honestidad sobre lo que realmente se puede conseguir y en contestar tú, no un call center. Eso se puede comunicar, y es lo que el prospecto quemado por un anuncio está buscando.",
-      },
-    ],
-    ctaTitle: "15 minutos para revisar tu velocidad de respuesta",
-    ctaBody:
-      "Medimos cuánto tarda hoy tu firma en contestar un caso nuevo, y qué se puede automatizar esta semana.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  accountingFirms: {
-    navLabel: "Despachos contables",
-    navHint: "Varios servicios, equipo y operación multiservicio",
-    icon: "building",
-    meta: {
-      title:
-        "Sitios Web y Sistemas de Crecimiento para Despachos Contables | ProCode Dev",
-      description:
-        "Sitio web, captación, intake y automatización para despachos contables y firmas multiservicio en EE. UU.: impuestos, bookkeeping, payroll, ITIN, formación de empresas y advisory. Una página por servicio y un sistema que ordena la operación.",
-    },
-    heroEyebrow: "// accounting firms",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "despachos contables",
-    heroSubtitle:
-      "Das seis servicios distintos a cuatro tipos de cliente distintos y todo eso vive en una sola página que dice «servicios contables». Ese es el problema, y es más caro de lo que parece.",
-    intro:
-      "Sitio web, captación, intake y automatización para despachos contables y firmas multiservicio en Estados Unidos.",
-    painTitle: "El costo de ser multiservicio sin estructura",
-    painSubtitle:
-      "Tu oferta amplia es una ventaja comercial y una desventaja de comunicación. Se puede arreglar lo segundo sin renunciar a lo primero.",
-    pains: [
-      "Impuestos, bookkeeping, payroll, ITIN, formación de empresas y notary compitiendo por atención en la misma página.",
-      "Cada servicio tiene su cliente y su búsqueda, pero solo hay una URL para todos: ninguno posiciona bien.",
-      "El cliente que llega por ITIN nunca se entera de que también haces payroll, y era el mejor candidato para venderlo.",
-      "Con equipo, los mensajes llegan a WhatsApp personales y a correos distintos, y nadie sabe qué pasó con cada prospecto.",
-      "En temporada entra tanto volumen que la operación se sostiene con memoria y buena voluntad, no con proceso.",
-    ],
-    systemTitle: "Lo que construyo para un despacho contable",
-    systemSubtitle:
-      "Ordenar la oferta hacia afuera y ordenar la operación hacia adentro. Suelen ser el mismo trabajo.",
-    system: [
-      {
-        icon: "layout",
-        title: "Una página por servicio, con su propia búsqueda",
-        description:
-          "Impuestos personales, business returns, bookkeeping, payroll, ITIN, formación de LLC, notary. Cada una posiciona por su cuenta y le habla a su cliente, en vez de repartirse la misma página.",
-      },
-      {
-        icon: "route",
-        title: "Rutas de venta cruzada entre servicios",
-        description:
-          "Quien llega por ITIN es candidato a impuestos; quien llega por formación de empresa es candidato a bookkeeping y payroll. El sistema conecta esos caminos en vez de dejarlos a que alguien se acuerde.",
-      },
-      {
-        icon: "users",
-        title: "Un solo buzón para todo el equipo",
-        description:
-          "Todos los formularios, mensajes y solicitudes entran a un mismo lugar, con asignación y estado. Se acaba el «pensé que tú le habías contestado» de marzo.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Intake distinto por servicio",
-        description:
-          "Cada servicio pide lo que necesita: documentos para impuestos, meses sin conciliar para bookkeeping, número de empleados para payroll. Nadie llena un formulario genérico que no sirve para nada.",
-      },
-      {
-        icon: "trending-up",
-        title: "Reporte por servicio, no solo del despacho",
-        description:
-          "Cuántos leads generó cada servicio, cuáles se convirtieron y de dónde vinieron. Es lo que te dice en qué línea de negocio conviene invertir el año que viene.",
-      },
-    ],
-    cycleTitle: "Un despacho multiservicio nunca está fuera de temporada",
-    cycleBody:
-      "Esa es la ventaja de tener varias líneas: cuando una baja, otra sube. Lo que falta casi siempre es la captación específica de la línea que toca en cada tramo del año.",
-    cycleMonths: [
-      {
-        label: "Ene – Abr",
-        note: "Impuestos e ITIN al máximo; el resto del sistema sostiene la operación.",
-      },
-      {
-        label: "May – Ago",
-        note: "Bookkeeping, payroll y formación de empresas.",
-      },
-      {
-        label: "Sep – Oct",
-        note: "Extensiones, cierres de entidad y regularización.",
-      },
-      {
-        label: "Nov – Dic",
-        note: "Planeación de fin de año y preparación de la temporada.",
-      },
-    ],
-    offerTitle: "Servicios que suelen convivir en un despacho",
-    offerSubtitle:
-      "Cada uno merece su propia página, su propio formulario y su propia forma de medirse.",
-    offers: [
-      "Impuestos personales y de negocio",
-      "Bookkeeping y contabilidad mensual",
-      "Payroll y cumplimiento laboral",
-      "ITIN y trámites de identificación fiscal",
-      "Formación de LLC, S-Corp y registro de negocios",
-      "Notary, apostillas y servicios administrativos",
-    ],
-    faqTitle: "Dudas de un despacho contable",
-    faq: [
-      {
-        question: "¿No es mejor una sola página que lo diga todo?",
-        answer:
-          "Es más fácil de hacer y es peor para el negocio. Una sola página tiene que posicionar para búsquedas que no se parecen entre sí y termina sin posicionar para ninguna. Con una página por servicio, cada línea compite en su propia búsqueda y puedes ver cuál te trae clientes y cuál no.",
-      },
-      {
-        question: "Tenemos equipo. ¿Esto complica el día a día?",
-        answer:
-          "Lo simplifica, si se monta bien. Los formularios entran a un solo lugar con estado y responsable asignado, en vez de repartirse entre WhatsApp personales y correos distintos. En temporada esa diferencia se nota más que cualquier cambio de diseño.",
-      },
-      {
-        question: "¿Podemos empezar solo con una línea de servicio?",
-        answer:
-          "Sí, y suele ser lo más sensato. Empezamos con la línea que más margen deja o la que más quieres crecer, medimos qué produjo en un ciclo completo y replicamos la estructura al resto con datos en la mano.",
-      },
-    ],
-    ctaTitle: "15 minutos para ordenar tu oferta",
-    ctaBody:
-      "Revisamos los servicios que das hoy y cuáles justifican una página propia desde el primer día.",
+      "Te digo qué pieza le falta a tu despacho hoy y qué se puede tener listo antes de que arranque tu mes fuerte.",
   },
 };
 
 const en: SegmentDict = {
   // ────────────────────────────────────────────────────────────
-  taxProfessionals: {
-    navLabel: "Tax Professionals",
-    navHint: "Season, business returns and clients who come back",
-    icon: "receipt",
+  contractors: {
+    navLabel: "Contractors & construction",
+    navHint: "Quotes, bigger jobs and clients who actually pay",
+    icon: "building",
     meta: {
-      title: "Websites & Growth Systems for Tax Professionals | ProCode Dev",
+      title:
+        "Websites for Contractors | ProCode Dev",
       description:
-        "Website, client acquisition, intake and follow-up for tax professionals across the United States. Reach January with a filling calendar, stop losing business returns and turn once-a-year clients into year-round ones. Public pricing from $349 USD.",
+        "Website, Google Business Profile and quote form for contractors and builders. Stop losing big jobs because your business looks informal online.",
+      keywords:
+        "contractor website, construction company website, plumber website, electrician website, roofing company website, contractor marketing, contractor lead generation, local SEO for construction",
     },
-    heroEyebrow: "// tax professionals",
-    heroTitleA: "Digital growth systems for",
-    heroHighlight: "tax professionals",
+    heroEyebrow: "// contractors & construction",
+    heroTitleA: "Digital systems for",
+    heroHighlight: "contractors and builders",
     heroSubtitle:
-      "Your year is decided in fourteen weeks. I build the infrastructure so you reach January with a calendar already filling — and so this year's clients are still clients next year.",
+      "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google. I build the infrastructure so the person searching your trade in your city finds you, believes you and asks for a quote — with photos and address already attached.",
     intro:
-      "Website, Google Business Profile, intake, scheduling and follow-up for independent tax professionals across the United States.",
+      "Website, Google Business Profile, quote form and follow-up for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
+    projectId: "trejo",
+    projectEyebrow: "// a project in your industry",
+    projectTitle: "A business in your trade that's already",
+    projectHighlight: "working online",
+    projectWhy:
+      "Trejo Landscaping is exactly the contractor case: a trade that lived on referrals and now takes quote requests straight from its own site. It's live — open it and judge for yourself.",
+    projectPoints: [
+      "Finished work with real photos, the proof a client wants before letting you into their home.",
+      "A quote form wired to WhatsApp, so you don't lose the person who writes after hours.",
+      "Structured by service, so every type of job sells with its own message.",
+    ],
     painTitle: "What I see over and over",
     painSubtitle:
-      "None of this gets fixed with a prettier page. It gets fixed with structure.",
+      "None of these problems is solved by a prettier page. They're solved with structure.",
     pains: [
-      "80% of your revenue lands between January and April, and the rest of the year the operation goes quiet.",
-      "Business returns — the ones that actually pay — go to whoever looks like a firm, not to whoever has the most experience.",
-      "You answer the same messages fifty times: which documents, how much, when will it be ready.",
-      "In March you lose prospects because nobody had time to answer within 24 hours.",
-      "Last year's client didn't come back and you found out in April, once they'd already filed with someone else.",
+      "You live on referrals: when the phone goes quiet, there's no second source of work.",
+      "The client who pays well compares you to a company with a website, reviews and visible insurance — and goes with them even if they do worse work.",
+      "You answer the same messages: «what do you charge?», «do you come to my area?», «can you send a quote?».",
+      "You quote jobs that were never going to close because nobody asked about budget or area before you drove 40 minutes.",
+      "You finish excellent work and end up with no organized photos and no review requested.",
     ],
-    systemTitle: "What I build for a tax professional",
+    systemTitle: "What I build for a contractor",
     systemSubtitle:
-      "The same six pieces of the system, applied to how your practice actually bills.",
+      "The same six pieces of the system, applied to how a construction job actually closes.",
     system: [
       {
         icon: "layout",
-        title: "One page per service, not a single «taxes» page",
+        title: "A page per service, not one page for «construction»",
         description:
-          "Individual returns, business returns, ITIN, amended returns, extensions. Each with its own message and its own reference price, so the business return doesn't compete on the same page as a simple 1040.",
+          "Kitchen remodel, full bathroom, roofing, concrete, fencing, additions. Every job with its own page, its own photos and its own investment range, so the big remodel doesn't compete on the same page as the $300 repair.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "A quote form that filters before you drive",
+        description:
+          "Job type, ZIP code, photos of the space, rough measurements, start timing and budget range. You reach the call already knowing whether the job is a fit, and you stop quoting for free to people who were just asking.",
+      },
+      {
+        icon: "star",
+        title: "A work gallery and before/after that sells on its own",
+        description:
+          "Your jobs organized by type, with real photos, city and one line about what you solved. That's the proof a client needs to let you into their home and hand you a deposit.",
+      },
+      {
+        icon: "shield",
+        title: "License, insurance and warranty in plain sight",
+        description:
+          "License, liability insurance, years in business, areas you cover and what happens if something goes wrong. It's exactly what the client looks for and almost never finds on a contractor's page.",
+      },
+      {
+        icon: "target",
+        title: "A Google Business Profile working your area",
+        description:
+          "Optimized for «contractor near me» and its Spanish equivalent, with job-site photos, loaded services, service areas and a system to request reviews right at handover, when the client is happiest.",
+      },
+    ],
+    cycleTitle: "Your building year, and what the system does in each stretch",
+    cycleBody:
+      "Weather runs your revenue. The system gets built before, and works on its own while you're on site sunup to sundown.",
+    cycleMonths: [
+      {
+        label: "Jan – Mar",
+        note: "Interiors and remodeling; acquisition to fill the spring.",
+      },
+      {
+        label: "Apr – Jun",
+        note: "Peak season: automatic quoting and same-day replies.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Exteriors, roofing and concrete; reviews and referrals per job.",
+      },
+      {
+        label: "Oct – Dec",
+        note: "Maintenance, winter prep and reactivation of past clients.",
+      },
+    ],
+    offerTitle: "Work you can sell to the same client",
+    offerSubtitle:
+      "I'm not asking you to invent new services: I'm asking you to present the ones you already do, at the moment the client actually listens.",
+    offers: [
+      "The second phase of the job you already started",
+      "Annual maintenance for past clients",
+      "Roof or plumbing check before winter",
+      "Small seasonal jobs to fill slow weeks",
+      "Neighbor referrals, requested at handover instead of two months later",
+      "Recurring contracts with property managers",
+    ],
+    faqTitle: "A contractor's questions",
+    faq: [
+      {
+        question: "All my work comes from referrals. Why a website?",
+        answer:
+          "Because the referral no longer closes on its own: the person who was referred to you looks you up on Google before calling, and what they find decides whether they dial. A site doesn't replace your referrals — it makes them convert, and gives you a second source when the phone goes quiet.",
+      },
+      {
+        question: "Can I send photos from my phone?",
+        answer:
+          "Yes, and that's how we work. You send job photos over WhatsApp and I crop them, organize them by job type and upload them. No photographer needed and no computer skills required.",
+      },
+      {
+        question: "Does this work if I'm solo or have two helpers?",
+        answer:
+          "That's where it pays off most. A solo contractor can't answer while on a roof: the form and the automatic reply are the assistant you can't hire yet.",
+      },
+      {
+        question: "Can it be in English and Spanish?",
+        answer:
+          "Yes, and for most Hispanic contractors that's the right call: your current clients search in Spanish and the big jobs often come in English. Both versions are built on separate URLs so Google indexes each one.",
+      },
+    ],
+    ctaTitle: "15 minutes before your next busy season",
+    ctaBody:
+      "I'll tell you what a client searching your trade in your city finds today, and which piece you're missing for them to pick you.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  health: {
+    navLabel: "Health & wellness",
+    navHint: "A full calendar, patients who return and fewer messages",
+    icon: "users",
+    meta: {
+      title:
+        "Websites for Clinics & Practices | ProCode Dev",
+      description:
+        "Website, online booking and reminders for clinics, private practices and health professionals. Fewer repeated messages and fewer no-shows.",
+      keywords:
+        "clinic website, private practice website, nutritionist website, dentist website, online booking for patients, medical practice marketing, patient scheduling software",
+    },
+    heroEyebrow: "// health & wellness",
+    heroTitleA: "Digital systems for",
+    heroHighlight: "clinics and private practices",
+    heroSubtitle:
+      "A new patient evaluates you before they ever message: they look at your training, your reviews and whether they can book without asking about prices over chat. I build the infrastructure so they arrive informed, book on their own and come back.",
+    intro:
+      "Website, online booking, first-visit intake form, reminders and follow-up for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
+    projectId: "fersilva",
+    projectEyebrow: "// a project in your industry",
+    projectTitle: "A health practice that's already",
+    projectHighlight: "working online",
+    projectWhy:
+      "Fernanda Silva is the private-practice case: she explained her service over chat again and again, and now patients arrive informed and book on their own. It's live — open it and judge for yourself.",
+    projectPoints: [
+      "Services explained with what's included and how long they take — that alone removes half the messages.",
+      "Online booking so the patient picks a slot without having to ask you.",
+      "Training and approach in plain sight, because in health trust is decided before first contact.",
+    ],
+    painTitle: "What I see over and over",
+    painSubtitle:
+      "None of these problems is solved by a prettier page. They're solved with structure.",
+    pains: [
+      "You explain the same thing a hundred times over chat: visit price, what's included, how long it takes, whether you take insurance.",
+      "You lose patients who wrote on a Sunday night and didn't hear back until Tuesday.",
+      "No-shows leave holes in your calendar that never get filled.",
+      "The patient comes once and doesn't return, and nothing reminds them to.",
+      "Your training and experience aren't visible anywhere, so you compete head-to-head with someone who just started.",
+    ],
+    systemTitle: "What I build for a practice",
+    systemSubtitle:
+      "The same six pieces of the system, applied to how a health practice actually fills its calendar.",
+    system: [
+      {
+        icon: "layout",
+        title: "A page per service, not one page for «consultations»",
+        description:
+          "First visit, follow-up, packages, specific treatment. Every service with its own page, its own reference price and its own explanation of what's included and how long it takes. That alone removes half your messages.",
+      },
+      {
+        icon: "calendar",
+        title: "Online booking connected to your calendar",
+        description:
+          "The patient picks an open slot without asking you, with different blocks for first visits and follow-ups, and the appointment lands straight in your calendar. No back-and-forth to settle on a time.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "First-visit intake before the appointment",
+        description:
+          "Details, reason for the visit, history and whatever else you need to ask, answered before the patient walks in. You start the visit with the file half built instead of a blank page.",
+      },
+      {
+        icon: "repeat",
+        title: "Reminders and patient win-back",
+        description:
+          "An automatic reminder 24 hours out to cut no-shows, and a note to patients who haven't been back in months that they can book their follow-up now.",
+      },
+      {
+        icon: "shield",
+        title: "Credentials, license and reviews in plain sight",
+        description:
+          "Your license, certifications, approach and real patient reviews, presented with professional judgment. It's what makes someone trust you with something as personal as their health.",
+      },
+    ],
+    cycleTitle: "Your practice year, and what the system does in each stretch",
+    cycleBody:
+      "Health demand has clear peaks. The system uses them without you having to remember.",
+    cycleMonths: [
+      {
+        label: "Jan – Mar",
+        note: "New-patient peak: open calendar and acquisition at full tilt.",
+      },
+      {
+        label: "Apr – Jun",
+        note: "Follow-ups, packages and treatments sold to your current base.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Slow months: patient reactivation and content that attracts.",
+      },
+      {
+        label: "Oct – Dec",
+        note: "Year-end, check-ups and a calendar ready for January.",
+      },
+    ],
+    offerTitle: "Services you can offer the patients you already have",
+    offerSubtitle:
+      "I'm not asking you to invent new services: I'm asking you to present the ones you already offer, at the moment the patient actually listens.",
+    offers: [
+      "Follow-up packages instead of one-off visits",
+      "Online consultations for patients who live far or travel",
+      "Annual or check-up visits for past patients",
+      "Multi-week programs at a fixed price",
+      "Workshops or group sessions with limited spots",
+      "Agreements with local employers or gyms",
+    ],
+    faqTitle: "A health professional's questions",
+    faq: [
+      {
+        question: "Should I publish prices or leave them off?",
+        answer:
+          "It depends on your practice, and we decide together. Publishing the first-visit price filters out people who were never going to book and removes half your messages. For treatments quoted case by case, we use ranges or «from», which gives clarity without boxing you in.",
+      },
+      {
+        question: "Does online booking connect to what I already use?",
+        answer:
+          "Yes. It connects to your Google Calendar or the booking tool you already have, so you don't end up with two calendars that disagree. If you don't use one yet, I leave one set up.",
+      },
+      {
+        question: "What about my patients' data?",
+        answer:
+          "The form collects the minimum needed for the first visit, over a secure connection and with a privacy notice. The full clinical record stays where you already manage it, not on the website.",
+      },
+      {
+        question: "Can it be in English and Spanish?",
+        answer:
+          "Yes, and for a Hispanic practice in the U.S. that's usually the right call: your current patients search in Spanish and many new ones search in English. Both versions are built on separate URLs so Google indexes each one.",
+      },
+    ],
+    ctaTitle: "15 minutes to review your calendar",
+    ctaBody:
+      "I'll tell you what a patient searching your specialty in your city finds today, and which piece you're missing for them to pick you.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  professional: {
+    navLabel: "Professional services",
+    navHint: "Authority, qualified cases and consults that close",
+    icon: "scale",
+    meta: {
+      title:
+        "Websites for Professional Services | ProCode Dev",
+      description:
+        "Website and qualifying form for attorneys, consultants and insurance agents. Attract the right case and stop giving free consults with no filter.",
+      keywords:
+        "attorney website, law firm website, consultant website, insurance agent website, professional services marketing, client acquisition for attorneys, personal brand website",
+    },
+    heroEyebrow: "// professional services",
+    heroTitleA: "Digital systems for",
+    heroHighlight: "professional services",
+    heroSubtitle:
+      "When someone hires you they aren't buying hours: they're buying the confidence that you can solve their problem. I build the infrastructure so that confidence is visible before the first call, and so the case that actually fits is the one that reaches your calendar.",
+    intro:
+      "Website, client acquisition, qualifying form, scheduling and follow-up for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
+    projectId: "cristian-posada",
+    projectEyebrow: "// a project in your industry",
+    projectTitle: "A professional who sells judgment, and",
+    projectHighlight: "proves it on his site",
+    projectWhy:
+      "My own personal brand is the case of someone who doesn't sell a product but their work: track record, projects and content in one place that turns a visitor into a conversation. It's live — open it and judge for yourself.",
+    projectPoints: [
+      "Demonstrable authority — projects, track record and content — instead of adjectives.",
+      "One hub every social link points to, instead of scattered profiles.",
+      "Contact that opens WhatsApp with the message already written: no forms left unanswered.",
+    ],
+    painTitle: "What I see over and over",
+    painSubtitle:
+      "None of these problems is solved by a prettier page. They're solved with structure.",
+    pains: [
+      "You give free consults to people who were never going to hire you, and have no time left for the ones who would.",
+      "Your experience and results aren't visible: you look the same as someone who opened last month.",
+      "The prospect asks «what do you charge?» before understanding what you solve, and the conversation dies there.",
+      "You send a proposal and never hear back, because nobody follows up.",
+      "Your content and reputation live on social media, not on a site that works for you.",
+    ],
+    systemTitle: "What I build for a professional",
+    systemSubtitle:
+      "The same six pieces of the system, applied to how you actually win a client who buys judgment.",
+    system: [
+      {
+        icon: "layout",
+        title: "A page per practice area, not one page for «services»",
+        description:
+          "Every area with its own page, its own language and its own use case. Someone searching for help with a specific problem needs to read that problem, not a generic list where theirs shows up third.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "A form that qualifies before the consult",
+        description:
+          "Matter type, current situation, urgency and budget or expectation. You reach the call already knowing whether the case is for you, and free consults stop eating your week.",
+      },
+      {
+        icon: "briefcase",
+        title: "Demonstrable authority, not adjectives",
+        description:
+          "Years in practice, credentials, types of matters resolved, publications and reviews. We replace «professional and reliable» with facts the prospect can verify.",
+      },
+      {
+        icon: "calendar",
+        title: "Consult booking, connected and filtered",
+        description:
+          "An initial consult booked online with the qualifying questions up front, so only someone with a matter you can take gets a slot. With automatic reminders to cut no-shows.",
+      },
+      {
+        icon: "repeat",
+        title: "Proposal follow-up that doesn't fall through",
+        description:
+          "Every prospect who asked for a proposal and went quiet gets followed up on the right days, with a message that doesn't read like collections. It's where the most money is recovered with the least effort.",
+      },
+    ],
+    cycleTitle: "Your professional year, and what the system does in each stretch",
+    cycleBody:
+      "Your demand isn't even, but it is predictable. The system uses the good months and holds up the slow ones.",
+    cycleMonths: [
+      {
+        label: "Jan – Mar",
+        note: "Year kickoff: prospects deciding and fresh budgets.",
+      },
+      {
+        label: "Apr – Jun",
+        note: "Active acquisition, content and proposals with follow-up.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Slow months: client reactivation and paused matters.",
+      },
+      {
+        label: "Oct – Dec",
+        note: "Year-end, renewals and a calendar ready for January.",
+      },
+    ],
+    offerTitle: "Services you can offer your current base",
+    offerSubtitle:
+      "I'm not asking you to invent new services: I'm asking you to present the ones you already offer, at the moment the client actually listens.",
+    offers: [
+      "A monthly retainer or ongoing advisory instead of one-off work",
+      "Annual review of documents, policies or contracts",
+      "The second phase of the matter you already resolved",
+      "Fixed-price packages for work that repeats",
+      "A paid express consult to filter and monetize the first call",
+      "Referrals requested at closing, not six months later",
+    ],
+    faqTitle: "A professional's questions",
+    faq: [
+      {
+        question: "My work is sensitive. Can I show cases?",
+        answer:
+          "Without names or identifying details. We show matter types, general context and outcome, which is what a prospect needs to recognize themselves. We never publish anything that compromises a client.",
+      },
+      {
+        question: "Wouldn't it be better to charge for the first consult?",
+        answer:
+          "In many cases yes, and the system supports it: paid consults with booking and online payment. We decide on the call based on your matter type and volume. What doesn't work is giving free consults with no filter at all.",
+      },
+      {
+        question: "Does this work if I practice solo, with no team?",
+        answer:
+          "That's where it pays off most. A solo professional can't answer while in a hearing or with a client: pre-qualification and automatic follow-up are the assistant you can't hire yet.",
+      },
+      {
+        question: "Can it be in English and Spanish?",
+        answer:
+          "Yes, and for a Hispanic professional in the U.S. that's usually the right call: your current clients search in Spanish and many new ones search in English. Both versions are built on separate URLs so Google indexes each one.",
+      },
+    ],
+    ctaTitle: "15 minutes to review your client acquisition",
+    ctaBody:
+      "I'll tell you what someone searching your service in your city finds today, and which piece you're missing for them to pick you.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  realEstate: {
+    navLabel: "Real estate",
+    navHint: "Listings, qualified leads and buyers who come back",
+    icon: "map-pin",
+    meta: {
+      title:
+        "Websites for Real Estate Agents | ProCode Dev",
+      description:
+        "Website with a property catalog, detailed listing pages and direct lead capture for real estate agents. Stop living inside the portals.",
+      keywords:
+        "real estate agent website, brokerage website, property catalog website, real estate marketing, real estate lead generation, realtor website",
+    },
+    heroEyebrow: "// real estate",
+    heroTitleA: "Digital systems for",
+    heroHighlight: "real estate agents",
+    heroSubtitle:
+      "Your listings live on portals and social media, but your brand lives nowhere. I build the site where the buyer sees your catalog, understands who they're dealing with and leaves their details with you — not with the portal.",
+    intro:
+      "Website with property catalog, detailed listing pages, qualified lead form, showing scheduler and follow-up for real estate agents, brokerages and developers.",
+    projectId: "demo-inmobiliaria",
+    projectEyebrow: "// a project in your industry",
+    projectTitle: "What a well-structured real estate",
+    projectHighlight: "catalog looks like",
+    projectWhy:
+      "A complete real estate site with a property catalog, detailed listing pages and direct lead capture. I built it on my own to show how an agent's inventory gets organized: it's a demo, not a client, and I say so to keep it clear.",
+    projectPoints: [
+      "Its own page per property, with gallery, features and map: a link that looks professional when you send it over WhatsApp.",
+      "Filters by area, price and deal type, so the buyer lands straight on what they want.",
+      "Direct lead capture, so the contact doesn't stay with the portal.",
+    ],
+    painTitle: "What I see over and over",
+    painSubtitle:
+      "None of these problems is solved by a prettier page. They're solved with structure.",
+    pains: [
+      "Your whole inventory lives on a portal that charges you for the leads you generated.",
+      "You get messages from people who don't qualify and lose whole afternoons showing homes to buyers who can't buy.",
+      "Every listing goes out as loose photos on social and disappears from the feed in two days.",
+      "The buyer who didn't buy this year never hears from you again, even though they do buy the next one.",
+      "Your experience and closed deals aren't visible, so you compete with someone who just got licensed.",
+    ],
+    systemTitle: "What I build for a real estate agent",
+    systemSubtitle:
+      "The same six pieces of the system, applied to how a real estate deal actually closes.",
+    system: [
+      {
+        icon: "layout",
+        title: "A catalog with its own page per property",
+        description:
+          "Every property with its own page: gallery, floor plan, features, neighborhood, map and price. It's a link you can send over WhatsApp that looks professional, instead of twelve loose photos.",
+      },
+      {
+        icon: "search",
+        title: "Filters that take the buyer to what they want",
+        description:
+          "By area, price, bedrooms and deal type. The buyer finds in a minute what would take twenty messages in a chat, and you see what people are actually looking for.",
+      },
+      {
+        icon: "clipboard-check",
+        title: "A form that qualifies before the showing",
+        description:
+          "Budget, financing — loan, cash or pre-approved —, area and buying timeline. You only go out to show properties to people who can buy them.",
+      },
+      {
+        icon: "briefcase",
+        title: "Your agent profile, not just your inventory",
+        description:
+          "Who you are, how many deals you've closed, which areas you specialize in and what your clients say. Inventory changes every month; your reputation is what makes them write to you.",
+      },
+      {
+        icon: "repeat",
+        title: "Follow-up for long-cycle buyers",
+        description:
+          "A buyer can take a year to decide. The system keeps in touch with new properties in their area and range, so when they're ready they write to you and not to the portal.",
+      },
+    ],
+    cycleTitle: "Your real estate year, and what the system does in each stretch",
+    cycleBody:
+      "The market has clear seasonality. The system works the full cycle, even while you're closing.",
+    cycleMonths: [
+      {
+        label: "Jan – Mar",
+        note: "Buyers planning the year: acquisition and a waiting list.",
+      },
+      {
+        label: "Apr – Jun",
+        note: "Peak moving season: showings, filters and fast replies.",
+      },
+      {
+        label: "Jul – Sep",
+        note: "Summer closings, reviews and new listing acquisition.",
+      },
+      {
+        label: "Oct – Dec",
+        note: "Slow cycle: neighborhood content and follow-up on warm leads.",
+      },
+    ],
+    offerTitle: "Services you can offer beyond the sale",
+    offerSubtitle:
+      "I'm not asking you to invent new services: I'm asking you to present the ones you already offer, at the moment the client actually listens.",
+    offers: [
+      "Listing acquisition from owners who want to sell",
+      "Property management and rentals for investors",
+      "Financing guidance and pre-qualification",
+      "A free valuation as the seller's entry point",
+      "Step-by-step guidance for first-time buyers",
+      "An investment portfolio for clients who already bought from you",
+    ],
+    faqTitle: "A real estate agent's questions",
+    faq: [
+      {
+        question: "Can I add and remove listings myself?",
+        answer:
+          "Yes. I leave you a panel where you upload photos, price and features without touching code, or we connect it to the inventory source you already use. We decide based on how many properties you move per month.",
+      },
+      {
+        question: "Is it worth it if I already post on the portals?",
+        answer:
+          "Portals give you volume, but the lead is theirs and they share it with other agents. Your site is where that same lead finds you, sees your track record and writes to you directly. One doesn't replace the other: the site is what keeps the portal from being your only source.",
+      },
+      {
+        question: "Does it work if I'm under a brand or franchise?",
+        answer:
+          "Yes, and it's common. We build your personal presence while respecting the brand's guidelines. A buyer picks an agent with a name and a face, not a logo.",
+      },
+      {
+        question: "Can it be in English and Spanish?",
+        answer:
+          "Yes, and for a Hispanic agent in the U.S. that's usually the right call: your current clients search in Spanish and many new buyers search in English. Both versions are built on separate URLs so Google indexes each one.",
+      },
+    ],
+    ctaTitle: "15 minutes to review your catalog",
+    ctaBody:
+      "I'll tell you what a buyer searching your area finds today, and which piece you're missing for them to write to you.",
+  },
+
+  // ────────────────────────────────────────────────────────────
+  accounting: {
+    navLabel: "Accounting & tax",
+    navHint: "Busy season, year-round clients and less manual work",
+    icon: "calculator",
+    meta: {
+      title:
+        "Websites for Accounting Firms | ProCode Dev",
+      description:
+        "Website, document intake and follow-up for accounting practices, CPAs and tax preparers. Reach the season with your calendar already filling up.",
+      keywords:
+        "accounting firm website, tax preparer website, CPA website, bookkeeper website, enrolled agent website, tax practice marketing, document intake for accountants",
+    },
+    heroEyebrow: "// accounting & tax",
+    heroTitleA: "Digital systems for",
+    heroHighlight: "accounting and tax practices",
+    heroSubtitle:
+      "Your year concentrates into a few weeks and the rest of the calendar goes quiet. I build the infrastructure so you reach the season with your calendar filling itself, and so this year's clients are still clients next year.",
+    intro:
+      "Website, Google Business Profile, document intake, scheduling and follow-up for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
+    projectId: "demo-taxpro",
+    projectEyebrow: "// a project in your industry",
+    projectTitle: "What a well-presented accounting",
+    projectHighlight: "practice looks like",
+    projectWhy:
+      "A bilingual site for an accounting and tax practice: separate services, consult booking and trust-focused lead capture. I built it on my own as a sector demonstration: it's a demo, not a client, and I say so to keep it clear.",
+    projectPoints: [
+      "A page per service, so the business return doesn't compete with the individual one.",
+      "Consult booking and lead capture built around trust, which is what decides in this industry.",
+      "An English and a Spanish version, on separate URLs so Google indexes both.",
+    ],
+    painTitle: "What I see over and over",
+    painSubtitle:
+      "None of these problems is solved by a prettier page. They're solved with structure.",
+    pains: [
+      "Most of your revenue lands in a few weeks, and the rest of the year the operation goes dark.",
+      "Business clients — the ones who really pay — go with whoever looks like a real firm, not whoever knows the craft best.",
+      "You answer the same messages fifty times: which documents, how much, when will it be ready.",
+      "In the middle of the season you lose prospects because nobody had time to answer them within 24 hours.",
+      "Last year's client didn't come back and you found out late, after they'd already filed with someone else.",
+    ],
+    systemTitle: "What I build for a practice",
+    systemSubtitle:
+      "The same six pieces of the system, applied to how an accounting practice actually gets paid.",
+    system: [
+      {
+        icon: "layout",
+        title: "A page per service, not one page for «accounting»",
+        description:
+          "Individual returns, business returns, monthly bookkeeping, payroll, filings and representation. Every service with its own message and its own reference price, so the business client doesn't compete on the same page as the simple return.",
       },
       {
         icon: "clipboard-check",
         title: "Intake that asks for documents before the appointment",
         description:
-          "A form per return type with the document checklist, secure upload and qualifying questions. You arrive at the appointment with the file half built instead of a blank sheet.",
+          "A form per service type with the document list, secure file upload and qualifying questions. You reach the appointment with the file half built instead of a blank page.",
       },
       {
         icon: "calendar",
         title: "Scheduling that survives the season",
         description:
-          "Online booking wired to your calendar, separate blocks for individual and business, automatic reminders and a missing-document notice 48 hours ahead.",
+          "Online booking connected to your calendar, with separate blocks for individuals and businesses, automatic reminders and a missing-documents notice 48 hours out.",
       },
       {
         icon: "repeat",
         title: "Reactivation of last year's base",
         description:
-          "In December and January your previous clients get the notice that you're taking appointments, with the booking link. It's the cheapest revenue there is and almost nobody works it.",
+          "Before the season starts, your past clients get the note that you're taking appointments, with the booking link. It's the cheapest revenue there is and almost nobody works it.",
       },
       {
         icon: "target",
-        title: "A Google Business Profile that works in season",
+        title: "A Google Business Profile working through the season",
         description:
-          "Optimized for «tax preparer near me» and its Spanish equivalent, with posts through the season, extended hours and a system to request reviews right when the client is happiest: at delivery.",
+          "Optimized for searches for your service in your city, in English and Spanish, with posts during the season, extended hours and a system to request reviews right when the client is happiest.",
       },
     ],
     cycleTitle: "Your calendar, and what the system does in each stretch",
     cycleBody:
-      "None of this gets improvised in February. The system is built beforehand and runs on its own when you have no time to look at it.",
+      "None of this gets improvised mid-season. The system is built before and runs on its own when you have no time to look at it.",
     cycleMonths: [
       {
         label: "Nov – Dec",
-        note: "Reactivating past clients, reviews and open scheduling.",
+        note: "Reactivating past clients, reviews and an open calendar.",
       },
       {
         label: "Jan – Apr",
-        note: "Acquisition at peak, automatic intake, hands-off follow-up.",
+        note: "Peak acquisition, automatic intake and hands-off follow-up.",
       },
       {
         label: "May – Aug",
-        note: "Selling bookkeeping, payroll and tax planning to your base.",
+        note: "Selling bookkeeping and payroll to the existing base.",
       },
       {
         label: "Sep – Oct",
@@ -843,601 +1391,41 @@ const en: SegmentDict = {
     ],
     offerTitle: "Services you can sell the rest of the year",
     offerSubtitle:
-      "I'm not asking you to invent new services: I'm asking you to present the ones you could already deliver, at the moment the client is listening.",
+      "I'm not asking you to invent new services: I'm asking you to present the ones you could already offer, at the moment the client actually listens.",
     offers: [
-      "Monthly bookkeeping for your business clients",
+      "Monthly bookkeeping for your clients with a business",
       "Payroll for the ones who already have employees",
-      "Year-end tax planning",
-      "LLC and S-Corp formation for the newly self-employed",
-      "Amended returns and unfiled years",
+      "Tax planning before year-end",
+      "Business formation for the newly self-employed",
+      "Prior unfiled years and amendments",
       "Financial statements for loan applications",
     ],
-    faqTitle: "Questions from tax professionals",
+    faqTitle: "A practice's questions",
     faq: [
       {
         question: "I'm mid-season. Is it worth starting now?",
         answer:
-          "It depends on the month. From January to April we prioritize what launches in two weeks and produces immediately: Google Business Profile, online scheduling, intake and the WhatsApp button with the message pre-written. The full site comes after April 15, calmly and with real season data.",
+          "It depends on the month. In season we prioritize what launches in two weeks and produces immediately: Google Business Profile, online booking, intake and the WhatsApp button with the message already written. The full site we do when the load drops, with real season data in hand.",
       },
       {
         question: "Does this help if I work alone, from home?",
         answer:
-          "That's exactly where it pays off most. A solo preparer has nobody answering while they're working a return: automation is the assistant you can't hire in March.",
+          "That's exactly where it pays off most. A solo preparer has nobody answering while they're working on a return: automation is the assistant you can't hire mid-season.",
+      },
+      {
+        question: "Does it work the same in Mexico as in the U.S.?",
+        answer:
+          "The system is the same; the services and each country's vocabulary change. I work with practices on both sides and adapt the structure, the service names and the calendar to where you are.",
       },
       {
         question: "Can it be in English and Spanish?",
         answer:
-          "Yes, and for most preparers that's the right call: current clients search in Spanish and new ones often search in English. Both versions are built on separate URLs so Google indexes each one.",
+          "Yes, and for most Hispanic practices in the U.S. it's the right call: current clients search in Spanish and many new ones search in English. Both versions are built on separate URLs so Google indexes each one.",
       },
     ],
     ctaTitle: "15 minutes before the season starts",
     ctaBody:
-      "I'll tell you which piece your practice is missing and what can be live before January 15.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  enrolledAgents: {
-    navLabel: "Enrolled Agents",
-    navHint: "Federal credential, representation and nationwide cases",
-    icon: "shield",
-    meta: {
-      title: "Websites & Client Acquisition for Enrolled Agents | ProCode Dev",
-      description:
-        "Website, positioning and acquisition system for Enrolled Agents in the United States. Make your federal credential visible, win IRS representation cases from any state and qualify the right prospect before the first call.",
-    },
-    heroEyebrow: "// enrolled agents",
-    heroTitleA: "Digital growth systems for",
-    heroHighlight: "Enrolled Agents",
-    heroSubtitle:
-      "You hold the only federally recognized tax credential and can represent a taxpayer in any state. Your digital presence should lean on exactly that — and it almost never does.",
-    intro:
-      "Website, authority and representation-case acquisition for Enrolled Agents licensed by the U.S. Department of the Treasury.",
-    painTitle: "An EA's problem isn't design, it's perception",
-    painSubtitle:
-      "The average taxpayer doesn't know what an Enrolled Agent is. That gap is your biggest revenue leak.",
-    pains: [
-      "The client can't tell you apart from the preparer down the block, so they compare on price.",
-      "Your federal credential — the one that lets you represent before the IRS in all 50 states — is nowhere to be found, or shows up as a loose acronym.",
-      "You could take cases nationwide, but your presence only positions you in your own city.",
-      "Representation cases arrive by referral, never by search, so volume never grows.",
-      "You take consultations that don't fit and find out they never qualified after 40 minutes on the phone.",
-    ],
-    systemTitle: "What I build for an EA",
-    systemSubtitle:
-      "The goal is that whoever lands understands in ten seconds what you can do that others can't.",
-    system: [
-      {
-        icon: "shield",
-        title: "Your credential, explained in client language",
-        description:
-          "A section that translates «Enrolled Agent» into what the taxpayer cares about: federal authorization, unlimited representation rights before the IRS and validity in any state. With your number and continuing education in plain sight.",
-      },
-      {
-        icon: "scale",
-        title: "Pages by case type, not by service type",
-        description:
-          "Audits, CP2000 notices, IRS debt, payment plans, penalty abatement, power of attorney. Someone who gets an IRS letter searches for the letter, not for «tax services».",
-      },
-      {
-        icon: "map-pin",
-        title: "National reach without losing local",
-        description:
-          "Your Google Business Profile works your city, and the site is structured to capture representation cases from any state — which is where your credential is worth the most.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Qualification before the call",
-        description:
-          "Intake that asks notice type, tax year, approximate amount and whether there's already an IRS agreement. You reach the consultation knowing whether the case fits, and the ones that don't qualify never cost you an hour.",
-      },
-      {
-        icon: "sparkles",
-        title: "Visibility in AI search",
-        description:
-          "More and more taxpayers ask an AI what to do about an IRS letter. I structure your content and credentials so you get cited in those answers.",
-      },
-    ],
-    cycleTitle: "Your calendar isn't just the season",
-    cycleBody:
-      "Representation work doesn't hinge on April 15: it hinges on when the IRS sends notices. That makes your business less seasonal than a preparer's — if acquisition is built to take advantage of it.",
-    cycleMonths: [
-      { label: "Jan – Apr", note: "Season and new client acquisition." },
-      {
-        label: "May – Jul",
-        note: "The wave of IRS notices from last season arrives.",
-      },
-      { label: "Aug – Oct", note: "Extensions, resolution and payment plans." },
-      {
-        label: "Nov – Dec",
-        note: "Tax planning, continuing education and authority content.",
-      },
-    ],
-    offerTitle: "Services an EA can position year-round",
-    offerSubtitle:
-      "Your credential unlocks work an unlicensed preparer can't take. The website should say so.",
-    offers: [
-      "IRS representation and audit response",
-      "Debt resolution: payment plans and penalty abatement",
-      "Unfiled years and record reconstruction",
-      "Tax planning for business owners",
-      "Second opinions on returns prepared by others",
-      "Advisory for taxpayers with multi-state income",
-    ],
-    faqTitle: "Questions from Enrolled Agents",
-    faq: [
-      {
-        question:
-          "Should I chase out-of-state cases or focus on my own city?",
-        answer:
-          "Both, in that order. The Google Business Profile brings local volume, which sustains the season; the content structure by case type brings out-of-state representation, which is the better-paid work. One funds the other.",
-      },
-      {
-        question: "Is not being a CPA a problem?",
-        answer:
-          "Not if the page explains it well. Before the IRS your representation rights are the same, and that equivalence is exactly what the site needs to communicate above the fold. The problem isn't the credential: it's that nobody knows it.",
-      },
-      {
-        question: "How do I avoid consultations from people who can't pay?",
-        answer:
-          "With intake and with price. The form asks debt amount, notice type and case status before booking, and the page can publish a reference range for the initial consultation. You filter before spending your time.",
-      },
-    ],
-    ctaTitle: "15 minutes to review how a taxpayer sees you today",
-    ctaBody:
-      "I'll tell you what your current presence communicates about your credential — and what it doesn't.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  cpas: {
-    navLabel: "CPAs",
-    navHint: "Advisory, higher-ticket clients and referrals",
-    icon: "briefcase",
-    meta: {
-      title: "Websites & Growth Systems for CPA Firms | ProCode Dev",
-      description:
-        "Website, acquisition and intake for small and mid-size CPA practices in the U.S. Position advisory and higher-value services, filter the client who actually fits, and turn a referral into a digital experience worthy of your fees.",
-    },
-    heroEyebrow: "// cpas",
-    heroTitleA: "Digital growth systems for",
-    heroHighlight: "CPA practices",
-    heroSubtitle:
-      "You charge professional-firm fees. If your digital presence doesn't match, every referral who looks you up before calling arrives already questioning your price.",
-    intro:
-      "Website, professional authority, intake and acquisition for small and mid-size CPA practices across the United States.",
-    painTitle: "Where a CPA practice leaks",
-    painSubtitle:
-      "The problem is rarely a shortage of work. It's the mix of the work and the process for getting it.",
-    pains: [
-      "100% of the business comes by referral, so growth depends on luck instead of a system.",
-      "The referral looks you up on Google before calling, finds a 2016 website, and arrives doubting your fees.",
-      "Your time goes to low-value compliance while advisory — what you're best paid for and best at — isn't communicated anywhere.",
-      "You get inquiries from clients who don't fit your practice and can't filter them without looking rude.",
-      "Going from «I'm interested» to «signed engagement letter» takes weeks of back-and-forth email.",
-    ],
-    systemTitle: "What I build for a CPA firm",
-    systemSubtitle:
-      "Less volume, better client, less friction between interest and engagement.",
-    system: [
-      {
-        icon: "briefcase",
-        title: "Positioning by specialty and industry",
-        description:
-          "Restaurants, construction, e-commerce, medical practices, real estate. A firm that says who it works for charges more than one that says it works for everyone — and shows up in the searches that convert.",
-      },
-      {
-        icon: "trending-up",
-        title: "Advisory up front, not buried under «services»",
-        description:
-          "Tax planning, fractional CFO, financial analysis and consulting structured as their own offer, with their own page and process. That's the difference between billing by hour and billing by value.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Intake that filters before the first meeting",
-        description:
-          "Entity type, approximate revenue, accounting software, services needed and whether they already have an accountant. The one who doesn't fit, you know before booking; the one who does arrives with context ready.",
-      },
-      {
-        icon: "shield",
-        title: "Credentials and professional proof in plain sight",
-        description:
-          "State license, years in practice, memberships, specializations and industry cases. It's what holds your price up while the prospect compares three firms in three browser tabs.",
-      },
-      {
-        icon: "workflow",
-        title: "From interest to engagement without twenty emails",
-        description:
-          "Connected scheduling, documents requested automatically and structured follow-up. The firm that responds first and in order wins the client, even when the other one is just as good.",
-      },
-    ],
-    cycleTitle: "A CPA firm's year",
-    cycleBody:
-      "Your seasonality is real, but gentler than a preparer's. The opportunity is using the quiet months to sell advisory to the base you already have.",
-    cycleMonths: [
-      {
-        label: "Jan – Apr",
-        note: "Compliance at peak; the system absorbs inquiries for you.",
-      },
-      {
-        label: "May – Aug",
-        note: "Advisory, planning and business-client acquisition.",
-      },
-      { label: "Sep – Oct", note: "Extensions and entity-cycle closeouts." },
-      {
-        label: "Nov – Dec",
-        note: "Year-end tax planning: the highest-margin sale of the calendar.",
-      },
-    ],
-    offerTitle: "Higher-value services worth positioning",
-    offerSubtitle:
-      "You can already offer all of this. The question is whether your digital presence communicates it, or leaves you looking like the CPA who does returns.",
-    offers: [
-      "Tax planning and year-end projections",
-      "Fractional CFO and monthly financial guidance",
-      "Entity selection and restructuring (LLC, S-Corp, C-Corp)",
-      "Financial statements and lending support",
-      "Due diligence on business purchases and sales",
-      "Payroll advisory and multi-state compliance",
-    ],
-    faqTitle: "Questions from CPA firms",
-    faq: [
-      {
-        question: "I already have enough clients. Why would I want this?",
-        answer:
-          "Almost no established practice needs more clients: it needs better ones. The system exists so the profile you want is the one that arrives, so the wrong fit filters itself out, and so administrative time per client drops. If your constraint is capacity rather than demand, this shows up in margin before it shows up in volume.",
-      },
-      {
-        question: "How much of this can live in my current software?",
-        answer:
-          "Quite a lot. I work on top of what you already use — client portal, prep software, calendar, CRM — and connect the site to it. The point isn't switching tools: it's that they stop being disconnected from each other.",
-      },
-      {
-        question: "Doesn't publishing prices hurt a CPA practice?",
-        answer:
-          "For advisory and complex compliance we usually don't publish a final price: we publish reference ranges or a starting price per service. It filters bargain hunters without committing you, and it avoids the 40-minute call that ends in «that's more than I expected».",
-      },
-    ],
-    ctaTitle: "15 minutes to see what your firm is communicating",
-    ctaBody:
-      "I'll review how a referral sees you today when they look you up before calling — and what would change that.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  bookkeepers: {
-    navLabel: "Bookkeepers",
-    navHint: "Recurring revenue, monthly clients and cleanups",
-    icon: "calculator",
-    meta: {
-      title:
-        "Websites & Client Acquisition for Bookkeepers | ProCode Dev",
-      description:
-        "Website, acquisition and intake for bookkeepers in the United States. Sell monthly bookkeeping as a subscription, capture cleanups and catch-ups, and win recurring clients instead of one-off jobs. Public pricing from $349 USD.",
-    },
-    heroEyebrow: "// bookkeepers",
-    heroTitleA: "Digital growth systems for",
-    heroHighlight: "bookkeepers",
-    heroSubtitle:
-      "Yours is the only service in the whole niche that bills twelve times a year. That turns every new client into recurring revenue — and makes it worth building the system once.",
-    intro:
-      "Website, acquisition and intake for bookkeepers and monthly accounting services across the United States.",
-    painTitle: "What holds a bookkeeper back",
-    painSubtitle:
-      "Selling monthly bookkeeping is different from selling a return: it isn't a transaction, it's a relationship.",
-    pains: [
-      "You bill hourly or per job, when your service is naturally a monthly subscription.",
-      "The business owner doesn't know what «bookkeeping» includes, so they compare your price to a $30/month software.",
-      "Cleanups and catch-ups — the best paid and most urgent work — aren't positioned anywhere.",
-      "You take on clients with eighteen months of mess for the price of a normal month, because there was no way to qualify it up front.",
-      "A tax preparer sends you referrals, but there's nothing in your presence that makes recommending you easy.",
-    ],
-    systemTitle: "What I build for a bookkeeper",
-    systemSubtitle:
-      "Everything points at the same goal: turning scattered inquiries into clients who pay every month.",
-    system: [
-      {
-        icon: "repeat",
-        title: "Monthly packages, not hourly rates",
-        description:
-          "Three tiers with what each includes and a visible starting price. A subscription gets sold as a subscription: if the client doesn't see the package, they negotiate hourly and always downward.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Intake that qualifies the mess",
-        description:
-          "Months unreconciled, current software, number of accounts, transaction volume and entity type. You know whether it's a three-month cleanup or a two-year one before quoting.",
-      },
-      {
-        icon: "search",
-        title: "Cleanups and catch-ups as their own service",
-        description:
-          "Their own page, their own entry price and their own form. It's the most urgent work for the client, the best paid, and the natural doorway into a monthly contract.",
-      },
-      {
-        icon: "handshake",
-        title: "Partnerships with preparers and CPAs",
-        description:
-          "A page designed so a tax preparer can hand you their bookkeeping client without friction: what you do, what you don't, and how you coordinate. Professional referral is your most profitable channel.",
-      },
-      {
-        icon: "trending-up",
-        title: "Reporting that justifies the monthly fee",
-        description:
-          "A client who receives something every month renews. I structure delivery and communication so your work is visible, not a silent charge on a card.",
-      },
-    ],
-    cycleTitle: "The bookkeeper depends least on the calendar",
-    cycleBody:
-      "That's exactly your edge: while the rest of the niche lives on fourteen weeks, you can build stable revenue across twelve months. The calendar only changes where the acquisition opportunity sits.",
-    cycleMonths: [
-      {
-        label: "Jan – Apr",
-        note: "The disorganized discover their problem while filing.",
-      },
-      {
-        label: "May – Aug",
-        note: "Peak season for cleanups and new monthly contracts.",
-      },
-      {
-        label: "Sep – Oct",
-        note: "Extensions: another wave of businesses with messy books.",
-      },
-      {
-        label: "Nov – Dec",
-        note: "Year-end close and selling the monthly plan for January.",
-      },
-    ],
-    offerTitle: "Services that sustain recurring revenue",
-    offerSubtitle:
-      "Each one can be packaged and presented as part of a monthly plan instead of a one-off job.",
-    offers: [
-      "Monthly bookkeeping and bank reconciliation",
-      "Cleanup and catch-up of months or years behind",
-      "Payroll processing",
-      "Accounts payable and receivable",
-      "Monthly financial reports with the numbers explained",
-      "QuickBooks or Xero migration and setup",
-    ],
-    faqTitle: "Questions from bookkeepers",
-    faq: [
-      {
-        question: "Should I publish my monthly pricing or quote privately?",
-        answer:
-          "Publish at least a starting price per package. In monthly bookkeeping, «request a quote» makes the business owner assume it's expensive and keep looking. A «from $X per month» filters out the people who were never going to pay and raises the quality of the inquiries that do arrive.",
-      },
-      {
-        question: "I work with clients in several states. Does that change anything?",
-        answer:
-          "It changes the acquisition approach. Instead of betting everything on a local Google Business Profile, we work content by industry and by software — restaurants, contractors, e-commerce, QuickBooks Online — which is how someone searches when they don't need you in their city.",
-      },
-      {
-        question: "How do I avoid cleanups that turn into nightmares?",
-        answer:
-          "With intake. The form asks months unreconciled, number of accounts and monthly volume before you book. That lets you give an honest range from the first message, instead of discovering the real size of the problem after you've accepted the job.",
-      },
-    ],
-    ctaTitle: "15 minutes to shape your monthly offer",
-    ctaBody:
-      "We'll review how you're charging today and what it would look like packaged as a subscription.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  taxResolution: {
-    navLabel: "Tax Resolution",
-    navHint: "Urgent cases, IRS debt and high ticket",
-    icon: "scale",
-    meta: {
-      title: "Marketing & Websites for Tax Resolution Firms | ProCode Dev",
-      description:
-        "Website, acquisition and intake for tax resolution firms in the United States. Capture taxpayers with IRS debt at the moment of urgency, qualify the case before the consultation and respond in minutes, not days.",
-    },
-    heroEyebrow: "// tax resolution",
-    heroTitleA: "Digital growth systems for",
-    heroHighlight: "tax resolution firms",
-    heroSubtitle:
-      "Your client isn't planning: they're scared, holding an IRS letter, searching at eleven at night. The firm that answers first — and looks capable of fixing it — wins.",
-    intro:
-      "Website, acquisition, qualification and intake for tax resolution and IRS representation firms across the United States.",
-    painTitle: "Tax resolution is lost on speed",
-    painSubtitle:
-      "It's the highest-ticket segment in the niche and the most competitive. The difference is almost never technical.",
-    pains: [
-      "A taxpayer with an IRS letter contacts three firms the same night and hires the first one that answers.",
-      "You compete against national firms with enormous ad budgets and «pennies on the dollar» promises.",
-      "You get inquiries from people who owe $800 and qualify for nothing, and they cost you the same time as a $50,000 case.",
-      "The prospect can't tell a serious firm from the ones on radio ads, so they distrust all of them.",
-      "The case comes in by phone at 9 p.m. and there's nothing set up to capture it after hours.",
-    ],
-    systemTitle: "What I build for a resolution firm",
-    systemSubtitle: "Speed, qualification and credibility. In that order, here.",
-    system: [
-      {
-        icon: "scale",
-        title: "One page per problem type",
-        description:
-          "Wage garnishment, bank levy, lien, CP2000, accrued debt, unfiled years, Offer in Compromise, payment plans, innocent spouse. The taxpayer searches the name of their problem, not «tax resolution».",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Qualification before it costs you an hour",
-        description:
-          "Approximate debt, notice type, unfiled years and whether there's an active levy. The case that doesn't qualify gets a useful answer without consuming your calendar; the one that does arrives with a file.",
-      },
-      {
-        icon: "zap",
-        title: "Immediate response, at any hour",
-        description:
-          "Automatic confirmation on submit, instant alert to your team and a WhatsApp or call option. In a segment where the prospect contacts three firms, answering in five minutes is half the sale.",
-      },
-      {
-        icon: "shield",
-        title: "Credibility against inflated promises",
-        description:
-          "Verifiable credentials, an honest explanation of what can and can't be achieved, and real reviews. Separating yourself from the radio ad is your strongest sales argument.",
-      },
-      {
-        icon: "target",
-        title: "High-intent acquisition",
-        description:
-          "SEO by notice type and, when budget justifies it, campaigns with a dedicated landing page and cost tracked per signed case — not per click.",
-      },
-    ],
-    cycleTitle: "When the cases arrive",
-    cycleBody:
-      "Tax resolution follows the IRS calendar, not April 15. Knowing when notices go out means having acquisition ready before the wave.",
-    cycleMonths: [
-      {
-        label: "Jan – Apr",
-        note: "They discover the debt while filing this year's return.",
-      },
-      { label: "May – Jul", note: "Notices and letters from last season land." },
-      {
-        label: "Aug – Oct",
-        note: "Collection actions escalate: liens and levies.",
-      },
-      {
-        label: "Nov – Dec",
-        note: "Closing agreements before the next tax year.",
-      },
-    ],
-    offerTitle: "Services worth positioning separately",
-    offerSubtitle:
-      "Each has its own search, its own urgency and its own ticket. Blending them into one page costs cases.",
-    offers: [
-      "Wage garnishment and bank levy release",
-      "IRS payment plans and installment agreements",
-      "Offer in Compromise when the case genuinely qualifies",
-      "Penalty abatement for reasonable cause",
-      "Unfiled years and return reconstruction",
-      "Audit representation and notice response",
-    ],
-    faqTitle: "Questions from resolution firms",
-    faq: [
-      {
-        question: "Should I publish prices in tax resolution?",
-        answer:
-          "Not the final price — every case differs — but yes, a starting price for the investigation or initial consultation. It's what separates you from firms that hide everything until they have you on the phone, and it filters out someone looking to resolve $500 of debt.",
-      },
-      {
-        question: "Is advertising worth it in this segment?",
-        answer:
-          "Sometimes, but only with the system built first. Paying for clicks that land in a form nobody answers within two hours is burning budget. Intake, qualification and automatic response first; campaigns after, measured on cost per signed case rather than per lead.",
-      },
-      {
-        question: "How do I compete with national TV firms?",
-        answer:
-          "By not competing on their ground. They win on volume and promise; you win on proximity, a verifiable credential, honesty about what can actually be achieved, and answering personally instead of through a call center. That can be communicated — and it's what a prospect burned by an ad is looking for.",
-      },
-    ],
-    ctaTitle: "15 minutes to review your response speed",
-    ctaBody:
-      "We'll measure how long your firm takes to answer a new case today, and what can be automated this week.",
-  },
-
-  // ────────────────────────────────────────────────────────────
-  accountingFirms: {
-    navLabel: "Accounting Firms",
-    navHint: "Multiple services, a team and multi-service operations",
-    icon: "building",
-    meta: {
-      title: "Websites & Growth Systems for Accounting Firms | ProCode Dev",
-      description:
-        "Website, acquisition, intake and automation for accounting and multi-service firms in the U.S.: taxes, bookkeeping, payroll, ITIN, business formation and advisory. One page per service and a system that organizes the operation.",
-    },
-    heroEyebrow: "// accounting firms",
-    heroTitleA: "Digital growth systems for",
-    heroHighlight: "accounting firms",
-    heroSubtitle:
-      "You deliver six different services to four different client types, and all of it lives on a single page that says «accounting services». That's the problem, and it costs more than it looks.",
-    intro:
-      "Website, acquisition, intake and automation for accounting and multi-service firms across the United States.",
-    painTitle: "The cost of being multi-service without structure",
-    painSubtitle:
-      "Your broad offer is a commercial advantage and a communication disadvantage. The second one is fixable without giving up the first.",
-    pains: [
-      "Taxes, bookkeeping, payroll, ITIN, business formation and notary all competing for attention on the same page.",
-      "Each service has its own client and its own search, but there's a single URL for all of them: none ranks well.",
-      "The client who arrives for an ITIN never learns you also do payroll — and they were the best candidate for it.",
-      "With a team, messages land in personal WhatsApps and separate inboxes, and nobody knows what happened to each prospect.",
-      "In season the volume is so high the operation runs on memory and goodwill instead of process.",
-    ],
-    systemTitle: "What I build for an accounting firm",
-    systemSubtitle:
-      "Organize the offer outward and the operation inward. Usually that's the same job.",
-    system: [
-      {
-        icon: "layout",
-        title: "One page per service, with its own search",
-        description:
-          "Individual taxes, business returns, bookkeeping, payroll, ITIN, LLC formation, notary. Each ranks on its own and speaks to its own client, instead of splitting a single page.",
-      },
-      {
-        icon: "route",
-        title: "Cross-sell paths between services",
-        description:
-          "Whoever arrives for an ITIN is a tax candidate; whoever arrives for business formation is a bookkeeping and payroll candidate. The system connects those paths instead of leaving them to someone remembering.",
-      },
-      {
-        icon: "users",
-        title: "One inbox for the whole team",
-        description:
-          "Every form, message and request lands in the same place, with assignment and status. No more «I thought you answered them» in March.",
-      },
-      {
-        icon: "clipboard-check",
-        title: "Different intake per service",
-        description:
-          "Each service asks for what it needs: documents for taxes, months unreconciled for bookkeeping, employee count for payroll. Nobody fills out a generic form that helps no one.",
-      },
-      {
-        icon: "trending-up",
-        title: "Reporting per service, not just per firm",
-        description:
-          "How many leads each service generated, which converted and where they came from. That's what tells you which line of business deserves next year's investment.",
-      },
-    ],
-    cycleTitle: "A multi-service firm is never out of season",
-    cycleBody:
-      "That's the advantage of several lines: when one dips, another rises. What's usually missing is acquisition specific to whichever line the calendar is on.",
-    cycleMonths: [
-      {
-        label: "Jan – Apr",
-        note: "Taxes and ITIN at peak; the system holds up the operation.",
-      },
-      { label: "May – Aug", note: "Bookkeeping, payroll and business formation." },
-      { label: "Sep – Oct", note: "Extensions, entity closings and cleanup." },
-      { label: "Nov – Dec", note: "Year-end planning and season prep." },
-    ],
-    offerTitle: "Services that usually coexist in a firm",
-    offerSubtitle:
-      "Each deserves its own page, its own form and its own way of being measured.",
-    offers: [
-      "Individual and business tax returns",
-      "Bookkeeping and monthly accounting",
-      "Payroll and labor compliance",
-      "ITIN and tax identification filings",
-      "LLC, S-Corp and business registration",
-      "Notary, apostilles and administrative services",
-    ],
-    faqTitle: "Questions from accounting firms",
-    faq: [
-      {
-        question: "Isn't one page that says everything better?",
-        answer:
-          "It's easier to build and worse for the business. A single page has to rank for searches that have nothing in common, and ends up ranking for none. With a page per service, each line competes in its own search and you can see which one brings clients and which doesn't.",
-      },
-      {
-        question: "We have a team. Does this complicate day-to-day work?",
-        answer:
-          "It simplifies it, when built properly. Forms land in one place with a status and an assigned owner, instead of scattering across personal WhatsApps and separate inboxes. In season that difference matters more than any design change.",
-      },
-      {
-        question: "Can we start with just one service line?",
-        answer:
-          "Yes, and it's usually the sensible move. We start with the line with the best margin or the one you most want to grow, measure what it produced over a full cycle, and replicate the structure with data in hand.",
-      },
-    ],
-    ctaTitle: "15 minutes to organize your offer",
-    ctaBody:
-      "We'll review the services you deliver today and which ones justify their own page from day one.",
+      "I'll tell you which piece your practice is missing today and what can be ready before your busy month begins.",
   },
 };
 

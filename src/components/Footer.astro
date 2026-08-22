@@ -18,7 +18,7 @@ const t = translations[lang];
 const navLinks = [
   { label: t.nav.home, href: PAGES.home[lang] },
   { label: t.nav.services, href: PAGES.services[lang] },
-  { label: t.nav.tax, href: PAGES.tax[lang] },
+  { label: t.nav.sectors, href: PAGES.sectors[lang] },
   { label: t.nav.portfolio, href: PAGES.portfolio[lang] },
   { label: t.nav.pricing, href: PAGES.pricing[lang] },
   { label: t.nav.blog, href: "/blog" },
@@ -119,10 +119,10 @@ const segmentLinks = SEGMENT_KEYS.map((key) => ({
         </h3>
         <div class="mt-5 grid gap-3">
           <a
-            href={PAGES.tax[lang]}
+            href={PAGES.sectors[lang]}
             class="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
           >
-            {t.nav.tax}
+            {t.nav.sectors}
           </a>
           {
             segmentLinks.map((item) => (

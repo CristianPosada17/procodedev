@@ -15,7 +15,7 @@ const w = t.why;
       <div class="reveal lg:sticky lg:top-28">
         <span class="eyebrow">{w.eyebrow}</span>
         <h2 class="mt-5 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
-          {w.titleA}{" "}<span class="grad-text">{w.titleHighlight}</span>{" "}{w.titleB}
+          {w.titleA}{" "}<span class="grad-text">{w.titleHighlight}</span>{w.titleB && " " + w.titleB}
         </h2>
         <p class="mt-6 text-base leading-8 text-[var(--muted)]">
           {w.subtitle}

@@ -50,7 +50,7 @@ const es: LegalDict = {
     meta: {
       title: "Aviso de Privacidad | ProCode Dev",
       description:
-        "Cómo ProCode Dev recopila, usa y protege los datos personales de quienes visitan el sitio o solicitan información. Qué se recopila, con qué finalidad, con quién se comparte y cómo ejercer tus derechos.",
+        "Cómo ProCode Dev recopila, usa y protege los datos de quienes visitan el sitio o piden información, y cómo puedes ejercer tus derechos sobre ellos.",
     },
     eyebrow: "// legal",
     title: "Aviso de privacidad",
@@ -160,7 +160,7 @@ const es: LegalDict = {
     meta: {
       title: "Términos y Condiciones | ProCode Dev",
       description:
-        "Condiciones de uso del sitio y de contratación de los servicios de ProCode Dev: alcance, precios, pagos, plazos, propiedad del trabajo, planes mensuales y cancelación.",
+        "Condiciones de uso y contratación de los servicios de ProCode Dev: alcance, precios, pagos, plazos, propiedad del trabajo, planes mensuales y bajas.",
     },
     eyebrow: "// legal",
     title: "Términos y condiciones",
@@ -178,7 +178,7 @@ const es: LegalDict = {
       {
         title: "2. Qué servicios se ofrecen",
         body: [
-          "ProCode Dev construye sistemas digitales de crecimiento: sitios web, landing pages, presencia en Google, formularios de intake, automatizaciones, seguimiento y medición, principalmente para firmas fiscales y contables en Estados Unidos.",
+          "ProCode Dev construye sistemas digitales de crecimiento: sitios web, landing pages, presencia en Google, formularios, automatizaciones, seguimiento y medición, principalmente para dueños de negocio y pymes en Estados Unidos y México.",
           "El alcance concreto de cada proyecto se define por escrito antes de empezar. Lo que no esté descrito ahí no forma parte del alcance, y si surge durante el proyecto te paso el precio antes de ejecutarlo — nunca a mitad del trabajo.",
         ],
       },
@@ -268,7 +268,7 @@ const en: LegalDict = {
     meta: {
       title: "Privacy Policy | ProCode Dev",
       description:
-        "How ProCode Dev collects, uses and protects the personal data of people who visit the site or request information. What is collected, why, who it is shared with and how to exercise your rights.",
+        "How ProCode Dev collects, uses and protects the data of people who visit the site or request information, and how you can exercise your rights over it.",
     },
     eyebrow: "// legal",
     title: "Privacy policy",
@@ -394,7 +394,7 @@ const en: LegalDict = {
       {
         title: "2. What services are offered",
         body: [
-          "ProCode Dev builds digital growth systems: websites, landing pages, Google presence, intake forms, automation, follow-up and measurement, primarily for tax and accounting firms in the United States.",
+          "ProCode Dev builds digital growth systems: websites, landing pages, Google presence, intake forms, automation, follow-up and measurement, primarily for small business owners in the United States and Mexico.",
           "The specific scope of each project is defined in writing before work begins. Anything not described there is out of scope, and if it comes up during the project I give you the price before executing it — never halfway through the work.",
         ],
       },

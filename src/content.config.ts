@@ -8,6 +8,12 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    // Título y descripción para buscadores. El título del artículo suele
+    // pasar de los 60 caracteres que Google muestra sin truncar, así que
+    // cuando eso ocurre se escribe aquí una versión corta. Si no vienen, se
+    // usan `title` y `description` tal cual.
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
     pubDate: z.coerce.date(),
     // Fecha de actualización opcional. Si viene vacía (o como valor vacío
     // desde el panel), se ignora en vez de romper la compilación.

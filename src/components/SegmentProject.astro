@@ -1,0 +1,111 @@
+---
+/*
+  Proyecto destacado dentro de una página de giro.
+
+  El prospecto que llega a /contratistas no quiere ver el portafolio completo:
+  quiere ver un negocio como el suyo. Este bloque toma el proyecto que la
+  página de giro declara en `projectId` y lo presenta con el «por qué aplica a
+  ti» delante, en vez de repetir la descripción genérica del portafolio.
+
+  Si el proyecto declarado no existe en `portfolio.projects`, el componente no
+  renderiza nada: es preferible una página sin la sección a una sección rota.
+*/
+import { translations, PAGES, type Lang, type SegmentKey } from "../i18n/ui";
+import { getSegment } from "../i18n/segments";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+  segment: SegmentKey;
+}
+const { lang = "es", segment } = Astro.props as Props;
+const t = translations[lang];
+const x = getSegment(lang, segment);
+const project = t.portfolio.projects.find((p) => p.id === x.projectId);
+---
+
+{
+  project && (
+    <section id="proyecto" class="relative py-12 lg:py-20">
+      <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+        <SectionHeading eyebrow={x.projectEyebrow}>
+          <Fragment slot="title">
+            {x.projectTitle}{" "}
+            <span class="grad-text">{x.projectHighlight}</span>
+          </Fragment>
+          <Fragment slot="subtitle">{x.projectWhy}</Fragment>
+        </SectionHeading>
+
+        <div class="reveal mt-10 grid gap-8 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl lg:grid-cols-2 lg:gap-0">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative block aspect-[16/10] overflow-hidden border-b border-[color:var(--border)] bg-[var(--bg-2)] lg:aspect-auto lg:border-b-0 lg:border-r"
+          >
+            <img
+              src={project.image}
+              alt={`Sitio web de ${project.name}`}
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="750"
+              class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+            />
+            <span class="absolute left-4 top-4 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur">
+              {project.badge}
+            </span>
+          </a>
+
+          <div class="flex flex-col justify-center p-7 lg:p-10">
+            <h3 class="text-xl font-bold text-[var(--text)] sm:text-2xl">
+              {project.name}
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-[var(--muted)]">
+              {project.description}
+            </p>
+
+            <ul class="mt-6 flex flex-col gap-3">
+              {x.projectPoints.map((point) => (
+                <li class="flex gap-3 text-sm leading-7 text-[var(--text)]/90">
+                  <span class="mt-1.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/10 text-[var(--accent)]">
+                    <Icon name="check" class="h-3.5 w-3.5" />
+                  </span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-7 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="rounded-full border border-[color:var(--border)] px-2.5 py-1 text-[11px] text-[var(--muted)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-5 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+              >
+                {t.caseStudy.visit}
+                <Icon name="arrow-up-right" class="ml-2 h-4 w-4" />
+              </a>
+              <a
+                href={PAGES.portfolio[lang]}
+                class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-5 py-3.5 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+              >
+                {t.proof.cta}
+                <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

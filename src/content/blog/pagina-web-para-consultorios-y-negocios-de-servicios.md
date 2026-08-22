@@ -1,6 +1,8 @@
 ---
 title: "Página web para consultorios y negocios de servicios: dentistas, psicólogos y más"
 description: "Guía de páginas web para negocios de servicios: dentistas, psicólogos, estéticas, gimnasios y consultorios. Qué debe incluir tu sitio para llenar tu agenda de clientes."
+seoTitle: "Páginas Web para Consultorios y Servicios | ProCode Dev"
+seoDescription: "Qué debe incluir la página web de un dentista, psicólogo, estética o consultorio para llenar la agenda: servicios, precios, confianza y citas en línea."
 pubDate: 2026-07-15
 author: "ProCode Dev"
 tags: ["negocios de servicios", "desarrollo web", "captación"]

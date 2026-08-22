@@ -1,0 +1,85 @@
+# ProCode Dev
+
+> Sistemas digitales de crecimiento para dueños de negocio y pymes en Estados
+> Unidos y México. No solo páginas web: sitio, presencia en Google, formularios,
+> agenda y seguimiento conectados en un mismo sistema. Atención en español e
+> inglés, con una sola persona responsable (Cristian Posada).
+
+Este archivo resume el sitio para asistentes y buscadores con IA. Todo lo que
+aparece aquí está publicado en las páginas enlazadas.
+
+## Qué es ProCode Dev
+
+- Desarrollador web independiente, no una agencia. Quien contesta, construye y
+  mantiene es siempre la misma persona: Cristian Posada.
+- Trabaja en remoto con negocios de Estados Unidos y México, en español e inglés.
+- Contacto: info@procodedev.com · WhatsApp +52 614 241 4255
+
+## Precios (públicos, en USD, sin contrato de permanencia)
+
+- Landing page: $349 USD (pago único)
+- Sitio web de 4 a 6 páginas: $899 USD (pago único)
+- Sitio web de 8 a 12 páginas: desde $1,499 USD (pago único)
+- Diagnóstico de Presencia Digital: $149 USD (pago único, acreditable al proyecto)
+- Soporte Web: desde $79 USD/mes
+- Crecimiento+ (Perfil de Empresa en Google, reseñas, SEO local): $349 USD/mes
+- Web + Marketing + SEO: desde $1,100 USD/mes (presupuesto de anuncios aparte)
+
+Todos los planes mensuales se cancelan de un mes a otro, sin penalización.
+
+## Cómo se empieza
+
+La única puerta de entrada es la **Revisión Express**: sin costo, se agenda en
+línea, incluye un vídeo de 3 minutos grabado dentro de las 24 horas siguientes
+y una llamada de 15 minutos. No hay llamada de ventas para conocer precios
+porque los precios están publicados.
+
+Compromiso declarado: cualquier mensaje se responde en menos de 24 horas.
+Capacidad declarada: 4 proyectos nuevos al mes.
+
+## Páginas principales
+
+- [Inicio](https://procodedev.com/): el sistema completo y por qué existe.
+- [Servicios](https://procodedev.com/servicios/): sitio web, captación,
+  formularios y cotización, automatización, búsqueda con IA y analítica.
+- [Precios](https://procodedev.com/precios/): tarifas públicas y qué incluye cada plan.
+- [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
+  reales y demos marcados como tales.
+- [Contacto](https://procodedev.com/contacto/): agenda y WhatsApp.
+- [Blog](https://procodedev.com/blog/): guías sobre páginas web, SEO local,
+  Google Maps, automatización y precios.
+
+## Páginas por giro
+
+- [Todos los giros](https://procodedev.com/negocios/)
+- [Contratistas y construcción](https://procodedev.com/contratistas/):
+  constructoras, remodelación, plomería, electricidad, techos y jardinería.
+- [Salud y bienestar](https://procodedev.com/salud-y-bienestar/): consultorios,
+  clínicas, nutriólogos, dentistas, psicólogos y terapeutas.
+- [Servicios profesionales](https://procodedev.com/servicios-profesionales/):
+  abogados, agentes de seguros, consultores y marca personal.
+- [Inmobiliarias](https://procodedev.com/inmobiliarias/): asesores inmobiliarios,
+  inmobiliarias y desarrolladoras.
+- [Contabilidad e impuestos](https://procodedev.com/contabilidad-e-impuestos/):
+  despachos contables, contadores, preparadores de impuestos, CPAs, Enrolled
+  Agents y bookkeepers.
+
+## English
+
+The whole site exists in English under `/en/`, on separate URLs with hreflang.
+Same content, same pricing.
+
+- [Home](https://procodedev.com/en/) · [Services](https://procodedev.com/en/services/)
+  · [Pricing](https://procodedev.com/en/pricing/) · [Portfolio](https://procodedev.com/en/portfolio/)
+  · [Contact](https://procodedev.com/en/contact/)
+- [Industries](https://procodedev.com/en/industries/):
+  [contractors](https://procodedev.com/en/contractors/),
+  [health & wellness](https://procodedev.com/en/health-and-wellness/),
+  [professional services](https://procodedev.com/en/professional-services/),
+  [real estate](https://procodedev.com/en/real-estate/),
+  [accounting & tax](https://procodedev.com/en/accounting-and-tax/).
+
+## Qué NO hace ProCode Dev
+
+No presta servicios fiscales, contables, legales ni financieros. Construye la
+infraestructura digital de negocios que sí los prestan.

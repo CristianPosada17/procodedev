@@ -30,7 +30,7 @@ const segmentItems = SEGMENT_KEYS.map((key) => ({
 }));
 
 const segmentKeys = SEGMENT_KEYS as readonly string[];
-const taxActive = page === "tax" || segmentKeys.includes(page);
+const sectorsActive = page === "sectors" || segmentKeys.includes(page);
 
 const navItems = [
   { label: t.nav.home, href: PAGES.home[lang], key: "home" },
@@ -90,15 +90,15 @@ const otherLang = lang === "es" ? "EN" : "ES";
       {/* ── Desplegable del nicho ── */}
       <div class="nav-dropdown relative">
         <a
-          href={PAGES.tax[lang]}
+          href={PAGES.sectors[lang]}
           aria-haspopup="true"
           aria-expanded="false"
           class:list={[
             "nav-dropdown-trigger inline-flex items-center gap-1.5 text-sm font-medium transition hover:text-[var(--accent)]",
-            taxActive ? "text-[var(--accent)]" : "text-[var(--muted)]",
+            sectorsActive ? "text-[var(--accent)]" : "text-[var(--muted)]",
           ]}
         >
-          {t.nav.tax}
+          {t.nav.sectors}
           <Icon name="arrow-right" class="h-3.5 w-3.5 rotate-90" />
         </a>
 
@@ -111,7 +111,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
             <p
               class="px-3 pb-2 pt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]"
             >
-              {t.nav.taxMenuNote}
+              {t.nav.sectorsMenuNote}
             </p>
             <div class="grid gap-1 sm:grid-cols-2">
               {
@@ -139,10 +139,10 @@ const otherLang = lang === "es" ? "EN" : "ES";
               }
             </div>
             <a
-              href={PAGES.tax[lang]}
+              href={PAGES.sectors[lang]}
               class="mt-2 flex items-center justify-between rounded-xl border border-[color:var(--border)] px-3 py-2.5 text-sm font-semibold text-[var(--accent)] transition hover:bg-[var(--brand)]/10"
             >
-              {t.nav.taxOverview}
+              {t.nav.sectorsOverview}
               <Icon name="arrow-right" class="h-4 w-4" />
             </a>
           </div>
@@ -214,11 +214,11 @@ const otherLang = lang === "es" ? "EN" : "ES";
 
       {/* En móvil el desplegable es un <details>: no necesita JS y no puede
           quedarse abierto por accidente al navegar. */}
-      <details class="group rounded-lg" open={taxActive}>
+      <details class="group rounded-lg" open={sectorsActive}>
         <summary
           class="flex cursor-pointer items-center justify-between rounded-lg px-2 py-3 text-sm font-medium text-[var(--muted)] marker:content-[''] hover:text-[var(--accent)]"
         >
-          {t.nav.tax}
+          {t.nav.sectors}
           <Icon
             name="arrow-right"
             class="h-4 w-4 rotate-90 transition group-open:-rotate-90"
@@ -226,10 +226,10 @@ const otherLang = lang === "es" ? "EN" : "ES";
         </summary>
         <div class="mb-2 ml-2 grid gap-0.5 border-l border-[color:var(--border)] pl-3">
           <a
-            href={PAGES.tax[lang]}
+            href={PAGES.sectors[lang]}
             class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-white/5"
           >
-            {t.nav.taxOverview}
+            {t.nav.sectorsOverview}
           </a>
           {
             segmentItems.map((item) => (

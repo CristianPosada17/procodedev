@@ -1,6 +1,8 @@
 ---
 title: "7 elementos que toda página web que vende debe tener"
 description: "La checklist de lo que necesita una página web para convertir visitas en clientes: mensaje claro, llamadas a la acción, velocidad, prueba social y más."
+seoTitle: "7 Elementos de una Página Web que Vende | ProCode Dev"
+seoDescription: "La checklist de lo que necesita una página web para convertir visitas en clientes: mensaje claro, llamadas a la acción, velocidad y prueba social."
 pubDate: 2026-06-23
 author: "ProCode Dev"
 tags: ["conversión", "diseño web", "ventas"]

@@ -4,10 +4,12 @@ import Header from "../components/Header.astro";
 import LegalPage from "../components/LegalPage.astro";
 import Footer from "../components/Footer.astro";
 import { legal } from "../i18n/legal";
+import { translations, PAGES } from "../i18n/ui";
 
 const lang = "es";
 const doc = "terms" as const;
 const d = legal[lang][doc];
+const t = translations[lang];
 ---
 
 <Layout
@@ -16,6 +18,10 @@ const d = legal[lang][doc];
   waPage="contact"
   title={d.meta.title}
   description={d.meta.description}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: d.title, path: PAGES.terms[lang] },
+  ]}
 >
   <Header lang={lang} page="terms" />
   <main>

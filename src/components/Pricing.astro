@@ -41,7 +41,7 @@ const currencyScript = `
       showHeading && (
         <SectionHeading eyebrow={p.eyebrow} max="max-w-3xl">
           <Fragment slot="title">
-            {p.titleA} <span class="grad-text">{p.titleHighlight}</span> {p.titleB}
+            {p.titleA}{" "}<span class="grad-text">{p.titleHighlight}</span>{p.titleB && " " + p.titleB}
           </Fragment>
           <Fragment slot="subtitle">{p.subtitle}</Fragment>
         </SectionHeading>

@@ -33,8 +33,8 @@ const x = getSegment(lang, segment);
         {t.nav.home}
       </a>
       <span aria-hidden="true">/</span>
-      <a href={PAGES.tax[lang]} class="transition hover:text-[var(--accent)]">
-        {t.nav.tax}
+      <a href={PAGES.sectors[lang]} class="transition hover:text-[var(--accent)]">
+        {t.nav.sectors}
       </a>
       <span aria-hidden="true">/</span>
       <span class="text-[var(--accent)]">{x.navLabel}</span>
@@ -221,6 +221,11 @@ const x = getSegment(lang, segment);
     </div>
   </div>
 </section>
+
+<!-- El proyecto destacado del giro entra aquí: después de «qué construyo» y
+     antes de las dudas, que es donde el lector ya entendió la propuesta y lo
+     que quiere es ver una prueba antes de preguntar. -->
+<slot />
 
 <!-- ── FAQ del oficio ── -->
 <section class="relative py-10 lg:py-16">

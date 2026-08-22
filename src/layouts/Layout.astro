@@ -23,7 +23,7 @@ const pixelSnippet = META_PIXEL_ID
   : "";
 const analyticsBootstrap = [gaSnippet, pixelSnippet].filter(Boolean).join("\n");
 const pixelNoscript = META_PIXEL_ID
-  ? `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"/>`
+  ? `<img height="1" width="1" alt="" aria-hidden="true" style="display:none" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"/>`
   : "";
 
 interface Props {
@@ -47,6 +47,18 @@ interface Props {
   breadcrumbs?: { name: string; path: string }[];
   /** Servicio concreto que describe la página, para el nodo Service. */
   serviceName?: string;
+  /** Palabras clave propias de la página. Sin esto todas heredaban las del
+   *  home, que es exactamente la señal de contenido duplicado que hay que
+   *  evitar cuando hay cinco páginas de giro parecidas entre sí. */
+  keywords?: string;
+  /** Catálogo de lo que incluye el servicio de esta página (nodo Service →
+   *  hasOfferCatalog). Es lo que permite a un buscador con IA responder «qué
+   *  incluye» sin tener que interpretar el HTML. */
+  offerCatalog?: readonly { title: string; description: string }[];
+  /** Lista de páginas hijas, para el hub de giros (nodo ItemList). */
+  itemList?: readonly { name: string; description: string; url: string }[];
+  /** Público concreto de la página, para el nodo Service. */
+  audience?: string;
 }
 
 const {
@@ -62,10 +74,17 @@ const {
   faqItems,
   breadcrumbs,
   serviceName,
+  keywords,
+  offerCatalog,
+  itemList,
+  audience,
 } = Astro.props as Props;
 
 const t = translations[lang];
 const htmlLang = lang === "es" ? "es" : "en";
+// Fecha de la última revisión editorial del sitio. Se emite en el JSON-LD y
+// en Open Graph: una página sin señal de frescura compite en desventaja.
+const CONTENT_REVIEWED = "2026-08-22";
 const ogLocale = lang === "es" ? "es_US" : "en_US";
 
 const metaTitle = title ?? t.pageMeta.home.title;
@@ -102,9 +121,9 @@ const orgNode = {
     { "@type": "Country", name: "United States" },
     { "@type": "Country", name: "México" },
   ],
-  slogan: "Digital Growth Systems for Tax & Accounting Firms",
+  slogan: "Digital Growth Systems for Small Businesses",
   serviceType: [
-    "Website design for tax and accounting firms",
+    "Website design for small businesses",
     "Client acquisition and local SEO",
     "Client intake and document collection",
     "Marketing automation and follow-up",
@@ -113,17 +132,17 @@ const orgNode = {
     "Marketing analytics and reporting",
   ],
   knowsAbout: [
-    "Tax professionals",
-    "Enrolled Agents",
-    "CPAs",
-    "Bookkeepers",
-    "Tax resolution firms",
-    "Accounting firms",
+    "Contractors and construction companies",
+    "Clinics and private practices",
+    "Professional services",
+    "Real estate agents",
+    "Accounting and tax practices",
+    "Small business marketing",
   ],
   audience: {
     "@type": "Audience",
     audienceType:
-      "Tax professionals, enrolled agents, CPAs, bookkeepers, tax resolution and accounting firms in the United States",
+      "Small business owners in the United States and Mexico: contractors, clinics and private practices, professional services, real estate agents and accounting practices",
   },
   availableLanguage: ["Spanish", "English"],
   sameAs: [
@@ -141,6 +160,30 @@ const websiteNode = {
   description: metaDescription,
   publisher: { "@id": `${siteUrl}#organization` },
   inLanguage: lang === "es" ? "es-US" : "en-US",
+};
+
+// Nodo de la página. Sin él, el grafo describe la organización y el servicio
+// pero no la página concreta que se está sirviendo, que es justo lo que un
+// buscador necesita para decidir qué mostrar en el resultado.
+const webPageNode = {
+  "@type": "WebPage",
+  "@id": `${canonicalURL}#webpage`,
+  url: canonicalURL.toString(),
+  name: metaTitle,
+  description: metaDescription,
+  inLanguage: lang === "es" ? "es-US" : "en-US",
+  isPartOf: { "@id": `${siteUrl}#website` },
+  about: { "@id": `${siteUrl}#organization` },
+  primaryImageOfPage: socialImage.toString(),
+  datePublished: "2026-07-31",
+  dateModified: CONTENT_REVIEWED,
+  ...(breadcrumbs?.length
+    ? { breadcrumb: { "@id": `${canonicalURL}#breadcrumb` } }
+    : {}),
+  potentialAction: {
+    "@type": "ReadAction",
+    target: [canonicalURL.toString()],
+  },
 };
 
 const faqSource = faqItems ?? (faqVariant === "home" ? t.homeFaq : t.faq).items;
@@ -179,26 +222,79 @@ const serviceNode = serviceName
       "@id": `${canonicalURL}#service`,
       name: serviceName,
       description: metaDescription,
-      serviceType: "Digital growth systems for tax and accounting firms",
+      serviceType: "Digital growth systems for small businesses",
       provider: { "@id": `${siteUrl}#organization` },
-      areaServed: { "@type": "Country", name: "United States" },
+      areaServed: [
+        { "@type": "Country", name: "United States" },
+        { "@type": "Country", name: "México" },
+      ],
       availableLanguage: ["English", "Spanish"],
+      ...(audience
+        ? { audience: { "@type": "Audience", audienceType: audience } }
+        : {}),
       offers: {
         "@type": "Offer",
         priceCurrency: "USD",
         price: "349",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/InStock",
         url: new URL(PAGES.pricing[lang], siteUrl).toString(),
       },
+      ...(offerCatalog?.length
+        ? {
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: serviceName,
+              itemListElement: offerCatalog.map((o, i) => ({
+                "@type": "Offer",
+                position: i + 1,
+                itemOffered: {
+                  "@type": "Service",
+                  name: o.title,
+                  description: o.description,
+                },
+              })),
+            },
+          }
+        : {}),
     }
   : null;
+
+// Hub de giros: la lista explícita de páginas hijas es lo que hace que un
+// buscador entienda /negocios como índice y no como una landing más.
+const itemListNode = itemList?.length
+  ? {
+      "@type": "ItemList",
+      "@id": `${canonicalURL}#itemlist`,
+      itemListOrder: "https://schema.org/ItemListUnordered",
+      numberOfItems: itemList.length,
+      itemListElement: itemList.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: it.name,
+        description: it.description,
+        url: new URL(it.url, siteUrl).toString(),
+      })),
+    }
+  : null;
+
+// Palabras clave: propias de la página cuando las declara, y solo si no,
+// las generales del sitio.
+const DEFAULT_KEYWORDS =
+  lang === "es"
+    ? "páginas web para negocios, sitios web para pymes, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, perfil de empresa en google, SEO local, automatización de seguimiento, ProCode Dev"
+    : "small business website, website for contractors, website for clinics, real estate agent website, accounting firm website, google business profile, local SEO, follow-up automation, bilingual website, ProCode Dev";
+const pageKeywords = keywords ?? DEFAULT_KEYWORDS;
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     orgNode,
     websiteNode,
+    webPageNode,
     ...(breadcrumbNode ? [breadcrumbNode] : []),
     ...(serviceNode ? [serviceNode] : []),
+    ...(itemListNode ? [itemListNode] : []),
     ...(faqNode ? [faqNode] : []),
   ],
 };
@@ -217,10 +313,7 @@ const jsonLd = {
     <!-- ============ SEO PRINCIPAL ============ -->
     <title>{metaTitle}</title>
     <meta name="description" content={metaDescription} />
-    <meta
-      name="keywords"
-      content="digital growth systems for tax firms, sistemas digitales para firmas fiscales, tax professional website, enrolled agent website, CPA firm website, bookkeeper website, tax resolution marketing, accounting firm website, paginas web para preparadores de impuestos, intake para despachos fiscales, google business profile, SEO local, automatización de seguimiento, ProCode Dev"
-    />
+    <meta name="keywords" content={pageKeywords} />
     <meta name="author" content="ProCode Dev" />
     <meta
       name="robots"
@@ -245,7 +338,9 @@ const jsonLd = {
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="ProCode Dev — Digital Growth Systems for Tax & Accounting Firms" />
+    <meta property="og:image:alt" content={metaTitle} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="article:modified_time" content={CONTENT_REVIEWED} />
 
     <!-- ============ TWITTER / X ============ -->
     <meta name="twitter:card" content="summary_large_image" />
