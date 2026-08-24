@@ -1,0 +1,362 @@
+---
+// ============================================================
+// ANALYTICS EVENTS — Motor de eventos (va al final del <body>)
+// ------------------------------------------------------------
+// Expone `window.pcdTrack(nombre, params, meta)` y engancha solo:
+//
+//   · Clics       → whatsapp_click, phone_click, email_click, calendly_click,
+//                   cta_click, nav_click, social_click, outbound_click
+//   · Scroll      → scroll_depth (25/50/75/90 %)
+//   · Secciones   → section_view (qué se ve y qué no de cada página)
+//   · Formularios → form_start, generate_lead
+//   · Calendly    → calendly_view, calendly_date_selected, schedule_call
+//   · Blog        → article_complete
+//
+// Cada evento de lead se enriquece con el origen (UTM, referrer, landing) de
+// primera y de última visita, que es lo que responde «de dónde salió este
+// cliente». El Pixel recibe su evento estándar equivalente con `eventID`
+// para poder deduplicar si algún día se añade la API de Conversiones.
+// ============================================================
+import { PAGES, type Lang, type PageKey } from "../i18n/ui";
+import { contentGroupFor } from "../lib/measurement";
+
+interface Props {
+  lang?: Lang;
+  page?: PageKey | "blog";
+}
+const { lang = "es", page = "home" } = Astro.props as Props;
+
+const cfg = JSON.stringify({
+  lang,
+  page,
+  group: contentGroupFor(page),
+  contactPaths: [PAGES.contact.es, PAGES.contact.en],
+});
+
+const engine = `
+(function(){
+  var CFG = ${cfg};
+  var SS = 'pcd_attr_session';
+  var LS = 'pcd_attr_first';
+  var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var CLICK_IDS = ['gclid','fbclid','msclkid','ttclid','li_fat_id'];
+
+  function log(){ if (window.__pcdDebug && window.console) console.log.apply(console, arguments); }
+  function safeGet(store, key){ try { return window[store].getItem(key); } catch(e){ return null; } }
+  function safeSet(store, key, val){ try { window[store].setItem(key, val); } catch(e){} }
+  function parse(raw){ try { return raw ? JSON.parse(raw) : null; } catch(e){ return null; } }
+
+  // ---------------- Origen del tráfico ----------------
+  function buildAttribution(){
+    var q = new URLSearchParams(location.search);
+    var utm = {}, hasUtm = false, i;
+    for (i=0;i<UTM_KEYS.length;i++){
+      var v = q.get(UTM_KEYS[i]);
+      if (v){ utm[UTM_KEYS[i]] = v.slice(0,80); hasUtm = true; }
+    }
+    var clickId = '';
+    for (i=0;i<CLICK_IDS.length;i++){ if (q.get(CLICK_IDS[i])){ clickId = CLICK_IDS[i]; hasUtm = true; break; } }
+
+    var refHost = '';
+    try { refHost = document.referrer ? new URL(document.referrer).hostname.replace(/^www\\./,'') : ''; } catch(e){}
+    if (refHost && location.hostname.indexOf(refHost) > -1) refHost = '';
+
+    var source = utm.utm_source
+      || (clickId === 'gclid' ? 'google' : '')
+      || (clickId === 'fbclid' ? 'facebook' : '')
+      || refHost
+      || 'directo';
+    var medium = utm.utm_medium
+      || (clickId === 'gclid' ? 'cpc' : '')
+      || (clickId === 'fbclid' ? 'paid_social' : '')
+      || (refHost ? 'referral' : 'directo');
+
+    return {
+      source: source,
+      medium: medium,
+      campaign: utm.utm_campaign || '(ninguna)',
+      content: utm.utm_content || '',
+      term: utm.utm_term || '',
+      referrer: refHost || '(directo)',
+      landing: location.pathname,
+      click_id: clickId || '',
+      ts: new Date().toISOString().slice(0,10),
+      _fresh: hasUtm || !!refHost
+    };
+  }
+
+  var session = parse(safeGet('sessionStorage', SS));
+  var candidate = buildAttribution();
+  // Una visita nueva con UTM o referrer pisa la de la sesión; navegar dentro
+  // del sitio (sin UTM y sin referrer externo) no debe borrar el origen real.
+  if (!session || candidate._fresh) { session = candidate; safeSet('sessionStorage', SS, JSON.stringify(session)); }
+  var first = parse(safeGet('localStorage', LS));
+  if (!first) { first = session; safeSet('localStorage', LS, JSON.stringify(first)); }
+  window.__pcdAttr = { session: session, first: first };
+
+  function attributionParams(){
+    return {
+      lead_source: session.source,
+      lead_medium: session.medium,
+      lead_campaign: session.campaign,
+      lead_referrer: session.referrer,
+      landing_page: session.landing,
+      first_source: first.source,
+      first_medium: first.medium,
+      first_campaign: first.campaign,
+      first_landing: first.landing,
+      first_seen: first.ts
+    };
+  }
+
+  // ---------------- track() ----------------
+  var lastKey = '', lastAt = 0;
+  function eventId(){
+    return 'pcd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,10);
+  }
+
+  function track(name, params, meta){
+    params = params || {};
+    params.page_group = CFG.group;
+    params.page_key = CFG.page;
+    params.site_language = CFG.lang;
+    params.page_path = location.pathname;
+
+    // Antirrebote: dos clics idénticos en menos de 700 ms son uno solo.
+    var key = name + '|' + (params.cta_id || '') + '|' + (params.link_url || '') + '|' + (params.percent_scrolled || '') + '|' + (params.section_id || '');
+    var now = Date.now();
+    if (key === lastKey && now - lastAt < 700) return;
+    lastKey = key; lastAt = now;
+
+    var id = eventId();
+    params.event_id = id;
+
+    if (window.gtag) window.gtag('event', name, params);
+
+    if (meta && meta.event && window.fbq) {
+      window.fbq(meta.custom ? 'trackCustom' : 'track', meta.event, meta.params || {}, { eventID: id });
+    }
+    log('[pcd]', name, params, meta || '');
+  }
+  window.pcdTrack = track;
+  window.pcdAttribution = attributionParams;
+
+  // ---------------- Contexto de un elemento ----------------
+  function zoneOf(el){
+    if (el.closest('[data-zone]')) return el.closest('[data-zone]').getAttribute('data-zone');
+    if (el.closest('header')) return 'header';
+    if (el.closest('footer')) return 'footer';
+    if (el.closest('nav')) return 'nav';
+    return 'contenido';
+  }
+  function sectionOf(el){
+    var s = el.closest('section[id]');
+    return s ? s.id : '';
+  }
+  function labelOf(el){
+    var txt = el.getAttribute('data-cta-label')
+      || el.getAttribute('aria-label')
+      || (el.innerText || el.textContent || '');
+    return txt.replace(/\\s+/g,' ').trim().slice(0,80) || '(sin texto)';
+  }
+
+  // ---------------- Clics ----------------
+  document.addEventListener('click', function(ev){
+    var node = ev.target;
+    if (!node || typeof node.closest !== 'function') node = node && node.parentElement;
+    if (!node || typeof node.closest !== 'function') return;
+    var el = node.closest('a, button, [data-cta]');
+    if (!el) return;
+    // El botón de enviar de un formulario medido ya tiene sus propios eventos
+    // (form_start / generate_lead / form_error); contarlo además como clic
+    // duplicaría el mismo hecho en dos métricas distintas.
+    if (el.tagName === 'BUTTON' && el.type === 'submit' && el.closest('form[data-form]')) return;
+
+    var href = el.getAttribute('href') || '';
+    var base = {
+      cta_id: el.getAttribute('data-cta') || '',
+      cta_text: labelOf(el),
+      cta_zone: zoneOf(el),
+      section_id: sectionOf(el),
+      link_url: href.slice(0,200)
+    };
+
+    // WhatsApp
+    if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('web.whatsapp.com') > -1) {
+      var wp = attributionParams();
+      for (var k in base) wp[k] = base[k];
+      track('whatsapp_click', wp, { event: 'Contact', params: { content_name: 'WhatsApp', content_category: CFG.group } });
+      return;
+    }
+    // Teléfono
+    if (href.indexOf('tel:') === 0) {
+      track('phone_click', base, { event: 'Contact', params: { content_name: 'Llamada', content_category: CFG.group } });
+      return;
+    }
+    // Correo
+    if (href.indexOf('mailto:') === 0) {
+      track('email_click', base, { event: 'Contact', params: { content_name: 'Email', content_category: CFG.group } });
+      return;
+    }
+    // Calendly directo (enlace, no el widget embebido)
+    if (href.indexOf('calendly.com') > -1) {
+      track('calendly_click', base, { event: 'ClicAgendar', custom: true, params: { origen: base.cta_zone } });
+      return;
+    }
+    // Enlaces externos
+    if (/^https?:\\/\\//.test(href)) {
+      var host = '';
+      try { host = new URL(href).hostname.replace(/^www\\./,''); } catch(e){}
+      if (host && location.hostname.indexOf(host) === -1) {
+        base.link_domain = host;
+        var social = /instagram|facebook|linkedin|tiktok|youtube|twitter|x\\.com/.test(host);
+        track(social ? 'social_click' : 'outbound_click', base);
+        return;
+      }
+    }
+    // Enlace interno hacia la página de contacto / agendar
+    var goesToContact = CFG.contactPaths.some(function(p){
+      return href === p || href === p + '/' || href.indexOf(p + '#') === 0 || href.indexOf(p + '/#') === 0;
+    }) || href.indexOf('#agendar') > -1;
+
+    if (goesToContact) {
+      track('cta_click', base, { event: 'ClicAgendar', custom: true, params: { origen: base.cta_zone, seccion: base.section_id } });
+      return;
+    }
+    // Navegación (header, footer, menús)
+    if (base.cta_zone === 'header' || base.cta_zone === 'footer' || base.cta_zone === 'nav') {
+      track('nav_click', base);
+      return;
+    }
+    // Cualquier otro botón o enlace del contenido
+    track('cta_click', base);
+  }, true);
+
+  // ---------------- Profundidad de scroll ----------------
+  (function(){
+    var marks = [25,50,75,90], done = {}, ticking = false;
+    function check(){
+      ticking = false;
+      var doc = document.documentElement;
+      var height = Math.max(doc.scrollHeight, document.body.scrollHeight) - window.innerHeight;
+      if (height <= 0) return;
+      var pct = Math.round(((window.scrollY || doc.scrollTop) / height) * 100);
+      for (var i=0;i<marks.length;i++){
+        if (pct >= marks[i] && !done[marks[i]]){
+          done[marks[i]] = true;
+          track('scroll_depth', { percent_scrolled: marks[i] });
+        }
+      }
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking){ ticking = true; window.requestAnimationFrame(check); }
+    }, { passive: true });
+    check();
+  })();
+
+  // ---------------- Secciones vistas ----------------
+  (function(){
+    if (!('IntersectionObserver' in window)) return;
+    var seen = {}, timers = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var id = e.target.id;
+        if (!id || seen[id]) return;
+        if (e.isIntersecting){
+          timers[id] = window.setTimeout(function(){
+            seen[id] = true;
+            io.unobserve(e.target);
+            track('section_view', { section_id: id });
+          }, 900);
+        } else if (timers[id]) {
+          window.clearTimeout(timers[id]);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('section[id]').forEach(function(s){ io.observe(s); });
+
+    // Fin del artículo del blog: la señal más limpia de «lo leyó completo».
+    var end = document.querySelector('[data-article-end]');
+    if (end) {
+      var ioEnd = new IntersectionObserver(function(entries){
+        if (entries[0].isIntersecting){
+          ioEnd.disconnect();
+          track('article_complete', {
+            article_slug: end.getAttribute('data-article-slug') || location.pathname
+          });
+        }
+      }, { threshold: 0.6 });
+      ioEnd.observe(end);
+    }
+  })();
+
+  // ---------------- Formularios ----------------
+  (function(){
+    var started = {};
+    document.addEventListener('focusin', function(ev){
+      var node = ev.target;
+      if (!node || typeof node.closest !== 'function') return;
+      var form = node.closest('form[data-form]');
+      if (!form) return;
+      var name = form.getAttribute('data-form');
+      if (started[name]) return;
+      started[name] = true;
+      track('form_start', { form_name: name });
+    }, true);
+  })();
+
+  // Enriquece los campos ocultos de origen antes de enviar a Web3Forms, para
+  // que el correo del lead ya diga de dónde vino sin abrir GA4.
+  function fillHiddenAttribution(form){
+    if (!form) return;
+    var a = attributionParams();
+    var map = {
+      lead_origen: a.lead_source + ' / ' + a.lead_medium,
+      lead_campana: a.lead_campaign,
+      lead_pagina: location.pathname,
+      lead_landing: a.landing_page,
+      lead_primer_contacto: a.first_source + ' / ' + a.first_medium + ' · ' + a.first_seen
+    };
+    for (var name in map){
+      var input = form.querySelector('input[name="' + name + '"]');
+      if (input) input.value = map[name];
+    }
+  }
+  window.pcdFillAttribution = fillHiddenAttribution;
+  document.querySelectorAll('form[data-form]').forEach(fillHiddenAttribution);
+
+  // ---------------- Calendly ----------------
+  window.addEventListener('message', function(e){
+    var d = e && e.data;
+    if (!d || typeof d !== 'object' || typeof d.event !== 'string') return;
+    if (d.event.indexOf('calendly.') !== 0) return;
+
+    if (d.event === 'calendly.event_type_viewed') {
+      track('calendly_view', { calendly_step: 'calendario_visible' });
+    }
+    if (d.event === 'calendly.date_and_time_selected') {
+      track('calendly_date_selected', attributionParams(), {
+        event: 'InitiateCheckout',
+        params: { content_name: 'Revision Express', content_category: 'agenda' }
+      });
+    }
+    if (d.event === 'calendly.event_scheduled') {
+      var p = attributionParams();
+      p.lead_type = 'calendly';
+      p.value = 1;
+      p.currency = 'USD';
+      track('schedule_call', p, {
+        event: 'Schedule',
+        params: { content_name: 'Revision Express', content_category: 'agenda' }
+      });
+      track('generate_lead', p, {
+        event: 'Lead',
+        params: { content_name: 'Llamada agendada', content_category: 'agenda', value: 1, currency: 'USD' }
+      });
+    }
+  }, false);
+})();
+`;
+---
+
+<script is:inline set:html={engine} />

@@ -14,6 +14,16 @@ const adv = p.advisory;
 const waLink = (text: string) =>
   `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 
+// Identificador estable para medición: los nombres comerciales llevan
+// acentos, espacios y guiones largos que ensucian los informes de GA4.
+const ctaSlug = (name: string) =>
+  name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 // Análisis de mercado de agosto de 2026: el mercado principal pasa a ser el
 // negocio de servicios latino en EE. UU., así que USD vuelve a ser la vista por
 // defecto y MXN queda como opción. Sin JS se ven ambas monedas.
@@ -116,6 +126,7 @@ const currencyScript = `
           </div>
           <a
             href={waLink(adv.waText)}
+            data-cta="precios-anticipo"
             target="_blank"
             rel="noopener"
             class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
@@ -201,6 +212,7 @@ const currencyScript = `
             </ul>
             <a
               href={waLink(pkg.waText)}
+              data-cta={`precios-paquete-${ctaSlug(pkg.name)}`}
               target="_blank"
               rel="noopener"
               class:list={[
@@ -314,6 +326,7 @@ const currencyScript = `
             </ul>
             <a
               href={waLink(plan.waText)}
+              data-cta={`precios-plan-${ctaSlug(plan.name)}`}
               target="_blank"
               rel="noopener"
               class:list={[

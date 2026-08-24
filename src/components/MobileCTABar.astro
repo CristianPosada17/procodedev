@@ -18,12 +18,14 @@ const waAria = lang === "es" ? "Escríbeme por WhatsApp" : "Message me on WhatsA
 ---
 
 <div
+  data-zone="barra-movil"
   class="fixed inset-x-0 bottom-0 z-50 border-t border-[color:var(--border-strong)] bg-[var(--bg)]/95 backdrop-blur-xl lg:hidden"
   style="padding-bottom: env(safe-area-inset-bottom);"
 >
   <div class="flex items-center gap-2.5 px-4 py-3">
     <a
       href={PAGES.contact[lang]}
+      data-cta="barra-movil-agendar"
       class="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-xl bg-[var(--brand)] px-5 text-sm font-bold text-white shadow-[0_0_35px_rgba(37,99,235,0.35)] transition active:scale-[0.98]"
     >
       {t.nav.cta}
@@ -32,6 +34,7 @@ const waAria = lang === "es" ? "Escríbeme por WhatsApp" : "Message me on WhatsA
 
     <a
       href={waHref(page, lang)}
+      data-cta="barra-movil-whatsapp"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={waAria}

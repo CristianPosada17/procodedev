@@ -1,0 +1,116 @@
+---
+// ============================================================
+// CONSENT BANNER — Consent Mode v2
+// ------------------------------------------------------------
+// Se muestra una sola vez, hasta que hay decisión. La decisión se guarda en
+// localStorage y se propaga a Google (`gtag('consent','update')`) y a Meta
+// (`fbq('consent', ...)`).
+//
+// Fuera del EEE la medición ya arrancó concedida (ver Analytics.astro), así
+// que aquí el banner informa y permite salirse. Dentro del EEE la medición
+// está en espera y este banner es lo que la desbloquea.
+// ============================================================
+import { CONSENT_COPY } from "../i18n/consent";
+import { PAGES, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const c = CONSENT_COPY[lang];
+const policyHref = PAGES.privacy[lang];
+
+const script = `
+(function(){
+  var STORE = 'pcd_consent_v2';
+  var el = document.getElementById('pcd-consent');
+  if (!el) return;
+
+  var ALL = ['ad_storage','ad_user_data','ad_personalization','analytics_storage','functionality_storage','personalization_storage'];
+
+  function apply(value){
+    var o = {};
+    for (var i=0;i<ALL.length;i++) o[ALL[i]] = value;
+    o.security_storage = 'granted';
+    if (window.gtag) {
+      window.gtag('consent', 'update', o);
+      window.gtag('set', 'ads_data_redaction', value === 'denied');
+    }
+    if (window.fbq) {
+      window.fbq('consent', value === 'granted' ? 'grant' : 'revoke');
+      if (value === 'granted' && window.__pcdPixelPending) {
+        window.fbq('track', 'PageView');
+        window.__pcdPixelPending = false;
+      }
+    }
+    try { window.localStorage.setItem(STORE, value); } catch(e){}
+    window.__pcdConsent = value;
+    if (window.pcdTrack) window.pcdTrack('consent_decision', { consent_state: value });
+  }
+  window.pcdConsent = apply;
+
+  function hide(){
+    el.setAttribute('data-open','false');
+    window.setTimeout(function(){ el.hidden = true; }, 260);
+  }
+
+  // Solo se muestra si no hay decisión previa.
+  if (window.__pcdNeedsChoice) {
+    el.hidden = false;
+    window.requestAnimationFrame(function(){ el.setAttribute('data-open','true'); });
+  }
+
+  var yes = document.getElementById('pcd-consent-accept');
+  var no = document.getElementById('pcd-consent-reject');
+  if (yes) yes.addEventListener('click', function(){ apply('granted'); hide(); });
+  if (no) no.addEventListener('click', function(){ apply('denied'); hide(); });
+})();
+`;
+---
+
+<div
+  id="pcd-consent"
+  hidden
+  data-open="false"
+  data-zone="consentimiento"
+  role="dialog"
+  aria-live="polite"
+  aria-label={c.aria}
+  class="fixed inset-x-0 bottom-0 z-[60] translate-y-4 px-3 pb-3 opacity-0 transition-all duration-300 data-[open=true]:translate-y-0 data-[open=true]:opacity-100 lg:inset-x-auto lg:bottom-5 lg:left-5 lg:max-w-md lg:px-0 lg:pb-0"
+  style="margin-bottom: calc(env(safe-area-inset-bottom) + 76px);"
+>
+  <div
+    class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+  >
+    <p class="text-sm font-bold text-[var(--text)]">{c.title}</p>
+    <p class="mt-2 text-[13px] leading-6 text-[var(--muted)]">{c.body}</p>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2.5">
+      <button
+        id="pcd-consent-accept"
+        type="button"
+        data-cta="consent-accept"
+        class="inline-flex min-h-[40px] flex-1 items-center justify-center rounded-lg bg-[var(--brand)] px-4 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+      >
+        {c.accept}
+      </button>
+      <button
+        id="pcd-consent-reject"
+        type="button"
+        data-cta="consent-reject"
+        class="inline-flex min-h-[40px] flex-1 items-center justify-center rounded-lg border border-[color:var(--border)] px-4 text-sm font-semibold text-[var(--text)] transition hover:border-[color:var(--border-strong)]"
+      >
+        {c.reject}
+      </button>
+      <a
+        href={policyHref}
+        data-cta="consent-policy"
+        class="text-[13px] text-[var(--muted)] underline underline-offset-4 transition hover:text-[var(--accent)]"
+      >
+        {c.policy}
+      </a>
+    </div>
+  </div>
+</div>
+
+<script is:inline set:html={script} />

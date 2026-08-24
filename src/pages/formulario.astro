@@ -11,6 +11,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="robots" content="noindex, nofollow">
 <title>Información para tu página web · ProCode Dev</title>
+<!-- Medición: solo GA4. Este formulario es posventa (el cliente ya compró),
+     así que no debe alimentar al Pixel ni a los públicos de anuncios. -->
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-LPJ6DT1WZZ', { content_group: 'onboarding', send_page_view: true });
+  (function(){
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-LPJ6DT1WZZ';
+    document.head.appendChild(g);
+  })();
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -552,6 +566,15 @@
       : pct + "% completado";
   }
 
+  /* Medición: la primera vez que se toca un campo. Comparado con
+     onboarding_enviado da la tasa de abandono real del formulario. */
+  var onbStart = false;
+  document.addEventListener("input", function(){
+    if(onbStart) return;
+    onbStart = true;
+    if(window.gtag) gtag('event','onboarding_inicio',{ form_name:'onboarding' });
+  }, true);
+
   document.addEventListener("input", function(e){
     if(e.target.name || e.target.classList.contains("sv")){ guarda(); progreso(); }
   });
@@ -673,7 +696,11 @@
   var btnEnviar = document.getElementById("enviar");
   btnEnviar.addEventListener("click", function(){
     var f = faltan();
-    if(f.length){ toast("Aún falta " + f.join(", ")); return; }
+    if(f.length){
+      toast("Aún falta " + f.join(", "));
+      if(window.gtag) gtag('event','onboarding_incompleto',{ form_name:'onboarding', campos_faltantes:f.length });
+      return;
+    }
 
     btnEnviar.disabled = true;
     btnEnviar.textContent = "Enviando...";
@@ -697,6 +724,7 @@
       btnEnviar.disabled = false;
       btnEnviar.textContent = "Enviar";
       if(ok || win){
+        if(window.gtag) gtag('event','onboarding_enviado',{ form_name:'onboarding', via: ok ? 'correo' : 'whatsapp' });
         document.getElementById("form").style.display = "none";
         document.getElementById("foot").style.display = "none";
         document.getElementById("gracias").className = "gracias on";

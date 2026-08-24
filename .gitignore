@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# empaquetados temporales para compilar desde Cowork
+*.tgz
+_to_delete/

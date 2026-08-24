@@ -100,6 +100,11 @@ const articleLd = {
       <Content />
     </article>
 
+    {/* Sentinela de lectura: cuando esta línea entra en pantalla, el artículo
+        se leyó de arriba abajo. Es la señal que separa «lo leyeron» de
+        «entraron y se fueron». */}
+    <div data-article-end data-article-slug={post.id} aria-hidden="true"></div>
+
     <!-- CTA al final del artículo -->
     <div
       class="mt-14 rounded-3xl border border-blue-400/25 bg-[#061126]/80 p-8 text-center shadow-[0_0_70px_rgba(37,99,235,0.16)] backdrop-blur-xl"
@@ -114,6 +119,7 @@ const articleLd = {
       </p>
       <a
         href="/contacto"
+        data-cta="blog-cta-final"
         class="mt-6 inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_rgba(37,99,235,0.45)] transition hover:bg-blue-500"
       >
         Agendar llamada gratis

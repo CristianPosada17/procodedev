@@ -30,12 +30,14 @@ const waMsg = encodeURIComponent(
         <div class="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
           <a
             href={PAGES.contact[lang]}
+            data-cta="cta-final-agendar"
             class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-7 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
           >
             {fc.ctaPrimary} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
           </a>
           <a
             href={`https://wa.me/${CONTACT.whatsapp}?text=${waMsg}`}
+            data-cta="cta-final-whatsapp"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-7 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"

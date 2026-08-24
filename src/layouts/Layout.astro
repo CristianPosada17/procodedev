@@ -2,6 +2,10 @@
 import "../styles/global.css";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 import MobileCTABar from "../components/MobileCTABar.astro";
+import Analytics from "../components/Analytics.astro";
+import AnalyticsEvents from "../components/AnalyticsEvents.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+import { MEASUREMENT } from "../lib/measurement";
 import {
   translations,
   PAGES,
@@ -9,22 +13,8 @@ import {
   type PageKey,
 } from "../i18n/ui";
 
-// ====== IDs DE MEDICIÓN (rellena cuando los tengas; si quedan vacíos, no cargan) ======
-const GA_MEASUREMENT_ID = "G-LPJ6DT1WZZ";
-const META_PIXEL_ID = "1741784446953946";
-const GSC_VERIFICATION = "";
-
-// Scripts de medición como cadenas (se arman aquí; quedan vacías si no hay IDs).
-const gaSnippet = GA_MEASUREMENT_ID
-  ? `var gse=document.createElement('script');gse.async=true;gse.src='https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';document.head.appendChild(gse);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`
-  : "";
-const pixelSnippet = META_PIXEL_ID
-  ? `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`
-  : "";
-const analyticsBootstrap = [gaSnippet, pixelSnippet].filter(Boolean).join("\n");
-const pixelNoscript = META_PIXEL_ID
-  ? `<img height="1" width="1" alt="" aria-hidden="true" style="display:none" src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"/>`
-  : "";
+// Los IDs de medición y toda la lógica de GA4 / Pixel / Consent Mode viven
+// en src/lib/measurement.ts y en los componentes Analytics*, no aquí.
 
 interface Props {
   lang?: Lang;
@@ -306,8 +296,11 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#060b18" />
-    {GSC_VERIFICATION && (
-      <meta name="google-site-verification" content={GSC_VERIFICATION} />
+    {MEASUREMENT.gscVerification && (
+      <meta
+        name="google-site-verification"
+        content={MEASUREMENT.gscVerification}
+      />
     )}
 
     <!-- ============ SEO PRINCIPAL ============ -->
@@ -379,9 +372,8 @@ const jsonLd = {
       </style>
     </noscript>
 
-    <!-- ============ MEDICIÓN (Google Analytics 4 + Meta Pixel) ============ -->
-    <script is:inline set:html={analyticsBootstrap}></script>
-    <noscript set:html={pixelNoscript}></noscript>
+    <!-- ============ MEDICIÓN (Consent Mode v2 + GA4 + Meta Pixel) ============ -->
+    <Analytics lang={lang} page={waPage ?? page} />
   </head>
 
   <!-- pb-24 en móvil deja aire para la barra CTA fija; en lg+ no existe. -->
@@ -406,6 +398,10 @@ const jsonLd = {
 
     <WhatsAppFloat lang={lang} page={waPage ?? page} />
     <MobileCTABar lang={lang} page={waPage ?? page} />
+
+    <!-- ============ MEDICIÓN: eventos y consentimiento ============ -->
+    <AnalyticsEvents lang={lang} page={waPage ?? page} />
+    <ConsentBanner lang={lang} />
 
     <!-- ============ ANIMACIONES (reveal al hacer scroll) ============ -->
     <script>

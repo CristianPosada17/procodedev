@@ -30,6 +30,7 @@ const contactScript = `
       e.preventDefault();
       if(btn){ btn.disabled = true; btn.textContent = SENDING; }
       try {
+        if(window.pcdFillAttribution) window.pcdFillAttribution(form);
         var data = Object.fromEntries(new FormData(form));
         var res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -40,10 +41,29 @@ const contactScript = `
         if(result.success){
           show(OK, true);
           form.reset();
-          if(window.fbq) window.fbq('track','Lead');
-          if(window.gtag) window.gtag('event','generate_lead',{ origen:'formulario_contacto' });
-        } else { show(FAIL, false); }
-      } catch(err){ show(FAIL, false); }
+          if(window.pcdTrack){
+            var lead = window.pcdAttribution ? window.pcdAttribution() : {};
+            lead.form_name = 'contacto';
+            lead.lead_type = 'formulario';
+            lead.project_type = data.project_type || '';
+            lead.value = 1;
+            lead.currency = 'USD';
+            window.pcdTrack('generate_lead', lead, {
+              event: 'Lead',
+              params: { content_name: 'Formulario de contacto', content_category: 'contacto', value: 1, currency: 'USD' }
+            });
+          } else {
+            if(window.fbq) window.fbq('track','Lead');
+            if(window.gtag) window.gtag('event','generate_lead',{ origen:'formulario_contacto' });
+          }
+        } else {
+          show(FAIL, false);
+          if(window.pcdTrack) window.pcdTrack('form_error', { form_name:'contacto', error_type:'rechazado' });
+        }
+      } catch(err){
+        show(FAIL, false);
+        if(window.pcdTrack) window.pcdTrack('form_error', { form_name:'contacto', error_type:'red' });
+      }
       finally { if(btn){ btn.disabled = false; btn.textContent = LABEL; } }
     });
   })();
@@ -131,9 +151,17 @@ const inputClass =
 
         <form
           id="contact-form"
+          data-form="contacto"
           class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-6 lg:p-7"
         >
           <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
+          {/* Origen del lead: lo rellena el motor de medición justo antes de
+              enviar, para que el correo ya diga de dónde vino sin abrir GA4. */}
+          <input type="hidden" name="lead_origen" value="" />
+          <input type="hidden" name="lead_campana" value="" />
+          <input type="hidden" name="lead_pagina" value="" />
+          <input type="hidden" name="lead_landing" value="" />
+          <input type="hidden" name="lead_primer_contacto" value="" />
           <input
             type="hidden"
             name="subject"
