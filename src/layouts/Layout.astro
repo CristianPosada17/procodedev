@@ -74,7 +74,7 @@ const t = translations[lang];
 const htmlLang = lang === "es" ? "es" : "en";
 // Fecha de la última revisión editorial del sitio. Se emite en el JSON-LD y
 // en Open Graph: una página sin señal de frescura compite en desventaja.
-const CONTENT_REVIEWED = "2026-08-22";
+const CONTENT_REVIEWED = "2026-08-25";
 const ogLocale = lang === "es" ? "es_US" : "en_US";
 
 const metaTitle = title ?? t.pageMeta.home.title;
@@ -350,6 +350,12 @@ const jsonLd = {
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- ============ FUENTES ============ -->
+    {/* La foto del hero es el LCP del home: se precarga para que pinte antes
+        que cualquier otro recurso. */}
+    {page === "home" && (
+      <link rel="preload" as="image" href="/images/hero-lobby.webp" fetchpriority="high" />
+    )}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -430,6 +436,59 @@ const jsonLd = {
       // El contador animado de [data-count] se retiró junto con las cifras
       // sin fuente del hero (+248% leads / 9.8% conversión estimada), que la
       // auditoría marcó como bandera roja de credibilidad (hallazgo #8).
+
+      // ── Carruseles de tarjetas (solo móvil) ──────────────────
+      // En escritorio los puntos quedan ocultos por CSS; el JS solo los
+      // construye y sincroniza con el scroll horizontal.
+      document.querySelectorAll<HTMLElement>("[data-rail]").forEach((rail) => {
+        const track = rail.querySelector<HTMLElement>(".card-rail-track");
+        const dots = rail.querySelector<HTMLElement>("[data-rail-dots]");
+        if (!track || !dots) return;
+        const cards = Array.from(track.children) as HTMLElement[];
+        if (cards.length < 2) return;
+
+        cards.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "card-rail-dot";
+          dot.setAttribute("aria-label", String(i + 1));
+          dot.addEventListener("click", () => {
+            track.scrollTo({
+              left: cards[i].offsetLeft - (track.clientWidth - cards[i].offsetWidth) / 2,
+              behavior: "smooth",
+            });
+          });
+          dots.appendChild(dot);
+        });
+
+        const dotEls = Array.from(dots.children) as HTMLElement[];
+        let ticking = false;
+        const sync = () => {
+          ticking = false;
+          const center = track.scrollLeft + track.clientWidth / 2;
+          let best = 0;
+          let bestDist = Infinity;
+          cards.forEach((card, i) => {
+            const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+            if (dist < bestDist) {
+              bestDist = dist;
+              best = i;
+            }
+          });
+          dotEls.forEach((d, i) => d.classList.toggle("is-active", i === best));
+        };
+        track.addEventListener(
+          "scroll",
+          () => {
+            if (!ticking) {
+              ticking = true;
+              requestAnimationFrame(sync);
+            }
+          },
+          { passive: true },
+        );
+        sync();
+      });
     </script>
   </body>
 </html>

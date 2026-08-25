@@ -3,6 +3,7 @@ import { translations, PAGES, type Lang } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 import PortfolioCard from "./PortfolioCard.astro";
+import CardRail from "./CardRail.astro";
 
 interface Props {
   lang?: Lang;
@@ -27,13 +28,13 @@ const projects = pf.projects.filter((proj) => proj.kind !== "demo").slice(0, 3);
       <Fragment slot="subtitle">{p.subtitle}</Fragment>
     </SectionHeading>
 
-    <div class="mt-8 grid lg:mt-12 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <CardRail class="mt-8 lg:mt-12" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
       {
         projects.map((proj, i) => (
           <PortfolioCard project={proj} viewProject={pf.viewProject} resultLabel={pf.resultLabel} delay={i * 90} />
         ))
       }
-    </div>
+    </CardRail>
 
     <div class="reveal mt-10 text-center">
       <a

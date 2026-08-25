@@ -1,6 +1,7 @@
 ---
 import { translations, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
+import CardRail from "./CardRail.astro";
 import Icon from "./Icon.astro";
 interface Props {
   lang?: Lang;
@@ -17,7 +18,7 @@ const ig = t.integrations;
       <Fragment slot="subtitle">{ig.subtitle}</Fragment>
     </SectionHeading>
 
-    <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:mt-12 lg:grid-cols-6">
+    <CardRail class="mt-8 lg:mt-12" grid="md:grid-cols-3 lg:grid-cols-6" peek="narrow" gap="gap-3 sm:gap-4">
       {
         ig.items.map((it, i) => (
           <div
@@ -32,6 +33,6 @@ const ig = t.integrations;
           </div>
         ))
       }
-    </div>
+    </CardRail>
   </div>
 </section>

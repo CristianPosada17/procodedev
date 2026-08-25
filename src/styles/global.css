@@ -283,3 +283,204 @@ section {
         animation: none !important;
     }
 }
+
+/* ============================================================
+   CARD RAIL — en móvil las tarjetas se deslizan de una en una;
+   a partir de md vuelven a ser la rejilla de siempre.
+   ============================================================ */
+.card-rail {
+    position: relative;
+    /* Sin esto, un card-rail dentro de una rejilla hace que la columna
+       crezca hasta el max-content del carrusel y el documento se desborda
+       en horizontal. */
+    min-width: 0;
+}
+.card-rail-track {
+    min-width: 0;
+}
+
+@media (max-width: 767px) {
+    .card-rail-track {
+        display: flex;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 1rem;
+        padding-inline: 1rem;
+        margin-inline: -1rem;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .card-rail-track::-webkit-scrollbar {
+        display: none;
+    }
+    .card-rail-track > * {
+        flex: 0 0 86%;
+        min-width: 0;
+        scroll-snap-align: center;
+    }
+    .card-rail-track.peek-wide > * {
+        flex-basis: 92%;
+    }
+    .card-rail-track.peek-narrow > * {
+        flex-basis: 60%;
+    }
+}
+
+.card-rail-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+}
+@media (max-width: 767px) {
+    .card-rail-dots:not(:empty) {
+        display: flex;
+    }
+}
+.card-rail-dot {
+    height: 0.4rem;
+    width: 0.4rem;
+    border-radius: 9999px;
+    background: var(--border-strong);
+    opacity: 0.5;
+    transition:
+        width 0.25s ease,
+        opacity 0.25s ease,
+        background 0.25s ease;
+}
+.card-rail-dot.is-active {
+    width: 1.35rem;
+    opacity: 1;
+    background: var(--accent);
+}
+
+/* ============================================================
+   HERO — velo sobre la fotografía de fondo
+   OJO: la maquetación (position/inset/tamaño/recorte) vive en utilidades
+   de Tailwind dentro de Hero.astro. Aquí solo van los degradados, para
+   que un CSS en caché nunca pueda descuadrar el hero.
+   ============================================================ */
+
+/* Velo móvil: la columna de texto ocupa casi toda la pantalla, así que el
+   panel cubre desde arriba y deja respirar la foto en la zona del titular. */
+.hero-veil {
+    background: linear-gradient(
+        180deg,
+        rgba(6, 11, 24, 0.93) 0%,
+        rgba(6, 11, 24, 0.85) 34%,
+        rgba(6, 11, 24, 0.9) 66%,
+        rgba(6, 11, 24, 0.97) 100%
+    );
+}
+.hero-veil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 62%, var(--bg) 100%);
+}
+
+/* Rejilla técnica sobre el panel de texto. */
+.hero-mesh {
+    opacity: 0.5;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 22%, transparent 55%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 22%, transparent 55%);
+}
+
+/* Filete de acento bajo el titular. */
+.hero-rule {
+    display: block;
+    height: 3px;
+    width: 64px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
+}
+
+@media (min-width: 1024px) {
+    /* En escritorio el panel es navy sólido pegado al borde izquierdo y se
+       disuelve hacia la derecha, para que la recepción quede limpia. */
+    .hero-veil {
+        background: linear-gradient(
+            90deg,
+            #060b18 0%,
+            #060b18 24%,
+            rgba(6, 11, 24, 0.95) 34%,
+            rgba(6, 11, 24, 0.66) 45%,
+            rgba(6, 11, 24, 0.24) 58%,
+            rgba(6, 11, 24, 0) 72%
+        );
+    }
+    .hero-veil::after {
+        background:
+            linear-gradient(180deg, rgba(6, 11, 24, 0.5) 0%, transparent 18%),
+            linear-gradient(180deg, transparent 78%, var(--bg) 100%);
+    }
+}
+
+/* ============================================================
+   HERO DE GIRO — color y escena propios por oficio
+   Igual que el hero del home: la maquetación va en utilidades dentro de
+   SegmentPage.astro y aquí solo quedan color y degradados.
+   ============================================================ */
+.segment-hero-glow {
+    background: radial-gradient(
+        circle at 78% 32%,
+        var(--seg-accent) 0%,
+        transparent 58%
+    );
+    opacity: 0.26;
+}
+.segment-hero-veil {
+    background: linear-gradient(
+        170deg,
+        rgba(6, 11, 24, 0.9) 0%,
+        rgba(6, 11, 24, 0.74) 45%,
+        rgba(6, 11, 24, 0.88) 100%
+    );
+}
+.segment-hero-veil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 70%, var(--bg) 100%);
+}
+.segment-hero .eyebrow {
+    color: var(--seg-accent);
+}
+.segment-hero .grad-text {
+    background-image: linear-gradient(
+        90deg,
+        var(--seg-accent),
+        var(--seg-accent2)
+    );
+}
+.segment-hero .hero-rule {
+    background: linear-gradient(90deg, var(--seg-accent), var(--seg-accent2));
+}
+.segment-hero .seg-crumb {
+    color: var(--seg-accent);
+}
+.segment-hero .seg-chip {
+    border-color: var(--seg-accent);
+    color: var(--seg-accent);
+}
+
+@media (min-width: 1024px) {
+    .segment-hero-veil {
+        background: linear-gradient(
+            90deg,
+            var(--bg) 0%,
+            var(--bg) 26%,
+            rgba(6, 11, 24, 0.92) 38%,
+            rgba(6, 11, 24, 0.55) 54%,
+            rgba(6, 11, 24, 0.12) 72%,
+            rgba(6, 11, 24, 0) 88%
+        );
+    }
+    .segment-hero-veil::after {
+        background: linear-gradient(180deg, transparent 80%, var(--bg) 100%);
+    }
+}

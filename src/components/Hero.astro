@@ -11,33 +11,56 @@ const t = translations[lang];
 const h = t.hero;
 ---
 
-<section id="inicio" class="relative overflow-hidden pb-6 pt-6 lg:pb-10 lg:pt-14">
+{/*
+  La fotografía del lobby ES el fondo de la sección: ocupa el 100% del ancho
+  y del alto. Encima va un panel navy sólido pegado al borde izquierdo que se
+  disuelve hacia la derecha, así el texto se lee sobre imagen y la recepción
+  con el logo queda limpia. No hay columna derecha ni mockup: el visual del
+  hero es la foto.
+*/}
+<section
+  id="inicio"
+  class="relative isolate overflow-hidden lg:flex lg:min-h-[38rem] lg:items-center"
+>
+  {/* La posición y el recorte de la foto van en utilidades de Tailwind, no
+     en clases propias: si el CSS global llega en caché vieja, el hero se ve
+     sin velo pero nunca se descuadra. */}
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <img
+      src="/images/hero-lobby.webp"
+      alt="Recepción de ProCode Dev con el logo iluminado y pantallas de proyectos"
+      width="1536"
+      height="864"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover object-[72%_34%] lg:object-[74%_center]"
+    />
+    <div class="hero-veil absolute inset-0"></div>
+    <div class="hero-mesh tech-grid absolute inset-0"></div>
+  </div>
+
   <div
-    class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.92fr] lg:px-10 2xl:max-w-[1600px]"
+    class="mx-auto w-full max-w-[1480px] px-4 py-14 sm:px-6 lg:px-10 lg:py-20 2xl:max-w-[1600px]"
   >
-    <div>
-      {/* Above-the-fold: sin `.reveal`. Nada de lo que decide la conversión
-          en el primer scroll debe esperar a que corra JS (hallazgo #14). */}
-      <div>
-        <span class="eyebrow">{h.eyebrow}</span>
-      </div>
+    {/* Above-the-fold: sin `.reveal`. Nada de lo que decide la conversión
+        en el primer scroll debe esperar a que corra JS (hallazgo #14). */}
+    <div class="max-w-xl lg:max-w-[38rem]">
+      <span class="eyebrow">{h.eyebrow}</span>
 
       <h1
-        class="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl xl:text-7xl"
+        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_rgba(6,11,24,0.9)] sm:text-[3.45rem] lg:text-[4.3rem]"
       >
         {h.titleA}{" "}
         <span class="grad-text">{h.titleHighlight}</span>{h.titleB && " " + h.titleB}
       </h1>
 
-      <p
-        class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg"
-      >
+      <span class="hero-rule mt-7"></span>
+
+      <p class="mt-6 text-base leading-8 text-[var(--text)]/80 sm:text-lg">
         {h.subtitle}
       </p>
 
-      <div
-        class="mt-9 flex flex-col gap-4 sm:flex-row"
-      >
+      <div class="mt-9 flex flex-col gap-4 sm:flex-row">
         <a
           href={PAGES.contact[lang]}
           data-cta="hero-primario"
@@ -49,7 +72,7 @@ const h = t.hero;
         <a
           href={PAGES.services[lang]}
           data-cta="hero-secundario"
-          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[var(--brand)]/10"
+          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/15"
         >
           {t.common.viewServices}
         </a>
@@ -57,102 +80,26 @@ const h = t.hero;
 
       <OfferNote lang={lang} />
 
-      <div
-        class="mt-10 flex flex-col flex-wrap gap-x-6 gap-y-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center"
-      >
-        {
-          h.badges.map((b, i) => (
-            <div class="flex items-center gap-3">
-              <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
-                <Icon
-                  name={(["receipt", "lock", "globe"] as const)[i] ?? "check"}
-                  class="h-4.5 w-4.5"
-                />
-              </span>
-              {b}
-            </div>
-          ))
-        }
-      </div>
     </div>
 
-    {/* El mockup es decorativo: en móvil ocupaba casi una pantalla completa
-        antes del primer contenido con sustancia, así que solo se muestra en
-        lg+. En escritorio queda exactamente igual. */}
-    <div class="reveal reveal-right relative hidden lg:block" style="--reveal-delay: 200ms">
-      <div class="absolute -inset-6 rounded-[2rem] bg-[var(--brand)]/10 blur-3xl"></div>
-
-      <div
-        class="relative rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/80 p-4 shadow-[0_0_80px_rgba(37,99,235,0.18)] backdrop-blur-xl"
-      >
-        <div class="rounded-[1.5rem] border border-[color:var(--border)] bg-[var(--bg-2)] p-4">
-          <div class="mb-4 flex items-center justify-between border-b border-[color:var(--border)] pb-4">
-            <div class="flex gap-2">
-              <span class="h-3 w-3 rounded-full bg-red-400/80"></span>
-              <span class="h-3 w-3 rounded-full bg-yellow-400/80"></span>
-              <span class="h-3 w-3 rounded-full bg-green-400/80"></span>
-            </div>
-            <div class="font-mono text-[10px] tracking-widest text-[var(--muted)]">
-              procodedev.com
-            </div>
+    {/* Los tres sellos viven fuera de la columna de texto: dentro no cabían
+        los tres en una línea y quedaban dos arriba y uno abajo. */}
+    <div
+      class="mt-9 flex flex-col gap-4 text-sm text-[var(--muted)] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 lg:max-w-4xl lg:flex-nowrap lg:gap-x-8"
+    >
+      {
+        h.badges.map((b, i) => (
+          <div class="flex items-center gap-3 whitespace-nowrap">
+            <span class="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]">
+              <Icon
+                name={(["receipt", "lock", "globe"] as const)[i] ?? "check"}
+                class="h-4.5 w-4.5"
+              />
+            </span>
+            {b}
           </div>
-
-          <div class="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-            <div
-              class="rounded-2xl border border-[color:var(--border-strong)] bg-gradient-to-br from-[var(--brand)]/20 to-transparent p-6"
-            >
-              <span class="eyebrow">{h.cardLabel}</span>
-              <h3 class="mt-4 text-2xl font-bold text-[var(--text)]">
-                {h.cardTitle}
-              </h3>
-              <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
-                {h.cardText}
-              </p>
-              {/* Antes este botón decía «Solicitar propuesta»: una cuarta
-                  oferta de entrada compitiendo con la llamada gratis. Ahora
-                  apunta a la misma y única puerta que el resto del sitio. */}
-              <a
-                href={PAGES.contact[lang]}
-                data-cta="hero-tarjeta"
-                class="mt-6 inline-flex rounded-lg bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
-              >
-                {h.cardCta}
-              </a>
-            </div>
-
-            {/* Antes aquí había dos cifras inventadas («+248% leads», «9.8%
-                conversión estimada»). Sin cliente al que atribuirlas, restaban
-                credibilidad en vez de sumarla (hallazgo #8). */}
-            <div class="rounded-2xl border border-[color:var(--border)] bg-white/[0.04] p-4">
-              <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
-                {h.panelTitle}
-              </p>
-              <ul class="mt-4 grid gap-3">
-                {
-                  h.panelItems.map((item) => (
-                    <li class="flex items-start gap-2.5 text-xs leading-5 text-[var(--muted)]">
-                      <span class="mt-0.5 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
-                        <Icon name="check" class="h-3 w-3" strokeWidth={2.6} />
-                      </span>
-                      {item}
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-          </div>
-
-          <div class="mt-4 grid gap-4 sm:grid-cols-3">
-            {
-              h.chips.map((c) => (
-                <div class="rounded-xl border border-[color:var(--border)] bg-white/[0.03] p-4 font-mono text-xs text-[var(--muted)]">
-                  {c}
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>

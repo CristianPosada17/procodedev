@@ -9,6 +9,7 @@ import {
 import { segments } from "../i18n/segments";
 import Icon from "./Icon.astro";
 import OfferNote from "./OfferNote.astro";
+import CardRail from "./CardRail.astro";
 
 interface Props {
   lang?: Lang;
@@ -59,7 +60,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
     <h2 class="reveal text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">
       {x.rtbTitle}
     </h2>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <CardRail class="mt-8" grid="md:grid-cols-2 lg:grid-cols-4" peek="wide">
       {
         x.rtb.map((item, i) => (
           <div
@@ -76,7 +77,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
           </div>
         ))
       }
-    </div>
+    </CardRail>
   </div>
 </section>
 
@@ -90,7 +91,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
       <p class="mt-3 text-base leading-7 text-[var(--muted)]">{x.vsSubtitle}</p>
     </div>
 
-    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+    <CardRail class="mt-8" grid="md:grid-cols-2" peek="wide">
       {
         x.vs.map((row, i) => (
           <div
@@ -121,7 +122,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
           </div>
         ))
       }
-    </div>
+    </CardRail>
   </div>
 </section>
 
@@ -137,7 +138,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
       </p>
     </div>
 
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <CardRail class="mt-8" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide">
       {
         segmentCards.map((card, i) => (
           <a
@@ -166,7 +167,7 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
           </a>
         ))
       }
-    </div>
+    </CardRail>
   </div>
 </section>
 

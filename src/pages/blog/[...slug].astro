@@ -55,7 +55,7 @@ const articleLd = {
   keywords={tags.join(", ")}
   breadcrumbs={[
     { name: "Inicio", path: "/" },
-    { name: "Blog", path: "/blog" },
+    { name: "Blog", path: "/blog/" },
     { name: title, path: Astro.url.pathname },
   ]}
 >
@@ -63,7 +63,7 @@ const articleLd = {
 
   <main class="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6">
     <a
-      href="/blog"
+      href="/blog/"
       class="inline-flex items-center gap-2 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
     >
       <span>←</span> Volver al blog
@@ -74,7 +74,7 @@ const articleLd = {
     </p>
 
     <h1
-      class="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl"
+      class="mt-4 text-[2.15rem] font-extrabold leading-tight tracking-tight text-white sm:text-[2.6rem] lg:text-[3.45rem]"
     >
       {title}
     </h1>
@@ -118,7 +118,7 @@ const articleLd = {
         los precios ya están publicados.
       </p>
       <a
-        href="/contacto"
+        href="/contacto/"
         data-cta="blog-cta-final"
         class="mt-6 inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_rgba(37,99,235,0.45)] transition hover:bg-blue-500"
       >

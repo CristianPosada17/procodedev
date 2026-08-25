@@ -50,9 +50,6 @@ export interface Segment {
   cycleTitle: string;
   cycleBody: string;
   cycleMonths: { label: string; note: string }[];
-  offerTitle: string;
-  offerSubtitle: string;
-  offers: string[];
   faqTitle: string;
   faq: { question: string; answer: string }[];
   ctaTitle: string;
@@ -79,7 +76,7 @@ const es: SegmentDict = {
     heroTitleA: "Sistemas digitales para",
     heroHighlight: "contratistas y constructoras",
     heroSubtitle:
-      "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google. Construyo la infraestructura para que quien busca tu oficio en tu ciudad te encuentre, te crea y te pida cotización — con las fotos y la dirección ya adjuntas.",
+      "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google.",
     intro:
       "Sitio web, Perfil de Empresa en Google, formulario de cotización y seguimiento para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
     projectId: "trejo",
@@ -87,7 +84,7 @@ const es: SegmentDict = {
     projectTitle: "Un negocio de tu oficio que ya está",
     projectHighlight: "trabajando en línea",
     projectWhy:
-      "Trejo Landscaping es exactamente el caso de un contratista: un oficio que vivía de la recomendación y que hoy recibe solicitudes de cotización desde su propia página. Está en vivo — ábrelo y júzgalo tú.",
+      "Trejo Landscaping es exactamente el caso de un contratista: un oficio que vivía de la recomendación y que hoy recibe solicitudes de cotización desde su propia página.",
     projectPoints: [
       "Trabajos terminados con fotos reales, que es la prueba que pide el cliente antes de dejarte entrar a su casa.",
       "Formulario de cotización conectado a WhatsApp, para no perder al que escribe fuera de horario.",
@@ -98,44 +95,50 @@ const es: SegmentDict = {
       "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
     pains: [
       "Vives de recomendaciones: cuando el teléfono deja de sonar, no hay una segunda fuente de trabajos.",
-      "El cliente que paga bien te compara con una empresa que tiene página, reseñas y seguro visible — y se va con ella aunque trabaje peor.",
+      "El cliente que paga bien te compara con una empresa que tiene página, reseñas y seguro visible.",
       "Contestas los mismos mensajes: «¿cuánto cobras?», «¿vienes a mi zona?», «¿mandas cotización?».",
       "Cotizas trabajos que nunca iban a cerrar porque nadie preguntó presupuesto ni zona antes de que manejaras 40 minutos.",
       "Terminas una obra excelente y no queda ni una foto ordenada ni una reseña pedida.",
     ],
-    systemTitle: "Lo que construyo para un contratista",
+    systemTitle: "Qué incluye una página web para contratistas",
     systemSubtitle:
-      "Las mismas seis piezas del sistema, aplicadas a cómo se cierra realmente un trabajo de construcción.",
+      "Lo mismo aplica para una página web para plomeros, electricistas, techos o remodelación, y para el marketing para contratistas de cualquier oficio: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
         title: "Una página por servicio, no una sola de «construcción»",
         description:
-          "Remodelación de cocina, baño completo, techos, concreto, cercas, adiciones. Cada trabajo con su propia página, sus propias fotos y su propio rango de inversión, para que la remodelación grande no compita en la misma página que la reparación de $300.",
+          "Remodelación de cocina, baño completo, techos, concreto, cercas, adiciones.",
       },
       {
         icon: "clipboard-check",
         title: "Formulario de cotización que filtra antes de que manejes",
         description:
-          "Tipo de trabajo, código postal, fotos del espacio, medidas aproximadas, cuándo quiere empezar y rango de presupuesto. Llegas a la llamada sabiendo si el trabajo te conviene, y dejas de cotizar gratis a quien solo estaba preguntando.",
+          "Tipo de trabajo, código postal, fotos del espacio, medidas aproximadas, cuándo quiere empezar y rango de presupuesto.",
       },
       {
         icon: "star",
         title: "Galería de trabajos y antes/después que vende sola",
         description:
-          "Tus obras ordenadas por tipo de trabajo, con fotos reales, ciudad y una línea de qué resolviste. Es la prueba que un cliente necesita para dejarte entrar a su casa y darte un anticipo.",
+          "Tus obras ordenadas por tipo de trabajo, con fotos reales, ciudad y una línea de qué resolviste.",
       },
       {
         icon: "shield",
         title: "Licencia, seguro y garantía visibles",
         description:
-          "Licencia, seguro de responsabilidad, años trabajando, zonas que cubres y qué pasa si algo sale mal. Es exactamente lo que el cliente busca y casi nunca encuentra en la página de un contratista.",
+          "Licencia, seguro de responsabilidad, años trabajando, zonas que cubres y qué pasa si algo sale mal.",
       },
       {
         icon: "target",
         title: "Perfil de Empresa en Google trabajando tu zona",
         description:
           "Optimizado para «contractor near me» y su equivalente en español, con fotos de obra, servicios cargados, zonas de cobertura y un sistema para pedir reseñas justo al entregar el trabajo, que es cuando el cliente está contento.",
+      },
+      {
+        icon: "zap",
+        title: "Marketing para contratistas (opcional)",
+        description:
+          "Campañas locales y anuncios de temporada para llenar las semanas flojas. Se contrata aparte, en plan mensual con precio publicado.",
       },
     ],
     cycleTitle: "Tu año de obra, y qué hace el sistema en cada tramo",
@@ -159,18 +162,7 @@ const es: SegmentDict = {
         note: "Mantenimiento, preparación de invierno y reactivación de clientes.",
       },
     ],
-    offerTitle: "Trabajos que puedes vender al mismo cliente",
-    offerSubtitle:
-      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya sabes hacer, en el momento en que el cliente sí los escucha.",
-    offers: [
-      "Segunda etapa de la obra que ya empezaste",
-      "Mantenimiento anual para clientes anteriores",
-      "Revisión de techo o plomería antes del invierno",
-      "Trabajos pequeños de temporada para llenar semanas flojas",
-      "Referidos del vecino, pedidos al entregar y no dos meses después",
-      "Contratos recurrentes con administradores de propiedades",
-    ],
-    faqTitle: "Dudas de un contratista",
+    faqTitle: "Dudas sobre una página web para contratistas",
     faq: [
       {
         question: "Todo mi trabajo viene por recomendación. ¿Para qué una página?",
@@ -215,7 +207,7 @@ const es: SegmentDict = {
     heroTitleA: "Sistemas digitales para",
     heroHighlight: "consultorios y clínicas",
     heroSubtitle:
-      "Un paciente nuevo te evalúa antes de escribirte: mira tu formación, tus reseñas y si puede agendar sin tener que preguntar precios por mensaje. Construyo la infraestructura para que llegue informado, agende solo y regrese.",
+      "Un paciente nuevo te evalúa antes de escribirte: mira tu formación, tus reseñas y si puede agendar sin tener que preguntar precios por mensaje.",
     intro:
       "Sitio web, agenda en línea, formulario de primera consulta, recordatorios y seguimiento para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
     projectId: "fersilva",
@@ -223,7 +215,7 @@ const es: SegmentDict = {
     projectTitle: "Una práctica de salud que ya está",
     projectHighlight: "trabajando en línea",
     projectWhy:
-      "Fernanda Silva es el caso de un consultorio: explicaba su servicio por mensaje una y otra vez, y hoy los pacientes llegan informados y agendan solos. Está en vivo — ábrelo y júzgalo tú.",
+      "Fernanda Silva es el caso de un consultorio: explicaba su servicio por mensaje una y otra vez, y hoy los pacientes llegan informados y agendan solos.",
     projectPoints: [
       "Servicios explicados con lo que incluyen y cuánto duran, que es lo que quita la mitad de los mensajes.",
       "Agenda en línea para que el paciente elija horario sin tener que preguntarte.",
@@ -239,27 +231,27 @@ const es: SegmentDict = {
       "El paciente viene una vez y no regresa, y no hay nada que se lo recuerde.",
       "Tu formación y tu experiencia no se ven por ningún lado, y compites de tú a tú con quien apenas empieza.",
     ],
-    systemTitle: "Lo que construyo para un consultorio",
+    systemTitle: "Qué incluye una página web para consultorios y clínicas",
     systemSubtitle:
-      "Las mismas seis piezas del sistema, aplicadas a cómo llena realmente su agenda una práctica de salud.",
+      "Lo mismo aplica para una página web para nutriólogos, dentistas o psicólogos, con agenda en línea para pacientes y citas en línea: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
         title: "Una página por servicio, no una sola de «consultas»",
         description:
-          "Primera consulta, seguimiento, paquetes, tratamiento específico. Cada servicio con su propia página, su propio precio de referencia y su propia explicación de qué incluye y cuánto dura. Eso es lo que evita la mitad de los mensajes.",
+          "Primera consulta, seguimiento, paquetes, tratamiento específico.",
       },
       {
         icon: "calendar",
         title: "Agenda en línea conectada a tu calendario",
         description:
-          "El paciente elige horario disponible sin preguntarte, con bloques distintos para primera vez y seguimiento, y la cita cae directo en tu calendario. Sin ida y vuelta de mensajes para cuadrar una hora.",
+          "El paciente elige horario disponible sin preguntarte, con bloques distintos para primera vez y seguimiento, y la cita cae directo en tu calendario.",
       },
       {
         icon: "clipboard-check",
         title: "Formulario de primera consulta antes de la cita",
         description:
-          "Datos, motivo de consulta, antecedentes y lo que necesites preguntar, contestado antes de que el paciente llegue. Empiezas la consulta con la historia media armada en vez de con una hoja en blanco.",
+          "Datos, motivo de consulta, antecedentes y lo que necesites preguntar, contestado antes de que el paciente llegue.",
       },
       {
         icon: "repeat",
@@ -271,7 +263,13 @@ const es: SegmentDict = {
         icon: "shield",
         title: "Formación, cédula y reseñas visibles",
         description:
-          "Tu cédula, tus certificaciones, tu enfoque y las reseñas de pacientes reales, presentados con criterio profesional. Es lo que hace que alguien confíe en ti para algo tan personal como su salud.",
+          "Tu cédula, tus certificaciones, tu enfoque y las reseñas de pacientes reales, presentados con criterio profesional.",
+      },
+      {
+        icon: "zap",
+        title: "Marketing para consultorios (opcional)",
+        description:
+          "Campañas para pacientes nuevos de tu zona y recordatorios de temporada. Se contrata aparte, en plan mensual con precio publicado.",
       },
     ],
     cycleTitle: "Tu año de consulta, y qué hace el sistema en cada tramo",
@@ -295,18 +293,7 @@ const es: SegmentDict = {
         note: "Cierre de año, revisiones y agenda preparada para enero.",
       },
     ],
-    offerTitle: "Servicios que puedes ofrecer a los pacientes que ya tienes",
-    offerSubtitle:
-      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya das, en el momento en que el paciente sí los escucha.",
-    offers: [
-      "Paquetes de seguimiento en vez de consultas sueltas",
-      "Consulta en línea para quien vive lejos o viaja",
-      "Revisión anual o de control para pacientes anteriores",
-      "Programas de varias semanas con precio cerrado",
-      "Talleres o sesiones grupales con cupo limitado",
-      "Convenios con empresas o gimnasios de tu zona",
-    ],
-    faqTitle: "Dudas de un profesional de la salud",
+    faqTitle: "Dudas sobre un sitio web para clínicas y consultorios",
     faq: [
       {
         question: "¿Puedo poner precios o es mejor no publicarlos?",
@@ -351,7 +338,7 @@ const es: SegmentDict = {
     heroTitleA: "Sistemas digitales para",
     heroHighlight: "servicios profesionales",
     heroSubtitle:
-      "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema. Construyo la infraestructura para que esa confianza se vea antes de la primera llamada, y para que llegue a tu agenda el caso que sí te conviene.",
+      "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema.",
     intro:
       "Sitio web, captación, formulario de calificación, agenda y seguimiento para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
     projectId: "cristian-posada",
@@ -359,7 +346,7 @@ const es: SegmentDict = {
     projectTitle: "Un profesional que vende criterio, y lo",
     projectHighlight: "demuestra en su sitio",
     projectWhy:
-      "Mi propia marca personal es el caso de alguien que no vende un producto, sino su trabajo: trayectoria, proyectos y contenido en un solo lugar que convierte al visitante en una conversación. Está en vivo — ábrelo y júzgalo tú.",
+      "Mi propia marca personal es el caso de alguien que no vende un producto, sino su trabajo: trayectoria, proyectos y contenido en un solo lugar que convierte al visitante en una conversación.",
     projectPoints: [
       "Autoridad demostrable —proyectos, trayectoria y contenido— en vez de adjetivos.",
       "Un solo hub al que apuntan todos los enlaces de redes, en vez de perfiles sueltos.",
@@ -375,39 +362,45 @@ const es: SegmentDict = {
       "Mandas una propuesta y no vuelves a saber nada, porque nadie hace el seguimiento.",
       "Tu contenido y tu reputación viven en redes sociales, no en un sitio que trabaje para ti.",
     ],
-    systemTitle: "Lo que construyo para un profesional",
+    systemTitle: "Qué incluye una página web para abogados y consultores",
     systemSubtitle:
-      "Las mismas seis piezas del sistema, aplicadas a cómo se gana realmente un cliente que compra criterio.",
+      "Lo mismo aplica para un sitio web para consultores, para una página web para agentes de seguros y para la captación de clientes para abogados: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
         title: "Una página por área de práctica, no una sola de «servicios»",
         description:
-          "Cada área con su propia página, su propio lenguaje y su propio caso de uso. Quien busca ayuda con un problema concreto necesita leer ese problema, no una lista genérica donde el suyo aparece en tercer lugar.",
+          "Cada área con su propia página, su propio lenguaje y su propio caso de uso.",
       },
       {
         icon: "clipboard-check",
         title: "Formulario que califica antes de la consulta",
         description:
-          "Tipo de asunto, situación actual, urgencia y presupuesto o expectativa. Llegas a la llamada sabiendo si el caso es para ti, y las consultas gratis dejan de comerse tu semana.",
+          "Tipo de asunto, situación actual, urgencia y presupuesto o expectativa.",
       },
       {
         icon: "briefcase",
         title: "Autoridad demostrable, no adjetivos",
         description:
-          "Años de práctica, credenciales, tipos de caso resueltos, publicaciones y reseñas. Sustituimos «profesional y confiable» por hechos que el prospecto puede verificar.",
+          "Años de práctica, credenciales, tipos de caso resueltos, publicaciones y reseñas.",
       },
       {
         icon: "calendar",
         title: "Agenda de consulta conectada y con filtro",
         description:
-          "Consulta inicial en línea con las preguntas de calificación por delante, para que solo agende quien tiene un asunto que puedes tomar. Con recordatorio automático para reducir ausencias.",
+          "Consulta inicial en línea con las preguntas de calificación por delante, para que solo agende quien tiene un asunto que puedes tomar.",
       },
       {
         icon: "repeat",
         title: "Seguimiento de propuestas que no se cae solo",
         description:
-          "Cada prospecto que pidió una propuesta y no respondió recibe seguimiento en los días correctos, con un mensaje que no suena a cobranza. Es donde se recupera más dinero con menos esfuerzo.",
+          "Cada prospecto que pidió una propuesta y no respondió recibe seguimiento en los días correctos, con un mensaje que no suena a cobranza.",
+      },
+      {
+        icon: "zap",
+        title: "Marketing para servicios profesionales (opcional)",
+        description:
+          "Campañas y contenido para atraer el tipo de caso que sí te conviene. Se contrata aparte, en plan mensual con precio publicado.",
       },
     ],
     cycleTitle: "Tu año profesional, y qué hace el sistema en cada tramo",
@@ -431,18 +424,7 @@ const es: SegmentDict = {
         note: "Cierre de año, renovaciones y agenda preparada para enero.",
       },
     ],
-    offerTitle: "Servicios que puedes ofrecer a tu base actual",
-    offerSubtitle:
-      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya das, en el momento en que el cliente sí los escucha.",
-    offers: [
-      "Iguala mensual o asesoría continua en vez de trabajos sueltos",
-      "Revisión anual de documentos, pólizas o contratos",
-      "Segunda fase del asunto que ya resolviste",
-      "Paquetes cerrados para trámites que se repiten",
-      "Consulta express de pago para filtrar y monetizar la primera llamada",
-      "Referidos pedidos al cerrar, no seis meses después",
-    ],
-    faqTitle: "Dudas de un profesional",
+    faqTitle: "Dudas sobre un sitio web para abogados y consultores",
     faq: [
       {
         question: "Mi trabajo es delicado. ¿Puedo mostrar casos?",
@@ -487,7 +469,7 @@ const es: SegmentDict = {
     heroTitleA: "Sistemas digitales para",
     heroHighlight: "asesores inmobiliarios",
     heroSubtitle:
-      "Tus propiedades viven en portales y en redes, pero tu marca no vive en ninguna parte. Construyo el sitio donde el comprador ve tu catálogo, entiende con quién está tratando y te deja sus datos a ti — no al portal.",
+      "Tus propiedades viven en portales y en redes, pero tu marca no vive en ninguna parte.",
     intro:
       "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, agenda de visitas y seguimiento para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
     projectId: "demo-inmobiliaria",
@@ -495,7 +477,7 @@ const es: SegmentDict = {
     projectTitle: "Cómo se ve un catálogo inmobiliario",
     projectHighlight: "bien estructurado",
     projectWhy:
-      "Un sitio inmobiliario completo con catálogo de propiedades, fichas detalladas y captación directa. Lo construí por mi cuenta para mostrar cómo se ordena el inventario de un asesor: es una demo, no un cliente, y lo digo para que no haya confusión.",
+      "Un sitio inmobiliario completo con catálogo de propiedades, fichas detalladas y captación directa.",
     projectPoints: [
       "Ficha propia por propiedad, con galería, características y mapa: un enlace que se ve profesional al mandarlo por WhatsApp.",
       "Filtros por zona, precio y tipo de operación, para que el comprador llegue solo a lo suyo.",
@@ -511,39 +493,45 @@ const es: SegmentDict = {
       "El comprador que no compró este año no vuelve a saber de ti, aunque sí compre el siguiente.",
       "Tu experiencia y tus operaciones cerradas no se ven, y compites con quien acaba de sacar la licencia.",
     ],
-    systemTitle: "Lo que construyo para un asesor inmobiliario",
+    systemTitle: "Qué incluye una página web para inmobiliarias",
     systemSubtitle:
-      "Las mismas seis piezas del sistema, aplicadas a cómo se cierra realmente una operación inmobiliaria.",
+      "Lo mismo aplica para una página web de bienes raíces con catálogo de propiedades en línea y captación de prospectos inmobiliarios: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
         title: "Catálogo con ficha propia por propiedad",
         description:
-          "Cada propiedad con su página: galería, plano, características, colonia, mapa y precio. Es un enlace que puedes mandar por WhatsApp y que se ve profesional, en vez de doce fotos sueltas.",
+          "Cada propiedad con su página: galería, plano, características, colonia, mapa y precio.",
       },
       {
         icon: "search",
         title: "Filtros que llevan al comprador a lo suyo",
         description:
-          "Por zona, precio, recámaras y tipo de operación. El comprador encuentra en un minuto lo que en un chat le tomaría veinte mensajes, y tú ves qué está buscando la gente.",
+          "Por zona, precio, recámaras y tipo de operación.",
       },
       {
         icon: "clipboard-check",
         title: "Formulario que califica antes de la visita",
         description:
-          "Presupuesto, forma de pago —crédito, contado o precalificado—, zona y tiempo de compra. Sales a enseñar propiedades solo a quien puede comprarlas.",
+          "Presupuesto, forma de pago —crédito, contado o precalificado—, zona y tiempo de compra.",
       },
       {
         icon: "briefcase",
         title: "Tu perfil de asesor, no solo tu inventario",
         description:
-          "Quién eres, cuántas operaciones has cerrado, en qué zonas te especializas y qué dicen tus clientes. El inventario cambia cada mes; tu reputación es lo que hace que te escriban a ti.",
+          "Quién eres, cuántas operaciones has cerrado, en qué zonas te especializas y qué dicen tus clientes.",
       },
       {
         icon: "repeat",
         title: "Seguimiento a compradores de ciclo largo",
         description:
-          "Un comprador puede tardar un año en decidirse. El sistema mantiene el contacto con nuevas propiedades de su zona y su rango, para que cuando esté listo te escriba a ti y no al portal.",
+          "Un comprador puede tardar un año en decidirse.",
+      },
+      {
+        icon: "zap",
+        title: "Marketing inmobiliario (opcional)",
+        description:
+          "Campañas por propiedad y por zona para captar compradores y vendedores. Se contrata aparte, en plan mensual con precio publicado.",
       },
     ],
     cycleTitle: "Tu año inmobiliario, y qué hace el sistema en cada tramo",
@@ -567,18 +555,7 @@ const es: SegmentDict = {
         note: "Ciclo lento: contenido de zona y seguimiento a prospectos tibios.",
       },
     ],
-    offerTitle: "Servicios que puedes ofrecer además de la venta",
-    offerSubtitle:
-      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya das, en el momento en que el cliente sí los escucha.",
-    offers: [
-      "Captación de propiedades de dueños que quieren vender",
-      "Administración y renta para inversionistas",
-      "Asesoría de crédito y precalificación",
-      "Valuación gratuita como puerta de entrada del vendedor",
-      "Asesoría a compradores primerizos, paso a paso",
-      "Cartera de inversión para clientes que ya te compraron",
-    ],
-    faqTitle: "Dudas de un asesor inmobiliario",
+    faqTitle: "Dudas sobre un sitio web para asesores inmobiliarios",
     faq: [
       {
         question: "¿Puedo cargar y quitar propiedades yo mismo?",
@@ -627,7 +604,7 @@ const es: SegmentDict = {
     heroTitleA: "Sistemas digitales para",
     heroHighlight: "despachos de contabilidad e impuestos",
     heroSubtitle:
-      "Tu año se concentra en unas pocas semanas y el resto del calendario se apaga. Construyo la infraestructura para que llegues a la temporada con la agenda llenándose sola, y para que los clientes de este año sigan siendo clientes el próximo.",
+      "Tu año se concentra en unas pocas semanas y el resto del calendario se apaga.",
     intro:
       "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y seguimiento para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
     projectId: "demo-taxpro",
@@ -635,7 +612,7 @@ const es: SegmentDict = {
     projectTitle: "Cómo se ve un despacho contable",
     projectHighlight: "bien presentado",
     projectWhy:
-      "Un sitio bilingüe para un despacho fiscal y contable: servicios separados, agenda de consulta y captación enfocada en confianza. Lo construí por mi cuenta como demostración del sector: es una demo, no un cliente, y lo digo para que no haya confusión.",
+      "Un sitio bilingüe para un despacho fiscal y contable: servicios separados, agenda de consulta y captación enfocada en confianza.",
     projectPoints: [
       "Una página por servicio, para que la declaración de negocio no compita con la de persona física.",
       "Agenda de consulta y captación construidas alrededor de la confianza, que es lo que decide en este giro.",
@@ -651,21 +628,21 @@ const es: SegmentDict = {
       "En plena temporada pierdes prospectos porque nadie tuvo tiempo de contestarles en 24 horas.",
       "El cliente del año pasado no regresó y te enteraste tarde, cuando ya presentó con otro.",
     ],
-    systemTitle: "Lo que construyo para un despacho",
+    systemTitle: "Qué incluye una página web para despachos contables",
     systemSubtitle:
-      "Las mismas seis piezas del sistema, aplicadas a cómo factura realmente una práctica contable.",
+      "Lo mismo aplica para una página web para CPA o para preparadores de impuestos, con intake de documentos incluido: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
         title: "Una página por servicio, no una sola de «contabilidad»",
         description:
-          "Declaraciones de personas, de negocio, contabilidad mensual, nómina, trámites y representación. Cada servicio con su propio mensaje y su propio precio de referencia, para que el cliente con negocio no compita en la misma página que la declaración sencilla.",
+          "Declaraciones de personas, de negocio, contabilidad mensual, nómina, trámites y representación.",
       },
       {
         icon: "clipboard-check",
         title: "Intake que pide los documentos antes de la cita",
         description:
-          "Formulario por tipo de servicio con la lista de documentos, carga segura de archivos y preguntas de calificación. Llegas a la cita con el expediente medio armado en vez de con una hoja en blanco.",
+          "Formulario por tipo de servicio con la lista de documentos, carga segura de archivos y preguntas de calificación.",
       },
       {
         icon: "calendar",
@@ -677,7 +654,7 @@ const es: SegmentDict = {
         icon: "repeat",
         title: "Reactivación de la base del año pasado",
         description:
-          "Antes de que arranque la temporada, tus clientes anteriores reciben el aviso de que ya puedes recibirlos, con el enlace para agendar. Es el ingreso más barato que existe y casi nadie lo trabaja.",
+          "Antes de que arranque la temporada, tus clientes anteriores reciben el aviso de que ya puedes recibirlos, con el enlace para agendar.",
       },
       {
         icon: "target",
@@ -685,10 +662,16 @@ const es: SegmentDict = {
         description:
           "Optimizado para las búsquedas de tu servicio en tu ciudad, en inglés y español, con publicaciones durante la temporada, horario extendido y un sistema para pedir reseñas justo cuando el cliente está contento.",
       },
+      {
+        icon: "zap",
+        title: "Marketing para despachos fiscales (opcional)",
+        description:
+          "Campañas antes de la temporada y contenido que trae declaraciones nuevas. Se contrata aparte, en plan mensual con precio publicado.",
+      },
     ],
     cycleTitle: "Tu calendario, y qué hace el sistema en cada tramo",
     cycleBody:
-      "Nada de esto se improvisa en plena temporada. El sistema se monta antes y trabaja solo cuando tú no tienes tiempo de mirarlo.",
+      "Nada de esto se improvisa en plena temporada.",
     cycleMonths: [
       {
         label: "Nov – Dic",
@@ -707,18 +690,7 @@ const es: SegmentDict = {
         note: "Extensiones, contenido y preparación de la siguiente temporada.",
       },
     ],
-    offerTitle: "Servicios que puedes vender el resto del año",
-    offerSubtitle:
-      "No te propongo que inventes servicios nuevos: te propongo presentar los que ya podrías dar, en el momento en que el cliente sí los escucha.",
-    offers: [
-      "Contabilidad mensual para tus clientes con negocio",
-      "Nómina para los que ya tienen empleados",
-      "Planeación fiscal antes del cierre del año",
-      "Constitución de empresas para el que se independiza",
-      "Años anteriores sin presentar y correcciones",
-      "Estados financieros para trámites de crédito",
-    ],
-    faqTitle: "Dudas de un despacho",
+    faqTitle: "Dudas sobre un sitio web para contadores",
     faq: [
       {
         question: "Estoy en plena temporada. ¿Vale la pena empezar ahora?",
@@ -765,7 +737,7 @@ const en: SegmentDict = {
     heroTitleA: "Digital systems for",
     heroHighlight: "contractors and builders",
     heroSubtitle:
-      "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google. I build the infrastructure so the person searching your trade in your city finds you, believes you and asks for a quote — with photos and address already attached.",
+      "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google.",
     intro:
       "Website, Google Business Profile, quote form and follow-up for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
     projectId: "trejo",
@@ -773,7 +745,7 @@ const en: SegmentDict = {
     projectTitle: "A business in your trade that's already",
     projectHighlight: "working online",
     projectWhy:
-      "Trejo Landscaping is exactly the contractor case: a trade that lived on referrals and now takes quote requests straight from its own site. It's live — open it and judge for yourself.",
+      "Trejo Landscaping is exactly the contractor case: a trade that lived on referrals and now takes quote requests straight from its own site.",
     projectPoints: [
       "Finished work with real photos, the proof a client wants before letting you into their home.",
       "A quote form wired to WhatsApp, so you don't lose the person who writes after hours.",
@@ -784,38 +756,38 @@ const en: SegmentDict = {
       "None of these problems is solved by a prettier page. They're solved with structure.",
     pains: [
       "You live on referrals: when the phone goes quiet, there's no second source of work.",
-      "The client who pays well compares you to a company with a website, reviews and visible insurance — and goes with them even if they do worse work.",
+      "The client who pays well compares you to a company with a website, reviews and visible insurance.",
       "You answer the same messages: «what do you charge?», «do you come to my area?», «can you send a quote?».",
       "You quote jobs that were never going to close because nobody asked about budget or area before you drove 40 minutes.",
       "You finish excellent work and end up with no organized photos and no review requested.",
     ],
-    systemTitle: "What I build for a contractor",
+    systemTitle: "What a contractor website includes",
     systemSubtitle:
-      "The same six pieces of the system, applied to how a construction job actually closes.",
+      "The same applies to a plumber website, an electrician website or a roofing company website, and to contractor lead generation of any trade: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
         title: "A page per service, not one page for «construction»",
         description:
-          "Kitchen remodel, full bathroom, roofing, concrete, fencing, additions. Every job with its own page, its own photos and its own investment range, so the big remodel doesn't compete on the same page as the $300 repair.",
+          "Kitchen remodel, full bathroom, roofing, concrete, fencing, additions.",
       },
       {
         icon: "clipboard-check",
         title: "A quote form that filters before you drive",
         description:
-          "Job type, ZIP code, photos of the space, rough measurements, start timing and budget range. You reach the call already knowing whether the job is a fit, and you stop quoting for free to people who were just asking.",
+          "Job type, ZIP code, photos of the space, rough measurements, start timing and budget range.",
       },
       {
         icon: "star",
         title: "A work gallery and before/after that sells on its own",
         description:
-          "Your jobs organized by type, with real photos, city and one line about what you solved. That's the proof a client needs to let you into their home and hand you a deposit.",
+          "Your jobs organized by type, with real photos, city and one line about what you solved.",
       },
       {
         icon: "shield",
         title: "License, insurance and warranty in plain sight",
         description:
-          "License, liability insurance, years in business, areas you cover and what happens if something goes wrong. It's exactly what the client looks for and almost never finds on a contractor's page.",
+          "License, liability insurance, years in business, areas you cover and what happens if something goes wrong.",
       },
       {
         icon: "target",
@@ -823,10 +795,16 @@ const en: SegmentDict = {
         description:
           "Optimized for «contractor near me» and its Spanish equivalent, with job-site photos, loaded services, service areas and a system to request reviews right at handover, when the client is happiest.",
       },
+      {
+        icon: "zap",
+        title: "Contractor marketing (optional)",
+        description:
+          "Local campaigns and seasonal ads to fill the slow weeks. Hired separately, as a monthly plan with published pricing.",
+      },
     ],
     cycleTitle: "Your building year, and what the system does in each stretch",
     cycleBody:
-      "Weather runs your revenue. The system gets built before, and works on its own while you're on site sunup to sundown.",
+      "Weather runs your revenue.",
     cycleMonths: [
       {
         label: "Jan – Mar",
@@ -845,18 +823,7 @@ const en: SegmentDict = {
         note: "Maintenance, winter prep and reactivation of past clients.",
       },
     ],
-    offerTitle: "Work you can sell to the same client",
-    offerSubtitle:
-      "I'm not asking you to invent new services: I'm asking you to present the ones you already do, at the moment the client actually listens.",
-    offers: [
-      "The second phase of the job you already started",
-      "Annual maintenance for past clients",
-      "Roof or plumbing check before winter",
-      "Small seasonal jobs to fill slow weeks",
-      "Neighbor referrals, requested at handover instead of two months later",
-      "Recurring contracts with property managers",
-    ],
-    faqTitle: "A contractor's questions",
+    faqTitle: "Contractor website questions",
     faq: [
       {
         question: "All my work comes from referrals. Why a website?",
@@ -901,7 +868,7 @@ const en: SegmentDict = {
     heroTitleA: "Digital systems for",
     heroHighlight: "clinics and private practices",
     heroSubtitle:
-      "A new patient evaluates you before they ever message: they look at your training, your reviews and whether they can book without asking about prices over chat. I build the infrastructure so they arrive informed, book on their own and come back.",
+      "A new patient evaluates you before they ever message: they look at your training, your reviews and whether they can book without asking about prices over chat.",
     intro:
       "Website, online booking, first-visit intake form, reminders and follow-up for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
     projectId: "fersilva",
@@ -909,7 +876,7 @@ const en: SegmentDict = {
     projectTitle: "A health practice that's already",
     projectHighlight: "working online",
     projectWhy:
-      "Fernanda Silva is the private-practice case: she explained her service over chat again and again, and now patients arrive informed and book on their own. It's live — open it and judge for yourself.",
+      "Fernanda Silva is the private-practice case: she explained her service over chat again and again, and now patients arrive informed and book on their own.",
     projectPoints: [
       "Services explained with what's included and how long they take — that alone removes half the messages.",
       "Online booking so the patient picks a slot without having to ask you.",
@@ -925,27 +892,27 @@ const en: SegmentDict = {
       "The patient comes once and doesn't return, and nothing reminds them to.",
       "Your training and experience aren't visible anywhere, so you compete head-to-head with someone who just started.",
     ],
-    systemTitle: "What I build for a practice",
+    systemTitle: "What a clinic website includes",
     systemSubtitle:
-      "The same six pieces of the system, applied to how a health practice actually fills its calendar.",
+      "The same applies to a private practice website, a dentist website or a nutritionist website, with online booking for patients: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
         title: "A page per service, not one page for «consultations»",
         description:
-          "First visit, follow-up, packages, specific treatment. Every service with its own page, its own reference price and its own explanation of what's included and how long it takes. That alone removes half your messages.",
+          "First visit, follow-up, packages, specific treatment.",
       },
       {
         icon: "calendar",
         title: "Online booking connected to your calendar",
         description:
-          "The patient picks an open slot without asking you, with different blocks for first visits and follow-ups, and the appointment lands straight in your calendar. No back-and-forth to settle on a time.",
+          "The patient picks an open slot without asking you, with different blocks for first visits and follow-ups, and the appointment lands straight in your calendar.",
       },
       {
         icon: "clipboard-check",
         title: "First-visit intake before the appointment",
         description:
-          "Details, reason for the visit, history and whatever else you need to ask, answered before the patient walks in. You start the visit with the file half built instead of a blank page.",
+          "Details, reason for the visit, history and whatever else you need to ask, answered before the patient walks in.",
       },
       {
         icon: "repeat",
@@ -957,7 +924,13 @@ const en: SegmentDict = {
         icon: "shield",
         title: "Credentials, license and reviews in plain sight",
         description:
-          "Your license, certifications, approach and real patient reviews, presented with professional judgment. It's what makes someone trust you with something as personal as their health.",
+          "Your license, certifications, approach and real patient reviews, presented with professional judgment.",
+      },
+      {
+        icon: "zap",
+        title: "Medical practice marketing (optional)",
+        description:
+          "Campaigns for new patients in your area and seasonal reminders. Hired separately, as a monthly plan with published pricing.",
       },
     ],
     cycleTitle: "Your practice year, and what the system does in each stretch",
@@ -981,18 +954,7 @@ const en: SegmentDict = {
         note: "Year-end, check-ups and a calendar ready for January.",
       },
     ],
-    offerTitle: "Services you can offer the patients you already have",
-    offerSubtitle:
-      "I'm not asking you to invent new services: I'm asking you to present the ones you already offer, at the moment the patient actually listens.",
-    offers: [
-      "Follow-up packages instead of one-off visits",
-      "Online consultations for patients who live far or travel",
-      "Annual or check-up visits for past patients",
-      "Multi-week programs at a fixed price",
-      "Workshops or group sessions with limited spots",
-      "Agreements with local employers or gyms",
-    ],
-    faqTitle: "A health professional's questions",
+    faqTitle: "Clinic website questions",
     faq: [
       {
         question: "Should I publish prices or leave them off?",
@@ -1037,7 +999,7 @@ const en: SegmentDict = {
     heroTitleA: "Digital systems for",
     heroHighlight: "professional services",
     heroSubtitle:
-      "When someone hires you they aren't buying hours: they're buying the confidence that you can solve their problem. I build the infrastructure so that confidence is visible before the first call, and so the case that actually fits is the one that reaches your calendar.",
+      "When someone hires you they aren't buying hours: they're buying the confidence that you can solve their problem.",
     intro:
       "Website, client acquisition, qualifying form, scheduling and follow-up for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
     projectId: "cristian-posada",
@@ -1045,7 +1007,7 @@ const en: SegmentDict = {
     projectTitle: "A professional who sells judgment, and",
     projectHighlight: "proves it on his site",
     projectWhy:
-      "My own personal brand is the case of someone who doesn't sell a product but their work: track record, projects and content in one place that turns a visitor into a conversation. It's live — open it and judge for yourself.",
+      "My own personal brand is the case of someone who doesn't sell a product but their work: track record, projects and content in one place that turns a visitor into a conversation.",
     projectPoints: [
       "Demonstrable authority — projects, track record and content — instead of adjectives.",
       "One hub every social link points to, instead of scattered profiles.",
@@ -1061,39 +1023,45 @@ const en: SegmentDict = {
       "You send a proposal and never hear back, because nobody follows up.",
       "Your content and reputation live on social media, not on a site that works for you.",
     ],
-    systemTitle: "What I build for a professional",
+    systemTitle: "What an attorney website includes",
     systemSubtitle:
-      "The same six pieces of the system, applied to how you actually win a client who buys judgment.",
+      "The same applies to a law firm website, an insurance agent website and to client acquisition for attorneys: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
         title: "A page per practice area, not one page for «services»",
         description:
-          "Every area with its own page, its own language and its own use case. Someone searching for help with a specific problem needs to read that problem, not a generic list where theirs shows up third.",
+          "Every area with its own page, its own language and its own use case.",
       },
       {
         icon: "clipboard-check",
         title: "A form that qualifies before the consult",
         description:
-          "Matter type, current situation, urgency and budget or expectation. You reach the call already knowing whether the case is for you, and free consults stop eating your week.",
+          "Matter type, current situation, urgency and budget or expectation.",
       },
       {
         icon: "briefcase",
         title: "Demonstrable authority, not adjectives",
         description:
-          "Years in practice, credentials, types of matters resolved, publications and reviews. We replace «professional and reliable» with facts the prospect can verify.",
+          "Years in practice, credentials, types of matters resolved, publications and reviews.",
       },
       {
         icon: "calendar",
         title: "Consult booking, connected and filtered",
         description:
-          "An initial consult booked online with the qualifying questions up front, so only someone with a matter you can take gets a slot. With automatic reminders to cut no-shows.",
+          "An initial consult booked online with the qualifying questions up front, so only someone with a matter you can take gets a slot.",
       },
       {
         icon: "repeat",
         title: "Proposal follow-up that doesn't fall through",
         description:
-          "Every prospect who asked for a proposal and went quiet gets followed up on the right days, with a message that doesn't read like collections. It's where the most money is recovered with the least effort.",
+          "Every prospect who asked for a proposal and went quiet gets followed up on the right days, with a message that doesn't read like collections.",
+      },
+      {
+        icon: "zap",
+        title: "Professional services marketing (optional)",
+        description:
+          "Campaigns and content to attract the kind of case that's worth your time. Hired separately, as a monthly plan with published pricing.",
       },
     ],
     cycleTitle: "Your professional year, and what the system does in each stretch",
@@ -1117,18 +1085,7 @@ const en: SegmentDict = {
         note: "Year-end, renewals and a calendar ready for January.",
       },
     ],
-    offerTitle: "Services you can offer your current base",
-    offerSubtitle:
-      "I'm not asking you to invent new services: I'm asking you to present the ones you already offer, at the moment the client actually listens.",
-    offers: [
-      "A monthly retainer or ongoing advisory instead of one-off work",
-      "Annual review of documents, policies or contracts",
-      "The second phase of the matter you already resolved",
-      "Fixed-price packages for work that repeats",
-      "A paid express consult to filter and monetize the first call",
-      "Referrals requested at closing, not six months later",
-    ],
-    faqTitle: "A professional's questions",
+    faqTitle: "Attorney and consultant website questions",
     faq: [
       {
         question: "My work is sensitive. Can I show cases?",
@@ -1173,7 +1130,7 @@ const en: SegmentDict = {
     heroTitleA: "Digital systems for",
     heroHighlight: "real estate agents",
     heroSubtitle:
-      "Your listings live on portals and social media, but your brand lives nowhere. I build the site where the buyer sees your catalog, understands who they're dealing with and leaves their details with you — not with the portal.",
+      "Your listings live on portals and social media, but your brand lives nowhere.",
     intro:
       "Website with property catalog, detailed listing pages, qualified lead form, showing scheduler and follow-up for real estate agents, brokerages and developers.",
     projectId: "demo-inmobiliaria",
@@ -1181,7 +1138,7 @@ const en: SegmentDict = {
     projectTitle: "What a well-structured real estate",
     projectHighlight: "catalog looks like",
     projectWhy:
-      "A complete real estate site with a property catalog, detailed listing pages and direct lead capture. I built it on my own to show how an agent's inventory gets organized: it's a demo, not a client, and I say so to keep it clear.",
+      "A complete real estate site with a property catalog, detailed listing pages and direct lead capture.",
     projectPoints: [
       "Its own page per property, with gallery, features and map: a link that looks professional when you send it over WhatsApp.",
       "Filters by area, price and deal type, so the buyer lands straight on what they want.",
@@ -1197,39 +1154,45 @@ const en: SegmentDict = {
       "The buyer who didn't buy this year never hears from you again, even though they do buy the next one.",
       "Your experience and closed deals aren't visible, so you compete with someone who just got licensed.",
     ],
-    systemTitle: "What I build for a real estate agent",
+    systemTitle: "What a real estate agent website includes",
     systemSubtitle:
-      "The same six pieces of the system, applied to how a real estate deal actually closes.",
+      "The same applies to a realtor website or a brokerage website with a property catalog website and real estate lead generation: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
         title: "A catalog with its own page per property",
         description:
-          "Every property with its own page: gallery, floor plan, features, neighborhood, map and price. It's a link you can send over WhatsApp that looks professional, instead of twelve loose photos.",
+          "Every property with its own page: gallery, floor plan, features, neighborhood, map and price.",
       },
       {
         icon: "search",
         title: "Filters that take the buyer to what they want",
         description:
-          "By area, price, bedrooms and deal type. The buyer finds in a minute what would take twenty messages in a chat, and you see what people are actually looking for.",
+          "By area, price, bedrooms and deal type.",
       },
       {
         icon: "clipboard-check",
         title: "A form that qualifies before the showing",
         description:
-          "Budget, financing — loan, cash or pre-approved —, area and buying timeline. You only go out to show properties to people who can buy them.",
+          "Budget, financing — loan, cash or pre-approved —, area and buying timeline.",
       },
       {
         icon: "briefcase",
         title: "Your agent profile, not just your inventory",
         description:
-          "Who you are, how many deals you've closed, which areas you specialize in and what your clients say. Inventory changes every month; your reputation is what makes them write to you.",
+          "Who you are, how many deals you've closed, which areas you specialize in and what your clients say.",
       },
       {
         icon: "repeat",
         title: "Follow-up for long-cycle buyers",
         description:
-          "A buyer can take a year to decide. The system keeps in touch with new properties in their area and range, so when they're ready they write to you and not to the portal.",
+          "A buyer can take a year to decide.",
+      },
+      {
+        icon: "zap",
+        title: "Real estate marketing (optional)",
+        description:
+          "Per-property and per-area campaigns to win buyers and sellers. Hired separately, as a monthly plan with published pricing.",
       },
     ],
     cycleTitle: "Your real estate year, and what the system does in each stretch",
@@ -1253,18 +1216,7 @@ const en: SegmentDict = {
         note: "Slow cycle: neighborhood content and follow-up on warm leads.",
       },
     ],
-    offerTitle: "Services you can offer beyond the sale",
-    offerSubtitle:
-      "I'm not asking you to invent new services: I'm asking you to present the ones you already offer, at the moment the client actually listens.",
-    offers: [
-      "Listing acquisition from owners who want to sell",
-      "Property management and rentals for investors",
-      "Financing guidance and pre-qualification",
-      "A free valuation as the seller's entry point",
-      "Step-by-step guidance for first-time buyers",
-      "An investment portfolio for clients who already bought from you",
-    ],
-    faqTitle: "A real estate agent's questions",
+    faqTitle: "Real estate agent website questions",
     faq: [
       {
         question: "Can I add and remove listings myself?",
@@ -1309,7 +1261,7 @@ const en: SegmentDict = {
     heroTitleA: "Digital systems for",
     heroHighlight: "accounting and tax practices",
     heroSubtitle:
-      "Your year concentrates into a few weeks and the rest of the calendar goes quiet. I build the infrastructure so you reach the season with your calendar filling itself, and so this year's clients are still clients next year.",
+      "Your year concentrates into a few weeks and the rest of the calendar goes quiet.",
     intro:
       "Website, Google Business Profile, document intake, scheduling and follow-up for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
     projectId: "demo-taxpro",
@@ -1317,7 +1269,7 @@ const en: SegmentDict = {
     projectTitle: "What a well-presented accounting",
     projectHighlight: "practice looks like",
     projectWhy:
-      "A bilingual site for an accounting and tax practice: separate services, consult booking and trust-focused lead capture. I built it on my own as a sector demonstration: it's a demo, not a client, and I say so to keep it clear.",
+      "A bilingual site for an accounting and tax practice: separate services, consult booking and trust-focused lead capture.",
     projectPoints: [
       "A page per service, so the business return doesn't compete with the individual one.",
       "Consult booking and lead capture built around trust, which is what decides in this industry.",
@@ -1333,21 +1285,21 @@ const en: SegmentDict = {
       "In the middle of the season you lose prospects because nobody had time to answer them within 24 hours.",
       "Last year's client didn't come back and you found out late, after they'd already filed with someone else.",
     ],
-    systemTitle: "What I build for a practice",
+    systemTitle: "What an accounting firm website includes",
     systemSubtitle:
-      "The same six pieces of the system, applied to how an accounting practice actually gets paid.",
+      "The same applies to a CPA website, a bookkeeper website or a tax preparer website, with document intake for accountants: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
         title: "A page per service, not one page for «accounting»",
         description:
-          "Individual returns, business returns, monthly bookkeeping, payroll, filings and representation. Every service with its own message and its own reference price, so the business client doesn't compete on the same page as the simple return.",
+          "Individual returns, business returns, monthly bookkeeping, payroll, filings and representation.",
       },
       {
         icon: "clipboard-check",
         title: "Intake that asks for documents before the appointment",
         description:
-          "A form per service type with the document list, secure file upload and qualifying questions. You reach the appointment with the file half built instead of a blank page.",
+          "A form per service type with the document list, secure file upload and qualifying questions.",
       },
       {
         icon: "calendar",
@@ -1359,7 +1311,7 @@ const en: SegmentDict = {
         icon: "repeat",
         title: "Reactivation of last year's base",
         description:
-          "Before the season starts, your past clients get the note that you're taking appointments, with the booking link. It's the cheapest revenue there is and almost nobody works it.",
+          "Before the season starts, your past clients get the note that you're taking appointments, with the booking link.",
       },
       {
         icon: "target",
@@ -1367,10 +1319,16 @@ const en: SegmentDict = {
         description:
           "Optimized for searches for your service in your city, in English and Spanish, with posts during the season, extended hours and a system to request reviews right when the client is happiest.",
       },
+      {
+        icon: "zap",
+        title: "Tax practice marketing (optional)",
+        description:
+          "Pre-season campaigns and content that brings in new returns. Hired separately, as a monthly plan with published pricing.",
+      },
     ],
     cycleTitle: "Your calendar, and what the system does in each stretch",
     cycleBody:
-      "None of this gets improvised mid-season. The system is built before and runs on its own when you have no time to look at it.",
+      "None of this gets improvised mid-season.",
     cycleMonths: [
       {
         label: "Nov – Dec",
@@ -1389,18 +1347,7 @@ const en: SegmentDict = {
         note: "Extensions, content and prep for the next season.",
       },
     ],
-    offerTitle: "Services you can sell the rest of the year",
-    offerSubtitle:
-      "I'm not asking you to invent new services: I'm asking you to present the ones you could already offer, at the moment the client actually listens.",
-    offers: [
-      "Monthly bookkeeping for your clients with a business",
-      "Payroll for the ones who already have employees",
-      "Tax planning before year-end",
-      "Business formation for the newly self-employed",
-      "Prior unfiled years and amendments",
-      "Financial statements for loan applications",
-    ],
-    faqTitle: "A practice's questions",
+    faqTitle: "Accounting firm website questions",
     faq: [
       {
         question: "I'm mid-season. Is it worth starting now?",

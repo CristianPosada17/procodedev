@@ -1,0 +1,158 @@
+---
+/*
+  Escena de fondo del hero de cada giro. Es SVG en línea, dibujado con el
+  color de acento del giro: pesa nada, escala bien y hace que las cinco
+  páginas se distingan de un vistazo sin depender de fotos de stock.
+*/
+import type { SegmentKey } from "../i18n/ui";
+import { SEGMENT_THEME } from "./segment-theme";
+
+interface Props {
+  segment: SegmentKey;
+}
+const { segment } = Astro.props as Props;
+const th = SEGMENT_THEME[segment];
+---
+
+<svg
+  viewBox="0 0 720 520"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class="h-full w-full"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id={`sg-${segment}`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color={th.accent} stop-opacity="0.85" />
+      <stop offset="100%" stop-color={th.accent2} stop-opacity="0.35" />
+    </linearGradient>
+  </defs>
+
+  {
+    segment === "contractors" && (
+      <g>
+        <path d="M120 430h520" stroke={th.accent} stroke-opacity="0.35" stroke-width="2" />
+        <path d="M200 430V250l130-90 130 90v180" stroke={`url(#sg-${segment})`} stroke-width="4" stroke-linejoin="round" />
+        <path d="M170 262 330 150l160 112" stroke={th.accent} stroke-opacity="0.55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <rect x="250" y="320" width="70" height="110" rx="4" fill={th.accent} fill-opacity="0.16" stroke={th.accent} stroke-opacity="0.45" stroke-width="2" />
+        <rect x="360" y="300" width="70" height="60" rx="4" fill={th.accent} fill-opacity="0.1" stroke={th.accent} stroke-opacity="0.4" stroke-width="2" />
+        <path d="M200 300h260M200 350h40M430 350h30" stroke={th.accent} stroke-opacity="0.25" stroke-width="2" stroke-dasharray="8 8" />
+        <g stroke={th.accent} stroke-opacity="0.5" stroke-width="3" stroke-linecap="round">
+          <path d="M520 430V180" />
+          <path d="M520 200h140" />
+          <path d="M660 200v52" />
+          <path d="M520 240 596 200" />
+        </g>
+        <rect x="642" y="252" width="36" height="30" rx="4" fill={th.accent} fill-opacity="0.3" />
+        <path d="M60 430h60v-46a30 30 0 0 1 60 0v46" stroke={th.accent} stroke-opacity="0.4" stroke-width="3" stroke-linejoin="round" />
+      </g>
+    )
+  }
+
+  {
+    segment === "health" && (
+      <g>
+        <path
+          d="M60 300h110l28-64 34 128 30-84 26 42h372"
+          stroke={`url(#sg-${segment})`}
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M470 190c0-30 24-52 54-52 22 0 40 12 48 30 8-18 26-30 48-30 30 0 54 22 54 52 0 58-102 116-102 116S470 248 470 190Z"
+          fill={th.accent}
+          fill-opacity="0.12"
+          stroke={th.accent}
+          stroke-opacity="0.5"
+          stroke-width="3"
+        />
+        <rect x="110" y="352" width="180" height="128" rx="14" fill={th.accent} fill-opacity="0.08" stroke={th.accent} stroke-opacity="0.4" stroke-width="2.5" />
+        <path d="M110 388h180M152 340v24M248 340v24" stroke={th.accent} stroke-opacity="0.45" stroke-width="2.5" stroke-linecap="round" />
+        <path d="m168 428 20 22 44-48" stroke={th.accent} stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="400" cy="120" r="46" stroke={th.accent} stroke-opacity="0.3" stroke-width="2.5" stroke-dasharray="10 10" />
+        <path d="M382 120h36M400 102v36" stroke={th.accent} stroke-opacity="0.55" stroke-width="5" stroke-linecap="round" />
+      </g>
+    )
+  }
+
+  {
+    segment === "professional" && (
+      <g>
+        <rect x="150" y="110" width="240" height="310" rx="16" fill={th.accent} fill-opacity="0.07" stroke={th.accent} stroke-opacity="0.4" stroke-width="2.5" />
+        <rect x="186" y="70" width="240" height="310" rx="16" fill={th.accent} fill-opacity="0.1" stroke={`url(#sg-${segment})`} stroke-width="3" />
+        <path d="M220 130h172M220 172h172M220 214h120M220 256h150M220 298h96" stroke={th.accent} stroke-opacity="0.4" stroke-width="6" stroke-linecap="round" />
+        <circle cx="372" cy="330" r="30" fill={th.accent} fill-opacity="0.18" stroke={th.accent} stroke-opacity="0.6" stroke-width="2.5" />
+        <path d="m360 330 9 10 17-20" stroke={th.accent} stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <g stroke={th.accent} stroke-opacity="0.5" stroke-width="3" stroke-linecap="round">
+          <path d="M560 130v250" />
+          <path d="M470 170h180" />
+          <path d="M470 170l-32 74h64Z" fill={th.accent} fill-opacity="0.12" />
+          <path d="M650 170l-32 74h64Z" fill={th.accent} fill-opacity="0.12" />
+          <path d="M508 380h104" />
+        </g>
+        <circle cx="560" cy="130" r="10" fill={th.accent} fill-opacity="0.5" />
+      </g>
+    )
+  }
+
+  {
+    segment === "realEstate" && (
+      <g>
+        <path d="M60 440h600" stroke={th.accent} stroke-opacity="0.3" stroke-width="2" />
+        <path d="M120 440V270l110-80 110 80v170" stroke={`url(#sg-${segment})`} stroke-width="4" stroke-linejoin="round" />
+        <rect x="176" y="330" width="52" height="52" rx="4" fill={th.accent} fill-opacity="0.16" />
+        <rect x="252" y="330" width="52" height="52" rx="4" fill={th.accent} fill-opacity="0.1" />
+        <rect x="204" y="392" width="52" height="48" rx="4" fill={th.accent} fill-opacity="0.22" />
+        <rect x="392" y="220" width="120" height="220" rx="10" fill={th.accent} fill-opacity="0.07" stroke={th.accent} stroke-opacity="0.4" stroke-width="2.5" />
+        <g fill={th.accent} fill-opacity="0.2">
+          <rect x="416" y="250" width="30" height="26" rx="3" />
+          <rect x="460" y="250" width="30" height="26" rx="3" />
+          <rect x="416" y="296" width="30" height="26" rx="3" />
+          <rect x="460" y="296" width="30" height="26" rx="3" />
+          <rect x="416" y="342" width="30" height="26" rx="3" />
+          <rect x="460" y="342" width="30" height="26" rx="3" />
+        </g>
+        <rect x="540" y="290" width="110" height="150" rx="10" fill={th.accent} fill-opacity="0.05" stroke={th.accent} stroke-opacity="0.35" stroke-width="2.5" />
+        <path
+          d="M560 110c-31 0-56 25-56 56 0 40 56 92 56 92s56-52 56-92c0-31-25-56-56-56Z"
+          fill={th.accent}
+          fill-opacity="0.16"
+          stroke={th.accent}
+          stroke-opacity="0.6"
+          stroke-width="3"
+        />
+        <circle cx="560" cy="166" r="19" fill="#060b18" />
+        <circle cx="560" cy="166" r="8" fill={th.accent} />
+      </g>
+    )
+  }
+
+  {
+    segment === "accounting" && (
+      <g>
+        <path
+          d="M150 120h230v320l-33-24-32 24-32-24-33 24-33-24-34 24-33-24V120Z"
+          fill={th.accent}
+          fill-opacity="0.07"
+          stroke={`url(#sg-${segment})`}
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+        <path d="M186 176h158M186 218h158M186 260h110M186 302h130" stroke={th.accent} stroke-opacity="0.4" stroke-width="6" stroke-linecap="round" />
+        <path d="M440 420h250" stroke={th.accent} stroke-opacity="0.3" stroke-width="2" />
+        <rect x="452" y="330" width="42" height="90" rx="6" fill={th.accent} fill-opacity="0.2" />
+        <rect x="510" y="286" width="42" height="134" rx="6" fill={th.accent} fill-opacity="0.3" />
+        <rect x="568" y="316" width="42" height="104" rx="6" fill={th.accent} fill-opacity="0.24" />
+        <rect x="626" y="228" width="42" height="192" rx="6" fill={th.accent} fill-opacity="0.45" />
+        <path d="m470 300 60-42 58 24 60-96" stroke={th.accent} stroke-opacity="0.75" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10 8" />
+        <circle cx="648" cy="186" r="10" fill="#060b18" stroke={th.accent} stroke-width="4" />
+        <circle cx="470" cy="140" r="44" stroke={th.accent} stroke-opacity="0.3" stroke-width="2.5" stroke-dasharray="9 9" />
+        <path d="M452 162 488 118" stroke={th.accent} stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" />
+        <circle cx="457" cy="124" r="8" stroke={th.accent} stroke-opacity="0.7" stroke-width="4" />
+        <circle cx="483" cy="156" r="8" stroke={th.accent} stroke-opacity="0.7" stroke-width="4" />
+      </g>
+    )
+  }
+</svg>

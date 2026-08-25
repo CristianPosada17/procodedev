@@ -216,7 +216,9 @@ const engine = `
     }
     // Enlace interno hacia la página de contacto / agendar
     var goesToContact = CFG.contactPaths.some(function(p){
-      return href === p || href === p + '/' || href.indexOf(p + '#') === 0 || href.indexOf(p + '/#') === 0;
+      var bare = p.charAt(p.length - 1) === '/' ? p.slice(0, -1) : p;
+      return href === bare || href === bare + '/' ||
+             href.indexOf(bare + '#') === 0 || href.indexOf(bare + '/#') === 0;
     }) || href.indexOf('#agendar') > -1;
 
     if (goesToContact) {

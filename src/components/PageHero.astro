@@ -25,7 +25,7 @@ const seq = [...cards, ...cards];
     <div class="max-w-2xl">
       <span class="eyebrow">{eyebrow}</span>
       <h1
-        class="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl"
+        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] sm:text-[3.45rem] lg:text-[4.3rem]"
       >
         {titleA}{" "}<span class="grad-text">{highlight}</span>
       </h1>
@@ -34,9 +34,13 @@ const seq = [...cards, ...cards];
       </p>
     </div>
 
+    {/* Columna decorativa: se duplica para el loop, así que va marcada como
+        aria-hidden y sin encabezados — si fueran <h3> el esquema de la página
+        saltaría de h1 a h3 y las mismas seis frases aparecerían dos veces. */}
     <div
       class="marquee-y reveal reveal-right relative hidden h-[440px] overflow-hidden lg:block"
       style="--marquee-duration: 30s"
+      aria-hidden="true"
     >
       <div class="absolute -inset-6 rounded-[2rem] bg-[var(--brand)]/5 blur-3xl"></div>
       <div class="marquee-track-y relative flex flex-col gap-4">
@@ -50,9 +54,9 @@ const seq = [...cards, ...cards];
                 <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
                   {card.category}
                 </p>
-                <h3 class="mt-1 text-sm font-bold leading-snug text-[var(--text)]">
+                <p class="mt-1 text-sm font-bold leading-snug text-[var(--text)]">
                   {card.title}
-                </h3>
+                </p>
               </div>
             </div>
           ))

@@ -42,4 +42,4 @@ Empieza por lo que más tiempo te quita hoy. Una sola automatización bien hecha
 
 ---
 
-En **ProCode Dev** conecto WhatsApp, formularios, agenda y seguimiento a tu página para que tu operación sea más ligera. Revisa [nuestros precios](/precios) o [agenda una llamada gratis de 15 minutos](/contacto) y te digo qué se puede automatizar en tu negocio.
+En **ProCode Dev** conecto WhatsApp, formularios, agenda y seguimiento a tu página para que tu operación sea más ligera. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 15 minutos](/contacto/) y te digo qué se puede automatizar en tu negocio.

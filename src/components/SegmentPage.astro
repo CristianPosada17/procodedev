@@ -3,6 +3,9 @@ import { translations, PAGES, waHref, type Lang, type SegmentKey } from "../i18n
 import { getSegment } from "../i18n/segments";
 import Icon from "./Icon.astro";
 import OfferNote from "./OfferNote.astro";
+import CardRail from "./CardRail.astro";
+import SegmentHeroArt from "./SegmentHeroArt.astro";
+import { SEGMENT_THEME } from "./segment-theme";
 
 interface Props {
   lang: Lang;
@@ -11,6 +14,8 @@ interface Props {
 const { lang, segment } = Astro.props as Props;
 const t = translations[lang];
 const x = getSegment(lang, segment);
+// Color e identidad visual propios del giro (ver segment-theme.ts).
+const th = SEGMENT_THEME[segment];
 ---
 
 {/*
@@ -21,65 +26,98 @@ const x = getSegment(lang, segment);
 */}
 
 <!-- ── Hero ── -->
-<section class="relative overflow-hidden pb-8 pt-8 lg:pb-14 lg:pt-16">
+{/*
+  Cada giro tiene su propio color de acento y su propia escena de fondo, así
+  que abrir dos páginas seguidas ya no se siente como la misma plantilla con
+  otro nombre. La tarjeta del calendario salió del hero (bajó a su propia
+  franja) para que aquí mande el visual.
+*/}
+<section
+  class="segment-hero relative isolate overflow-hidden lg:flex lg:min-h-[34rem] lg:items-center"
+  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2};`}
+>
   <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+    class="segment-hero-art absolute inset-0 -z-10 opacity-50 lg:left-[40%] lg:py-12 lg:pr-8 lg:opacity-80"
+  >
+    <SegmentHeroArt segment={segment} />
+  </div>
+  <div class="segment-hero-glow absolute inset-0 -z-10"></div>
+  <div class="segment-hero-veil absolute inset-0 -z-10"></div>
+
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 py-10 sm:px-6 lg:px-10 lg:py-16 2xl:max-w-[1600px]"
   >
     <nav
       class="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]"
       aria-label="Breadcrumb"
     >
-      <a href={PAGES.home[lang]} class="transition hover:text-[var(--accent)]">
+      <a href={PAGES.home[lang]} class="transition hover:text-[var(--text)]">
         {t.nav.home}
       </a>
       <span aria-hidden="true">/</span>
-      <a href={PAGES.sectors[lang]} class="transition hover:text-[var(--accent)]">
+      <a href={PAGES.sectors[lang]} class="transition hover:text-[var(--text)]">
         {t.nav.sectors}
       </a>
       <span aria-hidden="true">/</span>
-      <span class="text-[var(--accent)]">{x.navLabel}</span>
+      <span class="seg-crumb">{x.navLabel}</span>
     </nav>
 
-    <div class="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-      <div class="max-w-2xl">
-        <span class="eyebrow">{x.heroEyebrow}</span>
-        <h1
-          class="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl"
-        >
-          {x.heroTitleA}{" "}<span class="grad-text">{x.heroHighlight}</span>
-        </h1>
-        <p
-          class="mt-6 text-base leading-8 text-[var(--muted)] sm:text-lg"
-        >
-          {x.heroSubtitle}
-        </p>
-
-        <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-          <a
-            href={PAGES.contact[lang]}
-            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
-          >
-            {t.common.ctaPrimary}
-            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
-          </a>
-          <a
-            href={PAGES.pricing[lang]}
-            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[var(--brand)]/10"
-          >
-            {t.priceAnchor.cta}
-          </a>
-        </div>
-        <OfferNote lang={lang} />
-      </div>
-
-      {/* Calendario del oficio: lo primero que demuestra que la página no es
-          una plantilla rellenada con el nombre del segmento. */}
-      <div
-        class="reveal reveal-right rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl lg:p-8"
+    <div class="mt-8 max-w-xl lg:max-w-[44rem]">
+      <span
+        class="seg-chip inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em]"
       >
+        <Icon name={x.icon as any} class="h-3.5 w-3.5" />
+        {x.navLabel}
+      </span>
+
+      <h1
+        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_rgba(6,11,24,0.9)] sm:text-[3.45rem] lg:text-[4.3rem]"
+      >
+        {x.heroTitleA}{" "}<span class="grad-text">{x.heroHighlight}</span>
+      </h1>
+
+      <span class="hero-rule mt-7"></span>
+
+      <p class="mt-6 text-base leading-8 text-[var(--text)]/80 sm:text-lg">
+        {x.heroSubtitle}
+      </p>
+
+      <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+        <a
+          href={PAGES.contact[lang]}
+          class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        >
+          {t.common.ctaPrimary}
+          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        </a>
+        <a
+          href={PAGES.pricing[lang]}
+          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/15"
+        >
+          {t.priceAnchor.cta}
+        </a>
+      </div>
+      <OfferNote lang={lang} />
+    </div>
+  </div>
+</section>
+
+<!-- ── Calendario del oficio ── -->
+<section
+  class="relative py-10 lg:py-14"
+  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2};`}
+>
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-9"
+    >
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center lg:gap-12">
         <div class="flex items-start gap-4">
           <span
-            class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]"
+            class="flex h-11 w-11 flex-none items-center justify-center rounded-xl"
+            style={`background:${th.accent}1f; color:${th.accent};`}
           >
             <Icon name="calendar" class="h-6 w-6" />
           </span>
@@ -93,11 +131,14 @@ const x = getSegment(lang, segment);
           </div>
         </div>
 
-        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {
             x.cycleMonths.map((m) => (
               <div class="rounded-xl border border-[color:var(--border)] bg-white/[0.03] p-4">
-                <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">
+                <p
+                  class="font-mono text-[11px] uppercase tracking-[0.14em]"
+                  style={`color:${th.accent}`}
+                >
                   {m.label}
                 </p>
                 <p class="mt-1.5 text-xs leading-5 text-[var(--muted)]">
@@ -165,7 +206,7 @@ const x = getSegment(lang, segment);
       </p>
     </div>
 
-    <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <CardRail class="mt-8" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide">
       {
         x.system.map((block, i) => (
           <article
@@ -184,41 +225,7 @@ const x = getSegment(lang, segment);
           </article>
         ))
       }
-    </div>
-  </div>
-</section>
-
-<!-- ── Servicios que se pueden posicionar ── -->
-<section class="relative py-10 lg:py-16">
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
-    <div
-      class="reveal grid gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-8 backdrop-blur-xl lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:p-12"
-    >
-      <div>
-        <h2
-          class="text-xl font-bold tracking-tight text-[var(--text)] sm:text-2xl"
-        >
-          {x.offerTitle}
-        </h2>
-        <p class="mt-4 text-sm leading-7 text-[var(--muted)]">
-          {x.offerSubtitle}
-        </p>
-      </div>
-      <ul class="grid gap-3 sm:grid-cols-2">
-        {
-          x.offers.map((offer) => (
-            <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
-              <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
-                <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
-              </span>
-              {offer}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    </CardRail>
   </div>
 </section>
 

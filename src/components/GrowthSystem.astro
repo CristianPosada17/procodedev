@@ -2,6 +2,7 @@
 import { translations, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 import Icon from "./Icon.astro";
+import CardRail from "./CardRail.astro";
 
 interface Props {
   lang?: Lang;
@@ -12,10 +13,9 @@ const sys = t.system;
 ---
 
 {/*
-  El recorrido del cliente de una firma fiscal, en cinco etapas.
-  Es la sección que sostiene el posicionamiento nuevo: sin ella, «sistemas
-  digitales de crecimiento» es una frase de marketing; con ella, es una
-  descripción de qué se construye y en qué orden.
+  El recorrido del cliente en cinco etapas. Cada tarjeta se quedó con lo
+  mínimo —icono, nombre y una línea— porque el detalle de qué se construye
+  en cada etapa ya vive en /servicios y en las páginas de giro.
 */}
 <section id="sistema" class="relative py-12 lg:py-20">
   <div
@@ -28,59 +28,28 @@ const sys = t.system;
       <Fragment slot="subtitle">{sys.subtitle}</Fragment>
     </SectionHeading>
 
-    <ol class="mt-10 grid gap-4 lg:mt-14 lg:grid-cols-5">
+    <CardRail class="mt-10 lg:mt-14" grid="md:grid-cols-3 lg:grid-cols-5" peek="normal">
       {
         sys.stages.map((stage, i) => (
-          <li
-            class="reveal relative flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+          <div
+            class="reveal relative flex flex-col items-center rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 text-center backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
             style={`--reveal-delay: ${i * 80}ms`}
           >
-            <div class="flex items-center justify-between">
-              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
-                <Icon name={stage.icon as any} class="h-6 w-6" />
-              </span>
-              <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-                {stage.step}
-              </span>
-            </div>
-
-            <h3 class="mt-5 text-lg font-bold leading-snug text-[var(--text)]">
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--muted)]">
+              {stage.step}
+            </span>
+            <span class="mt-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]">
+              <Icon name={stage.icon as any} class="h-7 w-7" />
+            </span>
+            <h3 class="mt-4 text-lg font-bold leading-snug text-[var(--text)]">
               {stage.name}
             </h3>
-            <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--accent)]">
+            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
               {stage.summary}
             </p>
-            <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
-              {stage.description}
-            </p>
-
-            <p class="mt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
-              {sys.buildLabel}
-            </p>
-            <ul class="mt-3 grid gap-2">
-              {stage.build.map((b) => (
-                <li class="flex items-start gap-2.5 text-xs leading-5 text-[var(--text)]/85">
-                  <span class="mt-0.5 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
-                    <Icon name="check" class="h-3 w-3" strokeWidth={2.6} />
-                  </span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </li>
+          </div>
         ))
       }
-    </ol>
-
-    <div
-      class="reveal mt-8 flex flex-col gap-3 rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--brand)]/[0.06] p-7 lg:flex-row lg:items-center lg:gap-8 lg:p-8"
-    >
-      <p
-        class="flex-none font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]"
-      >
-        {sys.closingTitle}
-      </p>
-      <p class="text-sm leading-7 text-[var(--text)]/90">{sys.closingBody}</p>
-    </div>
+    </CardRail>
   </div>
 </section>

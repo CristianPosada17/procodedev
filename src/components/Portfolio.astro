@@ -3,6 +3,7 @@ import { translations, PAGES, type Lang } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 import PortfolioCard from "./PortfolioCard.astro";
+import CardRail from "./CardRail.astro";
 interface Props {
   lang?: Lang;
   /** En /portafolio el H1 de PageHero ya dice esto: no repetirlo (hallazgo #13). */
@@ -35,19 +36,19 @@ const demos = p.projects.filter((proj) => proj.kind === "demo");
     {/* ── Clientes reales ── */}
     <div class:list={[showHeading ? "mt-12" : "mt-2"]}>
       <div class="reveal flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        <h3 class="text-xl font-bold tracking-tight text-[var(--text)]">
+        <h2 class="text-xl font-bold tracking-tight text-[var(--text)]">
           {p.clientsTitle}
-        </h3>
+        </h2>
         <p class="text-sm text-[var(--muted)]">{p.clientsNote}</p>
       </div>
 
-      <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <CardRail class="mt-6" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
         {
           clients.map((proj, i) => (
             <PortfolioCard project={proj} viewProject={p.viewProject} resultLabel={p.resultLabel} delay={i * 90} />
           ))
         }
-      </div>
+      </CardRail>
     </div>
 
     {/* ── Demos y conceptos ── */}
@@ -55,9 +56,9 @@ const demos = p.projects.filter((proj) => proj.kind === "demo");
       demos.length > 0 && (
         <div class="mt-14 border-t border-[color:var(--border)] pt-12">
           <div class="reveal flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <h3 class="text-xl font-bold tracking-tight text-[var(--text)]">
+            <h2 class="text-xl font-bold tracking-tight text-[var(--text)]">
               {p.demosTitle}
-            </h3>
+            </h2>
             <span class="rounded-full border border-[color:var(--border-strong)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
               demo
             </span>

@@ -35,4 +35,4 @@ Redes sin web es como invitar gente a una tienda que no existe. Web sin redes es
 
 ---
 
-Si ya tienes redes pero te falta ese «lugar propio» que convierte, en **ProCode Dev** lo construyo. Mira [nuestros precios](/precios) o [agenda una llamada gratis de 15 minutos](/contacto).
+Si ya tienes redes pero te falta ese «lugar propio» que convierte, en **ProCode Dev** lo construyo. Mira [nuestros precios](/precios/) o [agenda una llamada gratis de 15 minutos](/contacto/).

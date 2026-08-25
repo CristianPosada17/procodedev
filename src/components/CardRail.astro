@@ -1,0 +1,31 @@
+---
+/*
+  Rejilla en escritorio, carrusel deslizable en móvil.
+  El objetivo es que en el teléfono el sitio no se convierta en un folleto
+  vertical: se ve una tarjeta a la vez y se desliza para ver la siguiente.
+  Los puntos se generan en Layout.astro a partir del número de hijos.
+*/
+interface Props {
+  /** Clases de rejilla que se aplican a partir de md. */
+  grid?: string;
+  /** Cuánto ocupa cada tarjeta en el carrusel móvil. */
+  peek?: "wide" | "normal" | "narrow";
+  /** Clases extra para el contenedor. */
+  class?: string;
+  /** Separación entre tarjetas. */
+  gap?: string;
+}
+const {
+  grid = "md:grid md:grid-cols-2 lg:grid-cols-3",
+  peek = "normal",
+  class: cls = "",
+  gap = "gap-4 lg:gap-5",
+} = Astro.props as Props;
+---
+
+<div class:list={["card-rail", cls]} data-rail>
+  <div class:list={["card-rail-track", `peek-${peek}`, gap, "md:grid", grid]}>
+    <slot />
+  </div>
+  <div class="card-rail-dots" data-rail-dots></div>
+</div>

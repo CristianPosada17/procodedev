@@ -2,6 +2,7 @@
 import Icon from "./Icon.astro";
 import { translations, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
+import CardRail from "./CardRail.astro";
 interface Props {
   lang?: Lang;
 }
@@ -19,7 +20,7 @@ const tt = t.testimonials;
       <Fragment slot="subtitle">{tt.subtitle}</Fragment>
     </SectionHeading>
 
-    <div class="mt-8 grid lg:mt-12 gap-5 md:grid-cols-3">
+    <CardRail class="mt-8 lg:mt-12" grid="md:grid-cols-3" peek="wide">
       {
         tt.items.map((item, i) => (
           <figure
@@ -62,6 +63,6 @@ const tt = t.testimonials;
           </figure>
         ))
       }
-    </div>
+    </CardRail>
   </div>
 </section>

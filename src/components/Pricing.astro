@@ -2,6 +2,7 @@
 import Icon from "./Icon.astro";
 import { translations, CONTACT, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
+import CardRail from "./CardRail.astro";
 interface Props {
   lang?: Lang;
   /** En /precios el H1 de PageHero ya dice esto: no repetirlo (hallazgo #13). */
@@ -103,7 +104,7 @@ const currencyScript = `
           >
             {adv.badge}
           </span>
-          <h3 class="mt-4 text-2xl font-bold text-[var(--text)]">{adv.name}</h3>
+          <h2 class="mt-4 text-2xl font-bold text-[var(--text)]">{adv.name}</h2>
           <div class="mt-4 flex items-end gap-1.5">
             <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
               ${adv.price}
@@ -149,7 +150,7 @@ const currencyScript = `
                     {i + 1}
                   </span>
                   <div>
-                    <h4 class="text-sm font-bold text-[var(--text)]">{s.name}</h4>
+                    <h3 class="text-sm font-bold text-[var(--text)]">{s.name}</h3>
                     <p class="mt-1 text-sm leading-6 text-[var(--muted)]">
                       {s.description}
                     </p>
@@ -163,7 +164,7 @@ const currencyScript = `
     </div>
 
     {/* ── Paquetes principales ── */}
-    <div class="mt-8 grid lg:mt-12 gap-6 lg:grid-cols-3">
+    <CardRail class="mt-8 lg:mt-12" grid="lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
       {
         p.packages.map((pkg, i) => (
           <div
@@ -227,18 +228,18 @@ const currencyScript = `
           </div>
         ))
       }
-    </div>
+    </CardRail>
 
     {/* ── Servicios adicionales ── */}
     <div class="reveal mt-14">
-      <h3 class="text-lg font-bold text-[var(--text)]">{p.extrasTitle}</h3>
+      <h2 class="text-lg font-bold text-[var(--text)]">{p.extrasTitle}</h2>
       <p class="mt-1 text-sm text-[var(--muted)]">{p.extrasSubtitle}</p>
       <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {
           p.extras.map((ex) => (
             <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
               <div class="flex items-baseline justify-between gap-3">
-                <h4 class="text-sm font-bold text-[var(--text)]">{ex.name}</h4>
+                <h3 class="text-sm font-bold text-[var(--text)]">{ex.name}</h3>
                 <span class="price-usd font-mono text-xs text-[var(--accent)]">
                   {ex.price}
                 </span>
@@ -261,13 +262,13 @@ const currencyScript = `
         a dónde subir. Estos tres crean el techo de expansión que pedía el
         análisis de mercado. */}
     <div class="reveal mt-16">
-      <h3 class="text-2xl font-bold text-[var(--text)]">{p.monthlyTitle}</h3>
+      <h2 class="text-2xl font-bold text-[var(--text)]">{p.monthlyTitle}</h2>
       <p class="mt-2 max-w-3xl text-sm leading-6 text-[var(--muted)]">
         {p.monthlySubtitle}
       </p>
     </div>
 
-    <div class="mt-8 grid gap-6 lg:grid-cols-3">
+    <CardRail class="mt-8" grid="lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
       {
         p.monthly.map((plan, i) => (
           <div
@@ -289,7 +290,7 @@ const currencyScript = `
             >
               {plan.badge}
             </span>
-            <h4 class="mt-4 text-xl font-bold text-[var(--text)]">{plan.name}</h4>
+            <h3 class="mt-4 text-xl font-bold text-[var(--text)]">{plan.name}</h3>
             <p class="mt-1 text-sm text-[var(--accent)]">{plan.tagline}</p>
             <div class="mt-5 flex flex-wrap items-end gap-1.5">
               {plan.pricePrefix && (
@@ -341,7 +342,7 @@ const currencyScript = `
           </div>
         ))
       }
-    </div>
+    </CardRail>
 
     <p class="reveal mt-6 max-w-3xl text-xs leading-6 text-[var(--muted)]">
       {p.monthlyNote}

@@ -10,6 +10,7 @@
 import { translations, PAGES, SEGMENT_KEYS, type Lang, type SegmentKey } from "../i18n/ui";
 import { segments } from "../i18n/segments";
 import Icon from "./Icon.astro";
+import CardRail from "./CardRail.astro";
 
 interface Props {
   lang?: Lang;
@@ -36,7 +37,7 @@ const others = SEGMENT_KEYS.filter((key) => key !== current);
         </p>
       </div>
 
-      <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <CardRail class="mt-7" grid="md:grid-cols-2 lg:grid-cols-4" peek="normal" gap="gap-3">
         {
           others.map((key) => (
             <a
@@ -57,7 +58,7 @@ const others = SEGMENT_KEYS.filter((key) => key !== current);
             </a>
           ))
         }
-      </div>
+      </CardRail>
 
       <a
         href={PAGES.sectors[lang]}

@@ -73,4 +73,4 @@ Los cambios de conversión (mensaje, botones, velocidad) se notan casi de inmedi
 
 ---
 
-En **ProCode Dev** rediseño y optimizo páginas para que dejen de ser un adorno y empiecen a captar clientes. Revisa [nuestros precios](/precios) o [agenda una llamada gratis de 15 minutos](/contacto) y te digo exactamente qué está frenando tus ventas.
+En **ProCode Dev** rediseño y optimizo páginas para que dejen de ser un adorno y empiecen a captar clientes. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 15 minutos](/contacto/) y te digo exactamente qué está frenando tus ventas.

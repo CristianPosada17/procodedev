@@ -2,12 +2,20 @@
 import { translations, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 import Icon from "./Icon.astro";
+import CardRail from "./CardRail.astro";
+import ServiceVisual from "./ServiceVisual.astro";
 interface Props {
   lang?: Lang;
   /** En /servicios el H1 de PageHero ya dice esto: no repetirlo (hallazgo #13). */
   showHeading?: boolean;
+  /**
+   * Solo en /servicios: añade tres viñetas por tarjeta con lo que incluye
+   * cada pieza. En el home la tarjeta se queda mínima; aquí la página es
+   * comercial y necesita texto indexable con las frases que la gente busca.
+   */
+  detailed?: boolean;
 }
-const { lang = "es", showHeading = true } = Astro.props as Props;
+const { lang = "es", showHeading = true, detailed = false } = Astro.props as Props;
 const t = translations[lang];
 const s = t.services;
 ---
@@ -25,33 +33,55 @@ const s = t.services;
       )
     }
 
-    <div class:list={[showHeading ? "mt-12" : "mt-2", "grid gap-5 md:grid-cols-2 lg:grid-cols-3"]}>
+    {/* En /servicios el H1 lo pone PageHero, así que esta sección necesita su
+        propio h2: sin él la página saltaba de h1 a los h3 de las tarjetas. */}
+    {
+      detailed && (
+        <h2 class="reveal text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">
+          {s.detailTitle}
+        </h2>
+      )
+    }
+
+    {/* Icono grande centrado, título llamativo, una línea de descripción y
+        el visual ocupando el pie de la tarjeta. Antes cada tarjeta llevaba
+        un párrafo de cuatro renglones que casi nadie leía. */}
+    <CardRail
+      class={showHeading ? "mt-12" : "mt-8"}
+      grid="md:grid-cols-2 lg:grid-cols-3"
+      peek="wide"
+    >
       {
         s.items.map((item, i) => (
           <article
-            class="reveal group flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
+            class="reveal group flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-6 text-center backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
             style={`--reveal-delay: ${i * 70}ms`}
           >
-            <div class="flex items-center justify-between">
-              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
-                <Icon name={item.icon as any} class="h-6 w-6" />
-              </span>
-              <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <p class="mt-5 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
-              {item.category}
-            </p>
-            <h3 class="mt-2 text-lg font-bold leading-snug text-[var(--text)]">
+            <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)] transition duration-300 group-hover:bg-[var(--brand)]/20">
+              <Icon name={item.icon as any} class="h-8 w-8" />
+            </span>
+            <h3 class="mt-5 text-xl font-bold leading-snug text-[var(--text)]">
               {item.title}
             </h3>
-            <p class="mt-3 text-sm leading-7 text-[var(--muted)]">
+            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
               {item.description}
             </p>
+            {detailed && (
+              <ul class="mt-5 grid gap-2.5 text-left">
+                {item.detail.map((d) => (
+                  <li class="flex items-start gap-2.5 text-sm leading-6 text-[var(--text)]/85">
+                    <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                      <Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} />
+                    </span>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <ServiceVisual variant={item.visual} class="mt-6" />
           </article>
         ))
       }
-    </div>
+    </CardRail>
   </div>
 </section>
