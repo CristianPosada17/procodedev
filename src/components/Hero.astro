@@ -44,11 +44,11 @@ const h = t.hero;
   >
     {/* Above-the-fold: sin `.reveal`. Nada de lo que decide la conversión
         en el primer scroll debe esperar a que corra JS (hallazgo #14). */}
-    <div class="max-w-xl lg:max-w-[38rem]">
+    <div class="max-w-xl lg:max-w-[40rem] xl:max-w-[50rem]">
       <span class="eyebrow">{h.eyebrow}</span>
 
       <h1
-        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_rgba(6,11,24,0.9)] sm:text-[3.45rem] lg:text-[4.3rem]"
+        class="mt-5 text-balance text-[2.6rem] font-bold leading-[1.04] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_rgba(6,11,24,0.9)] sm:text-[3.45rem] lg:text-[3.5rem] xl:text-[4.4rem]"
       >
         {h.titleA}{" "}
         <span class="grad-text">{h.titleHighlight}</span>{h.titleB && " " + h.titleB}
@@ -56,7 +56,7 @@ const h = t.hero;
 
       <span class="hero-rule mt-7"></span>
 
-      <p class="mt-6 text-base leading-8 text-[var(--text)]/80 sm:text-lg">
+      <p class="mt-6 max-w-xl text-base leading-8 text-[var(--text)]/80 sm:text-lg lg:max-w-[34rem]">
         {h.subtitle}
       </p>
 
