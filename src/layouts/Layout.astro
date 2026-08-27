@@ -342,7 +342,11 @@ const jsonLd = {
     <meta name="twitter:image" content={socialImage} />
 
     <!-- ============ ICONOS ============ -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {/* El favicon.svg anterior era un trazado de imagetracer (243 KB, miles de
+        paths, sin viewBox): a 16 px los navegadores lo descartaban o lo pintaban
+        como una mancha. Ahora se sirve un ICO real con 16/32/48 px. */}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="ProCode Dev" />
     <meta name="apple-mobile-web-app-capable" content="yes" />

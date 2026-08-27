@@ -79,16 +79,16 @@ const es: SegmentDict = {
       "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google.",
     intro:
       "Sitio web, Perfil de Empresa en Google, formulario de cotización y seguimiento para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
-    projectId: "trejo",
+    projectId: "izcalli",
     projectEyebrow: "// proyecto en tu giro",
-    projectTitle: "Un negocio de tu oficio que ya está",
+    projectTitle: "Una constructora de tu giro que ya está",
     projectHighlight: "trabajando en línea",
     projectWhy:
-      "Trejo Landscaping es exactamente el caso de un contratista: un oficio que vivía de la recomendación y que hoy recibe solicitudes de cotización desde su propia página.",
+      "Constructora Izcalli es el caso exacto de una empresa de obra: años de trabajo entregado que solo existía en fotos sueltas, y que hoy se muestra como un portafolio que el cliente puede abrir antes de la primera junta.",
     projectPoints: [
-      "Trabajos terminados con fotos reales, que es la prueba que pide el cliente antes de dejarte entrar a su casa.",
-      "Formulario de cotización conectado a WhatsApp, para no perder al que escribe fuera de horario.",
-      "Estructura por servicio, para que cada tipo de trabajo se venda con su propio mensaje.",
+      "Nueve obras construidas con ficha propia: la prueba que pide quien está por confiarte un proyecto grande.",
+      "Datos formales a la vista —razón social, representante legal, dirección y teléfono—, que es lo primero que revisa un cliente institucional.",
+      "Contacto directo desde cualquier punto del sitio, sin formularios que terminen en un correo sin leer.",
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
@@ -740,16 +740,16 @@ const en: SegmentDict = {
       "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google.",
     intro:
       "Website, Google Business Profile, quote form and follow-up for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
-    projectId: "trejo",
+    projectId: "izcalli",
     projectEyebrow: "// a project in your industry",
-    projectTitle: "A business in your trade that's already",
+    projectTitle: "A construction company in your industry that's already",
     projectHighlight: "working online",
     projectWhy:
-      "Trejo Landscaping is exactly the contractor case: a trade that lived on referrals and now takes quote requests straight from its own site.",
+      "Constructora Izcalli is exactly the builder's case: years of delivered work that only existed as loose photos, now shown as a portfolio any client can open before the first meeting.",
     projectPoints: [
-      "Finished work with real photos, the proof a client wants before letting you into their home.",
-      "A quote form wired to WhatsApp, so you don't lose the person who writes after hours.",
-      "Structured by service, so every type of job sells with its own message.",
+      "Nine built projects, each with its own entry: the proof anyone wants before handing you a big job.",
+      "Formal details in plain sight — legal name, legal representative, address and phone — the first thing an institutional client checks.",
+      "Direct contact from anywhere on the site, with no form that ends up in an unread inbox.",
     ],
     painTitle: "What I see over and over",
     painSubtitle:
