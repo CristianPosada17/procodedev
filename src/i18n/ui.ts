@@ -153,7 +153,7 @@ export const translations = {
         "Sitio web, captación y seguimiento en un solo sistema. Una sola persona responsable.",
       badges: [
         "Precios públicos",
-        "Sin contrato de permanencia",
+        "Sin contratos de 12 meses",
         "Bilingüe inglés/español",
       ],
     },
@@ -528,7 +528,7 @@ export const translations = {
       titleHighlight: "venda por ti.",
       titleB: "",
       subtitle:
-        "Precios públicos, en dólares, sin llamada de ventas para conocerlos y sin contrato de permanencia. Elige por dónde empezar y crece a tu ritmo.",
+        "Precios públicos, en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
       currencyLabel: "Ver precios en",
       currencyMxn: "MXN",
@@ -580,7 +580,7 @@ export const translations = {
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Estos son los precios reales, no un rango de referencia: lo que ves es lo que pagas por el alcance descrito en cada plan. Si tu proyecto se sale de ese alcance, te lo digo antes de empezar y te paso el número exacto — nunca a mitad del trabajo. Todos los planes mensuales son sin contrato de permanencia: los cancelas cuando quieras.",
+      note: "Estos son los precios reales, no un rango de referencia: lo que ves es lo que pagas por el alcance descrito en cada plan. Si tu proyecto se sale de ese alcance, te lo digo antes de empezar y te paso el número exacto — nunca a mitad del trabajo. Los planes de Soporte Web y Crecimiento+ no tienen contrato de permanencia: los cancelas cuando quieras. El único con compromiso es Web + Marketing + SEO, con un mínimo de 3 meses, porque los anuncios y el SEO necesitan ese tiempo para dar resultados reales.",
       // ── Escalera mensual: soporte → crecimiento → todo incluido ──
       // Sustituye al bloque único de mantenimiento. El objetivo del análisis de
       // mercado era crear techo de expansión: un cliente de $79 puede subir a
@@ -589,7 +589,7 @@ export const translations = {
       monthlySubtitle:
         "Mantenimiento web mensual y plan de SEO local con precio publicado, y reporte mensual de contactos reales.",
       monthlyNote:
-        "Sin contrato de permanencia. Subes, bajas o cancelas de un mes a otro.",
+        "Soporte Web y Crecimiento+ no tienen contrato de permanencia: subes, bajas o cancelas de un mes a otro. Web + Marketing + SEO pide un mínimo de 3 meses y, cumplido ese plazo, también se cancela de un mes a otro.",
       monthly: [
         {
           badge: "Base · Continuidad",
@@ -600,6 +600,7 @@ export const translations = {
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "según el tamaño de tu página",
+          commitmentNote: "",
           tagline: "Tu página siempre al día",
           description:
             "No pagas «por si algo se rompe». Yo mantengo tu sitio rápido, seguro y actualizado, te hago los cambios que necesites y cada mes te digo cómo trabajó tu página.",
@@ -626,6 +627,7 @@ export const translations = {
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "incluye todo el Soporte Web",
+          commitmentNote: "",
           tagline: "Que te encuentren, no solo que existas",
           description:
             "Tener página no sirve si nadie te encuentra. Este plan trabaja tu Perfil de Empresa en Google, tus reseñas y tu visibilidad en las búsquedas con IA, que es por donde ya llega una parte de tus clientes.",
@@ -652,6 +654,8 @@ export const translations = {
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "presupuesto de anuncios aparte",
+          commitmentNote:
+            "Contrato mínimo de 3 meses. Los anuncios y el SEO necesitan ese tiempo para dar resultados reales; antes de eso todavía estamos ajustando.",
           tagline: "Un sistema completo de captación",
           description:
             "Para el negocio que ya no quiere depender de las recomendaciones y los meses buenos. Página, anuncios, contenido y SEO trabajando juntos, con seguimiento de cada prospecto hasta que agenda.",
@@ -821,7 +825,7 @@ export const translations = {
         {
           question: "¿Hay contrato de permanencia?",
           answer:
-            "En ninguno de los planes. Los mensuales se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. Prefiero que te quedes porque funciona, no porque firmaste.",
+            "En ninguno hay contrato de 12 meses. Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. El único con compromiso es Web + Marketing + SEO: pide un mínimo de 3 meses, porque los anuncios y el SEO no dan resultados reales en 30 días y no quiero cobrarte por un mes suelto que no te va a servir. Cumplido ese plazo, se cancela igual que los demás. Prefiero que te quedes porque funciona, no porque firmaste.",
         },
         {
           question: "¿Trabajas con negocios en Estados Unidos aunque no estés aquí?",
@@ -1010,7 +1014,7 @@ export const translations = {
         {
           question: "¿Cuánto cuesta y por qué no lo veo hasta el final?",
           answer:
-            "Sí lo ves: los precios están publicados. Desde $349 USD una landing page hasta $1,499 USD un sitio completo de 8 a 12 páginas. No hay llamada de ventas para conocerlos ni contrato de permanencia; en la llamada solo confirmamos cuál te corresponde.",
+            "Sí lo ves: los precios están publicados. Desde $349 USD una landing page hasta $1,499 USD un sitio completo de 8 a 12 páginas. No hay llamada de ventas para conocerlos ni contratos de 12 meses; en la llamada solo confirmamos cuál te corresponde.",
         },
         {
           question: "¿La llamada de 15 minutos tiene costo o compromiso?",
@@ -1084,13 +1088,13 @@ export const translations = {
         title:
           "Precios de Páginas Web en USD | ProCode Dev",
         description:
-          "Landing $349, sitio de 4–6 páginas $899 y sitio grande desde $1,499. Planes mensuales desde $79. Precios públicos, sin contrato de permanencia.",
+          "Landing $349, sitio de 4–6 páginas $899 y sitio grande desde $1,499. Planes mensuales desde $79. Precios públicos, sin contratos de 12 meses.",
         keywords:
           "cuánto cuesta una página web, precio de un sitio web, precios de diseño web en dólares, mantenimiento web mensual, plan de SEO local precio",
         heroTitleA: "Precios públicos, en dólares, sin",
         heroHighlight: "llamada de ventas",
         heroSubtitle:
-          "Lo que ves es lo que pagas. Sin cotización sorpresa, sin precio oculto y sin contrato de 12 meses: los planes mensuales se cancelan cuando quieras.",
+          "Lo que ves es lo que pagas. Sin cotización sorpresa, sin precio oculto y sin contrato de 12 meses: los planes de mantenimiento se cancelan cuando quieras y el sistema completo de captación solo pide 3 meses.",
       },
       contact: {
         title:
@@ -1124,7 +1128,7 @@ export const translations = {
           icon: "receipt",
           title: "Precios públicos",
           description:
-            "Están en la página, en dólares. Sin llamada de ventas para conocerlos y sin contrato de permanencia.",
+            "Están en la página, en dólares. Sin llamada de ventas para conocerlos y sin contratos de 12 meses.",
         },
         {
           icon: "message-circle",
@@ -1156,7 +1160,7 @@ export const translations = {
         {
           name: "Hibu y similares",
           them: "Contrato de 12 meses, precio que no ves hasta la llamada.",
-          us: "Sin contrato de permanencia y con los precios publicados en esta misma página.",
+          us: "Sin contratos de 12 meses y con los precios publicados en esta misma página.",
         },
         {
           name: "Agencia de $3,000/mes",
@@ -1231,7 +1235,7 @@ export const translations = {
         "Website, client acquisition and follow-up in one system. One person accountable.",
       badges: [
         "Public pricing",
-        "No lock-in contract",
+        "No 12-month contracts",
         "Bilingual English/Spanish",
       ],
     },
@@ -1588,7 +1592,7 @@ export const translations = {
       titleHighlight: "sell for you.",
       titleB: "",
       subtitle:
-        "Public pricing, in US dollars, with no sales call to find out and no lock-in contract. Choose where to start and grow at your own pace.",
+        "Public pricing, in US dollars, with no sales call to find out and no 12-month contracts. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
       currencyLabel: "Show prices in",
       currencyMxn: "MXN",
@@ -1639,7 +1643,7 @@ export const translations = {
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "These are the real prices, not a reference range: what you see is what you pay for the scope described in each plan. If your project falls outside that scope, I tell you before we start and give you the exact number — never halfway through the work. Every monthly plan is lock-in free: cancel whenever you want.",
+      note: "These are the real prices, not a reference range: what you see is what you pay for the scope described in each plan. If your project falls outside that scope, I tell you before we start and give you the exact number — never halfway through the work. The Web Support and Growth+ plans are lock-in free: cancel whenever you want. The only one with a commitment is Web + Marketing + SEO, with a 3-month minimum, because ads and SEO need that long to produce real results.",
       // ── Monthly ladder: support → growth → all-in ──
       // Replaces the single maintenance block. The market analysis called for a
       // ceiling to expand into: a $79 client can move to $349 and then $1,100
@@ -1648,7 +1652,7 @@ export const translations = {
       monthlySubtitle:
         "Monthly website maintenance and local SEO plan pricing, published, with a monthly report of real contacts.",
       monthlyNote:
-        "No lock-in contract. Move up, down or cancel from one month to the next.",
+        "Web Support and Growth+ have no lock-in contract: move up, down or cancel from one month to the next. Web + Marketing + SEO asks for a 3-month minimum and, once that's met, also cancels from one month to the next.",
       monthly: [
         {
           badge: "Base · Continuity",
@@ -1659,6 +1663,7 @@ export const translations = {
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "depending on the size of your site",
+          commitmentNote: "",
           tagline: "Your site always up to date",
           description:
             "You don't pay \"in case something breaks\". I keep your site fast, secure and updated, make the changes you need, and every month I tell you how your page performed.",
@@ -1685,6 +1690,7 @@ export const translations = {
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "includes everything in Web Support",
+          commitmentNote: "",
           tagline: "Get found, not just exist",
           description:
             "Having a website doesn't help if nobody finds you. This plan works your Google Business Profile, your reviews and your visibility in AI search, which is already where part of your clients come from.",
@@ -1711,6 +1717,8 @@ export const translations = {
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "ad budget billed separately",
+          commitmentNote:
+            "3-month minimum. Ads and SEO need that long to produce real results; before that we're still tuning.",
           tagline: "A complete client-acquisition system",
           description:
             "For the business that no longer wants to depend on referrals and good months. Website, ads, content and SEO working together, with every lead tracked until they book.",
@@ -1879,7 +1887,7 @@ export const translations = {
         {
           question: "Is there a lock-in contract?",
           answer:
-            "Not on any plan. Monthly plans cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. I'd rather you stay because it works than because you signed.",
+            "There's no 12-month contract on any plan. Web Support and Growth+ cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. The only one with a commitment is Web + Marketing + SEO: it asks for a 3-month minimum, because ads and SEO don't produce real results in 30 days and I don't want to charge you for a single month that won't help you. After that, it cancels like the rest. I'd rather you stay because it works than because you signed.",
         },
         {
           question: "Do you work with U.S. businesses even though you're not here?",
@@ -2068,7 +2076,7 @@ export const translations = {
         {
           question: "What does it cost, and why don't I see it until the end?",
           answer:
-            "You do see it: pricing is published. From $349 USD for a landing page to $1,499 USD for a full 8–12 page site. There's no sales call to find out and no lock-in contract; on the call we just confirm which one fits you.",
+            "You do see it: pricing is published. From $349 USD for a landing page to $1,499 USD for a full 8–12 page site. There's no sales call to find out and no 12-month contracts; on the call we just confirm which one fits you.",
         },
         {
           question: "Does the 15-minute call cost anything or commit me?",
@@ -2106,7 +2114,7 @@ export const translations = {
         title:
           "Websites by Industry | ProCode Dev",
         description:
-          "Websites and client acquisition by industry: contractors, clinics, professional services, real estate and accounting practices. Public pricing, no contract.",
+          "Websites and client acquisition by industry: contractors, clinics, professional services, real estate and accounting practices. Public pricing, no 12-month contracts.",
         keywords:
           "websites by industry, contractor website, clinic website, real estate agent website, accounting firm website, local business websites, small business marketing",
         heroTitleA: "A digital system built for",
@@ -2142,13 +2150,13 @@ export const translations = {
         title:
           "Website Pricing in USD | ProCode Dev",
         description:
-          "Landing $349, 4–6 page site $899 and large sites from $1,499. Monthly plans from $79. Public pricing, no lock-in contract and no sales call.",
+          "Landing $349, 4–6 page site $899 and large sites from $1,499. Monthly plans from $79. Public pricing, no 12-month contracts and no sales call.",
         keywords:
           "how much does a website cost, small business website pricing, web design prices in USD, monthly website maintenance, local SEO plan pricing",
         heroTitleA: "Public pricing, in dollars, with no",
         heroHighlight: "sales call",
         heroSubtitle:
-          "What you see is what you pay. No surprise quote, no hidden price and no 12-month contract: monthly plans cancel whenever you want.",
+          "What you see is what you pay. No surprise quote, no hidden price and no 12-month contract: maintenance plans cancel whenever you want and the full acquisition system only asks for 3 months.",
       },
       contact: {
         title:
@@ -2182,7 +2190,7 @@ export const translations = {
           icon: "receipt",
           title: "Public pricing",
           description:
-            "It's on the page, in dollars. No sales call to find out and no lock-in contract.",
+            "It's on the page, in dollars. No sales call to find out and no 12-month contracts.",
         },
         {
           icon: "message-circle",
@@ -2214,7 +2222,7 @@ export const translations = {
         {
           name: "Hibu and similar",
           them: "12-month contract, price you don't see until the call.",
-          us: "No lock-in contract, and pricing published on this very page.",
+          us: "No 12-month contracts, and pricing published on this very page.",
         },
         {
           name: "A $3,000/mo agency",

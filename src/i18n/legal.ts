@@ -231,8 +231,9 @@ const es: LegalDict = {
       {
         title: "9. Planes mensuales y cancelación",
         list: [
-          "Ningún plan mensual tiene contrato de permanencia.",
-          "Puedes subir, bajar o cancelar tu plan de un mes a otro, avisándome antes de la siguiente fecha de cobro.",
+          "Los planes Soporte Web y Crecimiento+ no tienen contrato de permanencia.",
+          "El plan Web + Marketing + SEO tiene un compromiso mínimo de 3 meses desde su inicio, por el tiempo que necesitan los anuncios y el SEO para dar resultados medibles. Cumplido ese plazo, se cancela de un mes a otro como los demás.",
+          "Puedes subir, bajar o cancelar tu plan de un mes a otro —cumplido, en su caso, el mínimo de 3 meses— avisándome antes de la siguiente fecha de cobro.",
           "La cancelación surte efecto al terminar el periodo ya pagado; no se reembolsan periodos en curso.",
           "Al cancelar, el sitio sigue siendo tuyo. Lo que se detiene es el mantenimiento, el soporte, las publicaciones y el reporte mensual.",
         ],
@@ -447,8 +448,9 @@ const en: LegalDict = {
       {
         title: "9. Monthly plans and cancellation",
         list: [
-          "No monthly plan has a lock-in contract.",
-          "You can upgrade, downgrade or cancel your plan month to month by letting me know before the next billing date.",
+          "The Web Support and Growth+ plans have no lock-in contract.",
+          "The Web + Marketing + SEO plan has a 3-month minimum commitment from its start date, for the time ads and SEO need to produce measurable results. After that, it cancels month to month like the rest.",
+          "You can upgrade, downgrade or cancel your plan month to month —once the 3-month minimum is met, where it applies— by letting me know before the next billing date.",
           "Cancellation takes effect at the end of the period already paid; periods in progress are not refunded.",
           "On cancellation, the site remains yours. What stops is maintenance, support, posting and the monthly report.",
         ],
