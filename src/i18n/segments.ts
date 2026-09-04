@@ -66,11 +66,11 @@ const es: SegmentDict = {
     icon: "building",
     meta: {
       title:
-        "Páginas Web para Contratistas | ProCode Dev",
+        "Diseño Web para Contratistas y Constructoras | ProCode Dev",
       description:
-        "Sitio web, Perfil de Empresa en Google y formulario de cotización para contratistas y constructoras. Deja de perder trabajos grandes por no verte formal.",
+        "Diseño web para constructoras y contratistas: sitio, Perfil de Empresa en Google, formulario de cotización y SEO local para contratistas. Precios públicos.",
       keywords:
-        "página web para contratistas, sitio web para constructoras, página web para plomeros, página web para electricistas, página web para techos, marketing para contratistas, cotizaciones en línea, SEO local construcción",
+        "diseño web para constructoras, páginas web para contratistas, página web para contratistas, diseño web para empresas de remodelación, marketing digital para contratistas, SEO local para contratistas, agencia de marketing para contratistas, página web para plomeros, página web para electricistas, página web para techos, generación de clientes para contratistas",
     },
     heroEyebrow: "// contratistas y construcción",
     heroTitleA: "Sistemas digitales para",
@@ -92,7 +92,7 @@ const es: SegmentDict = {
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
-      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+      "Ninguno se resuelve con una página más bonita. Se resuelven con estructura, que es de lo que trata el marketing digital para contratistas cuando se hace en serio.",
     pains: [
       "Vives de recomendaciones: cuando el teléfono deja de sonar, no hay una segunda fuente de trabajos.",
       "El cliente que paga bien te compara con una empresa que tiene página, reseñas y seguro visible.",
@@ -102,7 +102,7 @@ const es: SegmentDict = {
     ],
     systemTitle: "Qué incluye una página web para contratistas",
     systemSubtitle:
-      "Lo mismo aplica para una página web para plomeros, electricistas, techos o remodelación, y para el marketing para contratistas de cualquier oficio: cambia el ejemplo, no la estructura.",
+      "Lo mismo aplica al diseño web para constructoras y al diseño web para empresas de remodelación: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
@@ -143,7 +143,7 @@ const es: SegmentDict = {
     ],
     cycleTitle: "Tu año de obra, y qué hace el sistema en cada tramo",
     cycleBody:
-      "El clima manda en tu facturación. El sistema se monta antes y trabaja solo cuando tú estás en obra de sol a sol.",
+      "El clima manda en tu facturación, y el SEO local para contratistas tarda meses en madurar. Por eso el sistema se monta antes y trabaja solo cuando tú estás en obra de sol a sol.",
     cycleMonths: [
       {
         label: "Ene – Mar",
@@ -162,7 +162,7 @@ const es: SegmentDict = {
         note: "Mantenimiento, preparación de invierno y reactivación de clientes.",
       },
     ],
-    faqTitle: "Dudas sobre una página web para contratistas",
+    faqTitle: "Dudas sobre páginas web para contratistas",
     faq: [
       {
         question: "Todo mi trabajo viene por recomendación. ¿Para qué una página?",
@@ -184,10 +184,20 @@ const es: SegmentDict = {
         answer:
           "Sí, y para la mayoría de los contratistas hispanos es lo correcto: tus clientes actuales te buscan en español y los trabajos grandes, muchas veces, llegan en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
       },
+      {
+        question: "¿Sirve igual para plomería, electricidad o techos?",
+        answer:
+          "Sí. Una página web para plomeros tiene la misma estructura que una página web para electricistas o una página web para techos: cambian el vocabulario del servicio, las fotos de obra y las preguntas del formulario. Lo que no cambia es cómo decide el cliente.",
+      },
+      {
+        question: "¿Cómo conseguir clientes para una constructora sin depender de la recomendación?",
+        answer:
+          "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y seguimiento automático de quien no cerró a la primera. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
+      },
     ],
     ctaTitle: "15 minutos antes de tu próxima temporada fuerte",
     ctaBody:
-      "Te digo qué encuentra hoy un cliente que busca tu oficio en tu ciudad, y qué pieza te falta para que te elija a ti.",
+      "Te digo qué encuentra hoy un cliente que busca tu oficio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para contratistas que va a hacer el trabajo, no con un vendedor.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -197,11 +207,11 @@ const es: SegmentDict = {
     icon: "users",
     meta: {
       title:
-        "Páginas Web para Consultorios | ProCode Dev",
+        "Diseño Web para Consultorios y Psicólogos | ProCode Dev",
       description:
-        "Sitio web, agenda en línea y recordatorios para consultorios, clínicas y profesionales de la salud. Menos mensajes repetidos y menos citas perdidas.",
+        "Diseño web para consultorios, psicólogos, nutriólogos y terapeutas: agenda en línea, recordatorios y SEO local para consultorios. Precios públicos en USD.",
       keywords:
-        "página web para consultorios, sitio web para clínicas, página web para nutriólogos, página web para dentistas, agenda en línea para pacientes, marketing para consultorios, citas en línea",
+        "diseño web para consultorios, diseño web para psicólogos, páginas web para nutriólogos, diseño web para terapeutas, marketing digital para psicólogos, SEO local para consultorios, agencia de marketing para consultorios, página web para consultorios, agenda en línea para pacientes, cómo conseguir más pacientes",
     },
     heroEyebrow: "// salud y bienestar",
     heroTitleA: "Sistemas digitales para",
@@ -223,7 +233,7 @@ const es: SegmentDict = {
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
-      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+      "Ninguno se resuelve con una página más bonita. Se resuelven con estructura, que es de lo que trata el marketing digital para psicólogos, nutriólogos y consultorios cuando se hace en serio.",
     pains: [
       "Explicas por mensaje lo mismo cien veces: precio de la consulta, qué incluye, cuánto dura, si aceptas seguro.",
       "Pierdes pacientes que escribieron un domingo por la noche y no recibieron respuesta hasta el martes.",
@@ -233,7 +243,7 @@ const es: SegmentDict = {
     ],
     systemTitle: "Qué incluye una página web para consultorios y clínicas",
     systemSubtitle:
-      "Lo mismo aplica para una página web para nutriólogos, dentistas o psicólogos, con agenda en línea para pacientes y citas en línea: cambia el ejemplo, no la estructura.",
+      "Lo mismo aplica al diseño web para psicólogos, al diseño web para terapeutas y a las páginas web para nutriólogos, con agenda en línea para pacientes: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
@@ -274,7 +284,7 @@ const es: SegmentDict = {
     ],
     cycleTitle: "Tu año de consulta, y qué hace el sistema en cada tramo",
     cycleBody:
-      "La demanda de salud tiene picos claros. El sistema los aprovecha sin que tú tengas que acordarte.",
+      "La demanda de salud tiene picos claros, y el SEO local para consultorios tarda meses en madurar. El sistema se monta antes y aprovecha los picos sin que tú tengas que acordarte.",
     cycleMonths: [
       {
         label: "Ene – Mar",
@@ -293,7 +303,7 @@ const es: SegmentDict = {
         note: "Cierre de año, revisiones y agenda preparada para enero.",
       },
     ],
-    faqTitle: "Dudas sobre un sitio web para clínicas y consultorios",
+    faqTitle: "Dudas sobre diseño web para consultorios y clínicas",
     faq: [
       {
         question: "¿Puedo poner precios o es mejor no publicarlos?",
@@ -315,10 +325,15 @@ const es: SegmentDict = {
         answer:
           "Sí, y para un consultorio hispano en EE. UU. suele ser lo correcto: tus pacientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
       },
+      {
+        question: "¿Cómo conseguir más pacientes desde internet?",
+        answer:
+          "Apareciendo cuando alguien busca tu especialidad en tu ciudad, y quitando la fricción entre esa búsqueda y la cita. En la práctica: una página por especialidad, agenda en línea abierta las 24 horas y recordatorios que reducen las faltas. Sin eso, más visitas solo significa más mensajes sin contestar.",
+      },
     ],
     ctaTitle: "15 minutos para revisar tu agenda",
     ctaBody:
-      "Te digo qué encuentra hoy un paciente que busca tu especialidad en tu ciudad, y qué pieza te falta para que te elija a ti.",
+      "Te digo qué encuentra hoy un paciente que busca tu especialidad en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para consultorios que va a hacer el trabajo, no con un vendedor.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -328,11 +343,11 @@ const es: SegmentDict = {
     icon: "scale",
     meta: {
       title:
-        "Páginas Web para Servicios Profesionales | ProCode Dev",
+        "Diseño Web para Abogados y Consultores | ProCode Dev",
       description:
-        "Sitio web y formulario de calificación para abogados, consultores y agentes de seguros. Atrae el caso correcto y deja de dar consultas gratis sin filtro.",
+        "Diseño web para abogados, consultores y agentes de seguros: formulario de calificación, marketing digital para consultores y SEO local. Precios públicos.",
       keywords:
-        "página web para abogados, sitio web para consultores, página web para agentes de seguros, marketing para servicios profesionales, captación de clientes para abogados, marca personal profesional",
+        "diseño web para abogados, página web para abogados, sitio web para consultores, página web para agentes de seguros, marketing digital para consultores, SEO local para servicios profesionales, agencia de marketing para abogados, captación de clientes para abogados, marca personal profesional",
     },
     heroEyebrow: "// servicios profesionales",
     heroTitleA: "Sistemas digitales para",
@@ -354,7 +369,7 @@ const es: SegmentDict = {
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
-      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+      "Ninguno se resuelve con una página más bonita. Se resuelven con estructura, que es de lo que trata el marketing digital para consultores y despachos profesionales cuando se hace en serio.",
     pains: [
       "Das consultas gratis a personas que nunca iban a contratarte, y no te queda tiempo para las que sí.",
       "Tu experiencia y tus resultados no se ven: pareces igual que cualquier otro que abrió el mes pasado.",
@@ -364,7 +379,7 @@ const es: SegmentDict = {
     ],
     systemTitle: "Qué incluye una página web para abogados y consultores",
     systemSubtitle:
-      "Lo mismo aplica para un sitio web para consultores, para una página web para agentes de seguros y para la captación de clientes para abogados: cambia el ejemplo, no la estructura.",
+      "Lo mismo aplica al diseño web para abogados, a un sitio web para consultores, a una página web para agentes de seguros y a una web de marca personal profesional: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
@@ -405,7 +420,7 @@ const es: SegmentDict = {
     ],
     cycleTitle: "Tu año profesional, y qué hace el sistema en cada tramo",
     cycleBody:
-      "Tu demanda no es pareja, pero sí es previsible. El sistema aprovecha los meses buenos y sostiene los flojos.",
+      "Tu demanda no es pareja, pero sí es previsible. El SEO local para servicios profesionales tarda meses en madurar: el sistema aprovecha los meses buenos y sostiene los flojos.",
     cycleMonths: [
       {
         label: "Ene – Mar",
@@ -424,7 +439,7 @@ const es: SegmentDict = {
         note: "Cierre de año, renovaciones y agenda preparada para enero.",
       },
     ],
-    faqTitle: "Dudas sobre un sitio web para abogados y consultores",
+    faqTitle: "Dudas sobre diseño web para abogados y consultores",
     faq: [
       {
         question: "Mi trabajo es delicado. ¿Puedo mostrar casos?",
@@ -446,10 +461,15 @@ const es: SegmentDict = {
         answer:
           "Sí, y para un profesional hispano en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
       },
+      {
+        question: "¿Cómo conseguir clientes siendo abogado o consultor independiente?",
+        answer:
+          "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y seguimiento de quien preguntó y no volvió. La captación de clientes para abogados falla casi siempre en el tercer punto, no en el primero.",
+      },
     ],
     ctaTitle: "15 minutos para revisar tu captación",
     ctaBody:
-      "Te digo qué encuentra hoy alguien que busca tu servicio en tu ciudad, y qué pieza te falta para que te elija a ti.",
+      "Te digo qué encuentra hoy alguien que busca tu servicio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para abogados y consultores que va a hacer el trabajo, no con un vendedor.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -459,11 +479,11 @@ const es: SegmentDict = {
     icon: "map-pin",
     meta: {
       title:
-        "Páginas Web para Inmobiliarias | ProCode Dev",
+        "Diseño Web para Inmobiliarias y Asesores | ProCode Dev",
       description:
-        "Sitio web con catálogo de propiedades, fichas detalladas y captación directa para asesores inmobiliarios. Deja de vivir dentro de los portales.",
+        "Diseño web para inmobiliarias y asesores inmobiliarios: catálogo de propiedades, captación directa y SEO local para inmobiliarias. Deja los portales atrás.",
       keywords:
-        "página web para inmobiliarias, sitio web para asesores inmobiliarios, catálogo de propiedades en línea, marketing inmobiliario, captación de prospectos inmobiliarios, página web bienes raíces",
+        "diseño web para inmobiliarias, páginas web para asesores inmobiliarios, página web para inmobiliarias, marketing digital para inmobiliarias, SEO local para inmobiliarias, agencia de marketing inmobiliario, catálogo de propiedades en línea, landing pages para propiedades, generación de prospectos inmobiliarios, cómo generar prospectos inmobiliarios",
     },
     heroEyebrow: "// inmobiliarias",
     heroTitleA: "Sistemas digitales para",
@@ -485,7 +505,7 @@ const es: SegmentDict = {
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
-      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+      "Ninguno se resuelve con una página más bonita. Se resuelven con estructura, que es de lo que trata el marketing digital para inmobiliarias cuando se hace en serio.",
     pains: [
       "Todo tu inventario vive en un portal que te cobra por los prospectos que tú generaste.",
       "Recibes mensajes de gente que no califica y pierdes tardes enteras enseñando propiedades a quien no puede comprar.",
@@ -495,7 +515,7 @@ const es: SegmentDict = {
     ],
     systemTitle: "Qué incluye una página web para inmobiliarias",
     systemSubtitle:
-      "Lo mismo aplica para una página web de bienes raíces con catálogo de propiedades en línea y captación de prospectos inmobiliarios: cambia el ejemplo, no la estructura.",
+      "Lo mismo aplica al diseño web para inmobiliarias con catálogo de propiedades en línea y a las landing pages para propiedades sueltas: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
@@ -536,7 +556,7 @@ const es: SegmentDict = {
     ],
     cycleTitle: "Tu año inmobiliario, y qué hace el sistema en cada tramo",
     cycleBody:
-      "El mercado tiene estacionalidad clara. El sistema trabaja el ciclo completo, incluso cuando tú estás cerrando.",
+      "El mercado tiene estacionalidad clara y el SEO local para inmobiliarias tarda meses en madurar. El sistema trabaja el ciclo completo, incluso cuando tú estás cerrando.",
     cycleMonths: [
       {
         label: "Ene – Mar",
@@ -555,7 +575,7 @@ const es: SegmentDict = {
         note: "Ciclo lento: contenido de zona y seguimiento a prospectos tibios.",
       },
     ],
-    faqTitle: "Dudas sobre un sitio web para asesores inmobiliarios",
+    faqTitle: "Dudas sobre páginas web para asesores inmobiliarios",
     faq: [
       {
         question: "¿Puedo cargar y quitar propiedades yo mismo?",
@@ -577,10 +597,15 @@ const es: SegmentDict = {
         answer:
           "Sí, y para un asesor hispano en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los compradores nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
       },
+      {
+        question: "¿Cómo generar prospectos inmobiliarios sin depender de los portales?",
+        answer:
+          "Teniendo catálogo propio, fichas que se puedan compartir por WhatsApp y un formulario que distinga a quien quiere comprar de quien quiere vender. La generación de prospectos inmobiliarios que sí se sostiene es la que llega a tu sitio, no la que renta un portal mes con mes.",
+      },
     ],
     ctaTitle: "15 minutos para revisar tu catálogo",
     ctaBody:
-      "Te digo qué encuentra hoy un comprador que busca en tu zona, y qué pieza te falta para que te escriba a ti.",
+      "Te digo qué encuentra hoy un comprador que busca en tu zona y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing inmobiliario que va a hacer el trabajo, no con un vendedor.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -594,11 +619,11 @@ const es: SegmentDict = {
     icon: "calculator",
     meta: {
       title:
-        "Páginas Web para Despachos Contables | ProCode Dev",
+        "Diseño Web para Contadores y Despachos | ProCode Dev",
       description:
-        "Sitio web, intake de documentos y seguimiento para despachos contables, contadores y preparadores de impuestos. Llega a la temporada con la agenda llena.",
+        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, seguimiento y SEO local para contadores. Precios públicos.",
       keywords:
-        "página web para despachos contables, sitio web para contadores, página web para preparadores de impuestos, marketing para despachos fiscales, intake de documentos, página web para CPA",
+        "diseño web para contadores, diseño web para despachos contables, páginas web para preparadores de impuestos, páginas web para bookkeepers, marketing digital para contadores, SEO local para contadores, agencia de marketing para despachos contables, página web para despachos contables, intake de documentos, cómo conseguir clientes para un despacho contable",
     },
     heroEyebrow: "// contabilidad e impuestos",
     heroTitleA: "Sistemas digitales para",
@@ -620,7 +645,7 @@ const es: SegmentDict = {
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
-      "Ninguno de estos problemas se resuelve con una página más bonita. Se resuelven con estructura.",
+      "Ninguno se resuelve con una página más bonita. Se resuelven con estructura, que es de lo que trata el marketing digital para contadores cuando se hace en serio.",
     pains: [
       "La mayor parte de tus ingresos entra en unas semanas, y el resto del año la operación se apaga.",
       "Los clientes con negocio —los que de verdad pagan— se van con quien se ve como un despacho formal, no con quien tiene más oficio.",
@@ -630,7 +655,7 @@ const es: SegmentDict = {
     ],
     systemTitle: "Qué incluye una página web para despachos contables",
     systemSubtitle:
-      "Lo mismo aplica para una página web para CPA o para preparadores de impuestos, con intake de documentos incluido: cambia el ejemplo, no la estructura.",
+      "Lo mismo aplica al diseño web para contadores, a las páginas web para preparadores de impuestos y a las páginas web para bookkeepers, con intake de documentos incluido: cambia el ejemplo, no la estructura.",
     system: [
       {
         icon: "layout",
@@ -671,7 +696,7 @@ const es: SegmentDict = {
     ],
     cycleTitle: "Tu calendario, y qué hace el sistema en cada tramo",
     cycleBody:
-      "Nada de esto se improvisa en plena temporada.",
+      "Nada de esto se improvisa en plena temporada, y el SEO local para contadores tarda meses en madurar.",
     cycleMonths: [
       {
         label: "Nov – Dic",
@@ -690,7 +715,7 @@ const es: SegmentDict = {
         note: "Extensiones, contenido y preparación de la siguiente temporada.",
       },
     ],
-    faqTitle: "Dudas sobre un sitio web para contadores",
+    faqTitle: "Dudas sobre diseño web para despachos contables",
     faq: [
       {
         question: "Estoy en plena temporada. ¿Vale la pena empezar ahora?",
@@ -712,10 +737,15 @@ const es: SegmentDict = {
         answer:
           "Sí, y para la mayoría de los despachos hispanos en EE. UU. es lo correcto: los clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Las dos versiones se construyen con URLs separadas para que Google indexe ambas.",
       },
+      {
+        question: "¿Cómo conseguir clientes para un despacho contable fuera de temporada?",
+        answer:
+          "Vendiendo lo que se contrata en marzo y en septiembre por igual: contabilidad mensual, nómina, planeación y regularización. Cada uno merece su propia página; una sola de «servicios contables» te deja compitiendo únicamente en enero y febrero.",
+      },
     ],
     ctaTitle: "15 minutos antes de que empiece la temporada",
     ctaBody:
-      "Te digo qué pieza le falta a tu despacho hoy y qué se puede tener listo antes de que arranque tu mes fuerte.",
+      "Te digo qué pieza le falta a tu despacho hoy y qué se puede tener listo antes de tu mes fuerte. Hablas directo con el dueño de la agencia de marketing para despachos contables que va a hacer el trabajo, no con un vendedor.",
   },
 };
 
@@ -727,11 +757,11 @@ const en: SegmentDict = {
     icon: "building",
     meta: {
       title:
-        "Websites for Contractors | ProCode Dev",
+        "Contractor Website Design | ProCode Dev",
       description:
-        "Website, Google Business Profile and quote form for contractors and builders. Stop losing big jobs because your business looks informal online.",
+        "Contractor website design for construction, remodeling and roofing companies: quote forms, Google Business Profile and local SEO for contractors in the U.S.",
       keywords:
-        "contractor website, construction company website, plumber website, electrician website, roofing company website, contractor marketing, contractor lead generation, local SEO for construction",
+        "contractor website design, construction company website design, remodeling contractor website design, roofing company website design, digital marketing for contractors, local SEO for contractors, contractor marketing agency, contractor lead generation, plumber website, electrician website",
     },
     heroEyebrow: "// contractors & construction",
     heroTitleA: "Digital systems for",
@@ -753,7 +783,7 @@ const en: SegmentDict = {
     ],
     painTitle: "What I see over and over",
     painSubtitle:
-      "None of these problems is solved by a prettier page. They're solved with structure.",
+      "None of them is solved by a prettier page. They're solved with structure, which is what digital marketing for contractors actually means when it's done properly.",
     pains: [
       "You live on referrals: when the phone goes quiet, there's no second source of work.",
       "The client who pays well compares you to a company with a website, reviews and visible insurance.",
@@ -763,7 +793,7 @@ const en: SegmentDict = {
     ],
     systemTitle: "What a contractor website includes",
     systemSubtitle:
-      "The same applies to a plumber website, an electrician website or a roofing company website, and to contractor lead generation of any trade: the example changes, not the structure.",
+      "The same applies to construction company website design, remodeling contractor website design and roofing company website design: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
@@ -804,7 +834,7 @@ const en: SegmentDict = {
     ],
     cycleTitle: "Your building year, and what the system does in each stretch",
     cycleBody:
-      "Weather runs your revenue.",
+      "Weather runs your revenue, and local SEO for contractors takes months to mature. The system gets built before the season, not during it.",
     cycleMonths: [
       {
         label: "Jan – Mar",
@@ -823,7 +853,7 @@ const en: SegmentDict = {
         note: "Maintenance, winter prep and reactivation of past clients.",
       },
     ],
-    faqTitle: "Contractor website questions",
+    faqTitle: "Contractor website design questions",
     faq: [
       {
         question: "All my work comes from referrals. Why a website?",
@@ -845,10 +875,20 @@ const en: SegmentDict = {
         answer:
           "Yes, and for most Hispanic contractors that's the right call: your current clients search in Spanish and the big jobs often come in English. Both versions are built on separate URLs so Google indexes each one.",
       },
+      {
+        question: "Does this work the same for plumbing, electrical or roofing?",
+        answer:
+          "Yes. A plumber website has the same structure as an electrician website or a roofing company site: the service vocabulary, the job photos and the form questions change. How the client decides does not.",
+      },
+      {
+        question: "How do I get more contractor leads without relying on referrals?",
+        answer:
+          "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and automatic follow-up with whoever didn't close the first time. That's the contractor lead generation that carries you through a slow season.",
+      },
     ],
     ctaTitle: "15 minutes before your next busy season",
     ctaBody:
-      "I'll tell you what a client searching your trade in your city finds today, and which piece you're missing for them to pick you.",
+      "I'll tell you what a client searching your trade in your city finds today and which piece you're missing. You talk straight to the owner of the contractor marketing agency that will do the work, not to a salesperson.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -858,11 +898,11 @@ const en: SegmentDict = {
     icon: "users",
     meta: {
       title:
-        "Websites for Clinics & Practices | ProCode Dev",
+        "Therapist & Medical Practice Web Design | ProCode Dev",
       description:
-        "Website, online booking and reminders for clinics, private practices and health professionals. Fewer repeated messages and fewer no-shows.",
+        "Therapist, psychologist and nutritionist website design with online booking, reminders and local SEO for therapists. Public pricing, no 12-month contracts.",
       keywords:
-        "clinic website, private practice website, nutritionist website, dentist website, online booking for patients, medical practice marketing, patient scheduling software",
+        "therapist website design, psychologist website design, nutritionist website design, medical practice website design, healthcare website design, local SEO for therapists, marketing agency for therapists, digital marketing for therapists, online booking for patients, get more therapy clients",
     },
     heroEyebrow: "// health & wellness",
     heroTitleA: "Digital systems for",
@@ -884,7 +924,7 @@ const en: SegmentDict = {
     ],
     painTitle: "What I see over and over",
     painSubtitle:
-      "None of these problems is solved by a prettier page. They're solved with structure.",
+      "None of them is solved by a prettier page. They're solved with structure, which is what digital marketing for therapists actually means when it's done properly.",
     pains: [
       "You explain the same thing a hundred times over chat: visit price, what's included, how long it takes, whether you take insurance.",
       "You lose patients who wrote on a Sunday night and didn't hear back until Tuesday.",
@@ -894,7 +934,7 @@ const en: SegmentDict = {
     ],
     systemTitle: "What a clinic website includes",
     systemSubtitle:
-      "The same applies to a private practice website, a dentist website or a nutritionist website, with online booking for patients: the example changes, not the structure.",
+      "The same applies to psychologist website design, nutritionist website design and medical practice website design, with online booking for patients: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
@@ -935,7 +975,7 @@ const en: SegmentDict = {
     ],
     cycleTitle: "Your practice year, and what the system does in each stretch",
     cycleBody:
-      "Health demand has clear peaks. The system uses them without you having to remember.",
+      "Health demand has clear peaks, and local SEO for therapists takes months to mature. The system gets built early and uses those peaks without you having to remember.",
     cycleMonths: [
       {
         label: "Jan – Mar",
@@ -954,7 +994,7 @@ const en: SegmentDict = {
         note: "Year-end, check-ups and a calendar ready for January.",
       },
     ],
-    faqTitle: "Clinic website questions",
+    faqTitle: "Therapist website design questions",
     faq: [
       {
         question: "Should I publish prices or leave them off?",
@@ -976,10 +1016,15 @@ const en: SegmentDict = {
         answer:
           "Yes, and for a Hispanic practice in the U.S. that's usually the right call: your current patients search in Spanish and many new ones search in English. Both versions are built on separate URLs so Google indexes each one.",
       },
+      {
+        question: "How do I get more therapy clients from the internet?",
+        answer:
+          "You get more therapy clients by showing up when someone searches your specialty in your city, and removing the friction between that search and the appointment. In practice: a page per specialty, booking open 24 hours a day and reminders that cut no-shows. Healthcare website design that skips those three only buys you more unanswered messages.",
+      },
     ],
     ctaTitle: "15 minutes to review your calendar",
     ctaBody:
-      "I'll tell you what a patient searching your specialty in your city finds today, and which piece you're missing for them to pick you.",
+      "I'll tell you what a patient searching your specialty in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for therapists that will do the work, not to a salesperson.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -989,11 +1034,11 @@ const en: SegmentDict = {
     icon: "scale",
     meta: {
       title:
-        "Websites for Professional Services | ProCode Dev",
+        "Attorney & Consultant Website Design | ProCode Dev",
       description:
-        "Website and qualifying form for attorneys, consultants and insurance agents. Attract the right case and stop giving free consults with no filter.",
+        "Attorney and consultant website design with a qualifying form, digital marketing for consultants and local SEO for professional services. Public pricing.",
       keywords:
-        "attorney website, law firm website, consultant website, insurance agent website, professional services marketing, client acquisition for attorneys, personal brand website",
+        "attorney website design, law firm website design, consultant website design, insurance agent website, digital marketing for consultants, local SEO for professional services, marketing agency for attorneys, client acquisition for attorneys, personal brand website",
     },
     heroEyebrow: "// professional services",
     heroTitleA: "Digital systems for",
@@ -1015,7 +1060,7 @@ const en: SegmentDict = {
     ],
     painTitle: "What I see over and over",
     painSubtitle:
-      "None of these problems is solved by a prettier page. They're solved with structure.",
+      "None of them is solved by a prettier page. They're solved with structure, which is what digital marketing for consultants actually means when it's done properly.",
     pains: [
       "You give free consults to people who were never going to hire you, and have no time left for the ones who would.",
       "Your experience and results aren't visible: you look the same as someone who opened last month.",
@@ -1025,7 +1070,7 @@ const en: SegmentDict = {
     ],
     systemTitle: "What an attorney website includes",
     systemSubtitle:
-      "The same applies to a law firm website, an insurance agent website and to client acquisition for attorneys: the example changes, not the structure.",
+      "The same applies to law firm website design, consultant website design, an insurance agent website and a personal brand website: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
@@ -1066,7 +1111,7 @@ const en: SegmentDict = {
     ],
     cycleTitle: "Your professional year, and what the system does in each stretch",
     cycleBody:
-      "Your demand isn't even, but it is predictable. The system uses the good months and holds up the slow ones.",
+      "Your demand isn't even, but it is predictable. Local SEO for professional services takes months to mature, so the system uses the good months and holds up the slow ones.",
     cycleMonths: [
       {
         label: "Jan – Mar",
@@ -1085,7 +1130,7 @@ const en: SegmentDict = {
         note: "Year-end, renewals and a calendar ready for January.",
       },
     ],
-    faqTitle: "Attorney and consultant website questions",
+    faqTitle: "Attorney website design questions",
     faq: [
       {
         question: "My work is sensitive. Can I show cases?",
@@ -1107,10 +1152,15 @@ const en: SegmentDict = {
         answer:
           "Yes, and for a Hispanic professional in the U.S. that's usually the right call: your current clients search in Spanish and many new ones search in English. Both versions are built on separate URLs so Google indexes each one.",
       },
+      {
+        question: "How do I get clients as a solo attorney or consultant?",
+        answer:
+          "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and follow-up with whoever asked and never came back. Client acquisition for attorneys almost always breaks at the third point, not the first.",
+      },
     ],
     ctaTitle: "15 minutes to review your client acquisition",
     ctaBody:
-      "I'll tell you what someone searching your service in your city finds today, and which piece you're missing for them to pick you.",
+      "I'll tell you what someone searching your service in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for attorneys that will do the work, not to a salesperson.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -1120,11 +1170,11 @@ const en: SegmentDict = {
     icon: "map-pin",
     meta: {
       title:
-        "Websites for Real Estate Agents | ProCode Dev",
+        "Real Estate & Realtor Website Design | ProCode Dev",
       description:
-        "Website with a property catalog, detailed listing pages and direct lead capture for real estate agents. Stop living inside the portals.",
+        "Real estate website design for realtors and agents: property catalog, direct lead capture and local SEO for realtors. Public pricing, no 12-month contracts.",
       keywords:
-        "real estate agent website, brokerage website, property catalog website, real estate marketing, real estate lead generation, realtor website",
+        "real estate website design, realtor website design, website design for real estate agents, digital marketing for realtors, local SEO for realtors, real estate marketing agency, real estate lead generation, property catalog website, real estate landing page design, get real estate leads",
     },
     heroEyebrow: "// real estate",
     heroTitleA: "Digital systems for",
@@ -1146,7 +1196,7 @@ const en: SegmentDict = {
     ],
     painTitle: "What I see over and over",
     painSubtitle:
-      "None of these problems is solved by a prettier page. They're solved with structure.",
+      "None of them is solved by a prettier page. They're solved with structure, which is what digital marketing for realtors actually means when it's done properly.",
     pains: [
       "Your whole inventory lives on a portal that charges you for the leads you generated.",
       "You get messages from people who don't qualify and lose whole afternoons showing homes to buyers who can't buy.",
@@ -1156,7 +1206,7 @@ const en: SegmentDict = {
     ],
     systemTitle: "What a real estate agent website includes",
     systemSubtitle:
-      "The same applies to a realtor website or a brokerage website with a property catalog website and real estate lead generation: the example changes, not the structure.",
+      "The same applies to realtor website design, to website design for real estate agents and to real estate landing page design for a single listing: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
@@ -1197,7 +1247,7 @@ const en: SegmentDict = {
     ],
     cycleTitle: "Your real estate year, and what the system does in each stretch",
     cycleBody:
-      "The market has clear seasonality. The system works the full cycle, even while you're closing.",
+      "The market has clear seasonality and local SEO for realtors takes months to mature. The system works the full cycle, even while you're closing.",
     cycleMonths: [
       {
         label: "Jan – Mar",
@@ -1216,7 +1266,7 @@ const en: SegmentDict = {
         note: "Slow cycle: neighborhood content and follow-up on warm leads.",
       },
     ],
-    faqTitle: "Real estate agent website questions",
+    faqTitle: "Real estate website design questions",
     faq: [
       {
         question: "Can I add and remove listings myself?",
@@ -1238,10 +1288,15 @@ const en: SegmentDict = {
         answer:
           "Yes, and for a Hispanic agent in the U.S. that's usually the right call: your current clients search in Spanish and many new buyers search in English. Both versions are built on separate URLs so Google indexes each one.",
       },
+      {
+        question: "How do I get real estate leads without depending on the portals?",
+        answer:
+          "You get real estate leads with a property catalog website of your own, listing pages people can share over text, and a form that tells a buyer apart from a seller. The real estate lead generation that lasts is the one that lands on your site, not the one you rent from a portal month after month.",
+      },
     ],
     ctaTitle: "15 minutes to review your catalog",
     ctaBody:
-      "I'll tell you what a buyer searching your area finds today, and which piece you're missing for them to write to you.",
+      "I'll tell you what a buyer searching your area finds today and which piece you're missing. You talk straight to the owner of the real estate marketing agency that will do the work, not to a salesperson.",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -1251,11 +1306,11 @@ const en: SegmentDict = {
     icon: "calculator",
     meta: {
       title:
-        "Websites for Accounting Firms | ProCode Dev",
+        "Tax Preparer & Accountant Web Design | ProCode Dev",
       description:
-        "Website, document intake and follow-up for accounting practices, CPAs and tax preparers. Reach the season with your calendar already filling up.",
+        "Tax preparer and accountant website design: document intake, follow-up and local SEO for tax preparers. Public pricing and no 12-month contracts.",
       keywords:
-        "accounting firm website, tax preparer website, CPA website, bookkeeper website, enrolled agent website, tax practice marketing, document intake for accountants",
+        "tax preparer website design, accountant website design, accounting firm website design, bookkeeper website design, digital marketing for accountants, local SEO for tax preparers, marketing agency for tax preparers, document intake for accountants, get more tax preparation clients",
     },
     heroEyebrow: "// accounting & tax",
     heroTitleA: "Digital systems for",
@@ -1277,7 +1332,7 @@ const en: SegmentDict = {
     ],
     painTitle: "What I see over and over",
     painSubtitle:
-      "None of these problems is solved by a prettier page. They're solved with structure.",
+      "None of them is solved by a prettier page. They're solved with structure, which is what digital marketing for accountants actually means when it's done properly.",
     pains: [
       "Most of your revenue lands in a few weeks, and the rest of the year the operation goes dark.",
       "Business clients — the ones who really pay — go with whoever looks like a real firm, not whoever knows the craft best.",
@@ -1287,7 +1342,7 @@ const en: SegmentDict = {
     ],
     systemTitle: "What an accounting firm website includes",
     systemSubtitle:
-      "The same applies to a CPA website, a bookkeeper website or a tax preparer website, with document intake for accountants: the example changes, not the structure.",
+      "The same applies to accountant website design, bookkeeper website design and accounting firm website design, with document intake for accountants: the example changes, not the structure.",
     system: [
       {
         icon: "layout",
@@ -1328,7 +1383,7 @@ const en: SegmentDict = {
     ],
     cycleTitle: "Your calendar, and what the system does in each stretch",
     cycleBody:
-      "None of this gets improvised mid-season.",
+      "None of this gets improvised mid-season, and local SEO for tax preparers takes months to mature.",
     cycleMonths: [
       {
         label: "Nov – Dec",
@@ -1347,7 +1402,7 @@ const en: SegmentDict = {
         note: "Extensions, content and prep for the next season.",
       },
     ],
-    faqTitle: "Accounting firm website questions",
+    faqTitle: "Tax preparer website design questions",
     faq: [
       {
         question: "I'm mid-season. Is it worth starting now?",
@@ -1369,10 +1424,15 @@ const en: SegmentDict = {
         answer:
           "Yes, and for most Hispanic practices in the U.S. it's the right call: current clients search in Spanish and many new ones search in English. Both versions are built on separate URLs so Google indexes each one.",
       },
+      {
+        question: "How do I get more tax preparation clients outside of season?",
+        answer:
+          "You get more tax preparation clients year-round by selling what people hire in March and September too: monthly bookkeeping, payroll, planning and back-tax cleanup. Each one deserves its own page; a single “tax services” page leaves you competing in January and February only.",
+      },
     ],
     ctaTitle: "15 minutes before the season starts",
     ctaBody:
-      "I'll tell you which piece your practice is missing today and what can be ready before your busy month begins.",
+      "I'll tell you which piece your practice is missing today and what can be ready before your busy month begins. You talk straight to the owner of the marketing agency for tax preparers that will do the work, not to a salesperson.",
   },
 };
 

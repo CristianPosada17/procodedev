@@ -203,7 +203,7 @@ export const translations = {
       titleA: "No diseñamos páginas. Diseñamos el",
       titleHighlight: "recorrido de tu cliente",
       subtitle:
-        "Cinco etapas, cinco piezas. Cada una resuelve un punto donde hoy pierdes clientes.",
+        "Un sistema de captación de clientes en cinco etapas. Cada pieza resuelve un punto donde hoy pierdes clientes.",
       stages: [
         {
           icon: "search",
@@ -239,12 +239,12 @@ export const translations = {
     },
     services: {
       eyebrow: "// lo que construyo",
-      detailTitle: "Qué incluye cada pieza del sistema",
-      titleA: "Diseño web y captación para",
-      titleHighlight: "tu negocio",
+      detailTitle: "Qué incluye cada pieza: del sitio a la generación de prospectos para negocios",
+      titleA: "Diseño web para negocios que",
+      titleHighlight: "capta clientes",
       titleB: "",
       subtitle:
-        "Páginas web para negocios y pymes: empieza por una pieza o monta el sistema completo.",
+        "Diseño de páginas web para negocios y pequeñas empresas: empieza por una pieza o monta el sistema completo.",
       // `detail` solo se muestra en /servicios (prop `detailed`). En el home
       // las tarjetas se quedan en icono + título + una línea; aquí el
       // buscador necesita leer qué incluye cada pieza.
@@ -258,7 +258,7 @@ export const translations = {
           detail: [
             "Una página web por cada servicio que vendes",
             "Versión en español y en inglés con URLs separadas",
-            "Diseño adaptado a móvil y carga rápida",
+            "Diseño web enfocado en conversiones, adaptado a móvil y de carga rápida",
           ],
         },
         {
@@ -269,7 +269,7 @@ export const translations = {
           description: "SEO local y reseñas.",
           detail: [
             "Perfil de Empresa en Google creado y optimizado",
-            "SEO local por ciudad y por servicio",
+            "SEO local para pequeñas empresas, por ciudad y por servicio",
             "Sistema para pedir y responder reseñas",
           ],
         },
@@ -280,7 +280,7 @@ export const translations = {
           title: "Formularios que califican",
           description: "Menos llamadas, mejor información.",
           detail: [
-            "Formularios de cotización en línea por tipo de servicio",
+            "Formularios para captar clientes y cotizar por tipo de servicio",
             "Carga de fotos, medidas o documentos",
             "Preguntas de zona, presupuesto y urgencia",
           ],
@@ -292,9 +292,9 @@ export const translations = {
           title: "Nada se queda sin responder",
           description: "Todo conectado y automático.",
           detail: [
-            "Formularios, WhatsApp, calendario y CRM conectados",
+            "Automatización para pequeñas empresas: formularios, WhatsApp, calendario y CRM conectados",
             "Respuesta inmediata a cada prospecto nuevo",
-            "Automatización de seguimiento a quien no contestó",
+            "Seguimiento automático de prospectos que no contestaron",
           ],
         },
         {
@@ -327,7 +327,7 @@ export const translations = {
       eyebrow: "// cómo trabajo",
       titleA: "Un proceso claro, enfocado en",
       titleHighlight: "resultados",
-      subtitle: "Cinco pasos, sin vueltas y con fechas claras.",
+      subtitle: "Cinco pasos, sin vueltas y con fechas claras: así corre el servicio de creación de páginas web, de la primera llamada a la publicación.",
       steps: [
         {
           number: "01",
@@ -366,7 +366,7 @@ export const translations = {
       titleHighlight: "para dueños de negocio",
       titleB: "",
       subtitle:
-        "Cualquiera puede hacerte una página. Esto es lo que cambia cuando quien la construye entiende cómo factura un negocio.",
+        "Cualquiera puede hacerte una página. Los sitios web para captar clientes se construyen distinto, y esto es lo que cambia cuando quien los arma entiende cómo factura un negocio.",
       items: [
         {
           icon: "search",
@@ -441,7 +441,7 @@ export const translations = {
         "Una selección de sitios que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos en vivo.",
       viewProject: "Ver proyecto",
       resultLabel: "Resultado",
-      cta: "Quiero un sitio así para mi negocio",
+      cta: "Quiero una página web para mi negocio",
       clientsTitle: "Clientes reales",
       clientsNote: "Ejemplos de sitios web para negocios que están en vivo: casos de sitios web pymes con clientes atendiendo por ellos hoy.",
       demosTitle: "Demos y conceptos",
@@ -528,14 +528,14 @@ export const translations = {
       titleHighlight: "venda por ti.",
       titleB: "",
       subtitle:
-        "Precios públicos, en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar y crece a tu ritmo.",
+        "Paquetes de diseño de páginas web con precio público, en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
       currencyLabel: "Ver precios en",
       currencyMxn: "MXN",
       currencyUsd: "USD",
       currencyNoteMxn:
         "Equivalencia en pesos mexicanos a tipo de cambio fijo de $18 MXN por dólar. La facturación se hace en USD.",
-      currencyNoteUsd: "Precios de diseño web en dólares estadounidenses: el precio de un sitio web completo está publicado abajo, igual que el plan de SEO local y su precio.",
+      currencyNoteUsd: "Precio de una página web profesional en dólares estadounidenses: el costo de página web para pequeña empresa está publicado abajo, igual que el mantenimiento web mensual y el plan de SEO local con su precio.",
       mxnUnit: "MXN",
       mxnUnitMonth: "MXN / mes",
       advisory: {
@@ -778,7 +778,7 @@ export const translations = {
       eyebrow: "// integraciones",
       title: "Conecto tus herramientas favoritas",
       subtitle:
-        "Tu página no vive aislada: se conecta para que el seguimiento suceda solo.",
+        "Tu página no vive aislada: se conecta para que el seguimiento suceda solo. Una empresa de diseño de páginas web que se detiene en el diseño te deja conectando todo esto a mano.",
       items: [
         { icon: "message-circle", name: "WhatsApp", description: "Captación y seguimiento" },
         { icon: "file-text", name: "Formularios", description: "Registro de prospectos" },
@@ -830,7 +830,7 @@ export const translations = {
         {
           question: "¿Trabajas con negocios en Estados Unidos aunque no estés aquí?",
           answer:
-            "Sí, y es la mayor parte de mi trabajo. Todo se hace en remoto y en español, por WhatsApp, en tu horario. La diferencia con una agencia grande es que hablas siempre conmigo, no con un ejecutivo de cuenta distinto cada mes.",
+            "Sí, y es la mayor parte de mi trabajo. Todo se hace en remoto y en español, por WhatsApp, en tu horario. La diferencia con una agencia grande es que hablas siempre con el dueño de esta, no con un ejecutivo de cuenta distinto cada mes.",
         },
         {
           question: "¿Puede ser bilingüe, en inglés y español?",
@@ -954,7 +954,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Desarrollador web en español: páginas web para negocios y sitios web para pymes en Estados Unidos y México, con captación, automatización y seguimiento conectados.",
+        "ProCode Dev es una agencia de páginas web para negocios dirigida por Cristian Posada, desarrollador web en español. Páginas web para negocios y páginas web para pequeñas empresas en Estados Unidos y México, con captación, automatización y seguimiento conectados.",
       navTitle: "Navegación",
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
@@ -979,7 +979,7 @@ export const translations = {
       eyebrow: "// trabajo real",
       titleA: "Sistemas que ya están",
       titleHighlight: "trabajando",
-      subtitle: "Están en vivo ahora mismo. Ábrelos y júzgalos tú.",
+      subtitle: "Páginas web que generan clientes, en vivo ahora mismo. Ábrelas y júzgalas tú.",
       cta: "Ver todo el portafolio",
     },
     // ── Anclaje de precio en el home (hallazgo #10) ──
@@ -998,10 +998,10 @@ export const translations = {
     founder: {
       eyebrow: "",
       name: "Cristian Posada",
-      role: "Desarrollador · Fundador",
-      title: "Estrategia y ejecución sin intermediarios",
+      role: "Desarrollador · Fundador de ProCode Dev",
+      title: "El dueño de la agencia es quien hace el trabajo",
       body:
-        "Un solo responsable desde la primera conversación hasta el seguimiento.",
+        "Dirijo ProCode Dev y ejecuto: diseño, desarrollo, SEO y campañas. Un solo responsable desde la primera conversación hasta el seguimiento.",
       cta: "Agendar Revisión Express",
     },
     // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
@@ -1011,6 +1011,11 @@ export const translations = {
       titleHighlight: "siempre me hacen",
       subtitle: "",
       items: [
+        {
+          question: "Necesito una página web para mi negocio. ¿Por dónde empiezo?",
+          answer:
+            "Por el servicio que más te deja, no por el sitio completo. Casi siempre arrancamos con una landing page de $349 USD para ese servicio y, si trae clientes, crecemos a un sitio de 4 a 6 páginas. Así pruebas con poco riesgo y con el precio a la vista.",
+        },
         {
           question: "¿Cuánto cuesta y por qué no lo veo hasta el final?",
           answer:
@@ -1024,7 +1029,7 @@ export const translations = {
         {
           question: "Estoy en EE. UU. y tú no. ¿Cómo funciona eso?",
           answer:
-            "En remoto, en español y por WhatsApp, en tu horario. Es como trabajas ya con la mayoría de tus proveedores. La diferencia frente a una agencia es que siempre hablas conmigo, y frente a Fiverr, que en el mes seis sigo contestando.",
+            "En remoto, en español y por WhatsApp, en tu horario. Es como trabajas ya con la mayoría de tus proveedores. La diferencia frente a una agencia grande es que hablas con el dueño de la agencia, que además es quien hace el trabajo; y frente a Fiverr, que en el mes seis sigo contestando.",
         },
         {
           question: "No sé nada de tecnología. ¿Voy a poder?",
@@ -1041,20 +1046,20 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Páginas Web para Negocios y PyMEs | ProCode Dev",
+          "Diseño de Páginas Web para Negocios | ProCode Dev",
         description:
-          "Sitio web, Google, formularios y seguimiento en un solo sistema para tu negocio. Precios públicos desde $349 USD y respuesta en menos de 24 horas.",
+          "Diseño de páginas web para negocios y pequeñas empresas: sitio, Google, formularios y seguimiento en un solo sistema. Desde $349 USD y respuesta en 24 h.",
         keywords:
-          "sistemas digitales de crecimiento, páginas web para negocios, sitios web para pymes, captación de clientes, perfil de empresa en google, SEO local, automatización de seguimiento, desarrollador web en español, ProCode Dev",
+          "diseño de páginas web para negocios, páginas web para negocios, agencia de páginas web para negocios, páginas web para pequeñas empresas, página web para mi negocio, sitios web para captar clientes, sistema de captación de clientes, páginas web que generan clientes, desarrollador web en español, ProCode Dev",
         heroKicker: "Inicio",
       },
       sectors: {
         title:
-          "Páginas Web por Giro de Negocio | ProCode Dev",
+          "Diseño Web por Giro de Negocio | ProCode Dev",
         description:
-          "Sitios web y captación de clientes por giro: contratistas, consultorios, servicios profesionales, inmobiliarias y despachos contables. Precios públicos.",
+          "Diseño web para contratistas, consultorios, abogados, inmobiliarias y contadores. Elige tu giro y ve qué cambia en tu caso, con precios públicos en USD.",
         keywords:
-          "páginas web por giro, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, sitios web para negocios locales, marketing para pymes",
+          "diseño web para contratistas, diseño web para consultorios, diseño web para inmobiliarias, diseño web para contadores, diseño web para abogados, diseño web para negocios locales, marketing digital para pymes, páginas web para pymes, páginas web por giro",
         heroTitleA: "Un sistema digital pensado para",
         heroHighlight: "tu giro",
         heroSubtitle:
@@ -1062,51 +1067,51 @@ export const translations = {
       },
       services: {
         title:
-          "Servicios: Web, SEO Local y Automatización | ProCode Dev",
+          "Agencia de Diseño Web y Marketing Digital | ProCode",
         description:
-          "Sitio web por servicio, Perfil de Empresa en Google, formularios de cotización, automatización y reportes de contactos reales. Empieza por una pieza o todo.",
+          "Agencia de diseño web y marketing digital dirigida por su fundador: SEO local, formularios que captan clientes y seguimiento automático de prospectos.",
         keywords:
-          "diseño web para negocios, captación de clientes, formularios de cotización en línea, automatización de seguimiento, analítica de marketing, SEO local, perfil de empresa en google, búsqueda con IA",
-        heroTitleA: "Todo lo que necesita",
-        heroHighlight: "tu presencia digital",
+          "agencia de diseño web, agencia de marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, creación de páginas web para negocios, marketing digital para pequeñas empresas, SEO local para pequeñas empresas, automatización para pequeñas empresas, formularios para captar clientes, seguimiento automático de prospectos, generación de prospectos para negocios, diseño web enfocado en conversiones",
+        heroTitleA: "Agencia de diseño web",
+        heroHighlight: "con un solo responsable",
         heroSubtitle:
-          "Diseño web para negocios, captación de clientes, formularios de cotización, automatización de seguimiento y analítica de marketing. Empieza por una pieza o monta el sistema completo.",
+          "Creación de páginas web para negocios, marketing digital para pequeñas empresas, SEO local, formularios que califican, automatización y reportes de contactos reales. Una agencia de marketing digital donde el dueño es quien ejecuta: empieza por una pieza o monta el sistema completo.",
       },
       portfolio: {
         title:
-          "Portafolio de Páginas Web | ProCode Dev",
+          "Portafolio: Páginas Web Profesionales | ProCode Dev",
         description:
-          "Sitios en vivo que construí para negocios de servicios, salud, construcción e inmobiliaria. Ábrelos y juzga el trabajo tú mismo antes de escribirme.",
+          "Páginas web profesionales para negocios de servicios, salud, construcción e inmobiliaria. Sitios en vivo: ábrelos y juzga el trabajo antes de escribirme.",
         keywords:
-          "portafolio de páginas web, ejemplos de sitios web para negocios, casos de sitios web pymes, diseño web para negocios locales",
+          "páginas web profesionales para negocios, portafolio de páginas web, ejemplos de sitios web para negocios, casos de sitios web pymes, diseño web para negocios locales",
         heroTitleA: "Proyectos reales que",
         heroHighlight: "generan oportunidades",
         heroSubtitle:
-          "Sitios en vivo que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos funcionando.",
+          "Un portafolio de páginas web profesionales para negocios que querían verse mejor y captar más. Están en vivo: haz clic para verlas funcionando.",
       },
       pricing: {
         title:
-          "Precios de Páginas Web en USD | ProCode Dev",
+          "Cuánto Cuesta una Página Web para un Negocio | ProCode Dev",
         description:
-          "Landing $349, sitio de 4–6 páginas $899 y sitio grande desde $1,499. Planes mensuales desde $79. Precios públicos, sin contratos de 12 meses.",
+          "Paquetes de diseño de páginas web con precio público: landing $349, sitio de 4–6 páginas $899 y desde $1,499 el grande. Planes mensuales desde $79 USD.",
         keywords:
-          "cuánto cuesta una página web, precio de un sitio web, precios de diseño web en dólares, mantenimiento web mensual, plan de SEO local precio",
+          "cuánto cuesta una página web para un negocio, precio de una página web profesional, costo de página web para pequeña empresa, paquetes de diseño de páginas web, cuánto cuesta una página web, mantenimiento web mensual",
         heroTitleA: "Precios públicos, en dólares, sin",
         heroHighlight: "llamada de ventas",
         heroSubtitle:
-          "Lo que ves es lo que pagas. Sin cotización sorpresa, sin precio oculto y sin contrato de 12 meses: los planes de mantenimiento se cancelan cuando quieras y el sistema completo de captación solo pide 3 meses.",
+          "Si buscabas cuánto cuesta una página web para un negocio, aquí están los paquetes de diseño de páginas web: lo que ves es lo que pagas. Sin cotización sorpresa y sin contrato de 12 meses. Los planes de mantenimiento se cancelan cuando quieras y el sistema completo de captación solo pide 3 meses.",
       },
       contact: {
         title:
-          "Contacto y Agenda de 15 Minutos | ProCode Dev",
+          "Contratar Diseño de Página Web | ProCode Dev",
         description:
-          "Agenda tu Revisión Express o escríbeme por WhatsApp. En español, sin costo y sin llamada de ventas: los precios ya están publicados en el sitio.",
+          "Agenda tu Revisión Express o escríbeme por WhatsApp. Contratar diseño de página web sin llamada de ventas: los precios ya están publicados en el sitio.",
         keywords:
-          "contacto ProCode Dev, agendar Revisión Express, desarrollador web en español, páginas web para negocios",
+          "contratar diseño de página web, Agendar Revisión Express, desarrollador web en español, páginas web para negocios",
         heroTitleA: "Agenda 15 minutos",
         heroHighlight: "conmigo",
         heroSubtitle:
-          "Elige el horario que te acomode y platicamos 15 minutos. Sin costo, sin compromiso y sin llamada de ventas: los precios ya están publicados.",
+          "Elige el horario que te acomode y platicamos 15 minutos. Si ya decidiste contratar diseño de página web, salimos de la llamada con fecha; si todavía no, te digo qué te falta. Sin costo y sin llamada de ventas.",
       },
     },
     // ── Hub de giros: /negocios ─────────────────────────────────
@@ -1163,18 +1168,18 @@ export const translations = {
           us: "Sin contratos de 12 meses y con los precios publicados en esta misma página.",
         },
         {
-          name: "Agencia de $3,000/mes",
-          them: "Buen trabajo, pero fuera del presupuesto de un negocio pequeño.",
+          name: "Agencia grande de $3,000/mes",
+          them: "Buen trabajo, pero fuera del presupuesto de la mayoría de los negocios.",
           us: "Una décima parte del costo, con el mismo enfoque en captar clientes reales.",
         },
       ],
-      forTitle: "Sitios web para negocios locales y marketing para pymes",
+      forTitle: "Diseño web para negocios locales y marketing digital para pymes",
       forItems: [
-        "Página web para contratistas, constructoras y oficios de casa",
-        "Página web para consultorios, clínicas y profesionales de la salud",
-        "Página web para abogados, aseguradoras y consultores",
-        "Página web para inmobiliarias y asesores inmobiliarios",
-        "Página web para despachos contables y de impuestos",
+        "Diseño web para contratistas, constructoras y oficios de casa",
+        "Diseño web para consultorios, clínicas y profesionales de la salud",
+        "Diseño web para abogados, aseguradoras y consultores",
+        "Diseño web para inmobiliarias y asesores inmobiliarios",
+        "Diseño web para contadores y despachos de impuestos",
         "Negocios de servicios que venden por recomendación",
       ],
       crossTitle: "¿Tu negocio no es de este giro?",
@@ -1182,7 +1187,7 @@ export const translations = {
         "El sistema es el mismo; cambian los ejemplos.",
       segmentsTitle: "Páginas web por giro",
       segmentsSubtitle:
-        "Página web para contratistas, para consultorios, para inmobiliarias, para despachos contables o para servicios profesionales. Cinco páginas con lo que cambia en cada caso.",
+        "Páginas web para pymes, giro por giro: contratistas, consultorios, inmobiliarias, despachos contables y servicios profesionales. Cinco páginas con lo que cambia en cada caso.",
       segmentsCta: "Ver la página",
       seasonTitle: "Tu calendario manda, y lo sé",
       seasonBody:
@@ -1315,12 +1320,12 @@ export const translations = {
     },
     services: {
       eyebrow: "// what I build",
-      detailTitle: "What each piece of the system includes",
-      titleA: "Web design and client acquisition for",
-      titleHighlight: "your business",
+      detailTitle: "What each piece includes, from the site to lead generation",
+      titleA: "Small business web design that also",
+      titleHighlight: "brings in clients",
       titleB: "",
       subtitle:
-        "Small business websites: start with one piece or build the whole system.",
+        "Small business website design, start to finish: take one piece or build the whole system.",
       items: [
         {
           icon: "layout",
@@ -1329,9 +1334,9 @@ export const translations = {
           title: "A site per service",
           description: "The right client lands.",
           detail: [
-            "One website page per service you sell",
+            "One page per service you sell, from small business landing page design to a full site",
             "English and Spanish versions on separate URLs",
-            "Mobile-first design and fast loading",
+            "Conversion-focused design, mobile-first and fast loading",
           ],
         },
         {
@@ -1342,7 +1347,7 @@ export const translations = {
           description: "Local SEO and reviews.",
           detail: [
             "Google Business Profile created and optimized",
-            "Local SEO by city and by service",
+            "Local SEO services for small businesses, by city and by service",
             "A system to request and answer reviews",
           ],
         },
@@ -1367,7 +1372,7 @@ export const translations = {
           detail: [
             "Forms, WhatsApp, calendar and CRM connected",
             "Instant reply to every new lead",
-            "Follow-up automation for anyone who didn't answer",
+            "Automated follow-up for anyone who didn't answer",
           ],
         },
         {
@@ -1378,7 +1383,7 @@ export const translations = {
           description: "Visible in ChatGPT and Google.",
           detail: [
             "schema.org structured data and llms.txt",
-            "Services and service area readable by AI",
+            "AI search optimization: services and service area readable by AI",
             "Content that answers what people actually ask",
           ],
         },
@@ -1435,7 +1440,7 @@ export const translations = {
       titleHighlight: "for business owners",
       titleB: "",
       subtitle:
-        "Anyone can build you a page. This is what changes when the person building it understands how a business actually bills.",
+        "Anyone can build you a page. Lead generation websites for small businesses are built differently, and this is what changes when the person building yours understands how a business actually bills.",
       items: [
         {
           icon: "search",
@@ -1460,7 +1465,7 @@ export const translations = {
         {
           icon: "globe",
           title: "Truly bilingual",
-          description: "Full acquisition and experience in English and Spanish.",
+          description: "Bilingual website design services: full acquisition and experience in English and Spanish.",
         },
       ],
     },
@@ -1502,7 +1507,7 @@ export const translations = {
       titleA: "Real projects that",
       titleHighlight: "generate opportunities",
       subtitle:
-        "A selection of websites we've built for businesses that wanted to look more professional and capture better. Click to see them live.",
+        "A selection of professional websites for small businesses that wanted to look sharper and capture better. Click to see them live.",
       viewProject: "View project",
       resultLabel: "Result",
       clientsTitle: "Real clients",
@@ -1510,7 +1515,7 @@ export const translations = {
       demosTitle: "Demos & concepts",
       demosNote:
         "Projects I built on my own to show what's possible in each sector. They're not clients: I label them as demos so there's no confusion.",
-      cta: "I want a site like this for my business",
+      cta: "I want a website like this for my business",
       projects: [
         {
           id: "izcalli",
@@ -1592,14 +1597,14 @@ export const translations = {
       titleHighlight: "sell for you.",
       titleB: "",
       subtitle:
-        "Public pricing, in US dollars, with no sales call to find out and no 12-month contracts. Choose where to start and grow at your own pace.",
+        "Website design packages with public pricing, in US dollars, no sales call to find out and no 12-month contracts. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
       currencyLabel: "Show prices in",
       currencyMxn: "MXN",
       currencyUsd: "USD",
       currencyNoteMxn:
         "Mexican peso equivalent at a fixed rate of $18 MXN per US dollar. Billing is in USD.",
-      currencyNoteUsd: "Small business website pricing in US dollars: web design prices in USD are published below, monthly plans included.",
+      currencyNoteUsd: "Small business website pricing in US dollars: how much a small business website costs is published below, monthly website maintenance included.",
       mxnUnit: "MXN",
       mxnUnitMonth: "MXN / month",
       advisory: {
@@ -1840,7 +1845,7 @@ export const translations = {
       eyebrow: "// integrations",
       title: "I connect your favorite tools",
       subtitle:
-        "Your site doesn't live alone: it connects so follow-up happens on its own.",
+        "Your site doesn't live alone: it connects so follow-up happens on its own. A website design company for small business that stops at the design leaves you wiring all of this yourself.",
       items: [
         { icon: "message-circle", name: "WhatsApp", description: "Acquisition and follow-up" },
         { icon: "file-text", name: "Forms", description: "Lead capture" },
@@ -1892,7 +1897,7 @@ export const translations = {
         {
           question: "Do you work with U.S. businesses even though you're not here?",
           answer:
-            "Yes, and it's most of my work. Everything is done remotely, in Spanish or English, over WhatsApp, on your schedule. The difference from a large agency is that you always talk to me, not to a different account executive every month.",
+            "Yes, and it's most of my work. Everything is done remotely, in Spanish or English, over WhatsApp, on your schedule. The difference from a large agency is that you always talk to the owner of this one, not to a different account executive every month.",
         },
         {
           question: "Can the site be bilingual, English and Spanish?",
@@ -2016,12 +2021,12 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Bilingual web developer: small business websites with client acquisition, follow-up automation and analytics, for business owners in the United States and Mexico.",
+        "ProCode Dev is a small business web design agency run by Cristian Posada, a bilingual web developer. Website design for small businesses across the United States and Mexico, with client acquisition, follow-up automation and analytics.",
       navTitle: "Navigation",
       servicesTitle: "Services",
       contactTitle: "Contact",
       hours: "Monday to Sunday",
-      location: "Serving the United States remotely, in Spanish and English",
+      location: "Spanish website design services, remote across the United States",
       cta: "Book my Express Review",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
@@ -2041,7 +2046,7 @@ export const translations = {
       eyebrow: "// real work",
       titleA: "Systems already",
       titleHighlight: "working",
-      subtitle: "They're live right now. Open them and judge for yourself.",
+      subtitle: "Professional websites for small businesses, live right now. Open them and judge for yourself.",
       cta: "See the full portfolio",
     },
     // ── Price anchor on the home page (finding #10) ──
@@ -2060,10 +2065,10 @@ export const translations = {
     founder: {
       eyebrow: "",
       name: "Cristian Posada",
-      role: "Developer · Founder",
-      title: "Strategy and execution, no middlemen",
+      role: "Developer · Founder of ProCode Dev",
+      title: "The agency owner is the one doing the work",
       body:
-        "One person accountable, from the first conversation through follow-up.",
+        "I run ProCode Dev and I execute: design, development, SEO and campaigns. One person accountable, from the first conversation through follow-up.",
       cta: "Book my Express Review",
     },
     // ── Objection FAQ before the home page's final CTA (finding #18) ──
@@ -2073,6 +2078,11 @@ export const translations = {
       titleHighlight: "almost every time",
       subtitle: "",
       items: [
+        {
+          question: "I need a website for my business. Where do I start?",
+          answer:
+            "With the service that pays you best, not the whole site. We usually start with a $349 USD landing page for that one service and, if it brings clients in, grow into a 4–6 page site. Low risk, price in plain sight.",
+        },
         {
           question: "What does it cost, and why don't I see it until the end?",
           answer:
@@ -2086,7 +2096,7 @@ export const translations = {
         {
           question: "I'm in the U.S. and you're not. How does that work?",
           answer:
-            "Remotely, over WhatsApp, in Spanish or English, on your schedule. It's how you already work with most of your vendors. The difference from an agency is that you always talk to me, and from Fiverr, that I'm still answering in month six.",
+            "Remotely, over WhatsApp, in Spanish or English, on your schedule. It's how you already work with most of your vendors. The difference from a large agency is that you talk to the agency owner, who is also the one doing the work; and from Fiverr, that I'm still answering in month six.",
         },
         {
           question: "I'm not technical at all. Will I manage?",
@@ -2103,20 +2113,20 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Websites for Small Businesses | ProCode Dev",
+          "Small Business Website Design | ProCode Dev",
         description:
-          "Website, Google presence, forms and follow-up in one system for your business. Public pricing from $349 USD and a reply in under 24 hours.",
+          "Small business website design with Google presence, forms and follow-up in one system. Bilingual, public pricing from $349 and a reply in under 24 hours.",
         keywords:
-          "digital growth systems, small business website, websites for small business, client acquisition, google business profile, local SEO, follow-up automation, bilingual web developer, ProCode Dev",
+          "small business website design, website design for small businesses, small business web design agency, professional websites for small businesses, bilingual website design services, spanish website design services, lead generation websites for small businesses, bilingual web developer, ProCode Dev",
         heroKicker: "Home",
       },
       sectors: {
         title:
-          "Websites by Industry | ProCode Dev",
+          "Website Design by Industry | ProCode Dev",
         description:
-          "Websites and client acquisition by industry: contractors, clinics, professional services, real estate and accounting practices. Public pricing, no 12-month contracts.",
+          "Website design for contractors, therapists, attorneys, realtors and tax preparers. Pick your industry and see what changes, with public pricing in USD.",
         keywords:
-          "websites by industry, contractor website, clinic website, real estate agent website, accounting firm website, local business websites, small business marketing",
+          "contractor website design, therapist website design, real estate website design, tax preparer website design, attorney website design, local business web design, small business digital marketing services, websites by industry",
         heroTitleA: "A digital system built for",
         heroHighlight: "your industry",
         heroSubtitle:
@@ -2124,51 +2134,51 @@ export const translations = {
       },
       services: {
         title:
-          "Web, Local SEO & Automation Services | ProCode Dev",
+          "Small Business Web Design Agency | ProCode Dev",
         description:
-          "A page per service, Google Business Profile, quote forms, automation and reporting on real contacts. Start with one piece or build the whole system.",
+          "A small business web design agency run by its founder: local SEO, quote forms, follow-up automation and analytics. Public pricing from $349 USD.",
         keywords:
-          "small business web design, client acquisition, online quote forms, follow-up automation, marketing analytics, local SEO, google business profile, AI search optimization",
-        heroTitleA: "Everything your",
-        heroHighlight: "digital presence needs",
+          "small business web design agency, web design agency, website design company for small business, small business web design services, small business digital marketing services, local SEO services for small businesses, small business landing page design, conversion-focused design, AI search optimization",
+        heroTitleA: "A small business web design agency",
+        heroHighlight: "with one person accountable",
         heroSubtitle:
-          "Small business web design, client acquisition, quote forms, follow-up automation, AI search optimization and marketing analytics. Start with one piece or build the whole system.",
+          "Small business web design services and small business digital marketing services in one place: local SEO, quote forms, follow-up automation and analytics. A web design agency where the owner is the one executing — start with one piece or build the whole system.",
       },
       portfolio: {
         title:
-          "Website Portfolio | ProCode Dev",
+          "Portfolio: Small Business Websites | ProCode Dev",
         description:
-          "Live sites I built for service, health, construction and real estate businesses. Open them and judge the work yourself before you message me.",
+          "Professional websites for small businesses in services, health, construction and real estate. They're live: open them and judge the work before messaging me.",
         keywords:
-          "website portfolio, small business website examples, local business web design case studies",
+          "professional websites for small businesses, portfolio of small business websites, small business website examples, local business web design case studies, website redesign for small business",
         heroTitleA: "Real projects that",
         heroHighlight: "generate opportunities",
         heroSubtitle:
-          "Live sites I built for businesses that wanted to look more professional and capture better. Click to see them working.",
+          "A portfolio of small business websites — professional websites for small businesses that wanted to look sharper and capture better — including more than one website redesign for small business owners who already had a site. Click to see them working.",
       },
       pricing: {
         title:
-          "Website Pricing in USD | ProCode Dev",
+          "How Much a Small Business Website Costs | ProCode Dev",
         description:
-          "Landing $349, 4–6 page site $899 and large sites from $1,499. Monthly plans from $79. Public pricing, no 12-month contracts and no sales call.",
+          "Website design packages with public pricing: landing $349, 4–6 page site $899, large sites from $1,499 and monthly plans from $79. No 12-month contracts.",
         keywords:
-          "how much does a website cost, small business website pricing, web design prices in USD, monthly website maintenance, local SEO plan pricing",
+          "how much a small business website costs, small business website pricing, website design packages, how much does a website cost, monthly website maintenance, local SEO plan pricing",
         heroTitleA: "Public pricing, in dollars, with no",
         heroHighlight: "sales call",
         heroSubtitle:
-          "What you see is what you pay. No surprise quote, no hidden price and no 12-month contract: maintenance plans cancel whenever you want and the full acquisition system only asks for 3 months.",
+          "If you were looking for how much a small business website costs, here are the website design packages: what you see is what you pay. No surprise quote and no 12-month contract — maintenance plans cancel whenever you want and the full acquisition system only asks for 3 months.",
       },
       contact: {
         title:
-          "Contact & 15-Minute Call | ProCode Dev",
+          "Hire a Small Business Web Designer | ProCode Dev",
         description:
-          "Book your Express Review or message me on WhatsApp. In English or Spanish, free and with no sales call: pricing is already published on the site.",
+          "Book your Express Review or message me on WhatsApp. Hire a web designer with no sales call: bilingual website design services and pricing already published.",
         keywords:
-          "contact ProCode Dev, book an Express Review, bilingual web developer, small business websites",
+          "hire a web designer, bilingual website design services, spanish website design services, bilingual web developer",
         heroTitleA: "Book 15 minutes",
         heroHighlight: "with me",
         heroSubtitle:
-          "Pick a time that works for you and we talk for 15 minutes. Free, no commitment and no sales call: pricing is already published.",
+          "Pick a time that works for you and we talk for 15 minutes. Ready to hire a web designer? We leave the call with a date. Not yet? I tell you what's missing. Bilingual website design services, in English or Spanish, with no sales call.",
       },
     },
     // ── Industry hub: /en/industries ───────────────────────────
@@ -2225,18 +2235,18 @@ export const translations = {
           us: "No 12-month contracts, and pricing published on this very page.",
         },
         {
-          name: "A $3,000/mo agency",
+          name: "A $3,000/mo large agency",
           them: "Good work, but outside a small business's budget.",
           us: "A tenth of the cost, with the same focus on winning real clients.",
         },
       ],
-      forTitle: "Local business websites and small business marketing",
+      forTitle: "Local business web design and small business digital marketing services",
       forItems: [
-        "Contractor website for builders and home-service trades",
-        "Clinic website for private practices and health professionals",
-        "Website for attorneys, insurance agents and consultants",
-        "Real estate agent website for agents and developers",
-        "Accounting firm website for accounting and tax practices",
+        "Contractor website design for builders and home-service trades",
+        "Therapist website design for private practices and health professionals",
+        "Attorney website design for law firms, insurance agents and consultants",
+        "Real estate website design for agents and developers",
+        "Tax preparer website design for accounting and tax practices",
         "Service businesses that sell on referrals",
       ],
       crossTitle: "Not your industry?",

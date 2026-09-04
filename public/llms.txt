@@ -1,17 +1,20 @@
 # ProCode Dev
 
-> Sistemas digitales de crecimiento para dueños de negocio y pymes en Estados
-> Unidos y México. No solo páginas web: sitio, presencia en Google, formularios,
-> agenda y seguimiento conectados en un mismo sistema. Atención en español e
-> inglés, con una sola persona responsable (Cristian Posada).
+> Agencia de diseño web y marketing digital para dueños de negocio y pymes en
+> Estados Unidos y México. No solo páginas web: sitio, presencia en Google,
+> formularios, agenda y seguimiento conectados en un mismo sistema. Atención en
+> español e inglés, con una sola persona responsable: Cristian Posada, dueño de
+> la agencia y quien ejecuta el trabajo.
 
 Este archivo resume el sitio para asistentes y buscadores con IA. Todo lo que
 aparece aquí está publicado en las páginas enlazadas.
 
 ## Qué es ProCode Dev
 
-- Desarrollador web independiente, no una agencia. Quien contesta, construye y
-  mantiene es siempre la misma persona: Cristian Posada.
+- ProCode Dev es una agencia de diseño web y marketing digital dirigida por su
+  fundador. Cristian Posada es el dueño y, a la vez, el desarrollador que hace
+  el trabajo: quien contesta, construye y mantiene es siempre la misma persona.
+  No es una agencia grande con ejecutivos de cuenta ni un freelance suelto.
 - Trabaja en remoto con negocios de Estados Unidos y México, en español e inglés.
 - Contacto: info@procodedev.com · WhatsApp +52 614 241 4255
 
@@ -41,10 +44,14 @@ Capacidad declarada: 4 proyectos nuevos al mes.
 
 ## Páginas principales
 
-- [Inicio](https://procodedev.com/): el sistema completo y por qué existe.
-- [Servicios](https://procodedev.com/servicios/): sitio web, captación,
-  formularios y cotización, automatización, búsqueda con IA y analítica.
-- [Precios](https://procodedev.com/precios/): tarifas públicas y qué incluye cada plan.
+- [Inicio](https://procodedev.com/): diseño de páginas web para negocios y
+  pequeñas empresas — el sistema completo y por qué existe.
+- [Servicios](https://procodedev.com/servicios/): la agencia de diseño web y
+  marketing digital — creación de páginas web para negocios, SEO local para
+  pequeñas empresas, formularios para captar clientes, automatización, búsqueda
+  con IA y analítica.
+- [Precios](https://procodedev.com/precios/): cuánto cuesta una página web para un
+  negocio, con paquetes de diseño de páginas web y qué incluye cada plan.
 - [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
   reales y demos marcados como tales.
 - [Contacto](https://procodedev.com/contacto/): agenda y WhatsApp.
@@ -54,17 +61,20 @@ Capacidad declarada: 4 proyectos nuevos al mes.
 ## Páginas por giro
 
 - [Todos los giros](https://procodedev.com/negocios/)
-- [Contratistas y construcción](https://procodedev.com/contratistas/):
-  constructoras, remodelación, plomería, electricidad, techos y jardinería.
-- [Salud y bienestar](https://procodedev.com/salud-y-bienestar/): consultorios,
-  clínicas, nutriólogos, dentistas, psicólogos y terapeutas.
+- [Contratistas y construcción](https://procodedev.com/contratistas/): diseño web
+  para constructoras, remodelación, plomería, electricidad, techos y jardinería,
+  con SEO local para contratistas.
+- [Salud y bienestar](https://procodedev.com/salud-y-bienestar/): diseño web para
+  consultorios, clínicas, nutriólogos, dentistas, psicólogos y terapeutas, con
+  agenda en línea y SEO local para consultorios.
 - [Servicios profesionales](https://procodedev.com/servicios-profesionales/):
-  abogados, agentes de seguros, consultores y marca personal.
-- [Inmobiliarias](https://procodedev.com/inmobiliarias/): asesores inmobiliarios,
-  inmobiliarias y desarrolladoras.
+  diseño web para abogados, agentes de seguros, consultores y marca personal.
+- [Inmobiliarias](https://procodedev.com/inmobiliarias/): diseño web para
+  inmobiliarias y asesores inmobiliarios, con catálogo de propiedades y
+  generación de prospectos inmobiliarios.
 - [Contabilidad e impuestos](https://procodedev.com/contabilidad-e-impuestos/):
-  despachos contables, contadores, preparadores de impuestos, CPAs, Enrolled
-  Agents y bookkeepers.
+  diseño web para contadores y despachos contables, preparadores de impuestos,
+  CPAs, Enrolled Agents y bookkeepers, con SEO local para contadores.
 
 ## English
 
