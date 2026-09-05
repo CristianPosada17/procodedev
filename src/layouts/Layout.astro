@@ -357,14 +357,40 @@ const jsonLd = {
     {/* La foto del hero es el LCP del home: se precarga para que pinte antes
         que cualquier otro recurso. */}
     {page === "home" && (
-      <link rel="preload" as="image" href="/images/hero-lobby.webp" fetchpriority="high" />
+      /* Se precarga SOLO el AVIF. Con los dos formatos declarados el
+         navegador cumplia ambos <link> y bajaba la foto dos veces (41 KB
+         de AVIF + 51 KB de WebP en la misma carga). Quien no soporte AVIF
+         ignora este preload y toma el WebP por el <picture> del hero, unos
+         milisegundos mas tarde; es un caso minoritario y el coste de
+         equivocarse al reves era duplicar el LCP para todos los demas. */
+      <link
+        rel="preload"
+        as="image"
+        type="image/avif"
+        imagesizes="100vw"
+        imagesrcset="/images/hero-lobby-640.avif 640w, /images/hero-lobby-960.avif 960w, /images/hero-lobby-1280.avif 1280w, /images/hero-lobby-1536.avif 1536w"
+        fetchpriority="high"
+      />
     )}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {/* Las fuentes se auto-hospedan desde /public/fonts y se declaran en
+        global.css. El enlace bloqueante a fonts.googleapis.com se retiro el
+        2026-09-05: costaba ~1.2 s de render bloqueado en movil. Aqui solo se
+        precargan las dos caras que salen arriba del pliegue; el mono de las
+        etiquetas entra despues con font-display: swap. */}
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-var-latin.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/space-grotesk-var-latin.woff2"
+      crossorigin
     />
 
     <!-- ============ DATOS ESTRUCTURADOS (JSON-LD) ============ -->

@@ -1,0 +1,78 @@
+# ============================================================
+# ProCode Dev — cabeceras de caché y compresión (Hostinger / Apache)
+# Añadido el 2026-09-05: Lighthouse reportaba 194 KB re-descargados en
+# cada visita porque el hosting servía /images, /fonts y los iconos con
+# su TTL por defecto.
+#
+# Este archivo vive en public/, así que Astro lo copia tal cual a dist/
+# y el deploy por FTP lo sube a public_html/ junto con el resto.
+# ============================================================
+
+# ---------- Compresión ----------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+# ---------- Tipos MIME que Apache no siempre conoce ----------
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType text/plain .txt
+</IfModule>
+
+# ---------- Caché ----------
+<IfModule mod_headers.c>
+  # Assets con hash en el nombre (los genera Astro en /_astro): el nombre
+  # cambia cuando cambia el contenido, así que pueden ser inmutables.
+  <FilesMatch "\.[0-9a-zA-Z_-]{8,}\.(js|css|woff2|svg|png|jpg|jpeg|webp|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Fuentes auto-hospedadas: el nombre no lleva hash, pero el contenido no
+  # cambia. Si algún día se reemplaza una, hay que renombrar el archivo.
+  <FilesMatch "\.woff2$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imágenes e iconos: un año, revalidando en segundo plano.
+  <FilesMatch "\.(png|jpe?g|webp|avif|gif|ico|svg)$">
+    Header set Cache-Control "public, max-age=31536000, stale-while-revalidate=86400"
+  </FilesMatch>
+
+  # HTML: nunca se cachea duro, o un despliegue tardaría días en verse.
+  # Se revalida en cada visita; si no cambió, el servidor responde 304.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Sitemap, robots, manifest y llms.txt: una hora.
+  <FilesMatch "\.(xml|txt|webmanifest)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+
+  # El .htaccess no debe filtrarse en ninguna respuesta.
+  Header unset X-Powered-By
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/avif                "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>

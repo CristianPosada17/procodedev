@@ -37,16 +37,30 @@ const initials = f.name
         >
           {initials}
         </span>
-        <img
-          src={CONTACT.founderPhoto}
-          alt={`${f.name} — ${f.role}`}
-          loading="lazy"
-          decoding="async"
-          width="600"
-          height="600"
-          class="relative h-full w-full object-cover lg:aspect-square lg:h-auto"
-          onerror="this.remove()"
-        />
+        <picture>
+          {/* La foto se muestra a 144 px en movil y ~300 px en escritorio;
+              el original de 600x600 y 37 KB era mas de lo necesario. */}
+          <source
+            type="image/avif"
+            sizes="(min-width: 1024px) 300px, 176px"
+            srcset="/images/cristian-posada-300.avif 300w, /images/cristian-posada-600.avif 600w"
+          />
+          <source
+            type="image/webp"
+            sizes="(min-width: 1024px) 300px, 176px"
+            srcset="/images/cristian-posada-300.webp 300w, /images/cristian-posada-600.webp 600w"
+          />
+          <img
+            src="/images/cristian-posada-600.webp"
+            alt={`${f.name} — ${f.role}`}
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="600"
+            class="relative h-full w-full object-cover lg:aspect-square lg:h-auto"
+            onerror="this.remove()"
+          />
+        </picture>
       </div>
 
       <div class="flex flex-col items-center sm:items-start">

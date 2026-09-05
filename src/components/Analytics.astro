@@ -117,15 +117,18 @@ const bootstrap =
       site_language: CFG.lang,
       debug_mode: window.__pcdDebug
     });
-    var g = document.createElement('script');
-    g.async = true;
-    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + CFG.ga;
-    document.head.appendChild(g);
+    // La descarga de gtag.js (~130 KB) NO va aqui: se difiere al final de
+    // este script. Todo lo de arriba solo empuja a dataLayer, asi que los
+    // eventos disparados mientras tanto quedan en cola y se envian intactos
+    // en cuanto la libreria carga.
   }
 
   // ---------- 4. Meta Pixel ----------
   if (CFG.pixel) {
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    // Stub oficial del Pixel, pero SIN la insercion del <script>: fbq
+    // existe desde el primer milisegundo y encola en n.queue; fbevents.js
+    // (~80 KB) se descarga diferido y vacia esa cola al cargar.
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script');
     // El Pixel tiene su propio interruptor de consentimiento y hay que
     // accionarlo ANTES de init para que no escriba cookies mientras tanto.
     var blockPixel = saved === 'denied' || (!saved && euZone);
@@ -136,6 +139,56 @@ const bootstrap =
     // cuanto la persona acepta (lo hace ConsentBanner llamando a pcdConsent).
     window.__pcdPixelPending = blockPixel;
   }
+
+  // ---------- 5. Carga diferida de las librerias de terceros ----------
+  // gtag.js y fbevents.js suman ~210 KB y ~450 ms de bloqueo del hilo
+  // principal. Nada de eso hace falta durante el primer pintado: ambas
+  // librerias tienen cola propia (dataLayer y fbq.queue), asi que se
+  // descargan cuando la pagina ya esta usable.
+  //
+  // Se dispara con lo que ocurra primero:
+  //   a) la primera interaccion real de la persona, o
+  //   b) 2.5 s despues del evento load (o ya cargada, al entrar en reposo).
+  // El limite superior existe para no perder la sesion de quien abre,
+  // lee y se va sin tocar nada.
+  var tagsLoaded = false;
+  function loadTags(){
+    if (tagsLoaded) return;
+    tagsLoaded = true;
+    var head = document.head || document.getElementsByTagName('head')[0];
+    if (CFG.ga) {
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=' + CFG.ga;
+      head.appendChild(g);
+    }
+    if (CFG.pixel) {
+      var p = document.createElement('script');
+      p.async = true;
+      p.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      head.appendChild(p);
+    }
+  }
+
+  var EVENTS = ['pointerdown','keydown','touchstart','scroll','wheel'];
+  function onFirstInteraction(){
+    for (var i=0;i<EVENTS.length;i++) window.removeEventListener(EVENTS[i], onFirstInteraction, true);
+    loadTags();
+  }
+  for (var i=0;i<EVENTS.length;i++) {
+    window.addEventListener(EVENTS[i], onFirstInteraction, { capture: true, passive: true, once: true });
+  }
+
+  function armTimer(){
+    var idle = window.requestIdleCallback || function(cb){ return setTimeout(cb, 1); };
+    idle(function(){ setTimeout(loadTags, 2500); }, { timeout: 3000 });
+  }
+  if (document.readyState === 'complete') armTimer();
+  else window.addEventListener('load', armTimer, { once: true });
+
+  // Escotilla de emergencia: si algo necesita medir ya (por ejemplo el
+  // envio de un formulario antes de cualquier scroll), lo fuerza.
+  window.pcdLoadTags = loadTags;
 
 })();
 `

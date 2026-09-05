@@ -24,6 +24,17 @@ const { project, viewProject, resultLabel, delay = 0 } = Astro.props as Props;
 // un servicio gratuito de terceros que devuelve placeholders grises y aplica
 // rate-limits. Ahora todos los proyectos tienen screenshot propio en /public.
 const img = project.image;
+// Variantes responsivas generadas con sharp (2026-09-05). Los originales de
+// 1200x600 pesaban hasta 116 KB y se servian enteros a una tarjeta que en
+// movil mide ~380 px. `base` es la ruta sin extension; de ahi cuelgan los
+// `-400`, `-800` y `-1200` en AVIF y WebP.
+const base = img?.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+const srcset = (ext: string) =>
+  base
+    ? [400, 800, 1200].map((w) => `${base}-${w}.${ext} ${w}w`).join(", ")
+    : undefined;
+// Movil: la tarjeta ocupa el 92% del ancho. md: dos columnas. lg: tres.
+const SIZES = "(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw";
 ---
 
 <a
@@ -34,15 +45,19 @@ const img = project.image;
   style={`--reveal-delay: ${delay}ms`}
 >
   <div class="relative aspect-[2/1] overflow-hidden border-b border-[color:var(--border)] bg-[var(--bg-2)]">
-    <img
-      src={img}
-      alt={`Sitio web de ${project.name}`}
-      loading="lazy"
-      decoding="async"
-      width="1200"
-      height="600"
-      class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-    />
+    <picture>
+      <source type="image/avif" sizes={SIZES} srcset={srcset("avif")} />
+      <source type="image/webp" sizes={SIZES} srcset={srcset("webp")} />
+      <img
+        src={base ? `${base}-800.webp` : img}
+        alt={`Sitio web de ${project.name}`}
+        loading="lazy"
+        decoding="async"
+        width="1200"
+        height="600"
+        class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+      />
+    </picture>
     <span class="absolute left-3 top-3 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur">
       {project.badge}
     </span>

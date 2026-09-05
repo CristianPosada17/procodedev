@@ -131,6 +131,12 @@ const engine = `
     var id = eventId();
     params.event_id = id;
 
+    // Las librerias de GA4 y del Pixel se cargan diferidas (ver
+    // Analytics.astro). Cualquier evento propio es senal de que la persona
+    // ya esta interactuando, asi que se fuerza la carga: los eventos que
+    // ocurran antes de que lleguen quedan en cola y se envian igual.
+    if (window.pcdLoadTags) window.pcdLoadTags();
+
     if (window.gtag) window.gtag('event', name, params);
 
     if (meta && meta.event && window.fbq) {

@@ -26,15 +26,31 @@ const h = t.hero;
      en clases propias: si el CSS global llega en caché vieja, el hero se ve
      sin velo pero nunca se descuadra. */}
   <div class="absolute inset-0 -z-10 overflow-hidden">
-    <img
-      src="/images/hero-lobby.webp"
-      alt="Recepción de ProCode Dev con el logo iluminado y pantallas de proyectos"
-      width="1536"
-      height="864"
-      fetchpriority="high"
-      decoding="async"
-      class="h-full w-full object-cover object-[72%_34%] lg:object-[74%_center]"
-    />
+    <picture>
+      {/* La foto es el LCP del home. Antes se servia un solo archivo de
+          1536 px y 145 KB a todo el mundo: en un movil de 412 px eso era
+          122 KB tirados a la basura. Ahora el navegador elige ancho y
+          formato (AVIF si puede, WebP si no). */}
+      <source
+        type="image/avif"
+        sizes="100vw"
+        srcset="/images/hero-lobby-640.avif 640w, /images/hero-lobby-960.avif 960w, /images/hero-lobby-1280.avif 1280w, /images/hero-lobby-1536.avif 1536w"
+      />
+      <source
+        type="image/webp"
+        sizes="100vw"
+        srcset="/images/hero-lobby-640.webp 640w, /images/hero-lobby-960.webp 960w, /images/hero-lobby-1280.webp 1280w, /images/hero-lobby-1536.webp 1536w"
+      />
+      <img
+        src="/images/hero-lobby-1280.webp"
+        alt="Recepción de ProCode Dev con el logo iluminado y pantallas de proyectos"
+        width="1536"
+        height="864"
+        fetchpriority="high"
+        decoding="async"
+        class="h-full w-full object-cover object-[72%_34%] lg:object-[74%_center]"
+      />
+    </picture>
     <div class="hero-veil absolute inset-0"></div>
     <div class="hero-mesh tech-grid absolute inset-0"></div>
   </div>

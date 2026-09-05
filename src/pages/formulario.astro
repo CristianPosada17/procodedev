@@ -27,9 +27,15 @@
 </script>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+{/* Esta pagina es HTML suelto: no pasa por Layout.astro ni por global.css,
+    asi que declara sus propias @font-face contra las fuentes locales. Antes
+    tenia el mismo enlace bloqueante a Google Fonts que el resto del sitio. */}
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-var-latin.woff2" crossorigin>
+<style is:inline>
+  @font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("/fonts/inter-var-latin.woff2") format("woff2")}
+  @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/space-grotesk-var-latin.woff2") format("woff2")}
+</style>
 <style is:inline>
   :root{
     /* Tokens alineados con el sistema de diseño de ProCode Dev */

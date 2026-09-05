@@ -9,6 +9,14 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const c = t.caseStudy;
+// Mismas variantes responsivas que PortfolioCard (2026-09-05). Aqui la
+// captura ocupa media pantalla en escritorio y el ancho completo en movil.
+const base = c.image?.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+const srcset = (ext: string) =>
+  base
+    ? [400, 800, 1200].map((w) => `${base}-${w}.${ext} ${w}w`).join(", ")
+    : undefined;
+const SIZES = "(min-width: 1024px) 48vw, 100vw";
 ---
 
 {/*
@@ -43,15 +51,19 @@ const c = t.caseStudy;
           rel="noopener noreferrer"
           class="group relative block aspect-[2/1] w-full overflow-hidden lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[0_28px_70px_-34px_rgba(0,0,0,0.75)]"
         >
-          <img
-            src={c.image}
-            alt={`Sitio web de ${c.name}`}
-            loading="lazy"
-            decoding="async"
-            width="1200"
-            height="600"
-            class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-          />
+          <picture>
+            <source type="image/avif" sizes={SIZES} srcset={srcset("avif")} />
+            <source type="image/webp" sizes={SIZES} srcset={srcset("webp")} />
+            <img
+              src={base ? `${base}-800.webp` : c.image}
+              alt={`Sitio web de ${c.name}`}
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="600"
+              class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+            />
+          </picture>
           <span
             class="absolute left-4 top-4 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/85 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur"
           >
