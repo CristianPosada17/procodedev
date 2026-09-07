@@ -48,9 +48,20 @@
    Los componentes referencian estas variables, nunca colores fijos.
    ============================================================ */
 :root {
+    /* ------------------------------------------------------------
+       TEMA OSCURO — es la base. El tema claro solo redefine tokens
+       en el bloque [data-theme="light"] de abajo, así que un color
+       nuevo se declara aquí primero y luego se le da su valor claro.
+       Quién decide cuál se aplica: el script inline del <head> de
+       Layout.astro, que escribe data-theme en <html> antes del
+       primer pintado (preferencia guardada → sistema operativo).
+       ------------------------------------------------------------ */
+    color-scheme: dark;
+
     /* Superficies y texto */
     --bg: #060b18; /* fondo base (navy profundo) */
-    --bg-2: #0a1224;
+    --bg-2: #0a1224; /* superficie hundida DENTRO de una tarjeta
+                        (campos de formulario, barras de mockup) */
     --surface: #0d1730; /* tarjetas */
     --surface-2: #111c3a; /* tarjetas elevadas */
     --text: #f1f5f9; /* títulos y texto principal */
@@ -66,12 +77,104 @@
     --grad-via: #3b82f6;
     --grad-to: #22d3ee; /* degradado de titulares */
 
-    /* Tipografía y forma */
+    /* Veladuras y relieve — antes eran `bg-white/5`, `rgba(0,0,0,.8)`
+       y `rgb(var(--veil-rgb) / .9)` escritos a mano en los componentes. Con el
+       tema claro ya no valen: un velo blanco sobre blanco no vela nada. */
+    --tint: rgba(255, 255, 255, 0.05); /* realce sutil de una superficie */
+    --tint-2: rgba(255, 255, 255, 0.07); /* el mismo realce, en hover */
+    --ghost: rgba(255, 255, 255, 0.035); /* números fantasma de fondo */
+    --veil-rgb: 6 11 24; /* color del velo sobre las fotos de hero */
+    --veil-ink: rgb(var(--veil-rgb) / 0.9); /* halo tras el titular del hero */
+    --shadow-pop: 0 30px 80px -30px rgba(0, 0, 0, 0.8); /* desplegables */
+    --shadow-media: 0 24px 60px -30px rgba(0, 0, 0, 0.75); /* capturas */
+    --grid-line: rgba(96, 165, 250, 0.06); /* rejilla técnica de fondo */
+    --aurora-1: rgba(37, 99, 235, 0.16);
+    --aurora-2: rgba(56, 189, 248, 0.12);
+    --aurora-blob: rgba(59, 130, 246, 0.1);
+    --halo-brand: rgba(37, 99, 235, 0.4); /* resplandor de los botones */
+    --halo-card: rgba(37, 99, 235, 0.55); /* elevación azul de las tarjetas */
+    --halo-card-strong: rgba(37, 99, 235, 0.8); /* la tarjeta destacada */
+    --ok: #4ade80; /* mensajes del formulario */
+    --err: #f87171;
+
+    /* Artículo del blog */
+    --article-text: #cbd5e1;
+    --article-head: #ffffff;
+    --article-strong: #ffffff;
+    --article-link: #93c5fd;
+    --article-link-hover: #bfdbfe;
+    --article-marker: #60a5fa;
+    --article-quote-border: rgba(96, 165, 250, 0.5);
+    --article-quote-text: #e2e8f0;
+    --article-hr: rgba(255, 255, 255, 0.1);
+    --article-code-bg: rgba(96, 165, 250, 0.12);
+    --article-code-text: #bfdbfe;
+
+    /* Tipografía y forma — iguales en los dos temas */
     --font-head: "Space Grotesk", system-ui, sans-serif;
     --font-body: "Inter", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
     --radius: 1.25rem;
     --radius-lg: 1.75rem;
+}
+
+/* ============================================================
+   TEMA CLARO — blanco con gris azulado
+   ------------------------------------------------------------
+   La página es #f6f8fc y las tarjetas son blancas, así que una
+   tarjeta siempre se despega del fondo sin necesidad de sombra.
+   El cyan #38bdf8 y el azul #2563eb del tema oscuro no llegan a
+   4.5:1 sobre blanco, así que aquí bajan un par de pasos: el
+   acento pasa a un azul petróleo y la marca a #1d4ed8.
+   ============================================================ */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --bg: #f6f8fc;
+    --bg-2: #eef2f9;
+    --surface: #ffffff;
+    --surface-2: #ffffff;
+    --text: #0f172a;
+    --muted: #55637b;
+    --border: rgba(15, 23, 42, 0.1);
+    --border-strong: rgba(29, 78, 216, 0.24);
+
+    --brand: #1d4ed8;
+    --brand-strong: #1e40af;
+    --accent: #0369a1;
+    --grad-from: #1d4ed8;
+    --grad-via: #2563eb;
+    --grad-to: #0891b2;
+
+    --tint: rgba(15, 23, 42, 0.035);
+    --tint-2: rgba(15, 23, 42, 0.06);
+    --ghost: rgba(15, 23, 42, 0.045);
+    --veil-rgb: 246 248 252; /* = --bg, para que el panel del hero y la
+                                página sean exactamente el mismo blanco */
+    --veil-ink: rgba(255, 255, 255, 0.92);
+    --shadow-pop: 0 26px 60px -28px rgba(15, 23, 42, 0.3);
+    --shadow-media: 0 20px 50px -28px rgba(15, 23, 42, 0.26);
+    --grid-line: rgba(29, 78, 216, 0.05);
+    --aurora-1: rgba(37, 99, 235, 0.07);
+    --aurora-2: rgba(56, 189, 248, 0.08);
+    --aurora-blob: rgba(59, 130, 246, 0.06);
+    --halo-brand: rgba(37, 99, 235, 0.22);
+    --halo-card: rgba(29, 78, 216, 0.16);
+    --halo-card-strong: rgba(29, 78, 216, 0.28);
+    --ok: #15803d;
+    --err: #b91c1c;
+
+    --article-text: #334155;
+    --article-head: #0f172a;
+    --article-strong: #0f172a;
+    --article-link: #1d4ed8;
+    --article-link-hover: #1e40af;
+    --article-marker: #2563eb;
+    --article-quote-border: rgba(29, 78, 216, 0.35);
+    --article-quote-text: #1e293b;
+    --article-hr: rgba(15, 23, 42, 0.1);
+    --article-code-bg: rgba(29, 78, 216, 0.08);
+    --article-code-text: #1e40af;
 }
 
 html {
@@ -126,9 +229,33 @@ section {
 /* Rejilla técnica sutil de fondo (motivo de marca) */
 .tech-grid {
     background-image:
-        linear-gradient(to right, rgba(96, 165, 250, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(96, 165, 250, 0.06) 1px, transparent 1px);
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 64px 64px;
+}
+
+/* ============================================================
+   AURORA DE FONDO — el degradado fijo detrás de todo el sitio.
+   Antes vivía como utilidad arbitraria dentro de Layout.astro con
+   los hex escritos a mano, así que no podía cambiar de tema.
+   ============================================================ */
+.page-aurora {
+    background:
+        radial-gradient(circle at top left, var(--aurora-1), transparent 38%),
+        radial-gradient(circle at top right, var(--aurora-2), transparent 32%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 45%, var(--bg) 100%);
+}
+
+/* ============================================================
+   BOTÓN DE TEMA — el icono lo decide el CSS, no el JS, para que no
+   parpadee ni dependa de que el script del Header haya corrido.
+   Se ve el destino del clic: en oscuro un sol, en claro una luna.
+   ============================================================ */
+:root[data-theme="light"] .theme-icon-sun {
+    display: none;
+}
+:root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
 }
 
 /* ============================================================
@@ -230,7 +357,7 @@ section {
    ESTILOS DE ARTÍCULO DEL BLOG (contenido Markdown renderizado)
    ============================================================ */
 .article-content {
-    color: #cbd5e1;
+    color: var(--article-text);
     font-size: 1.02rem;
     line-height: 1.85;
 }
@@ -238,7 +365,7 @@ section {
     margin-top: 1.25rem;
 }
 .article-content h2 {
-    color: #ffffff;
+    color: var(--article-head);
     font-family: var(--font-head);
     font-size: 1.6rem;
     font-weight: 700;
@@ -247,32 +374,32 @@ section {
     margin-bottom: 0.25rem;
 }
 .article-content h3 {
-    color: #ffffff;
+    color: var(--article-head);
     font-family: var(--font-head);
     font-size: 1.25rem;
     font-weight: 700;
     margin-top: 1.75rem;
 }
 .article-content p {
-    color: #cbd5e1;
+    color: var(--article-text);
 }
 .article-content a {
-    color: #93c5fd;
+    color: var(--article-link);
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: color 0.2s ease;
 }
 .article-content a:hover {
-    color: #bfdbfe;
+    color: var(--article-link-hover);
 }
 .article-content strong {
-    color: #ffffff;
+    color: var(--article-strong);
     font-weight: 700;
 }
 .article-content ul,
 .article-content ol {
     padding-left: 1.4rem;
-    color: #cbd5e1;
+    color: var(--article-text);
 }
 .article-content ul {
     list-style: disc;
@@ -284,23 +411,23 @@ section {
     margin-top: 0.5rem;
 }
 .article-content li::marker {
-    color: #60a5fa;
+    color: var(--article-marker);
 }
 .article-content blockquote {
-    border-left: 3px solid rgba(96, 165, 250, 0.5);
+    border-left: 3px solid var(--article-quote-border);
     padding-left: 1rem;
-    color: #e2e8f0;
+    color: var(--article-quote-text);
     font-style: italic;
 }
 .article-content hr {
     border: 0;
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--article-hr);
     margin: 2rem 0;
 }
 .article-content code {
-    background: rgba(96, 165, 250, 0.12);
-    color: #bfdbfe;
+    background: var(--article-code-bg);
+    color: var(--article-code-text);
     padding: 0.15rem 0.4rem;
     border-radius: 6px;
     font-size: 0.9em;
@@ -412,10 +539,10 @@ section {
 .hero-veil {
     background: linear-gradient(
         180deg,
-        rgba(6, 11, 24, 0.93) 0%,
-        rgba(6, 11, 24, 0.85) 34%,
-        rgba(6, 11, 24, 0.9) 66%,
-        rgba(6, 11, 24, 0.97) 100%
+        rgb(var(--veil-rgb) / 0.93) 0%,
+        rgb(var(--veil-rgb) / 0.85) 34%,
+        rgb(var(--veil-rgb) / 0.9) 66%,
+        rgb(var(--veil-rgb) / 0.97) 100%
     );
 }
 .hero-veil::after {
@@ -447,18 +574,18 @@ section {
     .hero-veil {
         background: linear-gradient(
             90deg,
-            #060b18 0%,
-            #060b18 28%,
-            rgba(6, 11, 24, 0.95) 40%,
-            rgba(6, 11, 24, 0.72) 50%,
-            rgba(6, 11, 24, 0.34) 62%,
-            rgba(6, 11, 24, 0.08) 74%,
-            rgba(6, 11, 24, 0) 84%
+            rgb(var(--veil-rgb)) 0%,
+            rgb(var(--veil-rgb)) 28%,
+            rgb(var(--veil-rgb) / 0.95) 40%,
+            rgb(var(--veil-rgb) / 0.72) 50%,
+            rgb(var(--veil-rgb) / 0.34) 62%,
+            rgb(var(--veil-rgb) / 0.08) 74%,
+            rgb(var(--veil-rgb) / 0) 84%
         );
     }
     .hero-veil::after {
         background:
-            linear-gradient(180deg, rgba(6, 11, 24, 0.5) 0%, transparent 18%),
+            linear-gradient(180deg, rgb(var(--veil-rgb) / 0.5) 0%, transparent 18%),
             linear-gradient(180deg, transparent 78%, var(--bg) 100%);
     }
 }
@@ -479,9 +606,9 @@ section {
 .segment-hero-veil {
     background: linear-gradient(
         170deg,
-        rgba(6, 11, 24, 0.9) 0%,
-        rgba(6, 11, 24, 0.74) 45%,
-        rgba(6, 11, 24, 0.88) 100%
+        rgb(var(--veil-rgb) / 0.9) 0%,
+        rgb(var(--veil-rgb) / 0.74) 45%,
+        rgb(var(--veil-rgb) / 0.88) 100%
     );
 }
 .segment-hero-veil::after {
@@ -490,25 +617,36 @@ section {
     inset: 0;
     background: linear-gradient(180deg, transparent 70%, var(--bg) 100%);
 }
+/* --seg-ink es el acento del giro EN TEXTO: cambia con el tema.
+   --seg-accent se queda para lo decorativo (resplandor y escena SVG),
+   donde el color vivo funciona en los dos fondos. */
+.segment-hero {
+    --seg-ink: var(--seg-accent);
+    --seg-ink2: var(--seg-accent2);
+}
+:root[data-theme="light"] .segment-hero {
+    --seg-ink: var(--seg-accent-l);
+    --seg-ink2: var(--seg-accent2-l);
+}
 .segment-hero .eyebrow {
-    color: var(--seg-accent);
+    color: var(--seg-ink);
 }
 .segment-hero .grad-text {
     background-image: linear-gradient(
         90deg,
-        var(--seg-accent),
-        var(--seg-accent2)
+        var(--seg-ink),
+        var(--seg-ink2)
     );
 }
 .segment-hero .hero-rule {
-    background: linear-gradient(90deg, var(--seg-accent), var(--seg-accent2));
+    background: linear-gradient(90deg, var(--seg-ink), var(--seg-ink2));
 }
 .segment-hero .seg-crumb {
-    color: var(--seg-accent);
+    color: var(--seg-ink);
 }
 .segment-hero .seg-chip {
-    border-color: var(--seg-accent);
-    color: var(--seg-accent);
+    border-color: var(--seg-ink);
+    color: var(--seg-ink);
 }
 
 @media (min-width: 1024px) {
@@ -517,10 +655,10 @@ section {
             90deg,
             var(--bg) 0%,
             var(--bg) 26%,
-            rgba(6, 11, 24, 0.92) 38%,
-            rgba(6, 11, 24, 0.55) 54%,
-            rgba(6, 11, 24, 0.12) 72%,
-            rgba(6, 11, 24, 0) 88%
+            rgb(var(--veil-rgb) / 0.92) 38%,
+            rgb(var(--veil-rgb) / 0.55) 54%,
+            rgb(var(--veil-rgb) / 0.12) 72%,
+            rgb(var(--veil-rgb) / 0) 88%
         );
     }
     .segment-hero-veil::after {

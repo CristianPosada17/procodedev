@@ -64,28 +64,28 @@ const articleLd = {
   <main class="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6">
     <a
       href="/blog/"
-      class="inline-flex items-center gap-2 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
+      class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--brand)]"
     >
       <span>←</span> Volver al blog
     </a>
 
-    <p class="mt-8 text-xs font-semibold uppercase tracking-wide text-blue-300">
+    <p class="mt-8 text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
       {formatDate(pubDate)} · {author}
     </p>
 
     <h1
-      class="mt-4 text-[2.15rem] font-extrabold leading-tight tracking-tight text-white sm:text-[2.6rem] lg:text-[3.45rem]"
+      class="mt-4 text-[2.15rem] font-extrabold leading-tight tracking-tight text-[var(--text)] sm:text-[2.6rem] lg:text-[3.45rem]"
     >
       {title}
     </h1>
 
-    <p class="mt-5 text-lg leading-8 text-slate-300">{description}</p>
+    <p class="mt-5 text-lg leading-8 text-[var(--muted)]">{description}</p>
 
     {
       tags.length > 0 && (
         <div class="mt-6 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span class="rounded-lg border border-white/10 bg-blue-500/10 px-3 py-1 text-xs text-blue-300">
+            <span class="rounded-lg border border-[color:var(--border)] bg-[var(--brand)]/10 px-3 py-1 text-xs text-[var(--accent)]">
               #{tag}
             </span>
           ))}
@@ -94,7 +94,7 @@ const articleLd = {
     }
 
     <div
-      class="my-8 h-px w-full bg-gradient-to-r from-blue-400/40 via-white/10 to-transparent"
+      class="my-8 h-px w-full bg-gradient-to-r from-[var(--accent)]/40 via-[color:var(--border)] to-transparent"
     >
     </div>
 
@@ -111,12 +111,12 @@ const articleLd = {
 
     <!-- CTA al final del artículo -->
     <div
-      class="mt-14 rounded-3xl border border-blue-400/25 bg-[#061126]/80 p-8 text-center shadow-[0_0_70px_rgba(37,99,235,0.16)] backdrop-blur-xl"
+      class="mt-14 rounded-3xl border border-[color:var(--border-strong)] bg-[var(--surface)]/80 p-8 text-center shadow-[0_0_70px_var(--aurora-1)] backdrop-blur-xl"
     >
-      <h2 class="text-2xl font-extrabold text-white">
+      <h2 class="text-2xl font-extrabold text-[var(--text)]">
         ¿Listo para que tu web trabaje por ti?
       </h2>
-      <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-300">
+      <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-[var(--muted)]">
         Agenda una llamada gratis de 20 minutos y te digo cómo tu negocio puede
         ahorrar tiempo y captar más clientes. Sin costo y sin llamada de ventas:
         los precios ya están publicados.
@@ -124,7 +124,7 @@ const articleLd = {
       <a
         href="/contacto/"
         data-cta="blog-cta-final"
-        class="mt-6 inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_rgba(37,99,235,0.45)] transition hover:bg-blue-500"
+        class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:bg-[var(--brand-strong)]"
       >
         Agendar llamada gratis
         <span class="ml-2">→</span>

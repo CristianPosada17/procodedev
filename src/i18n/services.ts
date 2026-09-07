@@ -86,7 +86,13 @@ export interface ServiceDetail {
     heroHighlight: string;
     heroSubtitle: string;
   };
-  intro: { title: string; body: readonly string[] };
+  intro: {
+    title: string;
+    /** Una sola frase de entrada. Si necesita dos, sobra una. */
+    lead: string;
+    /** Tres puntos con etiqueta. Ni cuatro, ni párrafos disfrazados. */
+    points: readonly { title: string; text: string }[];
+  };
   capabilities: { eyebrow: string; title: string; subtitle: string };
   packages: {
     eyebrow: string;
@@ -189,7 +195,7 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
         icon: "cpu",
         title: "Programación a la medida",
         description:
-          "Cada página se construye desde cero con Astro y Tailwind. Sin plantillas de WordPress llenas de plugins que se rompen, sin constructores que dejan el sitio pesado.",
+          "Programación de páginas web desde cero con Astro y Tailwind. Sin plantillas de WordPress llenas de plugins que se rompen, sin constructores que dejan el sitio pesado.",
       },
       {
         icon: "target",
@@ -309,24 +315,26 @@ const webDevEs: ServiceDetail = {
       "Diseño y desarrollo web sin plantillas: cada página se escribe a la medida de tu negocio para cargar rápido, salir en Google y convertir al visitante en una llamada, un mensaje o una cita. Precio público desde $349 USD y entrega en dos a cuatro semanas.",
   },
   intro: {
-    title: "Qué es el desarrollo web hecho a la medida y por qué cambia tus números",
-    body: [
-      "La mayoría de las páginas web para negocios se arman con una plantilla y un constructor visual. Salen rápido y salen baratas, y por eso mismo cargan lento, se parecen a otras mil, arrastran plugins que nadie mantiene y no traen una sola línea de SEO técnico. El dueño paga por un folleto que nadie visita.",
-      "El desarrollo web a la medida hace lo contrario: se escribe el código que tu negocio necesita y nada más. El resultado es un sitio ligero, que Google entiende sin esfuerzo y que está diseñado alrededor de una sola pregunta — qué tiene que hacer el visitante antes de irse. Esa diferencia no se ve en la portada; se ve en cuántos formularios llegan al mes.",
-      "Como agencia de desarrollo web, en ProCode Dev la creación de páginas web para empresas incluye desde el primer día lo que otras cobran aparte: metadatos únicos por página, datos estructurados, versión en inglés y español con URLs separadas, formularios que califican y medición de contactos, llamadas y citas. Es desarrollo web para pequeñas empresas hecho con el mismo estándar que se le daría a un proyecto grande, y hablas directo con el dueño de la agencia, que además es quien programa el sitio.",
+    title: "Qué cambia un sitio hecho a la medida",
+    lead:
+      "Una plantilla sale rápida y barata, y por eso carga lento y no trae SEO. El código a la medida hace lo contrario.",
+    points: [
+      { title: "Sin plantillas", text: "Astro y Tailwind, no un constructor visual." },
+      { title: "Todo incluido", text: "SEO técnico y medición de origen, no como extra." },
+      { title: "Sin intermediarios", text: "Hablas con quien programa el sitio." },
     ],
   },
   capabilities: {
     eyebrow: "// qué incluye",
     title: "Lo que lleva dentro un sitio hecho a la medida",
     subtitle:
-      "Seis piezas que vienen en todos los proyectos de desarrollo web profesional, no como extras que se cotizan después.",
+      "Seis piezas que vienen en todos los proyectos, no como extras que se cotizan después. Es lo que incluye la creación de páginas web para empresas cuando la hace una agencia de desarrollo web y no un constructor.",
   },
   packages: {
     eyebrow: "// tipos de proyecto",
     title: "Elige el tamaño de tu página web, con el precio publicado",
     subtitle:
-      "Los cuatro proyectos de diseño y desarrollo web que hago, con lo que incluye cada uno y cuánto cuesta. Sin cotización sorpresa y sin llamada de ventas para conocer el número.",
+      "Los cuatro proyectos de desarrollo web para pequeñas empresas que hago, con lo que incluye cada uno y cuánto cuesta. Sin cotización sorpresa y sin llamada de ventas para conocer el número.",
     items: [
       {
         name: "Landing Page",
@@ -404,7 +412,7 @@ const webDevEs: ServiceDetail = {
     eyebrow: "// estándares técnicos",
     title: "Cómo se construye cada sitio",
     subtitle:
-      "Seis decisiones de programación de páginas web que se aplican en todos los proyectos. No son opcionales ni se cobran aparte: son la razón por la que salen páginas web rápidas y optimizadas donde una plantilla no llega.",
+      "Seis decisiones de desarrollo web profesional que se aplican en todos los proyectos. No son opcionales ni se cobran aparte: son la razón por la que salen páginas web rápidas y optimizadas donde una plantilla no llega.",
     items: [
       {
         icon: "zap",
@@ -529,11 +537,13 @@ const marketingEs: ServiceDetail = {
       "SEO local, Perfil de Empresa en Google, reseñas, campañas de Google Ads y Meta, y seguimiento automático de cada prospecto. Un solo responsable, precios publicados desde $349 USD al mes y un reporte mensual de contactos, llamadas y citas — sin contratos de 12 meses.",
   },
   intro: {
-    title: "Qué hace el marketing digital cuando el negocio ya está funcionando",
-    body: [
-      "Casi todos los negocios que me escriben tienen el mismo problema y no es el que creen. No les falta publicidad: les falta ser la respuesta cuando alguien de su ciudad busca su servicio en Google, en el mapa o, cada vez más, preguntándole a ChatGPT. Mientras eso no pasa, cada peso de anuncios se va a comprar visitas que un competidor con mejor ficha y más reseñas se termina llevando.",
-      "El marketing digital para pymes y pequeñas empresas que hago empieza por ahí: que aparezcas donde ya te están buscando. Primero el Perfil de Empresa en Google y las reseñas, que es lo que decide a quién llaman primero. Después el SEO local por ciudad y por servicio, que tarda meses en madurar pero deja de costar cuando llega. Y solo entonces los anuncios, cuando ya hay a dónde mandar a la gente.",
-      "Lo demás es operación: que ningún prospecto se quede sin respuesta porque estabas en obra, en consulta o con un cliente. Formularios, WhatsApp, calendario y seguimiento conectados, y un reporte mensual que dice cuántos contactos, llamadas y citas hubo y de dónde vino cada una. Sin métricas de vanidad y sin capturas de Google Analytics.",
+    title: "Qué hace el marketing cuando el negocio ya funciona",
+    lead:
+      "No te falta publicidad: te falta ser la respuesta cuando alguien de tu ciudad busca tu servicio.",
+    points: [
+      { title: "Primero la ficha", text: "Google y reseñas deciden a quién llaman." },
+      { title: "Después el SEO", text: "Tarda meses en madurar, y luego deja de costar." },
+      { title: "Al final los anuncios", text: "Cuando ya hay a dónde mandar a la gente." },
     ],
   },
   capabilities: {
@@ -546,7 +556,7 @@ const marketingEs: ServiceDetail = {
     eyebrow: "// planes mensuales",
     title: "Planes de marketing digital con precio publicado",
     subtitle:
-      "Tres niveles, del mantenimiento básico al sistema completo de captación. Soporte Web y Crecimiento+ se cancelan de un mes a otro; el paquete completo pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo.",
+      "Tres niveles de marketing digital para pymes, del mantenimiento básico al sistema completo de captación. Soporte Web y Crecimiento+ se cancelan de un mes a otro; el paquete completo pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo.",
     items: [
       {
         name: "Soporte Web",
@@ -907,13 +917,13 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
         icon: "map-pin",
         title: "Local SEO by city and service",
         description:
-          "Ranking for the searches people make when they are ready to buy: your service plus their city. Dedicated pages by area and by specialty.",
+          "Local SEO services that rank you for the searches people make when they are ready to buy: your service plus their city. Dedicated pages by area and by specialty.",
       },
       {
         icon: "google",
         title: "Google Business Profile",
         description:
-          "Created, verified and fully optimized: services, service area, photos, hours and monthly posts. It is the first thing anyone sees when they find you on the map.",
+          "Google Business Profile management done properly: created, verified and optimized, with services, service area, photos, hours and monthly posts. It is the first thing anyone sees on the map.",
       },
       {
         icon: "star",
@@ -925,19 +935,19 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
         icon: "megaphone",
         title: "Ads on a controlled budget",
         description:
-          "Google Ads campaigns and Facebook and Instagram advertising, with dedicated landing pages and a cost per lead that is measured, not guessed.",
+          "Google Ads management plus Facebook and Instagram ads, with dedicated landing pages and a cost per lead that is measured, not guessed.",
       },
       {
         icon: "workflow",
         title: "Follow-up automation",
         description:
-          "Every lead gets an answer even when you are on a job site, in session or with a client. Reminders and automated follow-up for anyone who went quiet.",
+          "Marketing automation so every lead gets an answer even when you are on a job site, in session or with a client. Reminders and follow-up for anyone who went quiet.",
       },
       {
         icon: "bar-chart",
         title: "Analytics and monthly report",
         description:
-          "Contacts, calls, booked appointments and where each one came from. A report in business language, not a screenshot of Google Analytics.",
+          "Marketing reporting in business language: contacts, calls, booked appointments and where each one came from. Not a screenshot of Google Analytics.",
       },
     ],
   },
@@ -956,24 +966,26 @@ const webDevEn: ServiceDetail = {
       "Custom website development with no templates: every page is written for your business so it loads fast, ranks in Google and turns a visitor into a call, a message or a booking. Published pricing from $349 USD and delivery in two to four weeks.",
   },
   intro: {
-    title: "What custom web development actually changes in your numbers",
-    body: [
-      "Most small business websites are assembled from a template in a visual builder. They ship fast and they ship cheap, and that is exactly why they load slowly, look like a thousand others, drag along plugins nobody maintains and carry no technical SEO at all. The owner pays for a brochure nobody visits.",
-      "Custom web development does the opposite: it writes the code your business needs and nothing else. The result is a light site that Google reads without effort, designed around one question only — what the visitor has to do before leaving. That difference does not show up on the homepage; it shows up in how many forms arrive each month.",
-      "As a website development company, ProCode Dev includes in its web development services from day one what others bill separately: unique metadata per page, structured data, bilingual website development on separate URLs, forms that qualify, and measurement of contacts, calls and bookings. These are professional web development services for a small business website developer price, and you talk straight to the owner of the agency, who is also the one writing the code.",
+    title: "What a custom-built site changes",
+    lead:
+      "A template ships fast and cheap, which is why it loads slowly and carries no SEO. Custom code does the opposite.",
+    points: [
+      { title: "No templates", text: "Astro and Tailwind, not a visual builder." },
+      { title: "Included from day one", text: "Technical SEO and measurement, never an add-on." },
+      { title: "No middlemen", text: "You talk to the person writing the code." },
     ],
   },
   capabilities: {
     eyebrow: "// what is included",
     title: "What a custom-built site actually contains",
     subtitle:
-      "Six pieces that ship with every web development project, not add-ons quoted later.",
+      "Six pieces that ship with every project, not add-ons quoted later. It is what web development services include when a website development company builds the site instead of a page builder.",
   },
   packages: {
     eyebrow: "// project types",
     title: "Pick the size of your website, with the price published",
     subtitle:
-      "The four web design and development projects I take on, what each one includes and what it costs. No surprise quote and no sales call required to see the number.",
+      "The four projects I take on as a small business website developer, what each one includes and what it costs. No surprise quote and no sales call required to see the number.",
     items: [
       {
         name: "Landing Page",
@@ -1051,7 +1063,7 @@ const webDevEn: ServiceDetail = {
     eyebrow: "// technical standards",
     title: "How every site is built",
     subtitle:
-      "Six technical decisions applied to every project. They are not optional and they are not billed separately: they are why a custom coded website ships as fast responsive websites where a template never does.",
+      "Six web design and development decisions applied to every project, bilingual website development included. They are not optional and not billed separately: they are what separates professional web development services from a template, and why a custom coded website ships as fast responsive websites.",
     items: [
       {
         icon: "zap",
@@ -1171,18 +1183,20 @@ const marketingEn: ServiceDetail = {
       "Local SEO, Google Business Profile, reviews, Google Ads and Meta campaigns, and automated follow-up on every lead. One person responsible, published pricing from $349 USD a month, and a monthly report of contacts, calls and bookings — with no 12-month contracts.",
   },
   intro: {
-    title: "What digital marketing does once the business is already running",
-    body: [
-      "Almost every business that messages me has the same problem, and it is not the one they think. They are not short on advertising: they are missing from the answer when someone in their city searches for their service on Google, on the map or, increasingly, by asking ChatGPT. Until that changes, every dollar of ads buys visits that a competitor with a better profile and more reviews ends up taking.",
-      "The digital marketing services I run start there: showing up where people are already looking for you. Google Business Profile management and reviews first, because that is what decides who gets called. Then local SEO services by city and by service, which take months to mature but stop costing money once they arrive. And only then Google Ads management and Facebook and Instagram ads, once there is somewhere worth sending people.",
-      "The rest is marketing automation: no lead left unanswered because you were on a job site, in session or with a client. Forms, WhatsApp, calendar and follow-up connected, and marketing reporting that says how many contacts, calls and bookings there were and where each one came from. It is lead generation for small businesses measured in real units, with no vanity metrics and no Google Analytics screenshots.",
+    title: "What marketing does once the business runs",
+    lead:
+      "You are not short on advertising. You are missing from the answer when someone nearby searches for your service.",
+    points: [
+      { title: "Profile first", text: "Google and reviews decide who gets called." },
+      { title: "Then SEO", text: "Months to mature, then it stops costing money." },
+      { title: "Ads last", text: "Once there is somewhere worth sending people." },
     ],
   },
   capabilities: {
     eyebrow: "// what is included",
     title: "The six pieces of the lead system",
     subtitle:
-      "These are not six separate services you buy one at a time: it is one system, and it is built in this order because each piece depends on the one before it.",
+      "These are not six separate digital marketing services you buy one at a time: it is one system for lead generation for small businesses, built in this order because each piece depends on the one before it.",
   },
   packages: {
     eyebrow: "// monthly plans",

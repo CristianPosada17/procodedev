@@ -24,7 +24,7 @@ const contactScript = `
       if(!status) return;
       status.textContent = msg;
       status.classList.remove('hidden');
-      status.style.color = ok ? '#4ade80' : '#f87171';
+      status.style.color = ok ? 'var(--ok)' : 'var(--err)';
     }
     form.addEventListener('submit', async function(e){
       e.preventDefault();

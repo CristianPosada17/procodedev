@@ -91,7 +91,7 @@ const currencyScript = `
 
     {/* ── Diagnóstico de Presencia Digital · paso 2, solo en /precios ── */}
     <div
-      class="reveal relative mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-10"
+      class="reveal relative mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_var(--halo-card)] lg:p-10"
     >
       <div
         class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[var(--brand)]/10 blur-3xl"
@@ -171,7 +171,7 @@ const currencyScript = `
             class:list={[
               "reveal relative flex flex-col rounded-[var(--radius-lg)] border p-8 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
               pkg.highlighted
-                ? "border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 shadow-[0_30px_80px_-40px_rgba(37,99,235,0.7)]"
+                ? "border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 shadow-[0_30px_80px_-40px_var(--halo-card-strong)]"
                 : "border-[color:var(--border)] bg-[var(--surface)]/60",
             ]}
             style={`--reveal-delay: ${i * 90}ms`}
@@ -220,7 +220,7 @@ const currencyScript = `
                 "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold transition",
                 pkg.highlighted
                   ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
-                  : "border border-[color:var(--border-strong)] bg-white/5 text-[var(--text)] hover:bg-[var(--brand)]/10",
+                  : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/10",
               ]}
             >
               {pkg.cta}
@@ -275,7 +275,7 @@ const currencyScript = `
             class:list={[
               "reveal relative flex flex-col rounded-[var(--radius-lg)] border p-8 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
               plan.highlighted
-                ? "border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 shadow-[0_30px_80px_-40px_rgba(37,99,235,0.7)]"
+                ? "border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 shadow-[0_30px_80px_-40px_var(--halo-card-strong)]"
                 : "border-[color:var(--border)] bg-[var(--surface)]/60",
             ]}
             style={`--reveal-delay: ${i * 90}ms`}
@@ -285,7 +285,7 @@ const currencyScript = `
                 "inline-flex w-fit items-center rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-wider",
                 plan.highlighted
                   ? "border-[color:var(--border-strong)] bg-[var(--brand)]/20 text-[var(--accent)]"
-                  : "border-[color:var(--border)] bg-white/[0.04] text-[var(--muted)]",
+                  : "border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)]",
               ]}
             >
               {plan.badge}
@@ -313,7 +313,7 @@ const currencyScript = `
             </div>
             <p class="mt-1 text-xs text-[var(--muted)]">{plan.priceNote}</p>
             {plan.commitmentNote && (
-              <p class="mt-3 flex items-start gap-2 rounded-xl border border-[color:var(--border)] bg-white/[0.04] px-3 py-2 text-xs leading-5 text-[var(--muted)]">
+              <p class="mt-3 flex items-start gap-2 rounded-xl border border-[color:var(--border)] bg-[var(--tint)] px-3 py-2 text-xs leading-5 text-[var(--muted)]">
                 <Icon
                   name="calendar"
                   class="mt-0.5 h-3.5 w-3.5 flex-none text-[var(--accent)]"
@@ -343,7 +343,7 @@ const currencyScript = `
                 "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-bold transition",
                 plan.highlighted
                   ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
-                  : "border border-[color:var(--border-strong)] bg-white/5 text-[var(--text)] hover:bg-[var(--brand)]/10",
+                  : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/10",
               ]}
             >
               {plan.cta}

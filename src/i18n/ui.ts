@@ -142,6 +142,8 @@ export const translations = {
       blog: "Blog",
       contact: "Contacto",
       cta: "Revisión Express",
+      themeToLight: "Cambiar a modo claro",
+      themeToDark: "Cambiar a modo oscuro",
     },
     common: {
       // Una sola oferta de entrada y un solo nombre en todo el sitio, el
@@ -1181,6 +1183,8 @@ export const translations = {
       blog: "Blog",
       contact: "Contact",
       cta: "Express Review",
+      themeToLight: "Switch to light mode",
+      themeToDark: "Switch to dark mode",
     },
     common: {
       ctaPrimary: "Book my Express Review",

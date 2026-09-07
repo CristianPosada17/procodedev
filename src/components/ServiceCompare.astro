@@ -35,7 +35,7 @@ const c = servicesHub[lang].compare;
             class:list={[
               "reveal relative flex flex-col rounded-[var(--radius)] border bg-[var(--surface)]/60 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
               col.highlighted
-                ? "border-[color:var(--border-strong)] shadow-[0_30px_90px_-50px_rgba(37,99,235,0.8)]"
+                ? "border-[color:var(--border-strong)] shadow-[0_30px_90px_-50px_var(--halo-card-strong)]"
                 : "border-[color:var(--border)] hover:border-[color:var(--border-strong)]",
             ]}
             style={`--reveal-delay: ${i * 80}ms`}
@@ -62,7 +62,7 @@ const c = servicesHub[lang].compare;
                 "mt-5 inline-flex items-center justify-between gap-2 rounded-xl px-5 py-3 text-sm font-bold transition",
                 col.highlighted
                   ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
-                  : "border border-[color:var(--border-strong)] bg-white/[0.04] text-[var(--text)] hover:bg-[var(--brand)]/12",
+                  : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/12",
               ]}
             >
               {col.cta}
@@ -80,7 +80,7 @@ const c = servicesHub[lang].compare;
       <a
         href={PAGES.contact[lang]}
         data-cta="comparativa-agendar"
-        class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.3)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
       >
         {t.common.ctaPrimary}
         <Icon name="arrow-right" class="h-4 w-4" />

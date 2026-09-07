@@ -74,7 +74,13 @@ export interface Market {
     heroHighlight: string;
     heroSubtitle: string;
   };
-  intro: { title: string; body: readonly string[] };
+  intro: {
+    title: string;
+    /** Una sola frase de entrada. Si necesita dos, sobra una. */
+    lead: string;
+    /** Tres puntos con etiqueta. Ni cuatro, ni párrafos disfrazados. */
+    points: readonly { title: string; text: string }[];
+  };
   industries: MarketBlock & { items: readonly MarketIndustry[] };
   context: MarketBlock & { items: readonly MarketBlockItem[] };
   remote: MarketBlock & { items: readonly MarketBlockItem[] };
@@ -96,7 +102,13 @@ export interface MarketsHub {
     heroHighlight: string;
     heroSubtitle: string;
   };
-  intro: { title: string; body: readonly string[] };
+  intro: {
+    title: string;
+    /** Una sola frase de entrada. Si necesita dos, sobra una. */
+    lead: string;
+    /** Tres puntos con etiqueta. Ni cuatro, ni párrafos disfrazados. */
+    points: readonly { title: string; text: string }[];
+  };
   citiesTitle: string;
   citiesSubtitle: string;
   listEyebrow: string;
@@ -147,18 +159,20 @@ const texasEs: Market = {
       "Houston, Dallas, San Antonio y Austin. Sitios web bilingües programados a la medida para el contratista, la clínica, el despacho o la inmobiliaria que atiende a clientes hispanos y anglos a la vez. Trabajo en remoto, en tu mismo horario, con precios publicados en dólares desde $349 USD.",
   },
   intro: {
-    title: "Por qué un negocio hispano en Texas necesita otra clase de página web",
-    body: [
-      "En Texas el cliente hispano no es un segmento aparte del mercado: en buena parte de Houston, San Antonio y el sur del estado es el mercado. Y sin embargo casi todas las páginas web de negocios de servicios están hechas solo en inglés, o con un traductor automático encima que el visitante nota en la primera línea. El negocio que sí habla el idioma de su cliente y no lo demuestra en su sitio está regalando la ventaja que ya tiene.",
-      "El otro problema es de oficio. Texas es un estado de trades: remodelación, techos, plomería, electricidad, climatización, concreto. El que busca uno de esos servicios no quiere leer una historia de la empresa, quiere ver trabajos terminados, saber si cubren su zona y pedir presupuesto en dos toques. Una plantilla genérica no está construida para eso; una página hecha por servicio, con formulario de cotización y carga de fotos, sí.",
-      "Lo que hago son páginas web para negocios en Texas con esas dos cosas resueltas: diseño web en español Texas y en inglés, una página por cada servicio que vendes, formularios que califican por zona y urgencia, y el sitio conectado a WhatsApp y al calendario. Funciono como una agencia de diseño web en Texas sin la estructura de una: trabajo en remoto, con el mismo huso horario que Houston o Dallas casi todo el año, y con los precios publicados en dólares para que no tengas que agendar una llamada solo para saber cuánto cuesta.",
+    title: "Por qué en Texas hace falta otra clase de sitio",
+    lead:
+      "En Houston y San Antonio el cliente hispano no es un segmento del mercado: es el mercado.",
+    points: [
+      { title: "Bilingüe de origen", text: "Dos idiomas en URLs separadas, sin traductor." },
+      { title: "Una página por servicio", text: "Fotos de obra y cotización en dos toques." },
+      { title: "En tu mismo horario", text: "En remoto, con el huso horario de Texas." },
     ],
   },
   industries: {
     eyebrow: "// giros con más peso en el estado",
     title: "Los negocios de Texas con los que más trabajo",
     subtitle:
-      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten en el mercado texano.",
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten cuando hago páginas web para negocios en Texas.",
     items: [
       {
         icon: "building",
@@ -194,7 +208,7 @@ const texasEs: Market = {
     eyebrow: "// lo que cambia en Texas",
     title: "Tres cosas que tengo en cuenta en un proyecto texano",
     subtitle:
-      "No es la misma página para Texas que para California. Estas son las diferencias que sí afectan al diseño y al contenido del sitio.",
+      "No es la misma página para Texas que para California. Estas son las diferencias que sí afectan al diseño y al contenido, y por las que trabajo como agencia de diseño web en Texas y no con una plantilla igual para todos.",
     items: [
       {
         icon: "globe",
@@ -220,7 +234,7 @@ const texasEs: Market = {
     eyebrow: "// cómo funciona a distancia",
     title: "Trabajo desde México, en tu horario",
     subtitle:
-      "Nada de esto necesita que estemos en la misma ciudad. Así es como se lleva un proyecto con un negocio de Texas.",
+      "El diseño web en español Texas no necesita que estemos en la misma ciudad. Así es como se lleva un proyecto con un negocio del estado.",
     items: [
       {
         icon: "calendar",
@@ -310,18 +324,20 @@ const floridaEs: Market = {
       "Miami, Orlando, Tampa y Jacksonville. Sitios web programados a la medida para el negocio de servicios que atiende a una clientela hispana y compite en un mercado donde el español no es la traducción, es el idioma principal. En remoto, con precios publicados desde $349 USD.",
   },
   intro: {
-    title: "Florida es el mercado donde el sitio en español no es la segunda versión",
-    body: [
-      "En Miami-Dade y buena parte del sur del estado, el negocio que atiende en español no está sirviendo a una minoría: está sirviendo a su mercado principal. Y aun así la mayoría de los sitios se construyen primero en inglés y el español queda como una traducción a medias, con textos que suenan a máquina y formularios sin traducir. El visitante lo nota, y lo que percibe no es un idioma mal escrito: es un negocio que no le presta atención.",
-      "El segundo rasgo de Florida es que su calendario comercial no es plano. La temporada de huracanes va de junio a noviembre y con ella se dispara la demanda de techos, impermeabilización, restauración por agua, poda y generadores. El negocio que llega a junio sin sitio, sin ficha de Google ordenada y sin formulario de emergencia, se pierde el trimestre en el que se factura el año.",
-      "Las páginas web para negocios en Florida que construyo están pensadas con esas dos cosas encima: el español como idioma principal y no como traducción, y una estructura que aguanta un pico de demanda —formulario de emergencia, botón de llamada siempre visible, páginas por servicio y por condado, y seguimiento automático para que ningún mensaje se quede sin respuesta en la semana más ocupada del año. Trabajo como agencia de diseño web en Florida sin oficina en el estado, lo que se refleja directamente en el precio.",
+    title: "En Florida el español no es la segunda versión",
+    lead:
+      "En Miami-Dade el negocio que atiende en español no sirve a una minoría: sirve a su mercado principal.",
+    points: [
+      { title: "Español primero", text: "Con URL propia, no un traductor encima." },
+      { title: "Listo para la temporada", text: "Aguanta el pico de junio a noviembre." },
+      { title: "Sin oficina en el estado", text: "En remoto, y eso se ve en el precio." },
     ],
   },
   industries: {
     eyebrow: "// giros con más peso en el estado",
     title: "Los negocios de Florida con los que más trabajo",
     subtitle:
-      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten en el mercado floridano.",
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten cuando hago páginas web para negocios en Florida.",
     items: [
       {
         icon: "map-pin",
@@ -357,7 +373,7 @@ const floridaEs: Market = {
     eyebrow: "// lo que cambia en Florida",
     title: "Tres cosas que tengo en cuenta en un proyecto floridano",
     subtitle:
-      "El sitio de un negocio de Miami no se parece al de uno de Dallas. Estas son las diferencias que afectan de verdad a la estructura y al contenido.",
+      "El sitio de un negocio de Miami no se parece al de uno de Dallas. Estas son las diferencias que afectan de verdad a la estructura y al contenido, y la razón por la que una agencia de diseño web en Florida no puede usar la misma plantilla que en otro estado.",
     items: [
       {
         icon: "globe",
@@ -473,18 +489,20 @@ const californiaEs: Market = {
       "Los Ángeles, San Diego, Inland Empire y el Área de la Bahía. El mismo sitio bilingüe, programado a la medida y con el mismo sistema de captación, por una fracción de lo que cuesta una agencia con oficina en California. Precios publicados desde $349 USD.",
   },
   intro: {
-    title: "California es el mercado más caro de anunciarse y el más caro de contratar",
-    body: [
-      "En California todo cuesta más: el clic, el alquiler y la agencia. Un negocio de servicios en Los Ángeles compite por las mismas búsquedas que empresas con presupuesto de marketing dedicado, y cuando pide presupuesto para un sitio se encuentra con cifras que responden al costo de operar una oficina en el estado, no al trabajo que lleva el proyecto. El resultado de siempre: el negocio pequeño se queda con una plantilla barata y renuncia a competir.",
-      "La salida no es gastar más, es no pagar por estructura. Yo trabajo en remoto desde México, sin oficina que sostener ni ejecutivos de cuenta en nómina, y eso se ve directamente en el precio: el mismo sitio programado a la medida, con SEO técnico, versión bilingüe y captación conectada, con los precios publicados en la web y sin llamada de ventas para conocerlos.",
-      "El otro punto es el idioma. Los Ángeles y el Inland Empire son mercados donde el negocio hispano compite contra empresas grandes que traducen su sitio con un plugin. El diseño web en español California escrito de verdad, con su propia URL y su propio posicionamiento, es una de las pocas ventajas que el negocio pequeño puede tener sobre la empresa grande en este estado, y casi nadie la usa. Es lo que hago en las páginas web para negocios en California que construyo: funciono como una agencia de diseño web en California sin cobrar lo que cobra la que tiene oficina aquí.",
+    title: "California: el mercado más caro de anunciarse y de contratar",
+    lead:
+      "Aquí todo cuesta más: el clic, la renta y la agencia. La salida no es gastar más, es no pagar estructura.",
+    points: [
+      { title: "Sin costo de oficina", text: "Precios publicados, los mismos para todos." },
+      { title: "El español como ventaja", text: "Donde la empresa grande usa un plugin." },
+      { title: "Primero lo orgánico", text: "Ficha y reseñas antes que los anuncios." },
     ],
   },
   industries: {
     eyebrow: "// giros con más peso en el estado",
     title: "Los negocios de California con los que más trabajo",
     subtitle:
-      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten en el mercado californiano.",
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten cuando hago páginas web para negocios en California.",
     items: [
       {
         icon: "building",
@@ -520,7 +538,7 @@ const californiaEs: Market = {
     eyebrow: "// lo que cambia en California",
     title: "Tres cosas que tengo en cuenta en un proyecto californiano",
     subtitle:
-      "Es el mercado más competido de los tres, y eso cambia dónde conviene poner el esfuerzo.",
+      "Es el mercado más competido de los tres, y eso cambia dónde conviene poner el esfuerzo. Es también por lo que una agencia de diseño web en California cobra lo que cobra, y por lo que trabajar en remoto cambia el número.",
     items: [
       {
         icon: "target",
@@ -546,7 +564,7 @@ const californiaEs: Market = {
     eyebrow: "// cómo funciona a distancia",
     title: "Trabajo desde México, con dos horas de diferencia",
     subtitle:
-      "El proyecto no necesita oficina en California. Así se lleva con un negocio de Los Ángeles o San Diego.",
+      "El diseño web en español California no necesita oficina en el estado. Así se lleva un proyecto con un negocio de Los Ángeles o San Diego.",
     items: [
       {
         icon: "calendar",
@@ -622,11 +640,13 @@ const hubEs: MarketsHub = {
       "Trabajo en remoto con dueños de negocio hispanos en Texas, Florida y California: sitios web bilingües programados a la medida, SEO, Perfil de Empresa en Google y captación conectada. Todo en español, con precios publicados en dólares desde $349 USD y respuesta en menos de 24 horas.",
   },
   intro: {
-    title: "Por qué un negocio hispano en Estados Unidos termina con la peor página del mercado",
-    body: [
-      "Con las páginas web para negocios hispanos en Estados Unidos casi siempre pasa lo mismo. El dueño busca quién se la haga, y las dos opciones que encuentra son malas de formas distintas. La agencia local le cotiza un número pensado para una empresa mediana, con contrato de doce meses y un ejecutivo de cuenta entre él y quien hace el trabajo. O aparece el conocido que le arma algo en un constructor por poco dinero, sin SEO, sin versión en español de verdad y sin nada conectado. Un año después el negocio sigue viviendo de recomendaciones.",
-      "Hay una tercera vía y casi nadie la ofrece: un desarrollador web en español en Estados Unidos que trabaje en remoto, con el estándar técnico de una agencia de diseño web en Estados Unidos y sin el costo de sostener una oficina aquí. Eso es ProCode Dev. Programo el sitio a la medida —sin plantillas ni constructores—, escribo las dos versiones de idioma como contenido real y no como traducción automática, y dejo conectado lo que convierte una visita en una llamada: formularios que califican, WhatsApp, calendario y seguimiento.",
-      "La distancia dejó de ser un problema hace años. Texas comparte huso horario con el centro de México casi todo el año, Florida va una hora por delante y California dos por detrás: coincidimos toda la jornada. Los pagos son en dólares con factura, el dominio y el hosting quedan a nombre de tu negocio, y los precios están publicados en el sitio para que no tengas que agendar una llamada de ventas solo para saber cuánto cuesta. Es el mismo servicio que daría una agencia de marketing digital en Estados Unidos, sin su estructura encima del precio.",
+    title: "Por qué acabas con la peor página de tu mercado",
+    lead:
+      "La agencia local cotiza para una empresa mediana; el conocido te arma algo en un constructor. Hay una tercera vía.",
+    points: [
+      { title: "En remoto y en español", text: "Con estándar de agencia y sin su factura." },
+      { title: "Sin costo de oficina", text: "No hay estructura en Estados Unidos que pagar." },
+      { title: "Precio publicado", text: "Sin llamada de ventas para saber el número." },
     ],
   },
   listEyebrow: "// mercados",
@@ -643,7 +663,7 @@ const hubEs: MarketsHub = {
     eyebrow: "// cómo funciona a distancia",
     title: "Cómo se trabaja con un negocio de Estados Unidos desde México",
     subtitle:
-      "Seis respuestas a lo que de verdad preocupa cuando el proveedor no está en la misma ciudad. Ninguna de las seis requiere que estemos cerca.",
+      "Seis respuestas a lo que de verdad preocupa cuando el proveedor no está en la misma ciudad. Es lo que diferencia a un desarrollador web en español en Estados Unidos de una agencia con oficina, y ninguna de las seis requiere que estemos cerca.",
     items: [
       {
         icon: "calendar",
@@ -688,7 +708,7 @@ const hubEs: MarketsHub = {
     titleA: "Contratar a alguien que no está en",
     titleHighlight: "tu ciudad",
     subtitle:
-      "Las cinco preguntas que salen siempre cuando un negocio de Estados Unidos considera contratar a un desarrollador que trabaja desde México.",
+      "Las cinco preguntas que salen siempre cuando un negocio de Estados Unidos valora contratar a una agencia de diseño web en Estados Unidos que trabaja en remoto desde México.",
     items: [
       {
         question: "¿Es seguro contratar a alguien que no está en Estados Unidos?",
@@ -698,12 +718,12 @@ const hubEs: MarketsHub = {
       {
         question: "¿Vas a entender mi mercado si no vives aquí?",
         answer:
-          "Lo que hay que entender es cómo busca y qué duda tiene tu cliente, y eso se ve en los datos, no desde la ventana. Antes de escribir una línea reviso qué aparece hoy cuando alguien busca tu servicio en tu ciudad, qué están haciendo los tres primeros y qué preguntas repiten tus clientes. Esa revisión es la Revisión Express y es gratis: si me equivoco en algo, lo vas a ver en el vídeo antes de contratarme.",
+          "Las páginas web para negocios hispanos en Estados Unidos no se hacen mirando por la ventana: lo que hay que entender es cómo busca y qué duda tiene tu cliente, y eso se ve en los datos. Antes de escribir una línea reviso qué aparece hoy cuando alguien busca tu servicio en tu ciudad, qué están haciendo los tres primeros y qué preguntas repiten tus clientes. Esa revisión es la Revisión Express y es gratis: si me equivoco en algo, lo vas a ver en el vídeo antes de contratarme.",
       },
       {
         question: "¿En qué idioma trabajamos?",
         answer:
-          "En el que prefieras. La comunicación conmigo puede ser en español o en inglés, y el sitio se puede entregar en uno de los dos o en ambos. La mayoría de mis clientes en Estados Unidos prefiere hablar en español y publicar en los dos idiomas.",
+          "En el que prefieras. La comunicación puede ser en español o en inglés, y el sitio se entrega en uno de los dos o en ambos. La mayoría de mis clientes prefiere hablar en español y publicar en los dos, que es justo lo que una agencia de marketing digital en Estados Unidos suele cobrar aparte.",
       },
       {
         question: "¿Cómo hacemos las revisiones y la entrega?",
@@ -753,18 +773,20 @@ const texasEn: Market = {
       "Houston, Dallas, San Antonio and Austin. Custom-coded English and Spanish websites for the contractor, clinic, firm or brokerage whose customers switch languages mid-sentence. Built remotely, in your time zone, with published pricing from $349 USD.",
   },
   intro: {
-    title: "Why a Texas service business needs a genuinely bilingual website",
-    body: [
-      "Across much of Houston, San Antonio and South Texas, Spanish-speaking customers are not a segment of the market — they are the market. Yet most service-business websites are built in English only, or run a translate plugin that the visitor spots in the first sentence. A business that already speaks its customers' language and fails to show it online is giving away the advantage it already has.",
-      "The second thing about Texas is that it is a trades state: remodeling, roofing, plumbing, electrical, HVAC, concrete. Someone searching for those services does not want a company history — they want finished work, a clear service area and a way to request an estimate in two taps. A generic template is not built for that; a site with one page per service, a qualifying quote form and photo upload is.",
-      "That is what bilingual web design texas means here: web design for small businesses in texas with a page for every service you sell, forms that qualify by area and urgency, and the site wired to WhatsApp and your calendar. I am a spanish speaking web designer texas businesses hire without paying for a local office — all remote, on Central time like Houston and Dallas for most of the year, with pricing published in dollars so you never book a call just to hear a number.",
+    title: "Why Texas needs a different kind of site",
+    lead:
+      "In Houston and San Antonio, Spanish-speaking customers are not a segment of the market — they are the market.",
+    points: [
+      { title: "Bilingual by default", text: "Two languages on separate URLs, no plugin." },
+      { title: "One page per service", text: "Job photos and a quote in two taps." },
+      { title: "On your clock", text: "Remote, on Texas time all year." },
     ],
   },
   industries: {
     eyebrow: "// where the market is",
     title: "The Texas businesses I work with most",
     subtitle:
-      "Each industry has its own page with what changes in that case. These four come up most in the Texas market.",
+      "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in texas.",
     items: [
       { icon: "building", segment: "contractors", title: "Contractors and construction", description: "Remodeling, roofing, plumbing, electrical and HVAC. Contractor website design texas is the state's biggest sector, and the one that most depends on the estimate being requested the same day." },
       { icon: "receipt", segment: "accounting", title: "Accounting and tax", description: "Preparers, CPAs and bookkeepers with Hispanic clients. A bilingual site with orderly intake changes the whole season." },
@@ -775,7 +797,7 @@ const texasEn: Market = {
   context: {
     eyebrow: "// what changes in Texas",
     title: "Three things I account for in a Texas project",
-    subtitle: "A Texas site is not a California site. These are the differences that actually change structure and content.",
+    subtitle: "A Texas site is not a California site. These are the differences that actually change structure and content, and why bilingual web design texas is not a template with the state name swapped in.",
     items: [
       { icon: "globe", title: "Bilingual is the baseline, not an add-on", description: "In Houston and San Antonio the same business serves one customer in English and the next in Spanish. A bilingual website developer gives both versions separate URLs and hreflang, so each customer finds their own in Google instead of a machine translation. It is the single biggest advantage in web design for hispanic owned businesses here." },
       { icon: "shield", title: "License and insurance sell", description: "Texas does not license general contractors statewide, but it does license electricians, plumbers and HVAC. Putting the license number and the policy where customers look for them is one of the cheapest conversion lifts in this market." },
@@ -785,7 +807,7 @@ const texasEn: Market = {
   remote: {
     eyebrow: "// how remote works",
     title: "I work from Mexico, on your clock",
-    subtitle: "None of this needs us in the same city. Here is how a project runs with a Texas business.",
+    subtitle: "Hiring a spanish speaking web designer texas businesses can reach does not need us in the same city. Here is how a project runs.",
     items: [
       { icon: "calendar", title: "Same time zone as you", description: "Texas is on Central time, the same as central Mexico for most of the year. When you message mid-morning, it is mid-morning here — no waiting until tomorrow for an answer." },
       { icon: "message-circle", title: "WhatsApp, not a ticket portal", description: "Follow-up runs on WhatsApp and calls, the way you already work. I answer any message in under 24 hours, usually much sooner." },
@@ -831,17 +853,19 @@ const floridaEn: Market = {
       "Miami, Orlando, Tampa and Jacksonville. Custom-coded websites for service businesses whose main market speaks Spanish, in a state where the season decides the year. Built remotely, with published pricing from $349 USD.",
   },
   intro: {
-    title: "In South Florida the Spanish version is not the second version",
-    body: [
-      "In Miami-Dade and much of South Florida, a business serving Spanish speakers is not serving a minority — it is serving its primary market. Most sites are still built English-first, with Spanish left as a half-finished translation and forms that were never translated at all. Visitors notice, and what they read is not bad grammar: it is a business that is not paying attention to them.",
-      "The second thing about Florida is that its commercial calendar is anything but flat. Hurricane season runs June through November, and with it demand spikes for roofing, waterproofing, water restoration, tree work and generators. A business that reaches June without a site, without an orderly Google profile and without an emergency form misses the quarter that pays for the year.",
-      "Bilingual web design florida has to account for both: web design for small businesses in florida with Spanish as the primary language rather than a translation, and a structure that survives a demand spike — emergency form, always-visible call button, pages by service and by county, and automated follow-up so no message goes unanswered in the busiest week of the year. It is the same standard applied to web design for hispanic owned businesses anywhere, just tuned to this state's calendar.",
+    title: "In South Florida, Spanish is not the second version",
+    lead:
+      "In Miami-Dade, serving Spanish speakers is not serving a minority — it is serving your main market.",
+    points: [
+      { title: "Spanish first", text: "Its own URL, never a translation layer." },
+      { title: "Built for the season", text: "Survives the June-to-November spike." },
+      { title: "No office in the state", text: "Remote, and it shows in the price." },
     ],
   },
   industries: {
     eyebrow: "// where the market is",
     title: "The Florida businesses I work with most",
-    subtitle: "Each industry has its own page with what changes in that case. These four come up most in the Florida market.",
+    subtitle: "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in florida.",
     items: [
       { icon: "map-pin", segment: "realEstate", title: "Real estate", description: "Miami moves domestic and international buyers year-round. Listings, lead capture, and a Spanish version that does not read like a translation." },
       { icon: "building", segment: "contractors", title: "Roofing, restoration and trades", description: "The sector that lives off the season. Roofing contractor website design florida needs an emergency form, a project gallery and a clear service area, ready before June." },
@@ -852,7 +876,7 @@ const floridaEn: Market = {
   context: {
     eyebrow: "// what changes in Florida",
     title: "Three things I account for in a Florida project",
-    subtitle: "A Miami site does not look like a Dallas site. These are the differences that really affect structure and content.",
+    subtitle: "A Miami site does not look like a Dallas site. These are the differences that really affect structure and content, and why bilingual web design florida needs its own approach.",
     items: [
       { icon: "globe", title: "Spanish first, English second", description: "In South Florida the Spanish version usually takes the most traffic. It gets written first, with its own URL and its own content, and English becomes the real second version rather than an afterthought." },
       { icon: "calendar", title: "The site has to survive the season", description: "From June to November, demand for roofing, restoration and tree work multiplies within days. The page is prepared ahead: emergency form, visible availability and automated follow-up so nothing is lost at the peak." },
@@ -862,7 +886,7 @@ const floridaEn: Market = {
   remote: {
     eyebrow: "// how remote works",
     title: "I work from Mexico, one hour behind you",
-    subtitle: "The project does not need us in the same city. Here is how it runs with a Florida business.",
+    subtitle: "Web design for hispanic owned businesses does not need us in the same city. Here is how a project runs with a Florida business.",
     items: [
       { icon: "calendar", title: "One hour, not an ocean", description: "Florida is on Eastern time, an hour ahead of central Mexico. In practice we overlap the entire working day, and calls land in the Florida morning without either of us starting early." },
       { icon: "message-circle", title: "In your language, with the person doing the work", description: "No account executive and no rotating team to re-explain your business to. Whoever answers your WhatsApp writes the code and reviews the campaigns." },
@@ -908,17 +932,19 @@ const californiaEn: Market = {
       "Los Angeles, San Diego, the Inland Empire and the Bay Area. The same custom-coded bilingual site and the same lead system, for a fraction of what an agency with California overhead charges. Published pricing from $349 USD.",
   },
   intro: {
-    title: "California is the most expensive place to advertise and the most expensive place to hire",
-    body: [
-      "In California everything costs more: the click, the rent and the agency. A service business in Los Angeles competes for the same searches as companies with dedicated marketing budgets, and when it asks for a website quote it gets a number that reflects the cost of running an office in the state rather than the work in the project. The usual outcome: the small business settles for a cheap template and stops competing.",
-      "The way out is not spending more — it is not paying for overhead. I work remotely from Mexico, with no office to carry and no account executives on payroll, and that is what makes an affordable web design agency california businesses can actually use: the same custom-coded site, with technical SEO, a real bilingual version and connected lead capture, at prices published on the site and with no sales call needed to hear them. It is bilingual web design california without California overhead, and it is the same standard I apply to web design for small businesses in california of any size.",
-      "The other lever is language. Los Angeles and the Inland Empire are markets where Hispanic-owned businesses compete against large companies that translate their sites with a plugin. A site genuinely written in Spanish, with its own URL and its own ranking, is one of the few advantages a small business can hold over a big one in this state — and almost nobody uses it.",
+    title: "California: the priciest place to advertise and to hire",
+    lead:
+      "Everything costs more here: the click, the rent and the agency. The way out is not paying for overhead.",
+    points: [
+      { title: "No overhead priced in", text: "Published prices, the same for everyone." },
+      { title: "Spanish as the edge", text: "Where big competitors just run a plugin." },
+      { title: "Organic before ads", text: "Profile and reviews first, campaigns after." },
     ],
   },
   industries: {
     eyebrow: "// where the market is",
     title: "The California businesses I work with most",
-    subtitle: "Each industry has its own page with what changes in that case. These four come up most in the California market.",
+    subtitle: "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in california.",
     items: [
       { icon: "building", segment: "contractors", title: "Contractors and home services", description: "Remodeling, landscaping, plumbing, solar and cleaning. Contractor website design california faces heavy paid competition, and the Google profile decides the call." },
       { icon: "calendar", segment: "health", title: "Health and wellness", description: "Practices, dental clinics, nutrition and therapy. Online booking, reminders and a Spanish version patients understand the first time." },
@@ -929,7 +955,7 @@ const californiaEn: Market = {
   context: {
     eyebrow: "// what changes in California",
     title: "Three things I account for in a California project",
-    subtitle: "It is the most competitive of the three markets, and that changes where the effort belongs.",
+    subtitle: "It is the most competitive of the three markets, and that changes where the effort belongs. It is also why bilingual web design california costs what it costs locally, and why remote changes the number.",
     items: [
       { icon: "target", title: "Paid clicks are expensive: organic first", description: "In California, turning on ads before sorting out the Google profile, reviews and service pages burns budget. The order I recommend here is the reverse of other markets: organic visibility first, campaigns second." },
       { icon: "shield", title: "The CSLB license number is the first thing they check", description: "California licenses contractors and customers are used to verifying. Putting the license number in plain view rather than buried in the footer is one of the cheapest trust gains available in this state." },
@@ -939,7 +965,7 @@ const californiaEn: Market = {
   remote: {
     eyebrow: "// how remote works",
     title: "I work from Mexico, two hours ahead",
-    subtitle: "The project does not need an office in California. Here is how it runs with a Los Angeles or San Diego business.",
+    subtitle: "An affordable web design agency california businesses can hire does not need an office in the state. Here is how a project runs in Los Angeles or San Diego.",
     items: [
       { icon: "calendar", title: "Two hours, and in your favor", description: "California runs two hours behind central Mexico. In practice, what you asked for yesterday afternoon is already under way when you open your day, and calls land comfortably in your mid-morning." },
       { icon: "receipt", title: "No overhead priced into the work", description: "No office in the state, no account managers, no commission on your ad spend. Prices are published and identical to every other client: $349 for a landing page, $899 for a 4-6 page site." },
@@ -974,11 +1000,13 @@ const hubEn: MarketsHub = {
       "I work remotely with business owners in Texas, Florida and California: custom-coded English and Spanish websites, SEO, Google Business Profile and connected lead capture. Published pricing in dollars from $349 USD and a reply in under 24 hours.",
   },
   intro: {
-    title: "Why a bilingual business ends up with the worst website in its market",
-    body: [
-      "With web design for hispanic owned businesses it usually goes the same way. The owner looks for someone to build the site and finds two options, each bad in its own way. The local agency quotes a number priced for a mid-size company, with a twelve-month contract and an account executive between the owner and whoever does the work. Or a friend puts something together in a page builder for very little, with no SEO, no real second language and nothing connected. A year later the business is still living on referrals.",
-      "There is a third option almost nobody offers: a bilingual website developer united states businesses can hire remotely, with an agency's technical standard and none of the cost of a U.S. office. That is ProCode Dev — a spanish speaking web designer who codes the site from scratch (no templates, no builders), writes both language versions as real content rather than machine translation, and wires up what turns a visit into a call: qualifying forms, WhatsApp, calendar and follow-up.",
-      "Distance stopped being a problem years ago. Texas shares Central time with central Mexico for most of the year, Florida is an hour ahead and California two hours behind, so we overlap the full working day. Payments are in dollars with an invoice, the domain and hosting stay in your business's name, and the prices are published on the site so you never book a sales call just to hear a number. It is the same offer a bilingual digital marketing agency would make, without its overhead priced into the work.",
+    title: "Why you end up with your market's worst website",
+    lead:
+      "The local agency quotes for a mid-size company; a friend builds it in a page builder. There is a third option.",
+    points: [
+      { title: "Remote and bilingual", text: "Agency standard without the agency invoice." },
+      { title: "No U.S. overhead", text: "Nothing to pay for an office you never visit." },
+      { title: "Price published", text: "No sales call needed to hear the number." },
     ],
   },
   listEyebrow: "// markets",
@@ -994,7 +1022,7 @@ const hubEn: MarketsHub = {
   how: {
     eyebrow: "// how remote works",
     title: "How a U.S. business works with a developer in Mexico",
-    subtitle: "Six answers to what actually worries people when the provider is not in the same city. None of the six needs us to be close.",
+    subtitle: "Six answers to what actually worries people when the provider is not in the same city. It is what separates a bilingual website developer united states businesses hire remotely from an agency with an office, and none of the six needs us close.",
     items: [
       { icon: "calendar", title: "Hours that overlap", description: "Texas shares Central time with central Mexico for most of the year, Florida is an hour ahead and California two behind. We overlap the whole working day, with neither of us starting early." },
       { icon: "message-circle", title: "In your language, with the person doing the work", description: "No account executive and no rotating team. Whoever answers your WhatsApp writes the code and reviews the campaigns, and replies to any message in under 24 hours." },
@@ -1008,10 +1036,10 @@ const hubEn: MarketsHub = {
     eyebrow: "// questions about working remotely",
     titleA: "Hiring someone who is not in",
     titleHighlight: "your city",
-    subtitle: "The five questions that always come up when a U.S. business considers hiring a developer working from Mexico.",
+    subtitle: "The five questions that always come up when a U.S. business considers a bilingual digital marketing agency working remotely from Mexico.",
     items: [
       { question: "Is it safe to hire someone outside the United States?", answer: "What makes a hire safe is not distance — it is what stays in your name and what is in writing. The domain, hosting, email and ad accounts are registered to your business from day one, the scope and delivery date go in the proposal, and the prices are published on the site. If you decide to stop at any point, nothing of yours is held on my side." },
-      { question: "Will you understand my market if you do not live here?", answer: "What has to be understood is how your customers search and what they hesitate about, and that shows in the data, not out the window. Before writing a line I look at what comes up today when someone searches your service in your city, what the top three are doing, and which questions your customers keep repeating. That review is the free Express Review: if I get something wrong, you will see it in the video before you hire me." },
+      { question: "Will you understand my market if you do not live here?", answer: "Web design for hispanic owned businesses is not done by looking out the window: what matters is how your customers search and what they hesitate about, and that shows in the data. Before writing a line I look at what comes up today when someone searches your service in your city, what the top three are doing, and which questions your customers keep repeating. That review is the free Express Review: if I get something wrong, you will see it in the video before you hire me." },
       { question: "What language do we work in?", answer: "Whichever you prefer. Communication with me can be in English or Spanish, and the site can ship in either or both. Most of my U.S. clients prefer to talk in Spanish and publish in both languages." },
       { question: "How do reviews and handover work?", answer: "You get a private link where you can see the site working as it is built, and you leave your comments there. When you sign off, I publish to your domain and hand over the access. Nothing to install and no tool to learn." },
       { question: "Do you work outside Texas, Florida and California?", answer: "Yes. Those three are where most of my work is, which is why they have their own pages, but the service is the same in any state, and in Mexico too. Message me and I will tell you honestly whether your market has a particularity that should change the plan." },

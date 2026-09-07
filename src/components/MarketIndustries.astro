@@ -34,7 +34,7 @@ const hub = marketsHub[lang];
         ind.items.map((item, i) => (
           <a
             href={PAGES[item.segment][lang]}
-            class="reveal group flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_24px_70px_-40px_rgba(37,99,235,0.7)]"
+            class="reveal group flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_24px_70px_-40px_var(--halo-card-strong)]"
             style={`--reveal-delay: ${i * 70}ms`}
           >
             <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border)]">

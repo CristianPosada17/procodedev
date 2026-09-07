@@ -34,7 +34,7 @@ const th = SEGMENT_THEME[segment];
 */}
 <section
   class="segment-hero relative isolate overflow-hidden lg:flex lg:min-h-[34rem] lg:items-center"
-  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2};`}
+  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2}; --seg-accent-l:${th.accentLight}; --seg-accent2-l:${th.accent2Light};`}
 >
   <div
     class="segment-hero-art absolute inset-0 -z-10 opacity-50 lg:left-[40%] lg:py-12 lg:pr-8 lg:opacity-80"
@@ -71,7 +71,7 @@ const th = SEGMENT_THEME[segment];
       </span>
 
       <h1
-        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_rgba(6,11,24,0.9)] sm:text-[3.45rem] lg:text-[4.3rem]"
+        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_var(--veil-ink)] sm:text-[3.45rem] lg:text-[4.3rem]"
       >
         {x.heroTitleA}{" "}<span class="grad-text">{x.heroHighlight}</span>
       </h1>
@@ -85,14 +85,14 @@ const th = SEGMENT_THEME[segment];
       <div class="mt-9 flex flex-col gap-4 sm:flex-row">
         <a
           href={PAGES.contact[lang]}
-          class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+          class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
         >
           {t.common.ctaPrimary}
           <Icon name="arrow-right" class="ml-2 h-4 w-4" />
         </a>
         <a
           href={PAGES.pricing[lang]}
-          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/15"
+          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/15"
         >
           {t.priceAnchor.cta}
         </a>
@@ -105,7 +105,7 @@ const th = SEGMENT_THEME[segment];
 <!-- ── Calendario del oficio ── -->
 <section
   class="relative py-10 lg:py-14"
-  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2};`}
+  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2}; --seg-accent-l:${th.accentLight}; --seg-accent2-l:${th.accent2Light};`}
 >
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
@@ -134,7 +134,7 @@ const th = SEGMENT_THEME[segment];
         <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {
             x.cycleMonths.map((m) => (
-              <div class="rounded-xl border border-[color:var(--border)] bg-white/[0.03] p-4">
+              <div class="rounded-xl border border-[color:var(--border)] bg-[var(--tint)] p-4">
                 <p
                   class="font-mono text-[11px] uppercase tracking-[0.14em]"
                   style={`color:${th.accent}`}
@@ -177,7 +177,7 @@ const th = SEGMENT_THEME[segment];
             style={`--reveal-delay: ${i * 60}ms`}
           >
             <span
-              class="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-lg bg-white/[0.06] text-[var(--muted)]"
+              class="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-lg bg-[var(--tint-2)] text-[var(--muted)]"
               aria-hidden="true"
             >
               <Icon name="minus" class="h-3.5 w-3.5" />
@@ -271,7 +271,7 @@ const th = SEGMENT_THEME[segment];
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
     <div
-      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 text-center backdrop-blur-xl shadow-[0_30px_80px_-40px_rgba(37,99,235,0.55)] lg:p-14"
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 text-center backdrop-blur-xl shadow-[0_30px_80px_-40px_var(--halo-card)] lg:p-14"
     >
       <div
         class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--brand)]/10 blur-3xl"
@@ -287,7 +287,7 @@ const th = SEGMENT_THEME[segment];
         <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
           <a
             href={PAGES.contact[lang]}
-            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
           >
             {t.common.ctaPrimary}
             <Icon name="arrow-right" class="ml-2 h-4 w-4" />
@@ -296,7 +296,7 @@ const th = SEGMENT_THEME[segment];
             href={waHref(segment, lang)}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
           >
             <Icon name="whatsapp" class="mr-2 h-4 w-4" />
             {t.common.ctaWhatsapp}

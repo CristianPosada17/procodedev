@@ -45,7 +45,7 @@ const project = t.portfolio.projects.find((p) => p.id === x.projectId);
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="group relative block aspect-[2/1] w-full overflow-hidden lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[0_28px_70px_-34px_rgba(0,0,0,0.75)]"
+            class="group relative block aspect-[2/1] w-full overflow-hidden lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[var(--shadow-media)]"
           >
             <img
               src={project.image}
@@ -101,7 +101,7 @@ const project = t.portfolio.projects.find((p) => p.id === x.projectId);
               </a>
               <a
                 href={PAGES.portfolio[lang]}
-                class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-white/5 px-5 py-3.5 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+                class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-5 py-3.5 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
               >
                 {t.proof.cta}
                 <Icon name="arrow-right" class="ml-2 h-4 w-4" />

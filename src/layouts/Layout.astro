@@ -82,6 +82,39 @@ const htmlLang = lang === "es" ? "es" : "en";
 const CONTENT_REVIEWED = "2026-09-07";
 const ogLocale = lang === "es" ? "es_US" : "en_US";
 
+// ============================================================
+// TEMA CLARO / OSCURO
+// ------------------------------------------------------------
+// Este script tiene que correr ANTES del primer pintado, o la página
+// aparece un instante en oscuro y salta a claro. Por eso va inline en
+// el <head>, arriba, y no como <script> de Astro (que se difiere).
+// Orden de decisión: lo que el visitante eligió a mano > lo que pide
+// su sistema operativo. Mientras no elija, sigue al sistema en vivo.
+// `pcdSetTheme` es lo que llama el botón del Header.
+// ============================================================
+const themeScript = [
+  "(function(){",
+  '  var KEY="pcd-theme";',
+  '  var LIGHT="light", DARK="dark";',
+  "  var mq=window.matchMedia('(prefers-color-scheme: light)');",
+  "  function stored(){try{var v=localStorage.getItem(KEY);return v===LIGHT||v===DARK?v:null;}catch(e){return null;}}",
+  "  function paint(t){",
+  "    document.documentElement.setAttribute('data-theme',t);",
+  "    var m=document.querySelector('meta[name=\"theme-color\"]');",
+  "    if(m)m.setAttribute('content',t===LIGHT?'#f6f8fc':'#060b18');",
+  "  }",
+  "  paint(stored()||(mq.matches?LIGHT:DARK));",
+  "  window.pcdSetTheme=function(t){try{localStorage.setItem(KEY,t);}catch(e){}paint(t);};",
+  "  window.pcdToggleTheme=function(){",
+  "    var cur=document.documentElement.getAttribute('data-theme')===LIGHT?LIGHT:DARK;",
+  "    window.pcdSetTheme(cur===LIGHT?DARK:LIGHT);",
+  "  };",
+  "  var onOS=function(e){if(!stored())paint(e.matches?LIGHT:DARK);};",
+  "  if(mq.addEventListener)mq.addEventListener('change',onOS);",
+  "  else if(mq.addListener)mq.addListener(onOS);",
+  "})();",
+].join("\n");
+
 const metaTitle = title ?? t.pageMeta.home.title;
 const metaDescription = description ?? t.pageMeta.home.description;
 
@@ -302,7 +335,10 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {/* El valor real lo escribe themeScript segun el tema activo; este es
+        solo el de arranque para quien no ejecute JS. */}
     <meta name="theme-color" content="#060b18" />
+    <script is:inline set:html={themeScript} />
     {MEASUREMENT.gscVerification && (
       <meta
         name="google-site-verification"
@@ -424,15 +460,14 @@ const jsonLd = {
     class="min-h-screen bg-[var(--bg)] pb-24 text-[var(--text)] antialiased lg:pb-0"
   >
     <div class="fixed inset-0 -z-10 overflow-hidden bg-[var(--bg)]">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_38%),radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_32%),linear-gradient(180deg,#060b18_0%,#0a1224_45%,#060b18_100%)]"
-      >
-      </div>
+      {/* El degradado vive en `.page-aurora` (global.css) porque llevaba
+          los hex del tema oscuro escritos a mano y no podia cambiar. */}
+      <div class="page-aurora absolute inset-0"></div>
 
       <div class="tech-grid absolute inset-0 opacity-40"></div>
 
       <div
-        class="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[130px]"
+        class="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[var(--aurora-blob)] blur-[130px]"
       >
       </div>
     </div>

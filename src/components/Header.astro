@@ -132,7 +132,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
           class="nav-dropdown-panel invisible absolute left-1/2 top-full z-50 w-[min(92vw,460px)] -translate-x-1/2 pt-4 opacity-0 transition"
         >
           <div
-            class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-3 shadow-[var(--shadow-pop)] backdrop-blur-xl"
           >
             <p
               class="px-3 pb-2 pt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]"
@@ -145,8 +145,8 @@ const otherLang = lang === "es" ? "EN" : "ES";
                   <a
                     href={item.href}
                     class:list={[
-                      "flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-white/[0.06]",
-                      item.key === page ? "bg-white/[0.06]" : "",
+                      "flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[var(--tint-2)]",
+                      item.key === page ? "bg-[var(--tint-2)]" : "",
                     ]}
                   >
                     <span class="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
@@ -194,7 +194,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
           class="nav-dropdown-panel invisible absolute left-1/2 top-full z-50 w-[min(92vw,560px)] -translate-x-1/2 pt-4 opacity-0 transition"
         >
           <div
-            class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-3 shadow-[var(--shadow-pop)] backdrop-blur-xl"
           >
             <p
               class="px-3 pb-2 pt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]"
@@ -207,8 +207,8 @@ const otherLang = lang === "es" ? "EN" : "ES";
                   <a
                     href={item.href}
                     class:list={[
-                      "flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-white/[0.06]",
-                      item.key === page ? "bg-white/[0.06]" : "",
+                      "flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[var(--tint-2)]",
+                      item.key === page ? "bg-[var(--tint-2)]" : "",
                     ]}
                   >
                     <span class="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
@@ -256,7 +256,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
           class="nav-dropdown-panel invisible absolute left-1/2 top-full z-50 w-[min(92vw,420px)] -translate-x-1/2 pt-4 opacity-0 transition"
         >
           <div
-            class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/95 p-3 shadow-[var(--shadow-pop)] backdrop-blur-xl"
           >
             <p
               class="px-3 pb-2 pt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]"
@@ -269,8 +269,8 @@ const otherLang = lang === "es" ? "EN" : "ES";
                   <a
                     href={item.href}
                     class:list={[
-                      "flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-white/[0.06]",
-                      item.key === page ? "bg-white/[0.06]" : "",
+                      "flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[var(--tint-2)]",
+                      item.key === page ? "bg-[var(--tint-2)]" : "",
                     ]}
                   >
                     <span class="mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
@@ -320,16 +320,33 @@ const otherLang = lang === "es" ? "EN" : "ES";
     <div class="hidden items-center gap-3 md:flex">
       <a
         href={altHref}
-        class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-white/[0.03] px-3 py-2 font-mono text-xs font-medium text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+        class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-[var(--tint)] px-3 py-2 font-mono text-xs font-medium text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
         aria-label="Change language"
       >
         <Icon name="globe" class="h-3.5 w-3.5" />
         {otherLang}
       </a>
+      {/* Botón de tema: mismo peso visual que el de idioma. El icono lo
+          decide el CSS por [data-theme] (ver global.css), así que muestra
+          siempre el destino del clic y no parpadea al cargar. */}
+      <button
+        type="button"
+        data-theme-toggle
+        class="inline-flex h-[38px] w-[38px] items-center justify-center rounded-lg border border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+      >
+        <span class="theme-icon-sun inline-flex">
+          <Icon name="sun" class="h-4 w-4" />
+          <span class="sr-only">{t.nav.themeToLight}</span>
+        </span>
+        <span class="theme-icon-moon inline-flex">
+          <Icon name="moon" class="h-4 w-4" />
+          <span class="sr-only">{t.nav.themeToDark}</span>
+        </span>
+      </button>
       <a
         href={PAGES.contact[lang]}
         data-cta="header-agendar"
-        class="inline-flex rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white shadow-[0_0_35px_rgba(37,99,235,0.28)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        class="inline-flex rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white shadow-[0_0_35px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
       >
         {t.nav.cta}
       </a>
@@ -341,7 +358,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
       aria-label="Menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-white/5 text-[var(--text)] lg:hidden"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[var(--tint)] text-[var(--text)] lg:hidden"
     >
       <Icon name="menu" id="menu-icon-open" class="h-5 w-5" />
       <Icon name="close" id="menu-icon-close" class="hidden h-5 w-5" />
@@ -358,7 +375,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
     >
       <a
         href={navItems[0].href}
-        class="rounded-lg px-2 py-3 text-sm font-medium text-[var(--muted)] transition hover:bg-white/5 hover:text-[var(--accent)]"
+        class="rounded-lg px-2 py-3 text-sm font-medium text-[var(--muted)] transition hover:bg-[var(--tint)] hover:text-[var(--accent)]"
       >
         {navItems[0].label}
       </a>
@@ -378,7 +395,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
         <div class="mb-2 ml-2 grid gap-0.5 border-l border-[color:var(--border)] pl-3">
           <a
             href={PAGES.services[lang]}
-            class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-white/5"
+            class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-[var(--tint)]"
           >
             {t.nav.servicesOverview}
           </a>
@@ -386,7 +403,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
             serviceItems.map((item) => (
               <a
                 href={item.href}
-                class="rounded-lg px-2 py-2.5 text-sm text-[var(--muted)] transition hover:bg-white/5 hover:text-[var(--accent)]"
+                class="rounded-lg px-2 py-2.5 text-sm text-[var(--muted)] transition hover:bg-[var(--tint)] hover:text-[var(--accent)]"
               >
                 {item.label}
               </a>
@@ -408,7 +425,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
         <div class="mb-2 ml-2 grid gap-0.5 border-l border-[color:var(--border)] pl-3">
           <a
             href={PAGES.sectors[lang]}
-            class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-white/5"
+            class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-[var(--tint)]"
           >
             {t.nav.sectorsOverview}
           </a>
@@ -416,7 +433,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
             segmentItems.map((item) => (
               <a
                 href={item.href}
-                class="rounded-lg px-2 py-2.5 text-sm text-[var(--muted)] transition hover:bg-white/5 hover:text-[var(--accent)]"
+                class="rounded-lg px-2 py-2.5 text-sm text-[var(--muted)] transition hover:bg-[var(--tint)] hover:text-[var(--accent)]"
               >
                 {item.label}
               </a>
@@ -438,7 +455,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
         <div class="mb-2 ml-2 grid gap-0.5 border-l border-[color:var(--border)] pl-3">
           <a
             href={PAGES.markets[lang]}
-            class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-white/5"
+            class="rounded-lg px-2 py-2.5 text-sm text-[var(--accent)] transition hover:bg-[var(--tint)]"
           >
             {t.nav.marketsOverview}
           </a>
@@ -446,7 +463,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
             marketItems.map((item) => (
               <a
                 href={item.href}
-                class="rounded-lg px-2 py-2.5 text-sm text-[var(--muted)] transition hover:bg-white/5 hover:text-[var(--accent)]"
+                class="rounded-lg px-2 py-2.5 text-sm text-[var(--muted)] transition hover:bg-[var(--tint)] hover:text-[var(--accent)]"
               >
                 {item.label}
               </a>
@@ -459,7 +476,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
         navItems.slice(1).map((item) => (
           <a
             href={item.href}
-            class="rounded-lg px-2 py-3 text-sm font-medium text-[var(--muted)] transition hover:bg-white/5 hover:text-[var(--accent)]"
+            class="rounded-lg px-2 py-3 text-sm font-medium text-[var(--muted)] transition hover:bg-[var(--tint)] hover:text-[var(--accent)]"
           >
             {item.label}
           </a>
@@ -470,11 +487,26 @@ const otherLang = lang === "es" ? "EN" : "ES";
       >
         <a
           href={altHref}
-          class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-white/[0.03] px-3 py-2.5 font-mono text-xs font-medium text-[var(--muted)]"
+          class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-[var(--tint)] px-3 py-2.5 font-mono text-xs font-medium text-[var(--muted)]"
         >
           <Icon name="globe" class="h-3.5 w-3.5" />
           {otherLang}
         </a>
+        {/* Mismo botón que arriba, para quien navega con el menú móvil. */}
+        <button
+          type="button"
+          data-theme-toggle
+          class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-lg border border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+        >
+          <span class="theme-icon-sun inline-flex">
+            <Icon name="sun" class="h-4 w-4" />
+            <span class="sr-only">{t.nav.themeToLight}</span>
+          </span>
+          <span class="theme-icon-moon inline-flex">
+            <Icon name="moon" class="h-4 w-4" />
+            <span class="sr-only">{t.nav.themeToDark}</span>
+          </span>
+        </button>
         <a
           href={PAGES.contact[lang]}
           data-cta="menu-movil-agendar"
@@ -508,5 +540,14 @@ const otherLang = lang === "es" ? "EN" : "ES";
     toggle.setAttribute("aria-expanded", String(open));
     iconOpen?.classList.toggle("hidden", open);
     iconClose?.classList.toggle("hidden", !open);
+  });
+
+  // El tema lo aplica y lo guarda `pcdToggleTheme`, definido por el script
+  // inline del <head> de Layout.astro (tiene que existir antes del primer
+  // pintado). Aquí solo se enganchan los botones.
+  document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      (window as any).pcdToggleTheme?.();
+    });
   });
 </script>

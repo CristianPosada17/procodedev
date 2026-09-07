@@ -12,6 +12,8 @@ export type IconName =
   | "menu"
   | "minus"
   | "globe"
+  | "sun"
+  | "moon"
   // — capacidades / servicios —
   | "layout"
   | "target"

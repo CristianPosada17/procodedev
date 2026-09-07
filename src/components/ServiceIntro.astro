@@ -1,18 +1,22 @@
 ---
 /*
-  Bloque de texto largo de cada página de servicio.
+  Bloque de contexto de las páginas de servicio y de mercado.
 
-  Existe por dos razones: le explica al visitante en qué se diferencia esto
-  de lo que le vendieron antes, y le da al buscador los párrafos donde la
-  frase principal de la página aparece en contexto y no como relleno.
+  Antes eran tres párrafos de 200 a 285 palabras. Estaba bien escrito y no
+  lo leía nadie: un muro de texto a media página se salta con el scroll.
+  Ahora es una frase de entrada y tres puntos con etiqueta —el mismo
+  argumento, en un cuarto del texto y en un formato que se escanea sin
+  leer—. Si vuelve a crecer, ha vuelto el problema.
 */
 import type { Lang } from "../i18n/ui";
 import Icon from "./Icon.astro";
 
-/* Lo usan las páginas de servicio y las de mercado: el tipo se declara por
-   forma, no importando el de un módulo concreto. */
 interface Props {
-  intro: { title: string; body: readonly string[] };
+  intro: {
+    title: string;
+    lead: string;
+    points: readonly { title: string; text: string }[];
+  };
   lang?: Lang;
   icon?: string;
 }
@@ -22,42 +26,45 @@ const { intro, icon = "diamond" } = Astro.props as Props;
 <section class="relative py-12 lg:py-16">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <div
-      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-7 backdrop-blur-xl sm:p-10 lg:p-14"
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-7 backdrop-blur-xl sm:p-10 lg:p-12"
     >
       <div
         class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--brand)]/10 blur-[110px]"
         aria-hidden="true"
       >
       </div>
-      <div class="relative grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-        <div>
+
+      <div class="relative grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
+        <div class="flex items-start gap-5">
           <span
-            class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]"
+            class="hidden h-14 w-14 flex-none items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)] sm:flex"
           >
             <Icon name={icon as any} class="h-7 w-7" />
           </span>
           <h2
-            class="mt-6 text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl lg:text-[2.3rem]"
+            class="text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl lg:text-[2.1rem]"
           >
             {intro.title}
           </h2>
         </div>
-        <div class="grid gap-5">
-          {
-            intro.body.map((paragraph, i) => (
-              <p
-                class:list={[
-                  "leading-8",
-                  i === 0
-                    ? "text-base text-[var(--text)]/90 sm:text-lg"
-                    : "text-[15px] text-[var(--muted)]",
-                ]}
-              >
-                {paragraph}
+        <p class="text-base leading-8 text-[var(--muted)] sm:text-lg">
+          {intro.lead}
+        </p>
+      </div>
+
+      <div
+        class="relative mt-10 grid gap-x-10 gap-y-6 border-t border-[color:var(--border)] pt-8 sm:grid-cols-3"
+      >
+        {
+          intro.points.map((p, i) => (
+            <div class="reveal" style={`--reveal-delay: ${i * 70}ms`}>
+              <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+                {p.title}
               </p>
-            ))
-          }
-        </div>
+              <p class="mt-2 text-sm leading-6 text-[var(--text)]/85">{p.text}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
