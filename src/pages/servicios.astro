@@ -1,39 +1,79 @@
 ---
+/*
+  HUB /servicios/ — presenta las dos líneas y reparte el enlace interno
+  hacia /servicios/desarrollo-web/ y /servicios/marketing-digital/.
+
+  Intención que persigue: "servicios de desarrollo web y marketing digital".
+  El home se queda con "diseño de páginas web para negocios" y cada hija con
+  la suya, así que las tres no compiten entre ellas.
+*/
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
-import Services from "../components/Services.astro";
+import ServiceLines from "../components/ServiceLines.astro";
+import ServiceCompare from "../components/ServiceCompare.astro";
 import Process from "../components/Process.astro";
 import Integrations from "../components/Integrations.astro";
 import WhyProCode from "../components/WhyProCode.astro";
+import FAQ from "../components/FAQ.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import Footer from "../components/Footer.astro";
 import { translations, PAGES } from "../i18n/ui";
+import { serviceLines, servicesHub, SERVICE_KEYS } from "../i18n/services";
 
 const lang = "es";
 const t = translations[lang];
 const meta = t.pageMeta.services;
+const hub = servicesHub[lang];
+
+// Nodo ItemList: le dice al buscador que esta página es un índice de dos
+// servicios y no una landing más, igual que hace /negocios con los giros.
+const itemList = SERVICE_KEYS.map((key) => ({
+  name: serviceLines[lang][key].title,
+  description: serviceLines[lang][key].summary,
+  url: PAGES[key][lang],
+}));
+
+// hasOfferCatalog del nodo Service: las doce capacidades de las dos líneas.
+const offerCatalog = SERVICE_KEYS.flatMap((key) =>
+  serviceLines[lang][key].capabilities.map((c) => ({
+    title: c.title,
+    description: c.description,
+  })),
+);
 ---
 
-<Layout lang={lang} page="services" title={meta.title} description={meta.description} keywords={meta.keywords}
+<Layout
+  lang={lang}
+  page="services"
+  title={meta.title}
+  description={meta.description}
+  keywords={meta.keywords}
   breadcrumbs={[
     { name: t.nav.home, path: PAGES.home[lang] },
     { name: t.nav.services, path: PAGES.services[lang] },
   ]}
-  serviceName={meta.heroSubtitle}
+  serviceName="Desarrollo web y marketing digital para negocios"
+  offerCatalog={offerCatalog}
+  itemList={itemList}
+  includeFaq={true}
+  faqItems={hub.faq.items}
 >
   <Header lang={lang} page="services" />
   <main>
     <PageHero
+      lang={lang}
       eyebrow={t.services.eyebrow}
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
     />
-    <Services lang={lang} showHeading={false} detailed={true} />
+    <ServiceLines lang={lang} variant="hub" />
+    <ServiceCompare lang={lang} />
     <Process lang={lang} />
     <Integrations lang={lang} />
     <WhyProCode lang={lang} />
+    <FAQ lang={lang} data={hub.faq} />
     <FinalCTA lang={lang} />
   </main>
   <Footer lang={lang} />

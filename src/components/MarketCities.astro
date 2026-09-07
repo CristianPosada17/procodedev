@@ -1,0 +1,52 @@
+---
+/*
+  Las cuatro zonas de un estado, con una línea propia cada una.
+
+  Además de ser el detalle que hace creíble una página de mercado, es el
+  único sitio donde el texto de ciudad aparece a la vista en la página del
+  estado: sin este bloque, «diseño web Houston» o «páginas web Tampa» solo
+  vivirían en el <meta keywords>, que Google ignora.
+*/
+import type { Lang } from "../i18n/ui";
+import type { Market } from "../i18n/markets";
+import { marketsHub } from "../i18n/markets";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  market: Market;
+  lang?: Lang;
+}
+const { market: m, lang = "es" } = Astro.props as Props;
+const hub = marketsHub[lang];
+---
+
+<section id="zonas" class="relative py-12 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={`// ${hub.citiesLabel}`} max="max-w-3xl">
+      <Fragment slot="title">{hub.citiesTitle}</Fragment>
+      <Fragment slot="subtitle">{hub.citiesSubtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+      {
+        m.cities.map((c, i) => (
+          <div
+            class="reveal flex items-start gap-4 border-t border-[color:var(--border)] pt-5"
+            style={`--reveal-delay: ${i * 60}ms`}
+          >
+            <span class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+              <Icon name="map-pin" class="h-4 w-4" />
+            </span>
+            <div class="min-w-0">
+              <h3 class="text-base font-bold text-[var(--text)]">{c.name}</h3>
+              <p class="mt-1.5 text-[13px] leading-6 text-[var(--muted)]">
+                {c.note}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

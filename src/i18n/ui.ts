@@ -24,12 +24,18 @@ export const LANGS: Lang[] = ["es", "en"];
 export type PageKey =
   | "home"
   | "services"
+  | "webDev"
+  | "digitalMarketing"
   | "sectors"
   | "contractors"
   | "health"
   | "professional"
   | "realEstate"
   | "accounting"
+  | "markets"
+  | "texas"
+  | "florida"
+  | "california"
   | "portfolio"
   | "pricing"
   | "contact"
@@ -43,6 +49,16 @@ export type PageKey =
 export const PAGES: Record<PageKey, Record<Lang, string>> = {
   home: { es: "/", en: "/en/" },
   services: { es: "/servicios/", en: "/en/services/" },
+  // Las dos líneas de servicio cuelgan del hub /servicios/ (septiembre 2026).
+  // Ver src/i18n/services.ts para el porqué de la especialización.
+  webDev: {
+    es: "/servicios/desarrollo-web/",
+    en: "/en/services/web-development/",
+  },
+  digitalMarketing: {
+    es: "/servicios/marketing-digital/",
+    en: "/en/services/digital-marketing/",
+  },
   sectors: { es: "/negocios/", en: "/en/industries/" },
   contractors: { es: "/contratistas/", en: "/en/contractors/" },
   health: { es: "/salud-y-bienestar/", en: "/en/health-and-wellness/" },
@@ -52,6 +68,16 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   },
   realEstate: { es: "/inmobiliarias/", en: "/en/real-estate/" },
   accounting: { es: "/contabilidad-e-impuestos/", en: "/en/accounting-and-tax/" },
+  // Páginas de mercado (7 sep 2026): el eje geográfico con el que rankean
+  // todos los competidores que capturan al negocio hispano en EE. UU.
+  // Ver src/i18n/markets.ts para el razonamiento y las reglas.
+  markets: {
+    es: "/diseno-web-estados-unidos/",
+    en: "/en/web-design-united-states/",
+  },
+  texas: { es: "/diseno-web-texas/", en: "/en/web-design-texas/" },
+  florida: { es: "/diseno-web-florida/", en: "/en/web-design-florida/" },
+  california: { es: "/diseno-web-california/", en: "/en/web-design-california/" },
   portfolio: { es: "/portafolio/", en: "/en/portfolio/" },
   pricing: { es: "/precios/", en: "/en/pricing/" },
   contact: { es: "/contacto/", en: "/en/contact/" },
@@ -103,6 +129,11 @@ export const translations = {
     nav: {
       home: "Inicio",
       services: "Servicios",
+      servicesOverview: "Ver los dos servicios",
+      servicesMenuNote: "Dos servicios, no una lista de veinte.",
+      markets: "Dónde trabajo",
+      marketsOverview: "Ver cómo funciona en remoto",
+      marketsMenuNote: "Trabajo remoto con negocios de Estados Unidos.",
       sectors: "Giros",
       sectorsOverview: "Ver todos los giros",
       sectorsMenuNote: "Una página por giro, con lo que cada negocio necesita.",
@@ -146,11 +177,11 @@ export const translations = {
     },
     hero: {
       eyebrow: "// sistemas digitales de crecimiento",
-      titleA: "Tecnología que hace crecer",
-      titleHighlight: "tu negocio",
+      titleA: "Diseño de páginas web para negocios",
+      titleHighlight: "en Estados Unidos y México",
       titleB: "",
       subtitle:
-        "Sitio web, captación y seguimiento en un solo sistema. Una sola persona responsable.",
+        "Sitio web, captación y seguimiento en un solo sistema, en inglés y en español. Precios publicados desde $349 USD y respuesta en menos de 24 horas.",
       badges: [
         "Precios públicos",
         "Sin contratos de 12 meses",
@@ -237,91 +268,19 @@ export const translations = {
         },
       ],
     },
+    // ── DOS SERVICIOS (septiembre 2026) ────────────────────────────
+    // El detalle vive en src/i18n/services.ts. Aquí solo queda el
+    // encabezado de la sección, que es lo que cambia por página.
     services: {
-      eyebrow: "// lo que construyo",
-      detailTitle: "Qué incluye cada pieza: del sitio a la generación de prospectos para negocios",
-      titleA: "Diseño web para negocios que",
-      titleHighlight: "capta clientes",
+      eyebrow: "// lo que hago",
+      titleA: "Desarrollo web y marketing digital",
+      titleHighlight: "para negocios que quieren crecer",
       titleB: "",
       subtitle:
-        "Diseño de páginas web para negocios y pequeñas empresas: empieza por una pieza o monta el sistema completo.",
-      // `detail` solo se muestra en /servicios (prop `detailed`). En el home
-      // las tarjetas se quedan en icono + título + una línea; aquí el
-      // buscador necesita leer qué incluye cada pieza.
-      items: [
-        {
-          icon: "layout",
-          visual: "site",
-          category: "Sitio web",
-          title: "Un sitio por servicio",
-          description: "Aterriza el cliente correcto.",
-          detail: [
-            "Una página web por cada servicio que vendes",
-            "Versión en español y en inglés con URLs separadas",
-            "Diseño web enfocado en conversiones, adaptado a móvil y de carga rápida",
-          ],
-        },
-        {
-          icon: "target",
-          visual: "search",
-          category: "Captación de clientes",
-          title: "Que te encuentren en Google",
-          description: "SEO local y reseñas.",
-          detail: [
-            "Perfil de Empresa en Google creado y optimizado",
-            "SEO local para pequeñas empresas, por ciudad y por servicio",
-            "Sistema para pedir y responder reseñas",
-          ],
-        },
-        {
-          icon: "clipboard-check",
-          visual: "form",
-          category: "Contacto y cotización",
-          title: "Formularios que califican",
-          description: "Menos llamadas, mejor información.",
-          detail: [
-            "Formularios para captar clientes y cotizar por tipo de servicio",
-            "Carga de fotos, medidas o documentos",
-            "Preguntas de zona, presupuesto y urgencia",
-          ],
-        },
-        {
-          icon: "workflow",
-          visual: "flow",
-          category: "Automatización",
-          title: "Nada se queda sin responder",
-          description: "Todo conectado y automático.",
-          detail: [
-            "Automatización para pequeñas empresas: formularios, WhatsApp, calendario y CRM conectados",
-            "Respuesta inmediata a cada prospecto nuevo",
-            "Seguimiento automático de prospectos que no contestaron",
-          ],
-        },
-        {
-          icon: "sparkles",
-          visual: "ai",
-          category: "Búsqueda con IA",
-          title: "Que la IA te cite",
-          description: "Visible en ChatGPT y Google.",
-          detail: [
-            "Datos estructurados schema.org y llms.txt",
-            "Servicios y zona de cobertura legibles por IA",
-            "Contenido que responde lo que la gente pregunta",
-          ],
-        },
-        {
-          icon: "trending-up",
-          visual: "chart",
-          category: "Analítica",
-          title: "Números de negocio",
-          description: "Contactos, llamadas y citas.",
-          detail: [
-            "Medición de contactos, llamadas y citas agendadas",
-            "Fuente de adquisición de cada oportunidad",
-            "Reporte mensual en lenguaje de negocio",
-          ],
-        },
-      ],
+        "Desarrollo web y marketing digital para negocios y pequeñas empresas. Empieza por el que necesitas hoy; el otro sigue aquí cuando toque.",
+      detailTitle:
+        "Servicios de desarrollo web y marketing digital para negocios",
+      homeCta: "Ver los dos servicios a fondo",
     },
     process: {
       eyebrow: "// cómo trabajo",
@@ -959,20 +918,22 @@ export const translations = {
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
       hours: "Lunes a Domingo",
-      location: "Atención remota en español en Estados Unidos y México",
+      location: "Atención remota en español en Texas, Florida, California y México",
       cta: "Agendar Revisión Express",
       rights: "Todos los derechos reservados.",
       privacy: "Aviso de privacidad",
       terms: "Términos y condiciones",
+      // Las dos primeras entradas se renderizan como enlaces a las páginas
+      // de servicio; el resto son las capacidades que viven dentro de ellas.
       servicesList: [
-        "Sitios web por servicio",
-        "Captación y Perfil de Empresa en Google",
-        "Formularios y cotización en línea",
-        "Automatización y CRM",
-        "Seguimiento y retención",
+        "Páginas web a la medida y rediseño",
+        "SEO local y Perfil de Empresa en Google",
+        "Formularios de cotización y automatización",
+        "Google Ads, Facebook e Instagram",
         "Analítica y reportes de negocio",
       ],
       segmentsTitle: "Por giro",
+      marketsOverview: "Estados Unidos",
     },
     // ── Franja de proyectos reales en el home (hallazgo #4) ──
     proof: {
@@ -1046,11 +1007,11 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Diseño de Páginas Web para Negocios | ProCode Dev",
+          "Diseño de Páginas Web para Negocios en EE. UU. | ProCode",
         description:
-          "Diseño de páginas web para negocios y pequeñas empresas: sitio, Google, formularios y seguimiento en un solo sistema. Desde $349 USD y respuesta en 24 h.",
+          "Diseño de páginas web para negocios en Estados Unidos y México, en español e inglés: sitio, Google, formularios y seguimiento. Desde $349 USD en 24 h.",
         keywords:
-          "diseño de páginas web para negocios, páginas web para negocios, agencia de páginas web para negocios, páginas web para pequeñas empresas, página web para mi negocio, sitios web para captar clientes, sistema de captación de clientes, páginas web que generan clientes, desarrollador web en español, ProCode Dev",
+          "diseño de páginas web para negocios, páginas web para negocios, agencia de páginas web para negocios, páginas web para pequeñas empresas, página web para mi negocio, sitios web para captar clientes, páginas web que generan clientes, desarrollador web en español, ProCode Dev",
         heroKicker: "Inicio",
       },
       sectors: {
@@ -1065,17 +1026,20 @@ export const translations = {
         heroSubtitle:
           "Contratistas, clínicas y consultorios, servicios profesionales, inmobiliarias y despachos contables. Elige tu giro y verás exactamente qué cambia en tu caso.",
       },
+      // El hub /servicios/ persigue la intención "servicios de desarrollo web
+      // y marketing digital"; las dos hijas pelean cada una su frase propia
+      // (ver los `meta` de src/i18n/services.ts). Así no se canibalizan ni
+      // compiten con el home, que se queda con "diseño de páginas web".
       services: {
-        title:
-          "Agencia de Diseño Web y Marketing Digital | ProCode",
+        title: "Servicios de Desarrollo Web y Marketing | ProCode",
         description:
-          "Agencia de diseño web y marketing digital dirigida por su fundador: SEO local, formularios que captan clientes y seguimiento automático de prospectos.",
+          "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación desde $349 USD al mes.",
         keywords:
-          "agencia de diseño web, agencia de marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, creación de páginas web para negocios, marketing digital para pequeñas empresas, SEO local para pequeñas empresas, automatización para pequeñas empresas, formularios para captar clientes, seguimiento automático de prospectos, generación de prospectos para negocios, diseño web enfocado en conversiones",
-        heroTitleA: "Agencia de diseño web",
-        heroHighlight: "con un solo responsable",
+          "servicios de desarrollo web y marketing digital, agencia de diseño web y marketing digital, agencia de desarrollo web, agencia de marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, desarrollo web para negocios, marketing digital para negocios, diseño web y posicionamiento, agencia de páginas web para negocios",
+        heroTitleA: "Servicios de desarrollo web y",
+        heroHighlight: "marketing digital para negocios",
         heroSubtitle:
-          "Creación de páginas web para negocios, marketing digital para pequeñas empresas, SEO local, formularios que califican, automatización y reportes de contactos reales. Una agencia de marketing digital donde el dueño es quien ejecuta: empieza por una pieza o monta el sistema completo.",
+          "Dos líneas de trabajo que cubren todo el ciclo: páginas web programadas a la medida y el sistema de captación que las llena. Diseño web enfocado en conversión, SEO, Perfil de Empresa en Google, anuncios, automatización y reportes de contactos reales. Trabajamos en remoto con negocios de Estados Unidos y México, en inglés y en español, con precios publicados y respuesta en menos de 24 horas.",
       },
       portfolio: {
         title:
@@ -1204,6 +1168,11 @@ export const translations = {
     nav: {
       home: "Home",
       services: "Services",
+      servicesOverview: "See both services",
+      servicesMenuNote: "Two services, not a list of twenty.",
+      markets: "Where I work",
+      marketsOverview: "See how remote works",
+      marketsMenuNote: "Working remotely with U.S. businesses.",
       sectors: "Industries",
       sectorsOverview: "See all industries",
       sectorsMenuNote: "One page per industry, with what each business needs.",
@@ -1233,11 +1202,11 @@ export const translations = {
     },
     hero: {
       eyebrow: "// digital growth systems",
-      titleA: "Technology that grows",
-      titleHighlight: "your business",
+      titleA: "Small business website design",
+      titleHighlight: "across the United States",
       titleB: "",
       subtitle:
-        "Website, client acquisition and follow-up in one system. One person accountable.",
+        "Website, client acquisition and follow-up in one system, in English and Spanish. Published pricing from $349 USD and a reply in under 24 hours.",
       badges: [
         "Public pricing",
         "No 12-month contracts",
@@ -1319,87 +1288,15 @@ export const translations = {
       ],
     },
     services: {
-      eyebrow: "// what I build",
-      detailTitle: "What each piece includes, from the site to lead generation",
-      titleA: "Small business web design that also",
-      titleHighlight: "brings in clients",
+      eyebrow: "// what I do",
+      titleA: "Web development and digital marketing",
+      titleHighlight: "for businesses that want to grow",
       titleB: "",
       subtitle:
-        "Small business website design, start to finish: take one piece or build the whole system.",
-      items: [
-        {
-          icon: "layout",
-          visual: "site",
-          category: "Website",
-          title: "A site per service",
-          description: "The right client lands.",
-          detail: [
-            "One page per service you sell, from small business landing page design to a full site",
-            "English and Spanish versions on separate URLs",
-            "Conversion-focused design, mobile-first and fast loading",
-          ],
-        },
-        {
-          icon: "target",
-          visual: "search",
-          category: "Client acquisition",
-          title: "Get found on Google",
-          description: "Local SEO and reviews.",
-          detail: [
-            "Google Business Profile created and optimized",
-            "Local SEO services for small businesses, by city and by service",
-            "A system to request and answer reviews",
-          ],
-        },
-        {
-          icon: "clipboard-check",
-          visual: "form",
-          category: "Intake & quoting",
-          title: "Forms that qualify",
-          description: "Fewer calls, better information.",
-          detail: [
-            "Online quote forms per service type",
-            "Photo, measurement or document upload",
-            "Area, budget and urgency questions",
-          ],
-        },
-        {
-          icon: "workflow",
-          visual: "flow",
-          category: "Automation",
-          title: "Nothing goes unanswered",
-          description: "Everything connected and automatic.",
-          detail: [
-            "Forms, WhatsApp, calendar and CRM connected",
-            "Instant reply to every new lead",
-            "Automated follow-up for anyone who didn't answer",
-          ],
-        },
-        {
-          icon: "sparkles",
-          visual: "ai",
-          category: "AI search",
-          title: "Get cited by AI",
-          description: "Visible in ChatGPT and Google.",
-          detail: [
-            "schema.org structured data and llms.txt",
-            "AI search optimization: services and service area readable by AI",
-            "Content that answers what people actually ask",
-          ],
-        },
-        {
-          icon: "trending-up",
-          visual: "chart",
-          category: "Analytics",
-          title: "Business numbers",
-          description: "Contacts, calls and bookings.",
-          detail: [
-            "Contacts, calls and bookings measured",
-            "Acquisition source for every opportunity",
-            "Monthly report in plain business language",
-          ],
-        },
-      ],
+        "Web development and digital marketing for small businesses. Start with the one you need today; the other is here when the time comes.",
+      detailTitle:
+        "Web development and digital marketing services for small businesses",
+      homeCta: "See both services in detail",
     },
     process: {
       eyebrow: "// how I work",
@@ -2026,20 +1923,20 @@ export const translations = {
       servicesTitle: "Services",
       contactTitle: "Contact",
       hours: "Monday to Sunday",
-      location: "Spanish website design services, remote across the United States",
+      location: "Spanish website design services, remote across Texas, Florida and California",
       cta: "Book my Express Review",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
       terms: "Terms & conditions",
       servicesList: [
-        "Websites with a page per service",
-        "Acquisition & Google Business Profile",
-        "Intake & document upload",
-        "Automation & CRM",
-        "Follow-up & retention",
-        "Analytics & business reporting",
+        "Custom websites and redesigns",
+        "Local SEO and Google Business Profile",
+        "Quote forms and automation",
+        "Google Ads, Facebook and Instagram",
+        "Analytics and business reporting",
       ],
       segmentsTitle: "By industry",
+      marketsOverview: "United States",
     },
     // ── Real-project strip on the home page (finding #4) ──
     proof: {
@@ -2113,9 +2010,9 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Small Business Website Design | ProCode Dev",
+          "Small Business Website Design in the U.S. | ProCode",
         description:
-          "Small business website design with Google presence, forms and follow-up in one system. Bilingual, public pricing from $349 and a reply in under 24 hours.",
+          "Small business website design across the United States, in English and Spanish: Google presence, forms and follow-up in one system. From $349 USD.",
         keywords:
           "small business website design, website design for small businesses, small business web design agency, professional websites for small businesses, bilingual website design services, spanish website design services, lead generation websites for small businesses, bilingual web developer, ProCode Dev",
         heroKicker: "Home",
@@ -2133,16 +2030,15 @@ export const translations = {
           "Contractors, clinics and practices, professional services, real estate and accounting firms. Pick your industry and you'll see exactly what changes in your case.",
       },
       services: {
-        title:
-          "Small Business Web Design Agency | ProCode Dev",
+        title: "Web Development & Digital Marketing | ProCode Dev",
         description:
-          "A small business web design agency run by its founder: local SEO, quote forms, follow-up automation and analytics. Public pricing from $349 USD.",
+          "Web development and digital marketing services for small businesses: custom websites from $349 USD and lead generation plans from $349 USD a month.",
         keywords:
-          "small business web design agency, web design agency, website design company for small business, small business web design services, small business digital marketing services, local SEO services for small businesses, small business landing page design, conversion-focused design, AI search optimization",
-        heroTitleA: "A small business web design agency",
-        heroHighlight: "with one person accountable",
+          "web development and digital marketing services, small business web design agency, web design agency, digital marketing agency, website design company for small business, small business web development, small business digital marketing services, local SEO services for small businesses, conversion-focused design",
+        heroTitleA: "Web development and",
+        heroHighlight: "digital marketing services",
         heroSubtitle:
-          "Small business web design services and small business digital marketing services in one place: local SEO, quote forms, follow-up automation and analytics. A web design agency where the owner is the one executing — start with one piece or build the whole system.",
+          "Two lines of work covering the full cycle: custom-coded websites and the lead system that fills them. Conversion-focused design, SEO, Google Business Profile, ads, automation and reporting on real contacts. We work remotely with businesses across the United States and Mexico, in English and Spanish, with published pricing and a reply in under 24 hours.",
       },
       portfolio: {
         title:
@@ -2286,6 +2182,18 @@ const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
     es: "Hola Cristian, Estaba viendo tus servicios y quiero saber cuál le queda a mi negocio.",
     en: "Hi Cristian, I was looking at your services and I want to know which one fits my business.",
   },
+  webDev: {
+    es: "Hola Cristian, Estaba viendo tu página de desarrollo web y quiero una página web para mi negocio. ¿Cómo empezamos?",
+    en: "Hi Cristian, I was on your web development page and I want a website for my business. How do we start?",
+  },
+  digitalMarketing: {
+    es: "Hola Cristian, Estaba viendo tu página de marketing digital y quiero que me lleguen más clientes. ¿Podemos platicar?",
+    en: "Hi Cristian, I was on your digital marketing page and I want more clients coming in. Can we talk?",
+  },
+  markets: {
+    es: "Hola Cristian, Vi tu página y tengo un negocio en Estados Unidos. Quiero saber cómo trabajas a distancia.",
+    en: "Hi Cristian, I have a business in the U.S. and I'd like to know how you work remotely.",
+  },
   sectors: {
     es: "Hola Cristian, Vi tu página para mi giro y quiero saber cómo me puedes ayudar con la presencia digital de mi negocio.",
     en: "Hi Cristian, I saw your page for my industry and I'd like to know how you can help my business online.",
@@ -2314,7 +2222,9 @@ export function waHref(page: PageKey | "blog", lang: Lang): string {
   // idénticos que se desincronizan a la primera edición.
   const key = (SEGMENT_KEYS as readonly string[]).includes(page)
     ? "sectors"
-    : page;
+    : (["texas", "florida", "california"] as readonly string[]).includes(page)
+      ? "markets"
+      : page;
   const text =
     WA_BY_PAGE[key as PageKey | "blog"]?.[lang] ?? WA_BY_PAGE.home![lang];
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;

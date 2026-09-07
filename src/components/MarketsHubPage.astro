@@ -1,0 +1,74 @@
+---
+/*
+  Hub de mercados: /diseno-web-estados-unidos/ y /en/web-design-united-states/.
+  Presenta los tres estados y resuelve la objeción de fondo —contratar a
+  alguien que no está en tu ciudad— que es la que frena la conversión de
+  todo este eje.
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import PageHero from "./PageHero.astro";
+import ServiceIntro from "./ServiceIntro.astro";
+import MarketCards from "./MarketCards.astro";
+import ServiceStandards from "./ServiceStandards.astro";
+import Founder from "./Founder.astro";
+import ProofStrip from "./ProofStrip.astro";
+import FAQ from "./FAQ.astro";
+import FinalCTA from "./FinalCTA.astro";
+import Footer from "./Footer.astro";
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { marketsHub, markets, MARKET_KEYS } from "../i18n/markets";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const hub = marketsHub[lang];
+
+const itemList = MARKET_KEYS.map((key) => ({
+  name: markets[lang][key].name,
+  description: markets[lang][key].navHint,
+  url: PAGES[key][lang],
+}));
+---
+
+<Layout
+  lang={lang}
+  page="markets"
+  title={hub.meta.title}
+  description={hub.meta.description}
+  keywords={hub.meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.markets, path: PAGES.markets[lang] },
+  ]}
+  serviceName={hub.meta.heroTitleA}
+  areaServed="United States"
+  itemList={itemList}
+  offerCatalog={hub.how.items.map((i) => ({
+    title: i.title,
+    description: i.description,
+  }))}
+  includeFaq={true}
+  faqItems={hub.faq.items}
+>
+  <Header lang={lang} page="markets" />
+  <main>
+    <PageHero
+      lang={lang}
+      eyebrow={hub.listEyebrow}
+      titleA={hub.meta.heroTitleA}
+      highlight={hub.meta.heroHighlight}
+      subtitle={hub.meta.heroSubtitle}
+    />
+    <ServiceIntro lang={lang} intro={hub.intro} icon="globe" />
+    <MarketCards lang={lang} />
+    <ServiceStandards lang={lang} standards={hub.how} id="en-remoto" />
+    <Founder lang={lang} />
+    <ProofStrip lang={lang} />
+    <FAQ lang={lang} data={hub.faq} id="dudas-remoto" />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

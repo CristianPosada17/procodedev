@@ -1,0 +1,63 @@
+---
+/*
+  Estándares técnicos (desarrollo web) o métricas del reporte (marketing).
+  Son afirmaciones verificables, no adjetivos: es lo que separa una página
+  de servicio creíble de una llena de «calidad» y «compromiso».
+*/
+import type { Lang } from "../i18n/ui";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+/* Bloque de tarjetas sobre fondo con rejilla. Lo comparten los estándares
+   técnicos de un servicio y los bloques «lo que cambia aquí» / «cómo
+   funciona en remoto» de las páginas de mercado. */
+interface Props {
+  standards: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    items: readonly { icon: string; title: string; description: string }[];
+  };
+  lang?: Lang;
+  /** Un id propio cuando hay dos de estos bloques en la misma página. */
+  id?: string;
+}
+const { standards: s } = Astro.props as Props;
+---
+
+<section id={Astro.props.id ?? "estandares"} class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-7 sm:p-10 lg:p-14"
+    >
+      <div class="tech-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true"></div>
+      <div class="relative">
+        <SectionHeading eyebrow={s.eyebrow} max="max-w-3xl">
+          <Fragment slot="title">{s.title}</Fragment>
+          <Fragment slot="subtitle">{s.subtitle}</Fragment>
+        </SectionHeading>
+
+        <div class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+          {
+            s.items.map((item, i) => (
+              <div
+                class="reveal border-t border-[color:var(--border)] pt-5"
+                style={`--reveal-delay: ${i * 60}ms`}
+              >
+                <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                  <Icon name={item.icon as any} class="h-5 w-5" />
+                </span>
+                <h3 class="mt-4 text-base font-bold leading-snug text-[var(--text)]">
+                  {item.title}
+                </h3>
+                <p class="mt-2 text-[13px] leading-6 text-[var(--muted)]">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

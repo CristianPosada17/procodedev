@@ -47,6 +47,7 @@ export type IconName =
   | "diamond"
   | "handshake"
   | "route"
+  | "megaphone"
   // — marcas —
   | "whatsapp"
   | "instagram"

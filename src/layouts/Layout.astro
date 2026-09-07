@@ -49,6 +49,10 @@ interface Props {
   itemList?: readonly { name: string; description: string; url: string }[];
   /** Público concreto de la página, para el nodo Service. */
   audience?: string;
+  /** Territorio concreto que atiende la página (las de mercado declaran su
+   *  estado). Es la forma correcta de decir «atiendo Texas» sin fingir una
+   *  dirección física ahí; sin esta prop se declaran EE. UU. y México. */
+  areaServed?: string;
 }
 
 const {
@@ -68,13 +72,14 @@ const {
   offerCatalog,
   itemList,
   audience,
+  areaServed,
 } = Astro.props as Props;
 
 const t = translations[lang];
 const htmlLang = lang === "es" ? "es" : "en";
 // Fecha de la última revisión editorial del sitio. Se emite en el JSON-LD y
 // en Open Graph: una página sin señal de frescura compite en desventaja.
-const CONTENT_REVIEWED = "2026-09-04";
+const CONTENT_REVIEWED = "2026-09-07";
 const ogLocale = lang === "es" ? "es_US" : "en_US";
 
 const metaTitle = title ?? t.pageMeta.home.title;
@@ -214,10 +219,12 @@ const serviceNode = serviceName
       description: metaDescription,
       serviceType: "Digital growth systems for small businesses",
       provider: { "@id": `${siteUrl}#organization` },
-      areaServed: [
-        { "@type": "Country", name: "United States" },
-        { "@type": "Country", name: "México" },
-      ],
+      areaServed: areaServed
+        ? [{ "@type": "AdministrativeArea", name: areaServed }]
+        : [
+            { "@type": "Country", name: "United States" },
+            { "@type": "Country", name: "México" },
+          ],
       availableLanguage: ["English", "Spanish"],
       ...(audience
         ? { audience: { "@type": "Audience", audienceType: audience } }

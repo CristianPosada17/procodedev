@@ -1,0 +1,57 @@
+---
+/*
+  Las seis piezas de un servicio, numeradas.
+
+  El número grande no es decoración: comunica que hay un orden y un alcance
+  cerrado. Una rejilla de seis tarjetas sin numerar se lee como «y muchas
+  cosas más», que es exactamente la vaguedad que había que quitar.
+*/
+import type { Lang } from "../i18n/ui";
+import type { ServiceCapability, ServiceDetail } from "../i18n/services";
+import SectionHeading from "./SectionHeading.astro";
+import CardRail from "./CardRail.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  heading: ServiceDetail["capabilities"];
+  items: readonly ServiceCapability[];
+  lang?: Lang;
+}
+const { heading, items } = Astro.props as Props;
+---
+
+<section id="que-incluye" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={heading.eyebrow} max="max-w-3xl">
+      <Fragment slot="title">{heading.title}</Fragment>
+      <Fragment slot="subtitle">{heading.subtitle}</Fragment>
+    </SectionHeading>
+
+    <CardRail class="mt-12" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide">
+      {
+        items.map((item, i) => (
+          <article
+            class="reveal group relative flex flex-col overflow-hidden rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_24px_70px_-40px_rgba(37,99,235,0.7)]"
+            style={`--reveal-delay: ${i * 60}ms`}
+          >
+            <span
+              class="pointer-events-none absolute -right-2 -top-5 select-none font-mono text-[5.5rem] font-bold leading-none text-white/[0.035] transition duration-300 group-hover:text-[var(--accent)]/10"
+              aria-hidden="true"
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]">
+              <Icon name={item.icon as any} class="h-6 w-6" />
+            </span>
+            <h3 class="relative mt-5 text-lg font-bold leading-snug text-[var(--text)]">
+              {item.title}
+            </h3>
+            <p class="relative mt-3 text-sm leading-7 text-[var(--muted)]">
+              {item.description}
+            </p>
+          </article>
+        ))
+      }
+    </CardRail>
+  </div>
+</section>

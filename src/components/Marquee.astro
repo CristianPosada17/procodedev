@@ -1,13 +1,17 @@
 ---
-import { translations, type Lang } from "../i18n/ui";
+import { type Lang } from "../i18n/ui";
+import { serviceLines, SERVICE_KEYS } from "../i18n/services";
 import Icon from "./Icon.astro";
 interface Props {
   lang?: Lang;
 }
 const { lang = "es" } = Astro.props as Props;
-const t = translations[lang];
-// Etiquetas de servicios para la tira; se duplican para un loop continuo.
-const items = t.services.items.map((s) => s.category);
+// Etiquetas para la tira: el nombre de cada servicio y sus capacidades.
+// Se duplican para un loop continuo.
+const items = SERVICE_KEYS.flatMap((key) => {
+  const line = serviceLines[lang][key];
+  return [line.title, ...line.capabilities.map((c) => c.title)];
+});
 const seq = [...items, ...items];
 ---
 

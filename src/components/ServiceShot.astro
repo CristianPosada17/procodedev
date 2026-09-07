@@ -1,0 +1,54 @@
+---
+/*
+  Mockup de una línea de servicio. Los archivos se generan con Playwright +
+  sharp (ver scripts del repo) en tres anchos y dos formatos modernos:
+  `<base>-480.avif`, `-960`, `-1440` y sus equivalentes en WebP.
+  Relación 16:10 fija, igual que el mockup renderizado.
+*/
+interface Props {
+  base: string;
+  alt: string;
+  /** El de la primera pantalla no debe ir en lazy: es el LCP de la página. */
+  eager?: boolean;
+  class?: string;
+  sizes?: string;
+}
+const {
+  base,
+  alt,
+  eager = false,
+  class: cls = "",
+  sizes = "(min-width: 1024px) 48vw, 92vw",
+} = Astro.props as Props;
+
+const srcset = (ext: string) =>
+  [480, 960, 1440].map((w) => `${base}-${w}.${ext} ${w}w`).join(", ");
+---
+
+<div
+  class:list={[
+    "relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]",
+    cls,
+  ]}
+>
+  {/* Halo de marca detrás del mockup: da profundidad sin sumar una imagen. */}
+  <div
+    class="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(56,189,248,0.14),transparent_55%)]"
+    aria-hidden="true"
+  >
+  </div>
+  <picture>
+    <source type="image/avif" sizes={sizes} srcset={srcset("avif")} />
+    <source type="image/webp" sizes={sizes} srcset={srcset("webp")} />
+    <img
+      src={`${base}-960.webp`}
+      alt={alt}
+      width="1440"
+      height="900"
+      loading={eager ? "eager" : "lazy"}
+      decoding={eager ? "sync" : "async"}
+      fetchpriority={eager ? "high" : undefined}
+      class="block h-auto w-full"
+    />
+  </picture>
+</div>

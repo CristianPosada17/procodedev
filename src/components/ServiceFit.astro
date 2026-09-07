@@ -1,0 +1,80 @@
+---
+/*
+  «Para quién es y para quién no.»
+
+  Decir a quién NO le sirve el servicio es el bloque que más confianza gana
+  y el que menos agencias escriben. Además filtra al prospecto equivocado
+  antes de la llamada, que es tiempo que no se recupera.
+*/
+import type { Lang } from "../i18n/ui";
+import type { ServiceDetail } from "../i18n/services";
+import Icon from "./Icon.astro";
+
+interface Props {
+  fit: ServiceDetail["fit"];
+  lang?: Lang;
+}
+const { fit } = Astro.props as Props;
+---
+
+<section id="para-quien" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1100px] px-4 sm:px-6 lg:px-8">
+    <div class="reveal max-w-2xl">
+      <span class="eyebrow">{fit.eyebrow}</span>
+      <h2
+        class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl"
+      >
+        {fit.title}
+      </h2>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      <div
+        class="reveal rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--brand)]/[0.07] p-7"
+      >
+        <h3 class="flex items-center gap-2.5 text-base font-bold text-[var(--text)]">
+          <span
+            class="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--brand)]/20 text-[var(--accent)]"
+          >
+            <Icon name="check" class="h-4 w-4" strokeWidth={2.8} />
+          </span>
+          {fit.yesTitle}
+        </h3>
+        <ul class="mt-5 grid gap-3.5">
+          {
+            fit.yes.map((y) => (
+              <li class="flex items-start gap-3 text-sm leading-7 text-[var(--text)]/90">
+                <span class="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-[var(--accent)]" />
+                {y}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div
+        class="reveal rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-7"
+        style="--reveal-delay: 90ms"
+      >
+        <h3 class="flex items-center gap-2.5 text-base font-bold text-[var(--text)]">
+          <span
+            class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.06] text-[var(--muted)]"
+          >
+            <Icon name="minus" class="h-4 w-4" strokeWidth={2.8} />
+          </span>
+          {fit.noTitle}
+        </h3>
+        <ul class="mt-5 grid gap-3.5">
+          {
+            fit.no.map((n) => (
+              <li class="flex items-start gap-3 text-sm leading-7 text-[var(--muted)]">
+                <span class="mt-2.5 h-1.5 w-1.5 flex-none rounded-full bg-[var(--muted)]/50" />
+                {n}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

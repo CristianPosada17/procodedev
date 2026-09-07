@@ -1,0 +1,84 @@
+---
+/*
+  Página completa de un mercado (un estado).
+
+  Las seis páginas (tres estados × dos idiomas) comparten esta composición;
+  el contenido, que es lo que las hace distintas entre sí, vive en
+  src/i18n/markets.ts.
+
+  Orden: portada → por qué este mercado es distinto (intro) → los giros que
+  dominan ahí (con enlace a su página de giro) → lo que cambia en ese estado
+  → prueba real del portafolio → cómo funciona el trabajo a distancia →
+  precios de entrada → dudas → CTA.
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import PageHero from "./PageHero.astro";
+import ServiceIntro from "./ServiceIntro.astro";
+import ServiceStandards from "./ServiceStandards.astro";
+import MarketIndustries from "./MarketIndustries.astro";
+import MarketCities from "./MarketCities.astro";
+import ProofStrip from "./ProofStrip.astro";
+import PriceAnchor from "./PriceAnchor.astro";
+import FAQ from "./FAQ.astro";
+import FinalCTA from "./FinalCTA.astro";
+import Footer from "./Footer.astro";
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { markets, type MarketKey } from "../i18n/markets";
+
+interface Props {
+  lang: Lang;
+  market: MarketKey;
+}
+const { lang, market } = Astro.props as Props;
+const t = translations[lang];
+const m = markets[lang][market];
+
+// El nodo Service declara el estado como `areaServed`, que es la forma
+// correcta de decir «atiendo este territorio» sin fingir una dirección
+// física ahí. El catálogo son los giros de ese mercado.
+const offerCatalog = m.industries.items.map((i) => ({
+  title: i.title,
+  description: i.description,
+}));
+---
+
+<Layout
+  lang={lang}
+  page={market}
+  title={m.meta.title}
+  description={m.meta.description}
+  keywords={m.meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.markets, path: PAGES.markets[lang] },
+    { name: m.name, path: PAGES[market][lang] },
+  ]}
+  serviceName={m.meta.heroTitleA}
+  areaServed={m.name}
+  audience={m.navHint}
+  offerCatalog={offerCatalog}
+  includeFaq={true}
+  faqItems={m.faq.items}
+>
+  <Header lang={lang} page={market} />
+  <main>
+    <PageHero
+      lang={lang}
+      eyebrow={`// ${m.name}`}
+      titleA={m.meta.heroTitleA}
+      highlight={m.meta.heroHighlight}
+      subtitle={m.meta.heroSubtitle}
+    />
+    <ServiceIntro lang={lang} intro={m.intro} icon="map-pin" />
+    <MarketIndustries lang={lang} industries={m.industries} />
+    <MarketCities lang={lang} market={m} />
+    <ServiceStandards lang={lang} standards={m.context} id="lo-que-cambia" />
+    <ProofStrip lang={lang} />
+    <ServiceStandards lang={lang} standards={m.remote} id="en-remoto" />
+    <PriceAnchor lang={lang} />
+    <FAQ lang={lang} data={m.faq} id="dudas-mercado" />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

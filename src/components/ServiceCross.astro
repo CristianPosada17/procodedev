@@ -1,0 +1,47 @@
+---
+/*
+  Enlace cruzado entre las dos páginas de servicio. Reparte autoridad entre
+  las dos hijas del hub y, sobre todo, atrapa al visitante que ya entendió
+  que su problema era el otro.
+*/
+import { PAGES, type Lang } from "../i18n/ui";
+import { serviceLines, type ServiceKey } from "../i18n/services";
+import type { ServiceDetail } from "../i18n/services";
+import Icon from "./Icon.astro";
+import ServiceShot from "./ServiceShot.astro";
+
+interface Props {
+  cross: ServiceDetail["cross"];
+  target: ServiceKey;
+  lang?: Lang;
+}
+const { cross, target, lang = "es" } = Astro.props as Props;
+const line = serviceLines[lang][target];
+---
+
+<section class="relative py-12 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal grid items-center gap-8 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:p-12"
+    >
+      <div>
+        <span class="eyebrow">{cross.eyebrow}</span>
+        <h2
+          class="mt-4 text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl"
+        >
+          {cross.title}
+        </h2>
+        <p class="mt-4 text-base leading-8 text-[var(--muted)]">{cross.body}</p>
+        <a
+          href={PAGES[target][lang]}
+          data-cta={`cross-${target}`}
+          class="mt-7 inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_40px_rgba(37,99,235,0.3)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        >
+          {cross.cta}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+      <ServiceShot base={line.imageBase} alt={line.imageAlt} sizes="(min-width: 1024px) 38vw, 92vw" />
+    </div>
+  </div>
+</section>

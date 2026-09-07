@@ -1,0 +1,64 @@
+---
+/*
+  Bloque de texto largo de cada página de servicio.
+
+  Existe por dos razones: le explica al visitante en qué se diferencia esto
+  de lo que le vendieron antes, y le da al buscador los párrafos donde la
+  frase principal de la página aparece en contexto y no como relleno.
+*/
+import type { Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
+
+/* Lo usan las páginas de servicio y las de mercado: el tipo se declara por
+   forma, no importando el de un módulo concreto. */
+interface Props {
+  intro: { title: string; body: readonly string[] };
+  lang?: Lang;
+  icon?: string;
+}
+const { intro, icon = "diamond" } = Astro.props as Props;
+---
+
+<section class="relative py-12 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-7 backdrop-blur-xl sm:p-10 lg:p-14"
+    >
+      <div
+        class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--brand)]/10 blur-[110px]"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="relative grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div>
+          <span
+            class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]"
+          >
+            <Icon name={icon as any} class="h-7 w-7" />
+          </span>
+          <h2
+            class="mt-6 text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl lg:text-[2.3rem]"
+          >
+            {intro.title}
+          </h2>
+        </div>
+        <div class="grid gap-5">
+          {
+            intro.body.map((paragraph, i) => (
+              <p
+                class:list={[
+                  "leading-8",
+                  i === 0
+                    ? "text-base text-[var(--text)]/90 sm:text-lg"
+                    : "text-[15px] text-[var(--muted)]",
+                ]}
+              >
+                {paragraph}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

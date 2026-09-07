@@ -1,0 +1,61 @@
+---
+/*
+  Los giros que dominan un estado, cada uno enlazando a su página de giro.
+
+  Es el bloque que evita que las páginas de mercado sean callejones sin
+  salida: reparte el enlace interno hacia /contratistas, /salud-y-bienestar
+  y compañía, y le dice al buscador que geografía y giro son dos ejes de un
+  mismo sitio, no dos sitios distintos.
+*/
+import { PAGES, type Lang } from "../i18n/ui";
+import type { Market } from "../i18n/markets";
+import { marketsHub } from "../i18n/markets";
+import SectionHeading from "./SectionHeading.astro";
+import CardRail from "./CardRail.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  industries: Market["industries"];
+  lang?: Lang;
+}
+const { industries: ind, lang = "es" } = Astro.props as Props;
+const hub = marketsHub[lang];
+---
+
+<section id="giros" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={ind.eyebrow} max="max-w-3xl">
+      <Fragment slot="title">{ind.title}</Fragment>
+      <Fragment slot="subtitle">{ind.subtitle}</Fragment>
+    </SectionHeading>
+
+    <CardRail class="mt-10 lg:mt-12" grid="md:grid-cols-2 lg:grid-cols-4" peek="normal">
+      {
+        ind.items.map((item, i) => (
+          <a
+            href={PAGES[item.segment][lang]}
+            class="reveal group flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_24px_70px_-40px_rgba(37,99,235,0.7)]"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border)]">
+              <Icon name={item.icon as any} class="h-5 w-5" />
+            </span>
+            <h3 class="mt-4 text-base font-bold leading-snug text-[var(--text)]">
+              {item.title}
+            </h3>
+            <p class="mt-2 flex-1 text-[13px] leading-6 text-[var(--muted)]">
+              {item.description}
+            </p>
+            <span class="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[var(--accent)]">
+              {hub.industriesCta}
+              <Icon
+                name="arrow-right"
+                class="h-4 w-4 transition group-hover:translate-x-0.5"
+              />
+            </span>
+          </a>
+        ))
+      }
+    </CardRail>
+  </div>
+</section>

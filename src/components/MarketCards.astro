@@ -1,0 +1,71 @@
+---
+/*
+  Las tres tarjetas de estado del hub /diseno-web-estados-unidos/.
+  Cada una lista sus ciudades: es lo que hace que la tarjeta valga como
+  contenido y no solo como enlace.
+*/
+import { PAGES, type Lang } from "../i18n/ui";
+import { markets, MARKET_KEYS, marketsHub } from "../i18n/markets";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const hub = marketsHub[lang];
+const list = MARKET_KEYS.map((key) => markets[lang][key]);
+---
+
+<section id="mercados" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={hub.listEyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{hub.listTitle}</Fragment>
+      <Fragment slot="subtitle">{hub.listSubtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+      {
+        list.map((m, i) => (
+          <article
+            class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            style={`--reveal-delay: ${i * 80}ms`}
+          >
+            <div class="flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border)]">
+                <Icon name={m.icon as any} class="h-5 w-5" />
+              </span>
+              <h3 class="text-xl font-bold text-[var(--text)]">{m.name}</h3>
+            </div>
+
+            <p class="mt-5 text-sm leading-7 text-[var(--muted)]">
+              {m.meta.heroSubtitle}
+            </p>
+
+            <p class="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+              {hub.citiesLabel}
+            </p>
+            <ul class="mt-3 flex-1 grid gap-2.5 border-t border-[color:var(--border)] pt-4">
+              {m.cities.map((c) => (
+                <li class="text-[13px] leading-6 text-[var(--muted)]">
+                  <span class="font-semibold text-[var(--text)]">{c.name}</span>
+                  {" — "}
+                  {c.note}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={PAGES[m.key][lang]}
+              data-cta={`mercado-${m.key}`}
+              class="mt-6 inline-flex items-center justify-between gap-2 rounded-xl border border-[color:var(--border-strong)] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+            >
+              {hub.listCta}
+              <Icon name="arrow-right" class="h-4 w-4" />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

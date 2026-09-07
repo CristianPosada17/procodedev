@@ -46,10 +46,8 @@ Capacidad declarada: 4 proyectos nuevos al mes.
 
 - [Inicio](https://procodedev.com/): diseño de páginas web para negocios y
   pequeñas empresas — el sistema completo y por qué existe.
-- [Servicios](https://procodedev.com/servicios/): la agencia de diseño web y
-  marketing digital — creación de páginas web para negocios, SEO local para
-  pequeñas empresas, formularios para captar clientes, automatización, búsqueda
-  con IA y analítica.
+- [Servicios](https://procodedev.com/servicios/): el hub de los dos servicios,
+  con la comparativa de por dónde conviene empezar.
 - [Precios](https://procodedev.com/precios/): cuánto cuesta una página web para un
   negocio, con paquetes de diseño de páginas web y qué incluye cada plan.
 - [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
@@ -57,6 +55,69 @@ Capacidad declarada: 4 proyectos nuevos al mes.
 - [Contacto](https://procodedev.com/contacto/): agenda y WhatsApp.
 - [Blog](https://procodedev.com/blog/): guías sobre páginas web, SEO local,
   Google Maps, automatización y precios.
+
+## Los dos servicios
+
+ProCode Dev vende **exactamente dos servicios**. Todo lo demás (SEO local,
+formularios, automatización, reseñas, analítica, optimización para búsqueda con
+IA) vive dentro de uno de los dos como parte del trabajo, no como un extra que
+se cotiza aparte.
+
+1. **[Desarrollo web](https://procodedev.com/servicios/desarrollo-web/)** — el
+   servicio principal. Desarrollo web para negocios programado a la medida con
+   Astro y Tailwind, sin plantillas ni constructores. Incluye diseño enfocado
+   en conversión, velocidad (AVIF/WebP, fuentes auto-hospedadas, HTML estático),
+   SEO técnico (datos estructurados, hreflang, canónicas, sitemap), versión
+   bilingüe con URLs separadas y formularios de cotización conectados a
+   WhatsApp y calendario. Tipos de proyecto: landing $349, sitio de 4–6 páginas
+   $899, sitio de 8–12 páginas desde $1,499 y rediseño desde $899 (todos pago
+   único, en USD). Entrega en 2 a 4 semanas.
+2. **[Marketing digital](https://procodedev.com/servicios/marketing-digital/)** —
+   marketing digital para negocios que ya tienen sitio. Incluye SEO local por
+   ciudad y por servicio, Perfil de Empresa en Google, gestión de reseñas,
+   campañas en Google Ads y en Facebook e Instagram, automatización de
+   seguimiento y un reporte mensual de llamadas, clics a WhatsApp, formularios,
+   citas agendadas, origen de cada contacto y costo por prospecto. Planes
+   mensuales: Soporte Web desde $79, Crecimiento+ $349 y Web + Marketing + SEO
+   desde $1,100. Primeros resultados en 30 a 90 días; el SEO local madura entre
+   3 y 6 meses.
+
+Cuál conviene primero: si no hay sitio o el que hay no convierte, se empieza por
+desarrollo web; si el sitio está bien y llega poca gente, se empieza por
+marketing digital; los dos juntos son el paquete Web + Marketing + SEO.
+
+## Dónde trabaja ProCode Dev
+
+El trabajo es **100 % remoto desde México**. No hay oficina, dirección ni
+teléfono en Estados Unidos, y el sitio no finge lo contrario. Los tres estados
+donde se concentra el trabajo tienen su propia página porque el mercado cambia
+en cada uno:
+
+- [Estados Unidos (cómo funciona en remoto)](https://procodedev.com/diseno-web-estados-unidos/):
+  husos horarios, pagos en dólares con factura, y todo —dominio, hosting,
+  correos, Perfil de Empresa en Google y cuentas de anuncios— registrado a
+  nombre del negocio del cliente.
+- [Texas](https://procodedev.com/diseno-web-texas/): Houston, Dallas–Fort Worth,
+  San Antonio y Austin. Estado de oficios (remodelación, techos, plomería,
+  electricidad, climatización); el bilingüe es la base, no un extra. Comparte
+  horario central con el centro de México casi todo el año.
+- [Florida](https://procodedev.com/diseno-web-florida/): Miami, Orlando, Tampa y
+  Jacksonville. El español es el idioma principal del negocio, no la traducción,
+  y la temporada de huracanes (junio a noviembre) marca el calendario comercial
+  de techos, restauración y poda. Una hora por delante del centro de México.
+- [California](https://procodedev.com/diseno-web-california/): Los Ángeles, San
+  Diego, Inland Empire y Área de la Bahía. El mercado más caro de anunciarse y
+  de contratar: aquí el argumento es no pagar por estructura de agencia local.
+  Dos horas por detrás del centro de México.
+
+En inglés estas páginas persiguen la intención bilingüe:
+[United States](https://procodedev.com/en/web-design-united-states/),
+[Texas](https://procodedev.com/en/web-design-texas/),
+[Florida](https://procodedev.com/en/web-design-florida/) y
+[California](https://procodedev.com/en/web-design-california/).
+
+El servicio es el mismo en cualquier otro estado y en México; esos tres tienen
+página propia por volumen de trabajo, no por exclusividad.
 
 ## Páginas por giro
 
@@ -84,6 +145,12 @@ Same content, same pricing.
 - [Home](https://procodedev.com/en/) · [Services](https://procodedev.com/en/services/)
   · [Pricing](https://procodedev.com/en/pricing/) · [Portfolio](https://procodedev.com/en/portfolio/)
   · [Contact](https://procodedev.com/en/contact/)
+- The two services in English:
+  [web development](https://procodedev.com/en/services/web-development/) (custom
+  website development for small businesses, from $349 USD one-time) and
+  [digital marketing](https://procodedev.com/en/services/digital-marketing/)
+  (local SEO, Google Business Profile, reviews, ads and follow-up automation,
+  from $349 USD a month).
 - [Industries](https://procodedev.com/en/industries/):
   [contractors](https://procodedev.com/en/contractors/),
   [health & wellness](https://procodedev.com/en/health-and-wellness/),

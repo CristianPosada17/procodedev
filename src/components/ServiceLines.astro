@@ -1,0 +1,204 @@
+---
+/*
+  Los DOS servicios, en bloques grandes alternados.
+
+  Sustituye a la rejilla de seis tarjetas iguales que había antes: seis
+  tarjetas del mismo tamaño comunican «hago seis cosas parecidas», que es
+  justo lo contrario de especializarse. Aquí desarrollo web va primero,
+  con más peso visual, porque es la línea principal del negocio.
+
+  `variant`:
+    "home" → resumen: promesa, cuatro viñetas, precio y enlace.
+    "hub"  → añade la tira de capacidades de cada servicio (texto indexable
+             con las frases comerciales que la gente busca).
+*/
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { serviceLines, SERVICE_KEYS, servicesHub } from "../i18n/services";
+import Icon from "./Icon.astro";
+import ServiceShot from "./ServiceShot.astro";
+
+interface Props {
+  lang?: Lang;
+  variant?: "home" | "hub";
+}
+const { lang = "es", variant = "home" } = Astro.props as Props;
+const t = translations[lang];
+const hub = servicesHub[lang];
+const lines = SERVICE_KEYS.map((key) => serviceLines[lang][key]);
+---
+
+<section id="servicios" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    {/* En el home este h2 abre la sección; en el hub el h1 lo pone PageHero
+        y este h2 evita el salto de h1 a los h3 de cada servicio. */}
+    <div class="reveal max-w-3xl">
+      <span class="eyebrow">{variant === "hub" ? hub.linesEyebrow : t.services.eyebrow}</span>
+      <h2
+        class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-[2.9rem]"
+      >
+        {variant === "hub" ? hub.linesTitleA : t.services.titleA}{" "}<span
+          class="grad-text"
+        >{variant === "hub" ? hub.linesTitleHighlight : t.services.titleHighlight}</span>
+      </h2>
+      <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">
+        {variant === "hub" ? hub.linesSubtitle : t.services.subtitle}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 lg:mt-16 lg:gap-12">
+      {
+        lines.map((line, index) => {
+          const primary = index === 0;
+          const href = PAGES[line.key][lang];
+          return (
+            <article
+              class:list={[
+                "reveal relative overflow-hidden rounded-[var(--radius-lg)] border bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 sm:p-8 lg:p-10",
+                primary
+                  ? "border-[color:var(--border-strong)] shadow-[0_40px_120px_-60px_rgba(37,99,235,0.85)]"
+                  : "border-[color:var(--border)] hover:border-[color:var(--border-strong)]",
+              ]}
+            >
+              {/* Barra superior de acento: solo el servicio principal la lleva
+                  a todo color, para que la jerarquía se vea antes de leer. */}
+              <span
+                class:list={[
+                  "pointer-events-none absolute inset-x-0 top-0 h-px",
+                  primary
+                    ? "bg-[linear-gradient(90deg,transparent,rgba(56,189,248,0.9),transparent)]"
+                    : "bg-[linear-gradient(90deg,transparent,rgba(148,163,184,0.35),transparent)]",
+                ]}
+                aria-hidden="true"
+              />
+
+              <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+                <div class:list={[!primary && "lg:order-2"]}>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span
+                      class:list={[
+                        "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em]",
+                        primary
+                          ? "border-[color:var(--border-strong)] bg-[var(--brand)]/15 text-[var(--accent)]"
+                          : "border-[color:var(--border)] bg-white/[0.04] text-[var(--muted)]",
+                      ]}
+                    >
+                      <Icon name={line.icon as any} class="h-3.5 w-3.5" />
+                      {line.badge}
+                    </span>
+                    <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                      {line.eyebrow}
+                    </span>
+                  </div>
+
+                  <h3 class="mt-5 text-[1.9rem] font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-[2.4rem]">
+                    {line.title}
+                  </h3>
+                  <p class="mt-3 text-lg font-semibold leading-8 text-[var(--accent)]">
+                    {line.tagline}
+                  </p>
+                  <p class="mt-4 text-base leading-8 text-[var(--muted)]">
+                    {line.summary}
+                  </p>
+
+                  <ul class="mt-6 grid gap-3">
+                    {line.bullets.map((b) => (
+                      <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                        <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                          <Icon name="check" class="h-3 w-3" strokeWidth={3} />
+                        </span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <dl class="mt-7 flex flex-wrap gap-x-10 gap-y-4 border-t border-[color:var(--border)] pt-6">
+                    <div>
+                      <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                        {line.priceLabel}
+                      </dt>
+                      <dd class="mt-1 text-2xl font-bold text-[var(--text)]">
+                        ${line.price}
+                        <span class="ml-2 align-middle text-xs font-medium text-[var(--muted)]">
+                          {line.priceNote}
+                        </span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                        {line.timelineLabel}
+                      </dt>
+                      <dd class="mt-1 text-2xl font-bold text-[var(--text)]">
+                        {line.timeline}
+                      </dd>
+                    </div>
+                  </dl>
+
+                  <a
+                    href={href}
+                    data-cta={`servicio-${line.key}`}
+                    class:list={[
+                      "mt-7 inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold transition hover:-translate-y-0.5",
+                      primary
+                        ? "bg-[var(--brand)] text-white shadow-[0_0_40px_rgba(37,99,235,0.32)] hover:bg-[var(--brand-strong)]"
+                        : "border border-[color:var(--border-strong)] bg-white/[0.04] text-[var(--text)] hover:bg-[var(--brand)]/12",
+                    ]}
+                  >
+                    {line.cta}
+                    <Icon name="arrow-right" class="h-4 w-4" />
+                  </a>
+                </div>
+
+                <div class:list={[!primary && "lg:order-1"]}>
+                  <ServiceShot
+                    base={line.imageBase}
+                    alt={line.imageAlt}
+                    eager={variant === "hub" && primary}
+                  />
+                </div>
+              </div>
+
+              {variant === "hub" && (
+                <div class="mt-10 border-t border-[color:var(--border)] pt-8">
+                  <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                    {hub.capabilitiesLabel}
+                  </p>
+                  <div class="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {line.capabilities.map((cap) => (
+                      <div class="flex items-start gap-3">
+                        <span class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)] ring-1 ring-[color:var(--border)]">
+                          <Icon name={cap.icon as any} class="h-4.5 w-4.5" />
+                        </span>
+                        <div class="min-w-0">
+                          <p class="text-sm font-bold text-[var(--text)]">
+                            {cap.title}
+                          </p>
+                          <p class="mt-1 text-[13px] leading-6 text-[var(--muted)]">
+                            {cap.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+
+    {
+      variant === "home" && (
+        <div class="reveal mt-10 text-center">
+          <a
+            href={PAGES.services[lang]}
+            class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:underline"
+          >
+            {t.services.homeCta}
+            <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

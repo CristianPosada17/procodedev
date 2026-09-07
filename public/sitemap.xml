@@ -5,7 +5,7 @@
 >
   <url>
     <loc>https://procodedev.com/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/" />
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/en/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/" />
@@ -21,7 +21,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/servicios/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/" />
@@ -29,11 +29,107 @@
   </url>
   <url>
     <loc>https://procodedev.com/en/services/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/servicios/desarrollo-web/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/desarrollo-web/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/desarrollo-web/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/services/web-development/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/desarrollo-web/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/desarrollo-web/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/servicios/marketing-digital/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/marketing-digital/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/digital-marketing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/marketing-digital/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/services/digital-marketing/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/marketing-digital/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/digital-marketing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/marketing-digital/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/diseno-web-estados-unidos/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-estados-unidos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-united-states/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-estados-unidos/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/web-design-united-states/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-estados-unidos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-united-states/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-estados-unidos/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/diseno-web-texas/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-texas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-texas/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-texas/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/web-design-texas/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-texas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-texas/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-texas/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/diseno-web-florida/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-florida/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-florida/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-florida/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/web-design-florida/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-florida/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-florida/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-florida/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/diseno-web-california/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-california/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-california/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-california/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/web-design-california/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-california/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-california/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-california/" />
   </url>
   <url>
     <loc>https://procodedev.com/negocios/</loc>
@@ -225,6 +321,11 @@
     <loc>https://procodedev.com/blog/automatizaciones-para-negocios-pequenos/</loc>
     <lastmod>2026-09-04</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://procodedev.com/blog/marketing-digital-para-contratistas-hispanos-estados-unidos/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://procodedev.com/blog/como-aparecer-en-google-maps-negocio/</loc>

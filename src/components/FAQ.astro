@@ -2,6 +2,13 @@
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 import Icon from "./Icon.astro";
+interface FaqData {
+  eyebrow: string;
+  titleA: string;
+  titleHighlight: string;
+  subtitle: string;
+  items: readonly { question: string; answer: string }[];
+}
 interface Props {
   lang?: Lang;
   /**
@@ -10,15 +17,21 @@ interface Props {
    *           el home y /contacto son donde se decide y no respondían nada.
    */
   variant?: "full" | "home";
+  /** FAQ propia de la página (servicios). Tiene prioridad sobre `variant`.
+   *  El JSON-LD FAQPage tiene que recibir exactamente estas mismas
+   *  preguntas por la prop `faqItems` del Layout. */
+  data?: FaqData;
+  /** Id del <section>, para no repetir "faq" si conviven dos en una página. */
+  id?: string;
 }
-const { lang = "es", variant = "full" } = Astro.props as Props;
+const { lang = "es", variant = "full", data, id } = Astro.props as Props;
 const t = translations[lang];
-const f = variant === "home" ? t.homeFaq : t.faq;
+const f = data ?? (variant === "home" ? t.homeFaq : t.faq);
 const items = f.items;
 ---
 
 <section
-  id={variant === "home" ? "dudas" : "faq"}
+  id={id ?? (variant === "home" ? "dudas" : "faq")}
   class:list={[
     variant === "home" ? "py-10 lg:py-16" : "py-12 lg:py-20",
     "relative",
@@ -52,7 +65,7 @@ const items = f.items;
     </div>
 
     {
-      variant === "full" && (
+      variant === "full" && !data && (
         <div class="reveal mt-8 text-center text-sm text-[var(--muted)]">
           {t.faq.moreQuestion}{" "}
           <a

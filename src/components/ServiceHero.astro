@@ -1,0 +1,116 @@
+---
+/*
+  Portada de cada página de servicio.
+
+  Es distinta del PageHero genérico: aquí el mockup del servicio es el
+  elemento visual principal (y el LCP de la página), y bajo el título van
+  las tres cifras que la gente busca antes que nada — precio de entrada,
+  plazo y con quién va a tratar.
+*/
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import type { ServiceLine, ServiceDetail } from "../i18n/services";
+import Icon from "./Icon.astro";
+import OfferNote from "./OfferNote.astro";
+import ServiceShot from "./ServiceShot.astro";
+
+interface Props {
+  line: ServiceLine;
+  meta: ServiceDetail["meta"];
+  lang?: Lang;
+}
+const { line, meta, lang = "es" } = Astro.props as Props;
+const t = translations[lang];
+
+const stats = [
+  { label: line.priceLabel, value: `$${line.price}`, note: line.priceNote },
+  { label: line.timelineLabel, value: line.timeline, note: "" },
+];
+---
+
+<section class="relative overflow-hidden pb-10 pt-8 lg:pb-16 lg:pt-16">
+  <div
+    class="mx-auto grid w-full max-w-[1480px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-10 2xl:max-w-[1600px]"
+  >
+    {/* Arriba del pliegue: sin `.reveal`, no debe depender de JS. */}
+    <div class="max-w-2xl">
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={PAGES.services[lang]}
+          class="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-white/[0.04] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+        >
+          <Icon name="arrow-right" class="h-3 w-3 rotate-180" />
+          {t.nav.services}
+        </a>
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
+        >
+          <Icon name={line.icon as any} class="h-3.5 w-3.5" />
+          {line.badge}
+        </span>
+      </div>
+
+      <h1
+        class="mt-6 text-[2.5rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] sm:text-[3.3rem] lg:text-[3.9rem]"
+      >
+        {meta.heroTitleA}{" "}<span class="grad-text">{meta.heroHighlight}</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+        {meta.heroSubtitle}
+      </p>
+
+      <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-5">
+        {
+          stats.map((stat) => (
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                {stat.label}
+              </dt>
+              <dd class="mt-1.5 text-2xl font-bold tracking-tight text-[var(--text)]">
+                {stat.value}
+                {stat.note && (
+                  <span class="ml-2 align-middle text-xs font-medium text-[var(--muted)]">
+                    {stat.note}
+                  </span>
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={PAGES.contact[lang]}
+          data-cta={`hero-${line.key}-agendar`}
+          class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_rgba(37,99,235,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        >
+          {t.common.ctaPrimary}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a
+          href="#paquetes"
+          class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-white/[0.04] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
+        >
+          {t.priceAnchor.cta}
+        </a>
+      </div>
+
+      <OfferNote lang={lang} />
+    </div>
+
+    <div class="relative">
+      <div
+        class="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[var(--brand)]/8 blur-[90px]"
+        aria-hidden="true"
+      >
+      </div>
+      <ServiceShot
+        base={line.imageBase}
+        alt={line.imageAlt}
+        eager={true}
+        class="relative"
+        sizes="(min-width: 1024px) 48vw, 92vw"
+      />
+    </div>
+  </div>
+</section>

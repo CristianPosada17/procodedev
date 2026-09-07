@@ -1,0 +1,112 @@
+---
+/*
+  Página completa de una línea de servicio.
+
+  Las cuatro páginas (dos servicios × dos idiomas) comparten esta
+  composición: el contenido vive en src/i18n/services.ts y aquí solo se
+  decide el orden de los bloques y qué datos estructurados se emiten.
+
+  Orden pensado para cómo lee un dueño de negocio: primero el precio y el
+  plazo (ServiceHero), después por qué esto es distinto (ServiceIntro), qué
+  incluye (ServiceCapabilities), cuánto cuesta cada tamaño
+  (ServicePackages), la prueba técnica (ServiceStandards), la prueba real
+  (ProofStrip / Integrations), el proceso, el filtro honesto (ServiceFit),
+  las dudas (FAQ) y el puente al otro servicio (ServiceCross).
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import ServiceHero from "./ServiceHero.astro";
+import ServiceIntro from "./ServiceIntro.astro";
+import ServiceCapabilities from "./ServiceCapabilities.astro";
+import ServicePackages from "./ServicePackages.astro";
+import ServiceStandards from "./ServiceStandards.astro";
+import ServiceFit from "./ServiceFit.astro";
+import ServiceCross from "./ServiceCross.astro";
+import ProofStrip from "./ProofStrip.astro";
+import Integrations from "./Integrations.astro";
+import Process from "./Process.astro";
+import FAQ from "./FAQ.astro";
+import FinalCTA from "./FinalCTA.astro";
+import Footer from "./Footer.astro";
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { serviceLines, serviceDetails, type ServiceKey } from "../i18n/services";
+
+interface Props {
+  lang: Lang;
+  service: ServiceKey;
+}
+const { lang, service } = Astro.props as Props;
+const t = translations[lang];
+const line = serviceLines[lang][service];
+const d = serviceDetails[lang][service];
+const other: ServiceKey =
+  service === "webDev" ? "digitalMarketing" : "webDev";
+
+// Nodo Service → hasOfferCatalog: las seis capacidades más los paquetes.
+// Es lo que permite que un buscador con IA conteste «qué incluye» y «cuánto
+// cuesta» sin tener que interpretar el diseño de la página.
+const offerCatalog = [
+  ...line.capabilities.map((c) => ({
+    title: c.title,
+    description: c.description,
+  })),
+  ...d.packages.items.map((p) => ({
+    title: `${p.name} — $${p.price} ${p.currency}`,
+    description: p.description,
+  })),
+];
+---
+
+<Layout
+  lang={lang}
+  page={service}
+  title={d.meta.title}
+  description={d.meta.description}
+  keywords={d.meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.services, path: PAGES.services[lang] },
+    { name: line.title, path: PAGES[service][lang] },
+  ]}
+  serviceName={line.title}
+  audience={line.tagline}
+  offerCatalog={offerCatalog}
+  includeFaq={true}
+  faqItems={d.faq.items}
+>
+  <Header lang={lang} page={service} />
+  <main>
+    <ServiceHero lang={lang} line={line} meta={d.meta} />
+    <ServiceIntro
+      lang={lang}
+      intro={d.intro}
+      icon={service === "webDev" ? "cpu" : "trending-up"}
+    />
+    <ServiceCapabilities
+      lang={lang}
+      heading={d.capabilities}
+      items={line.capabilities}
+    />
+    <ServicePackages lang={lang} packages={d.packages} />
+    <ServiceStandards lang={lang} standards={d.standards} />
+    {/* El bloque `Process` describe los cinco pasos de un proyecto de
+        desarrollo («diseño y desarrollo», «conecto formularios, agenda y
+        CRM»): en la página de marketing sonaba a otro servicio, así que ahí
+        va la prueba de integraciones en su lugar. */}
+    {
+      service === "webDev" ? (
+        <>
+          <ProofStrip lang={lang} />
+          <Process lang={lang} />
+        </>
+      ) : (
+        <Integrations lang={lang} />
+      )
+    }
+    <ServiceFit lang={lang} fit={d.fit} />
+    <FAQ lang={lang} data={d.faq} id="dudas-servicio" />
+    <ServiceCross lang={lang} cross={d.cross} target={other} />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

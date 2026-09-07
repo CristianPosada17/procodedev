@@ -7,6 +7,8 @@ import {
   type Lang,
 } from "../i18n/ui";
 import { segments } from "../i18n/segments";
+import { serviceLines, SERVICE_KEYS } from "../i18n/services";
+import { markets, MARKET_KEYS } from "../i18n/markets";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -19,6 +21,7 @@ const navLinks = [
   { label: t.nav.home, href: PAGES.home[lang] },
   { label: t.nav.services, href: PAGES.services[lang] },
   { label: t.nav.sectors, href: PAGES.sectors[lang] },
+  { label: t.nav.markets, href: PAGES.markets[lang] },
   { label: t.nav.portfolio, href: PAGES.portfolio[lang] },
   { label: t.nav.pricing, href: PAGES.pricing[lang] },
   { label: t.nav.blog, href: "/blog/" },
@@ -39,6 +42,21 @@ const socials = [
 const segmentLinks = SEGMENT_KEYS.map((key) => ({
   href: PAGES[key][lang],
   label: segments[lang][key].navLabel,
+}));
+
+// Las dos líneas de servicio, como enlaces reales: el footer aparece en las
+// 40 páginas del sitio y es donde Google encuentra el enlace interno hacia
+// /servicios/desarrollo-web/ y /servicios/marketing-digital/.
+const serviceLinks = SERVICE_KEYS.map((key) => ({
+  href: PAGES[key][lang],
+  label: serviceLines[lang][key].title,
+}));
+
+// Los mercados también viven en el footer: es el enlace interno que reciben
+// desde las 48 páginas del sitio.
+const marketLinks = MARKET_KEYS.map((key) => ({
+  href: PAGES[key][lang],
+  label: markets[lang][key].name,
 }));
 ---
 
@@ -108,8 +126,40 @@ const segmentLinks = SEGMENT_KEYS.map((key) => ({
         </h3>
         <div class="mt-5 grid gap-3">
           {
+            serviceLinks.map((item) => (
+              <a
+                href={item.href}
+                class="text-sm font-semibold text-[var(--text)] transition hover:text-[var(--accent)]"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+          {
             t.footer.servicesList.map((service) => (
               <span class="text-sm text-[var(--muted)]">{service}</span>
+            ))
+          }
+        </div>
+
+        <h3 class="mt-8 font-mono text-xs font-bold uppercase tracking-[0.18em] text-[var(--text)]">
+          {t.nav.markets}
+        </h3>
+        <div class="mt-5 grid gap-3">
+          <a
+            href={PAGES.markets[lang]}
+            class="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
+          >
+            {t.footer.marketsOverview}
+          </a>
+          {
+            marketLinks.map((item) => (
+              <a
+                href={item.href}
+                class="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
+              >
+                {item.label}
+              </a>
             ))
           }
         </div>
