@@ -90,9 +90,27 @@ Reglas que se aplicaron y **no se pueden romper al ampliar**:
 - Las páginas de mercado enlazan a las de giro y viceversa.
 
 ### Blog
-Primer artículo del eje nuevo:
-`marketing-digital-para-contratistas-hispanos-estados-unidos.md`, que ataca
-directamente la consulta donde hoy rankea un competidor.
+Tres artículos del eje nuevo, y el blog queda en **12 artículos**:
+
+- `marketing-digital-para-contratistas-hispanos-estados-unidos.md`, que ataca
+  directamente la consulta donde hoy rankea un competidor.
+- `pagina-web-bilingue-espanol-ingles-estados-unidos.md` (#3 de la lista de
+  abajo). El SERP de la frase objetivo está ocupado por traductores y por
+  blogs de constructores (Wix, Jimdo) escritos para España: no hay una sola
+  pieza dirigida al dueño de negocio hispano en EE. UU. Es además el
+  diferenciador de ProCode, así que la keyword y el argumento de venta son el
+  mismo.
+- `zona-de-servicio-google-varios-condados-texas-florida.md` (#4). Ahí el SERP
+  es documentación de Google y agencias españolas. El ángulo ganable es el
+  long tail «varios condados» aplicado a Texas y Florida, y complementa —sin
+  canibalizar— el artículo genérico de Google Maps que ya existía.
+
+Los tres se enlazan entre sí y con las páginas de mercado y de giro, para que
+el blog deje de ser una lista de piezas sueltas y funcione como clúster.
+
+Descartado tras revisar el SERP: «página web para agentes de bienes raíces en
+Miami», porque quien busca eso es un comprador de vivienda, no un agente que
+necesita web.
 
 ## Lo que falta, por orden de retorno
 
@@ -129,8 +147,8 @@ sugerido:
 |---|---|---|
 | 1 | ✅ Marketing digital para contratistas hispanos en EE. UU. | marketing digital para contratistas hispanos usa |
 | 2 | Cuánto cuesta una página web para un negocio en Estados Unidos | cuánto cuesta una página web en estados unidos |
-| 3 | Página web bilingüe: por qué el traductor automático te cuesta clientes | página web bilingüe español inglés |
-| 4 | Cómo aparecer en Google Maps si atiendes varios condados en Florida | google maps zona de servicio varios condados |
+| 3 | ✅ Página web bilingüe: por qué el traductor automático te cuesta clientes | página web bilingüe español inglés |
+| 4 | ✅ Cómo aparecer en Google Maps si atiendes varios condados (Texas y Florida) | google maps zona de servicio varios condados |
 | 5 | Cómo conseguir clientes para un negocio de remodelación en Houston | conseguir clientes remodelación houston |
 | 6 | Perfil de Empresa en Google para contratistas, paso a paso | perfil de empresa en google para contratistas |
 | 7 | ¿Vale la pena Google Ads para un negocio de servicios en California? | google ads para negocios de servicios california |

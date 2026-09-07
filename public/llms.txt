@@ -54,7 +54,10 @@ Capacidad declarada: 4 proyectos nuevos al mes.
   reales y demos marcados como tales.
 - [Contacto](https://procodedev.com/contacto/): agenda y WhatsApp.
 - [Blog](https://procodedev.com/blog/): guías sobre páginas web, SEO local,
-  Google Maps, automatización y precios.
+  Google Maps, automatización y precios. Las tres guías de fondo son
+  [marketing digital para contratistas hispanos en EE. UU.](https://procodedev.com/blog/marketing-digital-para-contratistas-hispanos-estados-unidos/),
+  [página web bilingüe en español e inglés](https://procodedev.com/blog/pagina-web-bilingue-espanol-ingles-estados-unidos/)
+  y [zona de servicio en Google para varios condados](https://procodedev.com/blog/zona-de-servicio-google-varios-condados-texas-florida/).
 
 ## Los dos servicios
 
