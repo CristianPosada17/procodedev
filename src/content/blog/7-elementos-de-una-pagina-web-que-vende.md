@@ -40,4 +40,4 @@ Una buena web lleva al visitante de la mano: problema → solución → confianz
 
 ---
 
-Si tu página actual no tiene varios de estos elementos, probablemente está dejando clientes sobre la mesa. En **ProCode Dev** construimos webs con estos 7 puntos de serie. Revisa [nuestros precios](/precios/) —están publicados, en dólares— o [agenda una llamada gratis de 15 minutos](/contacto/) y te digo cuáles te faltan.
+Si tu página actual no tiene varios de estos elementos, probablemente está dejando clientes sobre la mesa. En **ProCode Dev** construimos webs con estos 7 puntos de serie. Revisa [nuestros precios](/precios/) —están publicados, en dólares— o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo cuáles te faltan.

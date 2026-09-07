@@ -105,7 +105,7 @@ export const CONTACT = {
   whatsapp: "526142414255",
   whatsappDisplay: "+52 614 241 4255",
   email: "info@procodedev.com",
-  calendly: "https://calendly.com/procodedev/meeting-procode",
+  calendly: "https://calendly.com/procodedev/revision-express",
   web3formsKey: "9659bbb8-915d-4842-8981-a261c0faf9ff",
   instagram: "https://www.instagram.com/procode.systems/",
   linkedin: "https://www.linkedin.com/in/cristian-posada-891401291/",
@@ -150,7 +150,7 @@ export const translations = {
       // por escrito, no la revisión de 3 minutos que se regala aquí).
       ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Escribir por WhatsApp",
-      free: "Gratis · 15 min · revisión en vídeo incluida",
+      free: "Gratis · 20 min · revisión en vídeo incluida",
       viewServices: "Ver servicios",
       // Diferenciador principal. Va pegado a cada botón de agenda vía
       // <OfferNote />.
@@ -769,7 +769,7 @@ export const translations = {
           question:
             "¿Qué es el Diagnóstico de Presencia Digital y en qué se diferencia de un proyecto?",
           answer:
-            "La llamada de 15 minutos es gratis: es la puerta de entrada. El Diagnóstico ($149 USD) es el paso que sigue si quieres profundidad: analizo a fondo cómo te encuentran hoy en Google, Maps, reseñas y búsqueda con IA, te comparo con los negocios que te están ganando y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completo.",
+            "La llamada de 20 minutos es gratis: es la puerta de entrada. El Diagnóstico ($149 USD) es el paso que sigue si quieres profundidad: analizo a fondo cómo te encuentran hoy en Google, Maps, reseñas y búsqueda con IA, te comparo con los negocios que te están ganando y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completo.",
         },
         {
           question: "¿El diagnóstico tiene costo si después contrato un proyecto?",
@@ -983,9 +983,9 @@ export const translations = {
             "Sí lo ves: los precios están publicados. Desde $349 USD una landing page hasta $1,499 USD un sitio completo de 8 a 12 páginas. No hay llamada de ventas para conocerlos ni contratos de 12 meses; en la llamada solo confirmamos cuál te corresponde.",
         },
         {
-          question: "¿La llamada de 15 minutos tiene costo o compromiso?",
+          question: "¿La llamada de 20 minutos tiene costo o compromiso?",
           answer:
-            "Ninguno de los dos. Son 15 minutos para entender tu negocio y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
+            "Ninguno de los dos. Son 20 minutos para entender tu negocio y decirte qué necesitas — aunque la respuesta sea que todavía no necesitas una página conmigo.",
         },
         {
           question: "Estoy en EE. UU. y tú no. ¿Cómo funciona eso?",
@@ -1072,10 +1072,10 @@ export const translations = {
           "Agenda tu Revisión Express o escríbeme por WhatsApp. Contratar diseño de página web sin llamada de ventas: los precios ya están publicados en el sitio.",
         keywords:
           "contratar diseño de página web, Agendar Revisión Express, desarrollador web en español, páginas web para negocios",
-        heroTitleA: "Agenda 15 minutos",
+        heroTitleA: "Agenda 20 minutos",
         heroHighlight: "conmigo",
         heroSubtitle:
-          "Elige el horario que te acomode y platicamos 15 minutos. Si ya decidiste contratar diseño de página web, salimos de la llamada con fecha; si todavía no, te digo qué te falta. Sin costo y sin llamada de ventas.",
+          "Elige el horario que te acomode y platicamos 20 minutos. Si ya decidiste contratar diseño de página web, salimos de la llamada con fecha; si todavía no, te digo qué te falta. Sin costo y sin llamada de ventas.",
       },
     },
     // ── Hub de giros: /negocios ─────────────────────────────────
@@ -1156,7 +1156,7 @@ export const translations = {
       seasonTitle: "Tu calendario manda, y lo sé",
       seasonBody:
         "Si empezamos con tiempo, llegas a tu mes fuerte con el sistema completo. Si ya estás saturado, priorizamos lo lanzable en dos semanas.",
-      ctaTitle: "15 minutos, en español, sin compromiso",
+      ctaTitle: "20 minutos, en español, sin compromiso",
       ctaBody:
         "Te digo qué está frenando a tu negocio hoy.",
     },
@@ -1185,7 +1185,7 @@ export const translations = {
     common: {
       ctaPrimary: "Book my Express Review",
       ctaWhatsapp: "Message me on WhatsApp",
-      free: "Free · 15 min · video review included",
+      free: "Free · 20 min · video review included",
       viewServices: "See services",
       guarantee: "I answer every message in under 24 hours.",
       // Scarcity is calendar-free now: it's my capacity, not tax season.
@@ -1986,9 +1986,9 @@ export const translations = {
             "You do see it: pricing is published. From $349 USD for a landing page to $1,499 USD for a full 8–12 page site. There's no sales call to find out and no 12-month contracts; on the call we just confirm which one fits you.",
         },
         {
-          question: "Does the 15-minute call cost anything or commit me?",
+          question: "Does the 20-minute call cost anything or commit me?",
           answer:
-            "Neither. It's 15 minutes to understand your business and tell you what you need — even if the answer is that you don't need a site from me yet.",
+            "Neither. It's 20 minutes to understand your business and tell you what you need — even if the answer is that you don't need a site from me yet.",
         },
         {
           question: "I'm in the U.S. and you're not. How does that work?",
@@ -2071,10 +2071,10 @@ export const translations = {
           "Book your Express Review or message me on WhatsApp. Hire a web designer with no sales call: bilingual website design services and pricing already published.",
         keywords:
           "hire a web designer, bilingual website design services, spanish website design services, bilingual web developer",
-        heroTitleA: "Book 15 minutes",
+        heroTitleA: "Book 20 minutes",
         heroHighlight: "with me",
         heroSubtitle:
-          "Pick a time that works for you and we talk for 15 minutes. Ready to hire a web designer? We leave the call with a date. Not yet? I tell you what's missing. Bilingual website design services, in English or Spanish, with no sales call.",
+          "Pick a time that works for you and we talk for 20 minutes. Ready to hire a web designer? We leave the call with a date. Not yet? I tell you what's missing. Bilingual website design services, in English or Spanish, with no sales call.",
       },
     },
     // ── Industry hub: /en/industries ───────────────────────────
@@ -2155,7 +2155,7 @@ export const translations = {
       seasonTitle: "Your calendar rules, and I know it",
       seasonBody:
         "Start early and you reach your strong month with the whole system running. Already swamped? We prioritize what launches in two weeks.",
-      ctaTitle: "15 minutes, no commitment",
+      ctaTitle: "20 minutes, no commitment",
       ctaBody:
         "I'll tell you what's holding your business back today.",
     },

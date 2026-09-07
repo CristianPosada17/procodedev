@@ -93,16 +93,20 @@ const articleLd = {
       )
     }
 
-    <div class="my-8 h-px w-full bg-gradient-to-r from-blue-400/40 via-white/10 to-transparent">
+    <div
+      class="my-8 h-px w-full bg-gradient-to-r from-blue-400/40 via-white/10 to-transparent"
+    >
     </div>
 
     <article class="article-content">
       <Content />
     </article>
 
-    {/* Sentinela de lectura: cuando esta línea entra en pantalla, el artículo
+    {
+      /* Sentinela de lectura: cuando esta línea entra en pantalla, el artículo
         se leyó de arriba abajo. Es la señal que separa «lo leyeron» de
-        «entraron y se fueron». */}
+        «entraron y se fueron». */
+    }
     <div data-article-end data-article-slug={post.id} aria-hidden="true"></div>
 
     <!-- CTA al final del artículo -->
@@ -113,7 +117,7 @@ const articleLd = {
         ¿Listo para que tu web trabaje por ti?
       </h2>
       <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-300">
-        Agenda una llamada gratis de 15 minutos y te digo cómo tu negocio puede
+        Agenda una llamada gratis de 20 minutos y te digo cómo tu negocio puede
         ahorrar tiempo y captar más clientes. Sin costo y sin llamada de ventas:
         los precios ya están publicados.
       </p>
@@ -130,5 +134,5 @@ const articleLd = {
 
   <Footer />
 
-  <script type="application/ld+json" set:html={JSON.stringify(articleLd)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
 </Layout>

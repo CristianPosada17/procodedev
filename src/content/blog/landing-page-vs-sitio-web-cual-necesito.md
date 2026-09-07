@@ -44,4 +44,4 @@ Una forma sencilla de decidir:
 
 ---
 
-En **ProCode Dev** te ayudo a decidir sin que te cueste: revisa los [precios publicados](/precios/) o [agenda una llamada gratis de 15 minutos](/contacto/) y te digo exactamente qué necesita tu negocio.
+En **ProCode Dev** te ayudo a decidir sin que te cueste: revisa los [precios publicados](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo exactamente qué necesita tu negocio.

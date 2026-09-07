@@ -195,7 +195,7 @@ const es: SegmentDict = {
           "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y seguimiento automático de quien no cerró a la primera. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
       },
     ],
-    ctaTitle: "15 minutos antes de tu próxima temporada fuerte",
+    ctaTitle: "20 minutos antes de tu próxima temporada fuerte",
     ctaBody:
       "Te digo qué encuentra hoy un cliente que busca tu oficio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para contratistas que va a hacer el trabajo, no con un vendedor.",
   },
@@ -331,7 +331,7 @@ const es: SegmentDict = {
           "Apareciendo cuando alguien busca tu especialidad en tu ciudad, y quitando la fricción entre esa búsqueda y la cita. En la práctica: una página por especialidad, agenda en línea abierta las 24 horas y recordatorios que reducen las faltas. Sin eso, más visitas solo significa más mensajes sin contestar.",
       },
     ],
-    ctaTitle: "15 minutos para revisar tu agenda",
+    ctaTitle: "20 minutos para revisar tu agenda",
     ctaBody:
       "Te digo qué encuentra hoy un paciente que busca tu especialidad en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para consultorios que va a hacer el trabajo, no con un vendedor.",
   },
@@ -467,7 +467,7 @@ const es: SegmentDict = {
           "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y seguimiento de quien preguntó y no volvió. La captación de clientes para abogados falla casi siempre en el tercer punto, no en el primero.",
       },
     ],
-    ctaTitle: "15 minutos para revisar tu captación",
+    ctaTitle: "20 minutos para revisar tu captación",
     ctaBody:
       "Te digo qué encuentra hoy alguien que busca tu servicio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para abogados y consultores que va a hacer el trabajo, no con un vendedor.",
   },
@@ -603,7 +603,7 @@ const es: SegmentDict = {
           "Teniendo catálogo propio, fichas que se puedan compartir por WhatsApp y un formulario que distinga a quien quiere comprar de quien quiere vender. La generación de prospectos inmobiliarios que sí se sostiene es la que llega a tu sitio, no la que renta un portal mes con mes.",
       },
     ],
-    ctaTitle: "15 minutos para revisar tu catálogo",
+    ctaTitle: "20 minutos para revisar tu catálogo",
     ctaBody:
       "Te digo qué encuentra hoy un comprador que busca en tu zona y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing inmobiliario que va a hacer el trabajo, no con un vendedor.",
   },
@@ -743,7 +743,7 @@ const es: SegmentDict = {
           "Vendiendo lo que se contrata en marzo y en septiembre por igual: contabilidad mensual, nómina, planeación y regularización. Cada uno merece su propia página; una sola de «servicios contables» te deja compitiendo únicamente en enero y febrero.",
       },
     ],
-    ctaTitle: "15 minutos antes de que empiece la temporada",
+    ctaTitle: "20 minutos antes de que empiece la temporada",
     ctaBody:
       "Te digo qué pieza le falta a tu despacho hoy y qué se puede tener listo antes de tu mes fuerte. Hablas directo con el dueño de la agencia de marketing para despachos contables que va a hacer el trabajo, no con un vendedor.",
   },
@@ -886,7 +886,7 @@ const en: SegmentDict = {
           "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and automatic follow-up with whoever didn't close the first time. That's the contractor lead generation that carries you through a slow season.",
       },
     ],
-    ctaTitle: "15 minutes before your next busy season",
+    ctaTitle: "20 minutes before your next busy season",
     ctaBody:
       "I'll tell you what a client searching your trade in your city finds today and which piece you're missing. You talk straight to the owner of the contractor marketing agency that will do the work, not to a salesperson.",
   },
@@ -1022,7 +1022,7 @@ const en: SegmentDict = {
           "You get more therapy clients by showing up when someone searches your specialty in your city, and removing the friction between that search and the appointment. In practice: a page per specialty, booking open 24 hours a day and reminders that cut no-shows. Healthcare website design that skips those three only buys you more unanswered messages.",
       },
     ],
-    ctaTitle: "15 minutes to review your calendar",
+    ctaTitle: "20 minutes to review your calendar",
     ctaBody:
       "I'll tell you what a patient searching your specialty in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for therapists that will do the work, not to a salesperson.",
   },
@@ -1158,7 +1158,7 @@ const en: SegmentDict = {
           "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and follow-up with whoever asked and never came back. Client acquisition for attorneys almost always breaks at the third point, not the first.",
       },
     ],
-    ctaTitle: "15 minutes to review your client acquisition",
+    ctaTitle: "20 minutes to review your client acquisition",
     ctaBody:
       "I'll tell you what someone searching your service in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for attorneys that will do the work, not to a salesperson.",
   },
@@ -1294,7 +1294,7 @@ const en: SegmentDict = {
           "You get real estate leads with a property catalog website of your own, listing pages people can share over text, and a form that tells a buyer apart from a seller. The real estate lead generation that lasts is the one that lands on your site, not the one you rent from a portal month after month.",
       },
     ],
-    ctaTitle: "15 minutes to review your catalog",
+    ctaTitle: "20 minutes to review your catalog",
     ctaBody:
       "I'll tell you what a buyer searching your area finds today and which piece you're missing. You talk straight to the owner of the real estate marketing agency that will do the work, not to a salesperson.",
   },
@@ -1430,7 +1430,7 @@ const en: SegmentDict = {
           "You get more tax preparation clients year-round by selling what people hire in March and September too: monthly bookkeeping, payroll, planning and back-tax cleanup. Each one deserves its own page; a single “tax services” page leaves you competing in January and February only.",
       },
     ],
-    ctaTitle: "15 minutes before the season starts",
+    ctaTitle: "20 minutes before the season starts",
     ctaBody:
       "I'll tell you which piece your practice is missing today and what can be ready before your busy month begins. You talk straight to the owner of the marketing agency for tax preparers that will do the work, not to a salesperson.",
   },

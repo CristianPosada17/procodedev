@@ -72,4 +72,4 @@ Depende del alcance. Puedes ver rangos reales en [cuánto cuesta una página web
 
 ---
 
-En **ProCode Dev** creo páginas web para consultorios y negocios de servicios, con agenda en línea, WhatsApp y SEO local para llenar tu calendario. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 15 minutos](/contacto/) y te digo cómo atraer más citas.
+En **ProCode Dev** creo páginas web para consultorios y negocios de servicios, con agenda en línea, WhatsApp y SEO local para llenar tu calendario. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo cómo atraer más citas.

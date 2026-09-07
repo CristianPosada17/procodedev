@@ -52,4 +52,4 @@ La mejor forma no es adivinar, es diagnosticar. Define qué acción quieres que 
 
 ---
 
-En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos. Y si prefieres platicarlo, [agenda una llamada gratis de 15 minutos](/contacto/).
+En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos. Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).

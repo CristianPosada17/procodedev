@@ -100,7 +100,7 @@ const es: LegalDict = {
           "Web3Forms — procesa el envío del formulario de contacto y me lo entrega por correo.",
           "Google Analytics 4 — analítica de uso del sitio, de forma agregada.",
           "Meta Pixel — medición del rendimiento de campañas en Facebook e Instagram.",
-          "Calendly — gestión de la agenda para la llamada de 15 minutos.",
+          "Calendly — gestión de la agenda para la llamada de 20 minutos.",
           "WhatsApp (Meta) — canal de conversación cuando eliges escribirme por ahí.",
           "Proveedor de hosting y correo — alojamiento del sitio y de la cuenta de correo profesional.",
         ],

@@ -62,4 +62,4 @@ Muchísimo. Cantidad, calificación y frecuencia de reseñas están entre los fa
 
 ---
 
-En **ProCode Dev** ayudo a negocios de servicios a ser visibles en Google y a convertir esas visitas en clientes, con el Perfil de Empresa trabajando junto a una página que vende. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 15 minutos](/contacto/) y revisamos juntos tu presencia local.
+En **ProCode Dev** ayudo a negocios de servicios a ser visibles en Google y a convertir esas visitas en clientes, con el Perfil de Empresa trabajando junto a una página que vende. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y revisamos juntos tu presencia local.
