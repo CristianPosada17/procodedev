@@ -26,6 +26,10 @@ export type PageKey =
   | "services"
   | "webDev"
   | "digitalMarketing"
+  // La Auditoría Digital cuelga de /servicios/ pero NO es una tercera línea
+  // de servicio: es el producto de entrada de pago. Por eso tiene PageKey y
+  // ruta propias, y NO está en SERVICE_KEYS. Ver src/i18n/audit.ts.
+  | "audit"
   | "sectors"
   | "contractors"
   | "health"
@@ -59,6 +63,7 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
     es: "/servicios/marketing-digital/",
     en: "/en/services/digital-marketing/",
   },
+  audit: { es: "/servicios/auditoria/", en: "/en/services/audit/" },
   sectors: { es: "/negocios/", en: "/en/industries/" },
   contractors: { es: "/contratistas/", en: "/en/contractors/" },
   health: { es: "/salud-y-bienestar/", en: "/en/health-and-wellness/" },
@@ -147,9 +152,9 @@ export const translations = {
     },
     common: {
       // Una sola oferta de entrada y un solo nombre en todo el sitio, el
-      // Calendly y los correos: la Revisión Express. El Diagnóstico de $149
-      // vive solo en /precios como paso 2 (es otra cosa: un análisis profundo
-      // por escrito, no la revisión de 3 minutos que se regala aquí).
+      // Calendly y los correos: la Revisión Express. El paso de pago que
+      // sigue es la Auditoría Digital de $250, que tiene landing propia en
+      // /servicios/auditoria/ y NO se acredita a un proyecto posterior.
       ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Escribir por WhatsApp",
       free: "Gratis · 20 min · revisión en vídeo incluida",
@@ -499,44 +504,50 @@ export const translations = {
       currencyNoteUsd: "Precio de una página web profesional en dólares estadounidenses: el costo de página web para pequeña empresa está publicado abajo, igual que el mantenimiento web mensual y el plan de SEO local con su precio.",
       mxnUnit: "MXN",
       mxnUnitMonth: "MXN / mes",
+      // ── Auditoría Digital · sustituye al Diagnóstico de $149 ──
+      // Septiembre de 2026: el Diagnóstico se acreditaba entero al proyecto,
+      // así que era un paso de venta disfrazado de producto. La Auditoría se
+      // paga aparte y no se acredita: eso es lo que permite recomendar «no
+      // toques nada» sin perder dinero. La landing completa está en
+      // /servicios/auditoria/ y su copy en src/i18n/audit.ts.
       advisory: {
-        badge: "Paso 2 · Después de la llamada",
-        name: "Diagnóstico de Presencia Digital",
-        price: "149",
-        priceMxn: "2,690",
+        badge: "Producto de entrada · se paga aparte",
+        name: "Auditoría Digital",
+        price: "250",
+        priceMxn: "4,500",
         currency: "USD",
-        priceNote: "pago único · acreditable a tu proyecto",
-        hook: "Cuando ya hablamos y quieres el plan completo por escrito.",
+        priceNote: "pago único · no se acredita a un proyecto",
+        hook: "Cuando sabes que algo no funciona pero no cuál de todas las piezas.",
         description:
-          "El paso que sigue si quieres profundidad: analizo cómo te encuentra hoy un cliente y te entrego por escrito un plan de qué mejorar y en qué orden. El plan es tuyo, decidas o no trabajar conmigo.",
+          "Reviso nueve áreas de tu negocio en línea con acceso a tus datos reales —sitio, estructura, diseño, SEO, presencia local, anuncios, captación, seguimiento y medición— y te entrego un informe priorizado, un vídeo recorriéndolo y una llamada. El plan es tuyo y lo puedes ejecutar con quien quieras.",
         homeEyebrow: "// el siguiente paso",
         homeTitle: "¿Quieres el plan completo por escrito?",
         prereq:
-          "Empieza siempre por la Revisión Express. Si ahí vemos que necesitas un plan a fondo, este es el paso que sigue.",
+          "Si nunca hemos hablado, empieza por la Revisión Express: es gratis y a mucha gente le basta.",
         viewPricing: "Ver todos los precios",
         waText:
-          "Hola Cristian, Me interesa el Diagnóstico de Presencia Digital ($149 USD). Quiero saber cómo me encuentran hoy mis clientes y recibir un plan de mejoras. ¿Cómo empezamos?",
+          "Hola Cristian, Me interesa la Auditoría Digital ($250 USD). Quiero saber qué está fallando en mi negocio en línea y en qué orden arreglarlo.",
         stepsTitle: "Cómo funciona (3 fases)",
         steps: [
           {
-            name: "Fase 1 · Conozco tu negocio",
+            name: "Día 1 · Contexto y accesos",
             description:
-              "Llamada + cuestionario breve: qué servicios das, tu cliente ideal y cómo llegan hoy tus clientes.",
+              "Cuestionario corto y accesos de solo lectura: Analytics, Search Console, tu Perfil de Empresa y tus cuentas de anuncios si las hay.",
           },
           {
-            name: "Fase 2 · Diagnóstico a fondo",
+            name: "Días 2 a 4 · Auditoría",
             description:
-              "Reviso tu Perfil de Empresa en Google, Maps, reseñas, redes, tu web actual, tu WhatsApp y cómo te ve la búsqueda con IA.",
+              "Las nueve áreas, una por una, con tus datos delante y comparándote con quienes salen antes que tú en tu ciudad.",
           },
           {
-            name: "Fase 3 · Plan de soluciones",
+            name: "Día 5 · Entrega",
             description:
-              "Recibes de 3 a 5 mejoras priorizadas y una propuesta clara de cómo llevarlas a cabo.",
+              "Informe en PDF con los hallazgos priorizados, vídeo recorriéndolo y llamada de 30 a 45 minutos cuando lo hayas leído.",
           },
         ],
         creditNote:
-          "Los $149 se te acreditan completos si decides hacer tu proyecto conmigo. En la práctica, el diagnóstico te sale gratis si avanzas.",
-        cta: "Quiero mi diagnóstico",
+          "Los $250 no se descuentan de un proyecto posterior, y es a propósito: si el proyecto absorbiera la auditoría, mi incentivo sería encontrarte razones para contratarme. Cobrándola aparte puedo decirte «esto está bien, no lo toques».",
+        cta: "Ver la Auditoría Digital",
       },
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
@@ -769,14 +780,14 @@ export const translations = {
         },
         {
           question:
-            "¿Qué es el Diagnóstico de Presencia Digital y en qué se diferencia de un proyecto?",
+            "¿Qué es la Auditoría Digital y en qué se diferencia de un proyecto?",
           answer:
-            "La llamada de 20 minutos es gratis: es la puerta de entrada. El Diagnóstico ($149 USD) es el paso que sigue si quieres profundidad: analizo a fondo cómo te encuentran hoy en Google, Maps, reseñas y búsqueda con IA, te comparo con los negocios que te están ganando y te entrego por escrito un plan priorizado de mejoras. No es una página: es la claridad de saber qué hacer primero. Si luego haces tu proyecto conmigo, se te acredita completo.",
+            "La Revisión Express es gratis y es la puerta de entrada: tres minutos de vídeo con lo que se ve desde fuera. La Auditoría Digital ($250 USD) es otra cosa: cinco días hábiles revisando nueve áreas con acceso a tus datos reales —sitio, estructura, diseño, SEO técnico, contenido, presencia local, anuncios, captación y medición— y te entrego un informe priorizado, un vídeo recorriéndolo y una llamada. No es una página: es saber qué hacer primero y por qué. Un proyecto es la ejecución; la auditoría es el mapa, y son cosas separadas que se cobran por separado.",
         },
         {
-          question: "¿El diagnóstico tiene costo si después contrato un proyecto?",
+          question: "¿La auditoría se descuenta si después contrato un proyecto?",
           answer:
-            "No. Los $149 USD del diagnóstico se descuentan por completo del precio de tu proyecto. Si decides avanzar, el diagnóstico te sale gratis; y si no, te quedas con el plan de mejoras de todos modos.",
+            "No, y es a propósito. Antes el diagnóstico se acreditaba entero al proyecto, lo que en la práctica lo convertía en un paso de venta: mi incentivo era encontrar razones para venderte algo. Cobrando la auditoría aparte puedo entregarte un informe que diga «tu sitio está bien, no lo toques» sin perder nada. El informe es tuyo en cualquier caso, y lo puedes ejecutar conmigo, con tu equipo o con otro proveedor.",
         },
         {
           question: "¿Qué diferencia hay entre Soporte Web y Crecimiento+?",
@@ -863,17 +874,17 @@ export const translations = {
     },
     calendly: {
       eyebrow: "// agenda en línea",
-      titleA: "Reserva tu",
+      titleA: "¿Prefieres platicarlo? Reserva tu",
       titleHighlight: "Revisión Express",
       subtitle:
         "Elige tu horario. Antes de la llamada te grabo un vídeo de tres minutos con lo que encuentro. Sin costo y sin llamada de ventas.",
     },
     contact: {
       eyebrow: "// contacto",
-      titleA: "¿No te acomoda ningún horario? Déjame tus",
-      titleHighlight: "datos",
+      titleA: "Déjame tus datos y te escribo",
+      titleHighlight: "en menos de 24 horas",
       subtitle:
-        "Déjame tu WhatsApp y te escribo yo. Sin compromiso y sin tecnicismos: solo cómo tu negocio puede ahorrar tiempo y vender más.",
+        "La vía más rápida y la que menos te compromete: tu nombre, tu WhatsApp y qué necesitas. Sin agendar nada y sin tecnicismos.",
       toggle: "Prefiero dejar mis datos y que me contacten",
       toggleNote: "Respondo en menos de 24 horas.",
       perks: [
@@ -1074,10 +1085,10 @@ export const translations = {
           "Agenda tu Revisión Express o escríbeme por WhatsApp. Contratar diseño de página web sin llamada de ventas: los precios ya están publicados en el sitio.",
         keywords:
           "contratar diseño de página web, Agendar Revisión Express, desarrollador web en español, páginas web para negocios",
-        heroTitleA: "Agenda 20 minutos",
-        heroHighlight: "conmigo",
+        heroTitleA: "Escríbeme o agenda,",
+        heroHighlight: "como prefieras",
         heroSubtitle:
-          "Elige el horario que te acomode y platicamos 20 minutos. Si ya decidiste contratar diseño de página web, salimos de la llamada con fecha; si todavía no, te digo qué te falta. Sin costo y sin llamada de ventas.",
+          "Déjame tu WhatsApp y te contesto en menos de 24 horas, sin agendar nada. Y si prefieres platicarlo en vivo, abajo está mi calendario: 20 minutos, sin costo y sin llamada de ventas.",
       },
     },
     // ── Hub de giros: /negocios ─────────────────────────────────
@@ -1508,44 +1519,46 @@ export const translations = {
       currencyNoteUsd: "Small business website pricing in US dollars: how much a small business website costs is published below, monthly website maintenance included.",
       mxnUnit: "MXN",
       mxnUnitMonth: "MXN / month",
+      // ── Digital Audit · replaces the $149 Diagnosis (Sept 2026) ──
+      // See the Spanish block above and src/i18n/audit.ts for the why.
       advisory: {
-        badge: "Step 2 · After the call",
-        name: "Digital Presence Diagnosis",
-        price: "149",
-        priceMxn: "2,690",
+        badge: "Paid entry point · charged separately",
+        name: "Digital Audit",
+        price: "250",
+        priceMxn: "4,500",
         currency: "USD",
-        priceNote: "one-time · credited to your project",
-        hook: "For when we have already talked and you want the full plan in writing.",
+        priceNote: "one-time · not credited toward a project",
+        hook: "For when you know something is off but not which of the pieces it is.",
         description:
-          "The step that follows if you want depth: I analyze how a client finds you today and hand you a written plan of what to improve and in what order. The plan is yours whether or not you work with me.",
+          "I review nine areas of your business online with access to your real data — site, structure, design, SEO, local presence, ads, intake, follow-up and measurement — and hand you a prioritized report, a video walking through it, and a call. The plan is yours and you can act on it with whoever you like.",
         homeEyebrow: "// the next step",
         homeTitle: "Want the full plan in writing?",
         prereq:
-          "Always start with the free 15-minute call. If we see there that you need an in-depth plan, this is the step that follows.",
+          "If we have never spoken, start with the Express Review: it is free and for many people it is enough.",
         viewPricing: "See all pricing",
         waText:
-          "Hi Cristian, I'm interested in the Digital Presence Diagnosis ($149 USD). I'd like to know how clients find me today and get an improvement plan. How do we start?",
+          "Hi Cristian, I'm interested in the Digital Audit ($250 USD). I want to know what is broken in my business online and what to fix first.",
         stepsTitle: "How it works (3 phases)",
         steps: [
           {
-            name: "Phase 1 · I get to know your business",
+            name: "Day 1 · Context and access",
             description:
-              "Call + short questionnaire: what services you offer, your ideal client and how clients reach you today.",
+              "A short questionnaire and read-only access: Analytics, Search Console, your Business Profile and your ad accounts if you have them.",
           },
           {
-            name: "Phase 2 · In-depth diagnosis",
+            name: "Days 2 to 4 · The audit",
             description:
-              "I review your Google Business Profile, Maps, reviews, social media, your current site, your WhatsApp and how AI search sees you.",
+              "The nine areas, one at a time, with your data in front of me and against whoever ranks above you in your city.",
           },
           {
-            name: "Phase 3 · Solutions plan",
+            name: "Day 5 · Delivery",
             description:
-              "You get 3 to 5 prioritized improvements and a clear proposal on how to carry them out.",
+              "A PDF report with findings ranked by priority, a video walking through it, and a 30-45 minute call once you have read it.",
           },
         ],
         creditNote:
-          "The $149 is credited in full if you decide to do your project with me. In practice, the diagnosis is free if you move forward.",
-        cta: "I want my diagnosis",
+          "The $250 is not deducted from a later project, and that is deliberate: if the project absorbed the audit, my incentive would be to find you reasons to hire me. Charging separately means I can tell you «this is fine, leave it alone».",
+        cta: "See the Digital Audit",
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
@@ -1776,14 +1789,14 @@ export const translations = {
         },
         {
           question:
-            "What is the Digital Presence Diagnosis and how is it different from a project?",
+            "What is the Digital Audit and how is it different from a project?",
           answer:
-            "The 15-minute call is free: that's the entry point. The Diagnosis ($149 USD) is the step that follows if you want depth: I analyze in detail how people find you today on Google, Maps, reviews and AI search, compare you against the businesses beating you, and hand you a written, prioritized plan of improvements. It's not a website: it's the clarity of knowing what to do first. If you later do your project with me, it's credited in full.",
+            "The Express Review is free and it is the entry point: three minutes of video on what is visible from the outside. The Digital Audit ($250 USD) is a different animal: five business days covering nine areas with access to your real data — site, structure, design, technical SEO, content, local presence, ads, intake and measurement — ending in a prioritized report, a video walking through it, and a call. It is not a website: it is knowing what to do first and why. A project is the execution; the audit is the map, and they are separate things charged separately.",
         },
         {
-          question: "Is the diagnosis free if I later hire a project?",
+          question: "Is the audit deducted if I later hire a project?",
           answer:
-            "Yes. The $149 diagnosis is fully deducted from the price of your project. If you decide to move forward, the diagnosis is free; and if not, you keep the improvement plan anyway.",
+            "No, and that is deliberate. The old diagnosis was credited in full toward the project, which in practice made it a sales step: my incentive was to find reasons to sell you something. Charging for the audit separately means I can hand you a report that says «your site is fine, leave it alone» and lose nothing. The report is yours either way, and you can act on it with me, with your team or with another provider.",
         },
         {
           question: "What's the difference between Web Support and Growth+?",
@@ -1870,17 +1883,17 @@ export const translations = {
     },
     calendly: {
       eyebrow: "// online booking",
-      titleA: "Book your",
+      titleA: "Rather talk it through? Book your",
       titleHighlight: "Express Review",
       subtitle:
         "Pick your time. Before the call I record a three-minute video with what I find. No cost, no sales pitch.",
     },
     contact: {
       eyebrow: "// contact",
-      titleA: "No time slot works? Leave me your",
-      titleHighlight: "details",
+      titleA: "Leave your details and I'll write back",
+      titleHighlight: "in under 24 hours",
       subtitle:
-        "Leave me your WhatsApp and I'll reach out. No commitment and no jargon: just how your business can save time and sell more.",
+        "The fastest route and the one that commits you least: your name, your WhatsApp and what you need. Nothing to schedule and no jargon.",
       toggle: "I'd rather leave my details and be contacted",
       toggleNote: "I reply in under 24 hours.",
       perks: [
@@ -2075,10 +2088,10 @@ export const translations = {
           "Book your Express Review or message me on WhatsApp. Hire a web designer with no sales call: bilingual website design services and pricing already published.",
         keywords:
           "hire a web designer, bilingual website design services, spanish website design services, bilingual web developer",
-        heroTitleA: "Book 20 minutes",
-        heroHighlight: "with me",
+        heroTitleA: "Write to me or book a time,",
+        heroHighlight: "whichever you prefer",
         heroSubtitle:
-          "Pick a time that works for you and we talk for 20 minutes. Ready to hire a web designer? We leave the call with a date. Not yet? I tell you what's missing. Bilingual website design services, in English or Spanish, with no sales call.",
+          "Leave me your WhatsApp and I reply in under 24 hours, with nothing to schedule — the quickest way to hire a web designer without sitting through a pitch. And if you would rather talk it through, my calendar is right below: 20 minutes, free, and bilingual website design services in English or Spanish.",
       },
     },
     // ── Industry hub: /en/industries ───────────────────────────
@@ -2193,6 +2206,10 @@ const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
   digitalMarketing: {
     es: "Hola Cristian, Estaba viendo tu página de marketing digital y quiero que me lleguen más clientes. ¿Podemos platicar?",
     en: "Hi Cristian, I was on your digital marketing page and I want more clients coming in. Can we talk?",
+  },
+  audit: {
+    es: "Hola Cristian, Me interesa la Auditoría Digital ($250 USD). Quiero saber qué está fallando en mi negocio en línea y en qué orden arreglarlo.",
+    en: "Hi Cristian, I'm interested in the Digital Audit ($250 USD). I want to know what is broken in my business online and what to fix first.",
   },
   markets: {
     es: "Hola Cristian, Vi tu página y tengo un negocio en Estados Unidos. Quiero saber cómo trabajas a distancia.",

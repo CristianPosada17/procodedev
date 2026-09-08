@@ -16,11 +16,14 @@ interface Props {
   heading: ServiceDetail["capabilities"];
   items: readonly ServiceCapability[];
   lang?: Lang;
+  /** Un ancla propia cuando el bloque no es «qué incluye»: en la landing de
+      la auditoría son las nueve áreas que se revisan. */
+  id?: string;
 }
-const { heading, items } = Astro.props as Props;
+const { heading, items, id = "que-incluye" } = Astro.props as Props;
 ---
 
-<section id="que-incluye" class="relative py-12 lg:py-20">
+<section id={id} class="relative py-12 lg:py-20">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <SectionHeading eyebrow={heading.eyebrow} max="max-w-3xl">
       <Fragment slot="title">{heading.title}</Fragment>

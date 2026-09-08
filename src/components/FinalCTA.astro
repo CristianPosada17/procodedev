@@ -8,10 +8,12 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const fc = t.finalCta;
+// Un solo nombre para la oferta de entrada en todo el sitio, el Calendly y
+// los correos: la Revisión Express. Aquí seguía el nombre viejo.
 const waMsg = encodeURIComponent(
   lang === "es"
-    ? "Hola Cristian 👋 Quiero mi Revisión de Temporada."
-    : "Hi Cristian 👋 I'd like my Pre-Season Review.",
+    ? "Hola Cristian 👋 Quiero mi Revisión Express."
+    : "Hi Cristian 👋 I'd like my Express Review.",
 );
 ---
 

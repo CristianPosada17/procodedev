@@ -9,8 +9,28 @@ interface Props {
   highlight: string;
   subtitle: string;
   lang?: Lang;
+  /** Botón principal del hero. En /servicios apunta al formulario de la
+      misma página: antes el bloque de entrada explicaba la oferta y no
+      ofrecía ninguna forma de pedir ayuda sin navegar a otra URL. */
+  ctaLabel?: string;
+  ctaHref?: string;
+  ctaId?: string;
+  /** Segunda opción, para quien prefiere hablar antes de escribir. */
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
-const { eyebrow, titleA, highlight, subtitle, lang = "es" } = Astro.props as Props;
+const {
+  eyebrow,
+  titleA,
+  highlight,
+  subtitle,
+  lang = "es",
+  ctaLabel,
+  ctaHref,
+  ctaId,
+  ctaSecondaryLabel,
+  ctaSecondaryHref,
+} = Astro.props as Props;
 const t = translations[lang];
 // Columna vertical que se desplaza sola (llena el espacio a la derecha del
 // título). Desde la especialización en dos servicios las tarjetas salen de
@@ -43,6 +63,30 @@ const seq = [...cards, ...cards];
       <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
         {subtitle}
       </p>
+
+      {
+        ctaLabel && ctaHref && (
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href={ctaHref}
+              data-cta={ctaId || "pagehero-cta"}
+              class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+            >
+              {ctaLabel}
+              <Icon name="arrow-right" class="h-4 w-4" />
+            </a>
+            {ctaSecondaryLabel && ctaSecondaryHref && (
+              <a
+                href={ctaSecondaryHref}
+                data-cta={`${ctaId || "pagehero"}-secundario`}
+                class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
+              >
+                {ctaSecondaryLabel}
+              </a>
+            )}
+          </div>
+        )
+      }
     </div>
 
     {/* Columna decorativa: se duplica para el loop, así que va marcada como

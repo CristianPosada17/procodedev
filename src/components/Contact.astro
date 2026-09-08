@@ -74,37 +74,24 @@ const inputClass =
 ---
 
 {/*
-  Hallazgo #2: todos los CTAs del sitio prometen «agendar», así que el
-  calendario va primero en /contacto y este bloque queda como alternativa,
-  colapsado, para quien no encuentre horario.
+  Hallazgo #2 (agosto): todos los CTAs del sitio prometían «agendar», así
+  que el calendario pasó a ir primero y este bloque quedó colapsado debajo.
+
+  Septiembre de 2026: eso dejó al visitante que apenas compara proveedores
+  con el camino más caro delante —elegir horario y comprometer 20 minutos—
+  y el barato escondido tras un `<details>`. El formulario vuelve a estar
+  abierto y va primero; el calendario queda debajo para quien prefiera
+  hablar. Si alguna vez vuelve a colapsarse, ha vuelto el problema.
+
   Hallazgo #3: `message` era obligatorio (redacción libre, el campo más caro)
   y `phone` opcional — justo al revés de lo que conviene. Invertido.
 */}
-<section id="contacto" class="relative pb-20 pt-4">
+<section id="contacto" class="relative pb-14 pt-4">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
-    <details
-      class="reveal group mx-auto max-w-4xl overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/50 backdrop-blur-xl transition open:border-[color:var(--border-strong)]"
+    <div
+      class="reveal mx-auto max-w-5xl overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/50 backdrop-blur-xl"
     >
-      <summary
-        class="flex cursor-pointer items-center justify-between gap-4 p-6 text-left marker:content-[''] lg:p-7"
-      >
-        <span>
-          <span class="block text-base font-bold text-[var(--text)]">
-            {c.toggle}
-          </span>
-          <span class="mt-1 block text-sm text-[var(--muted)]">
-            {c.toggleNote}
-          </span>
-        </span>
-        <span
-          class="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-[color:var(--border-strong)] text-lg text-[var(--accent)] transition group-open:rotate-45"
-          aria-hidden="true"
-        >
-          +
-        </span>
-      </summary>
-
-      <div class="grid gap-10 border-t border-[color:var(--border)] p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-7">
+      <div class="grid gap-10 p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-9">
         <div>
           <h2 class="text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)]">
             {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
@@ -254,7 +241,7 @@ const inputClass =
           </div>
         </form>
       </div>
-    </details>
+    </div>
   </div>
 </section>
 

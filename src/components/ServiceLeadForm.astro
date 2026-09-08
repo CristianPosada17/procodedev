@@ -1,0 +1,311 @@
+---
+/*
+  Formulario corto embebido en las páginas de servicio y en el hub.
+
+  Por qué existe teniendo ya <Contact />: el de /contacto pide nombre,
+  teléfono y correo obligatorios y vive detrás de un `<details>` en otra
+  URL. Para quien apenas está comparando proveedores eso son tres pasos
+  (salir de la página, abrir el bloque, dar tres datos) antes de poder
+  preguntar un precio. Aquí se piden tres cosas —nombre, WhatsApp y qué
+  necesita—, sin salir de la página en la que estaba decidiendo.
+
+  Los botones de cada paquete apuntan a este bloque con `data-plan`: el
+  plan elegido viaja en un campo oculto y se muestra como etiqueta, así
+  que el correo ya llega diciendo qué estaba mirando el visitante.
+
+  Medición: `data-form` dispara `form_start` con el motor de eventos y el
+  envío emite `generate_lead` con `form_name: "servicio"`, distinto del
+  formulario de /contacto para poder separarlos en el reporte.
+*/
+import { translations, CONTACT, PAGES, waHref, type Lang, type PageKey } from "../i18n/ui";
+import { leadForm } from "../i18n/services";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+  /** Encabezado propio de la página (viene de `form` en services.ts). */
+  heading: {
+    eyebrow: string;
+    titleA: string;
+    titleHighlight: string;
+    subtitle: string;
+    needLabel: string;
+    needOptions: readonly string[];
+  };
+  /** Nombre del servicio que viaja en el correo. */
+  service: string;
+  /** Para el enlace de WhatsApp y el `data-cta` de esta página. */
+  page: PageKey;
+}
+const { lang = "es", heading, service, page } = Astro.props as Props;
+const f = leadForm[lang];
+
+const inputClass =
+  "rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[color:var(--border-strong)]";
+
+const script = `
+  (function(){
+    var form = document.getElementById('lead-form');
+    if(!form) return;
+    var status = document.getElementById('lead-status');
+    var btn = document.getElementById('lead-submit');
+    var planField = form.querySelector('input[name="plan"]');
+    var planChip = document.getElementById('lead-plan-chip');
+    var planChipText = document.getElementById('lead-plan-chip-text');
+    var nameField = form.querySelector('input[name="name"]');
+    var SENDING = ${JSON.stringify(f.sending)};
+    var OK = ${JSON.stringify(f.success)};
+    var FAIL = ${JSON.stringify(f.error)};
+    var LABEL = ${JSON.stringify(f.submit)};
+    var SERVICE = ${JSON.stringify(service)};
+
+    function show(msg, ok){
+      if(!status) return;
+      status.textContent = msg;
+      status.classList.remove('hidden');
+      status.style.color = ok ? 'var(--ok)' : 'var(--err)';
+    }
+
+    // Botón de una tarjeta de paquete: conserva el plan elegido.
+    document.addEventListener('click', function(e){
+      var el = e.target && e.target.closest ? e.target.closest('[data-plan]') : null;
+      if(!el) return;
+      var plan = el.getAttribute('data-plan') || '';
+      if(planField) planField.value = plan;
+      if(planChip && planChipText){
+        planChipText.textContent = plan;
+        planChip.hidden = false;
+      }
+      // El foco al primer campo tras el salto de ancla, no antes: si no,
+      // el navegador cancela el scroll y el bloque nunca se ve entero.
+      setTimeout(function(){ if(nameField) nameField.focus({ preventScroll: true }); }, 450);
+    });
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      if(btn){ btn.disabled = true; btn.textContent = SENDING; }
+      try {
+        if(window.pcdFillAttribution) window.pcdFillAttribution(form);
+        var data = Object.fromEntries(new FormData(form));
+        var res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await res.json();
+        if(result.success){
+          show(OK, true);
+          form.reset();
+          if(planChip) planChip.hidden = true;
+          if(planField) planField.value = '';
+          if(window.pcdTrack){
+            var lead = window.pcdAttribution ? window.pcdAttribution() : {};
+            lead.form_name = 'servicio';
+            lead.lead_type = 'formulario';
+            lead.service = SERVICE;
+            lead.project_type = data.need || '';
+            lead.plan = data.plan || '';
+            lead.value = 1;
+            lead.currency = 'USD';
+            window.pcdTrack('generate_lead', lead, {
+              event: 'Lead',
+              params: { content_name: 'Formulario de servicio', content_category: SERVICE, value: 1, currency: 'USD' }
+            });
+          } else {
+            if(window.fbq) window.fbq('track','Lead');
+            if(window.gtag) window.gtag('event','generate_lead',{ origen:'formulario_servicio' });
+          }
+        } else {
+          show(FAIL, false);
+          if(window.pcdTrack) window.pcdTrack('form_error', { form_name:'servicio', error_type:'rechazado' });
+        }
+      } catch(err){
+        show(FAIL, false);
+        if(window.pcdTrack) window.pcdTrack('form_error', { form_name:'servicio', error_type:'red' });
+      }
+      finally { if(btn){ btn.disabled = false; btn.textContent = LABEL; } }
+    });
+  })();
+`;
+---
+
+<section id="solicitar" class="relative scroll-mt-24 py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal grid gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:p-12"
+    >
+      <div>
+        <span class="eyebrow">{heading.eyebrow}</span>
+        <h2
+          class="mt-5 text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl lg:text-[2.15rem]"
+        >
+          {heading.titleA}{" "}<span class="grad-text">{heading.titleHighlight}</span>
+        </h2>
+        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{heading.subtitle}</p>
+
+        <ul class="mt-7 grid gap-3">
+          {
+            f.perks.map((perk) => (
+              <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
+                  <Icon name="check" class="h-3 w-3" strokeWidth={2.6} />
+                </span>
+                {perk}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-8 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-5">
+          <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+            {f.altTitle}
+          </p>
+          <div class="mt-4 flex flex-col gap-3 text-sm">
+            <a
+              href={PAGES.contact[lang]}
+              data-cta={`form-${page}-agendar`}
+              class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
+            >
+              <Icon name="calendar" class="h-4 w-4 text-[var(--accent)]" />
+              {f.altSchedule}
+            </a>
+            <a
+              href={waHref(page, lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta={`form-${page}-whatsapp`}
+              class="inline-flex items-center gap-2 text-[var(--text)] transition hover:text-[var(--accent)]"
+            >
+              <Icon name="whatsapp" class="h-4 w-4 text-emerald-400" />
+              {f.altWhatsapp} · {CONTACT.whatsappDisplay}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <form
+        id="lead-form"
+        data-form="servicio"
+        class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7"
+      >
+        <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
+        <input type="hidden" name="servicio" value={service} />
+        {/* Lo rellena el botón de la tarjeta de paquete que trajo aquí. */}
+        <input type="hidden" name="plan" value="" />
+        <input type="hidden" name="lead_origen" value="" />
+        <input type="hidden" name="lead_campana" value="" />
+        <input type="hidden" name="lead_pagina" value="" />
+        <input type="hidden" name="lead_landing" value="" />
+        <input type="hidden" name="lead_primer_contacto" value="" />
+        <input
+          type="hidden"
+          name="subject"
+          value={`Solicitud desde ${service} — procodedev.com`}
+        />
+        <input type="hidden" name="from_name" value="ProCode Dev — Web" />
+        <input
+          type="checkbox"
+          name="botcheck"
+          class="hidden"
+          style="display:none"
+          tabindex="-1"
+          autocomplete="off"
+        />
+
+        <p
+          id="lead-plan-chip"
+          hidden
+          class="mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/12 px-4 py-3 text-sm text-[var(--text)]"
+        >
+          <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+            {f.interestLabel}
+          </span>
+          <span id="lead-plan-chip-text" class="font-bold"></span>
+        </p>
+
+        <div class="grid gap-5">
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-[var(--text)]">{f.fieldName}</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+                placeholder={f.phName}
+                class={inputClass}
+              />
+            </label>
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-[var(--text)]">{f.fieldPhone}</span>
+              <input
+                type="tel"
+                name="phone"
+                required
+                autocomplete="tel"
+                placeholder={f.phPhone}
+                class={inputClass}
+              />
+            </label>
+          </div>
+
+          <label class="grid gap-2">
+            <span class="text-sm font-medium text-[var(--text)]">{heading.needLabel}</span>
+            <select
+              name="need"
+              required
+              class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition focus:border-[color:var(--border-strong)]"
+            >
+              {heading.needOptions.map((opt) => <option value={opt}>{opt}</option>)}
+            </select>
+          </label>
+
+          {/* Correo y mensaje opcionales: el WhatsApp basta para contestar,
+              y cada campo obligatorio de más cuesta envíos. */}
+          <label class="grid gap-2">
+            <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
+              {f.fieldEmail}
+              <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                {f.optionalTag}
+              </span>
+            </span>
+            <input
+              type="email"
+              name="email"
+              autocomplete="email"
+              placeholder={f.phEmail}
+              class={inputClass}
+            />
+          </label>
+
+          <label class="grid gap-2">
+            <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
+              {f.fieldMessage}
+              <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                {f.optionalTag}
+              </span>
+            </span>
+            <textarea
+              name="message"
+              rows="3"
+              placeholder={f.phMessage}
+              class:list={["resize-none", inputClass]}></textarea>
+          </label>
+
+          <button
+            id="lead-submit"
+            type="submit"
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:bg-[var(--brand-strong)] disabled:opacity-60"
+          >
+            {f.submit}
+          </button>
+
+          <p id="lead-status" class="hidden text-sm" role="status"></p>
+          <p class="text-xs leading-6 text-[var(--muted)]">{f.privacy}</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline set:html={script}></script>

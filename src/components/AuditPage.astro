@@ -1,0 +1,111 @@
+---
+/*
+  Landing completa de la Auditoría Digital (ES y EN comparten esta
+  composición; el contenido vive en src/i18n/audit.ts).
+
+  Orden, y el porqué de cada posición:
+
+  1. Hero — precio cerrado ($250, no «desde») y la nota de que no se acredita
+     arriba del pliegue: es la objeción número uno.
+  2. Gratis vs. de pago — antes que nada más. El sitio ya regala la Revisión
+     Express; si esta página no dice en qué se diferencia, o no vende o
+     vende un malentendido.
+  3. Qué se audita — las nueve áreas. Es lo que justifica el precio.
+  4. Qué recibes — tres entregables concretos, no «un informe».
+  5. Cómo funciona — las tres fases y los accesos que se piden.
+  6. Cuándo NO vale la pena — el filtro honesto, que aquí pesa más que en
+     una página de servicio: se está pidiendo dinero por adelantado.
+  7. FAQ → formulario → los dos destinos posibles.
+
+  Reutiliza `ServiceCapabilities`, `ServiceStandards`, `ServiceFit`, `FAQ` y
+  `ServiceLeadForm`: los bloques ya existían con la forma exacta que necesita
+  esta página, y duplicarlos habría creado dos sitios donde arreglar lo mismo.
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import AuditHero from "./AuditHero.astro";
+import AuditVersus from "./AuditVersus.astro";
+import AuditProcess from "./AuditProcess.astro";
+import AuditCross from "./AuditCross.astro";
+import ServiceCapabilities from "./ServiceCapabilities.astro";
+import ServiceStandards from "./ServiceStandards.astro";
+import ServiceFit from "./ServiceFit.astro";
+import ServiceLeadForm from "./ServiceLeadForm.astro";
+import FAQ from "./FAQ.astro";
+import Footer from "./Footer.astro";
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { audit } from "../i18n/audit";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const a = audit[lang];
+
+// Las nueve áreas y los tres entregables, para que un buscador con IA pueda
+// contestar «qué incluye la auditoría» sin interpretar el diseño.
+const offerCatalog = [
+  ...a.areas.items.map((i) => ({ title: i.title, description: i.description })),
+  ...a.deliverables.items.map((i) => ({
+    title: i.title,
+    description: i.description,
+  })),
+];
+---
+
+<Layout
+  lang={lang}
+  page="audit"
+  title={a.meta.title}
+  description={a.meta.description}
+  keywords={a.meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.services, path: PAGES.services[lang] },
+    { name: a.navLabel, path: PAGES.audit[lang] },
+  ]}
+  serviceName={a.navLabel}
+  offerCatalog={offerCatalog}
+  offerPrice={a.price}
+  offerUrl={PAGES.audit[lang]}
+  includeFaq={true}
+  faqItems={a.faq.items}
+>
+  <Header lang={lang} page="audit" />
+  <main>
+    <AuditHero lang={lang} />
+    <AuditVersus lang={lang} />
+
+    <ServiceCapabilities
+      lang={lang}
+      heading={{
+        eyebrow: a.areas.eyebrow,
+        title: a.areas.title,
+        subtitle: a.areas.subtitle,
+      }}
+      items={a.areas.items}
+      id="que-se-audita"
+    />
+
+    <ServiceStandards
+      lang={lang}
+      standards={a.deliverables}
+      id="que-recibes"
+    />
+
+    <AuditProcess lang={lang} />
+    <ServiceFit lang={lang} fit={a.fit} />
+    <FAQ lang={lang} data={a.faq} id="dudas-auditoria" />
+
+    <ServiceLeadForm
+      lang={lang}
+      heading={a.form}
+      service={a.navLabel}
+      page="audit"
+    />
+
+    <AuditCross lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,79 @@
+---
+/*
+  La oferta de marketing, pieza por pieza.
+
+  El problema que resuelve: la página vendía «captación» como un bloque y
+  dentro mezclaba tres trabajos con plazos muy distintos —SEO local (de 3 a
+  6 meses), Google Ads (calibración de 30 días y presupuesto aparte) y
+  seguimiento (rinde la primera semana)—. Quien compara proveedores leía un
+  solo precio y un solo plazo, y luego el plazo no coincidía con el otro que
+  anuncia el hero.
+
+  Aquí cada pieza declara lo suyo: alcance, entregables y cuándo se nota.
+  Si alguna vez vuelve a haber un solo plazo para las tres, el problema ha
+  vuelto.
+*/
+import type { ServiceDetail } from "../i18n/services";
+import type { Lang } from "../i18n/ui";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  offer: NonNullable<ServiceDetail["offer"]>;
+  lang?: Lang;
+}
+const { offer } = Astro.props as Props;
+---
+
+<section id="la-oferta" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={offer.eyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{offer.title}</Fragment>
+      <Fragment slot="subtitle">{offer.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
+      {
+        offer.items.map((item, i) => (
+          <article
+            class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            style={`--reveal-delay: ${i * 80}ms`}
+          >
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]">
+              <Icon name={item.icon as any} class="h-5 w-5" />
+            </span>
+            <h3 class="mt-5 text-xl font-bold leading-snug text-[var(--text)]">
+              {item.title}
+            </h3>
+            <p class="mt-4 text-sm leading-7 text-[var(--muted)]">{item.scope}</p>
+
+            <p class="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+              {item.deliverablesLabel}
+            </p>
+            <ul class="mt-3 grid flex-1 gap-2.5">
+              {item.deliverables.map((d) => (
+                <li class="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text)]/85">
+                  <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                    <Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} />
+                  </span>
+                  {d}
+                </li>
+              ))}
+            </ul>
+
+            {/* El plazo de cada pieza, por separado: es la parte que antes
+                se leía como una sola promesa de 30 a 90 días. */}
+            <div class="mt-6 rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-4">
+              <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                {item.timelineLabel}
+              </p>
+              <p class="mt-2 text-[13px] leading-6 text-[var(--text)]/90">
+                {item.timeline}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -17,6 +17,12 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
 const c = servicesHub[lang].compare;
+
+// El tercer camino dejó de ser un tercer paquete: ahora es «ayúdame a
+// elegir» y aterriza en el formulario corto de esta misma página, que es
+// justo lo que pedía quien todavía está comparando proveedores.
+const hrefFor = (h: (typeof c.columns)[number]["href"]) =>
+  h === "form" ? "#solicitar" : PAGES[h][lang];
 ---
 
 <section id="por-donde-empiezo" class="relative py-12 lg:py-20">
@@ -56,7 +62,7 @@ const c = servicesHub[lang].compare;
               {col.price}
             </p>
             <a
-              href={PAGES[col.href][lang]}
+              href={hrefFor(col.href)}
               data-cta={`camino-${col.href}`}
               class:list={[
                 "mt-5 inline-flex items-center justify-between gap-2 rounded-xl px-5 py-3 text-sm font-bold transition",
@@ -80,7 +86,7 @@ const c = servicesHub[lang].compare;
       <a
         href={PAGES.contact[lang]}
         data-cta="comparativa-agendar"
-        class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
       >
         {t.common.ctaPrimary}
         <Icon name="arrow-right" class="h-4 w-4" />

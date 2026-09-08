@@ -1,0 +1,75 @@
+---
+/*
+  Las tres fases de la auditoría y, al lado, los accesos que se piden.
+
+  Los accesos van en la misma pantalla que el plazo a propósito: «cinco días
+  hábiles» solo es creíble si se ve de qué depende, y pedir accesos es la
+  segunda objeción de la página después del precio.
+*/
+import type { Lang } from "../i18n/ui";
+import { audit } from "../i18n/audit";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const p = audit[lang].process;
+---
+
+<section id="como-funciona" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={p.eyebrow} max="max-w-3xl">
+      <Fragment slot="title">{p.title}</Fragment>
+      <Fragment slot="subtitle">{p.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-[1.35fr_0.65fr] lg:gap-8">
+      <ol class="grid gap-4">
+        {
+          p.steps.map((s, i) => (
+            <li
+              class="reveal flex items-start gap-5 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl"
+              style={`--reveal-delay: ${i * 80}ms`}
+            >
+              <span class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/15 font-mono text-sm font-bold text-[var(--accent)]">
+                {i + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-[var(--text)]">{s.name}</h3>
+                <p class="mt-2 text-sm leading-7 text-[var(--muted)]">
+                  {s.description}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <aside
+        class="reveal rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6"
+        style="--reveal-delay: 120ms"
+      >
+        <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+          {p.accessTitle}
+        </p>
+        <ul class="mt-5 grid gap-3">
+          {
+            p.access.map((item) => (
+              <li class="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text)]/85">
+                <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                  <Icon name="lock" class="h-2.5 w-2.5" strokeWidth={3} />
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-5 border-t border-[color:var(--border)] pt-4 text-xs leading-6 text-[var(--muted)]">
+          {p.accessNote}
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>

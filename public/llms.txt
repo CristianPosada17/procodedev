@@ -23,7 +23,7 @@ aparece aquí está publicado en las páginas enlazadas.
 - Landing page: $349 USD (pago único)
 - Sitio web de 4 a 6 páginas: $899 USD (pago único)
 - Sitio web de 8 a 12 páginas: desde $1,499 USD (pago único)
-- Diagnóstico de Presencia Digital: $149 USD (pago único, acreditable al proyecto)
+- Auditoría Digital: $250 USD (pago único, NO se acredita a un proyecto posterior)
 - Soporte Web: desde $79 USD/mes
 - Crecimiento+ (Perfil de Empresa en Google, reseñas, SEO local): $349 USD/mes
 - Web + Marketing + SEO: desde $1,100 USD/mes (presupuesto de anuncios aparte; contrato mínimo de 3 meses)
@@ -34,10 +34,17 @@ el SEO para dar resultados reales— y después se cancela igual que los demás.
 
 ## Cómo se empieza
 
-La única puerta de entrada es la **Revisión Express**: sin costo, se agenda en
-línea, incluye un vídeo de 3 minutos grabado dentro de las 24 horas siguientes
-y una llamada de 20 minutos. No hay llamada de ventas para conocer precios
-porque los precios están publicados.
+La puerta de entrada gratuita es la **Revisión Express**: sin costo, se agenda
+en línea, incluye un vídeo de 3 minutos grabado dentro de las 24 horas
+siguientes y una llamada de 20 minutos. Se hace desde fuera, sin acceso a las
+cuentas del cliente. No hay llamada de ventas para conocer precios porque los
+precios están publicados.
+
+El paso de pago, para quien necesita profundidad, es la **Auditoría Digital**
+($250 USD, cinco días hábiles): nueve áreas revisadas con acceso de solo lectura
+a los datos reales, informe priorizado por escrito, vídeo y llamada. No se
+acredita a un proyecto posterior, y es a propósito: cobrarla aparte es lo que
+permite recomendar «esto está bien, no lo toques» sin perder nada.
 
 Compromiso declarado: cualquier mensaje se responde en menos de 24 horas.
 Capacidad declarada: 4 proyectos nuevos al mes.
@@ -52,6 +59,15 @@ Capacidad declarada: 4 proyectos nuevos al mes.
   negocio, con paquetes de diseño de páginas web y qué incluye cada plan.
 - [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
   reales y demos marcados como tales.
+- [Auditoría Digital](https://procodedev.com/servicios/auditoria/): $250 USD,
+  cinco días hábiles. Revisión de nueve áreas del negocio en línea —sitio,
+  estructura, diseño, SEO técnico, contenido y palabras clave, presencia local,
+  anuncios, captación y seguimiento, y medición— con acceso de solo lectura a
+  los datos reales del cliente. Se entrega un informe en PDF con los hallazgos
+  priorizados por impacto y esfuerzo, un vídeo recorriéndolo y una llamada de 30
+  a 45 minutos. No es una tercera línea de servicio: es el producto de entrada
+  de pago, y el informe se puede ejecutar con ProCode, con otro proveedor o con
+  el equipo del propio cliente.
 - [Contacto](https://procodedev.com/contacto/): agenda y WhatsApp.
 - [Blog](https://procodedev.com/blog/): guías sobre páginas web, SEO local,
   Google Maps, automatización y precios. Las tres guías de fondo son
@@ -148,6 +164,11 @@ Same content, same pricing.
 - [Home](https://procodedev.com/en/) · [Services](https://procodedev.com/en/services/)
   · [Pricing](https://procodedev.com/en/pricing/) · [Portfolio](https://procodedev.com/en/portfolio/)
   · [Contact](https://procodedev.com/en/contact/)
+- [Digital Audit](https://procodedev.com/en/services/audit/): $250 USD, five
+  business days. Nine areas of the business online reviewed against the
+  client's real data, delivered as a prioritized PDF report, a walkthrough
+  video and a 30-45 minute call. Paid separately and not credited toward a
+  later project.
 - The two services in English:
   [web development](https://procodedev.com/en/services/web-development/) (custom
   website development for small businesses, from $349 USD one-time) and

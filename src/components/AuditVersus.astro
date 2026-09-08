@@ -1,0 +1,93 @@
+---
+/*
+  Gratis vs. de pago, uno al lado del otro.
+
+  Existe porque el sitio ya regala una revisión (la Revisión Express, 3 min
+  de vídeo) y ahora además cobra $250 por una auditoría. Sin este bloque, el
+  visitante o no entiende la diferencia y no compra, o compra creyendo que
+  es lo mismo que le habrían dado gratis — y las dos salidas son malas.
+
+  La columna gratis va PRIMERO y a propósito: recomendar lo barato antes que
+  lo caro es lo que hace creíble el resto de la página.
+*/
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { audit } from "../i18n/audit";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const v = audit[lang].versus;
+---
+
+<section id="gratis-o-de-pago" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={v.eyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{v.title}</Fragment>
+      <Fragment slot="subtitle">{v.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mx-auto mt-12 grid max-w-4xl gap-5 lg:grid-cols-2">
+      {/* Gratis */}
+      <article
+        class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl"
+      >
+        <h3 class="text-lg font-bold leading-snug text-[var(--text)]">
+          {v.freeTitle}
+        </h3>
+        <ul class="mt-6 grid flex-1 gap-2.5">
+          {
+            v.freeItems.map((item) => (
+              <li class="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text)]/85">
+                <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                  <Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} />
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <a
+          href={PAGES.contact[lang]}
+          data-cta="auditoria-revision-gratis"
+          class="mt-7 inline-flex items-center justify-between gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+        >
+          {v.freeCta}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </article>
+
+      {/* De pago */}
+      <article
+        class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl shadow-[0_30px_90px_-50px_var(--halo-card-strong)]"
+        style="--reveal-delay: 80ms"
+      >
+        <h3 class="text-lg font-bold leading-snug text-[var(--text)]">
+          {v.paidTitle}
+        </h3>
+        <ul class="mt-6 grid flex-1 gap-2.5">
+          {
+            v.paidItems.map((item) => (
+              <li class="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text)]/85">
+                <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                  <Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} />
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <a
+          href="#solicitar"
+          data-cta="auditoria-versus-solicitar"
+          class="mt-7 inline-flex items-center justify-between gap-2 rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+        >
+          {v.paidCta}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </article>
+    </div>
+  </div>
+</section>

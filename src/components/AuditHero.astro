@@ -1,37 +1,39 @@
 ---
 /*
-  Portada de cada página de servicio.
+  Portada de la Auditoría Digital.
 
-  Es distinta del PageHero genérico: aquí el mockup del servicio es el
-  elemento visual principal (y el LCP de la página), y bajo el título van
-  las tres cifras que la gente busca antes que nada — precio de entrada,
-  plazo y con quién va a tratar.
+  A diferencia del hero de una línea de servicio, aquí el precio es cerrado
+  ($250, no «desde») y va acompañado de la nota de que NO se acredita: es la
+  objeción número uno y esconderla hasta la FAQ solo la retrasa.
 */
 import { translations, PAGES, type Lang } from "../i18n/ui";
-import type { ServiceLine, ServiceDetail } from "../i18n/services";
+import { audit } from "../i18n/audit";
 import Icon from "./Icon.astro";
-import OfferNote from "./OfferNote.astro";
-import ServiceShot from "./ServiceShot.astro";
 
 interface Props {
-  line: ServiceLine;
-  meta: ServiceDetail["meta"];
   lang?: Lang;
-  /** Texto del botón principal, que apunta al formulario de esta página. */
-  ctaLabel: string;
 }
-const { line, meta, lang = "es", ctaLabel } = Astro.props as Props;
+const { lang = "es" } = Astro.props as Props;
 const t = translations[lang];
+const a = audit[lang];
 
 const stats = [
-  { label: line.priceLabel, value: `$${line.price}`, note: line.priceNote },
-  { label: line.timelineLabel, value: line.timeline, note: line.timelineNote ?? "" },
+  { label: a.priceLabel, value: `$${a.price}`, note: a.priceNote },
+  { label: a.timelineLabel, value: a.timeline, note: "" },
 ];
+
+// Columna decorativa con las nueve áreas, igual que `PageHero`. Las otras
+// páginas de servicio llenan ese hueco con el mockup del servicio; la
+// auditoría no tiene captura que enseñar, y su argumento ES el alcance, así
+// que el alcance hace de imagen. Se duplica para el bucle, va `aria-hidden`
+// y con `<p>` en vez de encabezados: si fueran <h3> el esquema saltaría de
+// h1 a h3 y las nueve frases se contarían dos veces.
+const seq = [...a.areas.items, ...a.areas.items];
 ---
 
 <section class="relative overflow-hidden pb-10 pt-8 lg:pb-16 lg:pt-16">
   <div
-    class="mx-auto grid w-full max-w-[1480px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-10 2xl:max-w-[1600px]"
+    class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-10 2xl:max-w-[1600px]"
   >
     {/* Arriba del pliegue: sin `.reveal`, no debe depender de JS. */}
     <div class="max-w-2xl">
@@ -46,18 +48,18 @@ const stats = [
         <span
           class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
         >
-          <Icon name={line.icon as any} class="h-3.5 w-3.5" />
-          {line.badge}
+          <Icon name="clipboard-check" class="h-3.5 w-3.5" />
+          {a.badge}
         </span>
       </div>
 
       <h1
         class="mt-6 text-[2.5rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] sm:text-[3.3rem] lg:text-[3.9rem]"
       >
-        {meta.heroTitleA}{" "}<span class="grad-text">{meta.heroHighlight}</span>
+        {a.meta.heroTitleA}{" "}<span class="grad-text">{a.meta.heroHighlight}</span>
       </h1>
       <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
-        {meta.heroSubtitle}
+        {a.meta.heroSubtitle}
       </p>
 
       <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-5">
@@ -80,49 +82,49 @@ const stats = [
         }
       </dl>
 
-      {/* El principal ya no sale de la página: el formulario corto está más
-          abajo, en esta misma URL. Agendar queda de segunda opción para
-          quien prefiera hablar antes de escribir. */}
       <div class="mt-8 flex flex-wrap gap-3">
         <a
           href="#solicitar"
-          data-cta={`hero-${line.key}-solicitar`}
+          data-cta="hero-auditoria-solicitar"
           class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
         >
-          {ctaLabel}
+          {a.ctaPrimary}
           <Icon name="arrow-right" class="h-4 w-4" />
         </a>
         <a
-          href={PAGES.contact[lang]}
-          data-cta={`hero-${line.key}-agendar`}
+          href="#que-se-audita"
           class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
         >
-          {t.common.ctaPrimary}
-        </a>
-        <a
-          href="#paquetes"
-          class="inline-flex items-center gap-2 rounded-xl px-4 py-4 text-sm font-bold text-[var(--muted)] transition hover:text-[var(--accent)]"
-        >
-          {t.priceAnchor.cta}
+          {a.areas.title}
         </a>
       </div>
-
-      <OfferNote lang={lang} />
     </div>
 
-    <div class="relative">
-      <div
-        class="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[var(--brand)]/8 blur-[90px]"
-        aria-hidden="true"
-      >
+    <div
+      class="marquee-y reveal reveal-right relative hidden h-[460px] overflow-hidden lg:block"
+      style="--marquee-duration: 34s"
+      aria-hidden="true"
+    >
+      <div class="absolute -inset-6 rounded-[2rem] bg-[var(--brand)]/5 blur-3xl"></div>
+      <div class="marquee-track-y relative flex flex-col gap-4">
+        {
+          seq.map((area) => (
+            <div class="flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl">
+              <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                <Icon name={area.icon as any} class="h-5 w-5" />
+              </span>
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+                  {a.navLabel}
+                </p>
+                <p class="mt-1 text-sm font-bold leading-snug text-[var(--text)]">
+                  {area.title}
+                </p>
+              </div>
+            </div>
+          ))
+        }
       </div>
-      <ServiceShot
-        base={line.imageBase}
-        alt={line.imageAlt}
-        eager={true}
-        class="relative"
-        sizes="(min-width: 1024px) 48vw, 92vw"
-      />
     </div>
   </div>
 </section>

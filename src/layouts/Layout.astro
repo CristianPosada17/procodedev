@@ -45,6 +45,12 @@ interface Props {
    *  hasOfferCatalog). Es lo que permite a un buscador con IA responder «qué
    *  incluye» sin tener que interpretar el HTML. */
   offerCatalog?: readonly { title: string; description: string }[];
+  /** Precio del nodo Offer. Por defecto $349 (la landing, el punto de entrada
+   *  de los proyectos) y la URL de /precios. La Auditoría Digital lo cambia:
+   *  es un producto de $250 con precio cerrado y página propia, y declararlo
+   *  como $349 sería declarar un precio que no existe. */
+  offerPrice?: string;
+  offerUrl?: string;
   /** Lista de páginas hijas, para el hub de giros (nodo ItemList). */
   itemList?: readonly { name: string; description: string; url: string }[];
   /** Público concreto de la página, para el nodo Service. */
@@ -68,6 +74,8 @@ const {
   faqItems,
   breadcrumbs,
   serviceName,
+  offerPrice,
+  offerUrl,
   keywords,
   offerCatalog,
   itemList,
@@ -265,10 +273,10 @@ const serviceNode = serviceName
       offers: {
         "@type": "Offer",
         priceCurrency: "USD",
-        price: "349",
+        price: offerPrice ?? "349",
         priceValidUntil: "2027-12-31",
         availability: "https://schema.org/InStock",
-        url: new URL(PAGES.pricing[lang], siteUrl).toString(),
+        url: new URL(offerUrl ?? PAGES.pricing[lang], siteUrl).toString(),
       },
       ...(offerCatalog?.length
         ? {

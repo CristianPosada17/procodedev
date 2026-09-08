@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { translations, CONTACT, type Lang } from "../i18n/ui";
+import { translations, CONTACT, PAGES, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 import CardRail from "./CardRail.astro";
 interface Props {
@@ -89,7 +89,10 @@ const currencyScript = `
       <span class="cur-note-usd text-xs text-[var(--muted)]">{p.currencyNoteUsd}</span>
     </div>
 
-    {/* ── Diagnóstico de Presencia Digital · paso 2, solo en /precios ── */}
+    {/* ── Auditoría Digital · el producto de entrada de pago ──
+        Sustituye al Diagnóstico de $149, que se acreditaba entero al
+        proyecto. Aquí solo va el resumen y el precio: la explicación
+        completa vive en su propia landing, /servicios/auditoria/. */}
     <div
       class="reveal relative mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 backdrop-blur-xl shadow-[0_30px_80px_-40px_var(--halo-card)] lg:p-10"
     >
@@ -125,15 +128,28 @@ const currencyScript = `
           >
             <p class="text-sm leading-6 text-[var(--text)]/90">{adv.creditNote}</p>
           </div>
-          <a
-            href={waLink(adv.waText)}
-            data-cta="precios-anticipo"
-            target="_blank"
-            rel="noopener"
-            class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
-          >
-            {adv.cta}
-          </a>
+          <div class="mt-6 flex flex-wrap gap-3">
+            {/* El primario lleva a la landing, no a WhatsApp: hay una
+                página entera explicando qué se audita y qué se entrega, y
+                mandar a un chat obligaba a preguntarlo. */}
+            <a
+              href={PAGES.audit[lang]}
+              data-cta="precios-auditoria"
+              class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--brand-strong)]"
+            >
+              {adv.cta}
+            </a>
+            <a
+              href={waLink(adv.waText)}
+              data-cta="precios-auditoria-whatsapp"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center justify-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+            >
+              <Icon name="whatsapp" class="h-4 w-4" />
+              {t.common.ctaWhatsapp}
+            </a>
+          </div>
         </div>
 
         <div>

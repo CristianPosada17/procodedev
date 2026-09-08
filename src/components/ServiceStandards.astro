@@ -17,6 +17,9 @@ interface Props {
     title: string;
     subtitle: string;
     items: readonly { icon: string; title: string; description: string }[];
+    /** Matiz al pie del bloque. Lo usa la auditoría para decir que el
+        informe es del cliente y no lleva candado. */
+    note?: string;
   };
   lang?: Lang;
   /** Un id propio cuando hay dos de estos bloques en la misma página. */
@@ -57,6 +60,14 @@ const { standards: s } = Astro.props as Props;
             ))
           }
         </div>
+
+        {
+          s.note && (
+            <p class="reveal mt-10 border-t border-[color:var(--border)] pt-6 text-sm leading-7 text-[var(--muted)]">
+              {s.note}
+            </p>
+          )
+        }
       </div>
     </div>
   </div>

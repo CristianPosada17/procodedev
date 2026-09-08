@@ -71,6 +71,9 @@ export interface ServiceLine {
   priceNote: string;
   timelineLabel: string;
   timeline: string;
+  /** Matiz del plazo. Evita que «30 a 90 días» se lea como si todo el
+      servicio rindiera en ese rango cuando el SEO local tarda más. */
+  timelineNote?: string;
   cta: string;
   imageBase: string;
   imageAlt: string;
@@ -99,8 +102,41 @@ export interface ServiceDetail {
     title: string;
     subtitle: string;
     items: readonly ServicePackageItem[];
+    /** Texto del boton propio de cada tarjeta: lleva al formulario de la
+        misma pagina conservando el paquete elegido. */
+    itemCta: string;
     note: string;
     cta: string;
+    /** Lo que NO es este servicio pero se confunde con el (en marketing:
+        el plan de mantenimiento, que no capta clientes). */
+    aside?: { title: string; body: string; cta: string };
+  };
+  /** Solo marketing: las tres piezas separadas, cada una con su alcance,
+      sus entregables y su plazo real. */
+  offer?: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    items: readonly {
+      icon: string;
+      title: string;
+      scope: string;
+      deliverablesLabel: string;
+      deliverables: readonly string[];
+      timelineLabel: string;
+      timeline: string;
+    }[];
+  };
+  /** Encabezado del formulario embebido de esta pagina, y la etiqueta del
+      boton principal del hero, que apunta a el. */
+  form: {
+    eyebrow: string;
+    ctaLabel: string;
+    titleA: string;
+    titleHighlight: string;
+    subtitle: string;
+    needLabel: string;
+    needOptions: readonly string[];
   };
   standards: {
     eyebrow: string;
@@ -144,7 +180,7 @@ export interface ServicesHub {
       forWho: string;
       price: string;
       cta: string;
-      href: "webDev" | "digitalMarketing" | "pricing";
+      href: "webDev" | "digitalMarketing" | "pricing" | "form";
       highlighted: boolean;
     }[];
     note: string;
@@ -156,6 +192,46 @@ export interface ServicesHub {
     subtitle: string;
     items: readonly { question: string; answer: string }[];
   };
+  form: {
+    eyebrow: string;
+    ctaLabel: string;
+    titleA: string;
+    titleHighlight: string;
+    subtitle: string;
+    needLabel: string;
+    needOptions: readonly string[];
+  };
+}
+
+/**
+ * Copy compartido del formulario corto que va dentro de cada pagina de
+ * servicio. El encabezado lo pone cada pagina (`form` de arriba); esto son
+ * las etiquetas, que no tienen por que cambiar entre paginas.
+ *
+ * Tres campos obligatorios y nada mas: nombre, WhatsApp y que necesita.
+ * Correo y mensaje quedan opcionales a proposito — quien apenas compara
+ * proveedores no deja tres datos de contacto para preguntar un precio.
+ */
+export interface LeadFormCopy {
+  fieldName: string;
+  phName: string;
+  fieldPhone: string;
+  phPhone: string;
+  fieldEmail: string;
+  phEmail: string;
+  fieldMessage: string;
+  phMessage: string;
+  optionalTag: string;
+  interestLabel: string;
+  submit: string;
+  sending: string;
+  success: string;
+  error: string;
+  perks: readonly string[];
+  altTitle: string;
+  altSchedule: string;
+  altWhatsapp: string;
+  privacy: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -250,8 +326,10 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
     priceLabel: "desde",
     price: "349",
     priceNote: "USD / mes · sin contratos de 12 meses",
-    timelineLabel: "primeros resultados",
+    timelineLabel: "primeras señales",
     timeline: "30 a 90 días",
+    timelineNote:
+      "en ficha de Google y anuncios · el SEO local madura de 3 a 6 meses",
     cta: "Ver marketing digital",
     imageBase: "/images/servicio-marketing-digital-es",
     imageAlt:
@@ -317,7 +395,7 @@ const webDevEs: ServiceDetail = {
   intro: {
     title: "Qué cambia un sitio hecho a la medida",
     lead:
-      "Una plantilla sale rápida y barata, y por eso carga lento y no trae SEO. El código a la medida hace lo contrario.",
+      "Una plantilla sale rápida y barata, y esa es su ventaja real. El código a la medida cuesta más al principio y te devuelve control: qué carga, qué mide y qué se puede cambiar después.",
     points: [
       { title: "Sin plantillas", text: "Astro y Tailwind, no un constructor visual." },
       { title: "Todo incluido", text: "SEO técnico y medición de origen, no como extra." },
@@ -405,14 +483,20 @@ const webDevEs: ServiceDetail = {
         highlighted: false,
       },
     ],
-    note: "Los precios de arriba son los reales, no un rango de referencia: es lo que pagas por el alcance descrito. Si tu proyecto se sale de ese alcance te lo digo antes de empezar, con el número exacto, nunca a mitad del trabajo. Después del lanzamiento puedes dejar el sitio como está o sumarle un plan de Soporte Web desde $79 USD al mes.",
+    itemCta: "Solicitar este proyecto",
+    note: "Los precios de arriba son los reales, no un rango de referencia: es lo que pagas por el alcance descrito. Si tu proyecto se sale de ese alcance te lo digo antes de empezar, con el número exacto, nunca a mitad del trabajo.",
     cta: "Ver todos los precios",
+    aside: {
+      title: "¿Y después del lanzamiento? El plan de Soporte Web, desde $79 USD al mes",
+      body: "Es opcional: puedes dejar el sitio como está y funcionar años sin pagar nada más. Si prefieres no ocuparte, ese plan mantiene la página rápida, respaldada y al día, incluye de tres a cuatro cambios menores al mes y te manda un reporte de contactos, llamadas y formularios. Es mantenimiento, no captación: no trae clientes nuevos, cuida los que ya llegan.",
+      cta: "Ver el plan de Soporte Web",
+    },
   },
   standards: {
     eyebrow: "// estándares técnicos",
     title: "Cómo se construye cada sitio",
     subtitle:
-      "Seis decisiones de desarrollo web profesional que se aplican en todos los proyectos. No son opcionales ni se cobran aparte: son la razón por la que salen páginas web rápidas y optimizadas donde una plantilla no llega.",
+      "Seis decisiones de desarrollo web profesional que se aplican en todos los proyectos. No son opcionales ni se cobran aparte: son la razón por la que salen páginas web rápidas y optimizadas, que se pueden medir desde el primer día.",
     items: [
       {
         icon: "zap",
@@ -510,6 +594,22 @@ const webDevEs: ServiceDetail = {
       },
     ],
   },
+  form: {
+    eyebrow: "// solicitar propuesta",
+    ctaLabel: "Solicitar propuesta para mi web",
+    titleA: "Cuéntame qué necesitas y te paso",
+    titleHighlight: "el alcance y el precio",
+    subtitle:
+      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con el alcance, el precio y la fecha de entrega para tu caso. Si tu proyecto no encaja conmigo, también te lo digo.",
+    needLabel: "Qué necesitas",
+    needOptions: [
+      "No tengo página y quiero una",
+      "Tengo página y quiero rehacerla",
+      "Necesito una landing para una campaña",
+      "Tengo un sitio y algo no funciona",
+      "Todavía estoy comparando opciones",
+    ],
+  },
   cross: {
     eyebrow: "// el otro servicio",
     title: "Ya tienes el sitio. Ahora hay que llenarlo de gente.",
@@ -531,10 +631,10 @@ const marketingEs: ServiceDetail = {
       "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y seguimiento automático. Planes desde $349 USD al mes.",
     keywords:
       "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, automatización de seguimiento, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
-    heroTitleA: "Marketing digital para negocios",
-    heroHighlight: "que venden servicios",
+    heroTitleA: "SEO local y marketing digital para que",
+    heroHighlight: "encuentren y contacten tu negocio",
     heroSubtitle:
-      "SEO local, Perfil de Empresa en Google, reseñas, campañas de Google Ads y Meta, y seguimiento automático de cada prospecto. Un solo responsable, precios publicados desde $349 USD al mes y un reporte mensual de contactos, llamadas y citas — sin contratos de 12 meses.",
+      "Tres piezas con alcance y plazo distintos: SEO local para que aparezcas cuando alguien busca tu servicio en tu ciudad, Google Ads para comprar visibilidad mientras el SEO madura, y seguimiento para que ningún mensaje se quede sin respuesta. Precios publicados desde $349 USD al mes, sin contratos de 12 meses.",
   },
   intro: {
     title: "Qué hace el marketing cuando el negocio ya funciona",
@@ -542,8 +642,67 @@ const marketingEs: ServiceDetail = {
       "No te falta publicidad: te falta ser la respuesta cuando alguien de tu ciudad busca tu servicio.",
     points: [
       { title: "Primero la ficha", text: "Google y reseñas deciden a quién llaman." },
-      { title: "Después el SEO", text: "Tarda meses en madurar, y luego deja de costar." },
+      { title: "Después el SEO", text: "Tarda de tres a seis meses y hay que sostenerlo." },
       { title: "Al final los anuncios", text: "Cuando ya hay a dónde mandar a la gente." },
+    ],
+  },
+  offer: {
+    eyebrow: "// la oferta, pieza por pieza",
+    title: "Tres trabajos distintos, con plazos distintos",
+    subtitle:
+      "Se venden juntos porque se refuerzan, pero no son lo mismo ni rinden al mismo ritmo. Esto es lo que hace cada uno, qué te entrego y en cuánto tiempo se nota.",
+    items: [
+      {
+        icon: "map-pin",
+        title: "SEO local",
+        scope:
+          "Que tu negocio aparezca cuando alguien de tu ciudad busca tu servicio, en los resultados y en el mapa. Se trabaja tu Perfil de Empresa en Google, las reseñas y las páginas del sitio por servicio y por zona.",
+        deliverablesLabel: "Qué entrego",
+        deliverables: [
+          "Perfil de Empresa en Google creado, verificado y optimizado",
+          "Sistema para pedir reseñas y respuesta a todas las que llegan",
+          "Páginas por servicio y por ciudad, escritas con contenido propio",
+          "Datos estructurados y arreglos técnicos del sitio",
+          "Posición en el mapa y reseñas nuevas, reportadas cada mes",
+        ],
+        timelineLabel: "Cuándo se nota",
+        timeline:
+          "La ficha y las reseñas mueven en semanas. El posicionamiento orgánico madura de 3 a 6 meses, y hay que sostenerlo: si se deja, se pierde terreno.",
+      },
+      {
+        icon: "megaphone",
+        title: "Google Ads",
+        scope:
+          "Comprar visibilidad mientras el SEO madura. Gestiono la campaña y la landing a la que llega la gente; el presupuesto de anuncios lo pagas tú directo a Google y no cobro comisión sobre él.",
+        deliverablesLabel: "Qué entrego",
+        deliverables: [
+          "Campaña armada por servicio y por zona, con palabras negativas",
+          "Landing page dedicada, con el mismo alcance y precio del anuncio",
+          "Medición de llamadas, formularios y citas atribuidas a la campaña",
+          "Ajuste mensual de pujas, anuncios y presupuesto",
+          "Reporte de costo por prospecto",
+        ],
+        timelineLabel: "Cuándo se nota",
+        timeline:
+          "Puede haber contactos en los primeros días, pero los primeros treinta son de calibración: ahí se descubre qué búsquedas valen la pena y cuánto cuesta cada contacto. Presupuesto aparte, desde $300 USD al mes.",
+      },
+      {
+        icon: "workflow",
+        title: "Seguimiento",
+        scope:
+          "Lo que pasa después de que alguien te escribe. Respuesta automática al primer mensaje, recordatorio a quien no contestó y un registro de cada prospecto para que no se pierda entre notificaciones.",
+        deliverablesLabel: "Qué entrego",
+        deliverables: [
+          "Respuesta inmediata a formularios y a WhatsApp",
+          "Recordatorio automático a quien no contestó",
+          "Registro de cada prospecto con su origen",
+          "Aviso a tu correo o a tu teléfono en cuanto entra uno",
+          "Reporte de contactos, llamadas y citas del mes",
+        ],
+        timelineLabel: "Cuándo se nota",
+        timeline:
+          "Desde la primera semana, porque no depende de Google. Lo que no hace es cerrar: la automatización contesta el primer mensaje, la venta sigue siendo tuya.",
+      },
     ],
   },
   capabilities: {
@@ -556,35 +715,18 @@ const marketingEs: ServiceDetail = {
     eyebrow: "// planes mensuales",
     title: "Planes de marketing digital con precio publicado",
     subtitle:
-      "Tres niveles de marketing digital para pymes, del mantenimiento básico al sistema completo de captación. Soporte Web y Crecimiento+ se cancelan de un mes a otro; el paquete completo pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo.",
+      "Dos planes de marketing digital para pymes, con lo que incluye cada uno y a qué ritmo trabaja. Crecimiento+ se cancela de un mes a otro; el paquete completo, que es el que incluye campañas de Google Ads, pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo para dar datos con los que decidir.",
     items: [
-      {
-        name: "Soporte Web",
-        pricePrefix: "desde",
-        price: "79",
-        currency: "USD / mes",
-        priceNote: "según el tamaño de tu sitio",
-        description:
-          "La base. Tu sitio rápido, seguro y actualizado, con un reporte mensual que te dice cómo trabajó tu página este mes.",
-        features: [
-          "Reporte mensual de contactos, llamadas y formularios",
-          "Monitoreo de disponibilidad y velocidad",
-          "Respaldo mensual y actualizaciones de seguridad",
-          "Hasta 3 o 4 cambios menores al mes",
-          "Una recomendación de mejora al mes, basada en tus números",
-        ],
-        highlighted: false,
-      },
       {
         name: "Crecimiento+",
         pricePrefix: "",
         price: "349",
         currency: "USD / mes",
-        priceNote: "incluye todo el Soporte Web",
+        priceNote: "incluye el mantenimiento del sitio",
         description:
-          "Que te encuentren, no solo que existas. Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA.",
+          "Que te encuentren, no solo que existas. Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA. Sin anuncios: aquí todavía no se compra tráfico.",
         features: [
-          "Todo lo del plan Soporte Web",
+          "Mantenimiento del sitio y reporte mensual incluidos",
           "Perfil de Empresa en Google creado, verificado y optimizado",
           "Publicaciones mensuales y servicios y horarios al día",
           "Gestión de reseñas: sistema para pedirlas y respuesta a todas",
@@ -610,7 +752,8 @@ const marketingEs: ServiceDetail = {
         highlighted: false,
       },
     ],
-    note: "Soporte Web y Crecimiento+ no tienen permanencia: subes, bajas o cancelas de un mes a otro. Web + Marketing + SEO pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
+    itemCta: "Solicitar este plan",
+    note: "Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Web + Marketing + SEO pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
     cta: "Ver todos los precios",
   },
   standards: {
@@ -686,7 +829,7 @@ const marketingEs: ServiceDetail = {
       {
         question: "¿En cuánto tiempo se ven resultados?",
         answer:
-          "Depende de la pieza. El Perfil de Empresa en Google y las reseñas mueven la aguja en semanas. Los anuncios traen contactos desde el primer día, aunque los primeros treinta días son de ajuste. El SEO local tarda de tres a seis meses en madurar, y por eso el paquete completo pide un mínimo de tres meses: antes de eso todavía estamos calibrando.",
+          "Depende de la pieza, y por eso el sitio da dos plazos distintos. El Perfil de Empresa en Google y las reseñas suelen moverse en semanas. Los anuncios pueden traer contactos en los primeros días —no está garantizado y depende de tu giro, tu zona y tu presupuesto—, y los primeros treinta días son de calibración. El SEO local tarda de tres a seis meses en madurar. Cuando el sitio dice «primeras señales en 30 a 90 días» se refiere a lo primero; el rango de tres a seis meses es el del posicionamiento orgánico.",
       },
       {
         question: "¿Cuánto debo invertir en anuncios?",
@@ -711,8 +854,24 @@ const marketingEs: ServiceDetail = {
       {
         question: "¿Y la búsqueda con inteligencia artificial?",
         answer:
-          "Cada vez más gente pregunta por un servicio en ChatGPT o en la respuesta con IA de Google en vez de revisar diez enlaces. Para salir ahí hace falta que tu negocio, tus servicios y tu zona estén escritos en un formato que esas herramientas puedan leer: datos estructurados, un archivo llms.txt y contenido que responda preguntas reales. Va incluido desde el plan Crecimiento+.",
+          "Cada vez más gente pregunta por un servicio en ChatGPT o en la respuesta con IA de Google en vez de revisar diez enlaces. Lo que sí ayuda es que tu negocio, tus servicios y tu zona estén escritos en un formato que esas herramientas puedan leer: datos estructurados, contenido que responda preguntas reales y una ficha de Google al día. También publico un archivo llms.txt, aunque conviene decirlo claro: Google ha declarado que ese archivo no influye en su buscador ni es requisito para sus funciones con IA. Todo esto va incluido desde el plan Crecimiento+.",
       },
+    ],
+  },
+  form: {
+    eyebrow: "// diagnóstico de captación",
+    ctaLabel: "Solicitar diagnóstico de captación",
+    titleA: "Dime qué vendes y dónde, y te digo",
+    titleHighlight: "qué te falta para captar",
+    subtitle:
+      "Reviso qué encuentra hoy un cliente que busca tu servicio en tu ciudad: tu ficha de Google, tus reseñas, quién sale antes que tú y qué pieza falta. Te contesto por WhatsApp en menos de 24 horas.",
+    needLabel: "Qué necesitas",
+    needOptions: [
+      "No aparezco cuando buscan mi servicio",
+      "Mi ficha de Google está incompleta o sin reseñas",
+      "Quiero empezar con anuncios",
+      "Me llegan mensajes y se me van sin contestar",
+      "Todavía estoy comparando opciones",
     ],
   },
   cross: {
@@ -731,17 +890,17 @@ const marketingEs: ServiceDetail = {
 
 const hubEs: ServicesHub = {
   linesEyebrow: "// dos servicios, un sistema",
-  linesTitleA: "Diseño web y marketing digital",
-  linesTitleHighlight: "en un mismo sistema",
+  linesTitleA: "Qué obtienes al contratar",
+  linesTitleHighlight: "cada servicio",
   linesSubtitle:
-    "Servicios de desarrollo web y marketing digital, nada más. Una agencia de diseño web y marketing digital no necesita una lista de veinte servicios: nadie hace veinte cosas bien. Hay dos líneas de trabajo, y la segunda existe para multiplicar lo que hace la primera.",
+    "Alcance, precio y plazo de cada línea, con lo que queda a tu nombre al terminar. ProCode Dev funciona a la vez como agencia de desarrollo web y como agencia de marketing digital, para negocios que atienden en español y en inglés en Estados Unidos y en México.",
   capabilitiesLabel: "Qué incluye",
   compare: {
     eyebrow: "// por dónde empiezo",
-    titleA: "¿Cuál de los dos necesitas",
-    titleHighlight: "primero?",
+    titleA: "¿Cuál de los dos",
+    titleHighlight: "necesitas?",
     subtitle:
-      "La respuesta casi siempre depende de una sola cosa: si ya te encuentran y no te contratan, o si no te encuentran en absoluto. Estos son los tres caminos que existen.",
+      "Lo que buscas en una agencia de diseño web y marketing digital casi siempre se reduce a una sola cosa: si ya te encuentran y no te contratan, o si no te encuentran en absoluto. Y si no lo tienes claro, la tercera opción es la que más se usa.",
     columns: [
       {
         badge: "Camino 1",
@@ -765,16 +924,16 @@ const hubEs: ServicesHub = {
       },
       {
         badge: "Camino 3",
-        title: "Los dos, como un sistema",
-        body: "Sitio nuevo, captación, anuncios, contenido y seguimiento trabajando juntos, con un reporte mensual de costo por prospecto y por cliente cerrado. Es el paquete Web + Marketing + SEO, y pide un mínimo de tres meses porque antes de eso todavía se está calibrando.",
-        forWho: "Para el negocio que quiere dejar de depender de las recomendaciones.",
-        price: "desde $1,100 USD al mes",
-        cta: "Ver precios completos",
-        href: "pricing",
+        title: "Ayúdame a elegir",
+        body: "No siempre es obvio, y elegir mal cuesta meses. Dime en una línea qué vendes y qué está pasando hoy —nadie te encuentra, entra gente y no escribe, o vas a empezar de cero— y te contesto con cuál de los dos te conviene primero, incluso si la respuesta es que todavía no necesitas contratarme.",
+        forWho: "Para quien está comparando y no quiere agendar una llamada todavía.",
+        price: "respuesta por WhatsApp en menos de 24 h",
+        cta: "Quiero una recomendación",
+        href: "form",
         highlighted: false,
       },
     ],
-    note: "Si no sabes en cuál estás, no adivines: agenda la Revisión Express y te grabo un vídeo de tres minutos con lo que encontré al buscar tu servicio en tu ciudad. Es gratis y te lo digo aunque la respuesta sea que no necesitas contratarme todavía.",
+    note: "Los dos juntos existen como paquete —Web + Marketing + SEO, desde $1,100 USD al mes, con mínimo de tres meses— pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: reviso qué encuentra un cliente al buscar tu servicio en tu ciudad y te lo grabo en un vídeo de tres minutos.",
   },
   faq: {
     eyebrow: "// dudas frecuentes",
@@ -784,9 +943,9 @@ const hubEs: ServicesHub = {
       "Las preguntas que salen cuando alguien compara agencias de diseño web y de marketing digital.",
     items: [
       {
-        question: "¿Por qué solo dos servicios y no una lista larga?",
+        question: "¿Cuál de los dos necesito y qué obtengo al contratarlo?",
         answer:
-          "Porque una lista de veinte servicios es una promesa que nadie puede cumplir con la misma calidad. ProCode Dev es a la vez una agencia de desarrollo web y una agencia de marketing digital, y todo lo demás — SEO local, formularios, automatización, reseñas, analítica, optimización para búsqueda con IA — vive dentro de uno de esos dos como parte del trabajo, no como un extra que se cotiza aparte.",
+          "Si no tienes página, la tienes hecha en un constructor o entra gente y no te escribe nadie, necesitas desarrollo web, y para eso esto es una empresa de diseño de páginas web: obtienes un sitio programado a la medida, con una página por servicio, formularios y WhatsApp conectados y la medición puesta, entregado en dos a cuatro semanas y a tu nombre. Si tu página ya convierte pero llega poca gente, necesitas marketing digital: obtienes tu Perfil de Empresa en Google trabajado, reseñas, SEO local por ciudad y servicio, campañas si las hay y un reporte mensual de contactos, llamadas y citas. Todo lo demás —formularios, automatización, analítica, optimización para búsqueda con IA— vive dentro de uno de esos dos, no se cotiza aparte.",
       },
       {
         question: "¿Tengo que contratar los dos?",
@@ -808,6 +967,22 @@ const hubEs: ServicesHub = {
         answer:
           "El punto de entrada es la Revisión Express, que es gratis: reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, te lo grabo en un vídeo de tres minutos y después lo comentamos quince minutos por llamada. De ahí, una landing page cuesta $349 USD y el plan mensual más elegido son $349 USD al mes.",
       },
+    ],
+  },
+  form: {
+    eyebrow: "// recomendación para tu negocio",
+    ctaLabel: "Quiero una recomendación para mi negocio",
+    titleA: "Dime qué vendes y te digo",
+    titleHighlight: "cuál de los dos necesitas",
+    subtitle:
+      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con cuál de los dos servicios te conviene primero, qué incluye y cuánto cuesta en tu caso. Si la respuesta es que todavía no necesitas contratarme, también te lo digo.",
+    needLabel: "Qué está pasando hoy",
+    needOptions: [
+      "No tengo página y quiero una",
+      "Tengo página pero nadie me escribe",
+      "No aparezco cuando buscan mi servicio",
+      "Quiero las dos cosas: sitio y captación",
+      "Todavía estoy comparando opciones",
     ],
   },
 };
@@ -906,8 +1081,10 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
     priceLabel: "from",
     price: "349",
     priceNote: "USD / month · no 12-month contracts",
-    timelineLabel: "first results",
+    timelineLabel: "first signals",
     timeline: "30 to 90 days",
+    timelineNote:
+      "on Google profile and ads · local SEO matures in 3 to 6 months",
     cta: "See digital marketing",
     imageBase: "/images/servicio-marketing-digital-en",
     imageAlt:
@@ -968,7 +1145,7 @@ const webDevEn: ServiceDetail = {
   intro: {
     title: "What a custom-built site changes",
     lead:
-      "A template ships fast and cheap, which is why it loads slowly and carries no SEO. Custom code does the opposite.",
+      "A template ships fast and cheap, and that is a real advantage. Custom code costs more up front and gives you control back: what loads, what gets measured, and what can change later.",
     points: [
       { title: "No templates", text: "Astro and Tailwind, not a visual builder." },
       { title: "Included from day one", text: "Technical SEO and measurement, never an add-on." },
@@ -1056,8 +1233,14 @@ const webDevEn: ServiceDetail = {
         highlighted: false,
       },
     ],
-    note: "These are real prices, not a reference range: it is what you pay for the scope described. If your project falls outside that scope I tell you before we start, with the exact number, never halfway through. After launch you can leave the site as it is or add a Web Support plan from $79 USD a month.",
+    itemCta: "Request this project",
+    note: "These are real prices, not a reference range: it is what you pay for the scope described. If your project falls outside that scope I tell you before we start, with the exact number, never halfway through.",
     cta: "See full pricing",
+    aside: {
+      title: "And after launch? The Web Support plan, from $79 USD a month",
+      body: "It is optional: you can leave the site as it is and run for years without paying anything more. If you would rather not deal with it, that plan keeps the page fast, backed up and current, includes three to four minor changes a month and sends you a report of contacts, calls and forms. It is upkeep, not lead generation: it does not bring new clients, it looks after the ones already arriving.",
+      cta: "See the Web Support plan",
+    },
   },
   standards: {
     eyebrow: "// technical standards",
@@ -1161,6 +1344,22 @@ const webDevEn: ServiceDetail = {
       },
     ],
   },
+  form: {
+    eyebrow: "// request a proposal",
+    ctaLabel: "Request a proposal for my site",
+    titleA: "Tell me what you need and I'll send back",
+    titleHighlight: "the scope and the price",
+    subtitle:
+      "Three fields, nothing else. I reply on WhatsApp in under 24 hours with the scope, the price and the delivery date for your case. If your project is not a fit for me, I'll tell you that too.",
+    needLabel: "What you need",
+    needOptions: [
+      "I have no website and I want one",
+      "I have a site and want it rebuilt",
+      "I need a landing page for a campaign",
+      "I have a site and something is not working",
+      "I am still comparing options",
+    ],
+  },
   cross: {
     eyebrow: "// the other service",
     title: "The site is live. Now it needs people on it.",
@@ -1177,10 +1376,10 @@ const marketingEn: ServiceDetail = {
       "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and follow-up automation. Plans from $349 USD a month.",
     keywords:
       "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing automation, marketing reporting, local SEO for small businesses",
-    heroTitleA: "Digital marketing for small businesses",
-    heroHighlight: "that sell services",
+    heroTitleA: "Local SEO and digital marketing so people",
+    heroHighlight: "find and contact your business",
     heroSubtitle:
-      "Local SEO, Google Business Profile, reviews, Google Ads and Meta campaigns, and automated follow-up on every lead. One person responsible, published pricing from $349 USD a month, and a monthly report of contacts, calls and bookings — with no 12-month contracts.",
+      "Three jobs with different scopes and different timelines: local SEO so you show up when someone in your city searches your service, Google Ads to buy visibility while SEO matures, and follow-up so no message goes unanswered. Published pricing from $349 USD a month, no 12-month contracts.",
   },
   intro: {
     title: "What marketing does once the business runs",
@@ -1188,8 +1387,67 @@ const marketingEn: ServiceDetail = {
       "You are not short on advertising. You are missing from the answer when someone nearby searches for your service.",
     points: [
       { title: "Profile first", text: "Google and reviews decide who gets called." },
-      { title: "Then SEO", text: "Months to mature, then it stops costing money." },
+      { title: "Then SEO", text: "Three to six months to mature, and it needs upkeep." },
       { title: "Ads last", text: "Once there is somewhere worth sending people." },
+    ],
+  },
+  offer: {
+    eyebrow: "// the offer, piece by piece",
+    title: "Three different jobs, on three different clocks",
+    subtitle:
+      "They are sold together because they reinforce each other, but they are not the same work and they do not pay off at the same speed. Here is what each one does, what you get, and when it shows.",
+    items: [
+      {
+        icon: "map-pin",
+        title: "Local SEO",
+        scope:
+          "Showing up when someone in your city searches for your service, in the results and on the map. That means your Google Business Profile, your reviews, and pages on your site by service and by area.",
+        deliverablesLabel: "What you get",
+        deliverables: [
+          "Google Business Profile created, verified and optimized",
+          "A system to ask for reviews, and replies to every one that lands",
+          "Pages by service and by city, written with original content",
+          "Structured data and technical fixes on the site",
+          "Map position and new reviews, reported every month",
+        ],
+        timelineLabel: "When it shows",
+        timeline:
+          "The profile and reviews move within weeks. Organic ranking matures over three to six months, and it needs upkeep: drop it and you lose ground.",
+      },
+      {
+        icon: "megaphone",
+        title: "Google Ads",
+        scope:
+          "Buying visibility while SEO matures. I manage the campaign and the landing page people arrive on; the ad budget you pay directly to Google, and I take no commission on it.",
+        deliverablesLabel: "What you get",
+        deliverables: [
+          "Campaign built by service and area, with negative keywords",
+          "A dedicated landing page matching the ad's scope and price",
+          "Calls, forms and bookings attributed to the campaign",
+          "Monthly adjustment of bids, ads and budget",
+          "Cost-per-lead reporting",
+        ],
+        timelineLabel: "When it shows",
+        timeline:
+          "There can be contacts in the first few days, but the first thirty are calibration: that is when you find out which searches are worth it and what a contact actually costs. Ad budget separate, from $300 USD a month.",
+      },
+      {
+        icon: "workflow",
+        title: "Follow-up",
+        scope:
+          "What happens after someone writes to you. An automatic reply to the first message, a reminder to whoever went quiet, and a record of every lead so none of them gets lost in notifications.",
+        deliverablesLabel: "What you get",
+        deliverables: [
+          "Instant reply to forms and to WhatsApp",
+          "Automatic reminder to whoever did not answer",
+          "A record of every lead with where it came from",
+          "An alert to your email or phone the moment one lands",
+          "Monthly report of contacts, calls and bookings",
+        ],
+        timelineLabel: "When it shows",
+        timeline:
+          "From the first week, because it does not depend on Google. What it does not do is close: automation answers the first message, the sale is still yours.",
+      },
     ],
   },
   capabilities: {
@@ -1202,35 +1460,18 @@ const marketingEn: ServiceDetail = {
     eyebrow: "// monthly plans",
     title: "Digital marketing plans with published pricing",
     subtitle:
-      "Three levels, from basic upkeep to the full lead system. Web Support and Growth+ cancel month to month; the full package asks for a three-month minimum because ads and SEO need that long.",
+      "Two lead-generation plans, what each one includes and how fast it works. Growth+ cancels month to month; the full package asks for a three-month minimum because ads and SEO need that long to produce numbers worth deciding on.",
     items: [
-      {
-        name: "Web Support",
-        pricePrefix: "from",
-        price: "79",
-        currency: "USD / mo",
-        priceNote: "depends on site size",
-        description:
-          "The base. Your site fast, secure and up to date, with a monthly report telling you how your page performed.",
-        features: [
-          "Monthly report of contacts, calls and forms",
-          "Uptime and speed monitoring",
-          "Monthly backup and security updates",
-          "Up to 3 or 4 minor changes a month",
-          "One improvement recommendation a month, based on your numbers",
-        ],
-        highlighted: false,
-      },
       {
         name: "Growth+",
         pricePrefix: "",
         price: "349",
         currency: "USD / mo",
-        priceNote: "includes all of Web Support",
+        priceNote: "site upkeep included",
         description:
-          "Getting found, not just existing. Google Business Profile, reviews, local SEO and visibility in AI search.",
+          "Getting found, not just existing. Google Business Profile, reviews, local SEO and visibility in AI search. No ads: this plan does not buy traffic yet.",
         features: [
-          "Everything in Web Support",
+          "Site upkeep and the monthly report included",
           "Google Business Profile created, verified and optimized",
           "Monthly posts, services and hours kept current",
           "Review management: a system to ask, and replies to all of them",
@@ -1256,7 +1497,8 @@ const marketingEn: ServiceDetail = {
         highlighted: false,
       },
     ],
-    note: "Web Support and Growth+ have no lock-in: move up, move down or cancel month to month. Web + Marketing + SEO asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
+    itemCta: "Request this plan",
+    note: "Growth+ has no lock-in: move up, move down or cancel month to month. Web + Marketing + SEO asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
     cta: "See full pricing",
   },
   standards: {
@@ -1332,7 +1574,7 @@ const marketingEn: ServiceDetail = {
       {
         question: "How long until I see results?",
         answer:
-          "It depends on the piece. Google Business Profile and reviews move within weeks. Ads bring contacts from day one, though the first thirty days are calibration. Local SEO takes three to six months to mature, which is why the full package asks for a three-month minimum: before that we are still tuning.",
+          "It depends on the piece, which is why the site quotes two different timelines. Google Business Profile and reviews usually move within weeks. Ads can bring contacts in the first few days — not guaranteed, and it depends on your trade, your area and your budget — and the first thirty days are calibration. Local SEO takes three to six months to mature. When the site says «first signals in 30 to 90 days» it means the former; the three-to-six-month range is organic ranking.",
       },
       {
         question: "How much should I spend on ads?",
@@ -1357,8 +1599,24 @@ const marketingEn: ServiceDetail = {
       {
         question: "What about AI search?",
         answer:
-          "More and more people ask ChatGPT or Google's AI answer about a service instead of scanning ten links. Showing up there requires your business, services and service area to be written in a format those tools can read: structured data, an llms.txt file and content that answers real questions. It is included from the Growth+ plan up.",
+          "More and more people ask ChatGPT or Google's AI answer about a service instead of scanning ten links. What does help is having your business, services and service area written in a format those tools can read: structured data, content that answers real questions, and a current Google profile. I also publish an llms.txt file, though it is worth saying plainly: Google has stated that this file does not influence its search results and is not required for its AI features. All of it is included from the Growth+ plan up.",
       },
+    ],
+  },
+  form: {
+    eyebrow: "// lead diagnosis",
+    ctaLabel: "Request a lead diagnosis",
+    titleA: "Tell me what you sell and where, and I'll tell you",
+    titleHighlight: "what is missing",
+    subtitle:
+      "I look at what a client finds today when they search your service in your city: your Google profile, your reviews, who ranks above you and which piece is missing. I reply on WhatsApp in under 24 hours.",
+    needLabel: "What you need",
+    needOptions: [
+      "I do not show up when people search my service",
+      "My Google profile is thin or has no reviews",
+      "I want to start running ads",
+      "Messages come in and I lose them",
+      "I am still comparing options",
     ],
   },
   cross: {
@@ -1372,17 +1630,17 @@ const marketingEn: ServiceDetail = {
 
 const hubEn: ServicesHub = {
   linesEyebrow: "// two services, one system",
-  linesTitleA: "Web design and digital marketing",
-  linesTitleHighlight: "as one system",
+  linesTitleA: "What you get when you hire",
+  linesTitleHighlight: "each service",
   linesSubtitle:
-    "Web development and digital marketing services, and nothing else. There is no list of twenty because nobody does twenty things well: there are two lines of work, and the second exists to multiply what the first one does.",
+    "Scope, price and timeline for each line, and what stays in your name when it is done. ProCode Dev works as a web design agency and a digital marketing agency at once, for businesses serving clients in English and Spanish across the United States and Mexico.",
   capabilitiesLabel: "What is included",
   compare: {
     eyebrow: "// where do I start",
-    titleA: "Which of the two do you need",
-    titleHighlight: "first?",
+    titleA: "Which of the two",
+    titleHighlight: "do you need?",
     subtitle:
-      "The answer almost always comes down to one thing: whether people find you and do not hire you, or do not find you at all. These are the three paths.",
+      "What you want from a website design company for small business almost always comes down to one thing: whether people find you and do not hire you, or do not find you at all. And if that is not clear yet, the third option is the one most people use.",
     columns: [
       {
         badge: "Path 1",
@@ -1406,16 +1664,16 @@ const hubEn: ServicesHub = {
       },
       {
         badge: "Path 3",
-        title: "Both, as one system",
-        body: "New site, lead capture, ads, content and follow-up working together, with a monthly report on cost per lead and per closed client. That is the Web + Marketing + SEO package, and it asks for a three-month minimum because before that we are still calibrating.",
-        forWho: "For the business ready to stop depending on referrals.",
-        price: "from $1,100 USD a month",
-        cta: "See full pricing",
-        href: "pricing",
+        title: "Help me choose",
+        body: "It is not always obvious, and choosing wrong costs months. Tell me in one line what you sell and what is happening now — nobody finds you, people land and never write, or you are starting from zero — and I'll come back with which of the two you need first, even if the answer is that you do not need to hire me yet.",
+        forWho: "For anyone comparing options who is not ready to book a call.",
+        price: "a WhatsApp reply in under 24 hours",
+        cta: "Get a recommendation",
+        href: "form",
         highlighted: false,
       },
     ],
-    note: "If you do not know which one you are in, do not guess: book the Express Review and I will record a three-minute video with what I found when I searched for your service in your city. It is free, and I will tell you even if the answer is that you do not need to hire me yet.",
+    note: "The two together do exist as a package — Web + Marketing + SEO, from $1,100 USD a month, with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: I look at what a client finds when they search your service in your city and record it as a three-minute video.",
   },
   faq: {
     eyebrow: "// common questions",
@@ -1425,9 +1683,9 @@ const hubEn: ServicesHub = {
       "The questions that come up when someone is comparing web design and digital marketing agencies.",
     items: [
       {
-        question: "Why only two services instead of a long list?",
+        question: "Which of the two do I need, and what do I get for it?",
         answer:
-          "Because a list of twenty services is a promise nobody keeps at the same quality. ProCode Dev is a web design agency and a digital marketing agency at once, offering small business digital marketing services alongside development, and everything else — local SEO, forms, automation, reviews, analytics, AI search optimization — lives inside one of those two as part of the work, not as an add-on quoted separately.",
+          "If you have no website, yours was made in a page builder, or people land and nobody writes, you need web development: you get a custom-coded site with a page per service, forms and WhatsApp wired up and measurement in place, delivered in two to four weeks and registered in your name. If your page already converts but few people reach it, you need small business digital marketing services: you get your Google Business Profile worked on, reviews, local SEO by city and service, campaigns if you run them, and a monthly report of contacts, calls and bookings. Everything else — forms, automation, analytics, AI search optimization — lives inside one of those two, never quoted separately.",
       },
       {
         question: "Do I have to buy both?",
@@ -1451,6 +1709,22 @@ const hubEn: ServicesHub = {
       },
     ],
   },
+  form: {
+    eyebrow: "// a recommendation for your business",
+    ctaLabel: "Get a recommendation for my business",
+    titleA: "Tell me what you sell and I'll tell you",
+    titleHighlight: "which of the two you need",
+    subtitle:
+      "Three fields, nothing else. I reply on WhatsApp in under 24 hours with which of the two services you need first, what it includes and what it costs in your case. If the answer is that you do not need to hire me yet, I'll say that too.",
+    needLabel: "What is happening now",
+    needOptions: [
+      "I have no website and I want one",
+      "I have a site but nobody writes to me",
+      "I do not show up when people search my service",
+      "I want both: a site and lead generation",
+      "I am still comparing options",
+    ],
+  },
 };
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1470,4 +1744,76 @@ export const serviceDetails: Record<"es" | "en", Record<ServiceKey, ServiceDetai
 export const servicesHub: Record<"es" | "en", ServicesHub> = {
   es: hubEs,
   en: hubEn,
+};
+
+// ═══════════════════════════════════════════════════════════════════════
+// FORMULARIO CORTO DE LAS PÁGINAS DE SERVICIO
+//
+// El formulario de /contacto pide nombre, teléfono y correo obligatorios.
+// Está bien para quien ya decidió; es demasiado para quien está comparando
+// proveedores y solo quiere saber un precio. Este pide tres cosas —nombre,
+// WhatsApp y qué necesita— y deja correo y mensaje opcionales.
+//
+// Va dentro de cada página de servicio, así que el visitante no tiene que
+// salir a /contacto justo cuando estaba decidiendo.
+// ═══════════════════════════════════════════════════════════════════════
+
+export const leadForm: Record<"es" | "en", LeadFormCopy> = {
+  es: {
+    fieldName: "Nombre",
+    phName: "Ej: María González",
+    fieldPhone: "WhatsApp",
+    phPhone: "614 123 4567",
+    fieldEmail: "Correo",
+    phEmail: "maria@minegocio.com",
+    fieldMessage: "Algo más que deba saber",
+    phMessage:
+      "Ej: tengo un consultorio dental en Houston y quiero que los pacientes agenden solos.",
+    optionalTag: "opcional",
+    interestLabel: "Te interesa",
+    submit: "Enviar y recibir respuesta",
+    sending: "Enviando…",
+    success:
+      "Listo. Te escribo por WhatsApp en menos de 24 horas con el alcance y el precio para tu caso.",
+    error:
+      "No se pudo enviar. Escríbeme por WhatsApp y te atiendo igual de rápido.",
+    perks: [
+      "Respuesta en menos de 24 horas, por WhatsApp",
+      "Te contesto yo, no un ejecutivo de cuenta",
+      "Sin costo y sin llamada de ventas para conocer el precio",
+    ],
+    altTitle: "¿Prefieres otra vía?",
+    altSchedule: "Agendar la Revisión Express",
+    altWhatsapp: "Escribir por WhatsApp",
+    privacy:
+      "Uso tus datos solo para contestarte. Nada de listas de correo ni de compartirlos con terceros.",
+  },
+  en: {
+    fieldName: "Name",
+    phName: "Ex: Maria Gonzalez",
+    fieldPhone: "WhatsApp",
+    phPhone: "(614) 123-4567",
+    fieldEmail: "Email",
+    phEmail: "maria@mybusiness.com",
+    fieldMessage: "Anything else I should know",
+    phMessage:
+      "Ex: I run a dental practice in Houston and I want patients to book themselves.",
+    optionalTag: "optional",
+    interestLabel: "You are interested in",
+    submit: "Send and get a reply",
+    sending: "Sending…",
+    success:
+      "Done. I'll message you on WhatsApp within 24 hours with the scope and the price for your case.",
+    error: "That did not send. Message me on WhatsApp and I'll reply just as fast.",
+    perks: [
+      "A reply in under 24 hours, on WhatsApp",
+      "You get me, not an account executive",
+      "No cost and no sales call needed to see the price",
+    ],
+    altTitle: "Prefer another way?",
+    altSchedule: "Book the Express Review",
+    altWhatsapp: "Message me on WhatsApp",
+    privacy:
+      "I use your details only to reply. No mailing lists and nothing shared with third parties.",
+  },
 };

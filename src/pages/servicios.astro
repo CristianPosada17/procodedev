@@ -6,16 +6,25 @@
   Intención que persigue: "servicios de desarrollo web y marketing digital".
   El home se queda con "diseño de páginas web para negocios" y cada hija con
   la suya, así que las tres no compiten entre ellas.
+
+  Reestructurado en septiembre de 2026: el bloque de entrada ya no solo
+  explica la oferta, ahora ofrece un camino («quiero una recomendación») sin
+  salir de la página; los tres caminos van antes que el detalle de cada
+  línea, porque la duda real de quien llega aquí es cuál de los dos necesita;
+  el portafolio entra como prueba; y el formulario corto cierra la página.
+  Salieron `Integrations` y `WhyProCode`: el espacio que se iba en justificar
+  por qué solo hay dos servicios ahora contesta «cuál necesito y qué obtengo».
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import PageHero from "../components/PageHero.astro";
-import ServiceLines from "../components/ServiceLines.astro";
 import ServiceCompare from "../components/ServiceCompare.astro";
+import ServiceLines from "../components/ServiceLines.astro";
+import AuditCallout from "../components/AuditCallout.astro";
+import Portfolio from "../components/Portfolio.astro";
 import Process from "../components/Process.astro";
-import Integrations from "../components/Integrations.astro";
-import WhyProCode from "../components/WhyProCode.astro";
 import FAQ from "../components/FAQ.astro";
+import ServiceLeadForm from "../components/ServiceLeadForm.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import Footer from "../components/Footer.astro";
 import { translations, PAGES } from "../i18n/ui";
@@ -61,19 +70,41 @@ const offerCatalog = SERVICE_KEYS.flatMap((key) =>
 >
   <Header lang={lang} page="services" />
   <main>
+    {/* Propuesta de valor y, en el mismo bloque, la forma de pedir ayuda. */}
     <PageHero
       lang={lang}
       eyebrow={t.services.eyebrow}
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
+      ctaLabel={hub.form.ctaLabel}
+      ctaHref="#solicitar"
+      ctaId="hub-servicios-solicitar"
+      ctaSecondaryLabel={t.common.ctaPrimary}
+      ctaSecondaryHref={PAGES.contact[lang]}
     />
-    <ServiceLines lang={lang} variant="hub" />
+
+    {/* Primero cuál necesitas (con «ayúdame a elegir» como tercer camino),
+        después qué obtienes con cada uno. */}
     <ServiceCompare lang={lang} />
+
+    {/* La tercera salida para quien sigue sin saber cuál necesita: el
+        formulario de abajo es la gratuita, esta es la de pago. */}
+    <AuditCallout lang={lang} />
+
+    <ServiceLines lang={lang} variant="hub" />
+
+    {/* Prueba antes que proceso: proyectos reales que se pueden abrir. */}
+    <Portfolio lang={lang} />
     <Process lang={lang} />
-    <Integrations lang={lang} />
-    <WhyProCode lang={lang} />
     <FAQ lang={lang} data={hub.faq} />
+
+    <ServiceLeadForm
+      lang={lang}
+      heading={hub.form}
+      service="Desarrollo web y marketing digital para negocios"
+      page="services"
+    />
     <FinalCTA lang={lang} />
   </main>
   <Footer lang={lang} />

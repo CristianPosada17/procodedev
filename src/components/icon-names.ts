@@ -47,6 +47,7 @@ export type IconName =
   | "lock"
   | "cpu"
   | "diamond"
+  | "info"
   | "handshake"
   | "route"
   | "megaphone"

@@ -9,6 +9,7 @@ import {
 } from "../i18n/ui";
 import { segments } from "../i18n/segments";
 import { serviceLines, SERVICE_KEYS } from "../i18n/services";
+import { audit } from "../i18n/audit";
 import { markets, MARKET_KEYS } from "../i18n/markets";
 import Icon from "./Icon.astro";
 
@@ -37,14 +38,26 @@ const sectorsActive = page === "sectors" || segmentKeys.includes(page);
 // Desde la especialización en dos servicios, «Servicios» también es un
 // desplegable: el enlace sigue llevando al hub, y el menú da acceso directo
 // a las dos páginas hijas, que es donde está la intención de búsqueda.
-const serviceItems = SERVICE_KEYS.map((key) => ({
-  key,
-  href: PAGES[key][lang],
-  label: serviceLines[lang][key].navLabel,
-  hint: serviceLines[lang][key].navHint,
-  icon: serviceLines[lang][key].icon,
-}));
-const serviceKeys = SERVICE_KEYS as readonly string[];
+const serviceItems = [
+  ...SERVICE_KEYS.map((key) => ({
+    key: key as string,
+    href: PAGES[key][lang],
+    label: serviceLines[lang][key].navLabel,
+    hint: serviceLines[lang][key].navHint,
+    icon: serviceLines[lang][key].icon,
+  })),
+  // La Auditoría Digital va al final y NO sale de SERVICE_KEYS: no es una
+  // tercera línea de servicio, es el producto de entrada de pago que lleva
+  // a una de las dos (o a ninguna). Ver src/i18n/audit.ts.
+  {
+    key: "audit" as string,
+    href: PAGES.audit[lang],
+    label: audit[lang].navLabel,
+    hint: audit[lang].navHint,
+    icon: "clipboard-check",
+  },
+];
+const serviceKeys = [...SERVICE_KEYS, "audit"] as readonly string[];
 const servicesActive = page === "services" || serviceKeys.includes(page);
 
 // Mercados: mismo patrón que servicios y giros. El enlace del disparador va

@@ -1,6 +1,7 @@
 ---
 import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
 import { serviceLines, SERVICE_KEYS } from "../i18n/services";
+import { audit } from "../i18n/audit";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -29,10 +30,14 @@ const socials = [
   { label: "Facebook", icon: "facebook" as const, href: CONTACT.facebook },
 ];
 
-const serviceLinks = SERVICE_KEYS.map((key) => ({
-  href: PAGES[key][lang],
-  label: serviceLines[lang][key].title,
-}));
+const serviceLinks = [
+  ...SERVICE_KEYS.map((key) => ({
+    href: PAGES[key][lang],
+    label: serviceLines[lang][key].title,
+  })),
+  // Producto de entrada, no tercera línea: ver src/i18n/audit.ts.
+  { href: PAGES.audit[lang], label: audit[lang].navLabel },
+];
 
 ---
 

@@ -16,9 +16,11 @@ const meta = t.pageMeta.contact;
   Hallazgo #2 (crítico): ~40 CTAs del sitio dicen «Agendar llamada gratis» y
   apuntan aquí, pero el calendario estaba en y=2272 de una página de 5069px
   móvil — 2.8 pantallas de scroll entre la promesa y su cumplimiento.
-  Ahora el Calendly es el primer bloque tras el hero y el formulario queda
-  colapsado debajo. También sale el FinalCTA: mandaba a /contacto desde
-  /contacto.
+  Septiembre de 2026: el calendario dejó de ir primero. Agendar una llamada
+  es el paso más caro para quien todavía está comparando proveedores, así
+  que ahora abre el formulario corto —abierto, no colapsado— y el Calendly
+  va justo debajo, con su propio encabezado, para quien prefiera hablar.
+  Sigue sin haber FinalCTA: mandaba a /contacto desde /contacto.
 -->
 <Layout lang={lang} page="contact" title={meta.title} description={meta.description} keywords={meta.keywords}
   breadcrumbs={[
@@ -34,8 +36,8 @@ const meta = t.pageMeta.contact;
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
     />
-    <Calendly lang={lang} showHeading={false} />
     <Contact lang={lang} />
+    <Calendly lang={lang} />
   </main>
   <Footer lang={lang} />
 </Layout>

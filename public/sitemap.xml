@@ -68,6 +68,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/marketing-digital/" />
   </url>
   <url>
+    <loc>https://procodedev.com/servicios/auditoria/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/auditoria/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/auditoria/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/services/audit/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/servicios/auditoria/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/services/audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/servicios/auditoria/" />
+  </url>
+  <url>
     <loc>https://procodedev.com/diseno-web-estados-unidos/</loc>
     <lastmod>2026-09-07</lastmod>
     <priority>0.9</priority>

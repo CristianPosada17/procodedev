@@ -4,6 +4,11 @@
   precio a la vista. Los precios ya están publicados en /precios; repetirlos
   aquí evita que el visitante tenga que salir de la página de servicio justo
   cuando está decidiendo.
+
+  Cada tarjeta lleva su propio botón (`data-plan`): antes los CTA colectivos
+  mandaban a /precios o a /contacto y el visitante perdía por el camino el
+  paquete que estaba mirando. Ahora el botón salta al formulario de la misma
+  página y el plan elegido viaja con él hasta el correo.
 */
 import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
 import type { ServiceDetail } from "../i18n/services";
@@ -16,7 +21,14 @@ interface Props {
 }
 const { packages: p, lang = "es" } = Astro.props as Props;
 const t = translations[lang];
-const cols = p.items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
+// La rejilla se ajusta al número real de tarjetas. Con `lg:grid-cols-3`
+// fijas, los dos planes de marketing dejaban una tercera columna vacía a la
+// derecha y la página parecía a medio cargar.
+const count = p.items.length;
+const cols =
+  count >= 4 ? "lg:grid-cols-4" : count === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2";
+// Con dos tarjetas, además, se centran: a todo lo ancho quedan enormes.
+const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
 ---
 
 <section id="paquetes" class="relative py-12 lg:py-20">
@@ -26,7 +38,7 @@ const cols = p.items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
       <Fragment slot="subtitle">{p.subtitle}</Fragment>
     </SectionHeading>
 
-    <div class:list={["mt-12 grid gap-5 sm:grid-cols-2", cols]}>
+    <div class:list={["mt-12 grid gap-5 sm:grid-cols-2", cols, gridWidth]}>
       {
         p.items.map((item, i) => (
           <article
@@ -75,6 +87,21 @@ const cols = p.items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
                 </li>
               ))}
             </ul>
+
+            <a
+              href="#solicitar"
+              data-plan={`${item.name} — $${item.price} ${item.currency}`}
+              data-cta={`paquete-${item.name}`}
+              class:list={[
+                "mt-6 inline-flex items-center justify-between gap-2 rounded-xl px-5 py-3 text-sm font-bold transition",
+                item.highlighted
+                  ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
+                  : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/12",
+              ]}
+            >
+              {p.itemCta}
+              <Icon name="arrow-right" class="h-4 w-4" />
+            </a>
           </article>
         ))
       }
@@ -83,6 +110,31 @@ const cols = p.items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
     <p class="reveal mx-auto mt-8 max-w-3xl text-center text-sm leading-7 text-[var(--muted)]">
       {p.note}
     </p>
+
+    {/* Lo que NO está en la comparación y por qué. En marketing el plan de
+        mantenimiento de $79 estaba junto a los planes de captación y hacía
+        parecer que competían: no captan lo mismo, ni siquiera captan. */}
+    {
+      p.aside && (
+        <div class="reveal mx-auto mt-8 flex max-w-3xl flex-col gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-6 sm:flex-row sm:items-start sm:gap-5">
+          <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
+            <Icon name="info" class="h-4 w-4" />
+          </span>
+          <div>
+            <p class="text-sm font-bold text-[var(--text)]">{p.aside.title}</p>
+            <p class="mt-2 text-sm leading-7 text-[var(--muted)]">{p.aside.body}</p>
+            <a
+              href={PAGES.pricing[lang]}
+              data-cta="paquetes-soporte-web"
+              class="mt-3 inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)] transition hover:underline"
+            >
+              {p.aside.cta}
+              <Icon name="arrow-right" class="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      )
+    }
 
     <div class="reveal mt-7 flex flex-wrap justify-center gap-3">
       <a
@@ -97,7 +149,7 @@ const cols = p.items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
         target="_blank"
         rel="noopener noreferrer"
         data-cta="servicio-whatsapp"
-        class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
       >
         <Icon name="whatsapp" class="h-4 w-4" />
         {t.common.ctaWhatsapp}

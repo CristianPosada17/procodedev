@@ -6,12 +6,22 @@
   composición: el contenido vive en src/i18n/services.ts y aquí solo se
   decide el orden de los bloques y qué datos estructurados se emiten.
 
-  Orden pensado para cómo lee un dueño de negocio: primero el precio y el
-  plazo (ServiceHero), después por qué esto es distinto (ServiceIntro), qué
-  incluye (ServiceCapabilities), cuánto cuesta cada tamaño
-  (ServicePackages), la prueba técnica (ServiceStandards), la prueba real
-  (ProofStrip / Integrations), el proceso, el filtro honesto (ServiceFit),
-  las dudas (FAQ) y el puente al otro servicio (ServiceCross).
+  Orden (revisado en septiembre de 2026 para acortar el recorrido de venta):
+
+  DESARROLLO WEB — hero con el problema comercial y el precio → trabajos
+  reales (Portfolio) antes de cualquier detalle técnico → por
+  qué a la medida → qué incluye → paquetes, cada uno con su propio botón →
+  proceso → estándares técnicos (la tecnología respalda, no encabeza) →
+  filtro honesto → dudas → FORMULARIO → puente al otro servicio.
+
+  MARKETING — hero con la promesa de captación → por qué → la oferta pieza
+  por pieza, con el plazo de cada una → qué incluye → planes, sin el
+  mantenimiento de $79 → integraciones → qué se mide → filtro → dudas →
+  FORMULARIO → puente.
+
+  La regla que cambió: ninguna página de servicio manda a otra URL para
+  poder solicitar. El formulario corto va dentro, y los botones de paquete
+  conservan el plan elegido al llegar a él.
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
@@ -22,7 +32,10 @@ import ServicePackages from "./ServicePackages.astro";
 import ServiceStandards from "./ServiceStandards.astro";
 import ServiceFit from "./ServiceFit.astro";
 import ServiceCross from "./ServiceCross.astro";
-import ProofStrip from "./ProofStrip.astro";
+import ServiceOffer from "./ServiceOffer.astro";
+import ServiceLeadForm from "./ServiceLeadForm.astro";
+import AuditCallout from "./AuditCallout.astro";
+import Portfolio from "./Portfolio.astro";
 import Integrations from "./Integrations.astro";
 import Process from "./Process.astro";
 import FAQ from "./FAQ.astro";
@@ -76,35 +89,73 @@ const offerCatalog = [
 >
   <Header lang={lang} page={service} />
   <main>
-    <ServiceHero lang={lang} line={line} meta={d.meta} />
+    <ServiceHero
+      lang={lang}
+      line={line}
+      meta={d.meta}
+      ctaLabel={d.form.ctaLabel}
+    />
+
+    {/* Desarrollo web: la prueba va antes que el argumento. Quien busca a
+        quién contratar quiere ver trabajo hecho, no leer sobre Astro.
+
+        Aquí va `Portfolio` y NO `ProofStrip`: los dos salen de
+        `t.portfolio.projects` y ProofStrip es un recorte de los tres
+        primeros clientes, así que juntos repetían las mismas tarjetas en la
+        misma página. Portfolio se queda porque separa clientes reales de
+        demos, que es la distinción que hace creíble el bloque. */}
+    {service === "webDev" && <Portfolio lang={lang} />}
+
     <ServiceIntro
       lang={lang}
       intro={d.intro}
       icon={service === "webDev" ? "cpu" : "trending-up"}
     />
+
+    {/* Marketing: tres trabajos con plazos distintos, separados a
+        propósito para que no se lean como una sola promesa. */}
+    {d.offer && <ServiceOffer lang={lang} offer={d.offer} />}
+
     <ServiceCapabilities
       lang={lang}
       heading={d.capabilities}
       items={line.capabilities}
     />
     <ServicePackages lang={lang} packages={d.packages} />
-    <ServiceStandards lang={lang} standards={d.standards} />
+
     {/* El bloque `Process` describe los cinco pasos de un proyecto de
         desarrollo («diseño y desarrollo», «conecto formularios, agenda y
         CRM»): en la página de marketing sonaba a otro servicio, así que ahí
         va la prueba de integraciones en su lugar. */}
     {
       service === "webDev" ? (
-        <>
-          <ProofStrip lang={lang} />
-          <Process lang={lang} />
-        </>
+        <Process lang={lang} />
       ) : (
         <Integrations lang={lang} />
       )
     }
+
+    {/* La tecnología (o el «qué se mide») respalda la oferta: va después de
+        precio, proceso y prueba, no antes. */}
+    <ServiceStandards lang={lang} standards={d.standards} />
+
+    {/* Salida para quien llegó a esta página y ya no está seguro de que sea
+        la suya. Va antes del filtro honesto a propósito: ahí es justo donde
+        aparece la duda. */}
+    <AuditCallout lang={lang} />
+
     <ServiceFit lang={lang} fit={d.fit} />
     <FAQ lang={lang} data={d.faq} id="dudas-servicio" />
+
+    {/* Solicitar sin salir de la página. Los botones de cada paquete
+        aterrizan aquí con el plan ya seleccionado. */}
+    <ServiceLeadForm
+      lang={lang}
+      heading={d.form}
+      service={line.title}
+      page={service}
+    />
+
     <ServiceCross lang={lang} cross={d.cross} target={other} />
     <FinalCTA lang={lang} />
   </main>

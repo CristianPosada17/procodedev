@@ -1,0 +1,56 @@
+---
+/*
+  Banda que enlaza la Auditoría Digital desde el hub y desde las dos páginas
+  de servicio.
+
+  Es el puente entre la arquitectura de dos líneas y el producto de entrada:
+  quien llega a /servicios y no sabe cuál de los dos necesita tiene ahora
+  dos salidas —el formulario («ayúdame a elegir», gratis) y la auditoría
+  ($250, a fondo)— en vez de irse sin ninguna.
+
+  No se pone en el home: ahí la puerta de entrada sigue siendo la Revisión
+  Express gratis, y meter un producto de $250 antes que ella invertiría el
+  orden de la escalera.
+*/
+import { PAGES, type Lang } from "../i18n/ui";
+import { audit } from "../i18n/audit";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const a = audit[lang];
+const c = a.callout;
+---
+
+<section class="relative py-8 lg:py-12">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal grid gap-6 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-9"
+    >
+      <div>
+        <span class="eyebrow">{c.eyebrow}</span>
+        <h2 class="mt-4 text-xl font-bold leading-snug tracking-tight text-[var(--text)] sm:text-2xl">
+          {c.title}
+        </h2>
+        <p class="mt-3 max-w-3xl text-sm leading-7 text-[var(--muted)]">
+          {c.body}
+        </p>
+      </div>
+      <div class="flex flex-none flex-col gap-3">
+        <a
+          href={PAGES.audit[lang]}
+          data-cta="callout-auditoria"
+          class="inline-flex items-center justify-between gap-3 rounded-xl bg-[var(--brand)] px-6 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        >
+          {c.cta}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <p class="text-center font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
+          ${a.price} {a.currency} · {a.timeline}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

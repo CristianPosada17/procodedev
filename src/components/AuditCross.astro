@@ -1,0 +1,50 @@
+---
+/*
+  Cierre de la landing: los dos destinos a los que puede llevar la auditoría.
+
+  Va después del formulario porque quien ya sabe qué le falta no necesita
+  comprar un mapa: para ese visitante lo honesto es mandarlo directo al
+  servicio que corresponde, aunque signifique no venderle la auditoría.
+*/
+import { PAGES, type Lang } from "../i18n/ui";
+import { audit } from "../i18n/audit";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const c = audit[lang].cross;
+---
+
+<section class="relative py-12 lg:py-16">
+  <div class="mx-auto w-full max-w-[1100px] px-4 sm:px-6 lg:px-8">
+    <div
+      class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-7 sm:p-9"
+    >
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h2 class="mt-4 text-2xl font-bold leading-snug tracking-tight text-[var(--text)]">
+        {c.title}
+      </h2>
+      <p class="mt-3 max-w-2xl text-sm leading-7 text-[var(--muted)]">{c.body}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href={PAGES.webDev[lang]}
+          data-cta="auditoria-cross-webdev"
+          class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+        >
+          {c.ctaWeb}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a
+          href={PAGES.digitalMarketing[lang]}
+          data-cta="auditoria-cross-marketing"
+          class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+        >
+          {c.ctaMarketing}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
