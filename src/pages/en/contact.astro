@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import PageHero from "../../components/PageHero.astro";
 import Calendly from "../../components/Calendly.astro";
 import Contact from "../../components/Contact.astro";
+import PageContext from "../../components/PageContext.astro";
 import Footer from "../../components/Footer.astro";
 import { translations, PAGES } from "../../i18n/ui";
 
@@ -28,6 +29,7 @@ const meta = t.pageMeta.contact;
     />
     <Contact lang={lang} />
     <Calendly lang={lang} />
+    <PageContext data={t.pageContext.contact} />
   </main>
   <Footer lang={lang} />
 </Layout>

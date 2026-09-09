@@ -22,6 +22,7 @@ import ProofStrip from "./ProofStrip.astro";
 import PriceAnchor from "./PriceAnchor.astro";
 import FAQ from "./FAQ.astro";
 import FinalCTA from "./FinalCTA.astro";
+import PageContext from "./PageContext.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { markets, type MarketKey } from "../i18n/markets";
@@ -79,6 +80,7 @@ const offerCatalog = m.industries.items.map((i) => ({
     <PriceAnchor lang={lang} />
     <FAQ lang={lang} data={m.faq} id="dudas-mercado" />
     <FinalCTA lang={lang} />
+    <PageContext data={m.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

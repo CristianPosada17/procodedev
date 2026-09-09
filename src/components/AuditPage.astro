@@ -32,6 +32,7 @@ import ServiceStandards from "./ServiceStandards.astro";
 import ServiceFit from "./ServiceFit.astro";
 import ServiceLeadForm from "./ServiceLeadForm.astro";
 import FAQ from "./FAQ.astro";
+import PageContext from "./PageContext.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { audit } from "../i18n/audit";
@@ -106,6 +107,7 @@ const offerCatalog = [
     />
 
     <AuditCross lang={lang} />
+    <PageContext data={a.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

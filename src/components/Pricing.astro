@@ -25,28 +25,13 @@ const ctaSlug = (name: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-// Análisis de mercado de agosto de 2026: el mercado principal pasa a ser el
-// negocio de servicios latino en EE. UU., así que USD vuelve a ser la vista por
-// defecto y MXN queda como opción. Sin JS se ven ambas monedas.
-const currencyScript = `
-  (function(){
-    var root = document.getElementById('pricing');
-    if(!root) return;
-    root.setAttribute('data-currency','usd');
-    root.querySelectorAll('[data-currency-btn]').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var cur = btn.getAttribute('data-currency-btn');
-        root.setAttribute('data-currency', cur);
-        root.querySelectorAll('[data-currency-btn]').forEach(function(b){
-          b.setAttribute('aria-pressed', String(b === btn));
-        });
-      });
-    });
-  })();
-`;
+// Septiembre de 2026: el sitio dejó de mostrar precios en pesos. El mercado
+// es el negocio de servicios latino en EE. UU. y la facturación siempre fue en
+// dólares, así que el selector de moneda y la equivalencia en MXN se
+// eliminaron: dos números por tarjeta hacían dudar de cuál era el precio real.
 ---
 
-<section id="pricing" data-currency="both" class="relative py-12 lg:py-20">
+<section id="pricing" class="relative py-12 lg:py-20">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     {
       showHeading && (
@@ -58,36 +43,6 @@ const currencyScript = `
         </SectionHeading>
       )
     }
-
-    {/* Selector de moneda — USD por defecto, MXN como opción */}
-    <div class="reveal mt-8 flex flex-wrap items-center gap-3">
-      <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]">
-        {p.currencyLabel}
-      </span>
-      <div
-        class="inline-flex overflow-hidden rounded-xl border border-[color:var(--border-strong)]"
-        role="group"
-      >
-        <button
-          type="button"
-          data-currency-btn="usd"
-          aria-pressed="true"
-          class="cur-btn px-4 py-2 text-sm font-bold transition"
-        >
-          {p.currencyUsd}
-        </button>
-        <button
-          type="button"
-          data-currency-btn="mxn"
-          aria-pressed="false"
-          class="cur-btn border-l border-[color:var(--border-strong)] px-4 py-2 text-sm font-bold transition"
-        >
-          {p.currencyMxn}
-        </button>
-      </div>
-      <span class="cur-note-mxn text-xs text-[var(--muted)]">{p.currencyNoteMxn}</span>
-      <span class="cur-note-usd text-xs text-[var(--muted)]">{p.currencyNoteUsd}</span>
-    </div>
 
     {/* ── Auditoría Digital · el producto de entrada de pago ──
         Sustituye al Diagnóstico de $149, que se acreditaba entero al
@@ -109,14 +64,10 @@ const currencyScript = `
           </span>
           <h2 class="mt-4 text-2xl font-bold text-[var(--text)]">{adv.name}</h2>
           <div class="mt-4 flex items-end gap-1.5">
-            <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
+            <span class="font-mono text-4xl font-bold text-[var(--text)]">
               ${adv.price}
             </span>
-            <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">{adv.currency}</span>
-            <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
-              ${adv.priceMxn}
-            </span>
-            <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">{p.mxnUnit}</span>
+            <span class="mb-1.5 text-xs text-[var(--muted)]">{adv.currency}</span>
           </div>
           <p class="mt-1 text-xs text-[var(--muted)]">{adv.priceNote}</p>
           <p class="mt-5 text-base font-bold text-[var(--text)]">{adv.hook}</p>
@@ -205,14 +156,10 @@ const currencyScript = `
                   {pkg.pricePrefix}
                 </span>
               )}
-              <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
+              <span class="font-mono text-4xl font-bold text-[var(--text)]">
                 ${pkg.price}
               </span>
-              <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">{pkg.currency}</span>
-              <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
-                ${pkg.priceMxn}
-              </span>
-              <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">{p.mxnUnit}</span>
+              <span class="mb-1.5 text-xs text-[var(--muted)]">{pkg.currency}</span>
             </div>
             <p class="mt-4 text-sm leading-6 text-[var(--muted)]">
               {pkg.description}
@@ -256,16 +203,13 @@ const currencyScript = `
             <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6">
               <div class="flex items-baseline justify-between gap-3">
                 <h3 class="text-sm font-bold text-[var(--text)]">{ex.name}</h3>
-                <span class="price-usd font-mono text-xs text-[var(--accent)]">
+                <span class="font-mono text-xs text-[var(--accent)]">
                   {ex.price}
-                </span>
-                <span class="price-mxn font-mono text-xs text-[var(--accent)]">
-                  {ex.priceMxn}
                 </span>
               </div>
               <p class="mt-2 text-sm leading-6 text-[var(--muted)]">{ex.description}</p>
               <p class="mt-2 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                <span class="price-usd">{ex.unit}</span><span class="price-mxn">{p.mxnUnit}</span>
+                {ex.unit}
               </p>
             </div>
           ))
@@ -314,17 +258,11 @@ const currencyScript = `
                   {plan.pricePrefix}
                 </span>
               )}
-              <span class="price-usd font-mono text-4xl font-bold text-[var(--text)]">
+              <span class="font-mono text-4xl font-bold text-[var(--text)]">
                 ${plan.price}
               </span>
-              <span class="price-usd mb-1.5 text-xs text-[var(--muted)]">
+              <span class="mb-1.5 text-xs text-[var(--muted)]">
                 {plan.currency}
-              </span>
-              <span class="price-mxn font-mono text-4xl font-bold text-[var(--text)]">
-                ${plan.priceMxn}
-              </span>
-              <span class="price-mxn mb-1.5 text-xs text-[var(--muted)]">
-                {p.mxnUnitMonth}
               </span>
             </div>
             <p class="mt-1 text-xs text-[var(--muted)]">{plan.priceNote}</p>
@@ -373,33 +311,15 @@ const currencyScript = `
       {p.monthlyNote}
     </p>
 
+    {/* Todos los precios en USD: ya no hay selector de moneda, así que la
+        nota de moneda vive con la letra pequeña del final. */}
+    <p class="reveal mt-6 max-w-3xl text-xs leading-6 text-[var(--muted)]">
+      {p.currencyNoteUsd}
+    </p>
+
     <p class="reveal mt-8 max-w-3xl text-xs leading-6 text-[var(--muted)]">
       {p.note}
     </p>
   </div>
 </section>
 
-<style>
-  /* Sin JS se muestran ambas monedas: nunca queda un precio invisible. */
-  .cur-btn {
-    background: transparent;
-    color: var(--muted);
-  }
-  #pricing[data-currency="mxn"] .price-usd,
-  #pricing[data-currency="mxn"] .cur-note-usd,
-  #pricing[data-currency="usd"] .price-mxn,
-  #pricing[data-currency="usd"] .cur-note-mxn {
-    display: none;
-  }
-  #pricing[data-currency="mxn"] [data-currency-btn="mxn"],
-  #pricing[data-currency="usd"] [data-currency-btn="usd"] {
-    background: var(--brand);
-    color: #fff;
-  }
-  #pricing[data-currency="both"] .price-mxn::before {
-    content: "/ ";
-    color: var(--muted);
-  }
-</style>
-
-<script is:inline set:html={currencyScript}></script>

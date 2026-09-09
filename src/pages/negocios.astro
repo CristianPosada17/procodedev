@@ -7,6 +7,7 @@ import ProofStrip from "../components/ProofStrip.astro";
 import PriceAnchor from "../components/PriceAnchor.astro";
 import Founder from "../components/Founder.astro";
 import FAQ from "../components/FAQ.astro";
+import PageContext from "../components/PageContext.astro";
 import Footer from "../components/Footer.astro";
 import { translations, PAGES, SEGMENT_KEYS } from "../i18n/ui";
 import { segments } from "../i18n/segments";
@@ -51,6 +52,7 @@ const sectorList = SEGMENT_KEYS.map((key) => ({
     <PriceAnchor lang={lang} />
     <Founder lang={lang} />
     <FAQ lang={lang} variant="home" />
+    <PageContext data={t.pageContext.sectors} />
   </main>
   <Footer lang={lang} />
 </Layout>

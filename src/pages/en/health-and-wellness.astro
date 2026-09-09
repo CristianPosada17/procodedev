@@ -5,6 +5,7 @@ import SegmentPage from "../../components/SegmentPage.astro";
 import SegmentProject from "../../components/SegmentProject.astro";
 import SegmentCrossLinks from "../../components/SegmentCrossLinks.astro";
 import Founder from "../../components/Founder.astro";
+import PageContext from "../../components/PageContext.astro";
 import Footer from "../../components/Footer.astro";
 import { translations, PAGES } from "../../i18n/ui";
 import { getSegment } from "../../i18n/segments";
@@ -40,6 +41,7 @@ const seg = getSegment(lang, key);
     </SegmentPage>
     <SegmentCrossLinks lang={lang} current={key} />
     <Founder lang={lang} />
+    <PageContext data={seg.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

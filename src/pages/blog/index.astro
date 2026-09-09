@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import PageContext from "../../components/PageContext.astro";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog")).sort(
@@ -74,8 +75,7 @@ const formatDate = (date: Date) =>
       </h1>
 
       <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">
-        Consejos claros sobre desarrollo web, captación de clientes y
-        automatización para que tu negocio crezca y te ahorre tiempo.
+        Lo que sí funciona.
       </p>
     </div>
 
@@ -114,6 +114,15 @@ const formatDate = (date: Date) =>
         </p>
       )
     }
+    <PageContext
+      data={{
+        title: "Blog de páginas web, SEO local y precios",
+        paragraphs: [
+          "Guías prácticas para dueños de negocio: cómo funciona el SEO local, cómo aparecer en Google Maps, qué precios de páginas web son razonables y dónde conviene automatizar. Este blog de páginas web para negocios existe para que decidas con criterio, contrates a alguien o lo hagas tú.",
+          "Los artículos son de fondo y no reciclan lo que ya dice el sitio: cada uno resuelve una duda concreta, con ejemplos y números. Si el tema que buscas no está, escríbeme y lo escribo.",
+        ],
+      }}
+    />
   </main>
 
   <Footer />

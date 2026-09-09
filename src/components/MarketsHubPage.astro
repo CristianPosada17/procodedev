@@ -15,6 +15,7 @@ import Founder from "./Founder.astro";
 import ProofStrip from "./ProofStrip.astro";
 import FAQ from "./FAQ.astro";
 import FinalCTA from "./FinalCTA.astro";
+import PageContext from "./PageContext.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { marketsHub, markets, MARKET_KEYS } from "../i18n/markets";
@@ -69,6 +70,7 @@ const itemList = MARKET_KEYS.map((key) => ({
     <ProofStrip lang={lang} />
     <FAQ lang={lang} data={hub.faq} id="dudas-remoto" />
     <FinalCTA lang={lang} />
+    <PageContext data={hub.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

@@ -13,6 +13,7 @@ import Integrations from "../components/Integrations.astro";
 import Testimonials from "../components/Testimonials.astro";
 import FAQ from "../components/FAQ.astro";
 import FinalCTA from "../components/FinalCTA.astro";
+import PageContext from "../components/PageContext.astro";
 import Footer from "../components/Footer.astro";
 import { translations } from "../i18n/ui";
 
@@ -43,6 +44,7 @@ const meta = translations[lang].pageMeta.home;
     <Testimonials lang={lang} />
     <FAQ lang={lang} variant="home" />
     <FinalCTA lang={lang} />
+    <PageContext data={translations[lang].pageContext.home} />
   </main>
   <Footer lang={lang} />
 </Layout>
@@ -92,6 +94,12 @@ const meta = translations[lang].pageMeta.home;
     }
     main.home-flow > #final-cta {
       order: 10;
+    }
+    /* El bloque de contexto no tiene `order` propio, así que sin esta regla
+       se iba al principio (order: 0) y el texto largo aparecía justo debajo
+       del hero en móvil. Va siempre al final. */
+    main.home-flow > #mas-detalle {
+      order: 11;
     }
   }
 </style>

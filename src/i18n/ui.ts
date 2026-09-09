@@ -5,6 +5,15 @@
 // ============================================================
 
 export type Lang = "es" | "en";
+
+// Bloque de contexto al pie de cada página (septiembre 2026). El inicio de la
+// página es para el usuario — título + 3 a 6 palabras — y este bloque, que
+// renderiza PageContext.astro justo antes del Footer, carga el texto largo y
+// las frases clave. Ver procode-seo en la memoria del proyecto.
+export interface PageContextCopy {
+  title: string;
+  paragraphs: string[];
+}
 export const DEFAULT_LANG: Lang = "es";
 export const LANGS: Lang[] = ["es", "en"];
 
@@ -121,12 +130,6 @@ export const CONTACT = {
   founderPhoto: "/images/cristian-posada.jpg",
 };
 
-// Moneda: el mercado principal es el dueño de negocio hispano en EE. UU.,
-// con México como mercado secundario. USD es la vista por defecto y MXN
-// queda como opción (tipo de cambio fijo, arriba del spot para absorber
-// movimiento cambiario sin retocar precios).
-export const FX_USD_MXN = 18;
-
 export const translations = {
   es: {
     langName: "ES",
@@ -187,8 +190,7 @@ export const translations = {
       titleA: "Diseño de páginas web para negocios",
       titleHighlight: "en Estados Unidos y México",
       titleB: "",
-      subtitle:
-        "Sitio web, captación y seguimiento en un solo sistema, en inglés y en español. Precios publicados desde $349 USD y respuesta en menos de 24 horas.",
+      subtitle: "Te encuentran. Te escriben. Vendes.",
       badges: [
         "Precios públicos",
         "Sin contratos de 12 meses",
@@ -496,14 +498,7 @@ export const translations = {
       subtitle:
         "Paquetes de diseño de páginas web con precio público, en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
-      currencyLabel: "Ver precios en",
-      currencyMxn: "MXN",
-      currencyUsd: "USD",
-      currencyNoteMxn:
-        "Equivalencia en pesos mexicanos a tipo de cambio fijo de $18 MXN por dólar. La facturación se hace en USD.",
       currencyNoteUsd: "Precio de una página web profesional en dólares estadounidenses: el costo de página web para pequeña empresa está publicado abajo, igual que el mantenimiento web mensual y el plan de SEO local con su precio.",
-      mxnUnit: "MXN",
-      mxnUnitMonth: "MXN / mes",
       // ── Auditoría Digital · sustituye al Diagnóstico de $149 ──
       // Septiembre de 2026: el Diagnóstico se acreditaba entero al proyecto,
       // así que era un paso de venta disfrazado de producto. La Auditoría se
@@ -514,7 +509,6 @@ export const translations = {
         badge: "Producto de entrada · se paga aparte",
         name: "Auditoría Digital",
         price: "250",
-        priceMxn: "4,500",
         currency: "USD",
         priceNote: "pago único · no se acredita a un proyecto",
         hook: "Cuando sabes que algo no funciona pero no cuál de todas las piezas.",
@@ -568,7 +562,6 @@ export const translations = {
           name: "Soporte Web",
           pricePrefix: "desde",
           price: "79",
-          priceMxn: "1,430",
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "según el tamaño de tu página",
@@ -595,7 +588,6 @@ export const translations = {
           name: "Crecimiento+",
           pricePrefix: "",
           price: "349",
-          priceMxn: "6,290",
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "incluye todo el Soporte Web",
@@ -622,7 +614,6 @@ export const translations = {
           name: "Web + Marketing + SEO",
           pricePrefix: "desde",
           price: "1,100",
-          priceMxn: "19,800",
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "presupuesto de anuncios aparte",
@@ -650,7 +641,6 @@ export const translations = {
         {
           name: "Landing Page",
           price: "349",
-          priceMxn: "6,290",
           currency: "USD",
           pricePrefix: "",
           tagline: "Empieza a captar clientes ya",
@@ -671,7 +661,6 @@ export const translations = {
         {
           name: "Sitio Web 4–6 páginas",
           price: "899",
-          priceMxn: "16,190",
           currency: "USD",
           pricePrefix: "",
           tagline: "El favorito de los negocios en crecimiento",
@@ -692,7 +681,6 @@ export const translations = {
         {
           name: "Sitio Web 8–12 páginas",
           price: "1,499",
-          priceMxn: "26,990",
           currency: "USD",
           pricePrefix: "desde",
           tagline: "Presencia y sistema digital completo",
@@ -715,7 +703,6 @@ export const translations = {
         {
           name: "Rediseño web",
           price: "$349 – $1,499",
-          priceMxn: "$6,290 – $26,990",
           unit: "USD o más",
           description:
             "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
@@ -723,7 +710,6 @@ export const translations = {
         {
           name: "Optimización web",
           price: "$349",
-          priceMxn: "$6,290",
           unit: "USD",
           description:
             "Más velocidad, mejor experiencia y CTAs que sí convierten visitas en mensajes.",
@@ -731,7 +717,6 @@ export const translations = {
         {
           name: "Página adicional",
           price: "$199",
-          priceMxn: "$3,590",
           unit: "USD",
           description:
             "Suma una página extra a un sitio que ya hicimos juntos.",
@@ -739,7 +724,6 @@ export const translations = {
         {
           name: "Ajustes urgentes",
           price: "$99",
-          priceMxn: "$1,790",
           unit: "USD",
           description:
             "Cambios rápidos fuera de alcance, resueltos con prioridad el mismo día.",
@@ -878,6 +862,11 @@ export const translations = {
       titleHighlight: "Revisión Express",
       subtitle:
         "Elige tu horario. Antes de la llamada te grabo un vídeo de tres minutos con lo que encuentro. Sin costo y sin llamada de ventas.",
+      // Fachada del widget: en móvil el calendario solo se carga al tocar el
+      // botón (el iframe de Calendly pesa más que el resto de la página).
+      facadeTitle: "Elige el día y la hora que te acomoden.",
+      facadeCta: "Ver horarios disponibles",
+      facadeNote: "20 minutos, sin costo y sin llamada de ventas.",
     },
     contact: {
       eyebrow: "// contacto",
@@ -1036,8 +1025,7 @@ export const translations = {
           "diseño web para contratistas, diseño web para consultorios, diseño web para inmobiliarias, diseño web para contadores, diseño web para abogados, diseño web para negocios locales, marketing digital para pymes, páginas web para pymes, páginas web por giro",
         heroTitleA: "Un sistema digital pensado para",
         heroHighlight: "tu giro",
-        heroSubtitle:
-          "Contratistas, clínicas y consultorios, servicios profesionales, inmobiliarias y despachos contables. Elige tu giro y verás exactamente qué cambia en tu caso.",
+        heroSubtitle: "Hecho para tu giro.",
       },
       // El hub /servicios/ persigue la intención "servicios de desarrollo web
       // y marketing digital"; las dos hijas pelean cada una su frase propia
@@ -1051,8 +1039,7 @@ export const translations = {
           "servicios de desarrollo web y marketing digital, agencia de diseño web y marketing digital, agencia de desarrollo web, agencia de marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, desarrollo web para negocios, marketing digital para negocios, diseño web y posicionamiento, agencia de páginas web para negocios",
         heroTitleA: "Servicios de desarrollo web y",
         heroHighlight: "marketing digital para negocios",
-        heroSubtitle:
-          "Dos líneas de trabajo que cubren todo el ciclo: páginas web programadas a la medida y el sistema de captación que las llena. Diseño web enfocado en conversión, SEO, Perfil de Empresa en Google, anuncios, automatización y reportes de contactos reales. Trabajamos en remoto con negocios de Estados Unidos y México, en inglés y en español, con precios publicados y respuesta en menos de 24 horas.",
+        heroSubtitle: "Dos servicios, un solo responsable.",
       },
       portfolio: {
         title:
@@ -1063,8 +1050,7 @@ export const translations = {
           "páginas web profesionales para negocios, portafolio de páginas web, ejemplos de sitios web para negocios, casos de sitios web pymes, diseño web para negocios locales",
         heroTitleA: "Proyectos reales que",
         heroHighlight: "generan oportunidades",
-        heroSubtitle:
-          "Un portafolio de páginas web profesionales para negocios que querían verse mejor y captar más. Están en vivo: haz clic para verlas funcionando.",
+        heroSubtitle: "Sitios reales, en vivo.",
       },
       pricing: {
         title:
@@ -1073,10 +1059,9 @@ export const translations = {
           "Paquetes de diseño de páginas web con precio público: landing $349, sitio de 4–6 páginas $899 y desde $1,499 el grande. Planes mensuales desde $79 USD.",
         keywords:
           "cuánto cuesta una página web para un negocio, precio de una página web profesional, costo de página web para pequeña empresa, paquetes de diseño de páginas web, cuánto cuesta una página web, mantenimiento web mensual",
-        heroTitleA: "Precios públicos, en dólares, sin",
-        heroHighlight: "llamada de ventas",
-        heroSubtitle:
-          "Si buscabas cuánto cuesta una página web para un negocio, aquí están los paquetes de diseño de páginas web: lo que ves es lo que pagas. Sin cotización sorpresa y sin contrato de 12 meses. Los planes de mantenimiento se cancelan cuando quieras y el sistema completo de captación solo pide 3 meses.",
+        heroTitleA: "Cuánto cuesta una página web",
+        heroHighlight: "para un negocio",
+        heroSubtitle: "Los precios, sin llamada.",
       },
       contact: {
         title:
@@ -1087,8 +1072,59 @@ export const translations = {
           "contratar diseño de página web, Agendar Revisión Express, desarrollador web en español, páginas web para negocios",
         heroTitleA: "Escríbeme o agenda,",
         heroHighlight: "como prefieras",
-        heroSubtitle:
-          "Déjame tu WhatsApp y te contesto en menos de 24 horas, sin agendar nada. Y si prefieres platicarlo en vivo, abajo está mi calendario: 20 minutos, sin costo y sin llamada de ventas.",
+        heroSubtitle: "Respondo en menos de 24 horas.",
+      },
+    },
+    // ── Bloques de contexto al pie (el texto largo que salió del hero) ──
+    // Regla: el hero lleva de 3 a 6 palabras y todo el detalle vive aquí,
+    // después del CTA final. Es donde tienen que aparecer las frases clave
+    // declaradas en `pageMeta.<page>.keywords`.
+    pageContext: {
+      home: {
+        title: "Diseño de páginas web para negocios en Estados Unidos y México",
+        paragraphs: [
+          "ProCode Dev es una agencia de páginas web para negocios dirigida por su fundador: hablas con la persona que va a programar tu sitio, no con un vendedor. Hago diseño de páginas web para negocios y páginas web para pequeñas empresas, en inglés y en español, con precios publicados desde $349 USD y respuesta en menos de 24 horas.",
+          "El sistema son seis piezas que trabajan juntas: sitio web, captación, formularios, automatización, seguimiento y reportes. No entrego páginas bonitas que nadie visita, sino sitios web para captar clientes y páginas web que generan clientes medibles, con la analítica puesta desde el primer día.",
+          "Si buscas una página web para mi negocio y prefieres tratar con un desarrollador web en español, trabajo en remoto con dueños de negocio en Estados Unidos y México. Precios públicos, sin contratos de 12 meses y el sitio completo en los dos idiomas.",
+        ],
+      },
+      sectors: {
+        title: "Diseño web por giro de negocio",
+        paragraphs: [
+          "Cinco giros con página propia porque el problema no es el mismo en todos: diseño web para contratistas, diseño web para consultorios, diseño web para inmobiliarias, diseño web para contadores y diseño web para abogados. Elige el tuyo y verás qué cambia en tu caso — qué secciones necesita el sitio, qué busca tu cliente en Google y qué pasos manuales se pueden automatizar.",
+          "Trabajo con páginas web por giro en lugar de una plantilla genérica porque el dueño de negocio se busca a sí mismo por su oficio, no por la categoría «pequeña empresa». Lo mismo vale para el diseño web para negocios locales que compite dentro de una sola ciudad.",
+          "En los cinco el paquete es el mismo: páginas web para pymes con precio publicado, más marketing digital para pymes cuando hace falta llenar el sitio de visitas — SEO local, Perfil de Empresa en Google y anuncios.",
+        ],
+      },
+      services: {
+        title: "Servicios de desarrollo web y marketing digital",
+        paragraphs: [
+          "Dos líneas que cubren el ciclo completo: desarrollo web para negocios — páginas programadas a la medida — y marketing digital para negocios, el sistema de captación que las llena. Puedes contratar una o las dos.",
+          "Como agencia de diseño web y marketing digital, el trabajo incluye diseño web y posicionamiento, SEO, Perfil de Empresa en Google, anuncios, automatización y reportes de contactos reales. Es una agencia de desarrollo web y una agencia de marketing digital a la vez, con un solo responsable de las dos mitades.",
+          "A diferencia de una empresa de diseño de páginas web que te asigna un ejecutivo de cuenta, aquí el servicio de creación de páginas web lo ejecuta quien lo vende. Es una agencia de páginas web para negocios pequeña a propósito: menos clientes, precios publicados y respuesta en menos de 24 horas.",
+        ],
+      },
+      portfolio: {
+        title: "Páginas web profesionales para negocios",
+        paragraphs: [
+          "Este portafolio de páginas web son proyectos en vivo, no maquetas: puedes abrir cada sitio, medir cuánto tarda en cargar y ver cómo se comporta en tu teléfono. Son páginas web profesionales para negocios de servicios, salud, construcción e inmobiliaria.",
+          "Si buscabas ejemplos de sitios web para negocios o casos de sitios web pymes antes de decidir, este es el lugar: varios son rediseños de sitios que ya existían y no traían clientes. El diseño web para negocios locales se juzga mejor con el sitio abierto que con un argumento de venta.",
+        ],
+      },
+      pricing: {
+        title: "Cuánto cuesta una página web para un negocio",
+        paragraphs: [
+          "Si llegaste buscando cuánto cuesta una página web, aquí están los paquetes de diseño de páginas web con precio público: landing desde $349 USD, sitio de 4 a 6 páginas $899 USD y desde $1,499 USD el proyecto grande. Lo que ves es lo que pagas, sin cotización sorpresa y sin contrato de 12 meses.",
+          "El precio de una página web profesional depende del número de páginas y de si hace falta captación conectada, no de cuánto parece que puedes pagar. El costo de página web para pequeña empresa está publicado justo por eso: para que compares sin agendar una llamada.",
+          "Aparte del proyecto, el mantenimiento web mensual empieza en $79 USD e incluye actualizaciones, respaldos y soporte; se cancela cuando quieras. El sistema completo de captación es lo único que pide tres meses, porque el SEO local no madura antes.",
+        ],
+      },
+      contact: {
+        title: "Contratar diseño de página web",
+        paragraphs: [
+          "Dos caminos que llegan a la misma persona: déjame tu WhatsApp y te contesto en menos de 24 horas sin agendar nada, o abre mi calendario y toma 20 minutos. Contratar diseño de página web aquí no incluye llamada de ventas — los precios ya están publicados en el sitio.",
+          "Si prefieres hablar en español con un desarrollador web en español, es lo normal aquí: trabajo en los dos idiomas y en remoto, con negocios de Estados Unidos y México. También puedes Agendar Revisión Express si quieres ver qué le falta a tu sitio actual antes de contratar páginas web para negocios.",
+        ],
       },
     },
     // ── Hub de giros: /negocios ─────────────────────────────────
@@ -1220,8 +1256,7 @@ export const translations = {
       titleA: "Small business website design",
       titleHighlight: "across the United States",
       titleB: "",
-      subtitle:
-        "Website, client acquisition and follow-up in one system, in English and Spanish. Published pricing from $349 USD and a reply in under 24 hours.",
+      subtitle: "Found. Contacted. Hired.",
       badges: [
         "Public pricing",
         "No 12-month contracts",
@@ -1511,21 +1546,13 @@ export const translations = {
       subtitle:
         "Website design packages with public pricing, in US dollars, no sales call to find out and no 12-month contracts. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
-      currencyLabel: "Show prices in",
-      currencyMxn: "MXN",
-      currencyUsd: "USD",
-      currencyNoteMxn:
-        "Mexican peso equivalent at a fixed rate of $18 MXN per US dollar. Billing is in USD.",
       currencyNoteUsd: "Small business website pricing in US dollars: how much a small business website costs is published below, monthly website maintenance included.",
-      mxnUnit: "MXN",
-      mxnUnitMonth: "MXN / month",
       // ── Digital Audit · replaces the $149 Diagnosis (Sept 2026) ──
       // See the Spanish block above and src/i18n/audit.ts for the why.
       advisory: {
         badge: "Paid entry point · charged separately",
         name: "Digital Audit",
         price: "250",
-        priceMxn: "4,500",
         currency: "USD",
         priceNote: "one-time · not credited toward a project",
         hook: "For when you know something is off but not which of the pieces it is.",
@@ -1578,7 +1605,6 @@ export const translations = {
           name: "Web Support",
           pricePrefix: "from",
           price: "79",
-          priceMxn: "1,430",
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "depending on the size of your site",
@@ -1605,7 +1631,6 @@ export const translations = {
           name: "Growth+",
           pricePrefix: "",
           price: "349",
-          priceMxn: "6,290",
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "includes everything in Web Support",
@@ -1632,7 +1657,6 @@ export const translations = {
           name: "Web + Marketing + SEO",
           pricePrefix: "from",
           price: "1,100",
-          priceMxn: "19,800",
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "ad budget billed separately",
@@ -1660,7 +1684,6 @@ export const translations = {
         {
           name: "Landing Page",
           price: "349",
-          priceMxn: "6,290",
           currency: "USD",
           pricePrefix: "",
           tagline: "Start capturing clients now",
@@ -1681,7 +1704,6 @@ export const translations = {
         {
           name: "Website 4–6 pages",
           price: "899",
-          priceMxn: "16,190",
           currency: "USD",
           pricePrefix: "",
           tagline: "The favorite of growing businesses",
@@ -1702,7 +1724,6 @@ export const translations = {
         {
           name: "Website 8–12 pages",
           price: "1,499",
-          priceMxn: "26,990",
           currency: "USD",
           pricePrefix: "from",
           tagline: "Full presence and digital system",
@@ -1725,7 +1746,6 @@ export const translations = {
         {
           name: "Website redesign",
           price: "$349 – $1,499",
-          priceMxn: "$6,290 – $26,990",
           unit: "USD or more",
           description:
             "Renew image, structure and conversion on your current site without starting from scratch.",
@@ -1733,7 +1753,6 @@ export const translations = {
         {
           name: "Website optimization",
           price: "$349",
-          priceMxn: "$6,290",
           unit: "USD",
           description:
             "More speed, better experience and CTAs that actually turn visits into messages.",
@@ -1741,14 +1760,12 @@ export const translations = {
         {
           name: "Extra page",
           price: "$199",
-          priceMxn: "$3,590",
           unit: "USD",
           description: "Add an extra page to a site you already have with me.",
         },
         {
           name: "Urgent tweaks",
           price: "$99",
-          priceMxn: "$1,790",
           unit: "USD",
           description:
             "Fast out-of-scope changes, resolved with priority the same day.",
@@ -1887,6 +1904,9 @@ export const translations = {
       titleHighlight: "Express Review",
       subtitle:
         "Pick your time. Before the call I record a three-minute video with what I find. No cost, no sales pitch.",
+      facadeTitle: "Pick the day and time that suit you.",
+      facadeCta: "See available times",
+      facadeNote: "20 minutes, free, and no sales pitch.",
     },
     contact: {
       eyebrow: "// contact",
@@ -2043,8 +2063,7 @@ export const translations = {
           "contractor website design, therapist website design, real estate website design, tax preparer website design, attorney website design, local business web design, small business digital marketing services, websites by industry",
         heroTitleA: "A digital system built for",
         heroHighlight: "your industry",
-        heroSubtitle:
-          "Contractors, clinics and practices, professional services, real estate and accounting firms. Pick your industry and you'll see exactly what changes in your case.",
+        heroSubtitle: "Built for your industry.",
       },
       services: {
         title: "Web Development & Digital Marketing | ProCode Dev",
@@ -2054,8 +2073,7 @@ export const translations = {
           "web development and digital marketing services, small business web design agency, web design agency, digital marketing agency, website design company for small business, small business web development, small business digital marketing services, local SEO services for small businesses, conversion-focused design",
         heroTitleA: "Web development and",
         heroHighlight: "digital marketing services",
-        heroSubtitle:
-          "Two lines of work covering the full cycle: custom-coded websites and the lead system that fills them. Conversion-focused design, SEO, Google Business Profile, ads, automation and reporting on real contacts. We work remotely with businesses across the United States and Mexico, in English and Spanish, with published pricing and a reply in under 24 hours.",
+        heroSubtitle: "Two services, one person accountable.",
       },
       portfolio: {
         title:
@@ -2066,8 +2084,7 @@ export const translations = {
           "professional websites for small businesses, portfolio of small business websites, small business website examples, local business web design case studies, website redesign for small business",
         heroTitleA: "Real projects that",
         heroHighlight: "generate opportunities",
-        heroSubtitle:
-          "A portfolio of small business websites — professional websites for small businesses that wanted to look sharper and capture better — including more than one website redesign for small business owners who already had a site. Click to see them working.",
+        heroSubtitle: "Real sites, live now.",
       },
       pricing: {
         title:
@@ -2076,10 +2093,9 @@ export const translations = {
           "Website design packages with public pricing: landing $349, 4–6 page site $899, large sites from $1,499 and monthly plans from $79. No 12-month contracts.",
         keywords:
           "how much a small business website costs, small business website pricing, website design packages, how much does a website cost, monthly website maintenance, local SEO plan pricing",
-        heroTitleA: "Public pricing, in dollars, with no",
-        heroHighlight: "sales call",
-        heroSubtitle:
-          "If you were looking for how much a small business website costs, here are the website design packages: what you see is what you pay. No surprise quote and no 12-month contract — maintenance plans cancel whenever you want and the full acquisition system only asks for 3 months.",
+        heroTitleA: "How much a small business",
+        heroHighlight: "website costs",
+        heroSubtitle: "The prices, no sales call.",
       },
       contact: {
         title:
@@ -2090,8 +2106,56 @@ export const translations = {
           "hire a web designer, bilingual website design services, spanish website design services, bilingual web developer",
         heroTitleA: "Write to me or book a time,",
         heroHighlight: "whichever you prefer",
-        heroSubtitle:
-          "Leave me your WhatsApp and I reply in under 24 hours, with nothing to schedule — the quickest way to hire a web designer without sitting through a pitch. And if you would rather talk it through, my calendar is right below: 20 minutes, free, and bilingual website design services in English or Spanish.",
+        heroSubtitle: "I reply within 24 hours.",
+      },
+    },
+    // ── Footer context blocks (the long copy that left the hero) ───────
+    pageContext: {
+      home: {
+        title: "Small business website design across the United States",
+        paragraphs: [
+          "ProCode Dev is a small business web design agency run by its founder: you talk to the person who writes the code, not to a salesperson. Small business website design and website design for small businesses, in English and Spanish, with published pricing from $349 USD and a reply in under 24 hours.",
+          "The system is six pieces that work together: website, client acquisition, intake, automation, follow-up and reporting. I don't ship good-looking pages nobody visits — these are lead generation websites for small businesses, with analytics wired in from day one.",
+          "If you want professional websites for small businesses and bilingual website design services from a bilingual web developer, that is the whole job here. Public pricing, no 12-month contracts, and Spanish website design services inside the same build rather than as an add-on.",
+        ],
+      },
+      sectors: {
+        title: "Website design by industry",
+        paragraphs: [
+          "Five industries with their own pages, because the problem is not the same in each: contractor website design, therapist website design, real estate website design, tax preparer website design and attorney website design. Pick yours and you will see what changes in your case.",
+          "I build websites by industry instead of one generic template because owners search for their own trade, not for the category «small business». The same holds for local business web design competing inside a single city.",
+          "Across all five the package is the same: a custom-coded site with published pricing, plus small business digital marketing services when the site needs traffic — local SEO, Google Business Profile and ads.",
+        ],
+      },
+      services: {
+        title: "Web development and digital marketing services",
+        paragraphs: [
+          "Two lines covering the full cycle: small business web development — custom-coded pages — and small business digital marketing services, the lead system that fills them. You can hire one or both.",
+          "As a web design agency and a digital marketing agency at once, the work covers conversion-focused design, local SEO services for small businesses, Google Business Profile, ads, automation and reporting on real contacts. One person is accountable for both halves.",
+          "Unlike a website design company for small business that hands you an account executive, here the small business web design agency is the person doing the work. Deliberately small: fewer clients, published pricing and a reply in under 24 hours.",
+        ],
+      },
+      portfolio: {
+        title: "Professional websites for small businesses",
+        paragraphs: [
+          "This portfolio of small business websites is live work, not mockups: open each site, time how fast it loads and see how it behaves on your phone. They are professional websites for small businesses in services, health, construction and real estate.",
+          "If you were looking for small business website examples or local business web design case studies before deciding, this is the place. Several are a website redesign for small business owners who already had a site that brought in nothing.",
+        ],
+      },
+      pricing: {
+        title: "How much a small business website costs",
+        paragraphs: [
+          "If you came looking for how much a small business website costs, here are the website design packages with public pricing: a landing page from $349 USD, a 4–6 page site at $899 USD and larger projects from $1,499 USD. What you see is what you pay — no surprise quote and no 12-month contract.",
+          "Small business website pricing here depends on how many pages you need and whether the lead system is connected, not on how much you look like you can pay. That is why the numbers are published: so you can compare without booking a call. It is also the honest answer to how much does a website cost.",
+          "Beyond the build, monthly website maintenance starts at $79 USD and covers updates, backups and support; cancel whenever you want. Local SEO plan pricing starts at $349 USD a month and asks for three months, because local SEO does not mature faster than that.",
+        ],
+      },
+      contact: {
+        title: "Hire a web designer, in English or Spanish",
+        paragraphs: [
+          "Two ways in, both reaching the same person: leave your WhatsApp and I reply in under 24 hours with nothing to schedule, or open my calendar and take 20 minutes. To hire a web designer here there is no sales call — the prices are already on the site.",
+          "Bilingual website design services and Spanish website design services are not an upsell: I work in both languages, remotely, with owners across the United States and Mexico. If you would rather deal with a bilingual web developer directly, that is what this is.",
+        ],
       },
     },
     // ── Industry hub: /en/industries ───────────────────────────

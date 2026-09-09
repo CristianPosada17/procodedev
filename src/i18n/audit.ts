@@ -27,6 +27,8 @@
   que decir esa diferencia en voz alta o la gratuita se come a la de pago.
 */
 
+import type { PageContextCopy } from "./ui";
+
 export interface AuditArea {
   icon: string;
   title: string;
@@ -47,7 +49,6 @@ export interface AuditContent {
   navLabel: string;
   navHint: string;
   price: string;
-  priceMxn: string;
   currency: string;
   priceLabel: string;
   priceNote: string;
@@ -126,6 +127,8 @@ export interface AuditContent {
     ctaWeb: string;
     ctaMarketing: string;
   };
+  /** Bloque de contexto al pie: el texto largo que salió del hero. */
+  pageContext: PageContextCopy;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -133,6 +136,15 @@ export interface AuditContent {
 // ═══════════════════════════════════════════════════════════════════════
 
 const auditEs: AuditContent = {
+  pageContext: {
+    title: "Auditoría de presencia digital para negocios",
+    paragraphs: [
+      "Una auditoría web completa: reviso a fondo tu sitio, su estructura, su diseño, tu SEO, tu presencia en Google y todo tu sistema de captación, con acceso a tus datos reales. $250 USD y cinco días hábiles, contrates después o no.",
+      "Incluye auditoría SEO y revisión técnica de página web — velocidad, indexación, encabezados, enlaces rotos —, más auditoría de conversión sobre los formularios y los botones, y auditoría de Perfil de Empresa en Google, que en un negocio local suele ser donde está el hallazgo más grande.",
+      "Recibes un informe de mejoras para página web priorizado por impacto, un vídeo recorriendo lo que encontré y una llamada para decidir por dónde empezar. Es un análisis de sitio web para negocios que puedes ejecutar con tu equipo actual: la auditoría de página web se entrega para que sirva sola.",
+      "Si lo que buscas es una auditoría de marketing digital más amplia, entra en el mismo trabajo: la auditoría de captación de clientes recorre el camino completo, desde la búsqueda hasta el mensaje que nadie contestó.",
+    ],
+  },
   meta: {
     title: "Auditoría Digital para Negocios | ProCode Dev",
     description:
@@ -141,14 +153,12 @@ const auditEs: AuditContent = {
       "auditoría web, auditoría SEO, auditoría de página web, auditoría de presencia digital, auditoría de marketing digital, análisis de sitio web para negocios, revisión técnica de página web, auditoría de conversión, auditoría de Perfil de Empresa en Google, auditoría de captación de clientes, informe de mejoras para página web",
     heroTitleA: "Auditoría digital: qué está fallando",
     heroHighlight: "y en qué orden arreglarlo",
-    heroSubtitle:
-      "Una auditoría de presencia digital completa: reviso a fondo tu sitio, tu estructura, tu diseño, tu SEO, tu presencia en Google y todo tu sistema de captación, con acceso a tus datos reales. Recibes un informe priorizado, un vídeo recorriendo lo que encontré y una llamada para resolver dudas. $250 USD y cinco días hábiles, contrates después o no.",
+    heroSubtitle: "Qué está frenando tu sitio.",
   },
   badge: "Producto de entrada",
   navLabel: "Auditoría Digital",
   navHint: "Qué está fallando y en qué orden arreglarlo.",
   price: "250",
-  priceMxn: "4,500",
   currency: "USD",
   priceLabel: "precio",
   priceNote: "USD · pago único · no se acredita a un proyecto",
@@ -408,6 +418,15 @@ const auditEs: AuditContent = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const auditEn: AuditContent = {
+  pageContext: {
+    title: "Small business website audit",
+    paragraphs: [
+      "A full website audit: I go through your site, its structure, its design, your SEO, your Google presence and your whole lead system, with access to your real data. $250 USD and five business days, whether you hire me afterwards or not.",
+      "It includes an SEO audit and a technical website review — speed, indexing, headings, broken links — plus a conversion audit of your forms and buttons, and a Google Business Profile audit, which for most local businesses is where the biggest finding hides.",
+      "You get a website improvement report prioritized by impact, a video walking through what I found, and a call to work out where to start. It is a website analysis for small business owners that your current team can execute: the audit is built to stand on its own.",
+      "If what you need is a broader digital marketing audit, that is the same job: the lead generation audit follows the whole path, from the search to the message nobody answered.",
+    ],
+  },
   meta: {
     title: "Small Business Digital Audit | ProCode Dev",
     description:
@@ -416,14 +435,12 @@ const auditEn: AuditContent = {
       "website audit, SEO audit, small business website audit, digital marketing audit, website analysis for small business, technical website review, conversion audit, Google Business Profile audit, lead generation audit, website improvement report",
     heroTitleA: "A digital audit: what is broken",
     heroHighlight: "and what to fix first",
-    heroSubtitle:
-      "A full small business website audit: I go through your site, your structure, your design, your SEO, your Google presence and your whole lead system, with access to your real data. You get a prioritized report, a video walking through what I found, and a call to work out where to start. $250 USD and five business days, whether you hire me afterwards or not.",
+    heroSubtitle: "What is holding your site back.",
   },
   badge: "Paid entry point",
   navLabel: "Digital Audit",
   navHint: "What is broken and what to fix first.",
   price: "250",
-  priceMxn: "4,500",
   currency: "USD",
   priceLabel: "price",
   priceNote: "USD · one-time · not credited toward a project",

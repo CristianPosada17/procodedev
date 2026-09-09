@@ -1,0 +1,47 @@
+---
+/*
+  Bloque de contexto al pie de la página.
+
+  Reparto deliberado (septiembre 2026): el inicio de cada página es para el
+  usuario — título grande y un subtítulo de tres a seis palabras — y este
+  bloque es para quien necesita el detalle completo, buscadores incluidos.
+  Todo el texto que antes saturaba el hero vive aquí, ampliado y con las
+  frases clave de la página en el texto visible (regla de cobertura de
+  keywords de PLAN-SEO). Ver procode-seo en la memoria del proyecto.
+
+  Va DESPUÉS del CTA final y antes del Footer, y pesa poco visualmente:
+  cuerpo pequeño en tono muted, dos columnas en escritorio. No es una
+  sección de venta: es la ficha de la página.
+---------------------------------------------------------------------------- */
+import type { PageContextCopy } from "../i18n/ui";
+
+interface Props {
+  data: PageContextCopy;
+  /** Ancla propia; solo hace falta si la página ya usa el id por defecto. */
+  id?: string;
+}
+const { data, id = "mas-detalle" } = Astro.props as Props;
+---
+
+<section id={id} class="border-t border-[color:var(--border)] py-12 lg:py-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="max-w-5xl">
+      <h2
+        class="text-lg font-bold tracking-tight text-[var(--text)] sm:text-xl"
+      >
+        {data.title}
+      </h2>
+      <div
+        class="mt-5 gap-x-12 text-sm leading-7 text-[var(--muted)] md:columns-2"
+      >
+        {
+          data.paragraphs.map((p) => (
+            <p class="mb-4 break-inside-avoid last:mb-0">{p}</p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -33,6 +33,8 @@
   agencia dirigida por su fundador).
 */
 
+import type { PageContextCopy } from "./ui";
+
 export const SERVICE_KEYS = ["webDev", "digitalMarketing"] as const;
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
 
@@ -160,6 +162,8 @@ export interface ServiceDetail {
     items: readonly { question: string; answer: string }[];
   };
   cross: { eyebrow: string; title: string; body: string; cta: string };
+  /** Bloque de contexto al pie: el texto largo que salió del hero. */
+  pageContext: PageContextCopy;
 }
 
 export interface ServicesHub {
@@ -381,6 +385,15 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const webDevEs: ServiceDetail = {
+  pageContext: {
+    title: "Desarrollo web para negocios, sin plantillas",
+    paragraphs: [
+      "Diseño y desarrollo web sin plantillas: cada página se escribe a la medida de tu negocio, así que carga rápido, sale en Google y convierte al visitante en una llamada, un mensaje o una cita. Precio público desde $349 USD y entrega en dos a cuatro semanas.",
+      "El desarrollo de páginas web va desde una landing page para negocios hasta el sitio completo, e incluye la creación de páginas web para empresas que arrancan de cero y el rediseño de página web cuando ya hay uno que no trae clientes. Todo se entrega como sitios web autoadministrables: cambias textos y fotos sin depender de nadie.",
+      "La programación de páginas web propia es lo que hace posibles páginas web rápidas y optimizadas de verdad, no un tema recargado de plugins. Son páginas web a la medida, con desarrollo web bilingüe en el mismo proyecto y desarrollo web profesional pensado para desarrollo web para pequeñas empresas: importa lo que factura el sitio, no el premio de diseño.",
+      "Como agencia de desarrollo web pequeña, quien programa es quien te contesta. Desarrollo web para negocios sin intermediarios, sin cotización sorpresa y con el código en tus manos al final.",
+    ],
+  },
   meta: {
     title: "Desarrollo Web para Negocios | ProCode Dev",
     description:
@@ -389,8 +402,7 @@ const webDevEs: ServiceDetail = {
       "desarrollo web para negocios, desarrollo de páginas web, diseño y desarrollo web, agencia de desarrollo web, creación de páginas web para empresas, páginas web a la medida, desarrollo web profesional, rediseño de página web, landing page para negocios, sitios web autoadministrables, desarrollo web para pequeñas empresas, desarrollo web bilingüe, páginas web rápidas y optimizadas, programación de páginas web",
     heroTitleA: "Desarrollo web para negocios,",
     heroHighlight: "programado a la medida",
-    heroSubtitle:
-      "Diseño y desarrollo web sin plantillas: cada página se escribe a la medida de tu negocio para cargar rápido, salir en Google y convertir al visitante en una llamada, un mensaje o una cita. Precio público desde $349 USD y entrega en dos a cuatro semanas.",
+    heroSubtitle: "Rápida, en Google, y vende.",
   },
   intro: {
     title: "Qué cambia un sitio hecho a la medida",
@@ -625,6 +637,14 @@ const webDevEs: ServiceDetail = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const marketingEs: ServiceDetail = {
+  pageContext: {
+    title: "Marketing digital para negocios, en tres piezas",
+    paragraphs: [
+      "Tres piezas con alcance y plazo distintos: SEO local para que aparezcas cuando alguien busca tu servicio en tu ciudad, campañas de Google Ads para comprar visibilidad mientras el posicionamiento en Google madura, y automatización de seguimiento para que ningún mensaje se quede sin respuesta. Precios publicados desde $349 USD al mes, sin contratos de 12 meses.",
+      "El trabajo incluye el perfil de empresa en Google — que para un negocio local pesa más que el sitio —, la gestión de reseñas y publicidad en Facebook e Instagram cuando el producto se vende mirándolo. La generación de prospectos para negocios se mide con reportes de marketing digital de contactos reales, no de impresiones.",
+      "Es marketing digital para pequeñas empresas y marketing digital para pymes por diseño: presupuestos que un negocio de verdad puede sostener, y una agencia de marketing digital donde hablas con quien ejecuta. Si el sitio no está listo, se arregla primero: anunciar sobre una página que no convierte es pagar por la lección.",
+    ],
+  },
   meta: {
     title: "Marketing Digital para Negocios | ProCode Dev",
     description:
@@ -633,8 +653,7 @@ const marketingEs: ServiceDetail = {
       "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, automatización de seguimiento, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
     heroTitleA: "SEO local y marketing digital para que",
     heroHighlight: "encuentren y contacten tu negocio",
-    heroSubtitle:
-      "Tres piezas con alcance y plazo distintos: SEO local para que aparezcas cuando alguien busca tu servicio en tu ciudad, Google Ads para comprar visibilidad mientras el SEO madura, y seguimiento para que ningún mensaje se quede sin respuesta. Precios publicados desde $349 USD al mes, sin contratos de 12 meses.",
+    heroSubtitle: "Más búsquedas, más mensajes.",
   },
   intro: {
     title: "Qué hace el marketing cuando el negocio ya funciona",
@@ -1131,6 +1150,15 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
 };
 
 const webDevEn: ServiceDetail = {
+  pageContext: {
+    title: "Small business web development, no templates",
+    paragraphs: [
+      "Custom website development with no templates: every page is written for your business so it loads fast, ranks in Google and turns a visitor into a call, a message or a booking. Published pricing from $349 USD and delivery in two to four weeks.",
+      "Web development services here run from landing page development to a full site, and include website redesign services when there is already a site bringing in nothing. Everything ships as a custom coded website you can edit yourself — text and photos without waiting on anyone.",
+      "Writing the code instead of stacking plugins is what makes fast responsive websites possible at all. Web design and development in one place, bilingual website development in the same build, and professional web development services sized for small business web development rather than for enterprise budgets.",
+      "As a website development company this small, the small business website developer you hire is the person who answers you. No account manager, no surprise quote, and the code is yours at the end.",
+    ],
+  },
   meta: {
     title: "Small Business Web Development | ProCode Dev",
     description:
@@ -1139,8 +1167,7 @@ const webDevEn: ServiceDetail = {
       "small business web development, web development services, custom website development, website development company, web design and development, website redesign services, landing page development, bilingual website development, fast responsive websites, custom coded website, small business website developer, professional web development services",
     heroTitleA: "Small business web development,",
     heroHighlight: "coded to fit",
-    heroSubtitle:
-      "Custom website development with no templates: every page is written for your business so it loads fast, ranks in Google and turns a visitor into a call, a message or a booking. Published pricing from $349 USD and delivery in two to four weeks.",
+    heroSubtitle: "Fast, findable, and it sells.",
   },
   intro: {
     title: "What a custom-built site changes",
@@ -1370,6 +1397,14 @@ const webDevEn: ServiceDetail = {
 };
 
 const marketingEn: ServiceDetail = {
+  pageContext: {
+    title: "Small business digital marketing, in three parts",
+    paragraphs: [
+      "Three jobs with different scopes and timelines: local SEO services so you show up when someone in your city searches your service, Google Ads management to buy visibility while SEO matures, and marketing automation so no message goes unanswered. Published pricing from $349 USD a month, no 12-month contracts.",
+      "The work includes Google Business Profile management — which outweighs the website for most local businesses — review management, and Facebook and Instagram ads when the product sells by being looked at. Lead generation for small businesses is judged by marketing reporting on real contacts, not impressions.",
+      "These are digital marketing services built around local SEO for small businesses: budgets a real business can sustain, and a digital marketing agency where you talk to whoever executes. If the site is not ready, that gets fixed first — advertising into a page that does not convert is just paying for the lesson.",
+    ],
+  },
   meta: {
     title: "Small Business Digital Marketing | ProCode Dev",
     description:
@@ -1378,8 +1413,7 @@ const marketingEn: ServiceDetail = {
       "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing automation, marketing reporting, local SEO for small businesses",
     heroTitleA: "Local SEO and digital marketing so people",
     heroHighlight: "find and contact your business",
-    heroSubtitle:
-      "Three jobs with different scopes and different timelines: local SEO so you show up when someone in your city searches your service, Google Ads to buy visibility while SEO matures, and follow-up so no message goes unanswered. Published pricing from $349 USD a month, no 12-month contracts.",
+    heroSubtitle: "More searches, more messages.",
   },
   intro: {
     title: "What marketing does once the business runs",

@@ -1,5 +1,25 @@
 ---
+/*
+  Agenda en línea.
+
+  Septiembre de 2026: el widget de Calendly ya no se incrusta al cargar la
+  página. El `widget.js` monta un iframe con su propia aplicación, y en móvil
+  eso pesaba más que todo el resto de /contacto junto — el calendario tardaba
+  en aparecer y de paso retrasaba lo demás.
+
+  Ahora hay una fachada estática (título, botón y la promesa de la llamada):
+  · En móvil el widget se carga SOLO cuando el usuario toca el botón.
+  · En escritorio se carga solo al acercarse la sección, así que la experiencia
+    incrustada de siempre se mantiene sin competir con la carga inicial.
+
+  Los colores se leen de los tokens del tema en el momento de cargar, así que
+  el calendario ya no sale siempre en navy sobre un sitio en modo claro.
+  La medición no cambia: AnalyticsEvents escucha los `postMessage` de
+  Calendly, que llegan igual sin importar cuándo se monte el iframe.
+--------------------------------------------------------------------------- */
 import { translations, CONTACT, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
+
 interface Props {
   lang?: Lang;
   showHeading?: boolean;
@@ -7,12 +27,104 @@ interface Props {
 const { lang = "es", showHeading = true } = Astro.props as Props;
 const t = translations[lang];
 const cal = t.calendly;
+
+const calendlyScript = `
+  (function(){
+    var slots = document.querySelectorAll('[data-calendly-slot]');
+    if (!slots.length) return;
+
+    function hex(name, fallback){
+      try {
+        var v = getComputedStyle(document.documentElement)
+          .getPropertyValue(name).trim().replace('#','');
+        return /^[0-9a-fA-F]{6}$/.test(v) ? v : fallback;
+      } catch (e) { return fallback; }
+    }
+
+    // Plan B: si widget.js no carga (red del usuario, bloqueador, corte de
+    // Calendly), el hueco no se queda en blanco: se ofrece el enlace directo.
+    function fallback(slot, url, label){
+      if (slot.dataset.calendlyFallback) return;
+      slot.dataset.calendlyFallback = '1';
+      slot.innerHTML = '';
+      var a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('data-cta', 'calendly-enlace-directo');
+      a.className = 'flex min-h-[16rem] items-center justify-center px-6 py-12 text-center text-sm font-bold text-[var(--accent)] underline';
+      a.textContent = label;
+      slot.appendChild(a);
+    }
+
+    function mount(slot){
+      if (slot.dataset.calendlyLoaded) return;
+      slot.dataset.calendlyLoaded = '1';
+
+      var label = slot.getAttribute('data-calendly-label') || 'Calendly';
+
+      // Se elimina en vez de ocultarse: la fachada usa la clase "flex", y una
+      // clase de display gana al atributo "hidden".
+      var facade = slot.querySelector('[data-calendly-facade]');
+      if (facade && facade.parentNode) facade.parentNode.removeChild(facade);
+
+      var url = slot.getAttribute('data-calendly-slot')
+        + '?hide_gdpr_banner=1'
+        + '&background_color=' + hex('--surface', '0d1730')
+        + '&text_color=' + hex('--text', 'f1f5f9')
+        + '&primary_color=' + hex('--brand', '2563eb');
+
+      // Misma estructura que usaba el widget incrustado de siempre: la clase
+      // y el atributo data-url son lo que widget.js busca al arrancar. Así la
+      // inicialización es la ya probada, solo que en diferido.
+      var host = document.createElement('div');
+      host.className = 'calendly-inline-widget rounded-[1.25rem] overflow-hidden';
+      host.setAttribute('data-url', url);
+      host.style.minWidth = '320px';
+      host.style.height = '680px';
+      slot.appendChild(host);
+
+      // Si el usuario ya cargó otro calendario en la misma página.
+      if (window.Calendly && window.Calendly.initInlineWidget) {
+        window.Calendly.initInlineWidget({ url: url, parentElement: host });
+      } else {
+        var sc = document.createElement('script');
+        sc.src = 'https://assets.calendly.com/assets/external/widget.js';
+        sc.async = true;
+        sc.onerror = function(){ fallback(slot, url, label); };
+        document.head.appendChild(sc);
+      }
+
+      // Si a los 8 s no hay iframe, algo lo impidió: enlace directo.
+      setTimeout(function(){
+        if (!slot.querySelector('iframe')) fallback(slot, url, label);
+      }, 8000);
+    }
+
+    Array.prototype.forEach.call(slots, function(slot){
+      var btn = slot.querySelector('[data-calendly-load]');
+      if (btn) btn.addEventListener('click', function(){ mount(slot); });
+
+      // Solo en escritorio se adelanta la carga al acercarse la sección.
+      var wide = window.matchMedia('(min-width: 1024px)');
+      if (wide.matches && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries){
+          if (entries[0].isIntersecting) { io.disconnect(); mount(slot); }
+        }, { rootMargin: '400px' });
+        io.observe(slot);
+      }
+    });
+  })();
+`;
 ---
 
 {/* Hallazgo #2: en /contacto este bloque va inmediatamente después del hero.
     Ahí el H1 ya anuncia el agendado, así que el encabezado propio se oculta
     para no repetir el mismo mensaje dos veces (hallazgo #13). */}
-<section id="agendar" class:list={[showHeading ? "py-12 lg:py-20" : "pb-10 pt-4", "relative"]}>
+<section
+  id="agendar"
+  class:list={[showHeading ? "py-12 lg:py-20" : "pb-10 pt-4", "relative"]}
+>
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     {
       showHeading && (
@@ -34,16 +146,39 @@ const cal = t.calendly;
         "reveal overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-2 backdrop-blur-xl",
       ]}
     >
+      {/* La altura mínima la fija la fachada, así que al montar el iframe no
+          hay salto de layout. */}
       <div
-        class="calendly-inline-widget rounded-[1.25rem] overflow-hidden"
-        data-url={`${CONTACT.calendly}?hide_gdpr_banner=1&background_color=0d1730&text_color=f1f5f9&primary_color=2563eb`}
-        style="min-width:320px;height:680px;"
+        class="calendly-slot rounded-[1.25rem]"
+        data-calendly-slot={CONTACT.calendly}
+        data-calendly-label={cal.facadeCta}
       >
+        <div
+          data-calendly-facade
+          class="flex min-h-[24rem] flex-col items-center justify-center gap-5 px-6 py-14 text-center lg:min-h-[30rem]"
+        >
+          <span
+            class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]"
+          >
+            <Icon name="calendar" class="h-6 w-6" />
+          </span>
+          <p class="max-w-sm text-lg font-bold leading-snug text-[var(--text)]">
+            {cal.facadeTitle}
+          </p>
+          <button
+            type="button"
+            data-calendly-load
+            data-cta="calendly-cargar"
+            class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+          >
+            {cal.facadeCta}
+            <Icon name="arrow-right" class="h-4 w-4" />
+          </button>
+          <p class="text-xs text-[var(--muted)]">{cal.facadeNote}</p>
+        </div>
       </div>
-      <script
-        type="text/javascript"
-        src="https://assets.calendly.com/assets/external/widget.js"
-        async></script>
     </div>
   </div>
 </section>
+
+<script is:inline set:html={calendlyScript}></script>

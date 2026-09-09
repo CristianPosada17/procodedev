@@ -40,6 +40,7 @@ import Integrations from "./Integrations.astro";
 import Process from "./Process.astro";
 import FAQ from "./FAQ.astro";
 import FinalCTA from "./FinalCTA.astro";
+import PageContext from "./PageContext.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { serviceLines, serviceDetails, type ServiceKey } from "../i18n/services";
@@ -158,6 +159,7 @@ const offerCatalog = [
 
     <ServiceCross lang={lang} cross={d.cross} target={other} />
     <FinalCTA lang={lang} />
+    <PageContext data={d.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

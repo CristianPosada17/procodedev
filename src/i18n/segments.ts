@@ -13,7 +13,7 @@
 // las trate como algo distinto de contenido duplicado.
 // ============================================================
 
-import type { Lang, SegmentKey } from "./ui";
+import type { Lang, PageContextCopy, SegmentKey } from "./ui";
 
 export interface SegmentBlock {
   icon: string;
@@ -54,6 +54,8 @@ export interface Segment {
   faq: { question: string; answer: string }[];
   ctaTitle: string;
   ctaBody: string;
+  /** Bloque de contexto al pie: el texto largo que salió del hero. */
+  pageContext: PageContextCopy;
 }
 
 type SegmentDict = Record<SegmentKey, Segment>;
@@ -73,10 +75,9 @@ const es: SegmentDict = {
         "diseño web para constructoras, páginas web para contratistas, página web para contratistas, diseño web para empresas de remodelación, marketing digital para contratistas, SEO local para contratistas, agencia de marketing para contratistas, página web para plomeros, página web para electricistas, página web para techos, generación de clientes para contratistas",
     },
     heroEyebrow: "// contratistas y construcción",
-    heroTitleA: "Sistemas digitales para",
+    heroTitleA: "Diseño web para",
     heroHighlight: "contratistas y constructoras",
-    heroSubtitle:
-      "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google.",
+    heroSubtitle: "Te eligen antes de conocerte.",
     intro:
       "Sitio web, Perfil de Empresa en Google, formulario de cotización y seguimiento para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
     projectId: "izcalli",
@@ -195,6 +196,14 @@ const es: SegmentDict = {
           "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y seguimiento automático de quien no cerró a la primera. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
       },
     ],
+    pageContext: {
+      title: "Diseño web y marketing para contratistas",
+      paragraphs: [
+        "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google. Por eso el diseño web para contratistas empieza por las fotos de antes y después, la zona que cubres y un formulario que pida lo que de verdad necesitas para cotizar.",
+        "Hago páginas web para contratistas, diseño web para constructoras y diseño web para empresas de remodelación, incluida la página web para plomeros, la página web para electricistas y la página web para techos. El oficio cambia el orden de las secciones y el vocabulario, no la calidad del sitio.",
+        "El sitio es la mitad del trabajo. El marketing digital para contratistas y el SEO local para contratistas son lo que hace que te encuentren cuando alguien busca tu servicio en tu ciudad, y la generación de clientes para contratistas se mide en llamadas, no en visitas. En una agencia de marketing para contratistas de este tamaño siempre hablas con quien ejecuta.",
+      ],
+    },
     ctaTitle: "20 minutos antes de tu próxima temporada fuerte",
     ctaBody:
       "Te digo qué encuentra hoy un cliente que busca tu oficio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para contratistas que va a hacer el trabajo, no con un vendedor.",
@@ -214,10 +223,9 @@ const es: SegmentDict = {
         "diseño web para consultorios, diseño web para psicólogos, páginas web para nutriólogos, diseño web para terapeutas, marketing digital para psicólogos, SEO local para consultorios, agencia de marketing para consultorios, página web para consultorios, agenda en línea para pacientes, cómo conseguir más pacientes",
     },
     heroEyebrow: "// salud y bienestar",
-    heroTitleA: "Sistemas digitales para",
+    heroTitleA: "Diseño web para",
     heroHighlight: "consultorios y clínicas",
-    heroSubtitle:
-      "Un paciente nuevo te evalúa antes de escribirte: mira tu formación, tus reseñas y si puede agendar sin tener que preguntar precios por mensaje.",
+    heroSubtitle: "Agendan sin preguntar precios.",
     intro:
       "Sitio web, agenda en línea, formulario de primera consulta, recordatorios y seguimiento para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
     projectId: "fersilva",
@@ -331,6 +339,14 @@ const es: SegmentDict = {
           "Apareciendo cuando alguien busca tu especialidad en tu ciudad, y quitando la fricción entre esa búsqueda y la cita. En la práctica: una página por especialidad, agenda en línea abierta las 24 horas y recordatorios que reducen las faltas. Sin eso, más visitas solo significa más mensajes sin contestar.",
       },
     ],
+    pageContext: {
+      title: "Diseño web y marketing para consultorios y clínicas",
+      paragraphs: [
+        "Un paciente nuevo te evalúa antes de escribirte: mira tu formación, tus reseñas y si puede agendar sin preguntar precios por mensaje. El diseño web para consultorios pone esas tres cosas al frente, y la agenda en línea para pacientes cierra la cita sin que tengas que contestar el teléfono.",
+        "Cubro diseño web para psicólogos, diseño web para terapeutas y páginas web para nutriólogos, además de la página web para consultorios de especialidad. El tono cambia según el paciente; la estructura que convierte es la misma.",
+        "Del lado de captación, el marketing digital para psicólogos y el SEO local para consultorios son la respuesta real a cómo conseguir más pacientes: aparecer en la búsqueda del barrio, mantener las reseñas vivas y responder rápido. En una agencia de marketing para consultorios el seguimiento va automatizado, no depende de que alguien se acuerde.",
+      ],
+    },
     ctaTitle: "20 minutos para revisar tu agenda",
     ctaBody:
       "Te digo qué encuentra hoy un paciente que busca tu especialidad en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para consultorios que va a hacer el trabajo, no con un vendedor.",
@@ -350,10 +366,9 @@ const es: SegmentDict = {
         "diseño web para abogados, página web para abogados, sitio web para consultores, página web para agentes de seguros, marketing digital para consultores, SEO local para servicios profesionales, agencia de marketing para abogados, captación de clientes para abogados, marca personal profesional",
     },
     heroEyebrow: "// servicios profesionales",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "servicios profesionales",
-    heroSubtitle:
-      "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema.",
+    heroTitleA: "Diseño web para",
+    heroHighlight: "abogados y consultores",
+    heroSubtitle: "Confianza antes de la llamada.",
     intro:
       "Sitio web, captación, formulario de calificación, agenda y seguimiento para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
     projectId: "cristian-posada",
@@ -467,6 +482,14 @@ const es: SegmentDict = {
           "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y seguimiento de quien preguntó y no volvió. La captación de clientes para abogados falla casi siempre en el tercer punto, no en el primero.",
       },
     ],
+    pageContext: {
+      title: "Diseño web y marketing para servicios profesionales",
+      paragraphs: [
+        "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema. El diseño web para abogados y el sitio web para consultores se construyen alrededor de esa confianza — casos, credenciales y una marca personal profesional que no parezca una plantilla.",
+        "Eso incluye la página web para abogados, el sitio del despacho, la página web para agentes de seguros y el del consultor independiente. Comparten el mismo problema: mucha competencia y muy poca diferencia visible desde fuera.",
+        "El marketing digital para consultores y el SEO local para servicios profesionales son lo que llena la agenda, y la captación de clientes para abogados casi siempre se rompe en el seguimiento, no en la publicidad. En una agencia de marketing para abogados eso es lo primero que hay que automatizar.",
+      ],
+    },
     ctaTitle: "20 minutos para revisar tu captación",
     ctaBody:
       "Te digo qué encuentra hoy alguien que busca tu servicio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para abogados y consultores que va a hacer el trabajo, no con un vendedor.",
@@ -486,10 +509,9 @@ const es: SegmentDict = {
         "diseño web para inmobiliarias, páginas web para asesores inmobiliarios, página web para inmobiliarias, marketing digital para inmobiliarias, SEO local para inmobiliarias, agencia de marketing inmobiliario, catálogo de propiedades en línea, landing pages para propiedades, generación de prospectos inmobiliarios, cómo generar prospectos inmobiliarios",
     },
     heroEyebrow: "// inmobiliarias",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "asesores inmobiliarios",
-    heroSubtitle:
-      "Tus propiedades viven en portales y en redes, pero tu marca no vive en ninguna parte.",
+    heroTitleA: "Diseño web para",
+    heroHighlight: "inmobiliarias y asesores",
+    heroSubtitle: "Tu marca, no solo portales.",
     intro:
       "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, agenda de visitas y seguimiento para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
     projectId: "demo-inmobiliaria",
@@ -603,6 +625,14 @@ const es: SegmentDict = {
           "Teniendo catálogo propio, fichas que se puedan compartir por WhatsApp y un formulario que distinga a quien quiere comprar de quien quiere vender. La generación de prospectos inmobiliarios que sí se sostiene es la que llega a tu sitio, no la que renta un portal mes con mes.",
       },
     ],
+    pageContext: {
+      title: "Diseño web y marketing para inmobiliarias",
+      paragraphs: [
+        "Tus propiedades viven en portales y en redes, pero tu marca no vive en ninguna parte. El diseño web para inmobiliarias te da un catálogo de propiedades en línea propio, con tu nombre arriba y sin que el portal te cobre por el prospecto que tú generaste.",
+        "Hago páginas web para asesores inmobiliarios y la página web para inmobiliarias con equipo, más landing pages para propiedades cuando hay una promoción concreta que empujar.",
+        "El marketing digital para inmobiliarias y el SEO local para inmobiliarias son la base de una generación de prospectos inmobiliarios sostenida. Si te preguntas cómo generar prospectos inmobiliarios sin comprarlos cada mes, la respuesta es tu propio sitio más seguimiento automático — y eso es lo que hace una agencia de marketing inmobiliario que se queda a medir los resultados.",
+      ],
+    },
     ctaTitle: "20 minutos para revisar tu catálogo",
     ctaBody:
       "Te digo qué encuentra hoy un comprador que busca en tu zona y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing inmobiliario que va a hacer el trabajo, no con un vendedor.",
@@ -626,10 +656,9 @@ const es: SegmentDict = {
         "diseño web para contadores, diseño web para despachos contables, páginas web para preparadores de impuestos, páginas web para bookkeepers, marketing digital para contadores, SEO local para contadores, agencia de marketing para despachos contables, página web para despachos contables, intake de documentos, cómo conseguir clientes para un despacho contable",
     },
     heroEyebrow: "// contabilidad e impuestos",
-    heroTitleA: "Sistemas digitales para",
-    heroHighlight: "despachos de contabilidad e impuestos",
-    heroSubtitle:
-      "Tu año se concentra en unas pocas semanas y el resto del calendario se apaga.",
+    heroTitleA: "Diseño web para",
+    heroHighlight: "contadores y despachos contables",
+    heroSubtitle: "Clientes todo el año.",
     intro:
       "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y seguimiento para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
     projectId: "demo-taxpro",
@@ -743,6 +772,14 @@ const es: SegmentDict = {
           "Vendiendo lo que se contrata en marzo y en septiembre por igual: contabilidad mensual, nómina, planeación y regularización. Cada uno merece su propia página; una sola de «servicios contables» te deja compitiendo únicamente en enero y febrero.",
       },
     ],
+    pageContext: {
+      title: "Diseño web y marketing para despachos contables",
+      paragraphs: [
+        "Tu año se concentra en unas pocas semanas y el resto del calendario se apaga. El diseño web para contadores se plantea para las dos temporadas: captar fuerte cuando hay demanda y vender servicios recurrentes el resto del año.",
+        "Trabajo diseño web para despachos contables, páginas web para preparadores de impuestos y páginas web para bookkeepers. La página web para despachos contables necesita intake de documentos seguro desde el primer día: el cliente sube lo que le pides sin cadenas de correos.",
+        "El marketing digital para contadores y el SEO local para contadores empiezan meses antes de la temporada, porque no maduran en enero. Si buscas cómo conseguir clientes para un despacho contable, ese calendario es la mitad de la respuesta y responder rápido es la otra. Una agencia de marketing para despachos contables tiene que cubrir las dos.",
+      ],
+    },
     ctaTitle: "20 minutos antes de que empiece la temporada",
     ctaBody:
       "Te digo qué pieza le falta a tu despacho hoy y qué se puede tener listo antes de tu mes fuerte. Hablas directo con el dueño de la agencia de marketing para despachos contables que va a hacer el trabajo, no con un vendedor.",
@@ -764,10 +801,9 @@ const en: SegmentDict = {
         "contractor website design, construction company website design, remodeling contractor website design, roofing company website design, digital marketing for contractors, local SEO for contractors, contractor marketing agency, contractor lead generation, plumber website, electrician website",
     },
     heroEyebrow: "// contractors & construction",
-    heroTitleA: "Digital systems for",
-    heroHighlight: "contractors and builders",
-    heroSubtitle:
-      "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google.",
+    heroTitleA: "Contractor",
+    heroHighlight: "website design",
+    heroSubtitle: "Chosen before they meet you.",
     intro:
       "Website, Google Business Profile, quote form and follow-up for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
     projectId: "izcalli",
@@ -886,6 +922,14 @@ const en: SegmentDict = {
           "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and automatic follow-up with whoever didn't close the first time. That's the contractor lead generation that carries you through a slow season.",
       },
     ],
+    pageContext: {
+      title: "Contractor website design and marketing",
+      paragraphs: [
+        "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google. So contractor website design starts with the before-and-after photos, the area you cover and a form that asks for what you actually need to quote.",
+        "That covers construction company website design, remodeling contractor website design and roofing company website design, plus the plumber website and the electrician website. The trade changes the order of the sections, not the quality of the build.",
+        "The site is half the job. Digital marketing for contractors and local SEO for contractors are what get you found when someone in your city searches your service, and contractor lead generation is measured in calls, not visits. With a contractor marketing agency this size you always talk to the person doing the work.",
+      ],
+    },
     ctaTitle: "20 minutes before your next busy season",
     ctaBody:
       "I'll tell you what a client searching your trade in your city finds today and which piece you're missing. You talk straight to the owner of the contractor marketing agency that will do the work, not to a salesperson.",
@@ -905,10 +949,9 @@ const en: SegmentDict = {
         "therapist website design, psychologist website design, nutritionist website design, medical practice website design, healthcare website design, local SEO for therapists, marketing agency for therapists, digital marketing for therapists, online booking for patients, get more therapy clients",
     },
     heroEyebrow: "// health & wellness",
-    heroTitleA: "Digital systems for",
-    heroHighlight: "clinics and private practices",
-    heroSubtitle:
-      "A new patient evaluates you before they ever message: they look at your training, your reviews and whether they can book without asking about prices over chat.",
+    heroTitleA: "Therapist",
+    heroHighlight: "website design",
+    heroSubtitle: "They book without asking.",
     intro:
       "Website, online booking, first-visit intake form, reminders and follow-up for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
     projectId: "fersilva",
@@ -1022,6 +1065,14 @@ const en: SegmentDict = {
           "You get more therapy clients by showing up when someone searches your specialty in your city, and removing the friction between that search and the appointment. In practice: a page per specialty, booking open 24 hours a day and reminders that cut no-shows. Healthcare website design that skips those three only buys you more unanswered messages.",
       },
     ],
+    pageContext: {
+      title: "Therapist and medical practice website design",
+      paragraphs: [
+        "A new patient evaluates you before they ever message: they look at your training, your reviews and whether they can book without asking about prices over chat. Therapist website design puts those three things up front, and online booking for patients closes the appointment without a phone call.",
+        "This covers psychologist website design, nutritionist website design, medical practice website design and healthcare website design more broadly. The tone changes with the patient; the structure that converts does not.",
+        "On the acquisition side, digital marketing for therapists and local SEO for therapists are the real answer to how to get more therapy clients: show up in the neighborhood search, keep the reviews alive, reply fast. A marketing agency for therapists should automate the follow-up so it does not depend on someone remembering.",
+      ],
+    },
     ctaTitle: "20 minutes to review your calendar",
     ctaBody:
       "I'll tell you what a patient searching your specialty in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for therapists that will do the work, not to a salesperson.",
@@ -1041,10 +1092,9 @@ const en: SegmentDict = {
         "attorney website design, law firm website design, consultant website design, insurance agent website, digital marketing for consultants, local SEO for professional services, marketing agency for attorneys, client acquisition for attorneys, personal brand website",
     },
     heroEyebrow: "// professional services",
-    heroTitleA: "Digital systems for",
-    heroHighlight: "professional services",
-    heroSubtitle:
-      "When someone hires you they aren't buying hours: they're buying the confidence that you can solve their problem.",
+    heroTitleA: "Attorney",
+    heroHighlight: "website design",
+    heroSubtitle: "Trust before the first call.",
     intro:
       "Website, client acquisition, qualifying form, scheduling and follow-up for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
     projectId: "cristian-posada",
@@ -1158,6 +1208,14 @@ const en: SegmentDict = {
           "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and follow-up with whoever asked and never came back. Client acquisition for attorneys almost always breaks at the third point, not the first.",
       },
     ],
+    pageContext: {
+      title: "Attorney and consultant website design",
+      paragraphs: [
+        "When someone hires you they are not buying hours: they are buying the confidence that you can solve their problem. Attorney website design and consultant website design are built around that confidence — cases, credentials and a personal brand website that does not look like a template.",
+        "That includes law firm website design, the independent consultant's site and the insurance agent website. They share one problem: a crowded market with very little visible difference between the options.",
+        "Digital marketing for consultants and local SEO for professional services fill the calendar, and client acquisition for attorneys almost always breaks at the follow-up rather than at the ad. A marketing agency for attorneys should fix that part first.",
+      ],
+    },
     ctaTitle: "20 minutes to review your client acquisition",
     ctaBody:
       "I'll tell you what someone searching your service in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for attorneys that will do the work, not to a salesperson.",
@@ -1177,10 +1235,9 @@ const en: SegmentDict = {
         "real estate website design, realtor website design, website design for real estate agents, digital marketing for realtors, local SEO for realtors, real estate marketing agency, real estate lead generation, property catalog website, real estate landing page design, get real estate leads",
     },
     heroEyebrow: "// real estate",
-    heroTitleA: "Digital systems for",
-    heroHighlight: "real estate agents",
-    heroSubtitle:
-      "Your listings live on portals and social media, but your brand lives nowhere.",
+    heroTitleA: "Real estate",
+    heroHighlight: "website design",
+    heroSubtitle: "Your brand, not just portals.",
     intro:
       "Website with property catalog, detailed listing pages, qualified lead form, showing scheduler and follow-up for real estate agents, brokerages and developers.",
     projectId: "demo-inmobiliaria",
@@ -1294,6 +1351,14 @@ const en: SegmentDict = {
           "You get real estate leads with a property catalog website of your own, listing pages people can share over text, and a form that tells a buyer apart from a seller. The real estate lead generation that lasts is the one that lands on your site, not the one you rent from a portal month after month.",
       },
     ],
+    pageContext: {
+      title: "Real estate website design and marketing",
+      paragraphs: [
+        "Your listings live on portals and social media, but your brand lives nowhere. Real estate website design gives you your own property catalog website, with your name at the top and no portal charging you for the lead you generated yourself.",
+        "This is realtor website design and website design for real estate agents, plus real estate landing page design when there is one specific listing or promotion to push.",
+        "Digital marketing for realtors and local SEO for realtors are the base of steady real estate lead generation. If you are wondering how to get real estate leads without buying them every month, the answer is your own site plus automatic follow-up — and that is what a real estate marketing agency should stay to measure.",
+      ],
+    },
     ctaTitle: "20 minutes to review your catalog",
     ctaBody:
       "I'll tell you what a buyer searching your area finds today and which piece you're missing. You talk straight to the owner of the real estate marketing agency that will do the work, not to a salesperson.",
@@ -1313,10 +1378,9 @@ const en: SegmentDict = {
         "tax preparer website design, accountant website design, accounting firm website design, bookkeeper website design, digital marketing for accountants, local SEO for tax preparers, marketing agency for tax preparers, document intake for accountants, get more tax preparation clients",
     },
     heroEyebrow: "// accounting & tax",
-    heroTitleA: "Digital systems for",
-    heroHighlight: "accounting and tax practices",
-    heroSubtitle:
-      "Your year concentrates into a few weeks and the rest of the calendar goes quiet.",
+    heroTitleA: "Tax preparer",
+    heroHighlight: "website design",
+    heroSubtitle: "Clients all year, not weeks.",
     intro:
       "Website, Google Business Profile, document intake, scheduling and follow-up for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
     projectId: "demo-taxpro",
@@ -1430,6 +1494,14 @@ const en: SegmentDict = {
           "You get more tax preparation clients year-round by selling what people hire in March and September too: monthly bookkeeping, payroll, planning and back-tax cleanup. Each one deserves its own page; a single “tax services” page leaves you competing in January and February only.",
       },
     ],
+    pageContext: {
+      title: "Tax preparer and accounting firm website design",
+      paragraphs: [
+        "Your year concentrates into a few weeks and the rest of the calendar goes quiet. Tax preparer website design has to serve both seasons: capture hard in season, sell recurring work the rest of the year.",
+        "That covers accountant website design, accounting firm website design and bookkeeper website design, with document intake for accountants wired in from day one so clients upload what you asked for instead of emailing it back and forth.",
+        "Digital marketing for accountants and local SEO for tax preparers start months before the season, because they do not mature in January. If you are looking at how to get more tax preparation clients, that calendar is half the answer and replying fast is the other half. A marketing agency for tax preparers has to cover both.",
+      ],
+    },
     ctaTitle: "20 minutes before the season starts",
     ctaBody:
       "I'll tell you which piece your practice is missing today and what can be ready before your busy month begins. You talk straight to the owner of the marketing agency for tax preparers that will do the work, not to a salesperson.",
