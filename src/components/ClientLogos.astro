@@ -1,0 +1,97 @@
+---
+import { type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+
+/*
+  ── CÓMO AGREGAR UN LOGO NUEVO ──────────────────────────────────────────────
+  1. Guarda el archivo en  public/images/logos/  como .webp o .png,
+     con FONDO TRANSPARENTE y recortado sin márgenes vacíos.
+     Si el logo viene sobre un cuadro blanco, hay que quitarle ese blanco:
+     aquí se pintan en un solo color y un fondo blanco se convierte en mancha.
+  2. Copia uno de los bloques de abajo y cambia name / src / height.
+  3. `height` es la altura en píxeles del logo dentro de la tira. Se ajusta a
+     ojo para que TODOS ocupen un área parecida, no la misma altura: los
+     logos anchos (tipo Trejo) piden ~46; los cuadrados ~64; los verticales
+     (tipo Fer Silva) ~74.
+  ────────────────────────────────────────────────────────────────────────── */
+type ClientLogo = {
+  name: string;
+  src: string;
+  height: number;
+};
+
+const logos: ClientLogo[] = [
+  {
+    name: "Constructora Izcalli",
+    src: "/images/logos/logo-izcalli.webp",
+    height: 64,
+  },
+  {
+    name: "Fernanda Silva — Salud y Nutrición",
+    src: "/images/logos/logo-fersilva.webp",
+    height: 74,
+  },
+  {
+    name: "Trejo's Landscaping & Gardening",
+    src: "/images/logos/logo-trejo.webp",
+    height: 46,
+  },
+  // ── Cliente nuevo: descomenta y cambia los datos cuando llegue el logo ──
+  // {
+  //   name: "Nombre del cliente",
+  //   src: "/images/logos/logo-cliente.webp",
+  //   height: 58,
+  // },
+];
+
+const label =
+  lang === "en"
+    ? "Businesses already working with ProCode"
+    : "Negocios que ya trabajan con ProCode";
+
+/*
+  La tira se desplaza sola: la animación mueve el carril -50%, así que el
+  contenido tiene que estar EXACTAMENTE duplicado. Con pocos logos una sola
+  tanda no llena una pantalla ancha y aparecerían huecos, por eso primero se
+  repite la lista `SETS` veces y luego se duplica todo.
+*/
+const SETS = Math.max(3, Math.ceil(18 / logos.length));
+const half = Array.from({ length: SETS }, () => logos).flat();
+const track = [...half, ...half];
+// Velocidad constante aunque cambie el número de logos (~3.6 s por logo).
+const duration = Math.round(logos.length * SETS * 3.6);
+---
+
+<section class="relative overflow-hidden py-8 lg:py-12">
+  <p
+    class="px-4 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]"
+  >
+    {label}
+  </p>
+
+  {/* Tira a todo el ancho de la pantalla: sin contenedor que la encajone. */}
+  <div
+    class="marquee-x logo-strip relative mt-6 overflow-hidden lg:mt-8"
+    style={`--marquee-duration: ${duration}s`}
+  >
+    <div class="marquee-track-x flex w-max items-center gap-14 pr-14 lg:gap-24 lg:pr-24">
+      {
+        track.map((logo, i) => (
+          <img
+            src={logo.src}
+            alt={i < logos.length ? `Logo de ${logo.name}` : ""}
+            aria-hidden={i >= logos.length ? "true" : undefined}
+            loading="lazy"
+            decoding="async"
+            style={`--logo-h: ${logo.height}px`}
+            class="logo-mark w-auto shrink-0 object-contain"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

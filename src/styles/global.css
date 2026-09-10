@@ -321,6 +321,36 @@ section {
 }
 
 /* ============================================================
+   LOGOS DE CLIENTES — tira monocroma sobre fondo transparente
+   Los logos se pintan de un solo color (blanco en oscuro, tinta en claro):
+   así conviven marcas de colores muy distintos sin pelearse con el fondo,
+   y ninguna se pierde al cambiar de tema. Por eso los archivos DEBEN venir
+   con fondo transparente: un fondo blanco se convertiría en una mancha.
+   ============================================================ */
+.logo-mark {
+    height: calc(var(--logo-h, 56px) * 0.8);
+    filter: brightness(0) invert(1);
+    opacity: 0.62;
+    transition:
+        opacity 0.4s ease,
+        filter 0.4s ease;
+}
+@media (min-width: 1024px) {
+    .logo-mark {
+        height: var(--logo-h, 56px);
+    }
+}
+:root[data-theme="light"] .logo-mark {
+    filter: brightness(0);
+    opacity: 0.5;
+}
+/* Al pasar el cursor la tira se detiene (.marquee-x) y los logos suben de
+   intensidad: pequeño premio a quien se para a mirarlos. */
+.logo-strip:hover .logo-mark {
+    opacity: 0.9;
+}
+
+/* ============================================================
    ANIMACIONES — reveal al hacer scroll
    ============================================================ */
 .reveal {
