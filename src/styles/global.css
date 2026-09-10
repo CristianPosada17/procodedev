@@ -558,6 +558,69 @@ section {
 }
 
 /* ============================================================
+   HERO DEL HOME EN TEMA CLARO — el punto medio elegido
+   ------------------------------------------------------------
+   Historial: el hero claro original lavaba la fotografía del lobby y
+   quedaba plano; forzarlo a oscuro en los dos temas tampoco convenció.
+   De tres puntos medios, Cristian eligió este: **sigue siendo claro**,
+   con el titular en tinta como el resto del sitio en ese tema, pero el
+   panel es un gris azulado con cuerpo —no el blanco de la página— y la
+   foto conserva su contraste en vez de quedar bajo una sábana blanca.
+
+   Cuatro ajustes, y solo en claro:
+   1. `--veil-rgb` claramente más frío y oscuro que `--bg`, para que el
+      panel se lea como una superficie propia.
+   2. El velo de escritorio **termina antes** (a 66 %, no a 84 %): la
+      recepción con el logo queda nítida en vez de medio borrada.
+   3. La foto va con un pelo de saturación y contraste, y algo menos de
+      brillo — es una imagen muy luminosa y sobre blanco se deshacía.
+   4. Texto y bordes suben un punto de intensidad para aguantar el panel
+      más marcado.
+   NO se tocan los tokens de marca: el hero claro es claro. Forzarlo a
+   oscuro ya se probó y se descartó.
+   ============================================================ */
+:root[data-theme="light"] .hero-home {
+    background-color: #dde5f3;
+
+    --veil-rgb: 216 226 242;
+    --text: #0b1220;
+    --muted: #46536b;
+    --border: rgba(15, 23, 42, 0.12);
+    --border-strong: rgba(29, 78, 216, 0.3);
+    --tint: rgba(15, 23, 42, 0.05);
+    --grid-line: rgba(29, 78, 216, 0.07);
+}
+:root[data-theme="light"] .hero-home picture img {
+    filter: saturate(1.08) contrast(1.06) brightness(0.95);
+}
+/* En móvil el velo cubre toda la pantalla porque el texto va encima; en
+   claro se baja unos puntos para que el lobby se siga viendo detrás. Más
+   abajo de esto el titular en tinta empieza a pelearse con la pared azul
+   de la foto. */
+:root[data-theme="light"] .hero-home .hero-veil {
+    background: linear-gradient(
+        180deg,
+        rgb(var(--veil-rgb) / 0.9) 0%,
+        rgb(var(--veil-rgb) / 0.76) 34%,
+        rgb(var(--veil-rgb) / 0.84) 66%,
+        rgb(var(--veil-rgb) / 0.95) 100%
+    );
+}
+@media (min-width: 1024px) {
+    :root[data-theme="light"] .hero-home .hero-veil {
+        background: linear-gradient(
+            90deg,
+            rgb(var(--veil-rgb)) 0%,
+            rgb(var(--veil-rgb)) 32%,
+            rgb(var(--veil-rgb) / 0.92) 42%,
+            rgb(var(--veil-rgb) / 0.6) 50%,
+            rgb(var(--veil-rgb) / 0.22) 58%,
+            rgb(var(--veil-rgb) / 0) 66%
+        );
+    }
+}
+
+/* ============================================================
    HERO — velo sobre la fotografía de fondo
    OJO: la maquetación (position/inset/tamaño/recorte) vive en utilidades
    de Tailwind dentro de Hero.astro. Aquí solo van los degradados, para
