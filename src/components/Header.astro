@@ -365,17 +365,48 @@ const otherLang = lang === "es" ? "EN" : "ES";
       </a>
     </div>
 
-    <button
-      id="menu-toggle"
-      type="button"
-      aria-label="Menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[var(--tint)] text-[var(--text)] lg:hidden"
-    >
-      <Icon name="menu" id="menu-icon-open" class="h-5 w-5" />
-      <Icon name="close" id="menu-icon-close" class="hidden h-5 w-5" />
-    </button>
+    {/* ── Controles de móvil ──────────────────────────────────────────────
+        Idioma y tema viven también en la barra, no solo dentro del menú:
+        el menú móvil es largo (tres desplegables + cinco enlaces) y estos
+        dos controles quedaban hasta el final, donde casi nadie baja.
+        Van con `md:hidden` porque a partir de md ya se ve el grupo de
+        escritorio de arriba y se duplicarían. */}
+    <div class="flex items-center gap-2 lg:hidden">
+      <a
+        href={altHref}
+        class="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[color:var(--border)] bg-[var(--tint)] px-2.5 font-mono text-xs font-medium text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)] md:hidden"
+        aria-label="Change language"
+      >
+        <Icon name="globe" class="h-4 w-4" />
+        {otherLang}
+      </a>
+      <button
+        type="button"
+        data-theme-toggle
+        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)] md:hidden"
+      >
+        <span class="theme-icon-sun inline-flex">
+          <Icon name="sun" class="h-4 w-4" />
+          <span class="sr-only">{t.nav.themeToLight}</span>
+        </span>
+        <span class="theme-icon-moon inline-flex">
+          <Icon name="moon" class="h-4 w-4" />
+          <span class="sr-only">{t.nav.themeToDark}</span>
+        </span>
+      </button>
+
+      <button
+        id="menu-toggle"
+        type="button"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[var(--tint)] text-[var(--text)]"
+      >
+        <Icon name="menu" id="menu-icon-open" class="h-5 w-5" />
+        <Icon name="close" id="menu-icon-close" class="hidden h-5 w-5" />
+      </button>
+    </div>
   </div>
 
   <div
@@ -495,31 +526,11 @@ const otherLang = lang === "es" ? "EN" : "ES";
           </a>
         ))
       }
+      {/* Idioma y tema ya no van aquí: viven en la barra, siempre visibles.
+          Al pie del menú queda solo el CTA, a todo el ancho. */}
       <div
         class="mt-2 flex items-center gap-3 border-t border-[color:var(--border)] pt-4"
       >
-        <a
-          href={altHref}
-          class="inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--border)] bg-[var(--tint)] px-3 py-2.5 font-mono text-xs font-medium text-[var(--muted)]"
-        >
-          <Icon name="globe" class="h-3.5 w-3.5" />
-          {otherLang}
-        </a>
-        {/* Mismo botón que arriba, para quien navega con el menú móvil. */}
-        <button
-          type="button"
-          data-theme-toggle
-          class="inline-flex h-[42px] w-[42px] items-center justify-center rounded-lg border border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
-        >
-          <span class="theme-icon-sun inline-flex">
-            <Icon name="sun" class="h-4 w-4" />
-            <span class="sr-only">{t.nav.themeToLight}</span>
-          </span>
-          <span class="theme-icon-moon inline-flex">
-            <Icon name="moon" class="h-4 w-4" />
-            <span class="sr-only">{t.nav.themeToDark}</span>
-          </span>
-        </button>
         <a
           href={PAGES.contact[lang]}
           data-cta="menu-movil-agendar"
