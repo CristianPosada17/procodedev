@@ -105,6 +105,25 @@ Cuál conviene primero: si no hay sitio o el que hay no convierte, se empieza po
 desarrollo web; si el sitio está bien y llega poca gente, se empieza por
 marketing digital; los dos juntos son el paquete Web + Marketing + SEO.
 
+### Tres entradas al servicio de desarrollo web
+
+No son servicios nuevos: son tres formas de entrar al mismo trabajo, cada una
+con su propia página porque así es como la gente las busca.
+
+- **[Diseño de landing pages](https://procodedev.com/servicios/landing-pages/)**
+  — una sola página enfocada en convertir, para campañas de anuncios o para un
+  solo servicio. $349 USD de pago único, o $697 USD con el sistema de captación
+  conectado (formularios, respuesta automática, seguimiento y medición por
+  campaña). Entrega en una semana.
+- **[Diseño web con SEO](https://procodedev.com/servicios/diseno-web-seo/)** —
+  el sitio y el posicionamiento en el mismo proyecto. El SEO técnico va incluido
+  en el precio del desarrollo ($899 USD el sitio de 4 a 6 páginas); el SEO
+  continuo, que es contenido y reseñas mes a mes, empieza en $349 USD al mes.
+- **[Mantenimiento web](https://procodedev.com/servicios/mantenimiento-web/)** —
+  actualizaciones, respaldos, monitoreo, cambios de contenido y soporte por
+  WhatsApp desde $79 USD al mes, sin contrato de 12 meses. El hosting y el
+  dominio los paga el cliente a su nombre ($60 a $120 USD al año).
+
 ## Dónde trabaja ProCode Dev
 
 El trabajo es **100 % remoto desde México**. No hay oficina, dirección ni
@@ -175,6 +194,13 @@ Same content, same pricing.
   [digital marketing](https://procodedev.com/en/services/digital-marketing/)
   (local SEO, Google Business Profile, reviews, ads and follow-up automation,
   from $349 USD a month).
+- The three entry points into web development, each with its own page:
+  [landing page design](https://procodedev.com/en/services/landing-pages/)
+  ($349 USD one-time, or $697 USD with the lead capture system; live in a week),
+  [SEO web design](https://procodedev.com/en/services/seo-web-design/)
+  (technical SEO included in the build; ongoing SEO from $349 USD a month) and
+  [website maintenance](https://procodedev.com/en/services/website-maintenance/)
+  (updates, backups, monitoring and content changes from $79 USD a month).
 - [Industries](https://procodedev.com/en/industries/):
   [contractors](https://procodedev.com/en/contractors/),
   [health & wellness](https://procodedev.com/en/health-and-wellness/),

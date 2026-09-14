@@ -27,8 +27,9 @@ import FAQ from "../../components/FAQ.astro";
 import ServiceLeadForm from "../../components/ServiceLeadForm.astro";
 import FinalCTA from "../../components/FinalCTA.astro";
 import PageContext from "../../components/PageContext.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
 import Footer from "../../components/Footer.astro";
-import { translations, PAGES } from "../../i18n/ui";
+import { translations, PAGES, relatedLinks } from "../../i18n/ui";
 import { serviceLines, servicesHub, SERVICE_KEYS } from "../../i18n/services";
 
 const lang = "en";
@@ -106,6 +107,7 @@ const offerCatalog = SERVICE_KEYS.flatMap((key) =>
       service="Web development and digital marketing for small businesses"
       page="services"
     />
+    <RelatedLinks data={relatedLinks[lang].services} />
     <FinalCTA lang={lang} />
     <PageContext data={t.pageContext.services} />
   </main>

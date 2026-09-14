@@ -166,7 +166,7 @@ const texasEs: Market = {
     keywords:
       "diseño de páginas web en Texas, diseño web Houston, páginas web para negocios en Texas, agencia de diseño web en Texas, diseño web en español Texas, páginas web para contratistas en Texas, marketing digital en Texas, diseño de páginas web Dallas, páginas web San Antonio, desarrollador web en español en Texas",
     heroTitleA: "Diseño de páginas web en Texas",
-    heroHighlight: "para negocios que trabajan en español",
+    heroHighlight: "para negocios hispanos",
     heroSubtitle: "Bilingüe, a la medida, en remoto.",
   },
   intro: {
@@ -338,7 +338,7 @@ const floridaEs: Market = {
     keywords:
       "diseño de páginas web en Florida, diseño web Miami, páginas web para negocios en Florida, agencia de diseño web en Florida, diseño web en español Miami, páginas web para contratistas en Florida, marketing digital en Florida, diseño de páginas web Orlando, páginas web Tampa, desarrollador web en español en Florida",
     heroTitleA: "Diseño de páginas web en Florida",
-    heroHighlight: "para negocios que venden en español",
+    heroHighlight: "para negocios hispanos",
     heroSubtitle: "En español, sin traducciones.",
   },
   intro: {
@@ -510,7 +510,7 @@ const californiaEs: Market = {
     keywords:
       "diseño de páginas web en California, diseño web Los Ángeles, páginas web para negocios en California, agencia de diseño web en California, diseño web en español California, páginas web para contratistas en California, marketing digital en California, diseño de páginas web San Diego, páginas web Inland Empire, desarrollador web en español en California",
     heroTitleA: "Diseño de páginas web en California",
-    heroHighlight: "sin pagar precio de agencia local",
+    heroHighlight: "para negocios hispanos",
     heroSubtitle: "Sin el costo de California.",
   },
   intro: {
@@ -668,7 +668,7 @@ const hubEs: MarketsHub = {
     keywords:
       "diseño de páginas web en Estados Unidos, diseño web en español para negocios en Estados Unidos, agencia de diseño web en Estados Unidos, páginas web para negocios hispanos en Estados Unidos, desarrollador web en español en Estados Unidos, agencia de marketing digital en Estados Unidos, páginas web bilingües, diseño web para negocios latinos",
     heroTitleA: "Diseño de páginas web en Estados Unidos",
-    heroHighlight: "para negocios que atienden en español",
+    heroHighlight: "para negocios hispanos",
     heroSubtitle: "En tu idioma, en remoto.",
   },
   intro: {

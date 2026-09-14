@@ -151,8 +151,8 @@ const auditEs: AuditContent = {
       "Auditoría web, de SEO y de captación: nueve áreas revisadas con tus datos reales, informe priorizado, vídeo y llamada. $250 USD en 5 días hábiles.",
     keywords:
       "auditoría web, auditoría SEO, auditoría de página web, auditoría de presencia digital, auditoría de marketing digital, análisis de sitio web para negocios, revisión técnica de página web, auditoría de conversión, auditoría de Perfil de Empresa en Google, auditoría de captación de clientes, informe de mejoras para página web",
-    heroTitleA: "Auditoría digital: qué está fallando",
-    heroHighlight: "y en qué orden arreglarlo",
+    heroTitleA: "Auditoría web, SEO y captación",
+    heroHighlight: "para negocios",
     heroSubtitle: "Qué está frenando tu sitio.",
   },
   badge: "Producto de entrada",

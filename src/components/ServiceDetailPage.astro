@@ -41,8 +41,9 @@ import Process from "./Process.astro";
 import FAQ from "./FAQ.astro";
 import FinalCTA from "./FinalCTA.astro";
 import PageContext from "./PageContext.astro";
+import RelatedLinks from "./RelatedLinks.astro";
 import Footer from "./Footer.astro";
-import { translations, PAGES, type Lang } from "../i18n/ui";
+import { translations, PAGES, relatedLinks, type Lang } from "../i18n/ui";
 import { serviceLines, serviceDetails, type ServiceKey } from "../i18n/services";
 
 interface Props {
@@ -158,6 +159,11 @@ const offerCatalog = [
     />
 
     <ServiceCross lang={lang} cross={d.cross} target={other} />
+
+    {/* Enlazado interno de la matriz SEO: desde Desarrollo Web salen las
+        tres puertas con demanda propia (landing, web con SEO, mantenimiento). */}
+    {service === "webDev" && <RelatedLinks data={relatedLinks[lang].services} />}
+
     <FinalCTA lang={lang} />
     <PageContext data={d.pageContext} />
   </main>

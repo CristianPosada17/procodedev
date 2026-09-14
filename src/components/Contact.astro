@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import FormSuccessModal from "./FormSuccessModal.astro";
 import { translations, CONTACT, waHref, type Lang } from "../i18n/ui";
 interface Props {
   lang?: Lang;
@@ -40,6 +41,7 @@ const contactScript = `
         var result = await res.json();
         if(result.success){
           show(OK, true);
+          if(window.pcdFormSuccess) window.pcdFormSuccess();
           form.reset();
           if(window.pcdTrack){
             var lead = window.pcdAttribution ? window.pcdAttribution() : {};
@@ -244,5 +246,7 @@ const inputClass =
     </div>
   </div>
 </section>
+
+<FormSuccessModal lang={lang} page="contact" />
 
 <script is:inline set:html={contactScript}></script>

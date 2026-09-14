@@ -361,13 +361,13 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Abogados y Consultores | ProCode Dev",
       description:
-        "Diseño web para abogados, consultores y agentes de seguros: formulario de calificación, marketing digital para consultores y SEO local. Precios públicos.",
+        "Diseño web para servicios profesionales, abogados, despachos y consultores: formulario de calificación, marketing digital y SEO local. Precios públicos.",
       keywords:
-        "diseño web para abogados, página web para abogados, sitio web para consultores, página web para agentes de seguros, marketing digital para consultores, SEO local para servicios profesionales, agencia de marketing para abogados, captación de clientes para abogados, marca personal profesional",
+        "diseño web para servicios profesionales, diseño web para abogados, página web para abogados, páginas web para despachos, sitio web para consultores, página web para agentes de seguros, marketing digital para consultores, SEO local para servicios profesionales, agencia de marketing para abogados, captación de clientes para abogados",
     },
     heroEyebrow: "// servicios profesionales",
-    heroTitleA: "Diseño web para",
-    heroHighlight: "abogados y consultores",
+    heroTitleA: "Diseño web para servicios",
+    heroHighlight: "profesionales y despachos",
     heroSubtitle: "Confianza antes de la llamada.",
     intro:
       "Sitio web, captación, formulario de calificación, agenda y seguimiento para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
@@ -486,7 +486,7 @@ const es: SegmentDict = {
       title: "Diseño web y marketing para servicios profesionales",
       paragraphs: [
         "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema. El diseño web para abogados y el sitio web para consultores se construyen alrededor de esa confianza — casos, credenciales y una marca personal profesional que no parezca una plantilla.",
-        "Eso incluye la página web para abogados, el sitio del despacho, la página web para agentes de seguros y el del consultor independiente. Comparten el mismo problema: mucha competencia y muy poca diferencia visible desde fuera.",
+        "Eso incluye la página web para abogados, las páginas web para despachos, la página web para agentes de seguros y el sitio del consultor independiente. Comparten el mismo problema: mucha competencia y muy poca diferencia visible desde fuera.",
         "El marketing digital para consultores y el SEO local para servicios profesionales son lo que llena la agenda, y la captación de clientes para abogados casi siempre se rompe en el seguimiento, no en la publicidad. En una agencia de marketing para abogados eso es lo primero que hay que automatizar.",
       ],
     },

@@ -14,8 +14,9 @@ import Testimonials from "../../components/Testimonials.astro";
 import FAQ from "../../components/FAQ.astro";
 import FinalCTA from "../../components/FinalCTA.astro";
 import PageContext from "../../components/PageContext.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
 import Footer from "../../components/Footer.astro";
-import { translations } from "../../i18n/ui";
+import { translations, relatedLinks } from "../../i18n/ui";
 
 const lang = "en";
 const meta = translations[lang].pageMeta.home;
@@ -43,6 +44,7 @@ const meta = translations[lang].pageMeta.home;
     <Integrations lang={lang} />
     <Testimonials lang={lang} />
     <FAQ lang={lang} variant="home" />
+    <RelatedLinks data={relatedLinks[lang].home} />
     <FinalCTA lang={lang} />
     <PageContext data={translations[lang].pageContext.home} />
   </main>

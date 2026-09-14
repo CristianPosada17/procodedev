@@ -1,0 +1,115 @@
+---
+/*
+  Página de subservicio (septiembre de 2026).
+
+  Tres URLs comerciales que salieron del keyword research de arquitectura
+  —landing pages, diseño web con SEO y mantenimiento web— y que no podían
+  rankear desde dentro de /servicios/desarrollo-web/.
+
+  Es más corta que ServiceDetailPage a propósito: quien llega aquí ya sabe
+  qué quiere. Hero → por qué → qué incluye → precio publicado → filtro →
+  dudas → formulario en la misma página → enlaces de vuelta a la página
+  madre y a /precios/ (el enlazado interno que pide la matriz SEO).
+
+  El contenido vive en src/i18n/subservices.ts.
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import PageHero from "./PageHero.astro";
+import ServiceIntro from "./ServiceIntro.astro";
+import ServiceCapabilities from "./ServiceCapabilities.astro";
+import ServicePackages from "./ServicePackages.astro";
+import ServiceFit from "./ServiceFit.astro";
+import ServiceLeadForm from "./ServiceLeadForm.astro";
+import FAQ from "./FAQ.astro";
+import FinalCTA from "./FinalCTA.astro";
+import PageContext from "./PageContext.astro";
+import Footer from "./Footer.astro";
+import RelatedLinks from "./RelatedLinks.astro";
+import { translations, PAGES, type Lang } from "../i18n/ui";
+import { subservices, type SubserviceKey } from "../i18n/subservices";
+
+interface Props {
+  lang: Lang;
+  service: SubserviceKey;
+}
+const { lang, service } = Astro.props as Props;
+const t = translations[lang];
+const d = subservices[lang][service];
+
+const offerCatalog = [
+  ...d.capabilities.items.map((c) => ({
+    title: c.title,
+    description: c.description,
+  })),
+  ...d.packages.items.map((p) => ({
+    title: `${p.name} — $${p.price} ${p.currency}`,
+    description: p.description,
+  })),
+];
+---
+
+<Layout
+  lang={lang}
+  page={service}
+  title={d.meta.title}
+  description={d.meta.description}
+  keywords={d.meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: t.nav.services, path: PAGES.services[lang] },
+    { name: d.serviceName, path: PAGES[service][lang] },
+  ]}
+  serviceName={d.serviceName}
+  audience={d.audience}
+  offerCatalog={offerCatalog}
+  includeFaq={true}
+  faqItems={d.faq.items}
+>
+  <Header lang={lang} page={service} />
+  <main>
+    <PageHero
+      lang={lang}
+      eyebrow={d.badge}
+      titleA={d.meta.heroTitleA}
+      highlight={d.meta.heroHighlight}
+      subtitle={d.meta.heroSubtitle}
+      ctaLabel={d.form.ctaLabel}
+      ctaHref="#solicitar"
+      ctaId={`cta-hero-${service}`}
+      ctaSecondaryLabel={d.packages.cta}
+      ctaSecondaryHref={PAGES.pricing[lang]}
+    />
+
+    <ServiceIntro lang={lang} intro={d.intro} icon={d.icon} />
+
+    <ServiceCapabilities
+      lang={lang}
+      heading={{
+        eyebrow: d.capabilities.eyebrow,
+        title: d.capabilities.title,
+        subtitle: d.capabilities.subtitle,
+      }}
+      items={d.capabilities.items}
+    />
+
+    <ServicePackages lang={lang} packages={d.packages} />
+
+    <ServiceFit lang={lang} fit={d.fit} />
+
+    <FAQ lang={lang} data={d.faq} id="dudas-servicio" />
+
+    <ServiceLeadForm
+      lang={lang}
+      heading={d.form}
+      service={d.serviceName}
+      page={service}
+    />
+
+    <RelatedLinks data={d.related} />
+
+    <FinalCTA lang={lang} />
+    <PageContext data={d.pageContext} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

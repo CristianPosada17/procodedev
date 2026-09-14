@@ -1,14 +1,16 @@
 ---
-title: "¿Cuánto cuesta una página web para un negocio pequeño en 2026?"
-description: "Guía clara de precios de páginas web para negocios y emprendedores en Estados Unidos: qué incluye cada tipo, qué esperar según tu presupuesto y cómo elegir sin pagar de más."
-seoTitle: "¿Cuánto Cuesta una Página Web en 2026? | ProCode Dev"
-seoDescription: "Precios reales de páginas web para negocios pequeños en Estados Unidos: qué incluye cada tipo, qué esperar según tu presupuesto y cómo elegir bien."
+title: "Qué determina el precio de una página web (y qué no)"
+description: "Los seis factores que mueven el precio de una página web, por qué el mismo proyecto se cotiza de $200 a $10,000 USD y cómo comparar dos presupuestos."
+seoTitle: "Qué Determina el Precio de una Página Web | ProCode"
+seoDescription: "Los factores que determinan el precio de una página web: alcance, contenido, integraciones y quién la hace. Para comparar presupuestos sin pagar de más."
 pubDate: 2026-07-06
 author: "ProCode Dev"
-tags: ["precios", "desarrollo web", "negocios"]
+tags: ["factores que determinan el precio de una página web", "presupuesto de página web", "comparar presupuestos web", "qué encarece una página web"]
 ---
 
-Si tienes un negocio pequeño o estás emprendiendo, seguramente te has hecho esta pregunta: **¿cuánto cuesta una página web?** La respuesta corta es "depende", pero eso no te ayuda a tomar una decisión. Así que vamos a lo concreto: rangos reales, qué incluye cada opción y cómo saber cuál necesitas.
+> **Si lo que buscas es el número:** [los precios de ProCode están publicados](/precios/) — landing $349 USD, sitio de 4 a 6 páginas $899 USD y desde $1,499 USD el grande. Este artículo es la otra mitad: **qué determina el precio de una página web**, para que puedas comparar dos presupuestos cualesquiera y saber cuál te está cobrando de más.
+
+Un mismo proyecto se cotiza entre $200 y $10,000 USD y ninguna de las dos cifras es necesariamente un abuso. Lo que cambia son seis factores, y quien te cotiza casi nunca los desglosa. Estos son los **factores que determinan el precio de una página web**: alcance, contenido, integraciones, diseño a la medida o plantilla, quién hace el trabajo y qué pasa después de entregar.
 
 ## El precio depende de una cosa: cuánto trabajo te ahorra
 
@@ -52,4 +54,4 @@ La mejor forma no es adivinar, es diagnosticar. Define qué acción quieres que 
 
 ---
 
-En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos. Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).
+En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos; [aquí está qué incluye el desarrollo web](/servicios/desarrollo-web/) y [aquí la landing de $349 USD](/servicios/landing-pages/). Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).

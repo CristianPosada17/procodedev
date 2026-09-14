@@ -1,0 +1,152 @@
+---
+/*
+  Diálogo de confirmación de envío (septiembre de 2026).
+
+  Por qué existe: la confirmación era una línea de texto debajo del botón.
+  En un teléfono, después de enviar, esa línea suele quedar fuera de la
+  pantalla, así que el visitante no sabía si había pasado algo y muchos
+  reenviaban el formulario. Ahora se abre este diálogo, que además pone el
+  WhatsApp a un toque para quien tiene una duda y no quiere esperar.
+
+  Se renderiza dentro de cada componente de formulario (ServiceLeadForm y
+  Contact). Expone `window.pcdFormSuccess()`, que es lo que llaman los dos
+  scripts de envío cuando Web3Forms responde que sí.
+
+  El marcado se monta una sola vez aunque hubiera dos formularios en la
+  misma página: el script comprueba el id antes de registrarse.
+*/
+import Icon from "./Icon.astro";
+import { formSuccess, CONTACT, waHref, type Lang, type PageKey } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+  /** Para armar el enlace de WhatsApp con el mensaje de esta página. */
+  page: PageKey | "blog";
+}
+const { lang = "es", page } = Astro.props as Props;
+const c = formSuccess[lang];
+const wa = waHref(page, lang);
+
+const script = `
+  (function(){
+    var overlay = document.getElementById('pcd-success');
+    if(!overlay || overlay.dataset.pcdReady === '1') return;
+    overlay.dataset.pcdReady = '1';
+    var card = overlay.querySelector('[data-card]');
+    var closeBtn = overlay.querySelector('[data-close]');
+    var lastFocus = null;
+
+    function close(){
+      overlay.hidden = true;
+      document.documentElement.style.overflow = '';
+      if(lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    }
+
+    function open(){
+      lastFocus = document.activeElement;
+      overlay.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      // El foco al botón de cerrar y no al de WhatsApp: abrir un diálogo
+      // con el foco puesto en el enlace que saca de la página es una forma
+      // elegante de perder al visitante que solo quería confirmar.
+      setTimeout(function(){ if(closeBtn) closeBtn.focus({ preventScroll: true }); }, 60);
+    }
+
+    window.pcdFormSuccess = open;
+
+    overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+    if(closeBtn) closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && !overlay.hidden) close();
+    });
+    // Trampa de foco mínima: con dos botones no hace falta más.
+    if(card) card.addEventListener('keydown', function(e){
+      if(e.key !== 'Tab') return;
+      var f = card.querySelectorAll('a[href], button:not([disabled])');
+      if(!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
+  })();
+`;
+---
+
+<div
+  id="pcd-success"
+  hidden
+  class="fixed inset-0 z-[100] flex items-end justify-center bg-black/70 p-4 backdrop-blur-sm sm:items-center"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pcd-success-title"
+  aria-label={c.ariaLabel}
+>
+  <div
+    data-card
+    class="pcd-success-card w-full max-w-md rounded-3xl border border-[color:var(--border-strong)] bg-[var(--surface)] p-7 text-center shadow-2xl sm:p-9"
+  >
+    <div
+      class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/10"
+    >
+      <Icon name="check" class="h-8 w-8 text-[var(--ok)]" />
+    </div>
+
+    <h2
+      id="pcd-success-title"
+      class="mt-5 text-2xl font-extrabold tracking-tight text-[var(--text)]"
+    >
+      {c.title}
+    </h2>
+    <p class="mt-3 text-base leading-7 text-[var(--muted)]">{c.body}</p>
+
+    <p
+      class="mt-4 rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm font-semibold text-[var(--text)]"
+    >
+      {c.guarantee}
+    </p>
+
+    <p class="mt-5 text-sm text-[var(--muted)]">{c.whatsappHint}</p>
+
+    <a
+      href={wa}
+      target="_blank"
+      rel="noopener"
+      data-cta="modal-whatsapp"
+      class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-bold text-[#04231a] transition hover:brightness-110"
+    >
+      <Icon name="whatsapp" class="h-5 w-5" />
+      {c.whatsappLabel} · {CONTACT.whatsappDisplay}
+    </a>
+
+    <button
+      type="button"
+      data-close
+      class="mt-3 w-full rounded-xl border border-[color:var(--border)] px-5 py-3 text-sm font-semibold text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--text)]"
+    >
+      {c.close}
+    </button>
+  </div>
+</div>
+
+<style>
+  .pcd-success-card {
+    animation: pcd-pop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  }
+  @keyframes pcd-pop {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pcd-success-card {
+      animation: none;
+    }
+  }
+</style>
+
+<script is:inline set:html={script} />

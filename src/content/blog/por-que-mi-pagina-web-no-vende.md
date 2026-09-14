@@ -30,7 +30,9 @@ Muchas webs no le dicen al visitante qué hacer. Sin un botón visible de "Agend
 
 Si tu página tarda más de 3 segundos en abrir, pierdes visitas antes de que vean nada. En celular es todavía más grave, y ahí está la mayoría de tu tráfico.
 
-**Cómo arreglarlo:** imágenes optimizadas, código ligero y buen hosting. La velocidad no es un lujo técnico: es dinero que se te escapa.
+**Cómo arreglarlo:** imágenes optimizadas, código ligero y un hosting decente — si el tuyo tarda más de un segundo en responder, cambiarlo es de las mejoras más baratas que existen (<a href="https://www.hostinger.com/mx?REFERRALCODE=CristianDev" rel="sponsored nofollow noopener" target="_blank">Hostinger</a> es el que uso para los sitios que entrego).
+
+> **Transparencia:** el enlace a Hostinger es de afiliado. Si contratas ahí, recibo una comisión y a ti no te cuesta más. Lo recomiendo porque es donde alojo los sitios que entrego y donde reviso el rendimiento cada mes. La velocidad no es un lujo técnico: es dinero que se te escapa.
 
 ## 4. No transmite confianza
 

@@ -9,6 +9,7 @@ import {
 } from "../i18n/ui";
 import { segments } from "../i18n/segments";
 import { serviceLines, SERVICE_KEYS } from "../i18n/services";
+import { subservices, SUBSERVICE_KEYS } from "../i18n/subservices";
 import { audit } from "../i18n/audit";
 import { markets, MARKET_KEYS } from "../i18n/markets";
 import Icon from "./Icon.astro";
@@ -46,6 +47,16 @@ const serviceItems = [
     hint: serviceLines[lang][key].navHint,
     icon: serviceLines[lang][key].icon,
   })),
+  // Los tres subservicios (sep 2026) cuelgan de Desarrollo Web y salieron
+  // del keyword research: cada uno tiene demanda propia en Google aunque
+  // sea el mismo trabajo. Ver src/i18n/subservices.ts.
+  ...SUBSERVICE_KEYS.map((key) => ({
+    key: key as string,
+    href: PAGES[key][lang],
+    label: subservices[lang][key].navLabel,
+    hint: subservices[lang][key].navHint,
+    icon: subservices[lang][key].icon,
+  })),
   // La Auditoría Digital va al final y NO sale de SERVICE_KEYS: no es una
   // tercera línea de servicio, es el producto de entrada de pago que lleva
   // a una de las dos (o a ninguna). Ver src/i18n/audit.ts.
@@ -57,7 +68,11 @@ const serviceItems = [
     icon: "clipboard-check",
   },
 ];
-const serviceKeys = [...SERVICE_KEYS, "audit"] as readonly string[];
+const serviceKeys = [
+  ...SERVICE_KEYS,
+  ...SUBSERVICE_KEYS,
+  "audit",
+] as readonly string[];
 const servicesActive = page === "services" || serviceKeys.includes(page);
 
 // Mercados: mismo patrón que servicios y giros. El enlace del disparador va

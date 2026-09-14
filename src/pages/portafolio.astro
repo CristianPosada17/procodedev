@@ -7,8 +7,9 @@ import CaseStudy from "../components/CaseStudy.astro";
 import Testimonials from "../components/Testimonials.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import PageContext from "../components/PageContext.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
 import Footer from "../components/Footer.astro";
-import { translations, PAGES } from "../i18n/ui";
+import { translations, PAGES, relatedLinks } from "../i18n/ui";
 
 const lang = "es";
 const t = translations[lang];
@@ -32,6 +33,7 @@ const meta = t.pageMeta.portfolio;
     <Portfolio lang={lang} showHeading={false} />
     <CaseStudy lang={lang} />
     <Testimonials lang={lang} />
+    <RelatedLinks data={relatedLinks[lang].portfolio} />
     <FinalCTA lang={lang} />
     <PageContext data={t.pageContext.portfolio} />
   </main>

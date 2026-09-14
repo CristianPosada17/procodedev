@@ -1,6 +1,7 @@
 ---
 import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
 import { serviceLines, SERVICE_KEYS } from "../i18n/services";
+import { subservices, SUBSERVICE_KEYS } from "../i18n/subservices";
 import { audit } from "../i18n/audit";
 import Icon from "./Icon.astro";
 
@@ -34,6 +35,10 @@ const serviceLinks = [
   ...SERVICE_KEYS.map((key) => ({
     href: PAGES[key][lang],
     label: serviceLines[lang][key].title,
+  })),
+  ...SUBSERVICE_KEYS.map((key) => ({
+    href: PAGES[key][lang],
+    label: subservices[lang][key].navLabel,
   })),
   // Producto de entrada, no tercera línea: ver src/i18n/audit.ts.
   { href: PAGES.audit[lang], label: audit[lang].navLabel },

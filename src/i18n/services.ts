@@ -388,20 +388,20 @@ const webDevEs: ServiceDetail = {
   pageContext: {
     title: "Desarrollo web para negocios, sin plantillas",
     paragraphs: [
-      "Diseño y desarrollo web sin plantillas: cada página se escribe a la medida de tu negocio, así que carga rápido, sale en Google y convierte al visitante en una llamada, un mensaje o una cita. Precio público desde $349 USD y entrega en dos a cuatro semanas.",
+      "El diseño de páginas web aquí no sale de una plantilla: cada página se escribe a la medida de tu negocio, así que carga rápido, sale en Google y convierte al visitante en una llamada, un mensaje o una cita. Precio público desde $349 USD y entrega en dos a cuatro semanas.",
       "El desarrollo de páginas web va desde una landing page para negocios hasta el sitio completo, e incluye la creación de páginas web para empresas que arrancan de cero y el rediseño de página web cuando ya hay uno que no trae clientes. Todo se entrega como sitios web autoadministrables: cambias textos y fotos sin depender de nadie.",
-      "La programación de páginas web propia es lo que hace posibles páginas web rápidas y optimizadas de verdad, no un tema recargado de plugins. Son páginas web a la medida, con desarrollo web bilingüe en el mismo proyecto y desarrollo web profesional pensado para desarrollo web para pequeñas empresas: importa lo que factura el sitio, no el premio de diseño.",
-      "Como agencia de desarrollo web pequeña, quien programa es quien te contesta. Desarrollo web para negocios sin intermediarios, sin cotización sorpresa y con el código en tus manos al final.",
+      "La programación de páginas web propia es lo que hace posibles páginas web rápidas y optimizadas de verdad, no un tema recargado de plugins. Es diseño web a medida y diseño web profesional pensado para desarrollo web para pequeñas empresas: importa lo que factura el sitio, no el premio de diseño. El diseño de sitios web bilingüe va dentro del mismo proyecto — desarrollo web bilingüe sin costo aparte.",
+      "Quien programa es quien te contesta: páginas web para negocios sin intermediarios, sin cotización sorpresa y con el código en tus manos al final. Si ya decidiste contratar diseño de página web, los precios están publicados y no hay llamada de ventas.",
     ],
   },
   meta: {
-    title: "Desarrollo Web para Negocios | ProCode Dev",
+    title: "Diseño de Páginas Web para Negocios | ProCode Dev",
     description:
-      "Desarrollo web para negocios: páginas web a la medida, rápidas y con SEO técnico. Landing desde $349 y sitio de 4 a 6 páginas por $899 USD, con precio público.",
+      "Diseño de páginas web para negocios: sitios a la medida, rápidos y con SEO técnico. Landing desde $349 y sitio de 4 a 6 páginas por $899 USD, precio público.",
     keywords:
-      "desarrollo web para negocios, desarrollo de páginas web, diseño y desarrollo web, agencia de desarrollo web, creación de páginas web para empresas, páginas web a la medida, desarrollo web profesional, rediseño de página web, landing page para negocios, sitios web autoadministrables, desarrollo web para pequeñas empresas, desarrollo web bilingüe, páginas web rápidas y optimizadas, programación de páginas web",
-    heroTitleA: "Desarrollo web para negocios,",
-    heroHighlight: "programado a la medida",
+      "diseño de páginas web, desarrollo web para negocios, creación de páginas web, diseño de sitios web, diseño web profesional, páginas web para negocios, diseño web a medida, desarrollo de páginas web, contratar diseño de página web, rediseño de página web, landing page para negocios, sitios web autoadministrables, desarrollo web para pequeñas empresas, desarrollo web bilingüe, páginas web rápidas y optimizadas, programación de páginas web",
+    heroTitleA: "Diseño y desarrollo de páginas web",
+    heroHighlight: "para negocios, a la medida",
     heroSubtitle: "Rápida, en Google, y vende.",
   },
   intro: {
@@ -651,8 +651,8 @@ const marketingEs: ServiceDetail = {
       "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y seguimiento automático. Planes desde $349 USD al mes.",
     keywords:
       "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, automatización de seguimiento, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
-    heroTitleA: "SEO local y marketing digital para que",
-    heroHighlight: "encuentren y contacten tu negocio",
+    heroTitleA: "Marketing digital para negocios:",
+    heroHighlight: "SEO local, Google Ads y seguimiento",
     heroSubtitle: "Más búsquedas, más mensajes.",
   },
   intro: {
@@ -1153,20 +1153,20 @@ const webDevEn: ServiceDetail = {
   pageContext: {
     title: "Small business web development, no templates",
     paragraphs: [
-      "Custom website development with no templates: every page is written for your business so it loads fast, ranks in Google and turns a visitor into a call, a message or a booking. Published pricing from $349 USD and delivery in two to four weeks.",
-      "Web development services here run from landing page development to a full site, and include website redesign services when there is already a site bringing in nothing. Everything ships as a custom coded website you can edit yourself — text and photos without waiting on anyone.",
+      "Small business website design with no templates: every page is written for your business so it loads fast, ranks in Google and turns a visitor into a call, a message or a booking. Published pricing from $349 USD and delivery in two to four weeks.",
+      "Custom website development here runs from landing page development to a full site, and includes website redesign services when there is already a site bringing in nothing. Everything ships as a custom coded website you can edit yourself — text and photos without waiting on anyone.",
       "Writing the code instead of stacking plugins is what makes fast responsive websites possible at all. Web design and development in one place, bilingual website development in the same build, and professional web development services sized for small business web development rather than for enterprise budgets.",
-      "As a website development company this small, the small business website developer you hire is the person who answers you. No account manager, no surprise quote, and the code is yours at the end.",
+      "At a shop this small, the small business website developer you hire is the person who answers you. Website design for small businesses without an account manager, without a surprise quote, and the code is yours at the end.",
     ],
   },
   meta: {
-    title: "Small Business Web Development | ProCode Dev",
+    title: "Small Business Website Design & Development | ProCode",
     description:
-      "Small business web development: custom-coded, fast websites with technical SEO. Landing page from $349 USD and a 4-6 page site for $899 USD, price published.",
+      "Small business website design and development: custom-coded, fast sites with technical SEO. Landing from $349 USD and a 4-6 page site for $899 USD.",
     keywords:
-      "small business web development, web development services, custom website development, website development company, web design and development, website redesign services, landing page development, bilingual website development, fast responsive websites, custom coded website, small business website developer, professional web development services",
-    heroTitleA: "Small business web development,",
-    heroHighlight: "coded to fit",
+      "small business website design, website design for small businesses, small business web development, custom website development, web design and development, website redesign services, landing page development, bilingual website development, fast responsive websites, custom coded website, small business website developer, professional web development services",
+    heroTitleA: "Small business website design",
+    heroHighlight: "and custom development",
     heroSubtitle: "Fast, findable, and it sells.",
   },
   intro: {
