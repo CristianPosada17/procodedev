@@ -962,27 +962,27 @@ const hubEs: ServicesHub = {
       "Las preguntas que salen cuando alguien compara agencias de diseño web y de marketing digital.",
     items: [
       {
-        question: "¿Cuál de los dos necesito y qué obtengo al contratarlo?",
+        question: "¿Qué necesita mi negocio: diseño web o marketing digital?",
         answer:
           "Si no tienes página, la tienes hecha en un constructor o entra gente y no te escribe nadie, necesitas desarrollo web, y para eso esto es una empresa de diseño de páginas web: obtienes un sitio programado a la medida, con una página por servicio, formularios y WhatsApp conectados y la medición puesta, entregado en dos a cuatro semanas y a tu nombre. Si tu página ya convierte pero llega poca gente, necesitas marketing digital: obtienes tu Perfil de Empresa en Google trabajado, reseñas, SEO local por ciudad y servicio, campañas si las hay y un reporte mensual de contactos, llamadas y citas. Todo lo demás —formularios, automatización, analítica, optimización para búsqueda con IA— vive dentro de uno de esos dos, no se cotiza aparte.",
       },
       {
-        question: "¿Tengo que contratar los dos?",
+        question: "¿Puedo contratar solo el desarrollo web sin el marketing digital?",
         answer:
           "No. La mayoría empieza por uno. Un sitio nuevo puede quedarse solo, sin plan mensual, y funcionar bien durante años. Y si ya tienes página, se puede trabajar únicamente la captación. Los dos juntos rinden más, pero no es un paquete obligatorio.",
       },
       {
-        question: "¿Con quién voy a tratar?",
+        question: "¿Quién hace el trabajo: el dueño de la agencia o un ejecutivo de cuenta?",
         answer:
           "Conmigo. ProCode Dev es una agencia dirigida por su fundador: no hay ejecutivo de cuenta que te pase el recado ni un equipo rotativo al que explicarle tu negocio cada mes. El que te contesta el WhatsApp es el que programa el sitio y el que revisa las campañas.",
       },
       {
-        question: "¿Trabajas con negocios fuera de tu ciudad?",
+        question: "¿Se puede contratar diseño web y marketing digital en remoto, desde otra ciudad?",
         answer:
           "Sí, la atención es remota en Estados Unidos y en México, en español y en inglés. La diferencia con una agencia grande no es la distancia: es que aquí hablas siempre con la misma persona y respondo cualquier mensaje en menos de 24 horas.",
       },
       {
-        question: "¿Cuánto cuesta empezar?",
+        question: "¿Cuánto cuesta contratar servicios de desarrollo web y marketing digital?",
         answer:
           "El punto de entrada es la Revisión Express, que es gratis: reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, te lo grabo en un vídeo de tres minutos y después lo comentamos quince minutos por llamada. De ahí, una landing page cuesta $349 USD y el plan mensual más elegido son $349 USD al mes.",
       },
@@ -1717,27 +1717,27 @@ const hubEn: ServicesHub = {
       "The questions that come up when someone is comparing web design and digital marketing agencies.",
     items: [
       {
-        question: "Which of the two do I need, and what do I get for it?",
+        question: "Does my business need web design or digital marketing?",
         answer:
           "If you have no website, yours was made in a page builder, or people land and nobody writes, you need web development: you get a custom-coded site with a page per service, forms and WhatsApp wired up and measurement in place, delivered in two to four weeks and registered in your name. If your page already converts but few people reach it, you need small business digital marketing services: you get your Google Business Profile worked on, reviews, local SEO by city and service, campaigns if you run them, and a monthly report of contacts, calls and bookings. Everything else — forms, automation, analytics, AI search optimization — lives inside one of those two, never quoted separately.",
       },
       {
-        question: "Do I have to buy both?",
+        question: "Can I hire web development without the digital marketing?",
         answer:
           "No. Most people start with one. A new site can stand on its own, with no monthly plan, and work well for years. And if you already have a page, we can work on lead generation only. The two together do more, but it is not a mandatory bundle.",
       },
       {
-        question: "Who will I actually be dealing with?",
+        question: "Who does the work: the agency owner or an account executive?",
         answer:
           "Me. ProCode Dev is a founder-led agency: no account executive passing along messages and no rotating team to re-explain your business to every month. Whoever answers your WhatsApp is the one writing the code and reviewing the campaigns.",
       },
       {
-        question: "Do you work with businesses outside your city?",
+        question: "Can I hire web design and digital marketing services remotely, from another city?",
         answer:
           "Yes, everything is remote across the United States and Mexico, in English and Spanish. The difference from a large agency is not distance: it is that you always talk to the same person, and I answer any message in under 24 hours.",
       },
       {
-        question: "What does it cost to start?",
+        question: "How much do web development and digital marketing services cost?",
         answer:
           "The entry point is the Express Review, and it is free: I look at what a client finds when they search for your service in your city, record it as a three-minute video, and then we spend fifteen minutes on a call. From there, a landing page is $349 USD and the most-chosen monthly plan is $349 USD a month.",
       },

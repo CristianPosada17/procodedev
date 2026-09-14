@@ -771,7 +771,7 @@ export const translations = {
       moreQuestion: "¿Tienes otra pregunta?",
       items: [
         {
-          question: "¿Cuánto tiempo toma desarrollar mi sitio web?",
+          question: "¿Cuánto tiempo toma hacer una página web para un negocio?",
           answer:
             "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Después de la llamada te entrego un cronograma con fechas y entregables claros. Si tienes una fecha que no se mueve —una apertura, una temporada alta, una campaña—, trabajamos hacia atrás desde ella.",
         },
@@ -797,7 +797,7 @@ export const translations = {
             "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ ($349 USD/mes) incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, publicaciones, gestión de reseñas, SEO local y optimización para que las búsquedas con IA te citen. Uno cuida lo que ya tienes; el otro te trae clientes nuevos.",
         },
         {
-          question: "¿Hay contrato de permanencia?",
+          question: "¿Los planes mensuales tienen contrato de permanencia?",
           answer:
             "En ninguno hay contrato de 12 meses. Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. El único con compromiso es Web + Marketing + SEO: pide un mínimo de 3 meses, porque los anuncios y el SEO no dan resultados reales en 30 días y no quiero cobrarte por un mes suelto que no te va a servir. Cumplido ese plazo, se cancela igual que los demás. Prefiero que te quedes porque funciona, no porque firmaste.",
         },
@@ -807,27 +807,27 @@ export const translations = {
             "Sí, y es la mayor parte de mi trabajo. Todo se hace en remoto y en español, por WhatsApp, en tu horario. La diferencia con una agencia grande es que hablas siempre con el dueño de esta, no con un ejecutivo de cuenta distinto cada mes.",
         },
         {
-          question: "¿Puede ser bilingüe, en inglés y español?",
+          question: "¿Se puede hacer una página web bilingüe en inglés y español?",
           answer:
             "Sí, y para un negocio hispano en EE. UU. suele ser lo correcto: tus clientes actuales te buscan en español y los nuevos, muchas veces, en inglés. Construyo las dos versiones con URLs separadas para que Google indexe ambas — este mismo sitio funciona así.",
         },
         {
-          question: "¿Incluyen dominio y hosting?",
+          question: "¿El precio de la página web incluye dominio y hosting?",
           answer:
             "Sí. Te oriento y configuro dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajo sobre tu infraestructura actual sin problema.",
         },
         {
-          question: "¿Pueden integrar WhatsApp, formularios o CRM?",
+          question: "¿Se puede conectar la página web con WhatsApp, formularios y CRM?",
           answer:
             "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático — algo que agradeces cuando tienes el día lleno.",
         },
         {
-          question: "¿Mi sitio web será editable?",
+          question: "¿Puedo editar mi página web yo mismo después?",
           answer:
             "Según tus necesidades. Construyo sitios estáticos de alto rendimiento o estructuras editables con panel de administración cuando necesitas actualizar contenido con frecuencia.",
         },
         {
-          question: "¿Qué necesito para empezar?",
+          question: "¿Qué necesito tener listo para empezar mi página web?",
           answer:
             "Solo la Revisión Express. En ella entiendo tu negocio, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
         },
@@ -1813,7 +1813,7 @@ export const translations = {
       moreQuestion: "Have another question?",
       items: [
         {
-          question: "How long does it take to build my website?",
+          question: "How long does it take to build a small business website?",
           answer:
             "It depends on scope. A landing page usually takes 1 to 2 weeks, and a full site with integrations 3 to 6 weeks. After the call I give you a timeline with clear dates and deliverables. If you have a date that doesn't move — an opening, a busy season, a campaign — we work backwards from it.",
         },
@@ -1839,7 +1839,7 @@ export const translations = {
             "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ ($349 USD/mo) includes all of that and also works to get you found: Google Business Profile, posts, review management, local SEO and optimization so AI search cites you. One protects what you have; the other brings you new clients.",
         },
         {
-          question: "Is there a lock-in contract?",
+          question: "Do the monthly plans have a lock-in contract?",
           answer:
             "There's no 12-month contract on any plan. Web Support and Growth+ cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. The only one with a commitment is Web + Marketing + SEO: it asks for a 3-month minimum, because ads and SEO don't produce real results in 30 days and I don't want to charge you for a single month that won't help you. After that, it cancels like the rest. I'd rather you stay because it works than because you signed.",
         },
@@ -1849,27 +1849,27 @@ export const translations = {
             "Yes, and it's most of my work. Everything is done remotely, in Spanish or English, over WhatsApp, on your schedule. The difference from a large agency is that you always talk to the owner of this one, not to a different account executive every month.",
         },
         {
-          question: "Can the site be bilingual, English and Spanish?",
+          question: "Can you build a bilingual website in English and Spanish?",
           answer:
             "Yes, and for a Hispanic-owned business in the U.S. that's usually the right call: your current clients search in Spanish and many new ones search in English. I build both versions with separate URLs so Google indexes each one — this very site works that way.",
         },
         {
-          question: "Do you include domain and hosting?",
+          question: "Does the website price include domain and hosting?",
           answer:
             "Yes. I guide and set up your domain, hosting and professional email. If you already have them, I work on your current infrastructure without issue.",
         },
         {
-          question: "Can you integrate WhatsApp, forms or CRM?",
+          question: "Can the website connect to WhatsApp, forms and a CRM?",
           answer:
             "Absolutely. I connect forms, WhatsApp buttons, booking calendars, CRM and automations so every lead is registered and followed up automatically — which you'll appreciate when your day is full.",
         },
         {
-          question: "Will my website be editable?",
+          question: "Can I edit my website myself afterwards?",
           answer:
             "Depending on your needs. I build high-performance static sites or editable structures with an admin panel when you need to update content frequently.",
         },
         {
-          question: "What do I need to get started?",
+          question: "What do I need to have ready to start my website?",
           answer:
             "Just the free 15-minute call. In it I understand your business, your services, your ideal client and the action you want to drive: calls, bookings or messages.",
         },

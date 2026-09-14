@@ -8,6 +8,30 @@
 # y el deploy por FTP lo sube a public_html/ junto con el resto.
 # ============================================================
 
+# ---------- Canónica y redirecciones 301 (2026-09-14) ----------
+# Añadido tras revisar site:procodedev.com: de 70 páginas solo salían seis.
+# Dos causas que sí dependen del sitio y se arreglan aquí:
+#
+# 1. Las 14 URLs del nicho fiscal anterior redirigían con <meta refresh>,
+#    que Google trata como redirección "blanda": tarda semanas en pasar la
+#    señal y mientras tanto gasta rastreo en páginas que no existen.
+#    Con 301 de servidor la señal es inmediata e inequívoca.
+# 2. Si www y no-www responden las dos con 200, Google ve dos sitios y
+#    reparte el rastreo entre ambos. La canónica del sitio es SIN www.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http → https y www → sin www, en un solo salto.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # Nicho fiscal anterior → el giro que lo sustituyó.
+  RewriteRule ^(impuestos|preparadores-de-impuestos|enrolled-agents|cpas|bookkeepers|resolucion-fiscal|despachos-contables)/?$ /contabilidad-e-impuestos/ [L,R=301]
+  RewriteRule ^en/(tax-pros|tax-professionals|enrolled-agents|cpas|bookkeepers|tax-resolution|accounting-firms)/?$ /en/accounting-and-tax/ [L,R=301]
+</IfModule>
+
 # ---------- Compresión ----------
 <IfModule mod_brotli.c>
   AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml

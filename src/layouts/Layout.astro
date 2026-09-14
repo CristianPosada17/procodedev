@@ -143,8 +143,21 @@ const orgNode = {
   "@type": "ProfessionalService",
   "@id": `${siteUrl}#organization`,
   name: "ProCode Dev",
+  // Google elige el nombre del sitio entre el JSON-LD, og:site_name y el
+  // <title>. Cuando no tiene una señal clara usa el dominio: por eso en
+  // site:procodedev.com salía «Procodedev». Los alias declaran las formas
+  // que la gente escribe sin dejar de tener un nombre principal.
+  alternateName: ["ProCodeDev", "ProCode"],
   url: siteUrl.toString(),
   image: socialImage.toString(),
+  // `logo` es la propiedad que Google lee para el logotipo de la
+  // organización; `image` sola no cumple esa función.
+  logo: {
+    "@type": "ImageObject",
+    url: new URL("/icon-512.png", siteUrl).toString(),
+    width: 512,
+    height: 512,
+  },
   description: metaDescription,
   email: "info@procodedev.com",
   telephone: "+52-614-241-4255",
@@ -193,6 +206,7 @@ const websiteNode = {
   "@id": `${siteUrl}#website`,
   url: siteUrl.toString(),
   name: "ProCode Dev",
+  alternateName: ["ProCodeDev", "ProCode"],
   description: metaDescription,
   publisher: { "@id": `${siteUrl}#organization` },
   inLanguage: lang === "es" ? "es-US" : "en-US",
