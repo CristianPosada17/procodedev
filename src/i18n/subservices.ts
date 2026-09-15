@@ -18,8 +18,9 @@
 
   Reglas heredadas: nada de «negocios pequeños» en español; «small business»
   se queda en inglés; ProCode ES una agencia dirigida por su fundador; cero
-  precios inventados — solo los ya publicados ($349, $697 la landing con
-  sistema de captación, $899, $1,499, $79/mes y $349/mes).
+  precios inventados — solo los ya publicados ($349, $899, $1,499 y $79/mes).
+  La landing con sistema de captación, Crecimiento+, Marketing Digital y el
+  SEO NO llevan cifra: «Cotización a medida» (ver procode-planes-sin-precio).
 */
 
 import type { Lang } from "./ui";
@@ -115,7 +116,7 @@ const landingPagesEs: SubserviceDetail = {
   meta: {
     title: "Diseño de Landing Pages para Negocios | ProCode",
     description:
-      "Diseño de landing page para negocios: una sola página enfocada en convertir, entregada en una semana. Precio publicado: $349 USD, o $697 USD con captación.",
+      "Diseño de landing page para negocios: una sola página enfocada en convertir, entregada en una semana. Precio publicado: $349 USD de pago único.",
     keywords:
       "diseño de landing page, diseñar landing page, diseño de página de ventas, precio landing page, landing page para negocios, crear página de ventas, landing page para campañas, página de aterrizaje",
     heroTitleA: "Diseño de landing pages",
@@ -180,7 +181,7 @@ const landingPagesEs: SubserviceDetail = {
     eyebrow: "// precio publicado",
     title: "Cuánto cuesta una landing page",
     subtitle:
-      "El precio landing page está publicado como todo lo demás en este sitio. Lo que ves es lo que pagas.",
+      "La landing sola tiene precio publicado: lo que ves es lo que pagas. La versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio.",
     items: [
       {
         name: "Landing Page",
@@ -203,9 +204,10 @@ const landingPagesEs: SubserviceDetail = {
       {
         name: "Landing + sistema de captación",
         pricePrefix: "",
-        price: "697",
-        currency: "USD",
-        priceNote: "pago único",
+        price: "",
+        quoteLabel: "Cotización a medida",
+        currency: "",
+        priceNote: "se define tras la reunión inicial",
         description:
           "La landing más el sistema que recoge y ordena a cada prospecto: formularios conectados, aviso inmediato y medición por campaña. Para cuando vas a invertir en anuncios y no quieres perder ni un mensaje.",
         features: [
@@ -221,7 +223,7 @@ const landingPagesEs: SubserviceDetail = {
     ],
     itemCta: "Solicitar este paquete",
     note:
-      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. Los dos paquetes son de pago único; las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital, que se cotiza tras la reunión inicial y la auditoría.",
+      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. La landing sola es de pago único con precio publicado; la versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio. Las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital.",
     cta: "Ver todos los precios",
   },
   fit: {
@@ -597,7 +599,7 @@ const maintenanceEs: SubserviceDetail = {
     eyebrow: "// precio publicado",
     title: "Cuánto cuesta el mantenimiento web",
     subtitle:
-      "El precio mantenimiento web está publicado igual que el resto. Se paga mes a mes y se cancela cuando quieras.",
+      "El mantenimiento tiene precio publicado y se paga mes a mes, sin permanencia. Crecimiento+ se cotiza a tu negocio tras la reunión inicial y la auditoría.",
     items: [
       {
         name: "Mantenimiento",
@@ -618,19 +620,21 @@ const maintenanceEs: SubserviceDetail = {
         highlighted: true,
       },
       {
-        name: "Mantenimiento + captación",
-        pricePrefix: "desde",
-        price: "349",
-        currency: "USD",
-        priceNote: "al mes",
+        name: "Crecimiento+",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotización a medida",
+        currency: "",
+        priceNote: "se define tras la reunión inicial y la auditoría",
         description:
-          "Cuando además del mantenimiento quieres que el sitio traiga trabajo: SEO local, Perfil de Empresa en Google, anuncios y reportes mensuales.",
+          "Cuando además del mantenimiento quieres que te encuentren: Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA.",
         features: [
           "Todo lo del plan de mantenimiento",
+          "Perfil de Empresa en Google: creación, verificación y optimización",
+          "Gestión de reseñas: sistema para pedirlas y respuesta a todas",
           "SEO local y contenido nuevo cada mes",
-          "Perfil de Empresa en Google y reseñas",
-          "Campañas de anuncios si hacen falta",
-          "Reporte de contactos reales",
+          "Optimización para búsqueda con IA (ChatGPT, Google AI)",
+          "Reporte mensual de tu ficha, tu SEO y tu página web",
         ],
         highlighted: false,
       },
@@ -740,7 +744,7 @@ const landingPagesEn: SubserviceDetail = {
   meta: {
     title: "Landing Page Design for Small Business | ProCode",
     description:
-      "Landing page design for small businesses: one page built to convert, delivered in a week. Published pricing: $349 USD, or $697 USD with lead capture.",
+      "Landing page design for small businesses: one page built to convert, delivered in a week. Published pricing: $349 USD one-time.",
     keywords:
       "landing page design, landing page designer, sales page design, landing page pricing, landing page for small business, landing page for ads, high converting landing page, custom landing page",
     heroTitleA: "Landing page design",
@@ -805,7 +809,7 @@ const landingPagesEn: SubserviceDetail = {
     eyebrow: "// published pricing",
     title: "What a landing page costs",
     subtitle:
-      "Landing page pricing is published like everything else on this site. What you see is what you pay.",
+      "The landing page on its own has published pricing: what you see is what you pay. The version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business.",
     items: [
       {
         name: "Landing Page",
@@ -828,9 +832,10 @@ const landingPagesEn: SubserviceDetail = {
       {
         name: "Landing + lead capture system",
         pricePrefix: "",
-        price: "697",
-        currency: "USD",
-        priceNote: "one-time",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "",
+        priceNote: "set after the first meeting",
         description:
           "The landing page plus the system that catches and organizes every lead: connected forms, instant alerts and per-campaign measurement. For when you are about to spend on ads and cannot afford to lose a message.",
         features: [
@@ -846,7 +851,7 @@ const landingPagesEn: SubserviceDetail = {
     ],
     itemCta: "Request this package",
     note:
-      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. Both packages are one-time; managed ad campaigns, if you want them, sit in the Digital Marketing plan, quoted after the first meeting and the audit.",
+      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. The landing page on its own is one-time with published pricing; the version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business. Managed ad campaigns, if you want them, sit in the Digital Marketing plan.",
     cta: "See all pricing",
   },
   fit: {
@@ -1222,7 +1227,7 @@ const maintenanceEn: SubserviceDetail = {
     eyebrow: "// published pricing",
     title: "What website maintenance costs",
     subtitle:
-      "Website maintenance pricing is published like everything else. Paid monthly, cancelled whenever you want.",
+      "Maintenance has published pricing and is paid monthly, with no commitment. Growth+ is quoted to your business after the first meeting and the audit.",
     items: [
       {
         name: "Maintenance",
@@ -1243,19 +1248,21 @@ const maintenanceEn: SubserviceDetail = {
         highlighted: true,
       },
       {
-        name: "Maintenance + lead generation",
-        pricePrefix: "from",
-        price: "349",
-        currency: "USD",
-        priceNote: "a month",
+        name: "Growth+",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "",
+        priceNote: "set after the first meeting and the audit",
         description:
-          "When you also want the site to bring work in: local SEO, Google Business Profile, ads and monthly reporting.",
+          "When you also want to be found: Google Business Profile, reviews, local SEO and visibility in AI search.",
         features: [
           "Everything in the maintenance plan",
+          "Google Business Profile: setup, verification and optimization",
+          "Review management: a system to ask for them and replies to all of them",
           "Local SEO and new content every month",
-          "Google Business Profile and reviews",
-          "Ad campaigns when they are needed",
-          "Reporting on real contacts",
+          "AI search optimization (ChatGPT, Google AI)",
+          "Monthly report on your profile, your SEO and your website",
         ],
         highlighted: false,
       },

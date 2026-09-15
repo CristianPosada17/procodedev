@@ -71,6 +71,11 @@ const offerCatalog = [
     description: p.description,
   })),
 ];
+
+// Marketing Digital no publica cifra: su Offer se emite sin `price` en vez de
+// heredar los $349 de la landing (ver procode-planes-sin-precio).
+const pricedPackage = d.packages.items.find((p) => !p.quoteLabel && p.price);
+const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
 ---
 
 <Layout
@@ -87,6 +92,7 @@ const offerCatalog = [
   serviceName={line.title}
   audience={line.tagline}
   offerCatalog={offerCatalog}
+  offerPrice={offerPrice}
   includeFaq={true}
   faqItems={d.faq.items}
 >

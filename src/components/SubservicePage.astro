@@ -42,10 +42,19 @@ const offerCatalog = [
     description: c.description,
   })),
   ...d.packages.items.map((p) => ({
-    title: `${p.name} — $${p.price} ${p.currency}`,
+    // Un paquete con `quoteLabel` no tiene cifra: escribir `$ ` aquí emitía
+    // «SEO mensual — $ » en el JSON-LD (ver procode-planes-sin-precio).
+    title: p.quoteLabel
+      ? `${p.name} — ${p.quoteLabel}`
+      : `${p.name} — $${p.price} ${p.currency}`,
     description: p.description,
   })),
 ];
+
+// El `price` del nodo Offer sale del primer paquete CON cifra de esta misma
+// página; si ninguno la tiene, se emite sin precio en vez de heredar $349.
+const pricedPackage = d.packages.items.find((p) => !p.quoteLabel && p.price);
+const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
 ---
 
 <Layout
@@ -62,6 +71,7 @@ const offerCatalog = [
   serviceName={d.serviceName}
   audience={d.audience}
   offerCatalog={offerCatalog}
+  offerPrice={offerPrice}
   includeFaq={true}
   faqItems={d.faq.items}
 >

@@ -718,8 +718,8 @@ export const translations = {
       extras: [
         {
           name: "Rediseño web",
-          price: "$349 – $1,499",
-          unit: "USD o más",
+          price: "desde $899",
+          unit: "USD · según el tamaño actual",
           description:
             "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
         },
@@ -1715,8 +1715,8 @@ export const translations = {
       extras: [
         {
           name: "Website redesign",
-          price: "$349 – $1,499",
-          unit: "USD or more",
+          price: "from $899",
+          unit: "USD · depends on current size",
           description:
             "Renew image, structure and conversion on your current site without starting from scratch.",
         },

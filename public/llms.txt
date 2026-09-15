@@ -130,9 +130,9 @@ con su propia página porque así es como la gente las busca.
 
 - **[Diseño de landing pages](https://procodedev.com/servicios/landing-pages/)**
   — una sola página enfocada en convertir, para campañas de anuncios o para un
-  solo servicio. $349 USD de pago único, o $697 USD con el sistema de captación
-  conectado (formularios conectados, aviso inmediato y medición por campaña).
-  Entrega en una semana.
+  solo servicio. $349 USD de pago único. La versión con el sistema de captación
+  conectado (formularios conectados, aviso inmediato y medición por campaña) se
+  cotiza tras la reunión inicial. Entrega en una semana.
 - **[Servicio de SEO](https://procodedev.com/servicios/seo/)** — el SEO como
   servicio independiente, se haya hecho el sitio aquí o no: auditoría SEO
   inicial, keyword research, SEO técnico, SEO on page y contenido, SEO local y
@@ -221,7 +221,8 @@ Same content, same pricing.
   quoted after a first meeting and an audit, no published price).
 - The three entry points into web development, each with its own page:
   [landing page design](https://procodedev.com/en/services/landing-pages/)
-  ($349 USD one-time, or $697 USD with the lead capture system; live in a week),
+  ($349 USD one-time; the version with the lead capture system is quoted after
+  the first meeting; live in a week),
   [SEO services](https://procodedev.com/en/services/seo/)
   (audit, keyword research and monthly SEO, hired separately from the build and
   quoted after the first meeting) and
