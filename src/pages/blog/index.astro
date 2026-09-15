@@ -2,7 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import PageContext from "../../components/PageContext.astro";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog")).sort(
@@ -114,15 +113,6 @@ const formatDate = (date: Date) =>
         </p>
       )
     }
-    <PageContext
-      data={{
-        title: "Blog de diseño web, SEO local y marketing digital para negocios",
-        paragraphs: [
-          "Este blog de diseño web y SEO local es para dueños de negocio: cómo funciona el SEO local, cómo aparecer en Google Maps, qué precios son razonables, qué es el marketing digital para negocios y dónde conviene automatizar. Un blog de páginas web para negocios que existe para que decidas con criterio, contrates a alguien o lo hagas tú.",
-          "Los artículos son de fondo y no reciclan lo que ya dice el sitio: cada uno resuelve una duda concreta, con ejemplos y números. Si el tema que buscas no está, escríbeme y lo escribo.",
-        ],
-      }}
-    />
   </main>
 
   <Footer />

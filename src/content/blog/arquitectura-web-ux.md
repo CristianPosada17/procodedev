@@ -70,4 +70,4 @@ Dibuja tu sitio en una hoja: una caja por página, flechas por cada enlace inter
 
 ---
 
-Si quieres esa revisión hecha con tus datos —incluyendo qué páginas se están canibalizando entre sí—, [la Auditoría Digital](/servicios/auditoria/) revisa nueve áreas y entrega el informe priorizado. Y [así se construye un sitio con la arquitectura pensada desde el principio](/servicios/desarrollo-web/).
+Si quieres esa revisión hecha con tus datos —incluyendo qué páginas se están canibalizando entre sí—, [la Auditoría Estratégica Integral](/servicios/auditoria/) revisa doce áreas y entrega la estrategia priorizada con roadmap 30/60/90. Y [así se construye un sitio con la arquitectura pensada desde el principio](/servicios/desarrollo-web/).

@@ -23,14 +23,25 @@ aparece aquí está publicado en las páginas enlazadas.
 - Landing page: $349 USD (pago único)
 - Sitio web de 4 a 6 páginas: $899 USD (pago único)
 - Sitio web de 8 a 12 páginas: desde $1,499 USD (pago único)
-- Auditoría Digital: $250 USD (pago único, NO se acredita a un proyecto posterior)
+- Auditoría Estratégica Integral: SIN precio publicado. Se cotiza tras la
+  reunión inicial, según el alcance del negocio. Si el cliente contrata
+  desarrollo web, SEO o marketing digital, la auditoría es la primera fase de
+  ese proyecto y va dentro de su cotización.
 - Soporte Web: desde $79 USD/mes
-- Crecimiento+ (Perfil de Empresa en Google, reseñas, SEO local): $349 USD/mes
-- Web + Marketing + SEO: desde $1,100 USD/mes (presupuesto de anuncios aparte; contrato mínimo de 3 meses)
+- Crecimiento+ (Perfil de Empresa en Google, reseñas, SEO local): SIN precio
+  publicado. Se cotiza tras una reunión inicial y una auditoría del negocio.
+- Marketing Digital (todo lo de Crecimiento+ más campañas, SEO completo y
+  reporte mensual): SIN precio publicado. Se cotiza igual, y pide un contrato
+  mínimo de 3 meses. El presupuesto de anuncios va aparte.
+- Servicio de SEO (auditoría + keyword research, y SEO mensual): SIN precio
+  publicado. Se cotiza tras la reunión inicial y la auditoría.
 
-Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización. Web +
-Marketing + SEO pide un mínimo de 3 meses —el tiempo que necesitan los anuncios y
-el SEO para dar resultados reales— y después se cancela igual que los demás.
+Los planes de marketing y de SEO no llevan precio de lista a propósito: lo que
+cuesta depende del giro, la zona y del estado en el que esté hoy la presencia
+digital del negocio. Soporte Web y Crecimiento+ se cancelan de un mes a otro,
+sin penalización. Marketing Digital pide un mínimo de 3 meses —el tiempo que
+necesitan los anuncios y el SEO para dar resultados reales— y después se cancela
+igual que los demás.
 
 ## Cómo se empieza
 
@@ -40,11 +51,11 @@ siguientes y una llamada de 20 minutos. Se hace desde fuera, sin acceso a las
 cuentas del cliente. No hay llamada de ventas para conocer precios porque los
 precios están publicados.
 
-El paso de pago, para quien necesita profundidad, es la **Auditoría Digital**
-($250 USD, cinco días hábiles): nueve áreas revisadas con acceso de solo lectura
-a los datos reales, informe priorizado por escrito, vídeo y llamada. No se
-acredita a un proyecto posterior, y es a propósito: cobrarla aparte es lo que
-permite recomendar «esto está bien, no lo toques» sin perder nada.
+El paso de pago, para quien necesita profundidad, es la **Auditoría Estratégica
+Integral** (cinco días hábiles): empieza por entender el negocio y su objetivo
+comercial, y de ahí revisa doce áreas con acceso de solo lectura a los datos
+reales. Termina en una estrategia priorizada con roadmap 30/60/90, vídeo y
+llamada. Se cotiza tras la reunión inicial.
 
 Compromiso declarado: cualquier mensaje se responde en menos de 24 horas.
 Capacidad declarada: 4 proyectos nuevos al mes.
@@ -59,15 +70,19 @@ Capacidad declarada: 4 proyectos nuevos al mes.
   negocio, con paquetes de diseño de páginas web y qué incluye cada plan.
 - [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
   reales y demos marcados como tales.
-- [Auditoría Digital](https://procodedev.com/servicios/auditoria/): $250 USD,
-  cinco días hábiles. Revisión de nueve áreas del negocio en línea —sitio,
-  estructura, diseño, SEO técnico, contenido y palabras clave, presencia local,
-  anuncios, captación y seguimiento, y medición— con acceso de solo lectura a
-  los datos reales del cliente. Se entrega un informe en PDF con los hallazgos
-  priorizados por impacto y esfuerzo, un vídeo recorriéndolo y una llamada de 30
-  a 45 minutos. No es una tercera línea de servicio: es el producto de entrada
-  de pago, y el informe se puede ejecutar con ProCode, con otro proveedor o con
-  el equipo del propio cliente.
+- [Auditoría Estratégica Integral](https://procodedev.com/servicios/auditoria/):
+  cinco días hábiles, sin precio publicado. Empieza por el negocio —qué vende,
+  quién debería comprarlo, cómo llegan hoy sus clientes y qué resultado
+  comercial quiere— y de ahí audita doce áreas: rendimiento y salud técnica,
+  arquitectura web, diseño y conversión, SEO técnico, keyword research e
+  intención de búsqueda, contenido y canibalización, presencia local,
+  competencia, Google Ads y Meta Ads, captación y respuesta al prospecto, y
+  Analytics, Search Console y atribución. Cada hallazgo queda documentado con
+  evidencia y clasificado por impacto, esfuerzo, urgencia y dependencia. Se
+  entrega un informe, un roadmap de 30, 60 y 90 días, un vídeo recorriéndolo y
+  una llamada de 30 a 45 minutos. No es una tercera línea de servicio: es el
+  producto de entrada de pago, y el roadmap se puede ejecutar con ProCode, con
+  otro proveedor o con el equipo del propio cliente.
 - [Contacto](https://procodedev.com/contacto/): agenda y WhatsApp.
 - [Blog](https://procodedev.com/blog/): guías sobre páginas web, SEO local,
   Google Maps, automatización y precios. Las tres guías de fondo son
@@ -94,16 +109,19 @@ se cotiza aparte.
 2. **[Marketing digital](https://procodedev.com/servicios/marketing-digital/)** —
    marketing digital para negocios que ya tienen sitio. Incluye SEO local por
    ciudad y por servicio, Perfil de Empresa en Google, gestión de reseñas,
-   campañas en Google Ads y en Facebook e Instagram, automatización de
-   seguimiento y un reporte mensual de llamadas, clics a WhatsApp, formularios,
+   campañas en Google Ads y en Facebook e Instagram cuando el negocio las
+   necesita, y un reporte mensual de llamadas, clics a WhatsApp, formularios,
    citas agendadas, origen de cada contacto y costo por prospecto. Planes
-   mensuales: Soporte Web desde $79, Crecimiento+ $349 y Web + Marketing + SEO
-   desde $1,100. Primeros resultados en 30 a 90 días; el SEO local madura entre
-   3 y 6 meses.
+   mensuales: Soporte Web desde $79 USD; Crecimiento+ y Marketing Digital se
+   cotizan tras la reunión inicial y la auditoría. Primeros resultados en 30 a
+   90 días; el SEO local madura entre 3 y 6 meses. ProCode NO ofrece
+   automatización de seguimiento comercial ni promete ventas: el trabajo llega
+   hasta entregar el prospecto; el seguimiento y el cierre son del cliente.
 
 Cuál conviene primero: si no hay sitio o el que hay no convierte, se empieza por
 desarrollo web; si el sitio está bien y llega poca gente, se empieza por
-marketing digital; los dos juntos son el paquete Web + Marketing + SEO.
+marketing digital; los dos juntos son el plan de Marketing Digital. El SEO
+completo es un servicio aparte, con su propia página.
 
 ### Tres entradas al servicio de desarrollo web
 
@@ -113,12 +131,14 @@ con su propia página porque así es como la gente las busca.
 - **[Diseño de landing pages](https://procodedev.com/servicios/landing-pages/)**
   — una sola página enfocada en convertir, para campañas de anuncios o para un
   solo servicio. $349 USD de pago único, o $697 USD con el sistema de captación
-  conectado (formularios, respuesta automática, seguimiento y medición por
-  campaña). Entrega en una semana.
-- **[Diseño web con SEO](https://procodedev.com/servicios/diseno-web-seo/)** —
-  el sitio y el posicionamiento en el mismo proyecto. El SEO técnico va incluido
-  en el precio del desarrollo ($899 USD el sitio de 4 a 6 páginas); el SEO
-  continuo, que es contenido y reseñas mes a mes, empieza en $349 USD al mes.
+  conectado (formularios conectados, aviso inmediato y medición por campaña).
+  Entrega en una semana.
+- **[Servicio de SEO](https://procodedev.com/servicios/seo/)** — el SEO como
+  servicio independiente, se haya hecho el sitio aquí o no: auditoría SEO
+  inicial, keyword research, SEO técnico, SEO on page y contenido, SEO local y
+  reporte mensual. El SEO técnico base va incluido en todo proyecto de
+  desarrollo web; el servicio de SEO es el trabajo continuo de pelear
+  posiciones, y se cotiza tras la reunión inicial y la auditoría.
 - **[Mantenimiento web](https://procodedev.com/servicios/mantenimiento-web/)** —
   actualizaciones, respaldos, monitoreo, cambios de contenido y soporte por
   WhatsApp desde $79 USD al mes, sin contrato de 12 meses. El hosting y el
@@ -183,22 +203,28 @@ Same content, same pricing.
 - [Home](https://procodedev.com/en/) · [Services](https://procodedev.com/en/services/)
   · [Pricing](https://procodedev.com/en/pricing/) · [Portfolio](https://procodedev.com/en/portfolio/)
   · [Contact](https://procodedev.com/en/contact/)
-- [Digital Audit](https://procodedev.com/en/services/audit/): $250 USD, five
-  business days. Nine areas of the business online reviewed against the
-  client's real data, delivered as a prioritized PDF report, a walkthrough
-  video and a 30-45 minute call. Paid separately and not credited toward a
-  later project.
+- [Strategic Business Audit](https://procodedev.com/en/services/audit/): five
+  business days, no published price. It starts with the business and its
+  commercial objective, then audits twelve areas against the client's real
+  data — performance, architecture, conversion, technical SEO, keyword research
+  and search intent, content and cannibalization, local presence, competitors,
+  Google Ads and Meta Ads, intake, and analytics and attribution. Every finding
+  is documented with evidence and classified by impact, effort, urgency and
+  dependency. Delivered as a report, a 30/60/90 roadmap, a walkthrough video
+  and a 30-45 minute call. Quoted after the first meeting; included as the
+  first phase when the client hires a service.
 - The two services in English:
   [web development](https://procodedev.com/en/services/web-development/) (custom
   website development for small businesses, from $349 USD one-time) and
   [digital marketing](https://procodedev.com/en/services/digital-marketing/)
-  (local SEO, Google Business Profile, reviews, ads and follow-up automation,
-  from $349 USD a month).
+  (local SEO, Google Business Profile, reviews, ads and monthly reporting;
+  quoted after a first meeting and an audit, no published price).
 - The three entry points into web development, each with its own page:
   [landing page design](https://procodedev.com/en/services/landing-pages/)
   ($349 USD one-time, or $697 USD with the lead capture system; live in a week),
-  [SEO web design](https://procodedev.com/en/services/seo-web-design/)
-  (technical SEO included in the build; ongoing SEO from $349 USD a month) and
+  [SEO services](https://procodedev.com/en/services/seo/)
+  (audit, keyword research and monthly SEO, hired separately from the build and
+  quoted after the first meeting) and
   [website maintenance](https://procodedev.com/en/services/website-maintenance/)
   (updates, backups, monitoring and content changes from $79 USD a month).
 - [Industries](https://procodedev.com/en/industries/):

@@ -7,7 +7,7 @@
   viven dentro de /servicios/desarrollo-web/ y no pueden rankear desde ahí:
 
     diseño de landing page      542 búsquedas/mes  → /servicios/landing-pages/
-    diseño web con SEO          700 búsquedas/mes  → /servicios/diseno-web-seo/
+    servicio de SEO             (sep 2026)         → /servicios/seo/
     mantenimiento web           258 búsquedas/mes  → /servicios/mantenimiento-web/
 
   No son líneas de servicio nuevas: son entradas distintas al MISMO trabajo.
@@ -22,12 +22,12 @@
   sistema de captación, $899, $1,499, $79/mes y $349/mes).
 */
 
-import type { PageContextCopy, Lang } from "./ui";
+import type { Lang } from "./ui";
 import type { ServiceCapability, ServicePackageItem } from "./services";
 
 export const SUBSERVICE_KEYS = [
   "landingPages",
-  "webSeo",
+  "seo",
   "maintenance",
 ] as const;
 export type SubserviceKey = (typeof SUBSERVICE_KEYS)[number];
@@ -99,7 +99,6 @@ export interface SubserviceDetail {
     body: string;
     items: readonly { label: string; href: string; hint: string }[];
   };
-  pageContext: PageContextCopy;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -208,12 +207,12 @@ const landingPagesEs: SubserviceDetail = {
         currency: "USD",
         priceNote: "pago único",
         description:
-          "La landing más el sistema que recoge y ordena a cada prospecto: formularios conectados, seguimiento automático y medición por campaña. Para cuando vas a invertir en anuncios y no quieres perder ni un mensaje.",
+          "La landing más el sistema que recoge y ordena a cada prospecto: formularios conectados, aviso inmediato y medición por campaña. Para cuando vas a invertir en anuncios y no quieres perder ni un mensaje.",
         features: [
           "Todo lo del paquete anterior",
           "Formulario y WhatsApp conectados a tu correo y a tu hoja de control",
-          "Respuesta automática al prospecto en cuanto escribe",
-          "Recordatorio de seguimiento para que ninguno se quede sin contestar",
+          "Aviso inmediato en tu WhatsApp y tu correo en cuanto alguien escribe",
+          "Campos de calificación para que el prospecto llegue con contexto",
           "Medición por campaña: sabes qué anuncio trajo cada mensaje",
           "Página de gracias con siguiente paso y evento de conversión",
         ],
@@ -222,7 +221,7 @@ const landingPagesEs: SubserviceDetail = {
     ],
     itemCta: "Solicitar este paquete",
     note:
-      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. Los dos paquetes son de pago único; las campañas de anuncios, si las quieres gestionadas, van aparte desde $349 USD al mes.",
+      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. Los dos paquetes son de pago único; las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital, que se cotiza tras la reunión inicial y la auditoría.",
     cta: "Ver todos los precios",
   },
   fit: {
@@ -309,224 +308,216 @@ const landingPagesEs: SubserviceDetail = {
       },
     ],
   },
-  pageContext: {
-    title: "Diseño de landing pages para negocios",
-    paragraphs: [
-      "El diseño de landing page resuelve un problema distinto al de un sitio completo: una sola página, un solo mensaje y una sola acción. Si vas a diseñar landing page para una campaña de anuncios, mandar el tráfico al inicio de tu sitio es la forma más cara de perderlo, porque ahí hay seis caminos y ninguno lleva a comprar.",
-      "Una landing page para negocios se arma al revés que una página institucional: primero la oferta, luego la prueba y al final la objeción. El diseño de página de ventas ordena esas tres piezas para que la decisión ocurra sin scroll infinito, y el botón de WhatsApp queda siempre a un toque. Es la misma pieza que en publicidad se llama página de aterrizaje.",
-      "El precio landing page está publicado: $349 USD de pago único la landing sola, o $697 USD con el sistema de captación conectado. Entrega en una semana y medición desde el primer día. Crear página de ventas por tu cuenta con un constructor es una opción legítima y barata; esta es la versión a la medida, sin plantilla y sin plugins, pensada para landing page para campañas que pagan por cada clic.",
-    ],
-  },
 };
 
-const webSeoEs: SubserviceDetail = {
-  navLabel: "Diseño web con SEO",
-  navHint: "El sitio y el posicionamiento en el mismo proyecto",
+const seoEs: SubserviceDetail = {
+  navLabel: "SEO",
+  navHint: "Auditoría, keyword research y trabajo mensual",
   icon: "search",
-  badge: "Subservicio de desarrollo web",
-  serviceName: "Diseño web con SEO",
-  audience: "Negocios que quieren aparecer en Google desde el lanzamiento",
+  badge: "Servicio de SEO",
+  serviceName: "Servicio de SEO",
+  audience: "Negocios que quieren aparecer en Google por lo que de verdad se busca",
   meta: {
-    title: "Diseño Web con SEO para Negocios | ProCode Dev",
+    title: "Servicio de SEO para Negocios | ProCode Dev",
     description:
-      "Diseño web con SEO para negocios: el sitio y el posicionamiento en Google en el mismo proyecto, no como extra. Precio publicado desde $899 USD.",
+      "Servicio de SEO para negocios: auditoría inicial, keyword research, SEO técnico, contenido y SEO local, con reporte mensual. Se cotiza tras la reunión inicial.",
     keywords:
-      "diseño web con SEO, diseño web SEO, SEO y diseño web, diseño web y posicionamiento SEO, creación de páginas web y posicionamiento, diseño web con posicionamiento, páginas web optimizadas para Google, SEO técnico para páginas web",
-    heroTitleA: "Diseño web con SEO",
+      "servicio de SEO, agencia de SEO, posicionamiento web, posicionamiento en Google, consultor SEO, auditoría SEO, keyword research, SEO técnico, SEO local, SEO on page, estrategia de SEO, SEO para negocios, empresa de SEO",
+    heroTitleA: "Servicio de SEO",
     heroHighlight: "para negocios",
-    heroSubtitle: "Sale en Google desde el día uno.",
+    heroSubtitle: "Aparecer donde ya te buscan.",
   },
   intro: {
-    title: "Por qué el SEO no puede ser un extra",
+    title: "El SEO es un servicio aparte, no un extra de la página",
     lead:
-      "El 80 % de lo que decide si tu sitio aparece en Google se define mientras se construye: estructura, velocidad, títulos y cómo se enlazan las páginas entre sí.",
+      "Cuando programo un sitio va con SEO técnico base: estructura, velocidad, títulos y datos estructurados. Eso no es hacer SEO. Hacer SEO es averiguar qué busca tu cliente, pelear esas frases y sostener el trabajo mes a mes — y eso se contrata por separado, con o sin página hecha por mí.",
     points: [
-      { title: "Estructura primero", text: "Una página por intención de búsqueda, no una sola de «servicios»." },
-      { title: "Velocidad de verdad", text: "Código propio: nada de arreglar después lo que una plantilla rompió." },
-      { title: "Medible", text: "Search Console y analítica conectadas al entregar, no meses después." },
+      { title: "Empieza con datos", text: "Auditoría y keyword research antes de tocar una sola palabra del sitio." },
+      { title: "Frases con demanda", text: "Se persigue lo que la gente escribe de verdad, no lo que suena bien." },
+      { title: "Trabajo sostenido", text: "El posicionamiento se gana en meses y se pierde si se deja de trabajar." },
     ],
   },
   capabilities: {
     eyebrow: "// qué incluye",
-    title: "Qué lleva un sitio hecho con SEO desde el principio",
+    title: "Qué lleva el servicio de SEO",
     subtitle:
-      "El SEO técnico va incluido en todos los proyectos. Esta página existe porque mucha gente lo busca por su nombre, no porque sea un extra que se cobra aparte.",
+      "El orden importa: primero se entiende dónde estás y qué se busca, y solo después se toca el sitio. Un SEO que empieza escribiendo artículos sin haber hecho el keyword research está adivinando.",
     items: [
       {
-        icon: "route",
-        title: "Arquitectura por intención",
+        icon: "clipboard-check",
+        title: "Auditoría SEO inicial",
         description:
-          "Una página por cada cosa que tu cliente busca, enlazadas entre sí para que Google entienda cuál es la principal.",
-      },
-      {
-        icon: "file-text",
-        title: "Títulos y descripciones propios",
-        description:
-          "Cada página con su título, su descripción y su frase principal. Ninguna heredada del inicio ni repetida.",
-      },
-      {
-        icon: "zap",
-        title: "Velocidad y Core Web Vitals",
-        description:
-          "Imágenes en AVIF y WebP, fuentes auto-hospedadas y scripts diferidos. La velocidad es factor de posicionamiento y de conversión.",
-      },
-      {
-        icon: "database",
-        title: "Datos estructurados",
-        description:
-          "JSON-LD de negocio, servicio, preguntas frecuentes y migas de pan, que es lo que leen Google y los buscadores con IA.",
-      },
-      {
-        icon: "map-pin",
-        title: "SEO local base",
-        description:
-          "Perfil de Empresa en Google enlazado, zona de servicio declarada y páginas por ciudad cuando el negocio las justifica.",
+          "Dónde estás hoy: indexación, errores técnicos, velocidad, estructura, contenido, perfil de enlaces y qué hace tu competencia en tu ciudad. Sale por escrito, con el orden en el que hay que arreglarlo.",
       },
       {
         icon: "search",
-        title: "Search Console desde el lanzamiento",
+        title: "Keyword research",
         description:
-          "Sitemap enviado, indexación verificada y el informe abierto para que veas por qué frases entra la gente.",
+          "Qué escribe tu cliente cuando busca lo que vendes, con volumen, intención y dificultad reales. De ahí sale el mapa de qué frase pelea cada página y qué páginas faltan.",
+      },
+      {
+        icon: "settings",
+        title: "SEO técnico",
+        description:
+          "Indexación, sitemap, canónicas, redirecciones, Core Web Vitals, datos estructurados y todo lo que impide que Google lea bien el sitio. Se trabaja sobre tu sitio actual, esté hecho por mí o no.",
+      },
+      {
+        icon: "file-text",
+        title: "SEO on page y contenido",
+        description:
+          "Títulos, descripciones, encabezados y texto reescritos por intención de búsqueda, más las páginas nuevas que pida el mapa de keywords: por servicio, por ciudad o por duda concreta del cliente.",
+      },
+      {
+        icon: "map-pin",
+        title: "SEO local",
+        description:
+          "Perfil de Empresa en Google optimizado, zona de servicio, categorías, reseñas y páginas por ciudad. Para un negocio de servicio es lo que más rápido mueve el teléfono.",
+      },
+      {
+        icon: "bar-chart",
+        title: "Reporte mensual y plan del mes",
+        description:
+          "Qué posiciones subieron, por qué frases entra la gente, cuántos contactos llegaron del orgánico y qué se va a trabajar el mes siguiente. En lenguaje de negocio, no una captura de Search Console.",
       },
     ],
   },
   packages: {
-    eyebrow: "// precio publicado",
-    title: "Cuánto cuesta un sitio con SEO incluido",
+    eyebrow: "// cómo se cotiza",
+    title: "Cuánto cuesta el servicio de SEO",
     subtitle:
-      "Mismo precio que el desarrollo web: el SEO técnico no se cobra aparte. Lo que se cobra aparte es el SEO continuo, que es otro trabajo.",
+      "El SEO no tiene precio de lista porque el trabajo no es el mismo en todos los casos: no cuesta igual un sitio nuevo y limpio que uno con ocho años de contenido duplicado y una migración mal hecha. Primero una reunión inicial para conocer el negocio, después la auditoría, y de ahí sale el alcance y el número.",
     items: [
       {
-        name: "Sitio Web de 4 a 6 páginas",
+        name: "Auditoría SEO + keyword research",
         pricePrefix: "",
-        price: "899",
-        currency: "USD",
-        priceNote: "pago único",
+        price: "",
+        quoteLabel: "Cotización a medida",
+        currency: "",
+        priceNote: "se define tras la reunión inicial",
         description:
-          "Tu negocio completo en línea, con una página por servicio y el SEO técnico resuelto dentro del mismo proyecto.",
+          "El punto de partida. Dónde estás, qué te está frenando, qué busca tu cliente y en qué orden conviene atacarlo. Es tuyo aunque no contrates el plan mensual.",
         features: [
-          "4 a 6 páginas, una por intención de búsqueda",
-          "Títulos, descripciones y datos estructurados propios",
-          "Velocidad y Core Web Vitals cuidados",
-          "Search Console y analítica conectadas",
-          "SEO local base y Perfil de Empresa en Google",
+          "Auditoría técnica, de contenido y de competencia",
+          "Keyword research con volumen, intención y dificultad",
+          "Mapa de qué frase pelea cada página",
+          "Lista de lo que hay que arreglar, priorizada",
+          "Sesión para revisarlo contigo",
         ],
         highlighted: true,
       },
       {
-        name: "SEO continuo",
-        pricePrefix: "desde",
-        price: "349",
-        currency: "USD",
-        priceNote: "al mes",
+        name: "SEO mensual",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotización a medida",
+        currency: "",
+        priceNote: "se define con el resultado de la auditoría",
         description:
-          "Lo que sí es trabajo mensual: contenido nuevo, reseñas, enlaces y ajustes según lo que muestre Search Console.",
+          "El trabajo continuo: arreglar lo técnico, escribir lo que falta, trabajar el SEO local y ajustar según lo que muestren los datos cada mes.",
         features: [
+          "Correcciones técnicas y de indexación",
           "Contenido y páginas nuevas cada mes",
-          "Perfil de Empresa en Google y reseñas",
+          "SEO local: Perfil de Empresa en Google y reseñas",
           "Seguimiento de posiciones y ajustes",
-          "Reporte de contactos reales",
-          "Sin contratos de 12 meses",
+          "Reporte mensual y plan del mes siguiente",
         ],
         highlighted: false,
       },
     ],
-    itemCta: "Solicitar este paquete",
+    itemCta: "Agendar reunión inicial",
     note:
-      "El SEO local tarda de tres a seis meses en madurar. Cualquiera que te prometa la primera posición en un mes te está vendiendo humo.",
+      "El SEO local tarda de tres a seis meses en madurar y hay que sostenerlo: en cuanto se deja de trabajar, las posiciones se devuelven. Cualquiera que te prometa la primera posición en un mes te está vendiendo humo. Si además necesitas anuncios y campañas, eso vive en el plan de Marketing Digital.",
     cta: "Ver todos los precios",
   },
   fit: {
     eyebrow: "// antes de escribirme",
-    title: "Cuándo tiene sentido este enfoque",
+    title: "Cuándo tiene sentido contratar SEO",
     yesTitle: "Encaja contigo si",
     yes: [
-      "Quieres que el sitio traiga búsquedas, no solo que exista.",
+      "Ya tienes página y quieres que traiga búsquedas, no solo que exista.",
       "Vendes varios servicios y cada uno se busca con palabras distintas.",
-      "Tu sitio actual carga lento o no aparece ni buscando tu nombre.",
-      "Piensas invertir en contenido y quieres una base que lo aguante.",
+      "Compites en una ciudad concreta y hoy no apareces en el mapa.",
+      "Puedes sostener el trabajo varios meses: el SEO no rinde en treinta días.",
     ],
     noTitle: "No encaja si",
     no: [
       "Necesitas clientes esta semana: para eso son los anuncios, no el SEO.",
       "Esperas la primera posición garantizada: nadie puede garantizarla, y quien lo hace miente.",
+      "Todavía no tienes sitio o el que tienes no convierte: eso se arregla primero, en desarrollo web.",
       "No vas a tocar el Perfil de Empresa en Google ni a pedir reseñas: el SEO local depende de eso tanto como del sitio.",
     ],
   },
   faq: {
-    eyebrow: "// dudas de diseño web y SEO",
-    titleA: "Lo que preguntan sobre",
-    titleHighlight: "web y posicionamiento",
+    eyebrow: "// dudas sobre SEO",
+    titleA: "Lo que preguntan sobre el",
+    titleHighlight: "servicio de SEO",
     subtitle:
-      "Las dudas que salen cuando alguien busca creación de páginas web y posicionamiento en el mismo proyecto.",
+      "Las dudas que salen cuando alguien compara agencias de SEO y no sabe qué está comprando.",
     items: [
       {
-        question: "¿El SEO va incluido o se cobra aparte?",
+        question: "¿El SEO no venía incluido con la página web?",
         answer:
-          "El SEO técnico —estructura, velocidad, títulos, datos estructurados, sitemap e indexación— va incluido en todos los proyectos, sin costo extra. El SEO continuo, que es contenido nuevo, reseñas y ajustes mes a mes, sí es un servicio aparte desde $349 USD al mes.",
+          "El SEO técnico base sí: estructura, velocidad, títulos, datos estructurados, sitemap e indexación van dentro de todo proyecto de desarrollo web, sin costo extra. Eso deja el sitio en condiciones de rankear. El servicio de SEO es otra cosa: keyword research, contenido nuevo, SEO local, enlaces y ajustes mes a mes. Uno es cómo está construido el sitio; el otro es el trabajo de pelear posiciones, y se contrata aparte.",
       },
       {
-        question: "¿En cuánto tiempo aparezco en Google?",
+        question: "¿Puedo contratar SEO si mi página la hizo otra persona?",
         answer:
-          "La indexación toma días. Aparecer entre los primeros por una frase que la gente busca de verdad toma de tres a seis meses y depende de la competencia de tu ciudad y de tu giro. Lo que sí es inmediato es dejar de perder posiciones por velocidad o estructura.",
+          "Sí, y es el caso más común. El SEO se trabaja sobre el sitio que tengas: WordPress, Wix, Shopify o código a la medida. Si la base técnica está tan mal que sale más caro parchearla que rehacerla, te lo digo en la auditoría con los datos delante, y decides tú.",
       },
       {
-        question: "Ya tengo página. ¿Se puede optimizar en vez de rehacerla?",
+        question: "¿Por qué no publicas un precio de SEO?",
         answer:
-          "A veces sí. Si la base técnica aguanta, se optimiza. Si está hecha con una plantilla pesada y llena de plugins, sale más caro parchearla que rehacerla. La Auditoría Digital responde exactamente esa pregunta con tus datos.",
+          "Porque sería inventado. El trabajo que pide un sitio nuevo de cinco páginas y el que pide uno con ocho años de contenido duplicado no se parecen en nada, y cobrar lo mismo por los dos significa que alguien está pagando de más. Por eso el orden es: reunión inicial para conocer el negocio, auditoría para medir el punto de partida, y entonces el número y el plan.",
+      },
+      {
+        question: "¿En cuánto tiempo se ven resultados?",
+        answer:
+          "Lo técnico y la ficha de Google se mueven en semanas. El orgánico tarda de tres a seis meses en dar resultados que se noten en el teléfono, y depende de la competencia de tu ciudad y de tu giro. Y hay que sostenerlo: el SEO no es una obra que se termina.",
       },
       {
         question: "¿Qué pasa con ChatGPT y los buscadores con IA?",
         answer:
-          "Lo mismo que hace que Google te entienda hace que te entienda un modelo: estructura clara, datos estructurados y respuestas concretas en el texto. Todos los sitios que entrego llevan además un archivo llms.txt y permiso explícito a los rastreadores de IA.",
+          "Lo mismo que hace que Google te entienda hace que te entienda un modelo: estructura clara, datos estructurados, una ficha de Google al día y respuestas concretas en el texto. También publico un archivo llms.txt, aunque conviene decirlo claro: Google ha declarado que ese archivo no influye en su buscador ni es requisito para sus funciones con IA.",
       },
     ],
   },
   form: {
     eyebrow: "// solicitar propuesta",
-    ctaLabel: "Solicitar propuesta con SEO",
-    titleA: "Cuéntame por qué quieres que te encuentren y te paso",
-    titleHighlight: "el alcance y el precio",
+    ctaLabel: "Agendar reunión inicial",
+    titleA: "Cuéntame qué vendes y dónde, y agendamos",
+    titleHighlight: "la reunión inicial",
     subtitle:
-      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con el alcance, el precio y qué esperar mes a mes.",
+      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas para agendar la reunión y explicarte qué revisa la auditoría.",
     needLabel: "Qué necesitas",
     needOptions: [
-      "Un sitio nuevo con SEO desde el principio",
-      "Optimizar el sitio que ya tengo",
+      "Auditoría SEO de mi sitio actual",
+      "Keyword research y estrategia",
+      "SEO mensual continuo",
       "Aparecer en mi ciudad, no en todo el país",
       "Todavía estoy comparando opciones",
     ],
   },
   related: {
     eyebrow: "// a dónde seguir",
-    title: "Las otras dos mitades del mismo trabajo",
+    title: "Lo que va antes y lo que va después del SEO",
     body:
-      "El sitio con SEO técnico es la base. Llenarlo de visitas mes a mes es el otro servicio.",
+      "El SEO trabaja sobre un sitio que ya convierte. Si falta el sitio, o si además quieres comprar visibilidad con anuncios, esos son los otros dos servicios.",
     items: [
       {
         label: "Diseño y desarrollo de páginas web",
         href: "/servicios/desarrollo-web/",
-        hint: "El proyecto completo, de 4 a 12 páginas",
+        hint: "El sitio a la medida, con SEO técnico incluido",
       },
       {
         label: "Marketing digital para negocios",
         href: "/servicios/marketing-digital/",
-        hint: "SEO local continuo, Google Ads y seguimiento",
+        hint: "Campañas, Perfil de Google y reportes mensuales",
       },
       {
-        label: "Precios de páginas web",
-        href: "/precios/",
-        hint: "Todos los paquetes con su precio publicado",
+        label: "Auditoría Estratégica",
+        href: "/servicios/auditoria/",
+        hint: "La revisión completa de tu presencia digital",
       },
-    ],
-  },
-  pageContext: {
-    title: "Diseño web con SEO para negocios",
-    paragraphs: [
-      "El diseño web con SEO no es un servicio aparte: es construir el sitio sabiendo que va a competir en Google. La estructura, la velocidad, los títulos y el enlazado interno se deciden mientras se programa, y rehacer eso después cuesta más que hacerlo bien la primera vez. Por eso aquí el diseño web SEO viene incluido en el precio del proyecto.",
-      "Quien busca creación de páginas web y posicionamiento suele estar comparando dos presupuestos: uno del sitio y otro de la agencia que después lo va a optimizar. Juntar SEO y diseño web en el mismo proyecto evita ese segundo gasto y, sobre todo, evita que el sitio nazca con problemas que ya no se pueden arreglar sin tocar el código.",
-      "Lo que incluye el diseño web y posicionamiento SEO: una página por intención de búsqueda, títulos y descripciones propios, datos estructurados en JSON-LD, imágenes ligeras, Search Console conectada y el Perfil de Empresa en Google enlazado. Son páginas web optimizadas para Google de verdad, con el SEO técnico para páginas web resuelto antes del lanzamiento.",
-      "Lo que no incluye, porque es otro trabajo con otro plazo: el contenido mensual, las reseñas y los enlaces. Ese diseño web con posicionamiento continuo empieza en $349 USD al mes y tarda de tres a seis meses en notarse.",
     ],
   },
 };
@@ -633,7 +624,7 @@ const maintenanceEs: SubserviceDetail = {
         currency: "USD",
         priceNote: "al mes",
         description:
-          "Cuando además del mantenimiento quieres que el sitio traiga trabajo: SEO local, Perfil de Empresa en Google, anuncios y seguimiento.",
+          "Cuando además del mantenimiento quieres que el sitio traiga trabajo: SEO local, Perfil de Empresa en Google, anuncios y reportes mensuales.",
         features: [
           "Todo lo del plan de mantenimiento",
           "SEO local y contenido nuevo cada mes",
@@ -717,9 +708,9 @@ const maintenanceEs: SubserviceDetail = {
       "Si no estás seguro de si tu sitio se mantiene o se rehace, estas son las dos puertas de al lado.",
     items: [
       {
-        label: "Auditoría Digital",
+        label: "Auditoría Estratégica",
         href: "/servicios/auditoria/",
-        hint: "Nueve áreas revisadas con tus datos, $250 USD",
+        hint: "Doce áreas, estrategia priorizada y roadmap 30/60/90",
       },
       {
         label: "Diseño y desarrollo de páginas web",
@@ -731,14 +722,6 @@ const maintenanceEs: SubserviceDetail = {
         href: "/precios/",
         hint: "Todos los paquetes con su precio publicado",
       },
-    ],
-  },
-  pageContext: {
-    title: "Mantenimiento y soporte de páginas web",
-    paragraphs: [
-      "El mantenimiento web es el trabajo del que nadie habla hasta que algo falla: el certificado que caduca, el formulario que dejó de mandar correos, la foto vieja del servicio que ya no das. El mantenimiento de páginas web que hago es preventivo y mensual, con precio publicado desde $79 USD y sin contratos de 12 meses.",
-      "Qué cubre el soporte de página web: actualizaciones y parches, respaldo de sitio web con restauración probada, monitoreo de caídas, revisión de formularios, cambios de contenido incluidos y un reporte mensual de lo que pasó. Cada actualización de página web queda registrada, así que siempre sabes qué se tocó y cuándo.",
-      "El hosting y mantenimiento web no se cobran juntos a propósito: el hosting y el dominio los contratas tú, a tu nombre, entre $60 y $120 USD al año. Yo los configuro y los administro, pero la propiedad es tuya. Es mantenimiento de sitios web para negocios sin secuestro de accesos: si un día te vas, te entrego todo.",
     ],
   },
 };
@@ -849,12 +832,12 @@ const landingPagesEn: SubserviceDetail = {
         currency: "USD",
         priceNote: "one-time",
         description:
-          "The landing page plus the system that catches and organizes every lead: connected forms, automated follow-up and per-campaign measurement. For when you are about to spend on ads and cannot afford to lose a message.",
+          "The landing page plus the system that catches and organizes every lead: connected forms, instant alerts and per-campaign measurement. For when you are about to spend on ads and cannot afford to lose a message.",
         features: [
           "Everything in the package above",
           "Form and WhatsApp wired to your inbox and your tracking sheet",
           "Automatic reply to the lead the moment they write",
-          "Follow-up reminder so nobody goes unanswered",
+          "Qualifying fields so every lead arrives with context",
           "Per-campaign measurement: you know which ad brought each message",
           "Thank-you page with a next step and a conversion event",
         ],
@@ -863,7 +846,7 @@ const landingPagesEn: SubserviceDetail = {
     ],
     itemCta: "Request this package",
     note:
-      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. Both packages are one-time; managed ad campaigns, if you want them, are separate from $349 USD a month.",
+      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. Both packages are one-time; managed ad campaigns, if you want them, sit in the Digital Marketing plan, quoted after the first meeting and the audit.",
     cta: "See all pricing",
   },
   fit: {
@@ -950,224 +933,216 @@ const landingPagesEn: SubserviceDetail = {
       },
     ],
   },
-  pageContext: {
-    title: "Landing page design for small businesses",
-    paragraphs: [
-      "Landing page design solves a different problem than a full site: one page, one message, one action. If you need a landing page for ads, sending that traffic to your homepage is the most expensive way to lose it — there are six paths there and none of them leads to buying.",
-      "A landing page for small business is built backwards from a brochure site: offer first, then proof, then the objection. Sales page design orders those three pieces so the decision happens without endless scrolling, and the WhatsApp button stays one tap away on every screen.",
-      "Landing page pricing is published: $349 USD one-time for the page alone, or $697 USD with the lead capture system wired in. Delivered in a week, measured from day one. Building it yourself in a page builder is a legitimate, cheap option; this is the custom landing page version — no template, no plugins — written by the landing page designer who also answers your messages, and built as a high converting landing page rather than a pretty one.",
-    ],
-  },
 };
 
-const webSeoEn: SubserviceDetail = {
-  navLabel: "SEO web design",
-  navHint: "The site and the ranking in the same project",
+const seoEn: SubserviceDetail = {
+  navLabel: "SEO",
+  navHint: "Audit, keyword research and monthly work",
   icon: "search",
-  badge: "Part of web development",
-  serviceName: "SEO web design",
-  audience: "Small businesses that want to show up in Google from launch",
+  badge: "SEO service",
+  serviceName: "SEO service",
+  audience: "Businesses that want to show up in Google for what people actually search",
   meta: {
-    title: "SEO Web Design for Small Business | ProCode Dev",
+    title: "SEO Services for Small Businesses | ProCode Dev",
     description:
-      "SEO web design for small businesses: the site and its Google ranking handled in one project, never as an add-on. Published pricing from $899 USD.",
+      "SEO services for small businesses: initial audit, keyword research, technical SEO, content and local SEO, with monthly reporting. Quoted after the first meeting.",
     keywords:
-      "SEO web design, web design with SEO, SEO friendly web design, website design and SEO, search engine optimized website, technical SEO for websites, local SEO website design, Google optimized website",
-    heroTitleA: "SEO web design",
+      "seo services, seo agency, small business seo, seo consultant, seo audit, keyword research, technical seo, local seo, on page seo, seo strategy, search engine optimization services, monthly seo",
+    heroTitleA: "SEO services",
     heroHighlight: "for small businesses",
-    heroSubtitle: "In Google from day one.",
+    heroSubtitle: "Show up where they already look.",
   },
   intro: {
-    title: "Why SEO cannot be an add-on",
+    title: "SEO is its own service, not an add-on to the website",
     lead:
-      "Most of what decides whether your site shows up in Google is set while it is being built: structure, speed, titles and how the pages link to each other.",
+      "Every site I build ships with baseline technical SEO: structure, speed, titles and structured data. That is not doing SEO. Doing SEO means finding out what your client actually searches, competing for those phrases and sustaining the work month after month — and that is hired separately, whether or not I built the site.",
     points: [
-      { title: "Structure first", text: "A page per search intent, not one «services» page." },
-      { title: "Real speed", text: "Custom code: nothing to patch later that a template broke." },
-      { title: "Measurable", text: "Search Console and analytics connected at handover." },
+      { title: "Starts with data", text: "Audit and keyword research before a single word on the site is touched." },
+      { title: "Phrases with demand", text: "We chase what people actually type, not what sounds good." },
+      { title: "Sustained work", text: "Rankings are won over months and lost when the work stops." },
     ],
   },
   capabilities: {
-    eyebrow: "// what's included",
-    title: "What a site built for search carries inside",
+    eyebrow: "// what it includes",
+    title: "What the SEO service covers",
     subtitle:
-      "Technical SEO ships with every project. This page exists because people search for it by name, not because it is billed separately.",
+      "The order matters: first we understand where you stand and what gets searched, and only then do we touch the site. An SEO that starts writing articles before the keyword research is guessing.",
     items: [
       {
-        icon: "route",
-        title: "Architecture by intent",
+        icon: "clipboard-check",
+        title: "Initial SEO audit",
         description:
-          "One page for each thing your client searches, linked so Google understands which one is the main answer.",
-      },
-      {
-        icon: "file-text",
-        title: "Titles and descriptions of its own",
-        description:
-          "Every page with its own title, description and target phrase. None inherited from the homepage, none repeated.",
-      },
-      {
-        icon: "zap",
-        title: "Speed and Core Web Vitals",
-        description:
-          "AVIF and WebP images, self-hosted fonts, deferred scripts. Speed is a ranking factor and a conversion factor at once.",
-      },
-      {
-        icon: "database",
-        title: "Structured data",
-        description:
-          "JSON-LD for the business, the services, the FAQ and breadcrumbs — what Google and AI search actually read.",
-      },
-      {
-        icon: "map-pin",
-        title: "Local SEO foundation",
-        description:
-          "Google Business Profile linked, service area declared, and city pages when the business genuinely justifies them.",
+          "Where you stand today: indexing, technical errors, speed, structure, content, link profile and what your competitors in your city are doing. Delivered in writing, in the order it should be fixed.",
       },
       {
         icon: "search",
-        title: "Search Console from launch",
+        title: "Keyword research",
         description:
-          "Sitemap submitted, indexing verified and the report open so you can see which phrases bring people in.",
+          "What your client types when they look for what you sell, with real volume, intent and difficulty. That is where the map of which phrase each page fights for comes from — and which pages are missing.",
+      },
+      {
+        icon: "settings",
+        title: "Technical SEO",
+        description:
+          "Indexing, sitemap, canonicals, redirects, Core Web Vitals, structured data and everything stopping Google from reading the site properly. Done on your current site, whether I built it or not.",
+      },
+      {
+        icon: "file-text",
+        title: "On-page SEO and content",
+        description:
+          "Titles, descriptions, headings and copy rewritten by search intent, plus the new pages the keyword map calls for: by service, by city or by a specific question your clients ask.",
+      },
+      {
+        icon: "map-pin",
+        title: "Local SEO",
+        description:
+          "Google Business Profile optimized, service area, categories, reviews and pages by city. For a service business it is what moves the phone fastest.",
+      },
+      {
+        icon: "bar-chart",
+        title: "Monthly report and next month's plan",
+        description:
+          "Which rankings moved, which phrases bring people in, how many contacts came from organic and what gets worked on next month. In business language, not a Search Console screenshot.",
       },
     ],
   },
   packages: {
-    eyebrow: "// published pricing",
-    title: "What a site with SEO included costs",
+    eyebrow: "// how it is quoted",
+    title: "What the SEO service costs",
     subtitle:
-      "Same price as web development: technical SEO is not billed separately. Ongoing SEO is, because it is a different job.",
+      "SEO has no list price because the work is not the same in every case: a clean new site and one carrying eight years of duplicate content and a botched migration are not the same job. First a meeting to understand the business, then the audit, and the scope and the number come out of that.",
     items: [
       {
-        name: "4 to 6 page website",
+        name: "SEO audit + keyword research",
         pricePrefix: "",
-        price: "899",
-        currency: "USD",
-        priceNote: "one-time",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "",
+        priceNote: "set after the first meeting",
         description:
-          "Your whole business online, with a page per service and the technical SEO solved inside the same project.",
+          "The starting point. Where you stand, what is holding you back, what your client searches and the order to tackle it in. It is yours even if you never hire the monthly plan.",
         features: [
-          "4 to 6 pages, one per search intent",
-          "Own titles, descriptions and structured data",
-          "Speed and Core Web Vitals handled",
-          "Search Console and analytics connected",
-          "Local SEO foundation and Google Business Profile",
+          "Technical, content and competitor audit",
+          "Keyword research with volume, intent and difficulty",
+          "A map of which phrase each page fights for",
+          "A prioritized list of what to fix",
+          "A session to walk through it with you",
         ],
         highlighted: true,
       },
       {
-        name: "Ongoing SEO",
-        pricePrefix: "from",
-        price: "349",
-        currency: "USD",
-        priceNote: "a month",
+        name: "Monthly SEO",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "",
+        priceNote: "set from the audit findings",
         description:
-          "The part that really is monthly work: new content, reviews, links and adjustments based on what Search Console shows.",
+          "The ongoing work: fixing the technical side, writing what is missing, working local SEO and adjusting to what the data shows each month.",
         features: [
+          "Technical and indexing fixes",
           "New content and pages every month",
-          "Google Business Profile and reviews",
+          "Local SEO: Google Business Profile and reviews",
           "Rank tracking and adjustments",
-          "Reporting on real contacts",
-          "No 12-month contracts",
+          "Monthly report and next month's plan",
         ],
         highlighted: false,
       },
     ],
-    itemCta: "Request this package",
+    itemCta: "Book the first meeting",
     note:
-      "Local SEO takes three to six months to mature. Anyone promising you the first position in a month is selling you smoke.",
-    cta: "See all pricing",
+      "Local SEO takes three to six months to mature and has to be sustained: the moment the work stops, the rankings slide back. Anyone promising you the top spot in a month is selling smoke. If you also need ads and campaigns, that lives in the Digital Marketing plan.",
+    cta: "See full pricing",
   },
   fit: {
     eyebrow: "// before you write",
-    title: "When this approach makes sense",
-    yesTitle: "It fits if",
+    title: "When hiring SEO makes sense",
+    yesTitle: "It fits you if",
     yes: [
-      "You want the site to bring searches, not just exist.",
-      "You sell several services and each is searched with different words.",
-      "Your current site loads slowly or does not show up even for your own name.",
-      "You plan to invest in content and want a base that can carry it.",
+      "You already have a site and want it to bring searches, not just exist.",
+      "You sell several services and each one is searched with different words.",
+      "You compete in a specific city and today you are not on the map.",
+      "You can sustain the work for months: SEO does not pay off in thirty days.",
     ],
     noTitle: "It does not fit if",
     no: [
       "You need clients this week: that is what ads are for, not SEO.",
-      "You expect a guaranteed first position: nobody can guarantee it, and whoever does is lying.",
+      "You expect a guaranteed top spot: nobody can guarantee it, and anyone who does is lying.",
+      "You have no site yet, or the one you have does not convert: that gets fixed first, in web development.",
       "You will not touch your Google Business Profile or ask for reviews: local SEO depends on that as much as on the site.",
     ],
   },
   faq: {
-    eyebrow: "// web design and SEO questions",
-    titleA: "What people ask about",
-    titleHighlight: "sites and rankings",
+    eyebrow: "// SEO questions",
+    titleA: "What people ask about the",
+    titleHighlight: "SEO service",
     subtitle:
-      "The questions that come up when someone wants website design and SEO handled in one project.",
+      "The questions that come up when someone is comparing SEO agencies and is not sure what they are buying.",
     items: [
       {
-        question: "Is SEO included or billed separately?",
+        question: "Wasn't SEO included with the website?",
         answer:
-          "Technical SEO — structure, speed, titles, structured data, sitemap and indexing — is included in every project at no extra cost. Ongoing SEO, which is new content, reviews and monthly adjustments, is a separate service from $349 USD a month.",
+          "Baseline technical SEO is: structure, speed, titles, structured data, sitemap and indexing ship with every web development project at no extra cost. That leaves the site in a condition to rank. The SEO service is something else: keyword research, new content, local SEO, links and monthly adjustments. One is how the site is built; the other is the work of competing for rankings, and it is hired separately.",
       },
       {
-        question: "How long until I show up in Google?",
+        question: "Can I hire SEO if someone else built my site?",
         answer:
-          "Indexing takes days. Ranking near the top for a phrase people actually search takes three to six months and depends on your city and your industry. What is immediate is no longer losing positions to speed or structure problems.",
+          "Yes, and that is the most common case. SEO is done on whatever site you have: WordPress, Wix, Shopify or custom code. If the technical base is so bad that patching it costs more than rebuilding, I tell you in the audit with the data in front of you, and you decide.",
       },
       {
-        question: "I already have a site. Can it be optimized instead of rebuilt?",
+        question: "Why don't you publish an SEO price?",
         answer:
-          "Sometimes. If the technical base holds up, it gets optimized. If it is a heavy template stacked with plugins, patching costs more than rebuilding. The Digital Audit answers exactly that question with your own data.",
+          "Because it would be made up. The work a clean five-page site needs and the work a site with eight years of duplicate content needs are nothing alike, and charging the same for both means somebody is overpaying. That is why the order is: a first meeting to understand the business, an audit to measure the starting point, and then the number and the plan.",
+      },
+      {
+        question: "How long before I see results?",
+        answer:
+          "Technical fixes and the Google profile move within weeks. Organic takes three to six months to show up in your phone ringing, and it depends on the competition in your city and your trade. And it has to be sustained: SEO is not a build that gets finished.",
       },
       {
         question: "What about ChatGPT and AI search?",
         answer:
-          "The same things that make Google understand you make a model understand you: clear structure, structured data and concrete answers in the copy. Every site I ship also carries an llms.txt file and explicit permission for AI crawlers.",
+          "The same things that make Google understand you make a model understand you: clear structure, structured data, a current Google profile and concrete answers in the copy. I also publish an llms.txt file, though it is worth saying plainly: Google has stated that this file does not influence its search results and is not required for its AI features.",
       },
     ],
   },
   form: {
     eyebrow: "// request a proposal",
-    ctaLabel: "Request a proposal with SEO",
-    titleA: "Tell me who should be finding you and I'll send",
-    titleHighlight: "the scope and the price",
+    ctaLabel: "Book the first meeting",
+    titleA: "Tell me what you sell and where, and we book",
+    titleHighlight: "the first meeting",
     subtitle:
-      "Three fields, nothing else. I reply on WhatsApp within 24 hours with the scope, the price and what to expect month by month.",
+      "Three fields, nothing else. I reply on WhatsApp in under 24 hours to book the meeting and explain what the audit covers.",
     needLabel: "What you need",
     needOptions: [
-      "A new site with SEO from the start",
-      "Optimize the site I already have",
-      "Show up in my city, not nationwide",
+      "An SEO audit of my current site",
+      "Keyword research and strategy",
+      "Ongoing monthly SEO",
+      "Ranking in my city, not nationwide",
       "Still comparing options",
     ],
   },
   related: {
     eyebrow: "// where to go next",
-    title: "The other two halves of the same job",
+    title: "What comes before and after SEO",
     body:
-      "A site with technical SEO is the base. Filling it with visits month after month is the other service.",
+      "SEO works on a site that already converts. If the site is missing, or you also want to buy visibility with ads, those are the other two services.",
     items: [
       {
-        label: "Small business website design",
+        label: "Website design and development",
         href: "/en/services/web-development/",
-        hint: "The full project, 4 to 12 pages",
+        hint: "The custom site, with technical SEO included",
       },
       {
-        label: "Digital marketing for small business",
+        label: "Small business digital marketing",
         href: "/en/services/digital-marketing/",
-        hint: "Ongoing local SEO, Google Ads and follow-up",
+        hint: "Campaigns, Google profile and monthly reporting",
       },
       {
-        label: "Website pricing",
-        href: "/en/pricing/",
-        hint: "Every package with its published price",
+        label: "Strategic Audit",
+        href: "/en/services/audit/",
+        hint: "The full review of your digital presence",
       },
-    ],
-  },
-  pageContext: {
-    title: "SEO web design for small businesses",
-    paragraphs: [
-      "SEO web design is not a separate service: it is building the site knowing it has to compete in Google. Structure, speed, titles and internal linking are decided while the code is written, and redoing that later costs more than doing it right once. That is why web design with SEO is included in the project price here.",
-      "People searching for website design and SEO are usually comparing two quotes: one for the site and one for the agency that will optimize it afterwards. Doing both in the same project removes that second bill and, more importantly, keeps the site from launching with problems that cannot be fixed without touching the code.",
-      "What SEO friendly web design includes here: a page per search intent, its own titles and descriptions, JSON-LD structured data, light images, Search Console connected and the Google Business Profile linked. It is a genuinely search engine optimized website, with the technical SEO for websites solved before launch rather than after — a Google optimized website from the first day it is live.",
-      "What it does not include, because it is a different job on a different clock: monthly content, reviews and links. That local SEO website design work starts at $349 USD a month and takes three to six months to show.",
     ],
   },
 };
@@ -1274,7 +1249,7 @@ const maintenanceEn: SubserviceDetail = {
         currency: "USD",
         priceNote: "a month",
         description:
-          "When you also want the site to bring work in: local SEO, Google Business Profile, ads and follow-up.",
+          "When you also want the site to bring work in: local SEO, Google Business Profile, ads and monthly reporting.",
         features: [
           "Everything in the maintenance plan",
           "Local SEO and new content every month",
@@ -1358,9 +1333,9 @@ const maintenanceEn: SubserviceDetail = {
       "If you are not sure whether your site should be maintained or rebuilt, these are the two doors next to this one.",
     items: [
       {
-        label: "Digital Audit",
+        label: "Strategic Audit",
         href: "/en/services/audit/",
-        hint: "Nine areas reviewed with your data, $250 USD",
+        hint: "Twelve areas, a prioritized strategy and a 30/60/90 roadmap",
       },
       {
         label: "Small business website design",
@@ -1374,25 +1349,17 @@ const maintenanceEn: SubserviceDetail = {
       },
     ],
   },
-  pageContext: {
-    title: "Website maintenance and support",
-    paragraphs: [
-      "Website maintenance is the work nobody talks about until something breaks: the certificate that expired, the form that quietly stopped sending email, the photo of a service you no longer offer. The website maintenance services here are preventive and monthly, with published pricing from $79 USD and no 12-month contracts.",
-      "What website support covers: updates and patches, website backups with tested restores, uptime monitoring, form checks, content changes included and a monthly report of what happened. Every one of those website updates is logged, so you always know what was touched and when.",
-      "Hosting is deliberately not bundled into the website maintenance pricing: hosting and the domain are contracted by you, in your name, for $60 to $120 USD a year. I configure and manage them, but ownership stays yours. It is small business website maintenance without access hostage-taking — a website care plan you can leave at any time with every key in hand.",
-    ],
-  },
 };
 
 export const subservices: Record<Lang, Record<SubserviceKey, SubserviceDetail>> = {
   es: {
     landingPages: landingPagesEs,
-    webSeo: webSeoEs,
+    seo: seoEs,
     maintenance: maintenanceEs,
   },
   en: {
     landingPages: landingPagesEn,
-    webSeo: webSeoEn,
+    seo: seoEn,
     maintenance: maintenanceEn,
   },
 };

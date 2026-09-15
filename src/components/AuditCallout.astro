@@ -1,15 +1,15 @@
 ---
 /*
-  Banda que enlaza la Auditoría Digital desde el hub y desde las dos páginas
+  Banda que enlaza la Auditoría Estratégica desde el hub y desde las dos páginas
   de servicio.
 
   Es el puente entre la arquitectura de dos líneas y el producto de entrada:
   quien llega a /servicios y no sabe cuál de los dos necesita tiene ahora
   dos salidas —el formulario («ayúdame a elegir», gratis) y la auditoría
-  ($250, a fondo)— en vez de irse sin ninguna.
+  (a fondo, de pago)— en vez de irse sin ninguna.
 
   No se pone en el home: ahí la puerta de entrada sigue siendo la Revisión
-  Express gratis, y meter un producto de $250 antes que ella invertiría el
+  Express gratis, y meter el producto de pago antes que ella invertiría el
   orden de la escalera.
 */
 import { PAGES, type Lang } from "../i18n/ui";
@@ -48,7 +48,7 @@ const c = a.callout;
           <Icon name="arrow-right" class="h-4 w-4" />
         </a>
         <p class="text-center font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
-          ${a.price} {a.currency} · {a.timeline}
+          {a.priceQuote} · {a.timeline}
         </p>
       </div>
     </div>

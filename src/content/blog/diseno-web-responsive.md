@@ -61,4 +61,4 @@ Los cinco se pueden hacer sin rehacer el sitio. Si después de eso sigue lento, 
 
 ---
 
-Los sitios que entrego se construyen primero para el teléfono, con imágenes en AVIF y WebP y sin plugins acumulados. [Aquí está cómo](/servicios/desarrollo-web/), y si lo que necesitas es saber qué está frenando el que ya tienes, [eso es la Auditoría Digital](/servicios/auditoria/).
+Los sitios que entrego se construyen primero para el teléfono, con imágenes en AVIF y WebP y sin plugins acumulados. [Aquí está cómo](/servicios/desarrollo-web/), y si lo que necesitas es saber qué está frenando el que ya tienes, [eso es la Auditoría Estratégica Integral](/servicios/auditoria/).

@@ -13,7 +13,7 @@
 // las trate como algo distinto de contenido duplicado.
 // ============================================================
 
-import type { Lang, PageContextCopy, SegmentKey } from "./ui";
+import type { Lang, SegmentKey } from "./ui";
 
 export interface SegmentBlock {
   icon: string;
@@ -55,7 +55,6 @@ export interface Segment {
   ctaTitle: string;
   ctaBody: string;
   /** Bloque de contexto al pie: el texto largo que salió del hero. */
-  pageContext: PageContextCopy;
 }
 
 type SegmentDict = Record<SegmentKey, Segment>;
@@ -79,7 +78,7 @@ const es: SegmentDict = {
     heroHighlight: "contratistas y constructoras",
     heroSubtitle: "Te eligen antes de conocerte.",
     intro:
-      "Sitio web, Perfil de Empresa en Google, formulario de cotización y seguimiento para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
+      "Sitio web, Perfil de Empresa en Google, formulario de cotización y avisos al instante para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
     projectId: "izcalli",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Una constructora de tu giro que ya está",
@@ -193,17 +192,9 @@ const es: SegmentDict = {
       {
         question: "¿Cómo conseguir clientes para una constructora sin depender de la recomendación?",
         answer:
-          "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y seguimiento automático de quien no cerró a la primera. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
+          "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y un aviso inmediato en tu teléfono en cuanto alguien pide cotización. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
       },
     ],
-    pageContext: {
-      title: "Diseño web y marketing para contratistas",
-      paragraphs: [
-        "Tu trabajo se ve en la obra terminada, pero el cliente decide antes de verla: decide con lo que encuentra en Google. Por eso el diseño web para contratistas empieza por las fotos de antes y después, la zona que cubres y un formulario que pida lo que de verdad necesitas para cotizar.",
-        "Hago páginas web para contratistas, diseño web para constructoras y diseño web para empresas de remodelación, incluida la página web para plomeros, la página web para electricistas y la página web para techos. El oficio cambia el orden de las secciones y el vocabulario, no la calidad del sitio.",
-        "El sitio es la mitad del trabajo. El marketing digital para contratistas y el SEO local para contratistas son lo que hace que te encuentren cuando alguien busca tu servicio en tu ciudad, y la generación de clientes para contratistas se mide en llamadas, no en visitas. En una agencia de marketing para contratistas de este tamaño siempre hablas con quien ejecuta.",
-      ],
-    },
     ctaTitle: "20 minutos antes de tu próxima temporada fuerte",
     ctaBody:
       "Te digo qué encuentra hoy un cliente que busca tu oficio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para contratistas que va a hacer el trabajo, no con un vendedor.",
@@ -227,7 +218,7 @@ const es: SegmentDict = {
     heroHighlight: "consultorios y clínicas",
     heroSubtitle: "Agendan sin preguntar precios.",
     intro:
-      "Sitio web, agenda en línea, formulario de primera consulta, recordatorios y seguimiento para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
+      "Sitio web, agenda en línea, formulario de primera consulta y recordatorios de cita para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
     projectId: "fersilva",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Una práctica de salud que ya está",
@@ -273,9 +264,9 @@ const es: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Recordatorios y recuperación de pacientes",
+        title: "Recordatorios de cita automáticos",
         description:
-          "Recordatorio automático 24 horas antes para reducir las citas perdidas, y aviso a los pacientes que no vuelven desde hace meses de que ya pueden agendar su seguimiento.",
+          "Recordatorio 24 horas antes de la consulta, enviado por el propio sistema de agenda, para reducir las citas perdidas.",
       },
       {
         icon: "shield",
@@ -300,7 +291,7 @@ const es: SegmentDict = {
       },
       {
         label: "Abr – Jun",
-        note: "Seguimiento, paquetes y venta de tratamientos a la base actual.",
+        note: "Contenido de temporada, reseñas y paquetes visibles en la página.",
       },
       {
         label: "Jul – Sep",
@@ -339,14 +330,6 @@ const es: SegmentDict = {
           "Apareciendo cuando alguien busca tu especialidad en tu ciudad, y quitando la fricción entre esa búsqueda y la cita. En la práctica: una página por especialidad, agenda en línea abierta las 24 horas y recordatorios que reducen las faltas. Sin eso, más visitas solo significa más mensajes sin contestar.",
       },
     ],
-    pageContext: {
-      title: "Diseño web y marketing para consultorios y clínicas",
-      paragraphs: [
-        "Un paciente nuevo te evalúa antes de escribirte: mira tu formación, tus reseñas y si puede agendar sin preguntar precios por mensaje. El diseño web para consultorios pone esas tres cosas al frente, y la agenda en línea para pacientes cierra la cita sin que tengas que contestar el teléfono.",
-        "Cubro diseño web para psicólogos, diseño web para terapeutas y páginas web para nutriólogos, además de la página web para consultorios de especialidad. El tono cambia según el paciente; la estructura que convierte es la misma.",
-        "Del lado de captación, el marketing digital para psicólogos y el SEO local para consultorios son la respuesta real a cómo conseguir más pacientes: aparecer en la búsqueda del barrio, mantener las reseñas vivas y responder rápido. En una agencia de marketing para consultorios el seguimiento va automatizado, no depende de que alguien se acuerde.",
-      ],
-    },
     ctaTitle: "20 minutos para revisar tu agenda",
     ctaBody:
       "Te digo qué encuentra hoy un paciente que busca tu especialidad en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para consultorios que va a hacer el trabajo, no con un vendedor.",
@@ -370,7 +353,7 @@ const es: SegmentDict = {
     heroHighlight: "profesionales y despachos",
     heroSubtitle: "Confianza antes de la llamada.",
     intro:
-      "Sitio web, captación, formulario de calificación, agenda y seguimiento para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
+      "Sitio web, captación, formulario de calificación, agenda y avisos al instante para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
     projectId: "cristian-posada",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Un profesional que vende criterio, y lo",
@@ -389,7 +372,7 @@ const es: SegmentDict = {
       "Das consultas gratis a personas que nunca iban a contratarte, y no te queda tiempo para las que sí.",
       "Tu experiencia y tus resultados no se ven: pareces igual que cualquier otro que abrió el mes pasado.",
       "El prospecto pregunta «¿cuánto cobras?» antes de entender lo que resuelves, y la conversación muere ahí.",
-      "Mandas una propuesta y no vuelves a saber nada, porque nadie hace el seguimiento.",
+      "Contestas tarde porque el mensaje cayó en un correo que no revisas, y para entonces ya llamaron a otro.",
       "Tu contenido y tu reputación viven en redes sociales, no en un sitio que trabaje para ti.",
     ],
     systemTitle: "Qué incluye una página web para abogados y consultores",
@@ -422,9 +405,9 @@ const es: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Seguimiento de propuestas que no se cae solo",
+        title: "Aviso inmediato de cada consulta",
         description:
-          "Cada prospecto que pidió una propuesta y no respondió recibe seguimiento en los días correctos, con un mensaje que no suena a cobranza.",
+          "Cada solicitud te llega a tu WhatsApp y a tu correo en el momento, ya calificada y con el contexto del asunto, para que sepas a quién contestar primero.",
       },
       {
         icon: "zap",
@@ -443,7 +426,7 @@ const es: SegmentDict = {
       },
       {
         label: "Abr – Jun",
-        note: "Captación activa, contenido y propuestas con seguimiento.",
+        note: "Captación activa, contenido y propuestas.",
       },
       {
         label: "Jul – Sep",
@@ -469,7 +452,7 @@ const es: SegmentDict = {
       {
         question: "¿Sirve si trabajo solo, sin equipo?",
         answer:
-          "Es donde más rinde. Un profesional solo no puede contestar mientras está en audiencia o con un cliente: la calificación previa y el seguimiento automático son el asistente que no puedes contratar todavía.",
+          "Es donde más rinde. Un profesional solo no puede contestar mientras está en audiencia o con un cliente: la calificación previa y el aviso inmediato de cada consulta son el asistente que no puedes contratar todavía.",
       },
       {
         question: "¿Puede quedar en inglés y en español?",
@@ -479,17 +462,9 @@ const es: SegmentDict = {
       {
         question: "¿Cómo conseguir clientes siendo abogado o consultor independiente?",
         answer:
-          "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y seguimiento de quien preguntó y no volvió. La captación de clientes para abogados falla casi siempre en el tercer punto, no en el primero.",
+          "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y un aviso inmediato de cada consulta para que contestes antes que nadie. La captación de clientes para abogados falla casi siempre en la velocidad de respuesta, no en la publicidad.",
       },
     ],
-    pageContext: {
-      title: "Diseño web y marketing para servicios profesionales",
-      paragraphs: [
-        "Cuando alguien te contrata no compra horas: compra la confianza de que sabes resolver su problema. El diseño web para abogados y el sitio web para consultores se construyen alrededor de esa confianza — casos, credenciales y una marca personal profesional que no parezca una plantilla.",
-        "Eso incluye la página web para abogados, las páginas web para despachos, la página web para agentes de seguros y el sitio del consultor independiente. Comparten el mismo problema: mucha competencia y muy poca diferencia visible desde fuera.",
-        "El marketing digital para consultores y el SEO local para servicios profesionales son lo que llena la agenda, y la captación de clientes para abogados casi siempre se rompe en el seguimiento, no en la publicidad. En una agencia de marketing para abogados eso es lo primero que hay que automatizar.",
-      ],
-    },
     ctaTitle: "20 minutos para revisar tu captación",
     ctaBody:
       "Te digo qué encuentra hoy alguien que busca tu servicio en tu ciudad y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing para abogados y consultores que va a hacer el trabajo, no con un vendedor.",
@@ -513,7 +488,7 @@ const es: SegmentDict = {
     heroHighlight: "inmobiliarias y asesores",
     heroSubtitle: "Tu marca, no solo portales.",
     intro:
-      "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, agenda de visitas y seguimiento para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
+      "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, agenda de visitas y avisos al instante para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
     projectId: "demo-inmobiliaria",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Cómo se ve un catálogo inmobiliario",
@@ -565,9 +540,9 @@ const es: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Seguimiento a compradores de ciclo largo",
+        title: "Aviso inmediato de cada prospecto",
         description:
-          "Un comprador puede tardar un año en decidirse.",
+          "Cada formulario llega a tu teléfono en el momento, con presupuesto, zona y tiempo de compra ya capturados, para que llames mientras el interés está caliente.",
       },
       {
         icon: "zap",
@@ -594,7 +569,7 @@ const es: SegmentDict = {
       },
       {
         label: "Oct – Dic",
-        note: "Ciclo lento: contenido de zona y seguimiento a prospectos tibios.",
+        note: "Ciclo lento: contenido de zona y fichas nuevas de propiedad.",
       },
     ],
     faqTitle: "Dudas sobre páginas web para asesores inmobiliarios",
@@ -625,14 +600,6 @@ const es: SegmentDict = {
           "Teniendo catálogo propio, fichas que se puedan compartir por WhatsApp y un formulario que distinga a quien quiere comprar de quien quiere vender. La generación de prospectos inmobiliarios que sí se sostiene es la que llega a tu sitio, no la que renta un portal mes con mes.",
       },
     ],
-    pageContext: {
-      title: "Diseño web y marketing para inmobiliarias",
-      paragraphs: [
-        "Tus propiedades viven en portales y en redes, pero tu marca no vive en ninguna parte. El diseño web para inmobiliarias te da un catálogo de propiedades en línea propio, con tu nombre arriba y sin que el portal te cobre por el prospecto que tú generaste.",
-        "Hago páginas web para asesores inmobiliarios y la página web para inmobiliarias con equipo, más landing pages para propiedades cuando hay una promoción concreta que empujar.",
-        "El marketing digital para inmobiliarias y el SEO local para inmobiliarias son la base de una generación de prospectos inmobiliarios sostenida. Si te preguntas cómo generar prospectos inmobiliarios sin comprarlos cada mes, la respuesta es tu propio sitio más seguimiento automático — y eso es lo que hace una agencia de marketing inmobiliario que se queda a medir los resultados.",
-      ],
-    },
     ctaTitle: "20 minutos para revisar tu catálogo",
     ctaBody:
       "Te digo qué encuentra hoy un comprador que busca en tu zona y qué pieza te falta. Hablas directo con el dueño de la agencia de marketing inmobiliario que va a hacer el trabajo, no con un vendedor.",
@@ -651,7 +618,7 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Contadores y Despachos | ProCode Dev",
       description:
-        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, seguimiento y SEO local para contadores. Precios públicos.",
+        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, avisos al instante y SEO local para contadores. Precios públicos.",
       keywords:
         "diseño web para contadores, diseño web para despachos contables, páginas web para preparadores de impuestos, páginas web para bookkeepers, marketing digital para contadores, SEO local para contadores, agencia de marketing para despachos contables, página web para despachos contables, intake de documentos, cómo conseguir clientes para un despacho contable",
     },
@@ -660,7 +627,7 @@ const es: SegmentDict = {
     heroHighlight: "contadores y despachos contables",
     heroSubtitle: "Clientes todo el año.",
     intro:
-      "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y seguimiento para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
+      "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y avisos al instante para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
     projectId: "demo-taxpro",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Cómo se ve un despacho contable",
@@ -706,9 +673,9 @@ const es: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Reactivación de la base del año pasado",
+        title: "Aviso inmediato con los documentos ya cargados",
         description:
-          "Antes de que arranque la temporada, tus clientes anteriores reciben el aviso de que ya puedes recibirlos, con el enlace para agendar.",
+          "Cada intake te llega al instante con la lista de documentos que el cliente ya subió, para que sepas qué declaraciones puedes empezar hoy.",
       },
       {
         icon: "target",
@@ -733,7 +700,7 @@ const es: SegmentDict = {
       },
       {
         label: "Ene – Abr",
-        note: "Captación en máximo, intake automático y seguimiento sin manos.",
+        note: "Captación en máximo, intake automático y agenda llena.",
       },
       {
         label: "May – Ago",
@@ -754,7 +721,7 @@ const es: SegmentDict = {
       {
         question: "¿Esto me sirve si trabajo solo, desde mi casa?",
         answer:
-          "Es justo donde más rinde. Un contador solo no tiene a nadie que conteste mientras está preparando una declaración: la automatización es el asistente que no puedes contratar en plena temporada.",
+          "Es justo donde más rinde. Un contador solo no tiene a nadie que conteste mientras está preparando una declaración: el intake automático de documentos es el asistente que no puedes contratar en plena temporada.",
       },
       {
         question: "¿Sirve igual en México que en Estados Unidos?",
@@ -772,14 +739,6 @@ const es: SegmentDict = {
           "Vendiendo lo que se contrata en marzo y en septiembre por igual: contabilidad mensual, nómina, planeación y regularización. Cada uno merece su propia página; una sola de «servicios contables» te deja compitiendo únicamente en enero y febrero.",
       },
     ],
-    pageContext: {
-      title: "Diseño web y marketing para despachos contables",
-      paragraphs: [
-        "Tu año se concentra en unas pocas semanas y el resto del calendario se apaga. El diseño web para contadores se plantea para las dos temporadas: captar fuerte cuando hay demanda y vender servicios recurrentes el resto del año.",
-        "Trabajo diseño web para despachos contables, páginas web para preparadores de impuestos y páginas web para bookkeepers. La página web para despachos contables necesita intake de documentos seguro desde el primer día: el cliente sube lo que le pides sin cadenas de correos.",
-        "El marketing digital para contadores y el SEO local para contadores empiezan meses antes de la temporada, porque no maduran en enero. Si buscas cómo conseguir clientes para un despacho contable, ese calendario es la mitad de la respuesta y responder rápido es la otra. Una agencia de marketing para despachos contables tiene que cubrir las dos.",
-      ],
-    },
     ctaTitle: "20 minutos antes de que empiece la temporada",
     ctaBody:
       "Te digo qué pieza le falta a tu despacho hoy y qué se puede tener listo antes de tu mes fuerte. Hablas directo con el dueño de la agencia de marketing para despachos contables que va a hacer el trabajo, no con un vendedor.",
@@ -805,7 +764,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Chosen before they meet you.",
     intro:
-      "Website, Google Business Profile, quote form and follow-up for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
+      "Website, Google Business Profile, quote form and instant alerts for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
     projectId: "izcalli",
     projectEyebrow: "// a project in your industry",
     projectTitle: "A construction company in your industry that's already",
@@ -919,17 +878,9 @@ const en: SegmentDict = {
       {
         question: "How do I get more contractor leads without relying on referrals?",
         answer:
-          "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and automatic follow-up with whoever didn't close the first time. That's the contractor lead generation that carries you through a slow season.",
+          "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and an instant alert on your phone the moment someone asks for a quote. That's the contractor lead generation that carries you through a slow season.",
       },
     ],
-    pageContext: {
-      title: "Contractor website design and marketing",
-      paragraphs: [
-        "Your work shows in the finished job, but the client decides before they ever see it: they decide with what they find on Google. So contractor website design starts with the before-and-after photos, the area you cover and a form that asks for what you actually need to quote.",
-        "That covers construction company website design, remodeling contractor website design and roofing company website design, plus the plumber website and the electrician website. The trade changes the order of the sections, not the quality of the build.",
-        "The site is half the job. Digital marketing for contractors and local SEO for contractors are what get you found when someone in your city searches your service, and contractor lead generation is measured in calls, not visits. With a contractor marketing agency this size you always talk to the person doing the work.",
-      ],
-    },
     ctaTitle: "20 minutes before your next busy season",
     ctaBody:
       "I'll tell you what a client searching your trade in your city finds today and which piece you're missing. You talk straight to the owner of the contractor marketing agency that will do the work, not to a salesperson.",
@@ -953,7 +904,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "They book without asking.",
     intro:
-      "Website, online booking, first-visit intake form, reminders and follow-up for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
+      "Website, online booking, first-visit intake form and appointment reminders for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
     projectId: "fersilva",
     projectEyebrow: "// a project in your industry",
     projectTitle: "A health practice that's already",
@@ -999,9 +950,9 @@ const en: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Reminders and patient win-back",
+        title: "Automatic appointment reminders",
         description:
-          "An automatic reminder 24 hours out to cut no-shows, and a note to patients who haven't been back in months that they can book their follow-up now.",
+          "A reminder 24 hours before the visit, sent by the booking system itself, to cut no-shows.",
       },
       {
         icon: "shield",
@@ -1065,14 +1016,6 @@ const en: SegmentDict = {
           "You get more therapy clients by showing up when someone searches your specialty in your city, and removing the friction between that search and the appointment. In practice: a page per specialty, booking open 24 hours a day and reminders that cut no-shows. Healthcare website design that skips those three only buys you more unanswered messages.",
       },
     ],
-    pageContext: {
-      title: "Therapist and medical practice website design",
-      paragraphs: [
-        "A new patient evaluates you before they ever message: they look at your training, your reviews and whether they can book without asking about prices over chat. Therapist website design puts those three things up front, and online booking for patients closes the appointment without a phone call.",
-        "This covers psychologist website design, nutritionist website design, medical practice website design and healthcare website design more broadly. The tone changes with the patient; the structure that converts does not.",
-        "On the acquisition side, digital marketing for therapists and local SEO for therapists are the real answer to how to get more therapy clients: show up in the neighborhood search, keep the reviews alive, reply fast. A marketing agency for therapists should automate the follow-up so it does not depend on someone remembering.",
-      ],
-    },
     ctaTitle: "20 minutes to review your calendar",
     ctaBody:
       "I'll tell you what a patient searching your specialty in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for therapists that will do the work, not to a salesperson.",
@@ -1096,7 +1039,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Trust before the first call.",
     intro:
-      "Website, client acquisition, qualifying form, scheduling and follow-up for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
+      "Website, client acquisition, qualifying form, scheduling and instant alerts for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
     projectId: "cristian-posada",
     projectEyebrow: "// a project in your industry",
     projectTitle: "A professional who sells judgment, and",
@@ -1148,9 +1091,9 @@ const en: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Proposal follow-up that doesn't fall through",
+        title: "Instant alert on every inquiry",
         description:
-          "Every prospect who asked for a proposal and went quiet gets followed up on the right days, with a message that doesn't read like collections.",
+          "Every request lands in your WhatsApp and inbox the moment it arrives, already qualified and with the context of the matter, so you know who to answer first.",
       },
       {
         icon: "zap",
@@ -1169,7 +1112,7 @@ const en: SegmentDict = {
       },
       {
         label: "Apr – Jun",
-        note: "Active acquisition, content and proposals with follow-up.",
+        note: "Active acquisition, content and proposals.",
       },
       {
         label: "Jul – Sep",
@@ -1195,7 +1138,7 @@ const en: SegmentDict = {
       {
         question: "Does this work if I practice solo, with no team?",
         answer:
-          "That's where it pays off most. A solo professional can't answer while in a hearing or with a client: pre-qualification and automatic follow-up are the assistant you can't hire yet.",
+          "That's where it pays off most. A solo professional can't answer while in a hearing or with a client: pre-qualification and the instant alert on every inquiry are the assistant you can't hire yet.",
       },
       {
         question: "Can it be in English and Spanish?",
@@ -1205,17 +1148,9 @@ const en: SegmentDict = {
       {
         question: "How do I get clients as a solo attorney or consultant?",
         answer:
-          "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and follow-up with whoever asked and never came back. Client acquisition for attorneys almost always breaks at the third point, not the first.",
+          "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and an instant alert on every inquiry so you answer before anyone else does. Client acquisition for attorneys almost always breaks on response speed, not on the ad.",
       },
     ],
-    pageContext: {
-      title: "Attorney and consultant website design",
-      paragraphs: [
-        "When someone hires you they are not buying hours: they are buying the confidence that you can solve their problem. Attorney website design and consultant website design are built around that confidence — cases, credentials and a personal brand website that does not look like a template.",
-        "That includes law firm website design, the independent consultant's site and the insurance agent website. They share one problem: a crowded market with very little visible difference between the options.",
-        "Digital marketing for consultants and local SEO for professional services fill the calendar, and client acquisition for attorneys almost always breaks at the follow-up rather than at the ad. A marketing agency for attorneys should fix that part first.",
-      ],
-    },
     ctaTitle: "20 minutes to review your client acquisition",
     ctaBody:
       "I'll tell you what someone searching your service in your city finds today and which piece you're missing. You talk straight to the owner of the marketing agency for attorneys that will do the work, not to a salesperson.",
@@ -1239,7 +1174,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Your brand, not just portals.",
     intro:
-      "Website with property catalog, detailed listing pages, qualified lead form, showing scheduler and follow-up for real estate agents, brokerages and developers.",
+      "Website with property catalog, detailed listing pages, qualified lead form, showing scheduler and instant alerts for real estate agents, brokerages and developers.",
     projectId: "demo-inmobiliaria",
     projectEyebrow: "// a project in your industry",
     projectTitle: "What a well-structured real estate",
@@ -1291,9 +1226,9 @@ const en: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Follow-up for long-cycle buyers",
+        title: "Instant alert on every lead",
         description:
-          "A buyer can take a year to decide.",
+          "Every form reaches your phone the moment it arrives, with budget, area and buying timeline already captured, so you can call while the interest is warm.",
       },
       {
         icon: "zap",
@@ -1320,7 +1255,7 @@ const en: SegmentDict = {
       },
       {
         label: "Oct – Dec",
-        note: "Slow cycle: neighborhood content and follow-up on warm leads.",
+        note: "Slow cycle: neighborhood content and new listing pages.",
       },
     ],
     faqTitle: "Real estate website design questions",
@@ -1351,14 +1286,6 @@ const en: SegmentDict = {
           "You get real estate leads with a property catalog website of your own, listing pages people can share over text, and a form that tells a buyer apart from a seller. The real estate lead generation that lasts is the one that lands on your site, not the one you rent from a portal month after month.",
       },
     ],
-    pageContext: {
-      title: "Real estate website design and marketing",
-      paragraphs: [
-        "Your listings live on portals and social media, but your brand lives nowhere. Real estate website design gives you your own property catalog website, with your name at the top and no portal charging you for the lead you generated yourself.",
-        "This is realtor website design and website design for real estate agents, plus real estate landing page design when there is one specific listing or promotion to push.",
-        "Digital marketing for realtors and local SEO for realtors are the base of steady real estate lead generation. If you are wondering how to get real estate leads without buying them every month, the answer is your own site plus automatic follow-up — and that is what a real estate marketing agency should stay to measure.",
-      ],
-    },
     ctaTitle: "20 minutes to review your catalog",
     ctaBody:
       "I'll tell you what a buyer searching your area finds today and which piece you're missing. You talk straight to the owner of the real estate marketing agency that will do the work, not to a salesperson.",
@@ -1373,7 +1300,7 @@ const en: SegmentDict = {
       title:
         "Tax Preparer & Accountant Web Design | ProCode Dev",
       description:
-        "Tax preparer and accountant website design: document intake, follow-up and local SEO for tax preparers. Public pricing and no 12-month contracts.",
+        "Tax preparer and accountant website design: document intake, instant alerts and local SEO for tax preparers. Public pricing and no 12-month contracts.",
       keywords:
         "tax preparer website design, accountant website design, accounting firm website design, bookkeeper website design, digital marketing for accountants, local SEO for tax preparers, marketing agency for tax preparers, document intake for accountants, get more tax preparation clients",
     },
@@ -1382,7 +1309,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Clients all year, not weeks.",
     intro:
-      "Website, Google Business Profile, document intake, scheduling and follow-up for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
+      "Website, Google Business Profile, document intake, scheduling and instant alerts for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
     projectId: "demo-taxpro",
     projectEyebrow: "// a project in your industry",
     projectTitle: "What a well-presented accounting",
@@ -1428,9 +1355,9 @@ const en: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Reactivation of last year's base",
+        title: "Instant alert with the documents already uploaded",
         description:
-          "Before the season starts, your past clients get the note that you're taking appointments, with the booking link.",
+          "Every intake reaches you the moment it lands, with the documents the client already uploaded, so you know which returns you can start today.",
       },
       {
         icon: "target",
@@ -1455,7 +1382,7 @@ const en: SegmentDict = {
       },
       {
         label: "Jan – Apr",
-        note: "Peak acquisition, automatic intake and hands-off follow-up.",
+        note: "Peak acquisition, automatic intake and a full calendar.",
       },
       {
         label: "May – Aug",
@@ -1476,7 +1403,7 @@ const en: SegmentDict = {
       {
         question: "Does this help if I work alone, from home?",
         answer:
-          "That's exactly where it pays off most. A solo preparer has nobody answering while they're working on a return: automation is the assistant you can't hire mid-season.",
+          "That's exactly where it pays off most. A solo preparer has nobody answering while they're working on a return: automatic document intake is the assistant you can't hire mid-season.",
       },
       {
         question: "Does it work the same in Mexico as in the U.S.?",
@@ -1494,14 +1421,6 @@ const en: SegmentDict = {
           "You get more tax preparation clients year-round by selling what people hire in March and September too: monthly bookkeeping, payroll, planning and back-tax cleanup. Each one deserves its own page; a single “tax services” page leaves you competing in January and February only.",
       },
     ],
-    pageContext: {
-      title: "Tax preparer and accounting firm website design",
-      paragraphs: [
-        "Your year concentrates into a few weeks and the rest of the calendar goes quiet. Tax preparer website design has to serve both seasons: capture hard in season, sell recurring work the rest of the year.",
-        "That covers accountant website design, accounting firm website design and bookkeeper website design, with document intake for accountants wired in from day one so clients upload what you asked for instead of emailing it back and forth.",
-        "Digital marketing for accountants and local SEO for tax preparers start months before the season, because they do not mature in January. If you are looking at how to get more tax preparation clients, that calendar is half the answer and replying fast is the other half. A marketing agency for tax preparers has to cover both.",
-      ],
-    },
     ctaTitle: "20 minutes before the season starts",
     ctaBody:
       "I'll tell you which piece your practice is missing today and what can be ready before your busy month begins. You talk straight to the owner of the marketing agency for tax preparers that will do the work, not to a salesperson.",

@@ -59,17 +59,25 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
               {item.name}
             </h3>
             <p class="mt-4 flex items-baseline gap-1.5">
-              {item.pricePrefix && (
-                <span class="text-xs font-medium text-[var(--muted)]">
-                  {item.pricePrefix}
+              {item.quoteLabel ? (
+                <span class="text-2xl font-bold tracking-tight text-[var(--text)]">
+                  {item.quoteLabel}
                 </span>
+              ) : (
+                <>
+                  {item.pricePrefix && (
+                    <span class="text-xs font-medium text-[var(--muted)]">
+                      {item.pricePrefix}
+                    </span>
+                  )}
+                  <span class="text-3xl font-bold tracking-tight text-[var(--text)]">
+                    ${item.price}
+                  </span>
+                  <span class="text-xs font-medium text-[var(--muted)]">
+                    {item.currency}
+                  </span>
+                </>
               )}
-              <span class="text-3xl font-bold tracking-tight text-[var(--text)]">
-                ${item.price}
-              </span>
-              <span class="text-xs font-medium text-[var(--muted)]">
-                {item.currency}
-              </span>
             </p>
             <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
               {item.priceNote}
@@ -90,7 +98,11 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
 
             <a
               href="#solicitar"
-              data-plan={`${item.name} — $${item.price} ${item.currency}`}
+              data-plan={
+                item.quoteLabel
+                  ? `${item.name} — ${item.quoteLabel}`
+                  : `${item.name} — $${item.price} ${item.currency}`
+              }
               data-cta={`paquete-${item.name}`}
               class:list={[
                 "mt-6 inline-flex items-center justify-between gap-2 rounded-xl px-5 py-3 text-sm font-bold transition",

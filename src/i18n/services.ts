@@ -33,7 +33,6 @@
   agencia dirigida por su fundador).
 */
 
-import type { PageContextCopy } from "./ui";
 
 export const SERVICE_KEYS = ["webDev", "digitalMarketing"] as const;
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
@@ -48,6 +47,10 @@ export interface ServicePackageItem {
   name: string;
   pricePrefix: string;
   price: string;
+  /** Cuando el plan no lleva cifra (Crecimiento+ y Marketing Digital, que se
+      cotizan tras la reunión inicial y la auditoría), este texto sustituye al
+      precio en la tarjeta. Vacío = se muestra el precio normal. */
+  quoteLabel?: string;
   currency: string;
   priceNote: string;
   description: string;
@@ -70,6 +73,9 @@ export interface ServiceLine {
   bullets: readonly string[];
   priceLabel: string;
   price: string;
+  /** Cuando la línea no lleva cifra (marketing digital, que se cotiza tras la
+      reunión inicial y la auditoría), este texto sustituye a `$price`. */
+  priceQuote?: string;
   priceNote: string;
   timelineLabel: string;
   timeline: string;
@@ -163,7 +169,6 @@ export interface ServiceDetail {
   };
   cross: { eyebrow: string; title: string; body: string; cta: string };
   /** Bloque de contexto al pie: el texto largo que salió del hero. */
-  pageContext: PageContextCopy;
 }
 
 export interface ServicesHub {
@@ -320,16 +325,17 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
     title: "Marketing Digital",
     tagline: "Que te encuentren, te escriban y vuelvan a comprarte",
     summary:
-      "Marketing digital para negocios que ya tienen sitio y necesitan llenarlo de la gente correcta: SEO local, Perfil de Empresa en Google, reseñas, anuncios y seguimiento automático de cada prospecto, con un reporte mensual en lenguaje de negocio.",
+      "Marketing digital para negocios que ya tienen sitio y necesitan llenarlo de la gente correcta: SEO local, Perfil de Empresa en Google, reseñas, anuncios y formularios que califican a cada prospecto, con un reporte mensual en lenguaje de negocio.",
     bullets: [
       "SEO local por ciudad y por servicio",
       "Perfil de Empresa en Google y reseñas gestionadas",
       "Campañas en Google Ads, Facebook e Instagram",
       "Reporte mensual de contactos, llamadas y citas",
     ],
-    priceLabel: "desde",
-    price: "349",
-    priceNote: "USD / mes · sin contratos de 12 meses",
+    priceLabel: "inversión",
+    price: "",
+    priceQuote: "A cotizar",
+    priceNote: "tras la reunión inicial y la auditoría",
     timelineLabel: "primeras señales",
     timeline: "30 a 90 días",
     timelineNote:
@@ -365,9 +371,9 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
       },
       {
         icon: "workflow",
-        title: "Automatización de seguimiento",
+        title: "Formularios que califican",
         description:
-          "Cada prospecto recibe respuesta aunque estés en obra, en consulta o con un cliente. Recordatorios y seguimiento automático a quien no contestó.",
+          "Cada prospecto llega ordenado y con lo que necesitas saber antes de contestar, y te avisa al instante en tu WhatsApp o tu correo. El seguimiento y el cierre siguen siendo tuyos.",
       },
       {
         icon: "bar-chart",
@@ -385,15 +391,6 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const webDevEs: ServiceDetail = {
-  pageContext: {
-    title: "Desarrollo web para negocios, sin plantillas",
-    paragraphs: [
-      "El diseño de páginas web aquí no sale de una plantilla: cada página se escribe a la medida de tu negocio, así que carga rápido, sale en Google y convierte al visitante en una llamada, un mensaje o una cita. Precio público desde $349 USD y entrega en dos a cuatro semanas.",
-      "El desarrollo de páginas web va desde una landing page para negocios hasta el sitio completo, e incluye la creación de páginas web para empresas que arrancan de cero y el rediseño de página web cuando ya hay uno que no trae clientes. Todo se entrega como sitios web autoadministrables: cambias textos y fotos sin depender de nadie.",
-      "La programación de páginas web propia es lo que hace posibles páginas web rápidas y optimizadas de verdad, no un tema recargado de plugins. Es diseño web a medida y diseño web profesional pensado para desarrollo web para pequeñas empresas: importa lo que factura el sitio, no el premio de diseño. El diseño de sitios web bilingüe va dentro del mismo proyecto — desarrollo web bilingüe sin costo aparte.",
-      "Quien programa es quien te contesta: páginas web para negocios sin intermediarios, sin cotización sorpresa y con el código en tus manos al final. Si ya decidiste contratar diseño de página web, los precios están publicados y no hay llamada de ventas.",
-    ],
-  },
   meta: {
     title: "Diseño de Páginas Web para Negocios | ProCode Dev",
     description:
@@ -472,7 +469,7 @@ const webDevEs: ServiceDetail = {
           "8 a 12 páginas completas",
           "Páginas por servicio y por ciudad",
           "Integraciones y automatización",
-          "Sistema de captación con seguimiento",
+          "Sistema de captación con avisos al instante",
           "SEO técnico avanzado y acompañamiento al lanzar",
         ],
         highlighted: false,
@@ -626,7 +623,7 @@ const webDevEs: ServiceDetail = {
     eyebrow: "// el otro servicio",
     title: "Ya tienes el sitio. Ahora hay que llenarlo de gente.",
     body:
-      "Una página web a la medida capta al que ya te encontró. El marketing digital se encarga de que te encuentren más: SEO local, Perfil de Empresa en Google, reseñas, anuncios y seguimiento automático de cada prospecto.",
+      "Una página web a la medida capta al que ya te encontró. El marketing digital se encarga de que te encuentren más: SEO local, Perfil de Empresa en Google, reseñas, anuncios y un reporte mensual de lo que trajo cada canal.",
     cta: "Ver marketing digital",
   },
 };
@@ -637,22 +634,14 @@ const webDevEs: ServiceDetail = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const marketingEs: ServiceDetail = {
-  pageContext: {
-    title: "Marketing digital para negocios, en tres piezas",
-    paragraphs: [
-      "Tres piezas con alcance y plazo distintos: SEO local para que aparezcas cuando alguien busca tu servicio en tu ciudad, campañas de Google Ads para comprar visibilidad mientras el posicionamiento en Google madura, y automatización de seguimiento para que ningún mensaje se quede sin respuesta. Precios publicados desde $349 USD al mes, sin contratos de 12 meses.",
-      "El trabajo incluye el perfil de empresa en Google — que para un negocio local pesa más que el sitio —, la gestión de reseñas y publicidad en Facebook e Instagram cuando el producto se vende mirándolo. La generación de prospectos para negocios se mide con reportes de marketing digital de contactos reales, no de impresiones.",
-      "Es marketing digital para pequeñas empresas y marketing digital para pymes por diseño: presupuestos que un negocio de verdad puede sostener, y una agencia de marketing digital donde hablas con quien ejecuta. Si el sitio no está listo, se arregla primero: anunciar sobre una página que no convierte es pagar por la lección.",
-    ],
-  },
   meta: {
     title: "Marketing Digital para Negocios | ProCode Dev",
     description:
-      "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y seguimiento automático. Planes desde $349 USD al mes.",
+      "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y reportes claros. Dos planes, cotizados tras la auditoría.",
     keywords:
-      "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, automatización de seguimiento, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
+      "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
     heroTitleA: "Marketing digital para negocios:",
-    heroHighlight: "SEO local, Google Ads y seguimiento",
+    heroHighlight: "SEO local, Google Ads y reseñas",
     heroSubtitle: "Más búsquedas, más mensajes.",
   },
   intro: {
@@ -732,47 +721,51 @@ const marketingEs: ServiceDetail = {
   },
   packages: {
     eyebrow: "// planes mensuales",
-    title: "Planes de marketing digital con precio publicado",
+    title: "Dos planes de marketing digital, cotizados a tu negocio",
     subtitle:
-      "Dos planes de marketing digital para pymes, con lo que incluye cada uno y a qué ritmo trabaja. Crecimiento+ se cancela de un mes a otro; el paquete completo, que es el que incluye campañas de Google Ads, pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo para dar datos con los que decidir.",
+      "Estos dos planes no llevan precio de lista, y es a propósito: lo que cuesta depende de tu giro, tu zona, en qué estado está hoy tu presencia digital y qué hace falta trabajar. Se cotizan después de una reunión inicial para conocer el negocio y de la auditoría. Crecimiento+ se cancela de un mes a otro; Marketing Digital pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo para dar datos con los que decidir.",
     items: [
       {
         name: "Crecimiento+",
         pricePrefix: "",
-        price: "349",
-        currency: "USD / mes",
-        priceNote: "incluye el mantenimiento del sitio",
+        price: "",
+        quoteLabel: "Cotización a medida",
+        currency: "",
+        priceNote: "se define tras la reunión inicial y la auditoría",
         description:
           "Que te encuentren, no solo que existas. Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA. Sin anuncios: aquí todavía no se compra tráfico.",
         features: [
-          "Mantenimiento del sitio y reporte mensual incluidos",
+          "Mantenimiento del sitio incluido",
           "Perfil de Empresa en Google creado, verificado y optimizado",
-          "Publicaciones mensuales y servicios y horarios al día",
+          "Servicios, horarios y zonas de tu ficha siempre al día",
           "Gestión de reseñas: sistema para pedirlas y respuesta a todas",
           "SEO local y optimización para búsqueda con IA",
+          "Reporte mensual de tu Perfil de Google, tu SEO y tu página web",
         ],
         highlighted: true,
       },
       {
-        name: "Web + Marketing + SEO",
-        pricePrefix: "desde",
-        price: "1,100",
-        currency: "USD / mes",
-        priceNote: "presupuesto de anuncios aparte · mínimo 3 meses",
+        name: "Marketing Digital",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotización a medida",
+        currency: "",
+        priceNote: "se define tras la reunión inicial y la auditoría · mínimo 3 meses",
         description:
           "El sistema completo, para el negocio que ya no quiere depender de las recomendaciones y de los meses buenos.",
         features: [
           "Todo lo del plan Crecimiento+",
-          "Campañas en Google Ads y Meta con landing pages dedicadas",
+          "Campañas en Google Ads y Meta cuando tu negocio las necesita, con las landing pages que haga falta crear",
+          "SEO completo: reporte inicial del estado de tu SEO, qué mejorar y el plan mensual de trabajo",
           "SEO continuo: contenido mensual y páginas por servicio y ciudad",
-          "Automatización de seguimiento de cada prospecto",
-          "Reporte de costo por prospecto y llamada estratégica mensual",
+          "Reporte mensual con métricas completas de marketing, costos y recomendaciones",
+          "Llamada estratégica mensual con Cristian Posada",
         ],
         highlighted: false,
       },
     ],
-    itemCta: "Solicitar este plan",
-    note: "Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Web + Marketing + SEO pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
+    itemCta: "Agendar reunión inicial",
+    note: "Los dos planes se cotizan igual: una reunión inicial para conocer tu negocio y qué necesita, una auditoría de tu presencia digital, y de ahí sale el número y el plan de trabajo. Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
     cta: "Ver todos los precios",
   },
   standards: {
@@ -868,7 +861,7 @@ const marketingEs: ServiceDetail = {
       {
         question: "¿Qué pasa si quiero cancelar?",
         answer:
-          "Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin llamada de retención. Web + Marketing + SEO pide un mínimo de tres meses; cumplido ese plazo se cancela igual, mes a mes. En todos los casos tu sitio, tu dominio y tus cuentas de anuncios quedan a tu nombre.",
+          "Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin llamada de retención. Marketing Digital pide un mínimo de tres meses; cumplido ese plazo se cancela igual, mes a mes. En todos los casos tu sitio, tu dominio y tus cuentas de anuncios quedan a tu nombre.",
       },
       {
         question: "¿Y la búsqueda con inteligencia artificial?",
@@ -936,7 +929,7 @@ const hubEs: ServicesHub = {
         title: "Empieza por el marketing",
         body: "Tu página está bien hecha y convierte, pero llega poca gente: tu ficha de Google está incompleta, no tienes reseñas o no apareces cuando alguien busca tu servicio en tu ciudad. Ahí el trabajo es de diseño web y posicionamiento en marcha —visibilidad y seguimiento—, no de rediseño.",
         forWho: "Para quien ya tiene sitio y necesita llenarlo.",
-        price: "desde $349 USD al mes",
+        price: "a cotizar tras la reunión inicial",
         cta: "Ver marketing digital",
         href: "digitalMarketing",
         highlighted: false,
@@ -952,7 +945,7 @@ const hubEs: ServicesHub = {
         highlighted: false,
       },
     ],
-    note: "Los dos juntos existen como paquete —Web + Marketing + SEO, desde $1,100 USD al mes, con mínimo de tres meses— pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: reviso qué encuentra un cliente al buscar tu servicio en tu ciudad y te lo grabo en un vídeo de tres minutos.",
+    note: "Los dos juntos existen como plan de Marketing Digital, que se cotiza tras la reunión inicial y la auditoría y pide un mínimo de tres meses, pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: reviso qué encuentra un cliente al buscar tu servicio en tu ciudad y te lo grabo en un vídeo de tres minutos.",
   },
   faq: {
     eyebrow: "// dudas frecuentes",
@@ -964,7 +957,7 @@ const hubEs: ServicesHub = {
       {
         question: "¿Qué necesita mi negocio: diseño web o marketing digital?",
         answer:
-          "Si no tienes página, la tienes hecha en un constructor o entra gente y no te escribe nadie, necesitas desarrollo web, y para eso esto es una empresa de diseño de páginas web: obtienes un sitio programado a la medida, con una página por servicio, formularios y WhatsApp conectados y la medición puesta, entregado en dos a cuatro semanas y a tu nombre. Si tu página ya convierte pero llega poca gente, necesitas marketing digital: obtienes tu Perfil de Empresa en Google trabajado, reseñas, SEO local por ciudad y servicio, campañas si las hay y un reporte mensual de contactos, llamadas y citas. Todo lo demás —formularios, automatización, analítica, optimización para búsqueda con IA— vive dentro de uno de esos dos, no se cotiza aparte.",
+          "Si no tienes página, la tienes hecha en un constructor o entra gente y no te escribe nadie, necesitas desarrollo web, y para eso esto es una empresa de diseño de páginas web: obtienes un sitio programado a la medida, con una página por servicio, formularios y WhatsApp conectados y la medición puesta, entregado en dos a cuatro semanas y a tu nombre. Si tu página ya convierte pero llega poca gente, necesitas marketing digital: obtienes tu Perfil de Empresa en Google trabajado, reseñas, SEO local por ciudad y servicio, campañas si las hay y un reporte mensual de contactos, llamadas y citas. Todo lo demás —formularios, analítica, optimización para búsqueda con IA— vive dentro de uno de esos dos, no se cotiza aparte.",
       },
       {
         question: "¿Puedo contratar solo el desarrollo web sin el marketing digital?",
@@ -984,7 +977,7 @@ const hubEs: ServicesHub = {
       {
         question: "¿Cuánto cuesta contratar servicios de desarrollo web y marketing digital?",
         answer:
-          "El punto de entrada es la Revisión Express, que es gratis: reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, te lo grabo en un vídeo de tres minutos y después lo comentamos quince minutos por llamada. De ahí, una landing page cuesta $349 USD y el plan mensual más elegido son $349 USD al mes.",
+          "El punto de entrada es la Revisión Express, que es gratis: reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, te lo grabo en un vídeo de tres minutos y después lo comentamos quince minutos por llamada. Los proyectos de desarrollo web tienen precio publicado: una landing page cuesta $349 USD. Los planes de marketing, en cambio, se cotizan después de una reunión inicial y de la auditoría, porque lo que hace falta trabajar cambia mucho de un negocio a otro.",
       },
     ],
   },
@@ -1090,16 +1083,17 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
     title: "Digital Marketing",
     tagline: "Get found, get messaged, get them coming back",
     summary:
-      "Digital marketing services for small businesses that already have a site and need to fill it with the right people: local SEO, Google Business Profile, reviews, ads and automated follow-up on every lead, with a monthly report in plain business language.",
+      "Digital marketing services for small businesses that already have a site and need to fill it with the right people: local SEO, Google Business Profile, reviews, ads and forms that qualify every lead, with a monthly report in plain business language.",
     bullets: [
       "Local SEO by city and by service",
       "Google Business Profile and reviews managed",
       "Google Ads, Facebook and Instagram campaigns",
       "Monthly report of contacts, calls and bookings",
     ],
-    priceLabel: "from",
-    price: "349",
-    priceNote: "USD / month · no 12-month contracts",
+    priceLabel: "investment",
+    price: "",
+    priceQuote: "Quoted",
+    priceNote: "after the first meeting and the audit",
     timelineLabel: "first signals",
     timeline: "30 to 90 days",
     timelineNote:
@@ -1135,9 +1129,9 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
       },
       {
         icon: "workflow",
-        title: "Follow-up automation",
+        title: "Forms that qualify",
         description:
-          "Marketing automation so every lead gets an answer even when you are on a job site, in session or with a client. Reminders and follow-up for anyone who went quiet.",
+          "Every lead arrives organized, with what you need to know before you reply, and pings your WhatsApp or inbox the moment it lands. The follow-up and the close stay yours.",
       },
       {
         icon: "bar-chart",
@@ -1150,15 +1144,6 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
 };
 
 const webDevEn: ServiceDetail = {
-  pageContext: {
-    title: "Small business web development, no templates",
-    paragraphs: [
-      "Small business website design with no templates: every page is written for your business so it loads fast, ranks in Google and turns a visitor into a call, a message or a booking. Published pricing from $349 USD and delivery in two to four weeks.",
-      "Custom website development here runs from landing page development to a full site, and includes website redesign services when there is already a site bringing in nothing. Everything ships as a custom coded website you can edit yourself — text and photos without waiting on anyone.",
-      "Writing the code instead of stacking plugins is what makes fast responsive websites possible at all. Web design and development in one place, bilingual website development in the same build, and professional web development services sized for small business web development rather than for enterprise budgets.",
-      "At a shop this small, the small business website developer you hire is the person who answers you. Website design for small businesses without an account manager, without a surprise quote, and the code is yours at the end.",
-    ],
-  },
   meta: {
     title: "Small Business Website Design & Development | ProCode",
     description:
@@ -1237,7 +1222,7 @@ const webDevEn: ServiceDetail = {
           "8 to 12 complete pages",
           "Pages by service and by city",
           "Integrations and automation",
-          "Lead capture with follow-up",
+          "Lead capture with instant alerts",
           "Advanced technical SEO and launch support",
         ],
         highlighted: false,
@@ -1391,26 +1376,18 @@ const webDevEn: ServiceDetail = {
     eyebrow: "// the other service",
     title: "The site is live. Now it needs people on it.",
     body:
-      "A custom website converts the people who already found you. Digital marketing is what makes more of them find you: local SEO, Google Business Profile, reviews, ads and automated follow-up on every lead.",
+      "A custom website converts the people who already found you. Digital marketing is what makes more of them find you: local SEO, Google Business Profile, reviews, ads and a monthly report of what each channel brought in.",
     cta: "See digital marketing",
   },
 };
 
 const marketingEn: ServiceDetail = {
-  pageContext: {
-    title: "Small business digital marketing, in three parts",
-    paragraphs: [
-      "Three jobs with different scopes and timelines: local SEO services so you show up when someone in your city searches your service, Google Ads management to buy visibility while SEO matures, and marketing automation so no message goes unanswered. Published pricing from $349 USD a month, no 12-month contracts.",
-      "The work includes Google Business Profile management — which outweighs the website for most local businesses — review management, and Facebook and Instagram ads when the product sells by being looked at. Lead generation for small businesses is judged by marketing reporting on real contacts, not impressions.",
-      "These are digital marketing services built around local SEO for small businesses: budgets a real business can sustain, and a digital marketing agency where you talk to whoever executes. If the site is not ready, that gets fixed first — advertising into a page that does not convert is just paying for the lesson.",
-    ],
-  },
   meta: {
     title: "Small Business Digital Marketing | ProCode Dev",
     description:
-      "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and follow-up automation. Plans from $349 USD a month.",
+      "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and clear reporting. Two plans, quoted after the audit.",
     keywords:
-      "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing automation, marketing reporting, local SEO for small businesses",
+      "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing reporting, local SEO for small businesses",
     heroTitleA: "Local SEO and digital marketing so people",
     heroHighlight: "find and contact your business",
     heroSubtitle: "More searches, more messages.",
@@ -1492,47 +1469,51 @@ const marketingEn: ServiceDetail = {
   },
   packages: {
     eyebrow: "// monthly plans",
-    title: "Digital marketing plans with published pricing",
+    title: "Two digital marketing plans, quoted to your business",
     subtitle:
-      "Two lead-generation plans, what each one includes and how fast it works. Growth+ cancels month to month; the full package asks for a three-month minimum because ads and SEO need that long to produce numbers worth deciding on.",
+      "These two plans carry no list price, and that is deliberate: what they cost depends on your trade, your area, where your digital presence stands today and what actually has to be worked on. They are quoted after a first meeting to get to know the business and an audit. Growth+ cancels month to month; Digital Marketing asks for a three-month minimum because ads and SEO need that long to produce numbers worth deciding on.",
     items: [
       {
         name: "Growth+",
         pricePrefix: "",
-        price: "349",
-        currency: "USD / mo",
-        priceNote: "site upkeep included",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "",
+        priceNote: "set after the first meeting and the audit",
         description:
           "Getting found, not just existing. Google Business Profile, reviews, local SEO and visibility in AI search. No ads: this plan does not buy traffic yet.",
         features: [
-          "Site upkeep and the monthly report included",
+          "Site upkeep included",
           "Google Business Profile created, verified and optimized",
-          "Monthly posts, services and hours kept current",
+          "Services, hours and service areas kept current",
           "Review management: a system to ask, and replies to all of them",
           "Local SEO and AI search optimization",
+          "Monthly report on your Google profile, your SEO and your website",
         ],
         highlighted: true,
       },
       {
-        name: "Web + Marketing + SEO",
-        pricePrefix: "from",
-        price: "1,100",
-        currency: "USD / mo",
-        priceNote: "ad budget separate · 3-month minimum",
+        name: "Digital Marketing",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "",
+        priceNote: "set after the first meeting and the audit · 3-month minimum",
         description:
           "The full system, for the business that no longer wants to depend on referrals and good months.",
         features: [
           "Everything in Growth+",
-          "Google Ads and Meta campaigns with dedicated landing pages",
+          "Google Ads and Meta campaigns when your business needs them, with whatever landing pages have to be built",
+          "Full SEO: an initial report on where your SEO stands, what to improve and the monthly plan of work",
           "Ongoing SEO: monthly content and pages by service and city",
-          "Follow-up automation on every lead",
-          "Cost-per-lead reporting and a monthly strategy call",
+          "Monthly report with full marketing metrics, costs and recommendations",
+          "Monthly strategy call with Cristian Posada",
         ],
         highlighted: false,
       },
     ],
-    itemCta: "Request this plan",
-    note: "Growth+ has no lock-in: move up, move down or cancel month to month. Web + Marketing + SEO asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
+    itemCta: "Book the first meeting",
+    note: "Both plans are quoted the same way: a first meeting to understand your business and what it needs, an audit of your digital presence, and the number and the plan of work come out of that. Growth+ has no lock-in: move up, move down or cancel month to month. Digital Marketing asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
     cta: "See full pricing",
   },
   standards: {
@@ -1628,7 +1609,7 @@ const marketingEn: ServiceDetail = {
       {
         question: "What if I want to cancel?",
         answer:
-          "Web Support and Growth+ cancel month to month, with no penalty and no retention call. Web + Marketing + SEO asks for a three-month minimum; once that is met it cancels the same way. In every case your site, your domain and your ad accounts stay in your name.",
+          "Web Support and Growth+ cancel month to month, with no penalty and no retention call. Digital Marketing asks for a three-month minimum; once that is met it cancels the same way. In every case your site, your domain and your ad accounts stay in your name.",
       },
       {
         question: "What about AI search?",
@@ -1689,9 +1670,9 @@ const hubEn: ServicesHub = {
       {
         badge: "Path 2",
         title: "Start with the marketing",
-        body: "Your site is well built and it converts, but few people arrive: your Google profile is incomplete, you have no reviews, or you do not show up when someone searches for your service in your city. That is where local SEO services for small businesses come in — visibility and follow-up, not redesign.",
+        body: "Your site is well built and it converts, but few people arrive: your Google profile is incomplete, you have no reviews, or you do not show up when someone searches for your service in your city. That is where local SEO services for small businesses come in — visibility and reviews, not redesign.",
         forWho: "For anyone with a site that needs filling.",
-        price: "from $349 USD a month",
+        price: "quoted after the first meeting",
         cta: "See digital marketing",
         href: "digitalMarketing",
         highlighted: false,
@@ -1707,7 +1688,7 @@ const hubEn: ServicesHub = {
         highlighted: false,
       },
     ],
-    note: "The two together do exist as a package — Web + Marketing + SEO, from $1,100 USD a month, with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: I look at what a client finds when they search your service in your city and record it as a three-minute video.",
+    note: "The two together do exist as the Digital Marketing plan, quoted after the first meeting and the audit, with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: I look at what a client finds when they search your service in your city and record it as a three-minute video.",
   },
   faq: {
     eyebrow: "// common questions",
@@ -1739,7 +1720,7 @@ const hubEn: ServicesHub = {
       {
         question: "How much do web development and digital marketing services cost?",
         answer:
-          "The entry point is the Express Review, and it is free: I look at what a client finds when they search for your service in your city, record it as a three-minute video, and then we spend fifteen minutes on a call. From there, a landing page is $349 USD and the most-chosen monthly plan is $349 USD a month.",
+          "The entry point is the Express Review, and it is free: I look at what a client finds when they search for your service in your city, record it as a three-minute video, and then we spend fifteen minutes on a call. Web development projects have published pricing: a landing page is $349 USD. The marketing plans are quoted after a first meeting and an audit, because what actually has to be worked on varies a lot from one business to the next.",
       },
     ],
   },

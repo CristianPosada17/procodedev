@@ -22,11 +22,18 @@ const legacyTaxRedirects = {
   "/en/accounting-firms": "/en/accounting-and-tax/",
 };
 
+// El subservicio «diseño web con SEO» se separó en un servicio de SEO propio
+// (septiembre de 2026): el SEO dejó de venderse pegado al proyecto de web.
+const legacySeoRedirects = {
+  "/servicios/diseno-web-seo": "/servicios/seo/",
+  "/en/services/seo-web-design": "/en/services/seo/",
+};
+
 // https://astro.build/config
 export default defineConfig({
   // `site` es necesario para URLs canónicas absolutas, Open Graph y sitemap.
   site: "https://procodedev.com",
-  redirects: legacyTaxRedirects,
+  redirects: { ...legacyTaxRedirects, ...legacySeoRedirects },
   vite: {
     plugins: [tailwindcss()],
   },

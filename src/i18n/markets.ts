@@ -36,7 +36,7 @@
      confianza en la web, no como orientación regulatoria.
 */
 
-import type { PageContextCopy, SegmentKey } from "./ui";
+import type { SegmentKey } from "./ui";
 
 export const MARKET_KEYS = ["texas", "florida", "california"] as const;
 export type MarketKey = (typeof MARKET_KEYS)[number];
@@ -84,7 +84,6 @@ export interface Market {
   industries: MarketBlock & { items: readonly MarketIndustry[] };
   context: MarketBlock & { items: readonly MarketBlockItem[] };
   /** Bloque de contexto al pie: el texto largo que salió del hero. */
-  pageContext: PageContextCopy;
   remote: MarketBlock & { items: readonly MarketBlockItem[] };
   faq: {
     eyebrow: string;
@@ -121,7 +120,6 @@ export interface MarketsHub {
   citiesLabel: string;
   how: MarketBlock & { items: readonly MarketBlockItem[] };
   /** Bloque de contexto al pie: el texto largo que salió del hero. */
-  pageContext: PageContextCopy;
   faq: {
     eyebrow: string;
     titleA: string;
@@ -140,14 +138,6 @@ export interface MarketsHub {
 // ═══════════════════════════════════════════════════════════════════════
 
 const texasEs: Market = {
-  pageContext: {
-    title: "Diseño de páginas web en Texas",
-    paragraphs: [
-      "Houston, Dallas, San Antonio y Austin. Hago diseño de páginas web en Texas para el contratista, la clínica, el despacho o la inmobiliaria que atiende a clientes hispanos y anglos a la vez: un solo sitio bilingüe, programado a la medida, sin plantillas.",
-      "Trabajo en remoto y en tu mismo horario, con precios publicados en dólares desde $349 USD. Eso incluye diseño web Houston, diseño de páginas web Dallas y páginas web San Antonio, además de páginas web para contratistas en Texas, que es el giro que más me llega del estado.",
-      "Si buscabas una agencia de diseño web en Texas o un desarrollador web en español en Texas, esto es lo que hay: diseño web en español Texas hecho por la misma persona que contesta el WhatsApp, más marketing digital en Texas cuando el sitio necesita visitas. No tengo oficina en el estado, y por eso el precio es el que es.",
-    ],
-  },
   key: "texas",
   name: "Texas",
   icon: "building",
@@ -312,14 +302,6 @@ const texasEs: Market = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const floridaEs: Market = {
-  pageContext: {
-    title: "Diseño de páginas web en Florida",
-    paragraphs: [
-      "Miami, Orlando, Tampa y Jacksonville. Hago diseño de páginas web en Florida para el negocio de servicios cuya clientela habla español como primer idioma, no como traducción: el sitio se escribe en español y se traduce al inglés, no al revés.",
-      "Precios publicados desde $349 USD y todo el trabajo en remoto. Cubre diseño web Miami, diseño de páginas web Orlando y páginas web Tampa, con páginas web para contratistas en Florida — techos y remodelación sobre todo — como el caso más frecuente.",
-      "Si buscabas una agencia de diseño web en Florida o un desarrollador web en español en Florida, aquí el diseño web en español Miami es el modo por defecto. El marketing digital en Florida se planea alrededor de la temporada, porque en este estado la temporada decide el año.",
-    ],
-  },
   key: "florida",
   name: "Florida",
   icon: "map-pin",
@@ -403,7 +385,7 @@ const floridaEs: Market = {
         icon: "calendar",
         title: "El sitio tiene que aguantar la temporada",
         description:
-          "De junio a noviembre la demanda de techos, restauración y poda se multiplica en cuestión de días. La página se prepara antes: formulario de emergencia, disponibilidad visible y seguimiento automático para no perder mensajes en el pico.",
+          "De junio a noviembre la demanda de techos, restauración y poda se multiplica en cuestión de días. La página se prepara antes: formulario de emergencia, disponibilidad visible y aviso inmediato en tu teléfono para no perder mensajes en el pico.",
       },
       {
         icon: "shield",
@@ -484,14 +466,6 @@ const floridaEs: Market = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const californiaEs: Market = {
-  pageContext: {
-    title: "Diseño de páginas web en California",
-    paragraphs: [
-      "Los Ángeles, San Diego, Inland Empire y el Área de la Bahía. El mismo sitio bilingüe programado a la medida y el mismo sistema de captación, por una fracción de lo que cobra una agencia con oficina en el estado. Diseño de páginas web en California con precios publicados desde $349 USD.",
-      "Incluye diseño web Los Ángeles, diseño de páginas web San Diego y páginas web Inland Empire, más páginas web para contratistas en California, donde la licencia y la zona de servicio pesan tanto como el portafolio.",
-      "Como agencia de diseño web en California trabajo en remoto: no pago renta aquí y ese ahorro va al precio, no al margen. Diseño web en español California y marketing digital en California con un desarrollador web en español en California que contesta el mismo día.",
-    ],
-  },
   key: "california",
   name: "California",
   icon: "briefcase",
@@ -653,14 +627,6 @@ const californiaEs: Market = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const hubEs: MarketsHub = {
-  pageContext: {
-    title: "Diseño de páginas web en Estados Unidos, en español",
-    paragraphs: [
-      "Trabajo en remoto con dueños de negocio hispanos en Texas, Florida y California, y con quien esté en cualquier otro estado. Diseño de páginas web en Estados Unidos con todo el proceso en español: la propuesta, las revisiones y el soporte.",
-      "El entregable son páginas web bilingües programadas a la medida, más SEO, Perfil de Empresa en Google y captación conectada. Es diseño web en español para negocios en Estados Unidos hecho para que tu cliente elija su idioma, no para que tú elijas por él.",
-      "Si buscabas una agencia de diseño web en Estados Unidos o una agencia de marketing digital en Estados Unidos que trabaje en tu idioma, esto es diseño web para negocios latinos con precios publicados en dólares desde $349 USD y respuesta en menos de 24 horas. Páginas web para negocios hispanos en Estados Unidos hechas por un desarrollador web en español en Estados Unidos, no por un equipo que subcontrata la traducción.",
-    ],
-  },
   meta: {
     title: "Diseño de Páginas Web en Estados Unidos | ProCode",
     description:
@@ -782,14 +748,6 @@ const hubEs: MarketsHub = {
 // ═══════════════════════════════════════════════════════════════════════
 
 const texasEn: Market = {
-  pageContext: {
-    title: "Bilingual web design in Texas",
-    paragraphs: [
-      "Houston, Dallas, San Antonio and Austin. Bilingual web design texas for the contractor, clinic, firm or brokerage whose customers switch languages mid-sentence: one custom-coded site that works in both, not a translation plugin bolted on.",
-      "Built remotely, in your time zone, with published pricing from $349 USD. That covers houston web design small business work, dallas web design agency work and contractor website design texas, which is the request that comes in most.",
-      "If you were looking for a spanish speaking web designer texas or a bilingual website developer, that is who builds it. Web design for small businesses in texas and web design for hispanic owned businesses, from someone with no office in the state — which is exactly why the price is what it is.",
-    ],
-  },
   key: "texas",
   name: "Texas",
   icon: "building",
@@ -869,14 +827,6 @@ const texasEn: Market = {
 };
 
 const floridaEn: Market = {
-  pageContext: {
-    title: "Bilingual web design in Florida",
-    paragraphs: [
-      "Miami, Orlando, Tampa and Jacksonville. Bilingual web design florida for service businesses whose main market speaks Spanish, in a state where the season decides the year.",
-      "Built remotely, published pricing from $349 USD. It covers miami web design small business projects, orlando web design agency work, tampa website design and roofing contractor website design florida, which is the most common job here.",
-      "If you wanted a spanish speaking web designer miami, or web design for small businesses in florida from someone who writes the Spanish first, that is the default. Web design for hispanic owned businesses, with the season built into the plan instead of bolted on in October.",
-    ],
-  },
   key: "florida",
   name: "Florida",
   icon: "map-pin",
@@ -925,7 +875,7 @@ const floridaEn: Market = {
     subtitle: "A Miami site does not look like a Dallas site. These are the differences that really affect structure and content, and why bilingual web design florida needs its own approach.",
     items: [
       { icon: "globe", title: "Spanish first, English second", description: "In South Florida the Spanish version usually takes the most traffic. It gets written first, with its own URL and its own content, and English becomes the real second version rather than an afterthought." },
-      { icon: "calendar", title: "The site has to survive the season", description: "From June to November, demand for roofing, restoration and tree work multiplies within days. The page is prepared ahead: emergency form, visible availability and automated follow-up so nothing is lost at the peak." },
+      { icon: "calendar", title: "The site has to survive the season", description: "From June to November, demand for roofing, restoration and tree work multiplies within days. The page is prepared ahead: emergency form, visible availability and an instant alert on your phone so nothing is lost at the peak." },
       { icon: "shield", title: "The state license is a selling point", description: "Florida does license contractors at state level, and customers know it and ask. Putting the license, insurance and service area where they are seen saves half a conversation and filters out price shoppers." },
     ],
   },
@@ -955,14 +905,6 @@ const floridaEn: Market = {
 };
 
 const californiaEn: Market = {
-  pageContext: {
-    title: "Bilingual web design in California",
-    paragraphs: [
-      "Los Angeles, San Diego, the Inland Empire and the Bay Area. The same custom-coded bilingual site and the same lead system, for a fraction of what an agency with California overhead charges. Bilingual web design california with published pricing from $349 USD.",
-      "That includes los angeles web design small business work, san diego website design and contractor website design california, where the license and the service area matter as much as the portfolio.",
-      "As an affordable web design agency california option, I work remotely: no rent in the state, and that saving goes to the price rather than the margin. Web design for small businesses in california and web design for hispanic owned businesses, from a spanish speaking web designer los angeles clients reach the same day.",
-    ],
-  },
   key: "california",
   name: "California",
   icon: "briefcase",
@@ -1041,14 +983,6 @@ const californiaEn: Market = {
 };
 
 const hubEn: MarketsHub = {
-  pageContext: {
-    title: "Bilingual web design across the United States",
-    paragraphs: [
-      "I work remotely with business owners in Texas, Florida and California, and with anyone in any other state. Bilingual web design here means english and spanish website design in one custom-coded build, plus SEO, Google Business Profile and connected lead capture.",
-      "Web design for small businesses in the united states with published pricing in dollars from $349 USD and a reply in under 24 hours. Web design for hispanic owned businesses where the Spanish is written, not machine-translated.",
-      "If you were looking for a spanish speaking web designer, a bilingual website developer united states clients can reach directly, or a bilingual digital marketing agency that handles both languages, that is the whole offer — including spanish website design services as part of the build rather than an add-on.",
-    ],
-  },
   meta: {
     title: "Bilingual Web Design for U.S. Businesses | ProCode",
     description:

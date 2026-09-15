@@ -24,7 +24,11 @@ const { line, meta, lang = "es", ctaLabel } = Astro.props as Props;
 const t = translations[lang];
 
 const stats = [
-  { label: line.priceLabel, value: `$${line.price}`, note: line.priceNote },
+  {
+    label: line.priceLabel,
+    value: line.priceQuote ? line.priceQuote : `$${line.price}`,
+    note: line.priceNote,
+  },
   { label: line.timelineLabel, value: line.timeline, note: line.timelineNote ?? "" },
 ];
 ---

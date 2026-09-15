@@ -3,7 +3,7 @@
   Página de subservicio (septiembre de 2026).
 
   Tres URLs comerciales que salieron del keyword research de arquitectura
-  —landing pages, diseño web con SEO y mantenimiento web— y que no podían
+  —landing pages, servicio de SEO y mantenimiento web— y que no podían
   rankear desde dentro de /servicios/desarrollo-web/.
 
   Es más corta que ServiceDetailPage a propósito: quien llega aquí ya sabe
@@ -23,7 +23,6 @@ import ServiceFit from "./ServiceFit.astro";
 import ServiceLeadForm from "./ServiceLeadForm.astro";
 import FAQ from "./FAQ.astro";
 import FinalCTA from "./FinalCTA.astro";
-import PageContext from "./PageContext.astro";
 import Footer from "./Footer.astro";
 import RelatedLinks from "./RelatedLinks.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
@@ -109,7 +108,6 @@ const offerCatalog = [
     <RelatedLinks data={d.related} />
 
     <FinalCTA lang={lang} />
-    <PageContext data={d.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

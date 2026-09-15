@@ -44,7 +44,7 @@ const ctaSlug = (name: string) =>
       )
     }
 
-    {/* ── Auditoría Digital · el producto de entrada de pago ──
+    {/* ── Auditoría Estratégica Integral · el producto de entrada de pago ──
         Sustituye al Diagnóstico de $149, que se acreditaba entero al
         proyecto. Aquí solo va el resumen y el precio: la explicación
         completa vive en su propia landing, /servicios/auditoria/. */}
@@ -64,21 +64,15 @@ const ctaSlug = (name: string) =>
           </span>
           <h2 class="mt-4 text-2xl font-bold text-[var(--text)]">{adv.name}</h2>
           <div class="mt-4 flex items-end gap-1.5">
-            <span class="font-mono text-4xl font-bold text-[var(--text)]">
-              ${adv.price}
+            <span class="text-2xl font-bold tracking-tight text-[var(--text)]">
+              {adv.priceQuote}
             </span>
-            <span class="mb-1.5 text-xs text-[var(--muted)]">{adv.currency}</span>
           </div>
           <p class="mt-1 text-xs text-[var(--muted)]">{adv.priceNote}</p>
           <p class="mt-5 text-base font-bold text-[var(--text)]">{adv.hook}</p>
           <p class="mt-3 text-sm leading-6 text-[var(--muted)]">
             {adv.description}
           </p>
-          <div
-            class="mt-6 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-4"
-          >
-            <p class="text-sm leading-6 text-[var(--text)]/90">{adv.creditNote}</p>
-          </div>
           <div class="mt-6 flex flex-wrap gap-3">
             {/* El primario lleva a la landing, no a WhatsApp: hay una
                 página entera explicando qué se audita y qué se entrega, y
@@ -252,18 +246,29 @@ const ctaSlug = (name: string) =>
             </span>
             <h3 class="mt-4 text-xl font-bold text-[var(--text)]">{plan.name}</h3>
             <p class="mt-1 text-sm text-[var(--accent)]">{plan.tagline}</p>
+            {/* Crecimiento+ y Marketing Digital ya no llevan cifra: se cotizan
+                después de la reunión inicial y la auditoría. Cuando el plan
+                trae `quoteLabel`, ese texto sustituye al precio. */}
             <div class="mt-5 flex flex-wrap items-end gap-1.5">
-              {plan.pricePrefix && (
-                <span class="mb-1.5 text-xs font-medium text-[var(--muted)]">
-                  {plan.pricePrefix}
+              {plan.quoteLabel ? (
+                <span class="text-2xl font-bold tracking-tight text-[var(--text)]">
+                  {plan.quoteLabel}
                 </span>
+              ) : (
+                <>
+                  {plan.pricePrefix && (
+                    <span class="mb-1.5 text-xs font-medium text-[var(--muted)]">
+                      {plan.pricePrefix}
+                    </span>
+                  )}
+                  <span class="font-mono text-4xl font-bold text-[var(--text)]">
+                    ${plan.price}
+                  </span>
+                  <span class="mb-1.5 text-xs text-[var(--muted)]">
+                    {plan.currency}
+                  </span>
+                </>
               )}
-              <span class="font-mono text-4xl font-bold text-[var(--text)]">
-                ${plan.price}
-              </span>
-              <span class="mb-1.5 text-xs text-[var(--muted)]">
-                {plan.currency}
-              </span>
             </div>
             <p class="mt-1 text-xs text-[var(--muted)]">{plan.priceNote}</p>
             {plan.commitmentNote && (
@@ -307,19 +312,28 @@ const ctaSlug = (name: string) =>
       }
     </CardRail>
 
-    <p class="reveal mt-6 max-w-3xl text-xs leading-6 text-[var(--muted)]">
-      {p.monthlyNote}
-    </p>
-
-    {/* Todos los precios en USD: ya no hay selector de moneda, así que la
-        nota de moneda vive con la letra pequeña del final. */}
-    <p class="reveal mt-6 max-w-3xl text-xs leading-6 text-[var(--muted)]">
-      {p.currencyNoteUsd}
-    </p>
-
-    <p class="reveal mt-8 max-w-3xl text-xs leading-6 text-[var(--muted)]">
-      {p.note}
-    </p>
+    {/* ── Letra pequeña ──
+        Antes eran tres párrafos sueltos a `max-w-3xl`, uno debajo de otro:
+        tres bloques largos y estrechos colgando bajo las tarjetas, con media
+        página vacía a la derecha. Ahora es una sola banda a todo el ancho
+        repartida en columnas, y **no se muestra en móvil**: ahí son cuatro
+        pantallas de scroll de condiciones que nadie lee antes de decidir.
+        Lo que sí tiene que verse en móvil (permanencia, moneda, alcance) ya
+        vive dentro de cada tarjeta y en la FAQ de esta misma página. */}
+    <div
+      class="reveal mt-12 hidden border-t border-[color:var(--border)] pt-6 lg:block"
+    >
+      <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+        {p.finePrintTitle}
+      </p>
+      <div
+        class="mt-4 gap-x-10 gap-y-3 text-xs leading-6 text-[var(--muted)] lg:columns-2 xl:columns-3"
+      >
+        <p class="break-inside-avoid">{p.currencyNoteUsd}</p>
+        <p class="mt-3 break-inside-avoid">{p.monthlyNote}</p>
+        <p class="mt-3 break-inside-avoid">{p.note}</p>
+      </div>
+    </div>
   </div>
 </section>
 

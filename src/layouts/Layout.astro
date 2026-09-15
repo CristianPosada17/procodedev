@@ -46,9 +46,9 @@ interface Props {
    *  incluye» sin tener que interpretar el HTML. */
   offerCatalog?: readonly { title: string; description: string }[];
   /** Precio del nodo Offer. Por defecto $349 (la landing, el punto de entrada
-   *  de los proyectos) y la URL de /precios. La Auditoría Digital lo cambia:
-   *  es un producto de $250 con precio cerrado y página propia, y declararlo
-   *  como $349 sería declarar un precio que no existe. */
+   *  de los proyectos) y la URL de /precios. Una página que no vende a ese
+   *  precio lo sobrescribe, o lo deja vacío si no publica cifra (la Auditoría
+   *  Estratégica): declarar $349 ahí sería declarar un precio que no existe. */
   offerPrice?: string;
   offerUrl?: string;
   /** Lista de páginas hijas, para el hub de giros (nodo ItemList). */
@@ -284,11 +284,18 @@ const serviceNode = serviceName
       ...(audience
         ? { audience: { "@type": "Audience", audienceType: audience } }
         : {}),
+      // `offerPrice=""` significa «esta página no publica cifra» (la
+      // Auditoría Estratégica). En ese caso el Offer se emite SIN price:
+      // declarar `price: ""` o un 349 heredado sería declarar un precio falso.
       offers: {
         "@type": "Offer",
-        priceCurrency: "USD",
-        price: offerPrice ?? "349",
-        priceValidUntil: "2027-12-31",
+        ...(offerPrice === ""
+          ? {}
+          : {
+              priceCurrency: "USD",
+              price: offerPrice ?? "349",
+              priceValidUntil: "2027-12-31",
+            }),
         availability: "https://schema.org/InStock",
         url: new URL(offerUrl ?? PAGES.pricing[lang], siteUrl).toString(),
       },
@@ -334,8 +341,8 @@ const itemListNode = itemList?.length
 // las generales del sitio.
 const DEFAULT_KEYWORDS =
   lang === "es"
-    ? "páginas web para negocios, sitios web para pymes, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, perfil de empresa en google, SEO local, automatización de seguimiento, ProCode Dev"
-    : "small business website, website for contractors, website for clinics, real estate agent website, accounting firm website, google business profile, local SEO, follow-up automation, bilingual website, ProCode Dev";
+    ? "páginas web para negocios, sitios web para pymes, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, perfil de empresa en google, SEO local, agencia de SEO, ProCode Dev"
+    : "small business website, website for contractors, website for clinics, real estate agent website, accounting firm website, google business profile, local SEO, SEO agency, bilingual website, ProCode Dev";
 const pageKeywords = keywords ?? DEFAULT_KEYWORDS;
 
 const jsonLd = {

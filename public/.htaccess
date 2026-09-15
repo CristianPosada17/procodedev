@@ -30,6 +30,11 @@
   # Nicho fiscal anterior → el giro que lo sustituyó.
   RewriteRule ^(impuestos|preparadores-de-impuestos|enrolled-agents|cpas|bookkeepers|resolucion-fiscal|despachos-contables)/?$ /contabilidad-e-impuestos/ [L,R=301]
   RewriteRule ^en/(tax-pros|tax-professionals|enrolled-agents|cpas|bookkeepers|tax-resolution|accounting-firms)/?$ /en/accounting-and-tax/ [L,R=301]
+
+  # «Diseño web con SEO» se separó en un servicio de SEO propio (sep 2026):
+  # el SEO dejó de venderse pegado al proyecto de página web.
+  RewriteRule ^servicios/diseno-web-seo/?$ /servicios/seo/ [L,R=301]
+  RewriteRule ^en/services/seo-web-design/?$ /en/services/seo/ [L,R=301]
 </IfModule>
 
 # ---------- Compresión ----------

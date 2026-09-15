@@ -117,7 +117,7 @@ const lines = SERVICE_KEYS.map((key) => serviceLines[lang][key]);
                         {line.priceLabel}
                       </dt>
                       <dd class="mt-1 text-2xl font-bold text-[var(--text)]">
-                        ${line.price}
+                        {line.priceQuote ? line.priceQuote : `$${line.price}`}
                         <span class="ml-2 align-middle text-xs font-medium text-[var(--muted)]">
                           {line.priceNote}
                         </span>

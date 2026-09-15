@@ -1,10 +1,11 @@
 ---
 /*
-  Portada de la Auditoría Digital.
+  Portada de la Auditoría Estratégica Integral.
 
-  A diferencia del hero de una línea de servicio, aquí el precio es cerrado
-  ($250, no «desde») y va acompañado de la nota de que NO se acredita: es la
-  objeción número uno y esconderla hasta la FAQ solo la retrasa.
+  La auditoría NO lleva cifra publicada (15 sep 2026): el alcance cambia
+  demasiado de un negocio a otro, así que en el hueco del precio va «A
+  cotizar». Nada de leyendas explicando cuándo aplica y cuándo no — se
+  quitaron a propósito; lo que haga falta aclarar vive en la FAQ.
 */
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { audit } from "../i18n/audit";
@@ -18,16 +19,15 @@ const t = translations[lang];
 const a = audit[lang];
 
 const stats = [
-  { label: a.priceLabel, value: `$${a.price}`, note: a.priceNote },
+  { label: a.priceLabel, value: a.priceQuote, note: a.priceNote },
   { label: a.timelineLabel, value: a.timeline, note: "" },
 ];
 
-// Columna decorativa con las nueve áreas, igual que `PageHero`. Las otras
-// páginas de servicio llenan ese hueco con el mockup del servicio; la
-// auditoría no tiene captura que enseñar, y su argumento ES el alcance, así
-// que el alcance hace de imagen. Se duplica para el bucle, va `aria-hidden`
-// y con `<p>` en vez de encabezados: si fueran <h3> el esquema saltaría de
-// h1 a h3 y las nueve frases se contarían dos veces.
+// Columna decorativa con las doce áreas, igual que `PageHero`. El mockup del
+// informe vive más abajo, en «qué recibes»; aquí el argumento ES el alcance,
+// así que el alcance hace de imagen. Se duplica para el bucle, va
+// `aria-hidden` y con `<p>` en vez de encabezados: si fueran <h3> el esquema
+// saltaría de h1 a h3 y las frases se contarían dos veces.
 const seq = [...a.areas.items, ...a.areas.items];
 ---
 
@@ -80,7 +80,7 @@ const seq = [...a.areas.items, ...a.areas.items];
             </div>
           ))
         }
-      </dl>
+        </dl>
 
       <div class="mt-8 flex flex-wrap gap-3">
         <a

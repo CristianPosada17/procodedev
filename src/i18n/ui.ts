@@ -6,14 +6,6 @@
 
 export type Lang = "es" | "en";
 
-// Bloque de contexto al pie de cada página (septiembre 2026). El inicio de la
-// página es para el usuario — título + 3 a 6 palabras — y este bloque, que
-// renderiza PageContext.astro justo antes del Footer, carga el texto largo y
-// las frases clave. Ver procode-seo en la memoria del proyecto.
-export interface PageContextCopy {
-  title: string;
-  paragraphs: string[];
-}
 export const DEFAULT_LANG: Lang = "es";
 export const LANGS: Lang[] = ["es", "en"];
 
@@ -39,9 +31,9 @@ export type PageKey =
   // que colgaban de Desarrollo Web. No son líneas de servicio nuevas.
   // Ver src/i18n/subservices.ts.
   | "landingPages"
-  | "webSeo"
+  | "seo"
   | "maintenance"
-  // La Auditoría Digital cuelga de /servicios/ pero NO es una tercera línea
+  // La Auditoría Estratégica cuelga de /servicios/ pero NO es una tercera línea
   // de servicio: es el producto de entrada de pago. Por eso tiene PageKey y
   // ruta propias, y NO está en SERVICE_KEYS. Ver src/i18n/audit.ts.
   | "audit"
@@ -82,9 +74,9 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
     es: "/servicios/landing-pages/",
     en: "/en/services/landing-pages/",
   },
-  webSeo: {
-    es: "/servicios/diseno-web-seo/",
-    en: "/en/services/seo-web-design/",
+  seo: {
+    es: "/servicios/seo/",
+    en: "/en/services/seo/",
   },
   maintenance: {
     es: "/servicios/mantenimiento-web/",
@@ -131,7 +123,6 @@ export function getAltPath(page: PageKey, lang: Lang): string {
   const other: Lang = lang === "es" ? "en" : "es";
   return PAGES[page][other];
 }
-
 // Datos de contacto compartidos (no cambian por idioma).
 export const CONTACT = {
   whatsapp: "526142414255",
@@ -174,7 +165,7 @@ export const translations = {
     common: {
       // Una sola oferta de entrada y un solo nombre en todo el sitio, el
       // Calendly y los correos: la Revisión Express. El paso de pago que
-      // sigue es la Auditoría Digital de $250, que tiene landing propia en
+      // sigue es la Auditoría Estratégica, que tiene landing propia en
       // /servicios/auditoria/ y NO se acredita a un proyecto posterior.
       ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Escribir por WhatsApp",
@@ -362,7 +353,7 @@ export const translations = {
         {
           icon: "workflow",
           title: "Marketing conectado con tu operación",
-          description: "Automatización de seguimiento: del formulario al CRM, sin pasos manuales.",
+          description: "Formularios que califican: del formulario a tu WhatsApp y a tu CRM, sin pasos manuales.",
         },
         {
           icon: "repeat",
@@ -516,70 +507,74 @@ export const translations = {
       subtitle:
         "Paquetes de diseño de páginas web con precio público, en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar y crece a tu ritmo.",
       popular: "Más elegido",
-      currencyNoteUsd: "Precio de una página web profesional en dólares estadounidenses: el costo de página web para pequeña empresa está publicado abajo, igual que el mantenimiento web mensual y el plan de SEO local con su precio.",
-      // ── Auditoría Digital · sustituye al Diagnóstico de $149 ──
-      // Septiembre de 2026: el Diagnóstico se acreditaba entero al proyecto,
-      // así que era un paso de venta disfrazado de producto. La Auditoría se
-      // paga aparte y no se acredita: eso es lo que permite recomendar «no
-      // toques nada» sin perder dinero. La landing completa está en
-      // /servicios/auditoria/ y su copy en src/i18n/audit.ts.
+      finePrintTitle: "Letra pequeña",
+      currencyNoteUsd: "Todos los precios están en dólares estadounidenses. El costo de una página web para pequeña empresa y el del mantenimiento web mensual están publicados arriba, sin llamada de ventas para conocerlos.",
+      // ── Auditoría Estratégica Integral · el producto de entrada ──
+      // Septiembre de 2026: el Diagnóstico de $149 se acreditaba entero al
+      // proyecto, así que era un paso de venta disfrazado de producto. La
+      // auditoría se paga aparte y no se acredita: eso es lo que permite
+      // recomendar «no toques nada» sin perder dinero. El 15 de septiembre
+      // pasó de nueve áreas técnicas a doce que empiezan por el negocio, y
+      // el precio dejó de publicarse: el alcance cambia demasiado de un
+      // negocio a otro, y quien llega por un servicio la recibe como primera
+      // fase del proyecto. No volver a poner cifras aquí.
+      // La landing completa está en /servicios/auditoria/ y su copy en
+      // src/i18n/audit.ts.
       advisory: {
         badge: "Producto de entrada · se paga aparte",
-        name: "Auditoría Digital",
-        price: "250",
-        currency: "USD",
-        priceNote: "pago único · no se acredita a un proyecto",
+        name: "Auditoría Estratégica Integral",
+        priceQuote: "A cotizar",
+        priceNote: "según el alcance de tu negocio",
         hook: "Cuando sabes que algo no funciona pero no cuál de todas las piezas.",
         description:
-          "Reviso nueve áreas de tu negocio en línea con acceso a tus datos reales —sitio, estructura, diseño, SEO, presencia local, anuncios, captación, seguimiento y medición— y te entrego un informe priorizado, un vídeo recorriéndolo y una llamada. El plan es tuyo y lo puedes ejecutar con quien quieras.",
+          "Empieza por tu negocio —qué vendes, quién debería comprarlo y qué resultado quieres— y de ahí revisa doce áreas con acceso a tus datos reales: rendimiento, arquitectura, conversión, SEO técnico, keyword research, contenido y canibalización, presencia local, competencia, Google y Meta Ads, captación y medición. Cada hallazgo con evidencia y clasificado por impacto, esfuerzo, urgencia y dependencia. Recibes una estrategia priorizada con roadmap 30/60/90, un vídeo y una llamada. Si contratas desarrollo web, SEO o marketing, la auditoría entra como primera fase del proyecto en vez de cobrarse aparte.",
         homeEyebrow: "// el siguiente paso",
         homeTitle: "¿Quieres el plan completo por escrito?",
         prereq:
           "Si nunca hemos hablado, empieza por la Revisión Express: es gratis y a mucha gente le basta.",
         viewPricing: "Ver todos los precios",
         waText:
-          "Hola Cristian, Me interesa la Auditoría Digital ($250 USD). Quiero saber qué está fallando en mi negocio en línea y en qué orden arreglarlo.",
+          "Hola Cristian, Me interesa la Auditoría Estratégica Integral. Quiero saber qué está frenando mi negocio y en qué orden resolverlo.",
         stepsTitle: "Cómo funciona (3 fases)",
         steps: [
           {
-            name: "Día 1 · Contexto y accesos",
+            name: "Fase 1 · Negocio y accesos",
             description:
-              "Cuestionario corto y accesos de solo lectura: Analytics, Search Console, tu Perfil de Empresa y tus cuentas de anuncios si las hay.",
+              "Qué vendes, a quién, en qué zona y qué resultado quieres. Más los accesos de solo lectura: Analytics, Search Console, tu Perfil de Empresa y tus cuentas de anuncios si las hay.",
           },
           {
-            name: "Días 2 a 4 · Auditoría",
+            name: "Fase 2 · Auditoría del sistema completo",
             description:
-              "Las nueve áreas, una por una, con tus datos delante y comparándote con quienes salen antes que tú en tu ciudad.",
+              "Las doce áreas, una por una, con tus datos delante, el keyword research hecho y comparándote con quienes salen antes que tú en tu ciudad. Cada hallazgo con su evidencia.",
           },
           {
-            name: "Día 5 · Entrega",
+            name: "Fase 3 · Estrategia y roadmap",
             description:
-              "Informe en PDF con los hallazgos priorizados, vídeo recorriéndolo y llamada de 30 a 45 minutos cuando lo hayas leído.",
+              "Hallazgos clasificados por impacto, esfuerzo, urgencia y dependencia, estrategia priorizada y roadmap 30/60/90. Más el vídeo y la llamada de 30 a 45 minutos.",
           },
         ],
-        creditNote:
-          "Los $250 no se descuentan de un proyecto posterior, y es a propósito: si el proyecto absorbiera la auditoría, mi incentivo sería encontrarte razones para contratarme. Cobrándola aparte puedo decirte «esto está bien, no lo toques».",
-        cta: "Ver la Auditoría Digital",
+        cta: "Ver la Auditoría Estratégica",
       },
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Estos son los precios reales, no un rango de referencia: lo que ves es lo que pagas por el alcance descrito en cada plan. Si tu proyecto se sale de ese alcance, te lo digo antes de empezar y te paso el número exacto — nunca a mitad del trabajo. Los planes de Soporte Web y Crecimiento+ no tienen contrato de permanencia: los cancelas cuando quieras. El único con compromiso es Web + Marketing + SEO, con un mínimo de 3 meses, porque los anuncios y el SEO necesitan ese tiempo para dar resultados reales.",
+      note: "Lo que ves es lo que pagas por el alcance descrito en cada plan: no es un rango de referencia. Si tu proyecto se sale de ese alcance te paso el número exacto antes de empezar, nunca a mitad del trabajo. Crecimiento+, Marketing Digital y la auditoría se cotizan tras la reunión inicial, porque lo que cuestan depende del estado en el que esté hoy tu negocio.",
       // ── Escalera mensual: soporte → crecimiento → todo incluido ──
       // Sustituye al bloque único de mantenimiento. El objetivo del análisis de
       // mercado era crear techo de expansión: un cliente de $79 puede subir a
       // $349 y de ahí a $1,100 sin cambiar de proveedor.
       monthlyTitle: "Planes mensuales: mantenimiento web y SEO local",
       monthlySubtitle:
-        "Mantenimiento web mensual y plan de SEO local con precio publicado, y reporte mensual de contactos reales.",
+        "El mantenimiento web mensual tiene precio publicado. Crecimiento+ y Marketing Digital se cotizan a tu negocio: primero una reunión inicial para conocerlo y una auditoría, y de ahí sale el alcance y el número.",
       monthlyNote:
-        "Soporte Web y Crecimiento+ no tienen contrato de permanencia: subes, bajas o cancelas de un mes a otro. Web + Marketing + SEO pide un mínimo de 3 meses y, cumplido ese plazo, también se cancela de un mes a otro.",
+        "Permanencia: ninguna en Soporte Web ni en Crecimiento+ — subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de 3 meses y, cumplido ese plazo, se cancela igual.",
       monthly: [
         {
           badge: "Base · Continuidad",
           name: "Soporte Web",
           pricePrefix: "desde",
           price: "79",
+          quoteLabel: "",
           currency: "USD / mes",
           currencyMonth: true,
           priceNote: "según el tamaño de tu página",
@@ -605,10 +600,12 @@ export const translations = {
           badge: "Nuevo · Más recomendado",
           name: "Crecimiento+",
           pricePrefix: "",
-          price: "349",
-          currency: "USD / mes",
+          price: "",
+          quoteLabel: "Cotización a medida",
+          currency: "",
           currencyMonth: true,
-          priceNote: "incluye todo el Soporte Web",
+          priceNote:
+            "Se define tras la reunión inicial y la auditoría de tu negocio",
           commitmentNote: "",
           tagline: "Que te encuentren, no solo que existas",
           description:
@@ -616,42 +613,43 @@ export const translations = {
           features: [
             "Todo lo del plan Soporte Web.",
             "Perfil de Empresa en Google: creación, verificación y optimización completa.",
-            "Publicaciones mensuales en tu Perfil de Google y actualización de servicios y horarios.",
+            "Servicios, horarios, zonas y datos de tu ficha de Google siempre al día.",
             "Gestión de reseñas: sistema para pedirlas y respuesta a todas las que llegan.",
             "Optimización para búsqueda con IA (ChatGPT, Google AI): que te citen cuando pregunten por un negocio como el tuyo.",
             "Contenido y SEO local: te posiciono para las búsquedas de tu ciudad.",
-            "Reporte mensual ampliado: llamadas desde Google, direcciones solicitadas y reseñas nuevas.",
+            "Reporte mensual de tu Perfil de Empresa en Google, tu SEO y tu página web.",
           ],
-          cta: "Quiero Crecimiento+",
+          cta: "Agendar reunión inicial",
           waText:
-            "Hola Cristian, Me interesa el plan Crecimiento+ ($349 USD al mes) con Perfil de Empresa en Google, gestión de reseñas y optimización para búsqueda con IA. ¿Cómo empezamos?",
+            "Hola Cristian, Me interesa el plan Crecimiento+ con Perfil de Empresa en Google, gestión de reseñas y SEO local. ¿Podemos agendar la reunión inicial para cotizarlo?",
           highlighted: true,
         },
         {
           badge: "Techo · Todo incluido",
-          name: "Web + Marketing + SEO",
-          pricePrefix: "desde",
-          price: "1,100",
-          currency: "USD / mes",
+          name: "Marketing Digital",
+          pricePrefix: "",
+          price: "",
+          quoteLabel: "Cotización a medida",
+          currency: "",
           currencyMonth: true,
-          priceNote: "presupuesto de anuncios aparte",
+          priceNote:
+            "Se define tras la reunión inicial y la auditoría de tu negocio",
           commitmentNote:
             "Contrato mínimo de 3 meses. Los anuncios y el SEO necesitan ese tiempo para dar resultados reales; antes de eso todavía estamos ajustando.",
           tagline: "Un sistema completo de captación",
           description:
-            "Para el negocio que ya no quiere depender de las recomendaciones y los meses buenos. Página, anuncios, contenido y SEO trabajando juntos, con seguimiento de cada prospecto hasta que agenda.",
+            "Para el negocio que ya no quiere depender de las recomendaciones y los meses buenos. Página, anuncios, contenido y SEO trabajando juntos, con un reporte mensual que dice qué costó cada prospecto.",
           features: [
             "Todo lo del plan Crecimiento+.",
-            "Gestión de campañas en Google Ads y Meta, con landing pages dedicadas.",
+            "Gestión de campañas en Google Ads y Meta cuando tu negocio las necesita, con las landing pages que haga falta crear.",
+            "SEO completo: reporte inicial de cómo está hoy tu SEO, qué se puede mejorar y el plan de trabajo mensual.",
             "SEO continuo: contenido mensual, enlaces y páginas por servicio y por ciudad.",
-            "Automatización de seguimiento: cada prospecto recibe respuesta aunque tú estés en obra, en consulta o con un cliente.",
-            "Landing pages nuevas para promociones o servicios sin costo extra.",
-            "Reporte mensual de costo por prospecto y por cliente cerrado.",
-            "Llamada estratégica mensual conmigo.",
+            "Reporte mensual con las métricas completas de marketing, los costos y las recomendaciones del mes.",
+            "Llamada estratégica mensual con Cristian Posada.",
           ],
-          cta: "Cotizar mi paquete",
+          cta: "Agendar reunión inicial",
           waText:
-            "Hola Cristian, Me interesa el paquete Web + Marketing + SEO (desde $1,100 USD al mes). Quiero un sistema completo de captación para mi negocio. ¿Podemos platicar?",
+            "Hola Cristian, Me interesa el plan de Marketing Digital: campañas, SEO completo y reporte mensual. ¿Podemos agendar la reunión inicial para cotizarlo?",
           highlighted: false,
         },
       ],
@@ -782,9 +780,9 @@ export const translations = {
         },
         {
           question:
-            "¿Qué es la Auditoría Digital y en qué se diferencia de un proyecto?",
+            "¿Qué es la Auditoría Estratégica Integral y en qué se diferencia de un proyecto?",
           answer:
-            "La Revisión Express es gratis y es la puerta de entrada: tres minutos de vídeo con lo que se ve desde fuera. La Auditoría Digital ($250 USD) es otra cosa: cinco días hábiles revisando nueve áreas con acceso a tus datos reales —sitio, estructura, diseño, SEO técnico, contenido, presencia local, anuncios, captación y medición— y te entrego un informe priorizado, un vídeo recorriéndolo y una llamada. No es una página: es saber qué hacer primero y por qué. Un proyecto es la ejecución; la auditoría es el mapa, y son cosas separadas que se cobran por separado.",
+            "La Revisión Express es gratis y es la puerta de entrada: tres minutos de vídeo con lo que se ve desde fuera. La Auditoría Estratégica Integral es otra cosa: cinco días hábiles que empiezan por entender tu negocio y tu objetivo comercial, y de ahí revisan doce áreas con acceso a tus datos reales —rendimiento, arquitectura, conversión, SEO técnico, keyword research, contenido y canibalización, presencia local, competencia, Google y Meta Ads, captación y medición—. Cada hallazgo queda con su evidencia y clasificado por impacto, esfuerzo, urgencia y dependencia, y termina en una estrategia priorizada con roadmap de 30, 60 y 90 días. Un proyecto es la ejecución; la auditoría es el mapa. Se cotiza tras la reunión inicial, y si contratas desarrollo web, SEO o marketing va incluida como primera fase de ese trabajo.",
         },
         {
           question: "¿La auditoría se descuenta si después contrato un proyecto?",
@@ -794,12 +792,12 @@ export const translations = {
         {
           question: "¿Qué diferencia hay entre Soporte Web y Crecimiento+?",
           answer:
-            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ ($349 USD/mes) incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, publicaciones, gestión de reseñas, SEO local y optimización para que las búsquedas con IA te citen. Uno cuida lo que ya tienes; el otro te trae clientes nuevos.",
+            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, gestión de reseñas, SEO local y optimización para que las búsquedas con IA te citen. Uno cuida lo que ya tienes; el otro te trae clientes nuevos. Crecimiento+ no lleva precio de lista porque el trabajo cambia según en qué estado esté tu presencia digital: se cotiza tras la reunión inicial y la auditoría.",
         },
         {
           question: "¿Los planes mensuales tienen contrato de permanencia?",
           answer:
-            "En ninguno hay contrato de 12 meses. Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. El único con compromiso es Web + Marketing + SEO: pide un mínimo de 3 meses, porque los anuncios y el SEO no dan resultados reales en 30 días y no quiero cobrarte por un mes suelto que no te va a servir. Cumplido ese plazo, se cancela igual que los demás. Prefiero que te quedes porque funciona, no porque firmaste.",
+            "En ninguno hay contrato de 12 meses. Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. El único con compromiso es Marketing Digital: pide un mínimo de 3 meses, porque los anuncios y el SEO no dan resultados reales en 30 días y no quiero cobrarte por un mes suelto que no te va a servir. Cumplido ese plazo, se cancela igual que los demás. Prefiero que te quedes porque funciona, no porque firmaste.",
         },
         {
           question: "¿Trabajas con negocios en Estados Unidos aunque no estés aquí?",
@@ -819,7 +817,7 @@ export const translations = {
         {
           question: "¿Se puede conectar la página web con WhatsApp, formularios y CRM?",
           answer:
-            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas, CRM y automatizaciones para que cada prospecto quede registrado y con seguimiento automático — algo que agradeces cuando tienes el día lleno.",
+            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas y CRM para que cada prospecto quede registrado y te llegue el aviso al instante. El seguimiento y el cierre los haces tú: mi parte es que el prospecto te llegue completo y a tiempo.",
         },
         {
           question: "¿Puedo editar mi página web yo mismo después?",
@@ -933,7 +931,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "ProCode Dev es una agencia de páginas web para negocios dirigida por Cristian Posada, desarrollador web en español. Páginas web para negocios y páginas web para pequeñas empresas en Estados Unidos y México, con captación, automatización y seguimiento conectados.",
+        "ProCode Dev es una agencia de páginas web para negocios dirigida por Cristian Posada, desarrollador web en español. Páginas web para negocios y páginas web para pequeñas empresas en Estados Unidos y México, con captación, formularios y medición conectados.",
       navTitle: "Navegación",
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
@@ -1052,7 +1050,7 @@ export const translations = {
       services: {
         title: "Servicios de Desarrollo Web y Marketing | ProCode",
         description:
-          "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación desde $349 USD al mes.",
+          "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación cotizados a tu negocio.",
         keywords:
           "servicios de desarrollo web y marketing digital, servicios de desarrollo web, servicios de diseño web, diseño web y marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, desarrollo web para negocios, marketing digital para negocios, diseño web y posicionamiento",
         heroTitleA: "Servicios de desarrollo web y",
@@ -1097,54 +1095,6 @@ export const translations = {
     // Regla: el hero lleva de 3 a 6 palabras y todo el detalle vive aquí,
     // después del CTA final. Es donde tienen que aparecer las frases clave
     // declaradas en `pageMeta.<page>.keywords`.
-    pageContext: {
-      home: {
-        title: "Agencia de diseño web y marketing digital para negocios",
-        paragraphs: [
-          "ProCode Dev es una agencia de diseño web y marketing digital dirigida por su fundador: hablas con la persona que va a programar tu sitio, no con un vendedor. Trabajo en remoto con dueños de negocio en Estados Unidos y México, en inglés y en español, con precios publicados desde $349 USD y respuesta en menos de 24 horas.",
-          "Como agencia de desarrollo web construyo el sitio; como agencia de marketing digital lo lleno de visitas y de mensajes. El sistema son seis piezas que trabajan juntas: sitio web, captación, formularios, automatización, seguimiento y reportes. No entrego páginas bonitas que nadie visita, sino sitios web para captar clientes medibles, con la analítica puesta desde el primer día.",
-          "Si buscabas una empresa de diseño web o una agencia de páginas web para negocios y prefieres tratar con un desarrollador web en español, aquí el trato es directo: hago páginas web para pequeñas empresas con precios públicos, sin contratos de 12 meses y con el sitio completo en los dos idiomas.",
-        ],
-      },
-      sectors: {
-        title: "Diseño web para negocios por sector",
-        paragraphs: [
-          "Esto es diseño web por sector: cinco giros con página propia porque el problema no es el mismo en todos: diseño web para contratistas, diseño web para consultorios, diseño web para inmobiliarias, diseño web para contadores y diseño web para abogados. Elige el tuyo y verás qué cambia en tu caso — qué secciones necesita el sitio, qué busca tu cliente en Google y qué pasos manuales se pueden automatizar.",
-          "Trabajo con páginas web para negocios por industria en lugar de una plantilla genérica porque el dueño de negocio se busca a sí mismo por su oficio, no por la categoría «pequeña empresa». Lo mismo vale para el diseño web para negocios locales que compite dentro de una sola ciudad.",
-          "En los cinco el paquete es el mismo: páginas web para pymes con precio publicado, más marketing digital para pymes cuando hace falta llenar el sitio de visitas — SEO local, Perfil de Empresa en Google y anuncios.",
-        ],
-      },
-      services: {
-        title: "Servicios de desarrollo web y marketing digital",
-        paragraphs: [
-          "Dos líneas que cubren el ciclo completo: desarrollo web para negocios — páginas programadas a la medida — y marketing digital para negocios, el sistema de captación que las llena. Puedes contratar una o las dos.",
-          "El trabajo incluye diseño web y posicionamiento, SEO, Perfil de Empresa en Google, anuncios, automatización y reportes de contactos reales. Son servicios de desarrollo web y servicios de diseño web bajo el mismo techo que el marketing, con un solo responsable de las dos mitades.",
-          "A diferencia de una empresa de diseño de páginas web que te asigna un ejecutivo de cuenta, aquí el servicio de creación de páginas web lo ejecuta quien lo vende. Pequeña a propósito: menos clientes, precios publicados y respuesta en menos de 24 horas.",
-        ],
-      },
-      portfolio: {
-        title: "Páginas web profesionales para negocios",
-        paragraphs: [
-          "Este portafolio de páginas web son proyectos en vivo, no maquetas: puedes abrir cada sitio, medir cuánto tarda en cargar y ver cómo se comporta en tu teléfono. Son páginas web profesionales para negocios de servicios, salud, construcción e inmobiliaria.",
-          "Si buscabas ejemplos de sitios web para negocios o casos de sitios web pymes antes de decidir, este es el lugar: varios son rediseños de sitios que ya existían y no traían clientes. El diseño web para negocios locales se juzga mejor con el sitio abierto que con un argumento de venta.",
-        ],
-      },
-      pricing: {
-        title: "Precios de páginas web para negocios",
-        paragraphs: [
-          "Si llegaste buscando cuánto cuesta una página web, aquí están los precios de diseño de páginas web publicados: landing desde $349 USD, sitio de 4 a 6 páginas $899 USD y desde $1,499 USD el proyecto grande. Estos paquetes de diseño de páginas web no llevan cotización sorpresa ni contrato de 12 meses.",
-          "El precio de página web depende del número de páginas y de si hace falta captación conectada, no de cuánto parece que puedes pagar. El costo de página web está publicado justo por eso: para que armes tu presupuesto para una página web y compares sin agendar una llamada ni pedir una cotización de diseño web.",
-          "Aparte del proyecto, el mantenimiento web mensual empieza en $79 USD e incluye actualizaciones, respaldos y soporte; se cancela cuando quieras. El sistema completo de captación es lo único que pide tres meses, porque el SEO local no madura antes.",
-        ],
-      },
-      contact: {
-        title: "Contacto y Revisión Express",
-        paragraphs: [
-          "Dos caminos que llegan a la misma persona: déjame tu WhatsApp y te contesto en menos de 24 horas sin agendar nada, o abre mi calendario y toma 20 minutos. Hablar con ProCode Dev no incluye llamada de ventas — los precios ya están publicados en el sitio.",
-          "Si prefieres hablar en español con un desarrollador web en español, es lo normal aquí: trabajo en los dos idiomas y en remoto, con negocios de Estados Unidos y México. Puedes agendar Revisión Express para ver qué le falta a tu sitio actual, o solicitar una propuesta web si ya sabes lo que necesitas.",
-        ],
-      },
-    },
     // ── Hub de giros: /negocios ─────────────────────────────────
     sectors: {
       promiseEyebrow: "// la promesa",
@@ -1415,7 +1365,7 @@ export const translations = {
         {
           icon: "workflow",
           title: "Marketing connected to your operation",
-          description: "Follow-up automation: from form to CRM, with no manual steps.",
+          description: "Forms that qualify: from the form to your WhatsApp and your CRM, with no manual steps.",
         },
         {
           icon: "repeat",
@@ -1564,65 +1514,64 @@ export const translations = {
       subtitle:
         "Website design packages with public pricing, in US dollars, no sales call to find out and no 12-month contracts. Choose where to start and grow at your own pace.",
       popular: "Most chosen",
-      currencyNoteUsd: "Small business website pricing in US dollars: how much a small business website costs is published below, monthly website maintenance included.",
-      // ── Digital Audit · replaces the $149 Diagnosis (Sept 2026) ──
+      finePrintTitle: "Fine print",
+      currencyNoteUsd: "All prices are in US dollars. What a small business website costs and what monthly maintenance costs are published above, with no sales call needed to hear them.",
+      // ── Strategic Business Audit · the paid entry point ──
       // See the Spanish block above and src/i18n/audit.ts for the why.
       advisory: {
         badge: "Paid entry point · charged separately",
-        name: "Digital Audit",
-        price: "250",
-        currency: "USD",
-        priceNote: "one-time · not credited toward a project",
+        name: "Strategic Business Audit",
+        priceQuote: "Quoted",
+        priceNote: "based on the scope of your business",
         hook: "For when you know something is off but not which of the pieces it is.",
         description:
-          "I review nine areas of your business online with access to your real data — site, structure, design, SEO, local presence, ads, intake, follow-up and measurement — and hand you a prioritized report, a video walking through it, and a call. The plan is yours and you can act on it with whoever you like.",
+          "It starts with your business — what you sell, who should buy it and what result you want — and from there reviews twelve areas against your real data: performance, architecture, conversion, technical SEO, keyword research, content and cannibalization, local presence, competitors, Google and Meta Ads, intake and measurement. Every finding documented with evidence and classified by impact, effort, urgency and dependency. You get a prioritized strategy with a 30/60/90 roadmap, a video and a call. If you hire web development, SEO or marketing, the audit goes in as the first phase of the project instead of being billed separately.",
         homeEyebrow: "// the next step",
         homeTitle: "Want the full plan in writing?",
         prereq:
           "If we have never spoken, start with the Express Review: it is free and for many people it is enough.",
         viewPricing: "See all pricing",
         waText:
-          "Hi Cristian, I'm interested in the Digital Audit ($250 USD). I want to know what is broken in my business online and what to fix first.",
+          "Hi Cristian, I'm interested in the Strategic Business Audit. I want to know what is holding my business back and in what order to fix it.",
         stepsTitle: "How it works (3 phases)",
         steps: [
           {
-            name: "Day 1 · Context and access",
+            name: "Phase 1 · Business and access",
             description:
-              "A short questionnaire and read-only access: Analytics, Search Console, your Business Profile and your ad accounts if you have them.",
+              "What you sell, to whom, in which area and what result you want. Plus read-only access: Analytics, Search Console, your Business Profile and your ad accounts if you have them.",
           },
           {
-            name: "Days 2 to 4 · The audit",
+            name: "Phase 2 · Auditing the whole system",
             description:
-              "The nine areas, one at a time, with your data in front of me and against whoever ranks above you in your city.",
+              "The twelve areas, one at a time, with your data in front of me, the keyword research done and measured against whoever ranks above you in your city. Every finding with its evidence.",
           },
           {
-            name: "Day 5 · Delivery",
+            name: "Phase 3 · Strategy and roadmap",
             description:
-              "A PDF report with findings ranked by priority, a video walking through it, and a 30-45 minute call once you have read it.",
+              "Findings classified by impact, effort, urgency and dependency, a prioritized strategy and a 30/60/90 roadmap. Plus the video and the 30-45 minute call.",
           },
         ],
-        creditNote:
-          "The $250 is not deducted from a later project, and that is deliberate: if the project absorbed the audit, my incentive would be to find you reasons to hire me. Charging separately means I can tell you «this is fine, leave it alone».",
-        cta: "See the Digital Audit",
+        cta: "See the Strategic Audit",
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "These are the real prices, not a reference range: what you see is what you pay for the scope described in each plan. If your project falls outside that scope, I tell you before we start and give you the exact number — never halfway through the work. The Web Support and Growth+ plans are lock-in free: cancel whenever you want. The only one with a commitment is Web + Marketing + SEO, with a 3-month minimum, because ads and SEO need that long to produce real results.",
+      note: "What you see is what you pay for the scope described in each plan: it is not a reference range. If your project falls outside that scope I give you the exact number before we start, never halfway through the work. Growth+, Digital Marketing and the audit are quoted after the first meeting, because what they cost depends on where your business stands today.",
       // ── Monthly ladder: support → growth → all-in ──
       // Replaces the single maintenance block. The market analysis called for a
       // ceiling to expand into: a $79 client can move to $349 and then $1,100
       // without ever changing vendors.
       monthlyTitle: "Monthly plans: website maintenance and local SEO",
       monthlySubtitle:
-        "Monthly website maintenance and local SEO plan pricing, published, with a monthly report of real contacts.",
+        "Monthly website maintenance has published pricing. Growth+ and Digital Marketing are quoted to your business: a first meeting to understand it, an audit, and the scope and the number come out of that.",
       monthlyNote:
-        "Web Support and Growth+ have no lock-in contract: move up, down or cancel from one month to the next. Web + Marketing + SEO asks for a 3-month minimum and, once that's met, also cancels from one month to the next.",
+        "Lock-in: none on Web Support or Growth+ — move up, down or cancel from one month to the next. Digital Marketing asks for a 3-month minimum and, once that's met, cancels the same way.",
       monthly: [
         {
           badge: "Base · Continuity",
           name: "Web Support",
           pricePrefix: "from",
           price: "79",
+          quoteLabel: "",
           currency: "USD / mo",
           currencyMonth: true,
           priceNote: "depending on the size of your site",
@@ -1648,10 +1597,12 @@ export const translations = {
           badge: "New · Most recommended",
           name: "Growth+",
           pricePrefix: "",
-          price: "349",
-          currency: "USD / mo",
+          price: "",
+          quoteLabel: "Custom quote",
+          currency: "",
           currencyMonth: true,
-          priceNote: "includes everything in Web Support",
+          priceNote:
+            "Set after the first meeting and the audit of your business",
           commitmentNote: "",
           tagline: "Get found, not just exist",
           description:
@@ -1659,42 +1610,43 @@ export const translations = {
           features: [
             "Everything in the Web Support plan.",
             "Google Business Profile: setup, verification and full optimization.",
-            "Monthly posts on your Google profile plus service and hours updates.",
+            "Services, hours, service areas and profile details kept current.",
             "Review management: a system to request them and a reply to every one that lands.",
             "AI search optimization (ChatGPT, Google AI): so you get cited when someone asks for a business like yours.",
             "Local SEO and content: I position you for searches in your city.",
-            "Extended monthly report: calls from Google, direction requests and new reviews.",
+            "Monthly report on your Google Business Profile, your SEO and your website.",
           ],
-          cta: "I want Growth+",
+          cta: "Book the first meeting",
           waText:
-            "Hi Cristian, I'm interested in the Growth+ plan ($349 USD/mo) with Google Business Profile, review management and AI search optimization. How do we start?",
+            "Hi Cristian, I'm interested in the Growth+ plan with Google Business Profile, review management and local SEO. Can we book the first meeting to quote it?",
           highlighted: true,
         },
         {
           badge: "Ceiling · All-in",
-          name: "Web + Marketing + SEO",
-          pricePrefix: "from",
-          price: "1,100",
-          currency: "USD / mo",
+          name: "Digital Marketing",
+          pricePrefix: "",
+          price: "",
+          quoteLabel: "Custom quote",
+          currency: "",
           currencyMonth: true,
-          priceNote: "ad budget billed separately",
+          priceNote:
+            "Set after the first meeting and the audit of your business",
           commitmentNote:
             "3-month minimum. Ads and SEO need that long to produce real results; before that we're still tuning.",
           tagline: "A complete client-acquisition system",
           description:
-            "For the business that no longer wants to depend on referrals and good months. Website, ads, content and SEO working together, with every lead tracked until they book.",
+            "For the business that no longer wants to depend on referrals and good months. Website, ads, content and SEO working together, with a monthly report that says what each lead cost.",
           features: [
             "Everything in the Growth+ plan.",
-            "Google Ads and Meta campaign management, with dedicated landing pages.",
+            "Google Ads and Meta campaign management when your business needs it, with whatever landing pages have to be built.",
+            "Full SEO: an initial report on where your SEO stands, what can be improved and the monthly plan of work.",
             "Ongoing SEO: monthly content, links, and pages per service and per city.",
-            "Follow-up automation: every lead gets a reply even when you're on a job site or with a client.",
-            "New landing pages for promotions or services at no extra cost.",
-            "Monthly report of cost per lead and per closed client.",
-            "Monthly strategy call with me.",
+            "Monthly report with the full marketing metrics, the costs and the recommendations for the month.",
+            "Monthly strategy call with Cristian Posada.",
           ],
-          cta: "Quote my package",
+          cta: "Book the first meeting",
           waText:
-            "Hi Cristian, I'm interested in the Web + Marketing + SEO package (from $1,100 USD/mo). I want a complete client-acquisition system for my business. Can we talk?",
+            "Hi Cristian, I'm interested in the Digital Marketing plan: campaigns, full SEO and the monthly report. Can we book the first meeting to quote it?",
           highlighted: false,
         },
       ],
@@ -1824,9 +1776,9 @@ export const translations = {
         },
         {
           question:
-            "What is the Digital Audit and how is it different from a project?",
+            "What is the Strategic Business Audit and how is it different from a project?",
           answer:
-            "The Express Review is free and it is the entry point: three minutes of video on what is visible from the outside. The Digital Audit ($250 USD) is a different animal: five business days covering nine areas with access to your real data — site, structure, design, technical SEO, content, local presence, ads, intake and measurement — ending in a prioritized report, a video walking through it, and a call. It is not a website: it is knowing what to do first and why. A project is the execution; the audit is the map, and they are separate things charged separately.",
+            "The Express Review is free and it is the entry point: three minutes of video on what is visible from the outside. The Strategic Business Audit is a different animal: five business days that start by understanding your business and your commercial objective, then cover twelve areas against your real data — performance, architecture, conversion, technical SEO, keyword research, content and cannibalization, local presence, competitors, Google and Meta Ads, intake and measurement. Every finding gets its evidence and is classified by impact, effort, urgency and dependency, and it ends in a prioritized strategy with a 30, 60 and 90-day roadmap. A project is the execution; the audit is the map. It is quoted after the first meeting, and if you hire web development, SEO or marketing it is included as the first phase of that work.",
         },
         {
           question: "Is the audit deducted if I later hire a project?",
@@ -1836,12 +1788,12 @@ export const translations = {
         {
           question: "What's the difference between Web Support and Growth+?",
           answer:
-            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ ($349 USD/mo) includes all of that and also works to get you found: Google Business Profile, posts, review management, local SEO and optimization so AI search cites you. One protects what you have; the other brings you new clients.",
+            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile, review management, local SEO and optimization so AI search cites you. One protects what you have; the other brings you new clients. Growth+ carries no list price because the work depends on where your digital presence stands: it is quoted after the first meeting and the audit.",
         },
         {
           question: "Do the monthly plans have a lock-in contract?",
           answer:
-            "There's no 12-month contract on any plan. Web Support and Growth+ cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. The only one with a commitment is Web + Marketing + SEO: it asks for a 3-month minimum, because ads and SEO don't produce real results in 30 days and I don't want to charge you for a single month that won't help you. After that, it cancels like the rest. I'd rather you stay because it works than because you signed.",
+            "There's no 12-month contract on any plan. Web Support and Growth+ cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. The only one with a commitment is Digital Marketing: it asks for a 3-month minimum, because ads and SEO don't produce real results in 30 days and I don't want to charge you for a single month that won't help you. After that, it cancels like the rest. I'd rather you stay because it works than because you signed.",
         },
         {
           question: "Do you work with U.S. businesses even though you're not here?",
@@ -1861,7 +1813,7 @@ export const translations = {
         {
           question: "Can the website connect to WhatsApp, forms and a CRM?",
           answer:
-            "Absolutely. I connect forms, WhatsApp buttons, booking calendars, CRM and automations so every lead is registered and followed up automatically — which you'll appreciate when your day is full.",
+            "Absolutely. I connect forms, WhatsApp buttons, booking calendars and your CRM so every lead is recorded and pings you the moment it lands. The follow-up and the close stay yours: my part is making sure the lead reaches you complete and on time.",
         },
         {
           question: "Can I edit my website myself afterwards?",
@@ -1973,7 +1925,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "ProCode Dev is a small business web design agency run by Cristian Posada, a bilingual web developer. Website design for small businesses across the United States and Mexico, with client acquisition, follow-up automation and analytics.",
+        "ProCode Dev is a small business web design agency run by Cristian Posada, a bilingual web developer. Website design for small businesses across the United States and Mexico, with client acquisition, qualifying forms and analytics.",
       navTitle: "Navigation",
       servicesTitle: "Services",
       contactTitle: "Contact",
@@ -2086,7 +2038,7 @@ export const translations = {
       services: {
         title: "Web Development & Digital Marketing | ProCode Dev",
         description:
-          "Web development and digital marketing services for small businesses: custom websites from $349 USD and lead generation plans from $349 USD a month.",
+          "Web development and digital marketing services for small businesses: custom websites from $349 USD and lead generation plans quoted to your business.",
         keywords:
           "web development and digital marketing services, web development services for small business, website design and marketing services, small business web development, small business digital marketing services, local SEO services for small businesses, conversion-focused design",
         heroTitleA: "Web development and",
@@ -2108,7 +2060,7 @@ export const translations = {
         title:
           "How Much a Small Business Website Costs | ProCode Dev",
         description:
-          "Website design packages with public pricing: landing $349, 4–6 page site $899, large sites from $1,499 and monthly plans from $79. No 12-month contracts.",
+          "Website design packages with public pricing: landing $349, 4–6 page site $899, large sites from $1,499 and site upkeep from $79 a month. No 12-month contracts.",
         keywords:
           "how much a small business website costs, small business website pricing, website design packages, how much does a website cost, monthly website maintenance, local SEO plan pricing",
         heroTitleA: "How much a small business",
@@ -2128,54 +2080,6 @@ export const translations = {
       },
     },
     // ── Footer context blocks (the long copy that left the hero) ───────
-    pageContext: {
-      home: {
-        title: "Web design and digital marketing agency for small businesses",
-        paragraphs: [
-          "ProCode Dev is a web design agency run by its founder: you talk to the person who writes the code, not to a salesperson. Published pricing from $349 USD, a reply in under 24 hours, and the work delivered in English and Spanish across the United States and Mexico.",
-          "As a web development agency I build the site; as a digital marketing agency I fill it with searches and messages. The system is six pieces that work together: website, client acquisition, intake, automation, follow-up and reporting. I don't ship good-looking pages nobody visits — analytics are wired in from day one.",
-          "If you were looking for a website design company for small business, or for a small business web design agency with bilingual website design services, that is the whole job here: a bilingual web developer, public pricing, no 12-month contracts, and Spanish website design services inside the same build rather than as an add-on.",
-        ],
-      },
-      sectors: {
-        title: "Website design by industry",
-        paragraphs: [
-          "Five industries with their own pages, because the problem is not the same in each: contractor website design, therapist website design, real estate website design, tax preparer website design and attorney website design. Pick yours and you will see what changes in your case.",
-          "I build websites by industry instead of one generic template because owners search for their own trade, not for the category «small business». The same holds for local business web design competing inside a single city.",
-          "Across all five the package is the same: a custom-coded site with published pricing, plus small business digital marketing services when the site needs traffic — local SEO, Google Business Profile and ads.",
-        ],
-      },
-      services: {
-        title: "Web development and digital marketing services",
-        paragraphs: [
-          "Two lines covering the full cycle: small business web development — custom-coded pages — and small business digital marketing services, the lead system that fills them. You can hire one or both.",
-          "The work covers conversion-focused design, local SEO services for small businesses, Google Business Profile, ads, automation and reporting on real contacts. These are web development services for small business and website design and marketing services in one place, with one person accountable for both halves.",
-          "Unlike a shop that hands you an account executive, the person doing the work here is the one you hired. Deliberately small: fewer clients, published pricing and a reply in under 24 hours.",
-        ],
-      },
-      portfolio: {
-        title: "Professional websites for small businesses",
-        paragraphs: [
-          "This portfolio of small business websites is live work, not mockups: open each site, time how fast it loads and see how it behaves on your phone. They are professional websites for small businesses in services, health, construction and real estate.",
-          "If you were looking for small business website examples or local business web design case studies before deciding, this is the place. Several are a website redesign for small business owners who already had a site that brought in nothing.",
-        ],
-      },
-      pricing: {
-        title: "How much a small business website costs",
-        paragraphs: [
-          "If you came looking for how much a small business website costs, here are the website design packages with public pricing: a landing page from $349 USD, a 4–6 page site at $899 USD and larger projects from $1,499 USD. What you see is what you pay — no surprise quote and no 12-month contract.",
-          "Small business website pricing here depends on how many pages you need and whether the lead system is connected, not on how much you look like you can pay. That is why the numbers are published: so you can compare without booking a call. It is also the honest answer to how much does a website cost.",
-          "Beyond the build, monthly website maintenance starts at $79 USD and covers updates, backups and support; cancel whenever you want. Local SEO plan pricing starts at $349 USD a month and asks for three months, because local SEO does not mature faster than that.",
-        ],
-      },
-      contact: {
-        title: "Hire a web designer, in English or Spanish",
-        paragraphs: [
-          "Two ways in, both reaching the same person: leave your WhatsApp and I reply in under 24 hours with nothing to schedule, or open my calendar and take 20 minutes. To hire a web designer here there is no sales call — the prices are already on the site.",
-          "Bilingual website design services and Spanish website design services are not an upsell: I work in both languages, remotely, with owners across the United States and Mexico. If you would rather deal with a bilingual web developer directly, that is what this is.",
-        ],
-      },
-    },
     // ── Industry hub: /en/industries ───────────────────────────
     sectors: {
       promiseEyebrow: "// the promise",
@@ -2290,16 +2194,16 @@ const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
     en: "Hi Cristian, I was on your digital marketing page and I want more clients coming in. Can we talk?",
   },
   audit: {
-    es: "Hola Cristian, Me interesa la Auditoría Digital ($250 USD). Quiero saber qué está fallando en mi negocio en línea y en qué orden arreglarlo.",
-    en: "Hi Cristian, I'm interested in the Digital Audit ($250 USD). I want to know what is broken in my business online and what to fix first.",
+    es: "Hola Cristian, Me interesa la Auditoría Estratégica Integral. Quiero saber qué está frenando mi negocio y en qué orden resolverlo.",
+    en: "Hi Cristian, I'm interested in the Strategic Business Audit. I want to know what is holding my business back and in what order to fix it.",
   },
   landingPages: {
     es: "Hola Cristian, Quiero una landing page para mi negocio. ¿Me pasas el alcance y la fecha de entrega?",
     en: "Hi Cristian, I want a landing page for my business. Can you send me the scope and the delivery date?",
   },
-  webSeo: {
-    es: "Hola Cristian, Quiero una página web que sí aparezca en Google. ¿Cómo funciona el diseño web con SEO?",
-    en: "Hi Cristian, I want a website that actually shows up in Google. How does your SEO web design work?",
+  seo: {
+    es: "Hola Cristian, Me interesa el servicio de SEO. ¿Podemos agendar la reunión inicial y la auditoría?",
+    en: "Hi Cristian, I'm interested in the SEO service. Can we book the first meeting and the audit?",
   },
   maintenance: {
     es: "Hola Cristian, Me interesa el plan de mantenimiento web. Te cuento cómo está mi sitio.",
@@ -2397,9 +2301,9 @@ export const relatedLinks: Record<
     },
     services: {
       eyebrow: "// las entradas al servicio",
-      title: "Tres formas de entrar al desarrollo web",
+      title: "Tres entradas a los servicios",
       body:
-        "No son servicios nuevos: son tres puertas al mismo trabajo, cada una con su precio publicado.",
+        "Tres entradas distintas: dos al mismo proyecto de desarrollo web y una al servicio de SEO, que se contrata aparte.",
       items: [
         {
           label: "Diseño de landing pages",
@@ -2407,9 +2311,9 @@ export const relatedLinks: Record<
           hint: "Una página, un objetivo, desde $349 USD",
         },
         {
-          label: "Diseño web con SEO",
-          href: "/servicios/diseno-web-seo/",
-          hint: "El sitio y el posicionamiento en el mismo proyecto",
+          label: "Servicio de SEO",
+          href: "/servicios/seo/",
+          hint: "Auditoría, keyword research y trabajo mensual",
         },
         {
           label: "Mantenimiento web",
@@ -2496,9 +2400,9 @@ export const relatedLinks: Record<
     },
     services: {
       eyebrow: "// ways into the service",
-      title: "Three ways into web development",
+      title: "Three ways in",
       body:
-        "Not new services: three doors into the same work, each with published pricing.",
+        "Two doors into the same web development project, and one into the SEO service, which is hired separately.",
       items: [
         {
           label: "Landing page design",
@@ -2506,9 +2410,9 @@ export const relatedLinks: Record<
           hint: "One page, one goal, from $349 USD",
         },
         {
-          label: "SEO web design",
-          href: "/en/services/seo-web-design/",
-          hint: "The site and the ranking in one project",
+          label: "SEO services",
+          href: "/en/services/seo/",
+          hint: "Audit, keyword research and monthly work",
         },
         {
           label: "Website maintenance",

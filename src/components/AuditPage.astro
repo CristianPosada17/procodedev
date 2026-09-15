@@ -1,17 +1,19 @@
 ---
 /*
-  Landing completa de la Auditoría Digital (ES y EN comparten esta
-  composición; el contenido vive en src/i18n/audit.ts).
+  Landing completa de la Auditoría Estratégica Integral (ES y EN comparten
+  esta composición; el contenido vive en src/i18n/audit.ts).
 
   Orden, y el porqué de cada posición:
 
-  1. Hero — precio cerrado ($250, no «desde») y la nota de que no se acredita
-     arriba del pliegue: es la objeción número uno.
+  1. Hero — «A cotizar» y, pegada al precio, la regla de cuándo la auditoría
+     va dentro de un proyecto: es la objeción número uno.
   2. Gratis vs. de pago — antes que nada más. El sitio ya regala la Revisión
      Express; si esta página no dice en qué se diferencia, o no vende o
      vende un malentendido.
-  3. Qué se audita — las nueve áreas. Es lo que justifica el precio.
-  4. Qué recibes — tres entregables concretos, no «un informe».
+  3. Qué se audita — las doce áreas, empezando por el negocio. Es lo que
+     justifica el precio.
+  4. Qué recibes — cuatro entregables concretos más el mockup del informe:
+     «estrategia priorizada» es una promesa hasta que se ve cómo se ve.
   5. Cómo funciona — las tres fases y los accesos que se piden.
   6. Cuándo NO vale la pena — el filtro honesto, que aquí pesa más que en
      una página de servicio: se está pidiendo dinero por adelantado.
@@ -31,8 +33,8 @@ import ServiceCapabilities from "./ServiceCapabilities.astro";
 import ServiceStandards from "./ServiceStandards.astro";
 import ServiceFit from "./ServiceFit.astro";
 import ServiceLeadForm from "./ServiceLeadForm.astro";
+import ServiceShot from "./ServiceShot.astro";
 import FAQ from "./FAQ.astro";
-import PageContext from "./PageContext.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { audit } from "../i18n/audit";
@@ -44,7 +46,7 @@ const { lang } = Astro.props as Props;
 const t = translations[lang];
 const a = audit[lang];
 
-// Las nueve áreas y los tres entregables, para que un buscador con IA pueda
+// Las doce áreas y los cuatro entregables, para que un buscador con IA pueda
 // contestar «qué incluye la auditoría» sin interpretar el diseño.
 const offerCatalog = [
   ...a.areas.items.map((i) => ({ title: i.title, description: i.description })),
@@ -95,6 +97,23 @@ const offerCatalog = [
       id="que-recibes"
     />
 
+    {/* El mockup del informe, justo después de describirlo. «Estrategia
+        priorizada» suena igual que «lista de recomendaciones» hasta que se
+        ve la tabla con las cuatro etiquetas y el roadmap debajo. */}
+    <section class="relative pb-4 lg:pb-10">
+      <div class="mx-auto w-full max-w-[1100px] px-4 sm:px-6 lg:px-10">
+        <ServiceShot
+          base={a.shot.imageBase}
+          alt={a.shot.imageAlt}
+          class="reveal"
+          sizes="(min-width: 1024px) 1040px, 92vw"
+        />
+        <p class="reveal mt-4 text-center text-xs leading-6 text-[var(--muted)]">
+          {a.shot.caption}
+        </p>
+      </div>
+    </section>
+
     <AuditProcess lang={lang} />
     <ServiceFit lang={lang} fit={a.fit} />
     <FAQ lang={lang} data={a.faq} id="dudas-auditoria" />
@@ -107,7 +126,6 @@ const offerCatalog = [
     />
 
     <AuditCross lang={lang} />
-    <PageContext data={a.pageContext} />
   </main>
   <Footer lang={lang} />
 </Layout>

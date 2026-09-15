@@ -153,6 +153,11 @@ const th = SEGMENT_THEME[segment];
   </div>
 </section>
 
+<!-- El proyecto destacado del giro entra aquí, casi al inicio: la prueba va
+     antes del argumento. Quien llega a una página de giro quiere ver un caso
+     real de su oficio antes de leer los dolores y lo que construyo. -->
+<slot />
+
 <!-- ── Dolores del segmento ── -->
 <section class="relative py-10 lg:py-16">
   <div
@@ -228,11 +233,6 @@ const th = SEGMENT_THEME[segment];
     </CardRail>
   </div>
 </section>
-
-<!-- El proyecto destacado del giro entra aquí: después de «qué construyo» y
-     antes de las dudas, que es donde el lector ya entendió la propuesta y lo
-     que quiere es ver una prueba antes de preguntar. -->
-<slot />
 
 <!-- ── FAQ del oficio ── -->
 <section class="relative py-10 lg:py-16">
