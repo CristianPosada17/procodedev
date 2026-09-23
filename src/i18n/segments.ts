@@ -618,9 +618,9 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Contadores y Despachos | ProCode Dev",
       description:
-        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, avisos al instante y SEO local para contadores. Precios públicos.",
+        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, avisos al instante y SEO local para contadores.",
       keywords:
-        "diseño web para contadores, diseño web para despachos contables, páginas web para preparadores de impuestos, páginas web para bookkeepers, marketing digital para contadores, SEO local para contadores, agencia de marketing para despachos contables, página web para despachos contables, intake de documentos, cómo conseguir clientes para un despacho contable",
+        "diseño web para contadores, diseño web para despachos contables, páginas web para preparadores de impuestos, páginas web para bookkeepers, marketing digital para contadores, SEO local para contadores, agencia de marketing para despachos contables, página web para despachos contables, página web para contadores, intake de documentos, cómo conseguir clientes para un despacho contable",
     },
     heroEyebrow: "// contabilidad e impuestos",
     heroTitleA: "Diseño web para",
@@ -628,16 +628,16 @@ const es: SegmentDict = {
     heroSubtitle: "Clientes todo el año.",
     intro:
       "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y avisos al instante para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
-    projectId: "demo-taxpro",
-    projectEyebrow: "// proyecto en tu giro",
-    projectTitle: "Cómo se ve un despacho contable",
-    projectHighlight: "bien presentado",
+    projectId: "miconta",
+    projectEyebrow: "// caso de éxito en tu giro",
+    projectTitle: "Un despacho contable que ya está",
+    projectHighlight: "captando clientes en línea",
     projectWhy:
-      "Un sitio bilingüe para un despacho fiscal y contable: servicios separados, agenda de consulta y captación enfocada en confianza.",
+      "Mi Conta Universal, despacho de contabilidad y bookkeeping en Cincinnati, Ohio: una página web para contadores bilingüe, con cada servicio a la vista, WhatsApp directo y una guía gratuita que convierte visitas en prospectos.",
     projectPoints: [
-      "Una página por servicio, para que la declaración de negocio no compita con la de persona física.",
-      "Agenda de consulta y captación construidas alrededor de la confianza, que es lo que decide en este giro.",
-      "Versión en inglés y en español, con URLs separadas para que Google indexe las dos.",
+      "Una ficha por servicio —bookkeeping, nómina, impuestos, registro de negocios, licencias— para que el cliente encuentre su trámite sin llamar a preguntar.",
+      "Español e inglés en el mismo sitio, con preguntas frecuentes que responden las dudas reales del giro: LLC, EIN, vendor's license y 1099.",
+      "SEO local para contadores en Cincinnati y todo Ohio, con datos estructurados de dirección, horario y teléfono.",
     ],
     painTitle: "Lo que veo una y otra vez",
     painSubtitle:
@@ -1302,7 +1302,7 @@ const en: SegmentDict = {
       description:
         "Tax preparer and accountant website design: document intake, instant alerts and local SEO for tax preparers. Public pricing and no 12-month contracts.",
       keywords:
-        "tax preparer website design, accountant website design, accounting firm website design, bookkeeper website design, digital marketing for accountants, local SEO for tax preparers, marketing agency for tax preparers, document intake for accountants, get more tax preparation clients",
+        "tax preparer website design, accountant website design, accounting firm website design, bookkeeper website design, bilingual accountant website, digital marketing for accountants, local SEO for tax preparers, marketing agency for tax preparers, document intake for accountants, get more tax preparation clients",
     },
     heroEyebrow: "// accounting & tax",
     heroTitleA: "Tax preparer",
@@ -1310,16 +1310,16 @@ const en: SegmentDict = {
     heroSubtitle: "Clients all year, not weeks.",
     intro:
       "Website, Google Business Profile, document intake, scheduling and instant alerts for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
-    projectId: "demo-taxpro",
-    projectEyebrow: "// a project in your industry",
-    projectTitle: "What a well-presented accounting",
-    projectHighlight: "practice looks like",
+    projectId: "miconta",
+    projectEyebrow: "// a case study in your industry",
+    projectTitle: "An accounting firm that's already",
+    projectHighlight: "winning clients online",
     projectWhy:
-      "A bilingual site for an accounting and tax practice: separate services, consult booking and trust-focused lead capture.",
+      "Mi Conta Universal, a bookkeeping and accounting firm in Cincinnati, Ohio: a bilingual accountant website with every service in plain sight, direct WhatsApp and a free guide that turns visits into leads.",
     projectPoints: [
-      "A page per service, so the business return doesn't compete with the individual one.",
-      "Consult booking and lead capture built around trust, which is what decides in this industry.",
-      "An English and a Spanish version, on separate URLs so Google indexes both.",
+      "A card per service — bookkeeping, payroll, taxes, business registration, licenses — so clients find what they need without calling to ask.",
+      "English and Spanish on the same site, with FAQs that answer the industry's real questions: LLCs, EINs, vendor's licenses and 1099s.",
+      "Local SEO for accountants in Cincinnati and all of Ohio, with structured data for address, hours and phone.",
     ],
     painTitle: "What I see over and over",
     painSubtitle:

@@ -8,6 +8,7 @@ import ServiceLines from "../components/ServiceLines.astro";
 import PriceAnchor from "../components/PriceAnchor.astro";
 import WhyProCode from "../components/WhyProCode.astro";
 import ProofStrip from "../components/ProofStrip.astro";
+import CaseStudy from "../components/CaseStudy.astro";
 import Founder from "../components/Founder.astro";
 import Integrations from "../components/Integrations.astro";
 import Testimonials from "../components/Testimonials.astro";
@@ -38,6 +39,7 @@ const meta = translations[lang].pageMeta.home;
     <ServiceLines lang={lang} />
     <PriceAnchor lang={lang} />
     <WhyProCode lang={lang} />
+    <CaseStudy lang={lang} variant="home" />
     <ProofStrip lang={lang} />
     <Founder lang={lang} />
     <Integrations lang={lang} />
@@ -64,6 +66,10 @@ const meta = translations[lang].pageMeta.home;
     /* Evita que un hijo con contenido ancho (la tira animada) desborde. */
     main.home-flow > * {
       min-width: 0;
+    }
+    /* El proyecto destacado va justo antes de la franja de proyectos. */
+    main.home-flow > #destacado {
+      order: 1;
     }
     main.home-flow > #trabajo {
       order: 1;

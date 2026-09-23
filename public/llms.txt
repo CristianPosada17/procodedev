@@ -69,7 +69,10 @@ Capacidad declarada: 4 proyectos nuevos al mes.
 - [Precios](https://procodedev.com/precios/): cuánto cuesta una página web para un
   negocio, con paquetes de diseño de páginas web y qué incluye cada plan.
 - [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
-  reales y demos marcados como tales.
+  reales y demos marcados como tales. Caso de éxito destacado: Mi Conta Universal
+  (https://micontau.com/), despacho de contabilidad y bookkeeping en Cincinnati,
+  Ohio — sitio bilingüe con ocho servicios, WhatsApp directo, guía gratuita como
+  imán de prospectos, FAQ con marcado FAQPage y SEO local.
 - [Auditoría Estratégica Integral](https://procodedev.com/servicios/auditoria/):
   cinco días hábiles, sin precio publicado. Empieza por el negocio —qué vende,
   quién debería comprarlo, cómo llegan hoy sus clientes y qué resultado
@@ -193,7 +196,8 @@ página propia por volumen de trabajo, no por exclusividad.
   generación de prospectos inmobiliarios.
 - [Contabilidad e impuestos](https://procodedev.com/contabilidad-e-impuestos/):
   diseño web para contadores y despachos contables, preparadores de impuestos,
-  CPAs, Enrolled Agents y bookkeepers, con SEO local para contadores.
+  CPAs, Enrolled Agents y bookkeepers, con SEO local para contadores. Proyecto
+  real en este giro: Mi Conta Universal (Cincinnati, Ohio).
 
 ## English
 
@@ -233,7 +237,9 @@ Same content, same pricing.
   [health & wellness](https://procodedev.com/en/health-and-wellness/),
   [professional services](https://procodedev.com/en/professional-services/),
   [real estate](https://procodedev.com/en/real-estate/),
-  [accounting & tax](https://procodedev.com/en/accounting-and-tax/).
+  [accounting & tax](https://procodedev.com/en/accounting-and-tax/) — featured
+  case study: Mi Conta Universal, a bilingual bookkeeping and accounting firm
+  website in Cincinnati, Ohio (https://micontau.com/).
 
 ## Qué NO hace ProCode Dev
 

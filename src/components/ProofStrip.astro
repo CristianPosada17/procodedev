@@ -16,7 +16,11 @@ const pf = t.portfolio;
 // Hallazgo #4 (crítico): el home entero tenía 2 imágenes y las dos eran el
 // logo. Una agencia que vende diseño web pedía confiar en la afirmación en vez
 // de en la evidencia. Aquí van los 3 proyectos con cliente real detrás.
-const projects = pf.projects.filter((proj) => proj.kind !== "demo").slice(0, 3);
+// El proyecto del bloque «proyecto destacado» (CaseStudy, justo encima en el
+// home) se excluye aquí para no enseñar la misma captura dos veces seguidas.
+const projects = pf.projects
+  .filter((proj) => proj.kind !== "demo" && proj.id !== t.caseStudy.projectId)
+  .slice(0, 3);
 ---
 
 <section id="trabajo" class="relative py-12 lg:py-20">

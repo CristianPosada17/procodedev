@@ -378,37 +378,50 @@ export const translations = {
     // real, abierto y verificable. Sin cifras: no hay analítica publicable de
     // este proyecto y una métrica inventada resta más de lo que suma.
     caseStudy: {
-      eyebrow: "// proyecto destacado",
-      titleA: "El caso que puedes abrir y",
-      titleHighlight: "juzgar tú mismo",
-      name: "Constructora Izcalli",
-      badge: "Contratistas & construcción · Durango",
-      url: "https://constructoraizcalli.com/",
-      urlLabel: "constructoraizcalli.com",
-      image: "/images/proyecto-izcalli.jpg",
+      // 23 sep 2026: el caso destacado pasa a ser Mi Conta Universal (cliente
+      // real de contabilidad e impuestos). Se usa en /portafolio (completo) y
+      // en el home (variant="home", título y resumen propios para no duplicar).
+      projectId: "miconta",
+      segmentPage: "accounting",
+      eyebrow: "// caso de éxito de diseño web · contabilidad",
+      titleA: "Caso de éxito: página web para un",
+      titleHighlight: "despacho contable bilingüe",
+      homeEyebrow: "// proyecto destacado",
+      homeTitleA: "Página web para",
+      homeHighlight: "un despacho contable en Ohio",
+      homeSummary:
+        "Sitio web bilingüe para un despacho de contabilidad y bookkeeping en Cincinnati, Ohio. Ábrelo y júzgalo tú: así se ve una página web para contadores que trabaja por el despacho.",
+      name: "Mi Conta Universal",
+      badge: "Contabilidad e impuestos · Cincinnati, Ohio",
+      url: "https://micontau.com/",
+      urlLabel: "micontau.com",
+      image: "/images/proyecto-miconta.jpg",
+      imageAlt: "Página de inicio del sitio web de Mi Conta Universal, despacho de contabilidad en Cincinnati, Ohio",
       summary:
-        "Una constructora con años de obra entregada y ninguna forma de mostrarla. Hoy su experiencia es un portafolio que se puede abrir en una junta.",
-      challengeTitle: "El problema",
+        "Un despacho de contabilidad, bookkeeping y nómina para pequeños negocios en Cincinnati y todo Ohio, en español y en inglés. Hoy su sitio explica cada servicio, resuelve las dudas del giro y lleva al cliente a WhatsApp o a una consulta.",
+      challengeTitle: "El reto",
       challengeBody:
-        "La obra existía, pero vivía en fotos sueltas en el teléfono: cada cliente nuevo tenía que creer en la palabra de la empresa.",
+        "El dueño de un negocio pequeño no busca «contabilidad»: busca quién le lleve la nómina, le ayude a registrar su LLC o a sacar una licencia, y que se lo explique en su idioma. El sitio tenía que resolver eso antes de la primera llamada.",
       solutionTitle: "Qué construí",
       solution: [
-        "Portafolio de nueve obras construidas, cada una con su ficha, para que la experiencia se muestre en vez de contarse.",
-        "Portada con una selección de tres proyectos: el visitante ve el nivel de obra antes de leer una sola línea de texto.",
-        "Bloque de capacidades —ingeniería, ejecución, construcción— que ordena qué hace la empresa sin caer en el catálogo genérico.",
-        "Datos formales visibles: razón social, representante legal, dirección, teléfono y correo, que es lo que revisa quien va a contratar obra.",
-        "SEO técnico y datos estructurados para búsqueda local: metadatos, Open Graph, canónicas y JSON-LD de constructora en Durango.",
+        "Ocho servicios con su propia ficha —bookkeeping, payroll, reportes financieros, organización para impuestos, auditorías, registro de negocios, licencias y permisos, asesoría— para que cada cliente encuentre su trámite en segundos.",
+        "Sitio bilingüe español / inglés con selector de idioma, pensado para el dueño de negocio hispano en Estados Unidos que quiere entender sus números sin tecnicismos.",
+        "Tres caminos de contacto sin fricción: WhatsApp directo, llamada y un formulario que pregunta qué servicio necesita el cliente antes de la primera conversación.",
+        "Una guía gratuita para pequeños negocios como imán de prospectos: nombre y correo a cambio de un recurso útil, para seguir la conversación por email.",
+        "Preguntas frecuentes «Pregúntale a Micont@U» con las dudas reales del giro —LLC en Ohio, EIN sin Seguro Social, vendor's license, 1099— y marcado FAQPage para Google.",
+        "SEO local para Cincinnati y todo Ohio: metadatos, Open Graph y JSON-LD de servicio profesional con dirección, horario y teléfono.",
       ],
       stackTitle: "Con qué está hecho",
-      stack: ["Astro", "TypeScript", "Tailwind CSS", "SEO técnico", "Diseño editorial"],
+      stack: ["Astro", "Diseño bilingüe ES/EN", "SEO local", "Datos estructurados", "Captación por WhatsApp"],
+      segmentLinkLabel: "Ver cómo hago el diseño web para contadores",
       factsTitle: "En números",
       facts: [
-        { value: "9", label: "obras documentadas con ficha propia" },
-        { value: "3", label: "proyectos destacados en la portada" },
-        { value: "0", label: "obras que siguen viviendo solo en el teléfono" },
+        { value: "8", label: "servicios con ficha propia" },
+        { value: "2", label: "idiomas: español e inglés" },
+        { value: "9", label: "preguntas frecuentes con marcado para Google" },
       ],
       visit: "Visitar el sitio",
-      cta: "Quiero un sistema así",
+      cta: "Quiero un sitio así para mi negocio",
     },
     portfolio: {
       eyebrow: "// portafolio",
@@ -425,6 +438,18 @@ export const translations = {
       demosNote:
         "Diseño web para negocios locales que construí por mi cuenta para mostrar lo que se puede hacer en cada sector. No son clientes: los marco como demo para que no haya confusión.",
       projects: [
+        {
+          id: "miconta",
+          name: "Mi Conta Universal — Contabilidad y bookkeeping",
+          kind: "client",
+          result: "",
+          url: "https://micontau.com/",
+          image: "/images/proyecto-miconta.jpg",
+          badge: "Contabilidad e impuestos",
+          description:
+            "Sitio bilingüe para un despacho de contabilidad y bookkeeping en Cincinnati, Ohio: ocho servicios, guía gratuita, WhatsApp directo y SEO local para pequeños negocios.",
+          tags: ["Sitio web", "Contabilidad", "Bilingüe"],
+        },
         {
           id: "izcalli",
           name: "Constructora Izcalli",
@@ -1061,9 +1086,9 @@ export const translations = {
         title:
           "Portafolio: Páginas Web Profesionales | ProCode Dev",
         description:
-          "Páginas web profesionales para negocios de servicios, salud, construcción e inmobiliaria. Sitios en vivo: ábrelos y juzga el trabajo antes de escribirme.",
+          "Páginas web profesionales para negocios de contabilidad, salud, construcción y servicios. Sitios en vivo: ábrelos y juzga el trabajo antes de escribirme.",
         keywords:
-          "páginas web profesionales para negocios, portafolio de páginas web, ejemplos de sitios web para negocios, casos de sitios web pymes, diseño web para negocios locales",
+          "páginas web profesionales para negocios, portafolio de páginas web, ejemplos de sitios web para negocios, casos de sitios web pymes, caso de éxito de diseño web, diseño web para contadores, diseño web para negocios locales",
         heroTitleA: "Portafolio de páginas web",
         heroHighlight: "profesionales para negocios",
         heroSubtitle: "Sitios reales, en vivo.",
@@ -1385,37 +1410,47 @@ export const translations = {
       ],
     },
     caseStudy: {
-      eyebrow: "// featured project",
-      titleA: "The case you can open and",
-      titleHighlight: "judge for yourself",
-      name: "Constructora Izcalli",
-      badge: "Contractors & construction · Durango",
-      url: "https://constructoraizcalli.com/",
-      urlLabel: "constructoraizcalli.com",
-      image: "/images/proyecto-izcalli.jpg",
+      projectId: "miconta",
+      segmentPage: "accounting",
+      eyebrow: "// website design case study · accounting",
+      titleA: "Case study: a website for a",
+      titleHighlight: "bilingual accounting firm",
+      homeEyebrow: "// featured project",
+      homeTitleA: "A website for",
+      homeHighlight: "an accounting firm in Ohio",
+      homeSummary:
+        "A bilingual website for a bookkeeping and accounting firm in Cincinnati, Ohio. Open it and judge for yourself: this is what an accountant website looks like when it works for the firm.",
+      name: "Mi Conta Universal",
+      badge: "Accounting & tax · Cincinnati, Ohio",
+      url: "https://micontau.com/",
+      urlLabel: "micontau.com",
+      image: "/images/proyecto-miconta.jpg",
+      imageAlt: "Home page of the Mi Conta Universal website, an accounting firm in Cincinnati, Ohio",
       summary:
-        "A construction company with years of delivered work and no way to show it. Today that track record is a portfolio you can open in a meeting.",
-      challengeTitle: "The problem",
+        "A bookkeeping, payroll and accounting firm for small businesses in Cincinnati and across Ohio, in English and Spanish. Today its site explains every service, answers the industry's real questions and moves visitors to WhatsApp or a consultation.",
+      challengeTitle: "The challenge",
       challengeBody:
-        "The work existed, but it lived as loose photos on a phone: every new client had to take the company's word for it.",
+        "A small business owner doesn't search for «accounting»: they look for someone to run payroll, register their LLC or get a license — and explain it in their language. The site had to answer that before the first call.",
       solutionTitle: "What I built",
       solution: [
-        "A portfolio of nine built projects, each with its own entry, so the track record is shown instead of described.",
-        "A home page with three featured projects: visitors see the caliber of the work before reading a single line of copy.",
-        "A capabilities block — engineering, execution, construction — that frames what the company does without turning into a generic service list.",
-        "Formal details in plain sight: legal name, legal representative, address, phone and email, which is what anyone awarding a job checks first.",
-        "Full technical SEO and structured data for local search: metadata, Open Graph, canonicals and construction-company JSON-LD for Durango.",
+        "Eight services, each with its own card — bookkeeping, payroll, financial reports, tax organization, audit support, business registration, licenses and permits, advisory — so every client finds their task in seconds.",
+        "A bilingual English / Spanish site with a language switcher, built for Hispanic business owners in the U.S. who want their numbers explained without jargon.",
+        "Three friction-free ways to reach out: direct WhatsApp, a phone call and a form that asks which service the client needs before the first conversation.",
+        "A free small business guide as a lead magnet: name and email in exchange for something useful, so the conversation continues by email.",
+        "An «Ask Micont@U» FAQ with the questions this industry really gets — Ohio LLCs, an EIN without a Social Security number, vendor's licenses, 1099s — plus FAQPage markup for Google.",
+        "Local SEO for Cincinnati and all of Ohio: metadata, Open Graph and professional-service JSON-LD with address, hours and phone.",
       ],
       stackTitle: "Built with",
-      stack: ["Astro", "TypeScript", "Tailwind CSS", "Technical SEO", "Editorial design"],
+      stack: ["Astro", "Bilingual EN/ES design", "Local SEO", "Structured data", "WhatsApp lead capture"],
+      segmentLinkLabel: "See how I approach accounting firm website design",
       factsTitle: "By the numbers",
       facts: [
-        { value: "9", label: "built projects documented with their own entry" },
-        { value: "3", label: "projects featured on the home page" },
-        { value: "0", label: "jobs still living only on someone's phone" },
+        { value: "8", label: "services, each with its own card" },
+        { value: "2", label: "languages: English and Spanish" },
+        { value: "9", label: "FAQs with markup for Google" },
       ],
       visit: "Visit the site",
-      cta: "I want a system like this",
+      cta: "I want a site like this for my business",
     },
     portfolio: {
       eyebrow: "// portfolio",
@@ -1432,6 +1467,18 @@ export const translations = {
         "Projects I built on my own to show what's possible in each sector. They're not clients: I label them as demos so there's no confusion.",
       cta: "I want a website like this for my business",
       projects: [
+        {
+          id: "miconta",
+          name: "Mi Conta Universal — Accounting & bookkeeping",
+          kind: "client",
+          result: "",
+          url: "https://micontau.com/",
+          image: "/images/proyecto-miconta.jpg",
+          badge: "Accounting & tax",
+          description:
+            "A bilingual site for a bookkeeping and accounting firm in Cincinnati, Ohio: eight services, a free guide, direct WhatsApp and local SEO for small businesses.",
+          tags: ["Website", "Accounting", "Bilingual"],
+        },
         {
           id: "izcalli",
           name: "Constructora Izcalli",
@@ -2049,9 +2096,9 @@ export const translations = {
         title:
           "Portfolio: Small Business Websites | ProCode Dev",
         description:
-          "Professional websites for small businesses in services, health, construction and real estate. They're live: open them and judge the work before messaging me.",
+          "Professional websites for small businesses in accounting, health, construction and services. They're live: open them and judge the work before messaging me.",
         keywords:
-          "professional websites for small businesses, portfolio of small business websites, small business website examples, local business web design case studies, website redesign for small business",
+          "professional websites for small businesses, portfolio of small business websites, small business website examples, local business web design case studies, website design case study, accounting firm website design, website redesign for small business",
         heroTitleA: "Portfolio of professional",
         heroHighlight: "small business websites",
         heroSubtitle: "Real sites, live now.",

@@ -5,7 +5,7 @@
 >
   <url>
     <loc>https://procodedev.com/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/" />
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/en/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/" />
@@ -229,7 +229,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/contabilidad-e-impuestos/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/contabilidad-e-impuestos/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/accounting-and-tax/" />
@@ -237,7 +237,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/en/accounting-and-tax/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/contabilidad-e-impuestos/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/accounting-and-tax/" />
@@ -245,7 +245,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/portafolio/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/portafolio/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/portfolio/" />
@@ -253,7 +253,7 @@
   </url>
   <url>
     <loc>https://procodedev.com/en/portfolio/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/portafolio/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/portfolio/" />

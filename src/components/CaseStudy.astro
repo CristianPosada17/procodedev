@@ -5,10 +5,24 @@ import SectionHeading from "./SectionHeading.astro";
 
 interface Props {
   lang?: Lang;
+  /**
+   * "page" (portafolio): caso completo. "home": título y resumen propios y
+   * solo las primeras cuatro viñetas, para no duplicar el bloque del
+   * portafolio palabra por palabra.
+   */
+  variant?: "page" | "home";
 }
-const { lang = "es" } = Astro.props as Props;
+const { lang = "es", variant = "page" } = Astro.props as Props;
 const t = translations[lang];
 const c = t.caseStudy;
+const isHome = variant === "home";
+const eyebrow = isHome ? c.homeEyebrow : c.eyebrow;
+const titleA = isHome ? c.homeTitleA : c.titleA;
+const highlight = isHome ? c.homeHighlight : c.titleHighlight;
+const summary = isHome ? c.homeSummary : c.summary;
+const solution = isHome ? c.solution.slice(0, 4) : c.solution;
+// Enlace interno a la página del giro del caso (p. ej. /contabilidad-e-impuestos/).
+const segmentHref = PAGES[c.segmentPage as keyof typeof PAGES]?.[lang];
 // Mismas variantes responsivas que PortfolioCard (2026-09-05). Aqui la
 // captura ocupa media pantalla en escritorio y el ancho completo en movil.
 const base = c.image?.replace(/\.(jpg|jpeg|png|webp)$/i, "");
@@ -30,11 +44,11 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <SectionHeading eyebrow={c.eyebrow}>
+    <SectionHeading eyebrow={eyebrow}>
       <Fragment slot="title">
-        {c.titleA}{" "}<span class="grad-text">{c.titleHighlight}</span>
+        {titleA}{" "}<span class="grad-text">{highlight}</span>
       </Fragment>
-      <Fragment slot="subtitle">{c.summary}</Fragment>
+      <Fragment slot="subtitle">{summary}</Fragment>
     </SectionHeading>
 
     <div
@@ -56,7 +70,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
             <source type="image/webp" sizes={SIZES} srcset={srcset("webp")} />
             <img
               src={base ? `${base}-800.webp` : c.image}
-              alt={`Sitio web de ${c.name}`}
+              alt={c.imageAlt}
               loading="lazy"
               decoding="async"
               width="1200"
@@ -103,7 +117,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
           </p>
           <ul class="mt-4 grid gap-3">
             {
-              c.solution.map((item) => (
+              solution.map((item) => (
                 <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
                   <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
                     <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
@@ -128,6 +142,18 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
               ))
             }
           </div>
+
+          {
+            segmentHref && (
+              <a
+                href={segmentHref}
+                class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] underline-offset-4 transition hover:underline"
+              >
+                {c.segmentLinkLabel}
+                <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            )
+          }
         </div>
       </div>
 
