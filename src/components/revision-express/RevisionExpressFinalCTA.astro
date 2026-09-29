@@ -1,0 +1,62 @@
+---
+/*
+  CTA final de la landing. No reutiliza FinalCTA.astro: aquél manda a
+  /contacto/, y aquí el botón debe bajar al formulario de esta misma página.
+*/
+import { waHref, type Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const wa = waHref("expressReview", lang);
+---
+
+<section class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-gradient-to-br from-[var(--brand)]/20 via-[var(--surface)]/60 to-[var(--bg-2)] p-8 text-center backdrop-blur-xl lg:p-16"
+    >
+      <div class="tech-grid absolute inset-0 opacity-30"></div>
+      <div class="relative mx-auto max-w-3xl">
+        <span class="eyebrow">
+          // 15 minutos pueden darte más claridad que meses de improvisación
+        </span>
+        <h2 class="mt-5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
+          Antes de invertir más, descubre dónde está la fricción.
+        </h2>
+        <p class="mt-5 text-base leading-8 text-[var(--muted)]">
+          Revisamos contigo los puntos más importantes de tu presencia
+          digital y te mostramos qué debería tener prioridad.
+        </p>
+        <div class="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href="#solicitar"
+            data-cta="revex-cta-final-solicitar"
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-7 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+          >
+            Solicitar mi Revisión Express
+            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+          </a>
+          <a
+            href={wa}
+            data-cta="revex-cta-final-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-7 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+          >
+            <Icon name="whatsapp" class="mr-2 h-4 w-4" />
+            Escribir por WhatsApp
+          </a>
+        </div>
+        <p class="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+          15 minutos · Sin costo · Sin compromiso
+        </p>
+        <p class="mt-2 text-xs font-semibold text-[var(--accent)]">
+          Las reviso yo, a mano — agenda limitada cada semana.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

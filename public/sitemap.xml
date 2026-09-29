@@ -513,4 +513,11 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/blog/agencia-vs-freelance-diseno-web/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/blog/agencia-vs-freelance-diseno-web/" />
   </url>
+  <url>
+    <loc>https://procodedev.com/revision-express/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/revision-express/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/revision-express/" />
+  </url>
 </urlset>

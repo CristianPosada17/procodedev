@@ -1,0 +1,66 @@
+---
+/*
+  «Simple. Sin presentaciones interminables.»
+  El paso 4 dice en voz alta que ProCode vende servicios, sin convertir la
+  llamada en presión comercial (ver la regla en el brief de la landing).
+*/
+import SectionHeading from "../SectionHeading.astro";
+import CardRail from "../CardRail.astro";
+
+const steps = [
+  {
+    number: "01",
+    title: "Cuéntanos sobre tu negocio",
+    description: "Completa el formulario con tu negocio, tu presencia digital y tu principal reto.",
+  },
+  {
+    number: "02",
+    title: "Agenda tus 15 minutos",
+    description: "Elige el horario que mejor te acomode, sin llamada de ventas para confirmarlo.",
+  },
+  {
+    number: "03",
+    title: "Revisamos contigo",
+    description: "Compartimos pantalla y te mostramos los principales hallazgos.",
+  },
+  {
+    number: "04",
+    title: "Te llevas tus prioridades",
+    description: "Puedes implementarlas por tu cuenta o, si existe encaje, ProCode puede ayudarte.",
+  },
+];
+---
+
+<section id="como-funciona" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow="// cómo funciona">
+      <Fragment slot="title">
+        Simple. <span class="grad-text">Sin presentaciones interminables.</span>
+      </Fragment>
+      <Fragment slot="subtitle">
+        Cuatro pasos, del formulario a tus prioridades claras.
+      </Fragment>
+    </SectionHeading>
+
+    <CardRail class="mt-8 lg:mt-12" grid="sm:grid-cols-2 lg:grid-cols-4" peek="normal">
+      {
+        steps.map((step, i) => (
+          <div
+            class="reveal relative flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            style={`--reveal-delay: ${i * 90}ms`}
+          >
+            <span class="font-mono text-3xl font-bold text-[var(--brand)]/40">
+              {step.number}
+            </span>
+            <h3 class="mt-4 text-base font-bold text-[var(--text)]">
+              {step.title}
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {step.description}
+            </p>
+          </div>
+        ))
+      }
+    </CardRail>
+  </div>
+</section>

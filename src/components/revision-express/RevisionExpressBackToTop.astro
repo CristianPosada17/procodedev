@@ -1,0 +1,61 @@
+---
+/*
+  Botón flotante "volver arriba", exclusivo de esta landing.
+
+  Por qué existe: la página tiene bastante scroll y quien llega al final
+  (FAQ, CTA final) y quiere releer algo del principio —o solo abrir el
+  formulario de nuevo con otro dato— no tiene por qué arrastrar el dedo
+  toda la página de vuelta.
+
+  Aparece solo después de bajar un tramo (no estorba arriba, donde ya está
+  el header con su propio CTA) y desaparece si el usuario prefiere no ver
+  animaciones (prefers-reduced-motion → salto sin scroll suave).
+
+  Posición: en móvil, encima de la barra fija de MobileCTABar (que ya trae
+  el botón de WhatsApp); en escritorio, abajo a la izquierda, para no pisar
+  el botón de WhatsApp flotante (WhatsAppFloat.astro), que vive abajo a la
+  derecha y solo se muestra en lg+.
+*/
+import Icon from "../Icon.astro";
+---
+
+<button
+  type="button"
+  id="revex-back-to-top"
+  data-cta="revex-volver-arriba"
+  aria-label="Volver al inicio de la página"
+  hidden
+  class="fixed bottom-24 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-[var(--surface)]/90 text-[var(--text)] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[color:var(--accent)] lg:bottom-5 lg:left-5 lg:right-auto"
+>
+  <Icon name="arrow-right" class="h-5 w-5 -rotate-90" strokeWidth={2.2} />
+</button>
+
+<script>
+  (function () {
+    const btn = document.getElementById("revex-back-to-top");
+    if (!btn) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const THRESHOLD = 800;
+
+    let ticking = false;
+    function sync() {
+      ticking = false;
+      btn!.hidden = window.scrollY < THRESHOLD;
+    }
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(sync);
+        }
+      },
+      { passive: true },
+    );
+    sync();
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  })();
+</script>

@@ -45,10 +45,12 @@ export type ContentGroup =
   | "contacto"
   | "blog"
   | "legal"
+  | "revision-express"
   | "otro";
 
 const GROUP_BY_PAGE: Record<PageKey, ContentGroup> = {
   home: "home",
+  expressReview: "revision-express",
   services: "servicios",
   sectors: "giros",
   contractors: "giros",

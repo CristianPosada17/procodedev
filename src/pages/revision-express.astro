@@ -1,0 +1,228 @@
+---
+/*
+  ─────────────────────────────────────────────────────────────────────────
+  REVISIÓN EXPRESS PROCODE — landing de captación aislada (sep 2026)
+  ─────────────────────────────────────────────────────────────────────────
+  Página nueva e independiente, pensada para tráfico de redes, WhatsApp,
+  contenido y referidos. NO forma parte de la navegación principal del sitio
+  (ver la nota en RevisionExpressHeader.astro) y no reemplaza a /contacto/:
+  es una puerta de entrada adicional para el mismo lead magnet que el resto
+  del sitio ya promueve como "Revisión Express" (ver `common.ctaPrimary` y
+  `CONTACT.calendly` en src/i18n/ui.ts).
+
+  Reutiliza al máximo lo que ya existe y funciona: ServiceCapabilities,
+  ServiceStandards, ServiceFit, FAQ, Calendly y Footer son los mismos
+  componentes compartidos que usa /servicios/auditoria/ — no se tocó
+  ninguno. Lo único exclusivo de esta landing vive en
+  src/components/revision-express/.
+
+  Orden de la página y por qué (revisado tras feedback de conversión):
+  1. Hero — qué es, cuánto tarda, cuánto cuesta, en menos de 5 segundos,
+     más el driver de urgencia real (agenda manual, limitada por semana).
+  2. Qué revisamos (4 áreas) — el "problema" ya no es una sección aparte:
+     va fundido en el subtítulo de este bloque. Repetía la misma idea del
+     hero con otras palabras y solo alargaba el scroll antes de la oferta.
+  3. Qué recibes — 3 entregables, sin prometer un informe extenso.
+  4. Para quién es / no es — califica al prospecto antes de la llamada.
+  5. Cómo funciona — 4 pasos, dice en voz alta que ProCode vende servicios.
+  6. Prueba social (testimonios reales, no logos genéricos) — justo antes
+     de pedir el formulario, que es donde más pesa la confianza.
+  7. Formulario → siguiente paso (agendar) → Calendly.
+  8. Revisión Express vs. Auditoría — se movió AQUÍ (antes iba antes del
+     formulario): mostrar la alternativa de pago antes de que alguien
+     convierta en lo gratis competía con el CTA principal. Aquí sirve de
+     contexto adicional para quien ya agendó o sigue leyendo.
+  9. FAQ → CTA final (con el mismo driver de urgencia).
+*/
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import ServiceCapabilities from "../components/ServiceCapabilities.astro";
+import ServiceStandards from "../components/ServiceStandards.astro";
+import ServiceFit from "../components/ServiceFit.astro";
+import FAQ from "../components/FAQ.astro";
+import Calendly from "../components/Calendly.astro";
+
+import RevisionExpressHeader from "../components/revision-express/RevisionExpressHeader.astro";
+import RevisionExpressBackToTop from "../components/revision-express/RevisionExpressBackToTop.astro";
+import RevisionExpressHero from "../components/revision-express/RevisionExpressHero.astro";
+import RevisionExpressComparison from "../components/revision-express/RevisionExpressComparison.astro";
+import RevisionExpressProcess from "../components/revision-express/RevisionExpressProcess.astro";
+import RevisionExpressTestimonials from "../components/revision-express/RevisionExpressTestimonials.astro";
+import RevisionExpressForm from "../components/revision-express/RevisionExpressForm.astro";
+import RevisionExpressFinalCTA from "../components/revision-express/RevisionExpressFinalCTA.astro";
+
+import { PAGES } from "../i18n/ui";
+
+const lang = "es" as const;
+
+const areasHeading = {
+  eyebrow: "// una web bonita no siempre significa una web que convierte",
+  title: "Analizamos el recorrido que hace un posible cliente antes de contactarte",
+  subtitle:
+    "A veces el problema no es conseguir más tráfico: es lo que pasa después. Cuatro áreas concretas, no una auditoría técnica completa — lo que se ve desde fuera en 15 minutos.",
+};
+
+const areasItems = [
+  {
+    icon: "layout",
+    title: "Página web",
+    description:
+      "Claridad de tu propuesta, experiencia en móvil, CTAs, formularios, WhatsApp y primeras señales de confianza.",
+  },
+  {
+    icon: "search",
+    title: "Presencia en Google",
+    description:
+      "Tu marca en las búsquedas, tu Perfil de Empresa si lo tienes, tus reseñas y qué tan consistente se ve tu información.",
+  },
+  {
+    icon: "clipboard-check",
+    title: "Captación",
+    description:
+      "Cómo pasa alguien de visitante a prospecto: dónde se pide el contacto y qué tan fácil es escribirte o llamarte.",
+  },
+  {
+    icon: "message-circle",
+    title: "Mensaje y oferta",
+    description:
+      "Qué entiende una persona al entrar a tu sitio, para quién parece diseñado tu servicio y qué tan claro es el siguiente paso.",
+  },
+] as const;
+
+const deliverables = {
+  eyebrow: "// qué recibes",
+  title: "En 15 minutos sales con claridad sobre qué atacar primero",
+  subtitle:
+    "Nada de listas interminables ni de una consultoría completa gratis: un diagnóstico inicial con prioridad clara.",
+  items: [
+    {
+      icon: "target",
+      title: "3 hallazgos prioritarios",
+      description: "Los puntos que merecen tu atención primero, no una lista interminable.",
+    },
+    {
+      icon: "route",
+      title: "Recomendaciones accionables",
+      description: "Qué podrías cambiar y por qué, explicado en simple.",
+    },
+    {
+      icon: "bar-chart",
+      title: "Prioridad clara",
+      description: "Sabes qué corregir primero en vez de intentar mejorar todo a la vez.",
+    },
+  ],
+  note: "Después de la revisión podemos compartirte un resumen breve de las tres prioridades principales.",
+} as const;
+
+const fit = {
+  eyebrow: "// para quién es",
+  title: "Esta revisión tiene sentido si...",
+  yesTitle: "Probablemente te sirve si",
+  yes: [
+    "Tienes un negocio de servicios.",
+    "Ya tienes página web pero no sabes si realmente te ayuda a generar contactos.",
+    "Dependes demasiado de recomendaciones o redes sociales.",
+    "Estás invirtiendo o piensas invertir en publicidad.",
+    "Recibes visitas pero pocas consultas.",
+    "Quieres mejorar tu presencia digital pero no sabes por dónde empezar.",
+  ],
+  noTitle: "Probablemente no la necesitas si",
+  no: [
+    "Solo buscas aumentar seguidores en redes sociales o una promesa de ventas garantizadas.",
+  ],
+} as const;
+
+const faqItems = [
+  {
+    question: "¿La Revisión Express realmente es gratuita?",
+    answer:
+      "Sí. Es una revisión inicial de aproximadamente 15 minutos para detectar oportunidades y prioridades. No tiene costo ni obliga a contratar ningún servicio.",
+  },
+  {
+    question: "¿Necesito tener página web?",
+    answer:
+      "No. Si todavía no tienes web podemos revisar tu presencia actual en Google, redes sociales y la forma en que hoy recibes contactos.",
+  },
+  {
+    question: "¿Qué necesito enviar?",
+    answer:
+      "El enlace de tu web o presencia digital, información básica de tu negocio y cuál es el principal problema que quieres resolver.",
+  },
+  {
+    question: "¿Es una auditoría SEO completa?",
+    answer:
+      "No. La Revisión Express es un diagnóstico inicial. Una Auditoría Estratégica Integral requiere investigación mucho más profunda y se cotiza aparte.",
+  },
+  {
+    question: "¿Me van a vender algo durante la llamada?",
+    answer:
+      "La prioridad es mostrarte los hallazgos. Si detectamos un problema que ProCode puede resolver y existe encaje, podemos explicarte cómo, sin ninguna obligación de contratar.",
+  },
+  {
+    question: "¿Qué pasa después?",
+    answer:
+      "Te llevas tres prioridades claras. Puedes ejecutarlas internamente o pedirle a ProCode una propuesta para implementarlas.",
+  },
+] as const;
+
+const offerCatalog = [
+  ...areasItems.map((i) => ({ title: i.title, description: i.description })),
+  ...deliverables.items.map((i) => ({ title: i.title, description: i.description })),
+];
+---
+
+<Layout
+  lang={lang}
+  page="expressReview"
+  title="Revisión Express Gratuita para Negocios | ProCode"
+  description="Detecta en 15 minutos qué puede estar frenando tu web, Google y captación digital. Recibe 3 oportunidades concretas de mejora sin compromiso."
+  keywords="revisión página web, auditoría web gratuita, revisión web gratis, auditoría presencia digital, análisis página web, captación de clientes, revisión Google Business, mejorar página web para negocios, optimización web para negocios, consultoría digital para negocios"
+  breadcrumbs={[
+    { name: "Inicio", path: PAGES.home[lang] },
+    { name: "Revisión Express", path: PAGES.expressReview[lang] },
+  ]}
+  serviceName="Revisión Express ProCode"
+  offerCatalog={offerCatalog}
+  offerPrice="0"
+  offerUrl={PAGES.expressReview[lang]}
+  includeFaq={true}
+  faqItems={faqItems}
+>
+  <RevisionExpressHeader lang={lang} />
+  <RevisionExpressBackToTop />
+  <main>
+    <RevisionExpressHero lang={lang} />
+
+    <ServiceCapabilities
+      lang={lang}
+      heading={areasHeading}
+      items={areasItems}
+      id="que-revisamos"
+    />
+
+    <ServiceStandards lang={lang} standards={deliverables} id="que-recibes" />
+
+    <ServiceFit lang={lang} fit={fit} />
+
+    <RevisionExpressProcess />
+
+    <RevisionExpressTestimonials lang={lang} />
+
+    <RevisionExpressForm lang={lang} />
+
+    <Calendly lang={lang} />
+
+    <RevisionExpressComparison lang={lang} />
+
+    <FAQ lang={lang} data={{
+      eyebrow: "// preguntas frecuentes",
+      titleA: "Antes de agendar, resolvemos tus",
+      titleHighlight: "dudas principales",
+      subtitle: "Lo que casi todos preguntan antes de solicitar su Revisión Express.",
+      items: faqItems,
+    }} id="preguntas-revision-express" />
+
+    <RevisionExpressFinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

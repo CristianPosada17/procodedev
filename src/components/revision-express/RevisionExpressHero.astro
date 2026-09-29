@@ -1,0 +1,121 @@
+---
+/*
+  Hero de /revision-express/.
+
+  Nada de fotografía de archivo (manos estrechándose, oficinas genéricas):
+  el panel de la derecha es una representación construida en HTML/CSS de
+  las cuatro áreas que se revisan, coherente con `RevisionExpressAreas`
+  más abajo. Sin cifras inventadas (0 leads, 0% de conversión): eso es
+  justo lo que el sitio ya evitó en el home (ver hero.eyebrow allá).
+*/
+import type { Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+
+const rows = [
+  { icon: "layout" as const, title: "Página web" },
+  { icon: "search" as const, title: "Presencia en Google" },
+  { icon: "clipboard-check" as const, title: "Captación" },
+  { icon: "message-circle" as const, title: "Mensaje y oferta" },
+];
+---
+
+<section class="relative overflow-hidden pb-10 pt-8 lg:pb-16 lg:pt-16">
+  <div
+    class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-10 2xl:max-w-[1600px]"
+  >
+    {/* Arriba del pliegue: sin `.reveal`, no debe depender de JS. */}
+    <div class="max-w-2xl">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/12 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]"
+      >
+        <Icon name="clipboard-check" class="h-3.5 w-3.5" />
+        Revisión Express ProCode · 15 min · sin costo
+      </span>
+
+      <h1
+        class="mt-6 text-[2.35rem] font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-[3.1rem] lg:text-[3.6rem]"
+      >
+        Descubre qué está frenando tu{" "}
+        <span class="grad-text">captación digital</span> en 15 minutos
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+        Revisamos tu página web, tu presencia en Google y el camino que sigue
+        un prospecto hasta contactarte. Te mostramos 3 oportunidades
+        concretas de mejora para que sepas qué corregir primero.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="#solicitar"
+          data-cta="hero-revex-solicitar"
+          class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        >
+          Solicitar mi revisión gratuita
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a
+          href="#que-revisamos"
+          class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
+        >
+          Ver qué revisamos
+        </a>
+      </div>
+
+      <p class="mt-5 text-xs leading-6 text-[var(--muted)]">
+        Sin compromiso · Diagnóstico directo · Recomendaciones accionables
+      </p>
+      <p class="mt-2 text-xs font-semibold leading-6 text-[var(--accent)]">
+        Las reviso yo, a mano — por eso agendo un número limitado cada semana.
+      </p>
+    </div>
+
+    <div class="reveal reveal-right relative hidden lg:block" aria-hidden="true">
+      <div class="absolute -inset-6 rounded-[2rem] bg-[var(--brand)]/5 blur-3xl"></div>
+      <div
+        class="relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl"
+      >
+        <div class="tech-grid pointer-events-none absolute inset-0 opacity-30"></div>
+        <div class="relative flex items-center justify-between">
+          <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+            Lo que revisamos
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-[var(--tint)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            15 min
+          </span>
+        </div>
+
+        <div class="relative mt-6 grid gap-3">
+          {
+            rows.map((row, i) => (
+              <div
+                class="flex items-center gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-4"
+                style={`animation-delay:${i * 140}ms`}
+              >
+                <span class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
+                  <Icon name={row.icon} class="h-5 w-5" />
+                </span>
+                <span class="text-sm font-bold text-[var(--text)]">{row.title}</span>
+                <span class="ml-auto flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[var(--ok)]/15 text-[var(--ok)]">
+                  <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.6} />
+                </span>
+              </div>
+            ))
+          }
+        </div>
+
+        <p class="relative mt-6 border-t border-[color:var(--border)] pt-5 text-xs leading-6 text-[var(--muted)]">
+          Al final: 3 hallazgos prioritarios y qué corregir primero.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

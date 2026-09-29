@@ -51,7 +51,13 @@ export type PageKey =
   | "pricing"
   | "contact"
   | "privacy"
-  | "terms";
+  | "terms"
+  // Landing de captación aislada (sep 2026): /revision-express/. Reutiliza
+  // el nombre y el Calendly ya establecidos en `common.ctaPrimary` y
+  // `CONTACT.calendly` — no es una oferta nueva, es su puerta de entrada
+  // propia para tráfico de redes, WhatsApp y campañas. Solo existe en
+  // español por ahora (ver PAGES.expressReview más abajo).
+  | "expressReview";
 
 // Las rutas llevan barra final a propósito: Astro genera `/contacto/index.html`,
 // así que la canónica del sitio es la versión CON barra. Enlazar sin barra hacía
@@ -107,6 +113,11 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   contact: { es: "/contacto/", en: "/en/contact/" },
   privacy: { es: "/aviso-de-privacidad/", en: "/en/privacy-policy/" },
   terms: { es: "/terminos-y-condiciones/", en: "/en/terms-of-service/" },
+  // Sin versión en inglés todavía (prioridad: que la española quede
+  // impecable primero). `en` apunta a la misma URL a propósito, para que
+  // Layout.astro pueda seguir generando su hreflang sin necesitar una rama
+  // especial; cuando exista /en/express-review/, cambiar solo esta línea.
+  expressReview: { es: "/revision-express/", en: "/revision-express/" },
 };
 
 /** Giros que cuelgan del hub (orden del menú desplegable). */
@@ -2224,6 +2235,10 @@ export function useTranslations(lang: Lang): Dict {
 // el contexto de qué estaba viendo el prospecto al escribir.
 // ============================================================
 const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
+  expressReview: {
+    es: "Hola, vi la Revisión Express de ProCode y me gustaría revisar la presencia digital de mi negocio.",
+    en: "Hi, I saw ProCode's Express Review and I'd like to have my business's digital presence reviewed.",
+  },
   home: {
     es: "Hola Cristian, Vi tu página y me interesa una web para mi negocio. ¿Podemos platicar?",
     en: "Hi Cristian, I saw your site and I'm interested in a website for my business. Can we talk?",
