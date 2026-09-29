@@ -187,7 +187,7 @@ const auditEs: AuditContent = {
     freeItems: [
       "Lo que se ve desde fuera, sin accesos a nada tuyo",
       "Vídeo de 3 minutos con lo que encontré al buscar tu servicio",
-      "Llamada de 15 minutos para comentarlo",
+      "Llamada de 20 minutos para comentarlo",
       "Responde: «¿tengo un problema evidente?»",
       "Te la entrego dentro de las 24 h de que agendes",
     ],
@@ -506,7 +506,7 @@ const auditEn: AuditContent = {
     freeItems: [
       "What is visible from the outside, with no access to anything of yours",
       "A 3-minute video of what I found searching for your service",
-      "A 15-minute call to talk it through",
+      "A 20-minute call to talk it through",
       "Answers: \"do I have an obvious problem?\"",
       "Delivered within 24 h of booking",
     ],
