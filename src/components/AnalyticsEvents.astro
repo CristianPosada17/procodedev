@@ -319,7 +319,7 @@ const engine = `
     }, true);
   })();
 
-  // Enriquece los campos ocultos de origen antes de enviar a Web3Forms, para
+  // Enriquece los campos ocultos de origen de un <form data-form>, para
   // que el correo del lead ya diga de dónde vino sin abrir GA4.
   function fillHiddenAttribution(form){
     if (!form) return;

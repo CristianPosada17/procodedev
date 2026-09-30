@@ -6,7 +6,7 @@
 // antes de subir documentos fiscales a un formulario.
 //
 // El contenido describe lo que el sitio hace realmente hoy: formulario vía
-// Web3Forms, Google Analytics 4, Meta Pixel, Calendly y WhatsApp. Si se añade
+// Hostinger Reach, Google Analytics 4, Meta Pixel, Calendly y WhatsApp. Si se añade
 // o se quita una herramienta, este archivo se actualiza — es la única razón
 // por la que el texto vive aquí y no incrustado en la página.
 //
@@ -100,7 +100,7 @@ const es: LegalDict = {
           "Para que el sitio funcione utilizo proveedores de servicio que pueden procesar algunos de estos datos por mi cuenta. Cada uno tiene su propia política de privacidad:",
         ],
         list: [
-          "Web3Forms — procesa el envío del formulario de contacto y me lo entrega por correo.",
+          "Hostinger Reach — procesa el envío del formulario de contacto y guarda tu nombre y correo para poder responderte.",
           "Google Analytics 4 — analítica de uso del sitio, de forma agregada.",
           "Meta Pixel — medición del rendimiento de campañas en Facebook e Instagram.",
           "Calendly — gestión de la agenda para la llamada de 20 minutos.",
@@ -319,7 +319,7 @@ const en: LegalDict = {
           "To make the site work I use service providers that may process some of this data on my behalf. Each has its own privacy policy:",
         ],
         list: [
-          "Web3Forms — processes the contact form submission and delivers it to me by email.",
+          "Hostinger Reach — processes the contact form submission and stores your name and email so I can reply.",
           "Google Analytics 4 — site usage analytics, in aggregate.",
           "Meta Pixel — performance measurement for Facebook and Instagram campaigns.",
           "Calendly — scheduling for the 20-minute call.",

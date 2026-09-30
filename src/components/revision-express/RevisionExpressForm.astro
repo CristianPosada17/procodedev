@@ -3,8 +3,8 @@
   Formulario de la Revisión Express — NO es LeadForm.astro.
 
   Usa la misma integración técnica que el formulario del resto del sitio
-  (Web3Forms, campos ocultos de atribución, pcdFillAttribution/pcdTrack,
-  botcheck), pero vive aislado porque esta landing tiene reglas propias:
+  (envío a Hostinger Reach con `reachSubmitUrl`, pcdTrack, botcheck),
+  pero vive aislado porque esta landing tiene reglas propias:
   su ancla es `#solicitar` (destino del botón «Más información») y, tras un
   envío correcto, en vez del modal genérico muestra un panel con un único
   siguiente paso: reservar los 20 minutos en la agenda de esta página.
@@ -13,7 +13,7 @@
   WhatsApp, presencia digital, negocio, reto y mensaje; el enlace de la web
   y el contexto se piden al coordinar la llamada.
 */
-import { CONTACT, PAGES, type Lang } from "../../i18n/ui";
+import { CONTACT, PAGES, reachSubmitUrl, type Lang } from "../../i18n/ui";
 import Icon from "../Icon.astro";
 
 interface Props {
@@ -43,6 +43,7 @@ const script = `
     var OK = ${JSON.stringify(copy.ok)};
     var FAIL = ${JSON.stringify(copy.fail)};
     var LABEL = ${JSON.stringify(copy.label)};
+    var REACH_URL = ${JSON.stringify(reachSubmitUrl(lang))};
 
     function show(msg, ok){
       if(!status) return;
@@ -58,13 +59,15 @@ const script = `
       try {
         if(window.pcdFillAttribution) window.pcdFillAttribution(form);
         var data = Object.fromEntries(new FormData(form));
-        var res = await fetch('https://api.web3forms.com/submit', {
+        // Honeypot: un bot lo marca; se descarta sin avisarle.
+        if(data.botcheck){ form.reset(); return; }
+        // Hostinger Reach: solo acepta nombre y correo (sin campos ocultos).
+        var res = await fetch(REACH_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: data.name, email: data.email })
         });
-        var result = await res.json();
-        if(result.success){
+        if(res.ok){
           show(OK, true);
           if(card) card.hidden = true;
           if(success){ success.hidden = false; success.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
@@ -121,19 +124,6 @@ const script = `
       class="reveal mt-10 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl sm:p-10"
     >
       <form id="revex-lead-form" data-form="revision_express" class="grid gap-5">
-        <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
-        <input type="hidden" name="servicio" value="Revisión Express ProCode" />
-        <input type="hidden" name="lead_origen" value="" />
-        <input type="hidden" name="lead_campana" value="" />
-        <input type="hidden" name="lead_pagina" value="" />
-        <input type="hidden" name="lead_landing" value="" />
-        <input type="hidden" name="lead_primer_contacto" value="" />
-        <input
-          type="hidden"
-          name="subject"
-          value="Solicitud de información — Revisión Express — procodedev.com"
-        />
-        <input type="hidden" name="from_name" value="ProCode Dev — Revisión Express" />
         <input
           type="checkbox"
           name="botcheck"
@@ -168,6 +158,16 @@ const script = `
             />
           </label>
         </div>
+
+        <label class="flex items-start gap-3 text-xs leading-6 text-[var(--muted)]">
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            class="mt-1 h-4 w-4 flex-none accent-[var(--brand)]"
+          />
+          <span>Acepto que ProCode Dev me contacte por correo con la información que solicité.</span>
+        </label>
 
         <button id="revex-lead-submit" type="submit" class="btn-cta w-full">
           {copy.label}

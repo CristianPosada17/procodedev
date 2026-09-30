@@ -138,12 +138,24 @@ export function getAltPath(page: PageKey, lang: Lang): string {
   return PAGES[page][other];
 }
 // Datos de contacto compartidos (no cambian por idioma).
+// Endpoint de envío del formulario de Reach (el mismo que usa su iframe;
+// acepta CORS desde cualquier origen y responde 2xx si guardó el contacto).
+export const reachSubmitUrl = (lang: "es" | "en") =>
+  `https://reach.hostinger.com/api/v1/forms/${CONTACT.reachForm[lang]}/submit`;
+
 export const CONTACT = {
   whatsapp: "526142414255",
   whatsappDisplay: "+52 614 241 4255",
   email: "info@procodedev.com",
   calendly: "https://calendly.com/procodedev/revision-express",
-  web3formsKey: "9659bbb8-915d-4842-8981-a261c0faf9ff",
+  // Formulario «Mas Informacion» de Hostinger Reach. LeadForm y
+  // RevisionExpressForm conservan su diseño y envían nombre y correo a su
+  // API (ver reachSubmitUrl). Si se crea uno aparte para inglés, su id va
+  // en `en`.
+  reachForm: {
+    es: "70202881-d369-407e-a501-bd3e4a141f8a",
+    en: "70202881-d369-407e-a501-bd3e4a141f8a",
+  },
   instagram: "https://www.instagram.com/procode.systems/",
   linkedin: "https://www.linkedin.com/in/cristian-posada-891401291/",
   facebook: "https://www.facebook.com/ProCodeSystems",
@@ -1015,8 +1027,9 @@ export const translations = {
       error:
         "No se pudo enviar. Inténtalo de nuevo en un momento o escríbeme a info@procodedev.com.",
       privacy:
-        "Uso tus datos solo para contestarte. Nada de listas de correo ni de compartirlos con terceros.",
+        "Uso tus datos para contestarte. No los vendo ni los comparto, y puedes pedir que los borre cuando quieras.",
       privacyLink: "Aviso de privacidad",
+      consent: "Acepto que ProCode Dev me contacte por correo con la información que solicité.",
     },
     finalCta: {
       eyebrow: "// revisión express",
@@ -2095,8 +2108,9 @@ export const translations = {
       error:
         "That did not send. Try again in a moment or email me at info@procodedev.com.",
       privacy:
-        "I use your details only to reply. No mailing lists and nothing shared with third parties.",
+        "I use your details to reply to you. I never sell or share them, and you can ask me to delete them at any time.",
       privacyLink: "Privacy policy",
+      consent: "I agree that ProCode Dev may contact me by email with the information I requested.",
     },
     finalCta: {
       eyebrow: "// express review",

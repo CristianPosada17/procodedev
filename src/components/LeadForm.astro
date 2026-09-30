@@ -11,16 +11,16 @@
   información» (ver `conversionHref` en src/i18n/ui.ts).
 
   Lo que NO cambió:
-  · Envío a Web3Forms con la misma `access_key`.
-  · Campos ocultos de contexto: servicio, plan elegido en una tarjeta de
-    paquete (`data-plan`) y los cinco de atribución que rellena el motor de
-    medición. No se le piden al visitante, así que no son campos de captación.
+  · Diseño y campos propios. Solo cambió el destino (30 sep 2026): el envío
+    va a Hostinger Reach (`reachSubmitUrl` en ui.ts) en vez de Web3Forms.
+    Reach solo guarda nombre y correo, así que el servicio, el plan y el
+    origen del lead ya no llegan en el correo: se ven en GA4.
   · Medición: `data-form` dispara `form_start` y el envío emite
     `generate_lead` con `form_name` "servicio" o "contacto", igual que antes,
     para no romper la comparación histórica en GA4.
   · Confirmación con FormSuccessModal y mensaje de error bajo el botón.
 */
-import { translations, CONTACT, PAGES, conversionHref, type Lang, type PageKey } from "../i18n/ui";
+import { translations, CONTACT, PAGES, conversionHref, reachSubmitUrl, type Lang, type PageKey } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import FormSuccessModal from "./FormSuccessModal.astro";
 
@@ -43,9 +43,6 @@ const t = translations[lang];
 const c = t.contact;
 const h = heading ?? c;
 const formName = service ? "servicio" : "contacto";
-const subject = service
-  ? `Solicitud de información — ${service} — procodedev.com`
-  : "Nuevo contacto desde procodedev.com";
 
 const inputClass =
   "min-h-[48px] w-full rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-base text-[var(--text)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[color:var(--brand)] focus-visible:ring-2 focus-visible:ring-[color:var(--brand)]/40 sm:text-sm";
@@ -68,6 +65,7 @@ const script = `
     var LABEL = ${JSON.stringify(c.submit)};
     var SERVICE = ${JSON.stringify(service ?? "")};
     var FORM_NAME = ${JSON.stringify(formName)};
+    var REACH_URL = ${JSON.stringify(reachSubmitUrl(lang))};
 
     function show(msg, ok){
       if(!status) return;
@@ -99,13 +97,15 @@ const script = `
       try {
         if(window.pcdFillAttribution) window.pcdFillAttribution(form);
         var data = Object.fromEntries(new FormData(form));
-        var res = await fetch('https://api.web3forms.com/submit', {
+        // Honeypot: un bot lo marca; se descarta sin avisarle.
+        if(data.botcheck){ form.reset(); return; }
+        // Hostinger Reach: solo acepta nombre y correo (sin campos ocultos).
+        var res = await fetch(REACH_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: data.name, email: data.email })
         });
-        var result = await res.json();
-        if(result.success){
+        if(res.ok){
           show(OK, true);
           if(window.pcdFormSuccess) window.pcdFormSuccess();
           form.reset();
@@ -201,19 +201,9 @@ const script = `
         data-form={formName}
         class="min-w-0 self-start rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7"
       >
-        <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
-        {service && <input type="hidden" name="servicio" value={service} />}
-        {/* Lo rellena el botón de la tarjeta de paquete que trajo aquí. */}
+        {/* Lo rellena el botón de la tarjeta de paquete que trajo aquí; no
+            viaja a Reach, solo al evento generate_lead de GA4. */}
         <input type="hidden" name="plan" value="" />
-        {/* Origen del lead: lo rellena el motor de medición justo antes de
-            enviar, para que el correo ya diga de dónde vino sin abrir GA4. */}
-        <input type="hidden" name="lead_origen" value="" />
-        <input type="hidden" name="lead_campana" value="" />
-        <input type="hidden" name="lead_pagina" value="" />
-        <input type="hidden" name="lead_landing" value="" />
-        <input type="hidden" name="lead_primer_contacto" value="" />
-        <input type="hidden" name="subject" value={subject} />
-        <input type="hidden" name="from_name" value="ProCode Dev — Web" />
         <input
           type="checkbox"
           name="botcheck"
@@ -258,6 +248,16 @@ const script = `
               placeholder={c.phEmail}
               class={inputClass}
             />
+          </label>
+
+          <label class="flex items-start gap-3 text-xs leading-6 text-[var(--muted)]">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              class="mt-1 h-4 w-4 flex-none accent-[var(--brand)]"
+            />
+            <span>{c.consent}</span>
           </label>
 
           <button id="lead-submit" type="submit" class="btn-cta w-full">
