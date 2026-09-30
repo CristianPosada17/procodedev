@@ -12,7 +12,8 @@
 
   Lo que NO cambió:
   · Diseño y campos propios. Solo cambió el destino (30 sep 2026): el envío
-    va a Hostinger Reach (`reachSubmitUrl` en ui.ts) en vez de Web3Forms.
+    va a Hostinger Reach en vez de Web3Forms: al formulario del área de la
+    página (`reachFormFor` en ui.ts: general, desarrollo web o marketing).
     Reach solo guarda nombre y correo, así que el servicio, el plan y el
     origen del lead ya no llegan en el correo: se ven en GA4.
   · Medición: `data-form` dispara `form_start` y el envío emite
@@ -20,7 +21,7 @@
     para no romper la comparación histórica en GA4.
   · Confirmación con FormSuccessModal y mensaje de error bajo el botón.
 */
-import { translations, CONTACT, PAGES, conversionHref, reachSubmitUrl, type Lang, type PageKey } from "../i18n/ui";
+import { translations, CONTACT, PAGES, conversionHref, reachFormFor, reachSubmitUrl, type Lang, type PageKey } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import FormSuccessModal from "./FormSuccessModal.astro";
 
@@ -65,7 +66,7 @@ const script = `
     var LABEL = ${JSON.stringify(c.submit)};
     var SERVICE = ${JSON.stringify(service ?? "")};
     var FORM_NAME = ${JSON.stringify(formName)};
-    var REACH_URL = ${JSON.stringify(reachSubmitUrl(lang))};
+    var REACH_URL = ${JSON.stringify(reachSubmitUrl(reachFormFor(page)))};
 
     function show(msg, ok){
       if(!status) return;

@@ -43,7 +43,7 @@ const script = `
     var OK = ${JSON.stringify(copy.ok)};
     var FAIL = ${JSON.stringify(copy.fail)};
     var LABEL = ${JSON.stringify(copy.label)};
-    var REACH_URL = ${JSON.stringify(reachSubmitUrl(lang))};
+    var REACH_URL = ${JSON.stringify(reachSubmitUrl(CONTACT.reachForms.general))};
 
     function show(msg, ok){
       if(!status) return;

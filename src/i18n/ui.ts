@@ -138,23 +138,19 @@ export function getAltPath(page: PageKey, lang: Lang): string {
   return PAGES[page][other];
 }
 // Datos de contacto compartidos (no cambian por idioma).
-// Endpoint de envío del formulario de Reach (el mismo que usa su iframe;
-// acepta CORS desde cualquier origen y responde 2xx si guardó el contacto).
-export const reachSubmitUrl = (lang: "es" | "en") =>
-  `https://reach.hostinger.com/api/v1/forms/${CONTACT.reachForm[lang]}/submit`;
-
 export const CONTACT = {
   whatsapp: "526142414255",
   whatsappDisplay: "+52 614 241 4255",
   email: "info@procodedev.com",
   calendly: "https://calendly.com/procodedev/revision-express",
-  // Formulario «Mas Informacion» de Hostinger Reach. LeadForm y
-  // RevisionExpressForm conservan su diseño y envían nombre y correo a su
-  // API (ver reachSubmitUrl). Si se crea uno aparte para inglés, su id va
-  // en `en`.
-  reachForm: {
-    es: "70202881-d369-407e-a501-bd3e4a141f8a",
-    en: "70202881-d369-407e-a501-bd3e4a141f8a",
+  // Formularios «Más información» de Hostinger Reach, uno por área: cada uno
+  // tiene su etiqueta, su segmento y su correo automático en Reach. LeadForm
+  // y RevisionExpressForm conservan su diseño y envían nombre y correo a la
+  // API del que toque (ver reachFormFor / reachSubmitUrl).
+  reachForms: {
+    general: "70202881-d369-407e-a501-bd3e4a141f8a",
+    webDev: "4e2f4487-9154-46ca-82c8-ef8dd559d62d",
+    marketing: "44f76c7b-6635-4697-a3fd-f2d57fbc5ff3",
   },
   instagram: "https://www.instagram.com/procode.systems/",
   linkedin: "https://www.linkedin.com/in/cristian-posada-891401291/",
@@ -164,6 +160,24 @@ export const CONTACT = {
   founderName: "Cristian Posada",
   founderPhoto: "/images/cristian-posada.jpg",
 };
+
+// Qué formulario de Reach usa cada página: las de desarrollo web y las de
+// marketing tienen el suyo; el resto (inicio, contacto, hub de servicios,
+// auditoría, industrias, mercados, Revisión Express) usa el general.
+export function reachFormFor(page: PageKey): string {
+  if (page === "webDev" || page === "landingPages" || page === "maintenance") {
+    return CONTACT.reachForms.webDev;
+  }
+  if (page === "digitalMarketing" || page === "seo") {
+    return CONTACT.reachForms.marketing;
+  }
+  return CONTACT.reachForms.general;
+}
+
+// Endpoint de envío de un formulario de Reach (el mismo que usa su iframe;
+// acepta CORS desde cualquier origen y responde 2xx si guardó el contacto).
+export const reachSubmitUrl = (formId: string) =>
+  `https://reach.hostinger.com/api/v1/forms/${formId}/submit`;
 
 export const translations = {
   es: {
