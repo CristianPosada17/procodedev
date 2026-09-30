@@ -187,21 +187,27 @@ const engine = `
       link_url: href.slice(0,200)
     };
 
+    // WhatsApp, teléfono y correo: son CLICS, no contactos. Abrir WhatsApp no
+    // significa que el mensaje se haya enviado ni que haya un cliente, así que
+    // a Meta van como eventos personalizados (ClicWhatsApp, ClicLlamada,
+    // ClicEmail) y no como el estándar «Contact». Los contactos reales son
+    // generate_lead / Lead (formulario enviado) y schedule_call / Schedule
+    // (cita agendada en Calendly).
     // WhatsApp
     if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('web.whatsapp.com') > -1) {
       var wp = attributionParams();
       for (var k in base) wp[k] = base[k];
-      track('whatsapp_click', wp, { event: 'Contact', params: { content_name: 'WhatsApp', content_category: CFG.group } });
+      track('whatsapp_click', wp, { event: 'ClicWhatsApp', custom: true, params: { content_category: CFG.group } });
       return;
     }
     // Teléfono
     if (href.indexOf('tel:') === 0) {
-      track('phone_click', base, { event: 'Contact', params: { content_name: 'Llamada', content_category: CFG.group } });
+      track('phone_click', base, { event: 'ClicLlamada', custom: true, params: { content_category: CFG.group } });
       return;
     }
     // Correo
     if (href.indexOf('mailto:') === 0) {
-      track('email_click', base, { event: 'Contact', params: { content_name: 'Email', content_category: CFG.group } });
+      track('email_click', base, { event: 'ClicEmail', custom: true, params: { content_category: CFG.group } });
       return;
     }
     // Calendly directo (enlace, no el widget embebido)

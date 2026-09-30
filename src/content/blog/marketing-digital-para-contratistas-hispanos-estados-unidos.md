@@ -100,8 +100,8 @@ Si tienes que elegir solo dos cosas, elige la uno y la seis: la ficha y contesta
 
 ## Cómo trabajo esto con contratistas en Estados Unidos
 
-Construyo la página y el sistema de captación completo desde México, en remoto y en español, para contratistas en [Texas](/diseno-web-texas/), [Florida](/diseno-web-florida/) y [California](/diseno-web-california/). Los precios están publicados: [una landing page cuesta $349 USD](/precios/) y un sitio de 4 a 6 páginas $899 USD, sin contratos de doce meses y sin llamada de ventas para conocer el número.
+Construyo la página y el sistema de captación completo desde México, en remoto y en español, para contratistas en [Texas](/diseno-web-texas/), [Florida](/diseno-web-florida/) y [California](/diseno-web-california/). Los precios base están publicados: [una landing page desde $349 USD](/precios/) y un sitio de 4 a 6 páginas desde $899 USD, sin contratos de doce meses y sin llamada de ventas para conocerlos.
 
-Si quieres saber qué encuentra hoy un cliente cuando busca tu servicio en tu ciudad, agenda la Revisión Express: reviso tu presencia, te lo grabo en un vídeo de tres minutos y lo comentamos quince minutos por llamada. Es gratis y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.
+Si quieres saber qué encuentra hoy un cliente cuando busca tu servicio en tu ciudad, agenda la Revisión Express: reviso tu presencia, en una videollamada de 20 minutos te muestro 3 prioridades. Es gratis y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.
 
 Puedes ver el detalle en [diseño web para contratistas](/contratistas/) o en [marketing digital para negocios](/servicios/marketing-digital/).

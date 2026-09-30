@@ -8,7 +8,7 @@ author: "ProCode Dev"
 tags: ["factores que determinan el precio de una página web", "presupuesto de página web", "comparar presupuestos web", "qué encarece una página web"]
 ---
 
-> **Si lo que buscas es el número:** [los precios de ProCode están publicados](/precios/) — landing $349 USD, sitio de 4 a 6 páginas $899 USD y desde $1,499 USD el grande. Este artículo es la otra mitad: **qué determina el precio de una página web**, para que puedas comparar dos presupuestos cualesquiera y saber cuál te está cobrando de más.
+> **Si lo que buscas es el número:** [los precios base de ProCode están publicados](/precios/) — landing desde $349 USD, sitio de 4 a 6 páginas desde $899 USD y de 8 a 12 páginas desde $1,499 USD. El total depende de páginas, idiomas, contenido e integraciones. Este artículo es la otra mitad: **qué determina el precio de una página web**, para que puedas comparar dos presupuestos cualesquiera y saber cuál te está cobrando de más.
 
 Un mismo proyecto se cotiza entre $200 y $10,000 USD y ninguna de las dos cifras es necesariamente un abuso. Lo que cambia son seis factores, y quien te cotiza casi nunca los desglosa. Estos son los **factores que determinan el precio de una página web**: alcance, contenido, integraciones, diseño a la medida o plantilla, quién hace el trabajo y qué pasa después de entregar.
 
@@ -18,11 +18,11 @@ Una página web no es un gasto de imagen, es una herramienta que trabaja por ti.
 
 ## Rangos de precio según lo que necesitas
 
-### Landing page ($349 USD)
+### Landing page (desde $349 USD)
 
 Una sola página enfocada en captar contactos. Ideal si quieres lanzar un servicio o una campaña rápido, o si apenas empiezas y necesitas presencia profesional sin complicarte. Incluye copy de ventas, llamada a la acción clara y botón directo a WhatsApp.
 
-### Sitio web de 4 a 6 páginas ($899 USD)
+### Sitio web de 4 a 6 páginas (desde $899 USD)
 
 Es el punto dulce para la mayoría de los negocios en crecimiento. Presentas tu empresa, tus servicios, testimonios y contacto con una estructura pensada para vender y transmitir confianza. Si tienes un negocio establecido y quieres que te tomen en serio, esta es la opción más equilibrada.
 
@@ -54,4 +54,4 @@ La mejor forma no es adivinar, es diagnosticar. Define qué acción quieres que 
 
 ---
 
-En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos; [aquí está qué incluye el desarrollo web](/servicios/desarrollo-web/) y [aquí la landing de $349 USD](/servicios/landing-pages/). Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).
+En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos; [aquí está qué incluye el desarrollo web](/servicios/desarrollo-web/) y [aquí la landing, desde $349 USD](/servicios/landing-pages/). Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).

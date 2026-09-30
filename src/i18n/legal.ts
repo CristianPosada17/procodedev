@@ -44,6 +44,9 @@ export interface LegalDict {
 /** Fecha de última actualización. Cambiar al editar el contenido. */
 const UPDATED_ES = "14 de agosto de 2026";
 const UPDATED_EN = "August 14, 2026";
+/** Los términos se revisaron aparte (precios «Desde», 29 sep 2026). */
+const TERMS_UPDATED_ES = "29 de septiembre de 2026";
+const TERMS_UPDATED_EN = "September 29, 2026";
 
 const es: LegalDict = {
   privacy: {
@@ -62,7 +65,7 @@ const es: LegalDict = {
       {
         title: "1. Quién es responsable de tus datos",
         body: [
-          "ProCode Dev es un negocio operado por Cristian Posada, que presta servicios de desarrollo web, presencia digital y automatización de forma remota a clientes en Estados Unidos y México.",
+          "ProCode Dev es un negocio operado por Cristian Posada, que presta servicios de desarrollo web y presencia digital de forma remota a clientes en Estados Unidos y México.",
           "Para cualquier asunto relacionado con este aviso o con tus datos personales, el canal de contacto es info@procodedev.com.",
         ],
       },
@@ -167,7 +170,7 @@ const es: LegalDict = {
     subtitle:
       "Las reglas del sitio y de trabajar conmigo: qué incluye cada servicio, cómo se paga, de quién es el trabajo y cómo se cancela.",
     updatedLabel: "Última actualización",
-    updated: UPDATED_ES,
+    updated: TERMS_UPDATED_ES,
     sections: [
       {
         title: "1. Aceptación",
@@ -178,7 +181,7 @@ const es: LegalDict = {
       {
         title: "2. Qué servicios se ofrecen",
         body: [
-          "ProCode Dev construye sistemas digitales de crecimiento: sitios web, landing pages, presencia en Google, formularios, automatizaciones, seguimiento y medición, principalmente para dueños de negocio y pymes en Estados Unidos y México.",
+          "ProCode Dev construye sistemas digitales de crecimiento: sitios web, landing pages, presencia en Google, formularios, agenda de citas y medición, principalmente para dueños de negocio y pymes en Estados Unidos y México.",
           "El alcance concreto de cada proyecto se define por escrito antes de empezar. Lo que no esté descrito ahí no forma parte del alcance, y si surge durante el proyecto te paso el precio antes de ejecutarlo — nunca a mitad del trabajo.",
         ],
       },
@@ -192,8 +195,8 @@ const es: LegalDict = {
       {
         title: "4. Precios, pagos y moneda",
         list: [
-          "Los precios publicados están en dólares estadounidenses (USD) y corresponden al alcance descrito en cada plan.",
-          "La equivalencia en pesos mexicanos es orientativa, se calcula a un tipo de cambio fijo publicado en la página de precios y no sustituye a la facturación, que se realiza en USD.",
+          "Los precios publicados están en dólares estadounidenses (USD), se presentan como precios «Desde» y corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad, y se confirma por escrito antes de iniciar.",
+          "La facturación se realiza en USD.",
           "Los proyectos se pagan con un anticipo al iniciar y el resto según el calendario que acordemos por escrito.",
           "Los planes mensuales se cobran por adelantado, mes a mes.",
           "La Auditoría Estratégica Integral contratada por sí sola se cotiza según el alcance del negocio y se paga por adelantado, en un solo pago: es un servicio independiente, con su propio entregable, y se contrata y se paga por separado. Cuando la auditoría se realiza como primera fase de un proyecto de desarrollo web, SEO o marketing digital, su alcance y su costo forman parte de la cotización de ese proyecto y no se facturan aparte.",
@@ -281,7 +284,7 @@ const en: LegalDict = {
       {
         title: "1. Who is responsible for your data",
         body: [
-          "ProCode Dev is a business operated by Cristian Posada, providing web development, digital presence and automation services remotely to clients in the United States and Mexico.",
+          "ProCode Dev is a business operated by Cristian Posada, providing web development and digital presence services remotely to clients in the United States and Mexico.",
           "For anything related to this policy or to your personal data, the contact channel is info@procodedev.com.",
         ],
       },
@@ -319,7 +322,7 @@ const en: LegalDict = {
           "Web3Forms — processes the contact form submission and delivers it to me by email.",
           "Google Analytics 4 — site usage analytics, in aggregate.",
           "Meta Pixel — performance measurement for Facebook and Instagram campaigns.",
-          "Calendly — scheduling for the 15-minute call.",
+          "Calendly — scheduling for the 20-minute call.",
           "WhatsApp (Meta) — the conversation channel when you choose to message me there.",
           "Hosting and email provider — hosting of the site and the professional email account.",
         ],
@@ -384,7 +387,7 @@ const en: LegalDict = {
     subtitle:
       "The rules of the site and of working with me: what each service includes, how payment works, who owns the work and how to cancel.",
     updatedLabel: "Last updated",
-    updated: UPDATED_EN,
+    updated: TERMS_UPDATED_EN,
     sections: [
       {
         title: "1. Acceptance",
@@ -395,7 +398,7 @@ const en: LegalDict = {
       {
         title: "2. What services are offered",
         body: [
-          "ProCode Dev builds digital growth systems: websites, landing pages, Google presence, intake forms, automation, follow-up and measurement, primarily for small business owners in the United States and Mexico.",
+          "ProCode Dev builds digital growth systems: websites, landing pages, Google presence, intake forms, appointment booking and measurement, primarily for small business owners in the United States and Mexico.",
           "The specific scope of each project is defined in writing before work begins. Anything not described there is out of scope, and if it comes up during the project I give you the price before executing it — never halfway through the work.",
         ],
       },
@@ -409,8 +412,8 @@ const en: LegalDict = {
       {
         title: "4. Pricing, payments and currency",
         list: [
-          "Published prices are in U.S. dollars (USD) and correspond to the scope described in each plan.",
-          "The Mexican peso equivalent is indicative, calculated at a fixed exchange rate published on the pricing page, and does not replace invoicing, which is done in USD.",
+          "Published prices are in U.S. dollars (USD), shown as \"From\" prices, and cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity, and is confirmed in writing before starting.",
+          "Invoicing is done in USD.",
           "Projects are paid with a deposit at kickoff and the balance according to the schedule we agree in writing.",
           "Monthly plans are billed in advance, month to month.",
           "The Strategic Business Audit, when contracted on its own, is quoted according to the scope of the business and paid up front in a single payment: it is a standalone service with its own deliverable, contracted and paid separately. When the audit is carried out as the first phase of a web development, SEO or digital marketing project, its scope and cost form part of that project's quote and are not billed separately.",

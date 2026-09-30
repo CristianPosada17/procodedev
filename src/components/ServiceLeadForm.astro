@@ -136,7 +136,9 @@ const script = `
     <div
       class="reveal grid gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:p-12"
     >
-      <div>
+      {/* `min-w-0`: sin él, el ancho natural del <select> (su opción más
+          larga) empujaba la rejilla fuera de la pantalla en móvil. */}
+      <div class="min-w-0">
         <span class="eyebrow">{heading.eyebrow}</span>
         <h2
           class="mt-5 text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl lg:text-[2.15rem]"
@@ -188,7 +190,7 @@ const script = `
       <form
         id="lead-form"
         data-form="servicio"
-        class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7"
+        class="min-w-0 rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7"
       >
         <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
         <input type="hidden" name="servicio" value={service} />
@@ -256,7 +258,7 @@ const script = `
             <select
               name="need"
               required
-              class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition focus:border-[color:var(--border-strong)]"
+              class="w-full min-w-0 rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition focus:border-[color:var(--border-strong)]"
             >
               {heading.needOptions.map((opt) => <option value={opt}>{opt}</option>)}
             </select>

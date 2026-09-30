@@ -67,8 +67,9 @@ const offerCatalog = [
   ...d.packages.items.map((p) => ({
     title: p.quoteLabel
       ? `${p.name} — ${p.quoteLabel}`
-      : `${p.name} — $${p.price} ${p.currency}`,
+      : `${p.name} — ${p.pricePrefix ? p.pricePrefix + " " : ""}$${p.price} ${p.currency}`,
     description: p.description,
+    ...(p.quoteLabel || !p.price ? {} : { minPrice: p.price, unit: "one-time" as const }),
   })),
 ];
 

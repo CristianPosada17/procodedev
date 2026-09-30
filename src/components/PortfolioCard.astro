@@ -10,15 +10,21 @@ interface Project {
   image?: string;
   kind?: string;
   result?: string;
+  /** Qué necesitaba el negocio y qué hizo ProCode, solo con lo documentado. */
+  challenge?: string;
+  work?: string;
 }
 interface Props {
   project: Project;
   viewProject: string;
   /** Etiqueta del mini-caso con resultado medible (hallazgo #7). */
   resultLabel?: string;
+  /** Etiquetas de «necesidad» y «trabajo» y prefijo del texto alternativo,
+   *  en el idioma de la página (antes el alt salía siempre en español). */
+  labels?: { challenge: string; work: string; altPrefix: string };
   delay?: number;
 }
-const { project, viewProject, resultLabel, delay = 0 } = Astro.props as Props;
+const { project, viewProject, resultLabel, labels, delay = 0 } = Astro.props as Props;
 
 // Hallazgo #15: antes 3 de 5 thumbnails venían de s.wordpress.com/mshots,
 // un servicio gratuito de terceros que devuelve placeholders grises y aplica
@@ -50,7 +56,7 @@ const SIZES = "(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw";
       <source type="image/webp" sizes={SIZES} srcset={srcset("webp")} />
       <img
         src={base ? `${base}-800.webp` : img}
-        alt={`Sitio web de ${project.name}`}
+        alt={`${labels?.altPrefix ?? "Sitio web de"} ${project.name}`}
         loading="lazy"
         decoding="async"
         width="1200"
@@ -64,9 +70,32 @@ const SIZES = "(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw";
   </div>
   <div class="flex flex-1 flex-col p-6">
     <h3 class="text-base font-bold text-[var(--text)]">{project.name}</h3>
-    <p class="mt-2 flex-1 text-sm leading-6 text-[var(--muted)]">
+    <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
       {project.description}
     </p>
+    {
+      labels && (project.challenge || project.work) && (
+        <dl class="mt-4 grid gap-2 text-[13px] leading-6">
+          {project.challenge && (
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]">
+                {labels.challenge}
+              </dt>
+              <dd class="text-[var(--text)]/85">{project.challenge}</dd>
+            </div>
+          )}
+          {project.work && (
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]">
+                {labels.work}
+              </dt>
+              <dd class="text-[var(--text)]/85">{project.work}</dd>
+            </div>
+          )}
+        </dl>
+      )
+    }
+    <div class="flex-1"></div>
     {/* Hallazgo #7: «genera oportunidades» sin un solo número no mueve nada.
         En cuanto haya una cifra real, se llena `result` en src/i18n/ui.ts y
         este bloque aparece solo. Sin dato, no se inventa nada. */}

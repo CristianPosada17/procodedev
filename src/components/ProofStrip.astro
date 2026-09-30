@@ -35,7 +35,7 @@ const projects = pf.projects
     <CardRail class="mt-8 lg:mt-12" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
       {
         projects.map((proj, i) => (
-          <PortfolioCard project={proj} viewProject={pf.viewProject} resultLabel={pf.resultLabel} delay={i * 90} />
+          <PortfolioCard project={proj} viewProject={pf.viewProject} resultLabel={pf.resultLabel} labels={{ challenge: pf.challengeLabel, work: pf.workLabel, altPrefix: pf.imageAltPrefix }} delay={i * 90} />
         ))
       }
     </CardRail>

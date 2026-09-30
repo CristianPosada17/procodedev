@@ -100,4 +100,4 @@ Si te reconoces en dos o más de estas, **hacer una página web** tú mismo te v
 
 ---
 
-**Si prefieres no hacerlo tú:** los precios están publicados, sin llamada de ventas de por medio — landing desde $349 USD y sitio de 4 a 6 páginas por $899 USD. Puedes ver [cómo trabajo el diseño y desarrollo de páginas web](/servicios/desarrollo-web/) o ir directo a [los precios](/precios/).
+**Si prefieres no hacerlo tú:** los precios están publicados, sin llamada de ventas de por medio — landing desde $349 USD y sitio de 4 a 6 páginas desde $899 USD. Puedes ver [cómo trabajo el diseño y desarrollo de páginas web](/servicios/desarrollo-web/) o ir directo a [los precios](/precios/).

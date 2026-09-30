@@ -18,6 +18,11 @@ const p = t.portfolio;
 // Ahora van en dos grupos rotulados, sin ambigüedad.
 const clients = p.projects.filter((proj) => proj.kind !== "demo");
 const demos = p.projects.filter((proj) => proj.kind === "demo");
+const labels = {
+  challenge: p.challengeLabel,
+  work: p.workLabel,
+  altPrefix: p.imageAltPrefix,
+};
 ---
 
 <section id="portafolio" class="relative py-12 lg:py-20">
@@ -45,7 +50,7 @@ const demos = p.projects.filter((proj) => proj.kind === "demo");
       <CardRail class="mt-6" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
         {
           clients.map((proj, i) => (
-            <PortfolioCard project={proj} viewProject={p.viewProject} resultLabel={p.resultLabel} delay={i * 90} />
+            <PortfolioCard project={proj} viewProject={p.viewProject} resultLabel={p.resultLabel} labels={labels} delay={i * 90} />
           ))
         }
       </CardRail>
@@ -72,6 +77,7 @@ const demos = p.projects.filter((proj) => proj.kind === "demo");
               <PortfolioCard
                 project={proj}
                 viewProject={p.viewProject} resultLabel={p.resultLabel}
+                labels={labels}
                 delay={i * 90}
               />
             ))}

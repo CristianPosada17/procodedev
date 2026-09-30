@@ -117,8 +117,8 @@ Entre **tres y seis meses** para ver movimiento serio en SEO local, y no es nego
 
 ## Cómo trabajo esto
 
-Construyo el sitio con sus páginas de ciudad y servicio, dejo la ficha configurada como negocio de zona de servicio y monto el seguimiento para que ningún mensaje se quede sin contestar. Trabajo en remoto desde México con negocios hispanos en [Estados Unidos](/diseno-web-estados-unidos/), y los precios están publicados: [una landing page cuesta $349 USD y un sitio de 4 a 6 páginas $899 USD](/precios/).
+Construyo el sitio con sus páginas de ciudad y servicio, dejo la ficha configurada como negocio de zona de servicio y monto el seguimiento para que ningún mensaje se quede sin contestar. Trabajo en remoto desde México con negocios hispanos en [Estados Unidos](/diseno-web-estados-unidos/), y los precios base están publicados: [una landing page desde $349 USD y un sitio de 4 a 6 páginas desde $899 USD](/precios/).
 
 Si quieres el orden completo de inversión para un oficio, está en la guía de [marketing digital para contratistas hispanos en Estados Unidos](/blog/marketing-digital-para-contratistas-hispanos-estados-unidos/), y el detalle por giro en [diseño web para contratistas](/contratistas/) y en [marketing digital](/servicios/marketing-digital/).
 
-¿Quieres saber en qué ciudades apareces hoy y en cuáles no? Agenda la Revisión Express: reviso tu ficha y tu presencia, te lo grabo en un vídeo de tres minutos y lo comentamos quince minutos por llamada. Gratis, y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.
+¿Quieres saber en qué ciudades apareces hoy y en cuáles no? Agenda la Revisión Express: reviso tu ficha y tu presencia, en una videollamada de 20 minutos te muestro 3 prioridades. Gratis, y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.

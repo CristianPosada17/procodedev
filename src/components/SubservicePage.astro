@@ -35,6 +35,10 @@ interface Props {
 const { lang, service } = Astro.props as Props;
 const t = translations[lang];
 const d = subservices[lang][service];
+// El mantenimiento se cobra al mes; el resto de precios publicados son de
+// pago único. La periodicidad viaja al JSON-LD para que coincida con la
+// tarjeta visible.
+const isMonthly = (note: string) => /\bmes\b|month|\/mo\b/i.test(note);
 
 const offerCatalog = [
   ...d.capabilities.items.map((c) => ({
@@ -46,8 +50,11 @@ const offerCatalog = [
     // «SEO mensual — $ » en el JSON-LD (ver procode-planes-sin-precio).
     title: p.quoteLabel
       ? `${p.name} — ${p.quoteLabel}`
-      : `${p.name} — $${p.price} ${p.currency}`,
+      : `${p.name} — ${p.pricePrefix ? p.pricePrefix + " " : ""}$${p.price} ${p.currency}`,
     description: p.description,
+    ...(p.quoteLabel || !p.price
+      ? {}
+      : { minPrice: p.price, unit: isMonthly(p.priceNote) ? ("month" as const) : ("one-time" as const) }),
   })),
 ];
 
@@ -55,6 +62,7 @@ const offerCatalog = [
 // página; si ninguno la tiene, se emite sin precio en vez de heredar $349.
 const pricedPackage = d.packages.items.find((p) => !p.quoteLabel && p.price);
 const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
+const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" : "one-time";
 ---
 
 <Layout
@@ -72,6 +80,7 @@ const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
   audience={d.audience}
   offerCatalog={offerCatalog}
   offerPrice={offerPrice}
+  offerUnit={offerUnit}
   includeFaq={true}
   faqItems={d.faq.items}
 >

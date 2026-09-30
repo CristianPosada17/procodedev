@@ -116,7 +116,7 @@ const landingPagesEs: SubserviceDetail = {
   meta: {
     title: "Diseño de Landing Pages para Negocios | ProCode",
     description:
-      "Diseño de landing page para negocios: una sola página enfocada en convertir, entregada en una semana. Precio publicado: $349 USD de pago único.",
+      "Diseño de landing page para negocios: una sola página enfocada en convertir, lista en 1 a 2 semanas. Desde $349 USD, en pago único.",
     keywords:
       "diseño de landing page, diseñar landing page, diseño de página de ventas, precio landing page, landing page para negocios, crear página de ventas, landing page para campañas, página de aterrizaje",
     heroTitleA: "Diseño de landing pages",
@@ -129,7 +129,7 @@ const landingPagesEs: SubserviceDetail = {
       "Cuando pagas por cada clic, mandar a la gente al inicio de tu sitio es la forma más cara de perderla: hay seis caminos y ninguno lleva a comprar.",
     points: [
       { title: "Un solo objetivo", text: "Una acción por página, sin menú que distraiga." },
-      { title: "Lista en una semana", text: "Más rápido que un sitio de cuatro a seis páginas." },
+      { title: "Lista en 1 a 2 semanas", text: "Más rápido que un sitio de cuatro a seis páginas." },
       { title: "Medible desde el día uno", text: "Cada clic y cada envío quedan registrados." },
     ],
   },
@@ -165,9 +165,9 @@ const landingPagesEs: SubserviceDetail = {
       },
       {
         icon: "zap",
-        title: "Carga en menos de dos segundos",
+        title: "Pensada para cargar rápido",
         description:
-          "Código propio en vez de plantilla con plugins: cada décima de segundo en una campaña pagada cuesta dinero.",
+          "Código propio en vez de plantilla con plugins: en una campaña pagada, cada segundo de espera cuesta visitas.",
       },
       {
         icon: "bar-chart",
@@ -181,11 +181,11 @@ const landingPagesEs: SubserviceDetail = {
     eyebrow: "// precio publicado",
     title: "Cuánto cuesta una landing page",
     subtitle:
-      "La landing sola tiene precio publicado: lo que ves es lo que pagas. La versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio.",
+      "La landing sola tiene precio base publicado, desde $349 USD; el total se confirma antes de iniciar según contenido e integraciones. La versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio.",
     items: [
       {
         name: "Landing Page",
-        pricePrefix: "",
+        pricePrefix: "Desde",
         price: "349",
         currency: "USD",
         priceNote: "pago único",
@@ -197,7 +197,7 @@ const landingPagesEs: SubserviceDetail = {
           "Botón directo a WhatsApp y formulario corto",
           "Impecable en móvil y carga rápida",
           "SEO base y medición conectada",
-          "Entrega en una semana",
+          "Entrega en 1 a 2 semanas",
         ],
         highlighted: true,
       },
@@ -209,11 +209,9 @@ const landingPagesEs: SubserviceDetail = {
         currency: "",
         priceNote: "se define tras la reunión inicial",
         description:
-          "La landing más el sistema que recoge y ordena a cada prospecto: formularios conectados, aviso inmediato y medición por campaña. Para cuando vas a invertir en anuncios y no quieres perder ni un mensaje.",
+          "La landing más formularios que califican y medición por campaña. Para cuando vas a invertir en anuncios y quieres saber qué anuncio trajo cada solicitud.",
         features: [
           "Todo lo del paquete anterior",
-          "Formulario y WhatsApp conectados a tu correo y a tu hoja de control",
-          "Aviso inmediato en tu WhatsApp y tu correo en cuanto alguien escribe",
           "Campos de calificación para que el prospecto llegue con contexto",
           "Medición por campaña: sabes qué anuncio trajo cada mensaje",
           "Página de gracias con siguiente paso y evento de conversión",
@@ -223,7 +221,7 @@ const landingPagesEs: SubserviceDetail = {
     ],
     itemCta: "Solicitar este paquete",
     note:
-      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. La landing sola es de pago único con precio publicado; la versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio. Las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital.",
+      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. La landing sola es de pago único, con precio base publicado; la versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio. Las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital, y la inversión publicitaria se paga directo a la plataforma.",
     cta: "Ver todos los precios",
   },
   fit: {
@@ -258,17 +256,22 @@ const landingPagesEs: SubserviceDetail = {
       {
         question: "¿Cuánto tarda?",
         answer:
-          "Una semana desde que tengo el texto y las fotos. Si no los tienes, el texto lo escribo yo a partir de una llamada de 20 minutos y el plazo sigue siendo el mismo.",
+          "De 1 a 2 semanas desde que tengo el texto, las fotos y los accesos. Si no tienes el texto, lo escribo yo a partir de una llamada de 20 minutos y el plazo sigue siendo el mismo.",
       },
       {
         question: "¿Puedo editarla yo después?",
         answer:
-          "Sí. Se entrega autoadministrable: cambias textos, precios y fotos sin depender de mí y sin tocar código.",
+          "Si vas a cambiarla seguido, se puede entregar con un panel para editar textos, precios y fotos sin tocar código; lo dejamos definido en la propuesta. Si no, los cambios se piden aparte o dentro del plan de Soporte Web.",
       },
       {
         question: "¿Sirve para anuncios de Google y de Meta?",
         answer:
           "Está hecha para eso. Lleva la medición conectada desde el primer día, así que puedes ver qué campaña trajo cada mensaje en vez de adivinar.",
+      },
+      {
+        question: "¿Qué queda fuera y qué necesitas de mí?",
+        answer:
+          "Quedan fuera el dominio y el hosting (se pagan al proveedor, a tu nombre), la gestión de anuncios y su inversión, y la medición por campaña, que va en la versión con sistema de captación. De tu parte necesito logotipo, fotos, datos del negocio y los accesos que existan. Tras la entrega revisamos juntos que el formulario, WhatsApp y la medición funcionen, con un soporte inicial; los cambios posteriores se cotizan aparte o entran en el plan de Soporte Web.",
       },
     ],
   },
@@ -426,7 +429,7 @@ const seoEs: SubserviceDetail = {
         highlighted: false,
       },
     ],
-    itemCta: "Agendar reunión inicial",
+    itemCta: "Solicitar reunión inicial",
     note:
       "El SEO local tarda de tres a seis meses en madurar y hay que sostenerlo: en cuanto se deja de trabajar, las posiciones se devuelven. Cualquiera que te prometa la primera posición en un mes te está vendiendo humo. Si además necesitas anuncios y campañas, eso vive en el plan de Marketing Digital.",
     cta: "Ver todos los precios",
@@ -485,7 +488,7 @@ const seoEs: SubserviceDetail = {
   },
   form: {
     eyebrow: "// solicitar propuesta",
-    ctaLabel: "Agendar reunión inicial",
+    ctaLabel: "Solicitar reunión inicial",
     titleA: "Cuéntame qué vendes y dónde, y agendamos",
     titleHighlight: "la reunión inicial",
     subtitle:
@@ -534,7 +537,7 @@ const maintenanceEs: SubserviceDetail = {
   meta: {
     title: "Mantenimiento Web para Negocios | ProCode Dev",
     description:
-      "Mantenimiento de páginas web con precio publicado desde $79 USD al mes: actualizaciones, respaldos, seguridad, cambios de contenido y soporte por WhatsApp.",
+      "Mantenimiento de páginas web desde $79 USD al mes: actualizaciones, respaldos, monitoreo, cambios menores de contenido y soporte por WhatsApp.",
     keywords:
       "mantenimiento web, mantenimiento de páginas web, precio mantenimiento web, hosting y mantenimiento web, soporte de página web, actualización de página web, respaldo de sitio web, mantenimiento de sitios web para negocios",
     heroTitleA: "Mantenimiento y soporte",
@@ -547,7 +550,7 @@ const maintenanceEs: SubserviceDetail = {
       "Un sitio publicado no se queda quieto: el certificado caduca, el dominio se renueva solo o no, el formulario deja de llegar al correo y nadie se entera hasta que un cliente lo dice.",
     points: [
       { title: "Alguien lo vigila", text: "Monitoreo de caídas y del certificado, no aviso del cliente." },
-      { title: "Cambios sin cotizar", text: "Textos, fotos y precios incluidos en el plan." },
+      { title: "Cambios menores incluidos", text: "Hasta 3–4 al mes: textos, fotos y precios." },
       { title: "Se cancela cuando quieras", text: "Sin contratos de 12 meses ni penalización." },
     ],
   },
@@ -579,7 +582,7 @@ const maintenanceEs: SubserviceDetail = {
         icon: "pen",
         title: "Cambios de contenido",
         description:
-          "Textos, fotos, precios y servicios nuevos incluidos en el plan, sin cotizar cada cambio por separado.",
+          "Hasta tres o cuatro cambios menores al mes —textos, fotos, precios, horarios, un servicio nuevo— sin cotizar cada uno por separado.",
       },
       {
         icon: "bar-chart",
@@ -599,21 +602,21 @@ const maintenanceEs: SubserviceDetail = {
     eyebrow: "// precio publicado",
     title: "Cuánto cuesta el mantenimiento web",
     subtitle:
-      "El mantenimiento tiene precio publicado y se paga mes a mes, sin permanencia. Crecimiento+ se cotiza a tu negocio tras la reunión inicial y la auditoría.",
+      "El mantenimiento tiene precio base publicado y se paga mes a mes, sin permanencia. Crecimiento+ se cotiza a tu negocio tras la reunión inicial y el diagnóstico.",
     items: [
       {
         name: "Mantenimiento",
-        pricePrefix: "desde",
+        pricePrefix: "Desde",
         price: "79",
         currency: "USD",
-        priceNote: "al mes",
+        priceNote: "al mes · según el tamaño del sitio",
         description:
           "Para el sitio que ya está publicado y funcionando: que siga rápido, seguro y actualizado sin que tengas que ocuparte tú.",
         features: [
           "Actualizaciones y parches de seguridad",
           "Respaldos automáticos con restauración probada",
           "Monitoreo de caídas y del certificado",
-          "Cambios de contenido incluidos",
+          "Hasta 3–4 cambios menores al mes",
           "Soporte por WhatsApp en menos de 24 horas",
           "Se cancela cuando quieras",
         ],
@@ -625,15 +628,15 @@ const maintenanceEs: SubserviceDetail = {
         price: "",
         quoteLabel: "Cotización a medida",
         currency: "",
-        priceNote: "se define tras la reunión inicial y la auditoría",
+        priceNote: "mensual · se define tras la reunión inicial y el diagnóstico",
         description:
           "Cuando además del mantenimiento quieres que te encuentren: Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA.",
         features: [
           "Todo lo del plan de mantenimiento",
-          "Perfil de Empresa en Google: creación, verificación y optimización",
-          "Gestión de reseñas: sistema para pedirlas y respuesta a todas",
-          "SEO local y contenido nuevo cada mes",
-          "Optimización para búsqueda con IA (ChatGPT, Google AI)",
+          "Perfil de Empresa en Google: creación, gestión de la verificación (la aprueba Google) y optimización",
+          "Gestión de reseñas: sistema para pedirlas y respuesta a las reseñas",
+          "SEO local y contenido, en la cantidad que fije la propuesta",
+          "Información del negocio preparada para buscadores y respuestas con IA",
           "Reporte mensual de tu ficha, tu SEO y tu página web",
         ],
         highlighted: false,
@@ -641,7 +644,7 @@ const maintenanceEs: SubserviceDetail = {
     ],
     itemCta: "Solicitar este plan",
     note:
-      "El hosting y el dominio los pagas tú directo al proveedor —entre $60 y $120 USD al año— y quedan a tu nombre. Nunca me quedo con la propiedad de tu sitio.",
+      "El plan no incluye el costo del hosting ni del dominio: los pagas tú directo al proveedor —entre $60 y $120 USD al año—, se renuevan cada año y quedan a tu nombre. Nunca me quedo con la propiedad de tu sitio.",
     cta: "Ver todos los precios",
   },
   fit: {
@@ -676,7 +679,7 @@ const maintenanceEs: SubserviceDetail = {
       {
         question: "¿Cuántos cambios puedo pedir al mes?",
         answer:
-          "Los cambios normales de un negocio: textos, fotos, precios, horarios, un servicio nuevo. Si lo que pides es una página nueva completa o una integración, eso se cotiza aparte y te lo digo antes de empezar.",
+          "Hasta tres o cuatro cambios menores al mes: textos, fotos, precios, horarios, un servicio nuevo. Si lo que pides es una página nueva completa o una integración, eso se cotiza aparte y te lo digo antes de empezar.",
       },
       {
         question: "¿Mantienes sitios que no hiciste tú?",
@@ -744,7 +747,7 @@ const landingPagesEn: SubserviceDetail = {
   meta: {
     title: "Landing Page Design for Small Business | ProCode",
     description:
-      "Landing page design for small businesses: one page built to convert, delivered in a week. Published pricing: $349 USD one-time.",
+      "Landing page design for small businesses: one page built to convert, ready in 1 to 2 weeks. From $349 USD, one-time.",
     keywords:
       "landing page design, landing page designer, sales page design, landing page pricing, landing page for small business, landing page for ads, high converting landing page, custom landing page",
     heroTitleA: "Landing page design",
@@ -757,7 +760,7 @@ const landingPagesEn: SubserviceDetail = {
       "When you pay for every click, sending people to your homepage is the most expensive way to lose them: six paths and none of them leads to buying.",
     points: [
       { title: "One goal", text: "One action per page, no menu pulling people away." },
-      { title: "Live in a week", text: "Faster than a four-to-six page site." },
+      { title: "Live in 1 to 2 weeks", text: "Faster than a four-to-six page site." },
       { title: "Measured from day one", text: "Every click and every submission recorded." },
     ],
   },
@@ -793,7 +796,7 @@ const landingPagesEn: SubserviceDetail = {
       },
       {
         icon: "zap",
-        title: "Loads in under two seconds",
+        title: "Built to load fast",
         description:
           "Custom code instead of a plugin-heavy template: on paid traffic every tenth of a second costs money.",
       },
@@ -809,11 +812,11 @@ const landingPagesEn: SubserviceDetail = {
     eyebrow: "// published pricing",
     title: "What a landing page costs",
     subtitle:
-      "The landing page on its own has published pricing: what you see is what you pay. The version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business.",
+      "The landing page on its own has a published base price, from $349 USD; the total is confirmed before starting based on content and integrations. The version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business.",
     items: [
       {
         name: "Landing Page",
-        pricePrefix: "",
+        pricePrefix: "From",
         price: "349",
         currency: "USD",
         priceNote: "one-time",
@@ -825,7 +828,7 @@ const landingPagesEn: SubserviceDetail = {
           "Direct WhatsApp button and short form",
           "Flawless on mobile, fast to load",
           "Base SEO and measurement wired in",
-          "Delivered in one week",
+          "Delivered in 1 to 2 weeks",
         ],
         highlighted: true,
       },
@@ -837,11 +840,9 @@ const landingPagesEn: SubserviceDetail = {
         currency: "",
         priceNote: "set after the first meeting",
         description:
-          "The landing page plus the system that catches and organizes every lead: connected forms, instant alerts and per-campaign measurement. For when you are about to spend on ads and cannot afford to lose a message.",
+          "The landing page plus qualifying forms and per-campaign measurement. For when you are about to spend on ads and want to know which ad brought each request.",
         features: [
           "Everything in the package above",
-          "Form and WhatsApp wired to your inbox and your tracking sheet",
-          "Automatic reply to the lead the moment they write",
           "Qualifying fields so every lead arrives with context",
           "Per-campaign measurement: you know which ad brought each message",
           "Thank-you page with a next step and a conversion event",
@@ -851,7 +852,7 @@ const landingPagesEn: SubserviceDetail = {
     ],
     itemCta: "Request this package",
     note:
-      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. The landing page on its own is one-time with published pricing; the version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business. Managed ad campaigns, if you want them, sit in the Digital Marketing plan.",
+      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. The landing page on its own is one-time, with a published base price; the version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business. Managed ad campaigns, if you want them, sit in the Digital Marketing plan, and ad spend is paid directly to the platform.",
     cta: "See all pricing",
   },
   fit: {
@@ -886,17 +887,22 @@ const landingPagesEn: SubserviceDetail = {
       {
         question: "How long does it take?",
         answer:
-          "One week once I have the copy and the photos. If you do not have them, I write the copy from a 20-minute call and the timeline stays the same.",
+          "One to two weeks once I have the copy, the photos and access. If you do not have the copy, I write it from a 20-minute call and the timeline stays the same.",
       },
       {
         question: "Can I edit it myself afterwards?",
         answer:
-          "Yes. It ships self-manageable: you change text, prices and photos without waiting on me and without touching code.",
+          "If you will change it often, it can ship with a panel to edit text, prices and photos without touching code; we set that in the proposal. Otherwise changes are requested separately or within the Web Support plan.",
       },
       {
         question: "Does it work for Google and Meta ads?",
         answer:
           "That is what it is built for. Measurement is wired in from day one, so you can see which campaign brought each message instead of guessing.",
+      },
+      {
+        question: "What is not included, and what do you need from me?",
+        answer:
+          "Not included: domain and hosting (paid to the provider, in your name), ad management and ad spend, and per-campaign measurement, which belongs to the version with the lead capture system. From you I need your logo, photos, business details and whatever access exists. After delivery we check together that the form, WhatsApp and tracking work, with initial support; later changes are quoted separately or fall under the Web Support plan.",
       },
     ],
   },
@@ -1054,7 +1060,7 @@ const seoEn: SubserviceDetail = {
         highlighted: false,
       },
     ],
-    itemCta: "Book the first meeting",
+    itemCta: "Request a first meeting",
     note:
       "Local SEO takes three to six months to mature and has to be sustained: the moment the work stops, the rankings slide back. Anyone promising you the top spot in a month is selling smoke. If you also need ads and campaigns, that lives in the Digital Marketing plan.",
     cta: "See full pricing",
@@ -1113,7 +1119,7 @@ const seoEn: SubserviceDetail = {
   },
   form: {
     eyebrow: "// request a proposal",
-    ctaLabel: "Book the first meeting",
+    ctaLabel: "Request a first meeting",
     titleA: "Tell me what you sell and where, and we book",
     titleHighlight: "the first meeting",
     subtitle:
@@ -1162,7 +1168,7 @@ const maintenanceEn: SubserviceDetail = {
   meta: {
     title: "Website Maintenance for Small Business | ProCode",
     description:
-      "Website maintenance with published pricing from $79 USD a month: updates, backups, security monitoring, content changes and support over WhatsApp.",
+      "Website maintenance from $79 USD a month: updates, backups, monitoring, minor content changes and support over WhatsApp.",
     keywords:
       "website maintenance, website maintenance services, website maintenance pricing, website support, website updates, website backups, small business website maintenance, website care plan",
     heroTitleA: "Website maintenance",
@@ -1175,7 +1181,7 @@ const maintenanceEn: SubserviceDetail = {
       "A live site does not sit still: the certificate expires, the form quietly stops reaching your inbox, and nobody finds out until a client mentions it.",
     points: [
       { title: "Someone is watching", text: "Uptime and certificate monitoring, not a client's phone call." },
-      { title: "Changes without a quote", text: "Text, photos and prices included in the plan." },
+      { title: "Minor changes included", text: "Up to 3–4 a month: text, photos and prices." },
       { title: "Cancel anytime", text: "No 12-month contracts, no penalty." },
     ],
   },
@@ -1207,7 +1213,7 @@ const maintenanceEn: SubserviceDetail = {
         icon: "pen",
         title: "Content changes",
         description:
-          "Text, photos, prices and new services included in the plan, without quoting every small change separately.",
+          "Up to three or four minor changes a month — text, photos, prices, hours, a new service — without quoting each one separately.",
       },
       {
         icon: "bar-chart",
@@ -1227,21 +1233,21 @@ const maintenanceEn: SubserviceDetail = {
     eyebrow: "// published pricing",
     title: "What website maintenance costs",
     subtitle:
-      "Maintenance has published pricing and is paid monthly, with no commitment. Growth+ is quoted to your business after the first meeting and the audit.",
+      "Maintenance has a published base price and is paid monthly, with no commitment. Growth+ is quoted to your business after the first meeting and the diagnosis.",
     items: [
       {
         name: "Maintenance",
-        pricePrefix: "from",
+        pricePrefix: "From",
         price: "79",
         currency: "USD",
-        priceNote: "a month",
+        priceNote: "a month · depending on site size",
         description:
           "For a site that is already live and working: keeping it fast, secure and current without you having to think about it.",
         features: [
           "Updates and security patches",
           "Automatic backups with tested restores",
           "Uptime and certificate monitoring",
-          "Content changes included",
+          "Up to 3–4 minor changes a month",
           "WhatsApp support within 24 hours",
           "Cancel whenever you want",
         ],
@@ -1253,15 +1259,15 @@ const maintenanceEn: SubserviceDetail = {
         price: "",
         quoteLabel: "Custom quote",
         currency: "",
-        priceNote: "set after the first meeting and the audit",
+        priceNote: "monthly · set after the first meeting and the diagnosis",
         description:
           "When you also want to be found: Google Business Profile, reviews, local SEO and visibility in AI search.",
         features: [
           "Everything in the maintenance plan",
-          "Google Business Profile: setup, verification and optimization",
-          "Review management: a system to ask for them and replies to all of them",
-          "Local SEO and new content every month",
-          "AI search optimization (ChatGPT, Google AI)",
+          "Google Business Profile: setup, handling verification (Google approves it) and optimization",
+          "Review management: a system to ask for them and replies to reviews",
+          "Local SEO and content, in the amount the proposal sets",
+          "Business information prepared for search engines and AI answers",
           "Monthly report on your profile, your SEO and your website",
         ],
         highlighted: false,
@@ -1269,7 +1275,7 @@ const maintenanceEn: SubserviceDetail = {
     ],
     itemCta: "Request this plan",
     note:
-      "Hosting and the domain are paid by you directly to the provider — $60 to $120 USD a year — and stay in your name. I never hold ownership of your site.",
+      "The plan does not cover the cost of hosting or the domain: you pay the provider directly — $60 to $120 USD a year — they renew yearly and stay in your name. I never hold ownership of your site.",
     cta: "See all pricing",
   },
   fit: {
@@ -1304,7 +1310,7 @@ const maintenanceEn: SubserviceDetail = {
       {
         question: "How many changes can I ask for each month?",
         answer:
-          "The normal changes a business has: text, photos, prices, hours, a new service. If you need a whole new page or an integration, that is quoted separately and I tell you before starting.",
+          "Up to three or four minor changes a month: text, photos, prices, hours, a new service. If you need a whole new page or an integration, that is quoted separately and I tell you before starting.",
       },
       {
         question: "Do you maintain sites you did not build?",

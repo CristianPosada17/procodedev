@@ -23,9 +23,18 @@ está en el artefacto **«Mapa de medición ProCode»**.
 En `/formulario` (posventa, sin Pixel a propósito): `onboarding_inicio`,
 `onboarding_enviado`, `onboarding_incompleto`.
 
-Equivalencias en Meta: `Lead`, `Schedule`, `Contact`, `InitiateCheckout` y el
-evento personalizado `ClicAgendar`. Cada uno lleva `eventID` para poder
-deduplicar el día que se active la API de Conversiones.
+Equivalencias en Meta: `Lead` (formulario enviado), `Schedule` (cita agendada),
+`InitiateCheckout` (fecha elegida en Calendly) y los eventos personalizados
+`ClicAgendar`, `ClicWhatsApp`, `ClicLlamada` y `ClicEmail`. Cada uno lleva
+`eventID` para poder deduplicar el día que se active la API de Conversiones.
+
+**Clic ≠ contacto.** `whatsapp_click`, `phone_click` y `email_click` miden
+intención: abrir WhatsApp no confirma que el mensaje se enviara ni que haya un
+cliente. Solo `generate_lead` / `Lead` (formulario aceptado por Web3Forms) y
+`schedule_call` / `Schedule` (cita confirmada en Calendly) cuentan como
+contacto real. Hasta el 29 sep 2026 los clics iban a Meta como `Contact`; si
+alguna conversión personalizada o campaña optimizaba con `Contact`, hay que
+cambiarla en el Administrador de eventos.
 
 ## Cómo añadir un botón medido
 

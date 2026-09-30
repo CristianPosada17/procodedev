@@ -56,7 +56,7 @@ Una referencia honesta según lo que factura el negocio:
 - **Negocio establecido, el sitio cierra ventas:** de $350 a $1,000 USD una vez. Se paga con uno o dos trabajos.
 - **El sitio es tu canal principal de captación:** de $900 a $2,500 USD, más un presupuesto mensual para que llegue gente.
 
-Compáralo siempre contra el valor de un cliente tuyo. Si un cliente promedio te deja $800 USD, un sitio de $899 que te trae dos al año ya se pagó.
+Compáralo siempre contra el valor de un cliente tuyo. Si un cliente promedio te deja $800 USD, un sitio desde $899 que te trae dos al año ya se pagó.
 
 ## Cómo saber si está funcionando
 
@@ -78,4 +78,4 @@ Si el sitio recibe 400 visitas al mes y ningún mensaje, el problema es el sitio
 
 ---
 
-**Si quieres saltarte la parte de armarlo tú:** [así trabajo el diseño y desarrollo de páginas web para negocios](/servicios/desarrollo-web/), con una página por servicio y el precio publicado — desde $349 USD la landing y $899 USD el sitio de 4 a 6 páginas. [Los precios completos, aquí](/precios/).
+**Si quieres saltarte la parte de armarlo tú:** [así trabajo el diseño y desarrollo de páginas web para negocios](/servicios/desarrollo-web/), con una página por servicio y el precio base publicado — desde $349 USD la landing y desde $899 USD el sitio de 4 a 6 páginas. [Los precios completos, aquí](/precios/).

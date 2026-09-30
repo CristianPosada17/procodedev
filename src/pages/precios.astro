@@ -12,6 +12,33 @@ import { translations, PAGES, relatedLinks } from "../i18n/ui";
 const lang = "es";
 const t = translations[lang];
 const meta = t.pageMeta.pricing;
+// Catálogo del JSON-LD alineado con lo visible: cada importe es un precio
+// base («Desde») con su periodicidad; los planes sin cifra van sin precio.
+const pr = t.pricing;
+const offerCatalog = [
+  ...pr.packages.map((x) => ({
+    title: `${x.name} — ${x.pricePrefix} $${x.price} ${x.currency}`,
+    description: x.description,
+    minPrice: x.price,
+    unit: "one-time" as const,
+  })),
+  ...pr.monthly.map((x) =>
+    x.quoteLabel
+      ? { title: `${x.name} — ${x.quoteLabel}`, description: x.description }
+      : {
+          title: `${x.name} — ${x.pricePrefix} $${x.price} ${x.currency}`,
+          description: x.description,
+          minPrice: x.price,
+          unit: "month" as const,
+        },
+  ),
+  ...pr.extras.map((x) => ({
+    title: `${x.name} — ${x.price} ${x.unit}`,
+    description: x.description,
+    minPrice: x.price.replace(/[^0-9.]/g, ""),
+    unit: "one-time" as const,
+  })),
+];
 ---
 
 <Layout
@@ -25,11 +52,13 @@ const meta = t.pageMeta.pricing;
     { name: t.nav.home, path: PAGES.home[lang] },
     { name: t.nav.pricing, path: PAGES.pricing[lang] },
   ]}
-  serviceName={meta.heroSubtitle}
+  serviceName="Diseño y desarrollo de páginas web"
+  offerCatalog={offerCatalog}
 >
   <Header lang={lang} page="pricing" />
   <main>
     <PageHero
+      lang={lang}
       eyebrow={t.pricing.eyebrow}
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}

@@ -75,4 +75,4 @@ El punto de la tabla no es que lo gratis sea malo. Es que **el constructor de pa
 
 ---
 
-Cuando llegue ese tercer paso, [los precios están publicados](/precios/) — landing desde $349 USD y sitio de 4 a 6 páginas por $899 USD, pago único y sin contratos de 12 meses.
+Cuando llegue ese tercer paso, [los precios están publicados](/precios/) — landing desde $349 USD y sitio de 4 a 6 páginas desde $899 USD, pago único y sin contratos de 12 meses.

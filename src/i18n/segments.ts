@@ -69,7 +69,7 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Contratistas y Constructoras | ProCode Dev",
       description:
-        "Diseño web para constructoras y contratistas: sitio, Perfil de Empresa en Google, formulario de cotización y SEO local para contratistas. Precios públicos.",
+        "Diseño web para constructoras y contratistas: sitio, Perfil de Empresa en Google, formulario de cotización y SEO local para contratistas. Precios base publicados.",
       keywords:
         "diseño web para constructoras, páginas web para contratistas, página web para contratistas, diseño web para empresas de remodelación, marketing digital para contratistas, SEO local para contratistas, agencia de marketing para contratistas, página web para plomeros, página web para electricistas, página web para techos, generación de clientes para contratistas",
     },
@@ -78,7 +78,7 @@ const es: SegmentDict = {
     heroHighlight: "contratistas y constructoras",
     heroSubtitle: "Te eligen antes de conocerte.",
     intro:
-      "Sitio web, Perfil de Empresa en Google, formulario de cotización y avisos al instante para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
+      "Sitio web, Perfil de Empresa en Google, formulario de cotización y SEO local para contratistas, constructoras, remodelación, plomería, electricidad, techos y jardinería.",
     projectId: "izcalli",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Una constructora de tu giro que ya está",
@@ -138,7 +138,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para contratistas (opcional)",
         description:
-          "Campañas locales y anuncios de temporada para llenar las semanas flojas. Se contrata aparte, en plan mensual con precio publicado.",
+          "Campañas locales y anuncios de temporada para llenar las semanas flojas. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año de obra, y qué hace el sistema en cada tramo",
@@ -151,7 +151,7 @@ const es: SegmentDict = {
       },
       {
         label: "Abr – Jun",
-        note: "Temporada alta: cotizaciones automáticas y respuesta en el día.",
+        note: "Temporada alta: formulario de cotización que filtra antes de que manejes.",
       },
       {
         label: "Jul – Sep",
@@ -177,7 +177,7 @@ const es: SegmentDict = {
       {
         question: "¿Sirve si trabajo solo o con dos ayudantes?",
         answer:
-          "Es donde más rinde. Un contratista solo no puede contestar mientras está en el techo: el formulario y la respuesta automática son el asistente que no puedes contratar todavía.",
+          "Es donde más rinde. Un contratista solo no puede contestar mientras está en el techo: el formulario que filtra y la agenda en línea son el asistente que no puedes contratar todavía.",
       },
       {
         question: "¿Puede quedar en inglés y en español?",
@@ -192,7 +192,7 @@ const es: SegmentDict = {
       {
         question: "¿Cómo conseguir clientes para una constructora sin depender de la recomendación?",
         answer:
-          "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y un aviso inmediato en tu teléfono en cuanto alguien pide cotización. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
+          "Con tres piezas trabajando juntas: aparecer cuando alguien busca tu oficio en tu ciudad, un formulario que califique antes de que manejes, y reseñas que den confianza antes de la primera llamada. Esa es la generación de clientes para contratistas que sostiene una temporada floja.",
       },
     ],
     ctaTitle: "20 minutos antes de tu próxima temporada fuerte",
@@ -209,7 +209,7 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Consultorios y Psicólogos | ProCode Dev",
       description:
-        "Diseño web para consultorios, psicólogos, nutriólogos y terapeutas: agenda en línea, recordatorios y SEO local para consultorios. Precios públicos en USD.",
+        "Diseño web para consultorios, psicólogos, nutriólogos y terapeutas: sistema de agenda de citas y SEO local para consultorios. Precios base en USD.",
       keywords:
         "diseño web para consultorios, diseño web para psicólogos, páginas web para nutriólogos, diseño web para terapeutas, marketing digital para psicólogos, SEO local para consultorios, agencia de marketing para consultorios, página web para consultorios, agenda en línea para pacientes, cómo conseguir más pacientes",
     },
@@ -218,7 +218,7 @@ const es: SegmentDict = {
     heroHighlight: "consultorios y clínicas",
     heroSubtitle: "Agendan sin preguntar precios.",
     intro:
-      "Sitio web, agenda en línea, formulario de primera consulta y recordatorios de cita para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
+      "Sitio web, sistema de agenda de citas automático y formulario de primera consulta para consultorios, clínicas, nutriólogos, dentistas, psicólogos, fisioterapeutas y terapeutas.",
     projectId: "fersilva",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Una práctica de salud que ya está",
@@ -226,7 +226,7 @@ const es: SegmentDict = {
     projectWhy:
       "Fernanda Silva es el caso de un consultorio: explicaba su servicio por mensaje una y otra vez, y hoy los pacientes llegan informados y agendan solos.",
     projectPoints: [
-      "Servicios explicados con lo que incluyen y cuánto duran, que es lo que quita la mitad de los mensajes.",
+      "Servicios explicados con lo que incluyen y cuánto duran, que es lo que ahorra muchos de los mensajes de siempre.",
       "Agenda en línea para que el paciente elija horario sin tener que preguntarte.",
       "Formación y enfoque visibles, porque en salud la confianza se decide antes del primer contacto.",
     ],
@@ -252,7 +252,7 @@ const es: SegmentDict = {
       },
       {
         icon: "calendar",
-        title: "Agenda en línea conectada a tu calendario",
+        title: "Sistema de agenda de citas automático",
         description:
           "El paciente elige horario disponible sin preguntarte, con bloques distintos para primera vez y seguimiento, y la cita cae directo en tu calendario.",
       },
@@ -261,12 +261,6 @@ const es: SegmentDict = {
         title: "Formulario de primera consulta antes de la cita",
         description:
           "Datos, motivo de consulta, antecedentes y lo que necesites preguntar, contestado antes de que el paciente llegue.",
-      },
-      {
-        icon: "repeat",
-        title: "Recordatorios de cita automáticos",
-        description:
-          "Recordatorio 24 horas antes de la consulta, enviado por el propio sistema de agenda, para reducir las citas perdidas.",
       },
       {
         icon: "shield",
@@ -278,7 +272,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para consultorios (opcional)",
         description:
-          "Campañas para pacientes nuevos de tu zona y recordatorios de temporada. Se contrata aparte, en plan mensual con precio publicado.",
+          "Campañas para pacientes nuevos de tu zona y campañas de temporada. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año de consulta, y qué hace el sistema en cada tramo",
@@ -307,7 +301,7 @@ const es: SegmentDict = {
       {
         question: "¿Puedo poner precios o es mejor no publicarlos?",
         answer:
-          "Depende de tu práctica, y lo decidimos juntos. Publicar el precio de la primera consulta filtra a quien no iba a agendar y te quita la mitad de los mensajes. En tratamientos que se cotizan caso por caso, usamos rangos o «desde», que da claridad sin cerrarte.",
+          "Depende de tu práctica, y lo decidimos juntos. Publicar el precio de la primera consulta filtra a quien no iba a agendar y te ahorra muchos mensajes. En tratamientos que se cotizan caso por caso, usamos rangos o «desde», que da claridad sin cerrarte.",
       },
       {
         question: "¿La agenda en línea se conecta con la que ya uso?",
@@ -327,7 +321,7 @@ const es: SegmentDict = {
       {
         question: "¿Cómo conseguir más pacientes desde internet?",
         answer:
-          "Apareciendo cuando alguien busca tu especialidad en tu ciudad, y quitando la fricción entre esa búsqueda y la cita. En la práctica: una página por especialidad, agenda en línea abierta las 24 horas y recordatorios que reducen las faltas. Sin eso, más visitas solo significa más mensajes sin contestar.",
+          "Apareciendo cuando alguien busca tu especialidad en tu ciudad, y quitando la fricción entre esa búsqueda y la cita. En la práctica: una página por especialidad, y un sistema de agenda de citas automático abierto las 24 horas. Sin eso, más visitas solo significa más mensajes sin contestar.",
       },
     ],
     ctaTitle: "20 minutos para revisar tu agenda",
@@ -344,7 +338,7 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Abogados y Consultores | ProCode Dev",
       description:
-        "Diseño web para servicios profesionales, abogados, despachos y consultores: formulario de calificación, marketing digital y SEO local. Precios públicos.",
+        "Diseño web para servicios profesionales, abogados, despachos y consultores: formulario de calificación, marketing digital y SEO local. Precios base publicados.",
       keywords:
         "diseño web para servicios profesionales, diseño web para abogados, página web para abogados, páginas web para despachos, sitio web para consultores, página web para agentes de seguros, marketing digital para consultores, SEO local para servicios profesionales, agencia de marketing para abogados, captación de clientes para abogados",
     },
@@ -353,7 +347,7 @@ const es: SegmentDict = {
     heroHighlight: "profesionales y despachos",
     heroSubtitle: "Confianza antes de la llamada.",
     intro:
-      "Sitio web, captación, formulario de calificación, agenda y avisos al instante para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
+      "Sitio web, captación, formulario de calificación y agenda de citas para abogados, agentes de seguros, consultores, asesores y profesionales que venden su criterio.",
     projectId: "cristian-posada",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Un profesional que vende criterio, y lo",
@@ -405,15 +399,15 @@ const es: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Aviso inmediato de cada consulta",
+        title: "Cada consulta con contexto",
         description:
-          "Cada solicitud te llega a tu WhatsApp y a tu correo en el momento, ya calificada y con el contexto del asunto, para que sepas a quién contestar primero.",
+          "El formulario pide el tipo de asunto y lo esencial del caso, para que sepas a quién contestar primero.",
       },
       {
         icon: "zap",
         title: "Marketing para servicios profesionales (opcional)",
         description:
-          "Campañas y contenido para atraer el tipo de caso que sí te conviene. Se contrata aparte, en plan mensual con precio publicado.",
+          "Campañas y contenido para atraer el tipo de caso que sí te conviene. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año profesional, y qué hace el sistema en cada tramo",
@@ -452,7 +446,7 @@ const es: SegmentDict = {
       {
         question: "¿Sirve si trabajo solo, sin equipo?",
         answer:
-          "Es donde más rinde. Un profesional solo no puede contestar mientras está en audiencia o con un cliente: la calificación previa y el aviso inmediato de cada consulta son el asistente que no puedes contratar todavía.",
+          "Es donde más rinde. Un profesional solo no puede contestar mientras está en audiencia o con un cliente: la calificación previa y la agenda en línea son el asistente que no puedes contratar todavía.",
       },
       {
         question: "¿Puede quedar en inglés y en español?",
@@ -462,7 +456,7 @@ const es: SegmentDict = {
       {
         question: "¿Cómo conseguir clientes siendo abogado o consultor independiente?",
         answer:
-          "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y un aviso inmediato de cada consulta para que contestes antes que nadie. La captación de clientes para abogados falla casi siempre en la velocidad de respuesta, no en la publicidad.",
+          "Con una página por área de práctica en vez de una sola de «servicios», un formulario que califique el caso antes de que agendes, y una agenda en línea para que el cliente reserve sin esperar. La captación de clientes para abogados falla casi siempre en la velocidad de respuesta, no en la publicidad.",
       },
     ],
     ctaTitle: "20 minutos para revisar tu captación",
@@ -488,7 +482,7 @@ const es: SegmentDict = {
     heroHighlight: "inmobiliarias y asesores",
     heroSubtitle: "Tu marca, no solo portales.",
     intro:
-      "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, agenda de visitas y avisos al instante para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
+      "Sitio web con catálogo de propiedades, fichas detalladas, formulario de prospecto calificado, y agenda de visitas para asesores inmobiliarios, inmobiliarias y desarrolladoras.",
     projectId: "demo-inmobiliaria",
     projectEyebrow: "// proyecto en tu giro",
     projectTitle: "Cómo se ve un catálogo inmobiliario",
@@ -540,15 +534,15 @@ const es: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Aviso inmediato de cada prospecto",
+        title: "Prospectos con contexto",
         description:
-          "Cada formulario llega a tu teléfono en el momento, con presupuesto, zona y tiempo de compra ya capturados, para que llames mientras el interés está caliente.",
+          "El formulario captura presupuesto, zona y tiempo de compra, para que sepas a quién llamar primero.",
       },
       {
         icon: "zap",
         title: "Marketing inmobiliario (opcional)",
         description:
-          "Campañas por propiedad y por zona para captar compradores y vendedores. Se contrata aparte, en plan mensual con precio publicado.",
+          "Campañas por propiedad y por zona para captar compradores y vendedores. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año inmobiliario, y qué hace el sistema en cada tramo",
@@ -618,7 +612,7 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Contadores y Despachos | ProCode Dev",
       description:
-        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, avisos al instante y SEO local para contadores.",
+        "Diseño web para contadores, despachos contables y preparadores de impuestos: intake de documentos, agenda de citas y SEO local para contadores.",
       keywords:
         "diseño web para contadores, diseño web para despachos contables, páginas web para preparadores de impuestos, páginas web para bookkeepers, marketing digital para contadores, SEO local para contadores, agencia de marketing para despachos contables, página web para despachos contables, página web para contadores, intake de documentos, cómo conseguir clientes para un despacho contable",
     },
@@ -627,7 +621,7 @@ const es: SegmentDict = {
     heroHighlight: "contadores y despachos contables",
     heroSubtitle: "Clientes todo el año.",
     intro:
-      "Sitio web, Perfil de Empresa en Google, intake de documentos, agenda y avisos al instante para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
+      "Sitio web, Perfil de Empresa en Google, intake de documentos y agenda de citas para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
     projectId: "miconta",
     projectEyebrow: "// caso de éxito en tu giro",
     projectTitle: "Un despacho contable que ya está",
@@ -669,13 +663,13 @@ const es: SegmentDict = {
         icon: "calendar",
         title: "Agenda que sobrevive a la temporada",
         description:
-          "Citas en línea conectadas a tu calendario, con bloques distintos para personas y para negocios, recordatorios automáticos y aviso de documentos faltantes 48 horas antes.",
+          "Sistema de agenda de citas automático, con bloques distintos para personas y para negocios.",
       },
       {
         icon: "repeat",
-        title: "Aviso inmediato con los documentos ya cargados",
+        title: "Documentos desde el primer contacto",
         description:
-          "Cada intake te llega al instante con la lista de documentos que el cliente ya subió, para que sepas qué declaraciones puedes empezar hoy.",
+          "El cliente sube sus documentos desde el formulario de intake, para que sepas qué declaraciones puedes empezar.",
       },
       {
         icon: "target",
@@ -687,7 +681,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para despachos fiscales (opcional)",
         description:
-          "Campañas antes de la temporada y contenido que trae declaraciones nuevas. Se contrata aparte, en plan mensual con precio publicado.",
+          "Campañas antes de la temporada y contenido que trae declaraciones nuevas. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu calendario, y qué hace el sistema en cada tramo",
@@ -764,7 +758,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Chosen before they meet you.",
     intro:
-      "Website, Google Business Profile, quote form and instant alerts for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
+      "Website, Google Business Profile, quote form and local SEO for contractors, builders, remodeling, plumbing, electrical, roofing and landscaping.",
     projectId: "izcalli",
     projectEyebrow: "// a project in your industry",
     projectTitle: "A construction company in your industry that's already",
@@ -824,7 +818,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Contractor marketing (optional)",
         description:
-          "Local campaigns and seasonal ads to fill the slow weeks. Hired separately, as a monthly plan with published pricing.",
+          "Local campaigns and seasonal ads to fill the slow weeks. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your building year, and what the system does in each stretch",
@@ -837,7 +831,7 @@ const en: SegmentDict = {
       },
       {
         label: "Apr – Jun",
-        note: "Peak season: automatic quoting and same-day replies.",
+        note: "Peak season: a quote form that filters before you drive out.",
       },
       {
         label: "Jul – Sep",
@@ -863,7 +857,7 @@ const en: SegmentDict = {
       {
         question: "Does this work if I'm solo or have two helpers?",
         answer:
-          "That's where it pays off most. A solo contractor can't answer while on a roof: the form and the automatic reply are the assistant you can't hire yet.",
+          "That's where it pays off most. A solo contractor can't answer while on a roof: the qualifying form and online booking are the assistant you can't hire yet.",
       },
       {
         question: "Can it be in English and Spanish?",
@@ -878,7 +872,7 @@ const en: SegmentDict = {
       {
         question: "How do I get more contractor leads without relying on referrals?",
         answer:
-          "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and an instant alert on your phone the moment someone asks for a quote. That's the contractor lead generation that carries you through a slow season.",
+          "Three pieces working together: showing up when someone searches your trade in your city, a form that qualifies before you drive out, and reviews that build trust before the first call. That's the contractor lead generation that carries you through a slow season.",
       },
     ],
     ctaTitle: "20 minutes before your next busy season",
@@ -895,7 +889,7 @@ const en: SegmentDict = {
       title:
         "Therapist & Medical Practice Web Design | ProCode Dev",
       description:
-        "Therapist, psychologist and nutritionist website design with online booking, reminders and local SEO for therapists. Public pricing, no 12-month contracts.",
+        "Therapist, psychologist and nutritionist website design with an appointment booking system and local SEO for therapists. Published base pricing, no 12-month contracts.",
       keywords:
         "therapist website design, psychologist website design, nutritionist website design, medical practice website design, healthcare website design, local SEO for therapists, marketing agency for therapists, digital marketing for therapists, online booking for patients, get more therapy clients",
     },
@@ -904,7 +898,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "They book without asking.",
     intro:
-      "Website, online booking, first-visit intake form and appointment reminders for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
+      "Website, an automatic appointment booking system and a first-visit intake form for clinics, private practices, nutritionists, dentists, psychologists, physical therapists and therapists.",
     projectId: "fersilva",
     projectEyebrow: "// a project in your industry",
     projectTitle: "A health practice that's already",
@@ -912,7 +906,7 @@ const en: SegmentDict = {
     projectWhy:
       "Fernanda Silva is the private-practice case: she explained her service over chat again and again, and now patients arrive informed and book on their own.",
     projectPoints: [
-      "Services explained with what's included and how long they take — that alone removes half the messages.",
+      "Services explained with what's included and how long they take — that alone cuts many of the usual messages.",
       "Online booking so the patient picks a slot without having to ask you.",
       "Training and approach in plain sight, because in health trust is decided before first contact.",
     ],
@@ -949,12 +943,6 @@ const en: SegmentDict = {
           "Details, reason for the visit, history and whatever else you need to ask, answered before the patient walks in.",
       },
       {
-        icon: "repeat",
-        title: "Automatic appointment reminders",
-        description:
-          "A reminder 24 hours before the visit, sent by the booking system itself, to cut no-shows.",
-      },
-      {
         icon: "shield",
         title: "Credentials, license and reviews in plain sight",
         description:
@@ -964,7 +952,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Medical practice marketing (optional)",
         description:
-          "Campaigns for new patients in your area and seasonal reminders. Hired separately, as a monthly plan with published pricing.",
+          "Campaigns for new patients in your area and seasonal campaigns. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your practice year, and what the system does in each stretch",
@@ -993,7 +981,7 @@ const en: SegmentDict = {
       {
         question: "Should I publish prices or leave them off?",
         answer:
-          "It depends on your practice, and we decide together. Publishing the first-visit price filters out people who were never going to book and removes half your messages. For treatments quoted case by case, we use ranges or «from», which gives clarity without boxing you in.",
+          "It depends on your practice, and we decide together. Publishing the first-visit price filters out people who were never going to book and cuts many of your messages. For treatments quoted case by case, we use ranges or «from», which gives clarity without boxing you in.",
       },
       {
         question: "Does online booking connect to what I already use?",
@@ -1013,7 +1001,7 @@ const en: SegmentDict = {
       {
         question: "How do I get more therapy clients from the internet?",
         answer:
-          "You get more therapy clients by showing up when someone searches your specialty in your city, and removing the friction between that search and the appointment. In practice: a page per specialty, booking open 24 hours a day and reminders that cut no-shows. Healthcare website design that skips those three only buys you more unanswered messages.",
+          "You get more therapy clients by showing up when someone searches your specialty in your city, and removing the friction between that search and the appointment. In practice: a page per specialty, and an automatic booking system open 24 hours a day. Healthcare website design that skips those three only buys you more unanswered messages.",
       },
     ],
     ctaTitle: "20 minutes to review your calendar",
@@ -1030,7 +1018,7 @@ const en: SegmentDict = {
       title:
         "Attorney & Consultant Website Design | ProCode Dev",
       description:
-        "Attorney and consultant website design with a qualifying form, digital marketing for consultants and local SEO for professional services. Public pricing.",
+        "Attorney and consultant website design with a qualifying form, digital marketing for consultants and local SEO for professional services. Published base pricing.",
       keywords:
         "attorney website design, law firm website design, consultant website design, insurance agent website, digital marketing for consultants, local SEO for professional services, marketing agency for attorneys, client acquisition for attorneys, personal brand website",
     },
@@ -1039,7 +1027,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Trust before the first call.",
     intro:
-      "Website, client acquisition, qualifying form, scheduling and instant alerts for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
+      "Website, client acquisition, qualifying form and appointment booking for attorneys, insurance agents, consultants, advisors and professionals who sell their judgment.",
     projectId: "cristian-posada",
     projectEyebrow: "// a project in your industry",
     projectTitle: "A professional who sells judgment, and",
@@ -1091,15 +1079,15 @@ const en: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Instant alert on every inquiry",
+        title: "Every inquiry with context",
         description:
-          "Every request lands in your WhatsApp and inbox the moment it arrives, already qualified and with the context of the matter, so you know who to answer first.",
+          "The form asks for the type of matter and the essentials of the case, so you know who to answer first.",
       },
       {
         icon: "zap",
         title: "Professional services marketing (optional)",
         description:
-          "Campaigns and content to attract the kind of case that's worth your time. Hired separately, as a monthly plan with published pricing.",
+          "Campaigns and content to attract the kind of case that's worth your time. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your professional year, and what the system does in each stretch",
@@ -1138,7 +1126,7 @@ const en: SegmentDict = {
       {
         question: "Does this work if I practice solo, with no team?",
         answer:
-          "That's where it pays off most. A solo professional can't answer while in a hearing or with a client: pre-qualification and the instant alert on every inquiry are the assistant you can't hire yet.",
+          "That's where it pays off most. A solo professional can't answer while in a hearing or with a client: pre-qualification and online booking are the assistant you can't hire yet.",
       },
       {
         question: "Can it be in English and Spanish?",
@@ -1148,7 +1136,7 @@ const en: SegmentDict = {
       {
         question: "How do I get clients as a solo attorney or consultant?",
         answer:
-          "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and an instant alert on every inquiry so you answer before anyone else does. Client acquisition for attorneys almost always breaks on response speed, not on the ad.",
+          "A page per practice area instead of one generic “services” page, a form that qualifies the matter before you book, and online booking so the client can reserve without waiting. Client acquisition for attorneys almost always breaks on response speed, not on the ad.",
       },
     ],
     ctaTitle: "20 minutes to review your client acquisition",
@@ -1165,7 +1153,7 @@ const en: SegmentDict = {
       title:
         "Real Estate & Realtor Website Design | ProCode Dev",
       description:
-        "Real estate website design for realtors and agents: property catalog, direct lead capture and local SEO for realtors. Public pricing, no 12-month contracts.",
+        "Real estate website design for realtors and agents: property catalog, direct lead capture and local SEO for realtors. Published base pricing, no 12-month contracts.",
       keywords:
         "real estate website design, realtor website design, website design for real estate agents, digital marketing for realtors, local SEO for realtors, real estate marketing agency, real estate lead generation, property catalog website, real estate landing page design, get real estate leads",
     },
@@ -1174,7 +1162,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Your brand, not just portals.",
     intro:
-      "Website with property catalog, detailed listing pages, qualified lead form, showing scheduler and instant alerts for real estate agents, brokerages and developers.",
+      "Website with property catalog, detailed listing pages, qualified lead form, and showing scheduler for real estate agents, brokerages and developers.",
     projectId: "demo-inmobiliaria",
     projectEyebrow: "// a project in your industry",
     projectTitle: "What a well-structured real estate",
@@ -1226,15 +1214,15 @@ const en: SegmentDict = {
       },
       {
         icon: "repeat",
-        title: "Instant alert on every lead",
+        title: "Leads with context",
         description:
-          "Every form reaches your phone the moment it arrives, with budget, area and buying timeline already captured, so you can call while the interest is warm.",
+          "The form captures budget, area and buying timeline, so you know who to call first.",
       },
       {
         icon: "zap",
         title: "Real estate marketing (optional)",
         description:
-          "Per-property and per-area campaigns to win buyers and sellers. Hired separately, as a monthly plan with published pricing.",
+          "Per-property and per-area campaigns to win buyers and sellers. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your real estate year, and what the system does in each stretch",
@@ -1300,7 +1288,7 @@ const en: SegmentDict = {
       title:
         "Tax Preparer & Accountant Web Design | ProCode Dev",
       description:
-        "Tax preparer and accountant website design: document intake, instant alerts and local SEO for tax preparers. Public pricing and no 12-month contracts.",
+        "Tax preparer and accountant website design: document intake, appointment booking and local SEO for tax preparers. Published base pricing and no 12-month contracts.",
       keywords:
         "tax preparer website design, accountant website design, accounting firm website design, bookkeeper website design, bilingual accountant website, digital marketing for accountants, local SEO for tax preparers, marketing agency for tax preparers, document intake for accountants, get more tax preparation clients",
     },
@@ -1309,7 +1297,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Clients all year, not weeks.",
     intro:
-      "Website, Google Business Profile, document intake, scheduling and instant alerts for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
+      "Website, Google Business Profile, document intake and appointment booking for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
     projectId: "miconta",
     projectEyebrow: "// a case study in your industry",
     projectTitle: "An accounting firm that's already",
@@ -1351,13 +1339,13 @@ const en: SegmentDict = {
         icon: "calendar",
         title: "Scheduling that survives the season",
         description:
-          "Online booking connected to your calendar, with separate blocks for individuals and businesses, automatic reminders and a missing-documents notice 48 hours out.",
+          "An automatic appointment booking system, with separate blocks for individuals and businesses.",
       },
       {
         icon: "repeat",
-        title: "Instant alert with the documents already uploaded",
+        title: "Documents from the first contact",
         description:
-          "Every intake reaches you the moment it lands, with the documents the client already uploaded, so you know which returns you can start today.",
+          "The client uploads their documents through the intake form, so you know which returns you can start.",
       },
       {
         icon: "target",
@@ -1369,7 +1357,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Tax practice marketing (optional)",
         description:
-          "Pre-season campaigns and content that brings in new returns. Hired separately, as a monthly plan with published pricing.",
+          "Pre-season campaigns and content that brings in new returns. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your calendar, and what the system does in each stretch",
@@ -1382,7 +1370,7 @@ const en: SegmentDict = {
       },
       {
         label: "Jan – Apr",
-        note: "Peak acquisition, automatic intake and a full calendar.",
+        note: "Peak acquisition, online document intake and a full calendar.",
       },
       {
         label: "May – Aug",
@@ -1403,7 +1391,7 @@ const en: SegmentDict = {
       {
         question: "Does this help if I work alone, from home?",
         answer:
-          "That's exactly where it pays off most. A solo preparer has nobody answering while they're working on a return: automatic document intake is the assistant you can't hire mid-season.",
+          "That's exactly where it pays off most. A solo preparer has nobody answering while they're working on a return: online document intake is the assistant you can't hire mid-season.",
       },
       {
         question: "Does it work the same in Mexico as in the U.S.?",

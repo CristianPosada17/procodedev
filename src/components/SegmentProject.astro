@@ -49,7 +49,7 @@ const project = t.portfolio.projects.find((p) => p.id === x.projectId);
           >
             <img
               src={project.image}
-              alt={`Sitio web de ${project.name}`}
+              alt={`${t.portfolio.imageAltPrefix} ${project.name}`}
               loading="lazy"
               decoding="async"
               width="1200"

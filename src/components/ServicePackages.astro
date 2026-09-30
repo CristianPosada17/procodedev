@@ -101,7 +101,7 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
               data-plan={
                 item.quoteLabel
                   ? `${item.name} — ${item.quoteLabel}`
-                  : `${item.name} — $${item.price} ${item.currency}`
+                  : `${item.name} — ${item.pricePrefix ? item.pricePrefix + " " : ""}$${item.price} ${item.currency}`
               }
               data-cta={`paquete-${item.name}`}
               class:list={[
@@ -136,7 +136,7 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
             <p class="text-sm font-bold text-[var(--text)]">{p.aside.title}</p>
             <p class="mt-2 text-sm leading-7 text-[var(--muted)]">{p.aside.body}</p>
             <a
-              href={PAGES.pricing[lang]}
+              href={PAGES.maintenance[lang]}
               data-cta="paquetes-soporte-web"
               class="mt-3 inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)] transition hover:underline"
             >

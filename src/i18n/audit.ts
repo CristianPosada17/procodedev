@@ -186,10 +186,10 @@ const auditEs: AuditContent = {
     freeTitle: "Revisión Express · gratis",
     freeItems: [
       "Lo que se ve desde fuera, sin accesos a nada tuyo",
-      "Vídeo de 3 minutos con lo que encontré al buscar tu servicio",
-      "Llamada de 20 minutos para comentarlo",
+      "Videollamada de 20 minutos con lo que encontré al buscar tu servicio",
+      "3 prioridades claras para saber qué corregir primero",
       "Responde: «¿tengo un problema evidente?»",
-      "Te la entrego dentro de las 24 h de que agendes",
+      "La preparo antes de la llamada que agendas",
     ],
     freeCta: "Agendar la Revisión Express",
     paidTitle: "Auditoría Estratégica Integral",
@@ -273,7 +273,7 @@ const auditEs: AuditContent = {
         icon: "clipboard-check",
         title: "Captación y respuesta al prospecto",
         description:
-          "Qué le pasa a un prospecto desde que te escribe: por dónde entra, qué datos le pides, si el aviso te llega y a dónde, cuánto tardas en contestar y cuántos se pierden por el camino sin que nadie se entere. Se audita tu proceso, tal como está hoy.",
+          "Qué le pasa a un prospecto desde que te escribe: por dónde entra, qué datos le pides, si el mensaje te llega y a dónde, cuánto tardas en contestar y cuántos se pierden por el camino sin que nadie se entere. Se audita tu proceso, tal como está hoy.",
       },
       {
         icon: "bar-chart",
@@ -374,7 +374,7 @@ const auditEs: AuditContent = {
     noTitle: "No la compres si",
     no: [
       "No tienes página todavía: no hay nada que auditar, ahí lo que toca es el desarrollo web.",
-      "Ya vas a contratar desarrollo web, SEO o marketing digital: en ese caso la auditoría es el primer paso del proyecto y va dentro de su cotización, no se paga aparte.",
+      "Ya vas a contratar desarrollo web, SEO o marketing digital: el diagnóstico que necesita ese servicio va dentro del proyecto y su alcance queda en la propuesta.",
       "Ya sabes qué está mal y solo necesitas que alguien lo ejecute. Pídeme presupuesto directo.",
       "Buscas un informe que respalde una decisión que ya tomaste. Te voy a decir lo que encuentre, no lo que quieras leer.",
       "Esperas que la auditoría por sí sola traiga clientes. Es un mapa: alguien tiene que caminar la ruta después.",
@@ -391,12 +391,12 @@ const auditEs: AuditContent = {
       {
         question: "Si contrato desarrollo web, SEO o marketing, ¿tengo que pagar la auditoría aparte?",
         answer:
-          "No se contrata aparte. Para trabajar bien en cualquiera de esos servicios hay que auditar primero: no se puede hacer SEO sin saber qué busca tu cliente y qué tienes hoy, ni montar campañas sobre una página que no sabemos si convierte. Así que la auditoría es la primera fase de ese proyecto y su alcance va dentro de la cotización.",
+          "El diagnóstico que ese servicio necesita no se paga aparte: no se puede hacer SEO sin saber qué busca tu cliente y qué tienes hoy, ni montar campañas sobre una página que no sabemos si convierte. Ese diagnóstico es la primera fase del proyecto, con el alcance que corresponde al servicio contratado, y va dentro de su cotización. La Auditoría Estratégica Integral completa —doce áreas y roadmap 30/60/90— es otra cosa: se incluye solo si la propuesta lo indica, o se contrata por separado.",
       },
       {
         question: "¿En qué se diferencia de la Revisión Express, que es gratis?",
         answer:
-          "En la profundidad y en los datos. La Revisión Express la hago desde fuera, sin acceso a nada tuyo: busco tu servicio en tu ciudad, veo qué aparece y te lo grabo en tres minutos. Sirve para detectar lo evidente. La Auditoría Estratégica Integral son cinco días con tus accesos —Analytics, Search Console, tu Perfil de Empresa, tus campañas— revisando doce áreas, haciendo el keyword research y el análisis de competencia, y entregándote una estrategia priorizada con roadmap 30/60/90. Si nunca hemos hablado, empieza por la gratis: si con eso te basta, te lo diré.",
+          "En la profundidad y en los datos. La Revisión Express la hago desde fuera, sin acceso a nada tuyo: busco tu servicio en tu ciudad, veo qué aparece y te lo muestro en una videollamada de 20 minutos. Sirve para detectar lo evidente. La Auditoría Estratégica Integral son cinco días con tus accesos —Analytics, Search Console, tu Perfil de Empresa, tus campañas— revisando doce áreas, haciendo el keyword research y el análisis de competencia, y entregándote una estrategia priorizada con roadmap 30/60/90. Si nunca hemos hablado, empieza por la gratis: si con eso te basta, te lo diré.",
       },
       {
         question: "¿Por qué no publicas el precio de la auditoría?",
@@ -505,10 +505,10 @@ const auditEn: AuditContent = {
     freeTitle: "Express Review · free",
     freeItems: [
       "What is visible from the outside, with no access to anything of yours",
-      "A 3-minute video of what I found searching for your service",
-      "A 20-minute call to talk it through",
+      "A 20-minute video call on what I found searching for your service",
+      "3 clear priorities so you know what to fix first",
       "Answers: \"do I have an obvious problem?\"",
-      "Delivered within 24 h of booking",
+      "Prepared before the call you book",
     ],
     freeCta: "Book the Express Review",
     paidTitle: "Strategic Business Audit",
@@ -592,7 +592,7 @@ const auditEn: AuditContent = {
         icon: "clipboard-check",
         title: "Intake and lead response",
         description:
-          "What happens to a lead from the moment they write: where they come in, what you ask them for, whether the alert reaches you and where, how long you take to reply and how many slip away without anyone noticing. Your process gets audited exactly as it stands today.",
+          "What happens to a lead from the moment they write: where they come in, what you ask them for, whether the message reaches you and where, how long you take to reply and how many slip away without anyone noticing. Your process gets audited exactly as it stands today.",
       },
       {
         icon: "bar-chart",
@@ -693,7 +693,7 @@ const auditEn: AuditContent = {
     noTitle: "Do not buy it if",
     no: [
       "You do not have a site yet: there is nothing to audit, that is web development.",
-      "You are already hiring web development, SEO or digital marketing: the audit is the first phase of that project and sits inside its quote, not billed separately.",
+      "You are already hiring web development, SEO or digital marketing: the diagnosis that service needs is part of the project and its scope is set in the proposal.",
       "You already know what is wrong and just need someone to execute. Ask me for a quote directly.",
       "You want a report that backs a decision you already made. I will tell you what I find, not what you want to read.",
       "You expect the audit on its own to bring clients. It is a map: somebody still has to walk the route.",
@@ -710,12 +710,12 @@ const auditEn: AuditContent = {
       {
         question: "If I hire web development, SEO or marketing, do I pay for the audit separately?",
         answer:
-          "It is not contracted separately. Doing any of those services properly means auditing first: you cannot do SEO without knowing what your client searches and what you have today, and you cannot run campaigns into a page nobody has checked converts. So the audit is the first phase of that project and its scope sits inside the quote.",
+          "The diagnosis that service needs is not billed separately: you cannot do SEO without knowing what your client searches and what you have today, and you cannot run campaigns into a page nobody has checked converts. That diagnosis is the first phase of the project, scoped to the service you hire, and sits inside its quote. The full Strategic Business Audit — twelve areas and a 30/60/90 roadmap — is something else: it is included only if the proposal says so, or hired separately.",
       },
       {
         question: "How is it different from the Express Review, which is free?",
         answer:
-          "In depth and in data. I do the Express Review from the outside, with no access to anything of yours: I search for your service in your city, see what comes up and record it in three minutes. It catches the obvious. The Strategic Business Audit is five days with your access — Analytics, Search Console, your Business Profile, your campaigns — covering twelve areas, doing the keyword research and the competitor analysis, and handing you a prioritized strategy with a 30/60/90 roadmap. If we have never spoken, start with the free one: if that is enough, I will tell you.",
+          "In depth and in data. I do the Express Review from the outside, with no access to anything of yours: I search for your service in your city, see what comes up and show it to you on a 20-minute video call. It catches the obvious. The Strategic Business Audit is five days with your access — Analytics, Search Console, your Business Profile, your campaigns — covering twelve areas, doing the keyword research and the competitor analysis, and handing you a prioritized strategy with a 30/60/90 roadmap. If we have never spoken, start with the free one: if that is enough, I will tell you.",
       },
       {
         question: "Why don't you publish a price for the audit?",

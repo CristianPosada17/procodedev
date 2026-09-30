@@ -83,7 +83,7 @@ Lo primero que pregunta todo el mundo, así que va sin rodeos: **no cuesta el do
 
 Nazca es la palabra clave. Añadir el segundo idioma a un sitio que no se planeó para eso —sobre todo si está en un constructor visual— cuesta bastante más que haberlo hecho desde el principio, porque hay que rehacer las URLs, los menús y las plantillas.
 
-En mi caso los precios están publicados y son los mismos con uno o con dos idiomas cuando se contrata así: [una landing page cuesta $349 USD y un sitio de 4 a 6 páginas $899 USD](/precios/). Puedes ver la lista completa sin llamada de ventas de por medio.
+En mi caso los precios base están publicados: [una landing page desde $349 USD y un sitio de 4 a 6 páginas desde $899 USD](/precios/). Si el sitio va en dos idiomas, cómo se cuentan las páginas y quién traduce se confirma en la propuesta, antes de iniciar. Puedes ver la lista completa sin llamada de ventas de por medio.
 
 ## Los errores que más veo
 
@@ -100,4 +100,4 @@ Programo sitios bilingües a la medida, no plantillas con plugin: dos versiones 
 
 Si quieres ver cómo queda esto aplicado a un giro concreto, aquí está el detalle para [contratistas](/contratistas/) y la guía de [marketing digital para contratistas hispanos en Estados Unidos](/blog/marketing-digital-para-contratistas-hispanos-estados-unidos/), que es el orden completo en el que conviene invertir. Y si además atiendes varias ciudades, el siguiente paso natural es la guía de [la zona de servicio en Google para varios condados](/blog/zona-de-servicio-google-varios-condados-texas-florida/): ahí se explica cómo se cubre territorio de verdad, en los dos idiomas.
 
-Y si prefieres empezar por saber qué encuentra hoy un cliente cuando te busca en español, agenda la Revisión Express: reviso tu presencia, te lo grabo en un vídeo de tres minutos y lo comentamos quince minutos por llamada. Es gratis, y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.
+Y si prefieres empezar por saber qué encuentra hoy un cliente cuando te busca en español, agenda la Revisión Express: reviso tu presencia, en una videollamada de 20 minutos te muestro 3 prioridades. Es gratis, y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.

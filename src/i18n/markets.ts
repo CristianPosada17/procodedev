@@ -247,7 +247,7 @@ const texasEs: Market = {
         icon: "message-circle",
         title: "WhatsApp, no un portal de tickets",
         description:
-          "El seguimiento va por WhatsApp y por llamada, como trabajas tú. Respondo cualquier mensaje en menos de 24 horas y normalmente mucho antes.",
+          "La comunicación va por WhatsApp y por llamada, como trabajas tú. Respondo cualquier mensaje en menos de 24 horas y normalmente mucho antes.",
       },
       {
         icon: "lock",
@@ -277,7 +277,7 @@ const texasEs: Market = {
       {
         question: "¿Cómo se paga desde Estados Unidos?",
         answer:
-          "En dólares, por transferencia o por enlace de pago, con factura por cada pago. Los precios publicados son en USD y son los que aplican: landing $349, sitio de 4 a 6 páginas $899 y desde $1,499 el de 8 a 12 páginas.",
+          "En dólares, por transferencia o por enlace de pago, con factura por cada pago. Los precios base publicados son en USD: landing desde $349, sitio de 4 a 6 páginas desde $899 y de 8 a 12 páginas desde $1,499. El total se confirma antes de iniciar.",
       },
       {
         question: "¿Sabes cómo busca un cliente en Houston o Dallas?",
@@ -385,7 +385,7 @@ const floridaEs: Market = {
         icon: "calendar",
         title: "El sitio tiene que aguantar la temporada",
         description:
-          "De junio a noviembre la demanda de techos, restauración y poda se multiplica en cuestión de días. La página se prepara antes: formulario de emergencia, disponibilidad visible y aviso inmediato en tu teléfono para no perder mensajes en el pico.",
+          "De junio a noviembre la demanda de techos, restauración y poda se multiplica en cuestión de días. La página se prepara antes: formulario de emergencia y disponibilidad visible, listos antes del pico.",
       },
       {
         icon: "shield",
@@ -441,7 +441,7 @@ const floridaEs: Market = {
       {
         question: "¿Cómo se paga desde Florida?",
         answer:
-          "En dólares, por transferencia o enlace de pago, con factura por cada pago. Los precios publicados en el sitio son los que aplican, sin cargo por distancia ni por cambio de moneda.",
+          "En dólares, por transferencia o enlace de pago, con factura por cada pago. Los precios base publicados son los mismos para cualquier cliente, sin cargo por distancia ni por cambio de moneda.",
       },
       {
         question: "¿Trabajas con negocios de Miami estando en México?",
@@ -492,7 +492,7 @@ const californiaEs: Market = {
     lead:
       "Aquí todo cuesta más: el clic, la renta y la agencia. La salida no es gastar más, es no pagar estructura.",
     points: [
-      { title: "Sin costo de oficina", text: "Precios publicados, los mismos para todos." },
+      { title: "Sin costo de oficina", text: "Precios base publicados, los mismos para todos." },
       { title: "El español como ventaja", text: "Donde la empresa grande usa un plugin." },
       { title: "Primero lo orgánico", text: "Ficha y reseñas antes que los anuncios." },
     ],
@@ -515,7 +515,7 @@ const californiaEs: Market = {
         segment: "health",
         title: "Salud y bienestar",
         description:
-          "Consultorios, clínicas dentales, nutrición y terapia. Agenda en línea, recordatorios y una versión en español que el paciente entienda a la primera; el marketing digital en California empieza aquí por las reseñas.",
+          "Consultorios, clínicas dentales, nutrición y terapia. Sistema de agenda de citas automático y una versión en español que el paciente entienda a la primera; el marketing digital en California empieza aquí por las reseñas.",
       },
       {
         icon: "briefcase",
@@ -575,7 +575,7 @@ const californiaEs: Market = {
         icon: "receipt",
         title: "Sin costo de estructura en el precio",
         description:
-          "No hay oficina en el estado, ni cuentas de gestor, ni comisión sobre tu inversión publicitaria. Los precios están publicados y son los mismos que para cualquier otro cliente: landing $349, sitio de 4 a 6 páginas $899.",
+          "No hay oficina en el estado, ni cuentas de gestor, ni comisión sobre tu inversión publicitaria. Los precios base están publicados y son los mismos que para cualquier otro cliente: landing desde $349, sitio de 4 a 6 páginas desde $899.",
       },
       {
         icon: "lock",
@@ -593,9 +593,9 @@ const californiaEs: Market = {
       "Las dudas que salen cuando un negocio de Los Ángeles o San Diego compara contra una agencia con oficina en el estado.",
     items: [
       {
-        question: "¿Por qué cuestas mucho menos que una agencia de Los Ángeles?",
+        question: "¿Por qué puedes cobrar menos que una agencia con oficina en Los Ángeles?",
         answer:
-          "Porque no pago lo que ella paga. No hay oficina en California, ni ejecutivos de cuenta, ni una capa de gestión entre tú y quien hace el trabajo. El sitio se programa igual de bien; lo que desaparece del precio es la estructura, no el trabajo. Y los precios están publicados para que puedas compararlos sin agendar una llamada.",
+          "Porque no pago lo que ella paga. No hay oficina en California, ni ejecutivos de cuenta, ni una capa de gestión entre tú y quien hace el trabajo. El sitio se programa igual de bien; lo que desaparece del precio es la estructura, no el trabajo. Y los precios base están publicados para que puedas compararlos sin agendar una llamada.",
       },
       {
         question: "¿Trabajas con negocios de California estando en México?",
@@ -644,7 +644,7 @@ const hubEs: MarketsHub = {
     points: [
       { title: "En remoto y en español", text: "Con estándar de agencia y sin su factura." },
       { title: "Sin costo de oficina", text: "No hay estructura en Estados Unidos que pagar." },
-      { title: "Precio publicado", text: "Sin llamada de ventas para saber el número." },
+      { title: "Precio base publicado", text: "Sin llamada de ventas para conocerlo." },
     ],
   },
   listEyebrow: "// mercados",
@@ -679,7 +679,7 @@ const hubEs: MarketsHub = {
         icon: "receipt",
         title: "Pagos en dólares, con factura",
         description:
-          "Transferencia o enlace de pago, con factura por cada pago. Los precios publicados son los que aplican: sin cargo por distancia, sin comisión sobre tu inversión publicitaria.",
+          "Transferencia o enlace de pago, con factura por cada pago. Los precios base publicados son los mismos para todos: sin cargo por distancia, sin comisión sobre tu inversión publicitaria.",
       },
       {
         icon: "lock",
@@ -807,7 +807,7 @@ const texasEn: Market = {
     subtitle: "Hiring a spanish speaking web designer texas businesses can reach does not need us in the same city. Here is how a project runs.",
     items: [
       { icon: "calendar", title: "Same time zone as you", description: "Texas is on Central time, the same as central Mexico for most of the year. When you message mid-morning, it is mid-morning here — no waiting until tomorrow for an answer." },
-      { icon: "message-circle", title: "WhatsApp, not a ticket portal", description: "Follow-up runs on WhatsApp and calls, the way you already work. I answer any message in under 24 hours, usually much sooner." },
+      { icon: "message-circle", title: "WhatsApp, not a ticket portal", description: "Communication runs on WhatsApp and calls, the way you already work. I answer any message in under 24 hours, usually much sooner." },
       { icon: "lock", title: "Everything in your name", description: "Domain, hosting, email and ad accounts are registered to your business with your details. If we ever stop working together, you take all of it without asking me." },
     ],
   },
@@ -819,7 +819,7 @@ const texasEn: Market = {
     items: [
       { question: "Do you work with Texas businesses from Mexico?", answer: "Yes, and it is how I work with most of my clients. The whole process is remote: kickoff call, content over WhatsApp or email, reviews by private link, then launch. Texas shares Central time with central Mexico most of the year, so we overlap for the full working day." },
       { question: "Can you build the site in both English and Spanish?", answer: "Yes, and I recommend it for almost any Houston or San Antonio business. It is not a translate plugin: two real versions on separate URLs with hreflang, each written in its own language. Your Spanish-speaking customers find the Spanish version in Google and your English-speaking customers find the English one." },
-      { question: "How does payment work from the U.S.?", answer: "In dollars, by transfer or payment link, with an invoice for every payment. The published prices are the ones that apply: $349 for a landing page, $899 for a 4-6 page site and from $1,499 for 8-12 pages." },
+      { question: "How does payment work from the U.S.?", answer: "In dollars, by transfer or payment link, with an invoice for every payment. Published base prices: from $349 for a landing page, from $899 for a 4-6 page site and from $1,499 for 8-12 pages. The total is confirmed before starting." },
       { question: "Do you know how a Houston customer actually searches?", answer: "By service plus city, almost always on a phone, comparing the first three map results before calling anyone. That is why the work does not stop at the site: it includes the Google Business Profile, reviews and pages by service and area, which is what decides where you show up." },
       { question: "Do you have Texas clients right now?", answer: "My portfolio is published and you can open every project: construction, health, services and accounting, some in Mexico and some for businesses serving Hispanic customers in the U.S. I am not going to invent a list of Texas clients I do not have — judge the work by the sites you can actually visit." },
     ],
@@ -875,7 +875,7 @@ const floridaEn: Market = {
     subtitle: "A Miami site does not look like a Dallas site. These are the differences that really affect structure and content, and why bilingual web design florida needs its own approach.",
     items: [
       { icon: "globe", title: "Spanish first, English second", description: "In South Florida the Spanish version usually takes the most traffic. It gets written first, with its own URL and its own content, and English becomes the real second version rather than an afterthought." },
-      { icon: "calendar", title: "The site has to survive the season", description: "From June to November, demand for roofing, restoration and tree work multiplies within days. The page is prepared ahead: emergency form, visible availability and an instant alert on your phone so nothing is lost at the peak." },
+      { icon: "calendar", title: "The site has to survive the season", description: "From June to November, demand for roofing, restoration and tree work multiplies within days. The page is prepared ahead: emergency form and visible availability, ready before the peak." },
       { icon: "shield", title: "The state license is a selling point", description: "Florida does license contractors at state level, and customers know it and ask. Putting the license, insurance and service area where they are seen saves half a conversation and filters out price shoppers." },
     ],
   },
@@ -897,7 +897,7 @@ const floridaEn: Market = {
     items: [
       { question: "Can you build the site primarily in Spanish?", answer: "Yes, and in South Florida it is usually the right call. Spanish is written as the primary language, with its own URL, its own copy and its own SEO, and English becomes a real second version. What I will not do is bolt a translate plugin on top: it shows in the first line and costs more than it saves." },
       { question: "Hurricane season is close. Is there time?", answer: "It depends when we start. A landing page for one emergency service ships in two weeks; a 4-6 page site takes three to four. If you are tight on time, the honest move is to launch the landing page and the Google Business Profile first and build the full site while you are already capturing leads." },
-      { question: "How does payment work from Florida?", answer: "In dollars, by transfer or payment link, with an invoice for every payment. The prices published on the site are the ones that apply — no distance surcharge and no currency markup." },
+      { question: "How does payment work from Florida?", answer: "In dollars, by transfer or payment link, with an invoice for every payment. The published base prices are the same for every client — no distance surcharge and no currency markup." },
       { question: "Do you work with Miami businesses from Mexico?", answer: "Yes. The whole process is remote and can run in Spanish or English: kickoff call, content over WhatsApp, reviews by private link, then launch. Florida is only an hour ahead of central Mexico, so we overlap for the full working day." },
       { question: "What about the Google Business Profile if I serve several counties?", answer: "It gets set up as a service area by county rather than a storefront address, which is the correct setup when you travel to the customer. On top of that go dedicated pages by service and by area on the site, which is what holds up ranking beyond the immediate radius of your profile." },
     ],
@@ -931,7 +931,7 @@ const californiaEn: Market = {
     lead:
       "Everything costs more here: the click, the rent and the agency. The way out is not paying for overhead.",
     points: [
-      { title: "No overhead priced in", text: "Published prices, the same for everyone." },
+      { title: "No overhead priced in", text: "Published base prices, the same for everyone." },
       { title: "Spanish as the edge", text: "Where big competitors just run a plugin." },
       { title: "Organic before ads", text: "Profile and reviews first, campaigns after." },
     ],
@@ -942,7 +942,7 @@ const californiaEn: Market = {
     subtitle: "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in california.",
     items: [
       { icon: "building", segment: "contractors", title: "Contractors and home services", description: "Remodeling, landscaping, plumbing, solar and cleaning. Contractor website design california faces heavy paid competition, and the Google profile decides the call." },
-      { icon: "calendar", segment: "health", title: "Health and wellness", description: "Practices, dental clinics, nutrition and therapy. Online booking, reminders and a Spanish version patients understand the first time." },
+      { icon: "calendar", segment: "health", title: "Health and wellness", description: "Practices, dental clinics, nutrition and therapy. An automatic booking system and a Spanish version patients understand the first time." },
       { icon: "briefcase", segment: "professional", title: "Professional services", description: "Attorneys, insurance and high-ticket consulting. Here the site competes on credibility, not on price." },
       { icon: "receipt", segment: "accounting", title: "Accounting and tax", description: "Firms with Hispanic clients and a sharply defined season. Intake sorted out before January, not in March." },
     ],
@@ -963,7 +963,7 @@ const californiaEn: Market = {
     subtitle: "An affordable web design agency california businesses can hire does not need an office in the state. Here is how a project runs in Los Angeles or San Diego.",
     items: [
       { icon: "calendar", title: "Two hours, and in your favor", description: "California runs two hours behind central Mexico. In practice, what you asked for yesterday afternoon is already under way when you open your day, and calls land comfortably in your mid-morning." },
-      { icon: "receipt", title: "No overhead priced into the work", description: "No office in the state, no account managers, no commission on your ad spend. Prices are published and identical to every other client: $349 for a landing page, $899 for a 4-6 page site." },
+      { icon: "receipt", title: "No overhead priced into the work", description: "No office in the state, no account managers, no commission on your ad spend. Base prices are published and identical for every client: from $349 for a landing page, from $899 for a 4-6 page site." },
       { icon: "lock", title: "In your name from day one", description: "Domain, hosting, email and ad accounts are registered with your details. Changing providers should never cost you your own website, and here it never does." },
     ],
   },
@@ -973,7 +973,7 @@ const californiaEn: Market = {
     titleHighlight: "ask first",
     subtitle: "The questions that come up when a Los Angeles or San Diego business compares against an agency with an office in the state.",
     items: [
-      { question: "Why do you cost so much less than a Los Angeles agency?", answer: "Because I do not carry what they carry. No California office, no account executives, no management layer between you and the person doing the work. The site is coded just as well; what leaves the price is the overhead, not the work. And the prices are published so you can compare without booking a call." },
+      { question: "Why can you charge less than an agency with a Los Angeles office?", answer: "Because I do not carry what they carry. No California office, no account executives, no management layer between you and the person doing the work. The site is coded just as well; what leaves the price is the overhead, not the work. And base prices are published so you can compare without booking a call." },
       { question: "Do you work with California businesses from Mexico?", answer: "Yes, the whole process is remote: kickoff call, content over WhatsApp or email, reviews by private link, then launch. California is two hours behind central Mexico, so your mid-morning calls land in my mid-afternoon without either of us leaving our normal hours." },
       { question: "Is it worth running ads in such a competitive market?", answer: "Yes, but not first. California has some of the highest cost per click in the country, and sending paid traffic to a site that does not convert, or to a Google profile with no reviews, gets expensive fast. What I recommend here is to sort out the site, the profile and the reviews, measure for a month, and turn on campaigns once you know which service converts best." },
       { question: "Can you put my CSLB license number on the site?", answer: "Yes, and it belongs on the homepage and on every service page, not only in the footer. Customers in this state are used to verifying it, and seeing it immediately is a trust signal that costs nothing and shows up in conversion." },
@@ -1000,7 +1000,7 @@ const hubEn: MarketsHub = {
     points: [
       { title: "Remote and bilingual", text: "Agency standard without the agency invoice." },
       { title: "No U.S. overhead", text: "Nothing to pay for an office you never visit." },
-      { title: "Price published", text: "No sales call needed to hear the number." },
+      { title: "Base price published", text: "No sales call needed to see it." },
     ],
   },
   listEyebrow: "// markets",
@@ -1020,7 +1020,7 @@ const hubEn: MarketsHub = {
     items: [
       { icon: "calendar", title: "Hours that overlap", description: "Texas shares Central time with central Mexico for most of the year, Florida is an hour ahead and California two behind. We overlap the whole working day, with neither of us starting early." },
       { icon: "message-circle", title: "In your language, with the person doing the work", description: "No account executive and no rotating team. Whoever answers your WhatsApp writes the code and reviews the campaigns, and replies to any message in under 24 hours." },
-      { icon: "receipt", title: "Paid in dollars, with an invoice", description: "Transfer or payment link, with an invoice for every payment. Published prices are the ones that apply: no distance surcharge and no commission on your ad spend." },
+      { icon: "receipt", title: "Paid in dollars, with an invoice", description: "Transfer or payment link, with an invoice for every payment. Published base prices are the same for everyone: no distance surcharge and no commission on your ad spend." },
       { icon: "lock", title: "Everything registered to you", description: "Domain, hosting, email, Google Business Profile and ad accounts are opened with your business details. If you ever change providers, you take all of it without asking anyone." },
       { icon: "globe", title: "Two languages written, not translated", description: "Genuine english and spanish website design on separate URLs, each version with its own copy and its own SEO. That is what lets both of your audiences find you in their own search, and it is the core of my spanish website design services." },
       { icon: "file-text", title: "Price and scope in writing before we start", description: "What the project includes, the delivery date and the exact number go in the proposal. If something falls outside the scope, I tell you before we begin and never halfway through." },

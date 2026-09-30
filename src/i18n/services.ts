@@ -266,11 +266,13 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
       "Español e inglés con URLs separadas",
       "SEO técnico y medición incluidos desde el primer día",
     ],
-    priceLabel: "desde",
+    priceLabel: "Desde",
     price: "349",
-    priceNote: "USD · pago único · landing completa",
+    priceNote: "USD · pago único · landing page",
     timelineLabel: "entrega",
-    timeline: "2 a 4 semanas",
+    timeline: "1 a 6 semanas",
+    timelineNote:
+      "según el tamaño · landing 1–2, sitio de 4–6 págs. 2–4, de 8–12 págs. 4–6 · desde que recibo contenido y accesos",
     cta: "Ver desarrollo web",
     imageBase: "/images/servicio-desarrollo-web-es",
     imageAlt:
@@ -292,7 +294,7 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
         icon: "zap",
         title: "Velocidad real, no promesas",
         description:
-          "Imágenes en AVIF y WebP, fuentes auto-hospedadas y cero JavaScript de más. Un sitio lento pierde la mitad de las visitas antes de terminar de cargar.",
+          "Imágenes en AVIF y WebP, fuentes auto-hospedadas y cero JavaScript de más. En un sitio lento, parte de las visitas se va antes de que termine de cargar.",
       },
       {
         icon: "search",
@@ -310,7 +312,7 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
         icon: "clipboard-check",
         title: "Formularios y agenda conectados",
         description:
-          "Formularios de cotización que califican por zona, presupuesto y urgencia, con carga de fotos o documentos, y WhatsApp y calendario conectados al sitio.",
+          "Formularios de cotización con las preguntas que necesitas —zona, presupuesto, urgencia—, WhatsApp y calendario conectados. Carga de fotos o documentos cuando el proyecto la incluye.",
       },
     ],
   },
@@ -355,25 +357,25 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
         icon: "google",
         title: "Perfil de Empresa en Google",
         description:
-          "Ficha creada, verificada y optimizada: servicios, zona de cobertura, fotos, horarios y publicaciones mensuales. Es lo primero que ve quien te busca en el mapa.",
+          "Ficha creada y optimizada, con el proceso de verificación gestionado (lo aprueba Google): servicios, zona de cobertura, fotos, horarios y publicaciones. Es lo primero que ve quien te busca en el mapa.",
       },
       {
         icon: "star",
         title: "Reseñas que dan confianza",
         description:
-          "Sistema para pedir reseñas sin incomodar al cliente y respuesta a todas las que llegan, buenas y malas. Las reseñas deciden a quién llaman primero.",
+          "Sistema para pedir reseñas sin incomodar al cliente y respuesta a las reseñas, buenas y malas, con la frecuencia que fije el plan. Las reseñas pesan en a quién llaman primero.",
       },
       {
         icon: "megaphone",
         title: "Anuncios con presupuesto controlado",
         description:
-          "Campañas en Google Ads y publicidad en Facebook e Instagram, con landing pages dedicadas y un costo por prospecto que se mide, no se adivina.",
+          "Campañas en Google Ads y publicidad en Facebook e Instagram, con landing pages cuando la propuesta las incluye y un costo por prospecto que se mide, no se adivina. La inversión publicitaria se paga aparte.",
       },
       {
         icon: "workflow",
         title: "Formularios que califican",
         description:
-          "Cada prospecto llega ordenado y con lo que necesitas saber antes de contestar, y te avisa al instante en tu WhatsApp o tu correo. El seguimiento y el cierre siguen siendo tuyos.",
+          "Formularios con las preguntas que necesitas para saber, antes de contestar, qué quiere cada prospecto.",
       },
       {
         icon: "bar-chart",
@@ -394,7 +396,7 @@ const webDevEs: ServiceDetail = {
   meta: {
     title: "Diseño de Páginas Web para Negocios | ProCode Dev",
     description:
-      "Diseño de páginas web para negocios: sitios a la medida, rápidos y con SEO técnico. Landing desde $349 y sitio de 4 a 6 páginas por $899 USD, precio público.",
+      "Diseño de páginas web para negocios: sitios a la medida, rápidos y con SEO técnico. Landing desde $349 y sitio de 4 a 6 páginas desde $899 USD.",
     keywords:
       "diseño de páginas web, desarrollo web para negocios, creación de páginas web, diseño de sitios web, diseño web profesional, páginas web para negocios, diseño web a medida, desarrollo de páginas web, contratar diseño de página web, rediseño de página web, landing page para negocios, sitios web autoadministrables, desarrollo web para pequeñas empresas, desarrollo web bilingüe, páginas web rápidas y optimizadas, programación de páginas web",
     heroTitleA: "Diseño y desarrollo de páginas web",
@@ -407,7 +409,7 @@ const webDevEs: ServiceDetail = {
       "Una plantilla sale rápida y barata, y esa es su ventaja real. El código a la medida cuesta más al principio y te devuelve control: qué carga, qué mide y qué se puede cambiar después.",
     points: [
       { title: "Sin plantillas", text: "Astro y Tailwind, no un constructor visual." },
-      { title: "Todo incluido", text: "SEO técnico y medición de origen, no como extra." },
+      { title: "Incluido de origen", text: "SEO técnico base y medición, no como extra." },
       { title: "Sin intermediarios", text: "Hablas con quien programa el sitio." },
     ],
   },
@@ -415,17 +417,17 @@ const webDevEs: ServiceDetail = {
     eyebrow: "// qué incluye",
     title: "Lo que lleva dentro un sitio hecho a la medida",
     subtitle:
-      "Seis piezas que vienen en todos los proyectos, no como extras que se cotizan después. Es lo que incluye la creación de páginas web para empresas cuando la hace una agencia de desarrollo web y no un constructor.",
+      "Seis piezas con las que se construye cada proyecto. Qué formularios e integraciones lleva el tuyo depende del paquete y queda por escrito en la propuesta.",
   },
   packages: {
     eyebrow: "// tipos de proyecto",
-    title: "Elige el tamaño de tu página web, con el precio publicado",
+    title: "Elige el tamaño de tu página web, con su precio base",
     subtitle:
-      "Los cuatro proyectos de desarrollo web para pequeñas empresas que hago, con lo que incluye cada uno y cuánto cuesta. Sin cotización sorpresa y sin llamada de ventas para conocer el número.",
+      "Los cuatro proyectos de desarrollo web para pequeñas empresas que hago, con lo que incluye cada uno y su precio base. Sin llamada de ventas para conocerlo: el total se confirma antes de iniciar.",
     items: [
       {
         name: "Landing Page",
-        pricePrefix: "",
+        pricePrefix: "Desde",
         price: "349",
         currency: "USD",
         priceNote: "pago único",
@@ -442,7 +444,7 @@ const webDevEs: ServiceDetail = {
       },
       {
         name: "Sitio Web de 4 a 6 páginas",
-        pricePrefix: "",
+        pricePrefix: "Desde",
         price: "899",
         currency: "USD",
         priceNote: "pago único",
@@ -452,14 +454,14 @@ const webDevEs: ServiceDetail = {
           "4 a 6 páginas estratégicas, una por servicio",
           "Estructura de ventas y bloques de confianza",
           "WhatsApp, formularios y calendario conectados",
-          "Bilingüe español e inglés si lo necesitas",
-          "SEO local para que te encuentren en tu ciudad",
+          "Versión bilingüe disponible (el conteo de páginas se confirma en la propuesta)",
+          "SEO local base para que te encuentren en tu ciudad",
         ],
         highlighted: true,
       },
       {
         name: "Sitio Web de 8 a 12 páginas",
-        pricePrefix: "desde",
+        pricePrefix: "Desde",
         price: "1,499",
         currency: "USD",
         priceNote: "pago único",
@@ -468,18 +470,18 @@ const webDevEs: ServiceDetail = {
         features: [
           "8 a 12 páginas completas",
           "Páginas por servicio y por ciudad",
-          "Integraciones y automatización",
-          "Sistema de captación con avisos al instante",
+          "Integraciones definidas en la propuesta",
+          "Formularios de cotización y agenda de citas",
           "SEO técnico avanzado y acompañamiento al lanzar",
         ],
         highlighted: false,
       },
       {
         name: "Rediseño de un sitio existente",
-        pricePrefix: "desde",
+        pricePrefix: "Desde",
         price: "899",
         currency: "USD",
-        priceNote: "según el tamaño actual",
+        priceNote: "pago único · según el tamaño actual",
         description:
           "El rediseño de página web para cuando ya tienes una y no genera nada: carga lenta, no aparece en Google o nadie llena el formulario. Se reconstruye conservando las URLs que ya posicionan.",
         features: [
@@ -493,11 +495,11 @@ const webDevEs: ServiceDetail = {
       },
     ],
     itemCta: "Solicitar este proyecto",
-    note: "Los precios de arriba son los reales, no un rango de referencia: es lo que pagas por el alcance descrito. Si tu proyecto se sale de ese alcance te lo digo antes de empezar, con el número exacto, nunca a mitad del trabajo.",
+    note: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar. Si algo queda fuera del alcance acordado, te lo digo con el número antes de hacerlo, nunca a mitad del trabajo.",
     cta: "Ver todos los precios",
     aside: {
       title: "¿Y después del lanzamiento? El plan de Soporte Web, desde $79 USD al mes",
-      body: "Es opcional: puedes dejar el sitio como está y funcionar años sin pagar nada más. Si prefieres no ocuparte, ese plan mantiene la página rápida, respaldada y al día, incluye de tres a cuatro cambios menores al mes y te manda un reporte de contactos, llamadas y formularios. Es mantenimiento, no captación: no trae clientes nuevos, cuida los que ya llegan.",
+      body: "Es opcional y va aparte del pago único. Sin él, el sitio sigue funcionando: solo pagas la renovación del dominio y del hosting a tu proveedor y las herramientas con suscripción que uses. Si prefieres no ocuparte, ese plan mantiene la página rápida, respaldada y al día, incluye de tres a cuatro cambios menores al mes y te manda un reporte de contactos, llamadas y formularios. Es mantenimiento, no captación: no trae clientes nuevos, cuida los que ya llegan.",
       cta: "Ver el plan de Soporte Web",
     },
   },
@@ -560,7 +562,7 @@ const webDevEs: ServiceDetail = {
     no: [
       "Buscas la página más barata del mercado: hay plantillas de veinte dólares y son una opción legítima.",
       "Necesitas una aplicación web con usuarios, sesiones y panel interno: eso es otro tipo de proyecto.",
-      "Quieres el sitio para mañana. El plazo mínimo real es de dos semanas.",
+      "Quieres el sitio para mañana. El plazo mínimo real es de una semana, y eso para una landing.",
       "Esperas resultados sin tocar nada más: sin reseñas, sin Perfil de Google y sin contestar los mensajes, ninguna web hace milagros.",
     ],
   },
@@ -574,12 +576,22 @@ const webDevEs: ServiceDetail = {
       {
         question: "¿Cuánto cuesta el desarrollo de una página web para mi negocio?",
         answer:
-          "Una landing page cuesta $349 USD, un sitio de 4 a 6 páginas $899 USD y uno de 8 a 12 páginas desde $1,499 USD. Son pagos únicos y el precio está publicado: no hay que agendar una llamada de ventas para conocerlo. Si tu proyecto se sale de ese alcance te paso el número exacto antes de empezar.",
+          "Una landing page desde $349 USD, un sitio de 4 a 6 páginas desde $899 USD y uno de 8 a 12 páginas desde $1,499 USD, en pago único. Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar.",
       },
       {
         question: "¿Cuánto tarda el desarrollo web?",
         answer:
-          "Entre dos y cuatro semanas desde que tengo tus textos, tus fotos y los accesos. Una landing suele salir en dos semanas; un sitio de 8 a 12 páginas se va a cuatro. Te doy la fecha de entrega en la propuesta y la cumplo.",
+          "Una landing, de 1 a 2 semanas; un sitio de 4 a 6 páginas, de 2 a 4 semanas; y uno de 8 a 12 páginas con integraciones, de 4 a 6 semanas. El plazo cuenta desde que tengo tus textos, fotos, accesos y aprobaciones; si alguno se retrasa, la fecha se recorre lo mismo. La fecha de entrega queda en la propuesta.",
+      },
+      {
+        question: "¿Qué incluye el pago único y qué va aparte?",
+        answer:
+          "El pago único cubre el diseño y la construcción, la integración de lo acordado (formularios, WhatsApp, agenda, medición), las pruebas, el lanzamiento, las rondas de revisión sobre el alcance acordado y un soporte inicial tras publicar. No incluye mejoras mensuales continuas ni contenido nuevo cada mes, y tampoco dominio, hosting, correo ni herramientas con suscripción, que pagas a cada proveedor. Si quieres que alguien mantenga o haga crecer el sitio después, eso es un plan mensual opcional: Soporte Web o Crecimiento+.",
+      },
+      {
+        question: "¿Qué tengo que aportar y qué cambia la cotización?",
+        answer:
+          "De tu parte: logotipo, fotos, datos del negocio, la lista de servicios, los accesos que existan y las aprobaciones a tiempo. Mueven la cotización el número de páginas, un segundo idioma y quién traduce, cuánto texto hay que redactar desde cero, las integraciones (agenda, pagos u otras herramientas), la migración de contenido y cualquier función especial. Todo eso se revisa antes de iniciar y queda en la propuesta.",
       },
       {
         question: "¿Usas WordPress o plantillas?",
@@ -594,12 +606,12 @@ const webDevEs: ServiceDetail = {
       {
         question: "¿El dominio y el hosting están incluidos?",
         answer:
-          "El desarrollo incluye la configuración completa: dominio, hosting, correos con tu dominio, certificado de seguridad y publicación. El costo del dominio y del hosting lo pagas tú directo al proveedor, normalmente entre $60 y $120 USD al año, y quedan a tu nombre. Nunca me quedo con la propiedad de tu sitio.",
+          "El desarrollo incluye la configuración completa: dominio, hosting, correos con tu dominio, certificado de seguridad y publicación. El costo del dominio y del hosting lo pagas tú directo al proveedor, normalmente entre $60 y $120 USD al año, se renueva cada año y queda a tu nombre; el correo profesional puede tener su propia suscripción. Nunca me quedo con la propiedad de tu sitio.",
       },
       {
         question: "¿Y si ya tengo página? ¿Vale la pena rehacerla?",
         answer:
-          "Depende de qué esté fallando. Si el problema es la velocidad, la estructura o que no aparece en Google, un rediseño desde $899 USD suele resolverlo conservando las URLs que ya posicionan. Agenda la Revisión Express y te grabo un vídeo de tres minutos diciéndote qué encontré, aunque al final decidas no rehacerla.",
+          "Depende de qué esté fallando. Si el problema es la velocidad, la estructura o que no aparece en Google, un rediseño desde $899 USD suele resolverlo conservando las URLs que ya posicionan. Agenda la Revisión Express y en 20 minutos te muestro qué encontré, aunque al final decidas no rehacerla.",
       },
     ],
   },
@@ -609,7 +621,7 @@ const webDevEs: ServiceDetail = {
     titleA: "Cuéntame qué necesitas y te paso",
     titleHighlight: "el alcance y el precio",
     subtitle:
-      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con el alcance, el precio y la fecha de entrega para tu caso. Si tu proyecto no encaja conmigo, también te lo digo.",
+      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con el siguiente paso: si tengo lo necesario, el alcance y la inversión estimada; si no, las preguntas que faltan. Si tu proyecto no encaja conmigo, también te lo digo.",
     needLabel: "Qué necesitas",
     needOptions: [
       "No tengo página y quiero una",
@@ -656,7 +668,7 @@ const marketingEs: ServiceDetail = {
   },
   offer: {
     eyebrow: "// la oferta, pieza por pieza",
-    title: "Tres trabajos distintos, con plazos distintos",
+    title: "Dos trabajos distintos, con plazos distintos",
     subtitle:
       "Se venden juntos porque se refuerzan, pero no son lo mismo ni rinden al mismo ritmo. Esto es lo que hace cada uno, qué te entrego y en cuánto tiempo se nota.",
     items: [
@@ -667,9 +679,9 @@ const marketingEs: ServiceDetail = {
           "Que tu negocio aparezca cuando alguien de tu ciudad busca tu servicio, en los resultados y en el mapa. Se trabaja tu Perfil de Empresa en Google, las reseñas y las páginas del sitio por servicio y por zona.",
         deliverablesLabel: "Qué entrego",
         deliverables: [
-          "Perfil de Empresa en Google creado, verificado y optimizado",
-          "Sistema para pedir reseñas y respuesta a todas las que llegan",
-          "Páginas por servicio y por ciudad, escritas con contenido propio",
+          "Perfil de Empresa en Google creado y optimizado, con la verificación gestionada (la aprueba Google)",
+          "Sistema para pedir reseñas y respuesta a las reseñas",
+          "Páginas por servicio y por ciudad con contenido propio, en la cantidad que fije el plan",
           "Datos estructurados y arreglos técnicos del sitio",
           "Posición en el mapa y reseñas nuevas, reportadas cada mes",
         ],
@@ -694,23 +706,6 @@ const marketingEs: ServiceDetail = {
         timeline:
           "Puede haber contactos en los primeros días, pero los primeros treinta son de calibración: ahí se descubre qué búsquedas valen la pena y cuánto cuesta cada contacto. Presupuesto aparte, desde $300 USD al mes.",
       },
-      {
-        icon: "workflow",
-        title: "Seguimiento",
-        scope:
-          "Lo que pasa después de que alguien te escribe. Respuesta automática al primer mensaje, recordatorio a quien no contestó y un registro de cada prospecto para que no se pierda entre notificaciones.",
-        deliverablesLabel: "Qué entrego",
-        deliverables: [
-          "Respuesta inmediata a formularios y a WhatsApp",
-          "Recordatorio automático a quien no contestó",
-          "Registro de cada prospecto con su origen",
-          "Aviso a tu correo o a tu teléfono en cuanto entra uno",
-          "Reporte de contactos, llamadas y citas del mes",
-        ],
-        timelineLabel: "Cuándo se nota",
-        timeline:
-          "Desde la primera semana, porque no depende de Google. Lo que no hace es cerrar: la automatización contesta el primer mensaje, la venta sigue siendo tuya.",
-      },
     ],
   },
   capabilities: {
@@ -731,15 +726,15 @@ const marketingEs: ServiceDetail = {
         price: "",
         quoteLabel: "Cotización a medida",
         currency: "",
-        priceNote: "se define tras la reunión inicial y la auditoría",
+        priceNote: "mensual · se define tras la reunión inicial y el diagnóstico",
         description:
           "Que te encuentren, no solo que existas. Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA. Sin anuncios: aquí todavía no se compra tráfico.",
         features: [
           "Mantenimiento del sitio incluido",
-          "Perfil de Empresa en Google creado, verificado y optimizado",
+          "Perfil de Empresa en Google creado y optimizado, con la verificación gestionada (la aprueba Google)",
           "Servicios, horarios y zonas de tu ficha siempre al día",
-          "Gestión de reseñas: sistema para pedirlas y respuesta a todas",
-          "SEO local y optimización para búsqueda con IA",
+          "Gestión de reseñas: sistema para pedirlas y respuesta a las reseñas",
+          "SEO local y contenido preparado para buscadores y respuestas con IA",
           "Reporte mensual de tu Perfil de Google, tu SEO y tu página web",
         ],
         highlighted: true,
@@ -750,22 +745,22 @@ const marketingEs: ServiceDetail = {
         price: "",
         quoteLabel: "Cotización a medida",
         currency: "",
-        priceNote: "se define tras la reunión inicial y la auditoría · mínimo 3 meses",
+        priceNote: "mensual · se define tras la reunión inicial y el diagnóstico · mínimo 3 meses",
         description:
           "El sistema completo, para el negocio que ya no quiere depender de las recomendaciones y de los meses buenos.",
         features: [
           "Todo lo del plan Crecimiento+",
-          "Campañas en Google Ads y Meta cuando tu negocio las necesita, con las landing pages que haga falta crear",
+          "Campañas en Google Ads y Meta cuando tu negocio las necesita; plataformas, campañas y landing pages según la propuesta",
           "SEO completo: reporte inicial del estado de tu SEO, qué mejorar y el plan mensual de trabajo",
-          "SEO continuo: contenido mensual y páginas por servicio y ciudad",
+          "SEO continuo: contenido y páginas por servicio y ciudad, en la cantidad que fije la propuesta",
           "Reporte mensual con métricas completas de marketing, costos y recomendaciones",
           "Llamada estratégica mensual con Cristian Posada",
         ],
         highlighted: false,
       },
     ],
-    itemCta: "Agendar reunión inicial",
-    note: "Los dos planes se cotizan igual: una reunión inicial para conocer tu negocio y qué necesita, una auditoría de tu presencia digital, y de ahí sale el número y el plan de trabajo. Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
+    itemCta: "Solicitar reunión inicial",
+    note: "Los dos planes se cotizan igual: una reunión inicial para conocer tu negocio y qué necesita, un diagnóstico de tu presencia digital, y de ahí sale el número y el plan de trabajo. La cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
     cta: "Ver todos los precios",
   },
   standards: {
@@ -828,7 +823,7 @@ const marketingEs: ServiceDetail = {
       "Esperas resultados de SEO local en tres semanas: el rango real es de tres a seis meses.",
       "No tienes página o la que tienes no convierte. Ahí primero va el desarrollo web.",
       "Quieres comprar seguidores o reseñas. No lo hago, y a mediano plazo hace daño.",
-      "No hay nadie que conteste. La automatización responde el primer mensaje; cerrar sigue siendo tuyo.",
+      "No hay nadie que conteste los mensajes que lleguen: responder y cerrar es parte de tu operación.",
     ],
   },
   faq: {
@@ -866,7 +861,7 @@ const marketingEs: ServiceDetail = {
       {
         question: "¿Y la búsqueda con inteligencia artificial?",
         answer:
-          "Cada vez más gente pregunta por un servicio en ChatGPT o en la respuesta con IA de Google en vez de revisar diez enlaces. Lo que sí ayuda es que tu negocio, tus servicios y tu zona estén escritos en un formato que esas herramientas puedan leer: datos estructurados, contenido que responda preguntas reales y una ficha de Google al día. También publico un archivo llms.txt, aunque conviene decirlo claro: Google ha declarado que ese archivo no influye en su buscador ni es requisito para sus funciones con IA. Todo esto va incluido desde el plan Crecimiento+.",
+          "Cada vez más gente pregunta por un servicio en ChatGPT o en la respuesta con IA de Google en vez de revisar diez enlaces. Lo que sí ayuda es que tu negocio, tus servicios y tu zona estén escritos en un formato que esas herramientas puedan leer: datos estructurados, contenido que responda preguntas reales y una ficha de Google al día. También publico un archivo llms.txt, aunque conviene decirlo claro: Google ha declarado que ese archivo no influye en su buscador ni es requisito para sus funciones con IA. Ninguna agencia puede garantizar que una plataforma de IA mencione a tu negocio; lo que se trabaja es la información que esas herramientas leen. Va incluido desde el plan Crecimiento+.",
       },
     ],
   },
@@ -919,7 +914,7 @@ const hubEs: ServicesHub = {
         title: "Empieza por la web",
         body: "No tienes página, la tienes hecha en un constructor y carga lento, o entra gente y no te escribe nadie. Aquí el trabajo es de desarrollo web para negocios: primero se arregla el lugar al que mandas a la gente, porque encender anuncios antes de eso es pagar para que más personas vean el problema.",
         forWho: "Para quien no tiene sitio o tiene uno que no convierte.",
-        price: "desde $349 USD, pago único",
+        price: "Desde $349 USD · pago único",
         cta: "Ver desarrollo web",
         href: "webDev",
         highlighted: true,
@@ -927,7 +922,7 @@ const hubEs: ServicesHub = {
       {
         badge: "Camino 2",
         title: "Empieza por el marketing",
-        body: "Tu página está bien hecha y convierte, pero llega poca gente: tu ficha de Google está incompleta, no tienes reseñas o no apareces cuando alguien busca tu servicio en tu ciudad. Ahí el trabajo es de diseño web y posicionamiento en marcha —visibilidad y seguimiento—, no de rediseño.",
+        body: "Tu página está bien hecha y convierte, pero llega poca gente: tu ficha de Google está incompleta, no tienes reseñas o no apareces cuando alguien busca tu servicio en tu ciudad. Ahí el trabajo es de diseño web y posicionamiento en marcha —visibilidad y reseñas—, no de rediseño.",
         forWho: "Para quien ya tiene sitio y necesita llenarlo.",
         price: "a cotizar tras la reunión inicial",
         cta: "Ver marketing digital",
@@ -945,7 +940,7 @@ const hubEs: ServicesHub = {
         highlighted: false,
       },
     ],
-    note: "Los dos juntos existen como plan de Marketing Digital, que se cotiza tras la reunión inicial y la auditoría y pide un mínimo de tres meses, pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: reviso qué encuentra un cliente al buscar tu servicio en tu ciudad y te lo grabo en un vídeo de tres minutos.",
+    note: "Los dos juntos existen como plan de Marketing Digital, que se cotiza tras la reunión inicial y el diagnóstico y pide un mínimo de tres meses, pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: en una videollamada de 20 minutos te muestro qué encuentra un cliente al buscar tu servicio en tu ciudad y 3 prioridades.",
   },
   faq: {
     eyebrow: "// dudas frecuentes",
@@ -957,12 +952,12 @@ const hubEs: ServicesHub = {
       {
         question: "¿Qué necesita mi negocio: diseño web o marketing digital?",
         answer:
-          "Si no tienes página, la tienes hecha en un constructor o entra gente y no te escribe nadie, necesitas desarrollo web, y para eso esto es una empresa de diseño de páginas web: obtienes un sitio programado a la medida, con una página por servicio, formularios y WhatsApp conectados y la medición puesta, entregado en dos a cuatro semanas y a tu nombre. Si tu página ya convierte pero llega poca gente, necesitas marketing digital: obtienes tu Perfil de Empresa en Google trabajado, reseñas, SEO local por ciudad y servicio, campañas si las hay y un reporte mensual de contactos, llamadas y citas. Todo lo demás —formularios, analítica, optimización para búsqueda con IA— vive dentro de uno de esos dos, no se cotiza aparte.",
+          "Si no tienes página, la tienes hecha en un constructor o entra gente y no te escribe nadie, necesitas desarrollo web, y para eso esto es una empresa de diseño de páginas web: obtienes un sitio programado a la medida, con una página por servicio, formularios y WhatsApp conectados y la medición puesta, entregado en 1 a 6 semanas según el tamaño y a tu nombre. Si tu página ya convierte pero llega poca gente, necesitas marketing digital: obtienes tu Perfil de Empresa en Google trabajado, reseñas, SEO local por ciudad y servicio, campañas si las hay y un reporte mensual de contactos, llamadas y citas. Todo lo demás —formularios, analítica, optimización para búsqueda con IA— vive dentro de uno de esos dos, no se cotiza aparte.",
       },
       {
         question: "¿Puedo contratar solo el desarrollo web sin el marketing digital?",
         answer:
-          "No. La mayoría empieza por uno. Un sitio nuevo puede quedarse solo, sin plan mensual, y funcionar bien durante años. Y si ya tienes página, se puede trabajar únicamente la captación. Los dos juntos rinden más, pero no es un paquete obligatorio.",
+          "Sí. La mayoría empieza por uno. Un sitio nuevo puede quedarse sin plan mensual: sigue funcionando mientras renueves el dominio y el hosting con tu proveedor. Y si ya tienes página, se puede trabajar únicamente la captación. Los dos juntos rinden más, pero no es un paquete obligatorio.",
       },
       {
         question: "¿Quién hace el trabajo: el dueño de la agencia o un ejecutivo de cuenta?",
@@ -977,7 +972,7 @@ const hubEs: ServicesHub = {
       {
         question: "¿Cuánto cuesta contratar servicios de desarrollo web y marketing digital?",
         answer:
-          "El punto de entrada es la Revisión Express, que es gratis: reviso qué encuentra un cliente cuando busca tu servicio en tu ciudad, te lo grabo en un vídeo de tres minutos y después lo comentamos quince minutos por llamada. Los proyectos de desarrollo web tienen precio publicado: una landing page cuesta $349 USD. Los planes de marketing, en cambio, se cotizan después de una reunión inicial y de la auditoría, porque lo que hace falta trabajar cambia mucho de un negocio a otro.",
+          "El punto de entrada es la Revisión Express, que es gratis: en una videollamada de 20 minutos te muestro qué encuentra un cliente cuando busca tu servicio en tu ciudad y 3 prioridades. Los proyectos de desarrollo web tienen precio base publicado: una landing page desde $349 USD. Los planes de marketing, en cambio, se cotizan después de una reunión inicial y de la auditoría, porque lo que hace falta trabajar cambia mucho de un negocio a otro.",
       },
     ],
   },
@@ -1024,11 +1019,13 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
       "English and Spanish on separate URLs",
       "Technical SEO and measurement from day one",
     ],
-    priceLabel: "from",
+    priceLabel: "From",
     price: "349",
-    priceNote: "USD · one-time · full landing page",
+    priceNote: "USD · one-time · landing page",
     timelineLabel: "delivery",
-    timeline: "2 to 4 weeks",
+    timeline: "1 to 6 weeks",
+    timelineNote:
+      "by size · landing 1–2, 4–6 pages 2–4, 8–12 pages 4–6 · once I have content and access",
     cta: "See web development",
     imageBase: "/images/servicio-desarrollo-web-en",
     imageAlt:
@@ -1050,7 +1047,7 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
         icon: "zap",
         title: "Real speed, not promises",
         description:
-          "AVIF and WebP images, self-hosted fonts and no extra JavaScript. A slow site loses half its visitors before it finishes loading.",
+          "AVIF and WebP images, self-hosted fonts and no extra JavaScript. On a slow site, part of your visitors leave before it finishes loading.",
       },
       {
         icon: "search",
@@ -1068,7 +1065,7 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
         icon: "clipboard-check",
         title: "Forms and booking connected",
         description:
-          "Quote forms that qualify by area, budget and urgency, with photo or document upload, plus WhatsApp and calendar wired into the site.",
+          "Quote forms with the questions you need — area, budget, urgency — plus WhatsApp and calendar wired in. Photo or document upload when the project includes it.",
       },
     ],
   },
@@ -1113,25 +1110,25 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
         icon: "google",
         title: "Google Business Profile",
         description:
-          "Google Business Profile management done properly: created, verified and optimized, with services, service area, photos, hours and monthly posts. It is the first thing anyone sees on the map.",
+          "Google Business Profile management done properly: created and optimized, with the verification process handled (Google approves it), plus services, service area, photos, hours and posts. It is the first thing anyone sees on the map.",
       },
       {
         icon: "star",
         title: "Reviews that build trust",
         description:
-          "A system to ask for reviews without making it awkward, and a reply to every one that comes in, good or bad. Reviews decide who gets called first.",
+          "A system to ask for reviews without making it awkward, and replies to reviews, good or bad, at the frequency the plan sets. Reviews weigh on who gets called first.",
       },
       {
         icon: "megaphone",
         title: "Ads on a controlled budget",
         description:
-          "Google Ads management plus Facebook and Instagram ads, with dedicated landing pages and a cost per lead that is measured, not guessed.",
+          "Google Ads management plus Facebook and Instagram ads, with landing pages when the proposal includes them and a cost per lead that is measured, not guessed. Ad spend is paid separately.",
       },
       {
         icon: "workflow",
         title: "Forms that qualify",
         description:
-          "Every lead arrives organized, with what you need to know before you reply, and pings your WhatsApp or inbox the moment it lands. The follow-up and the close stay yours.",
+          "Forms with the questions you need to know, before replying, what each lead wants.",
       },
       {
         icon: "bar-chart",
@@ -1147,7 +1144,7 @@ const webDevEn: ServiceDetail = {
   meta: {
     title: "Small Business Website Design & Development | ProCode",
     description:
-      "Small business website design and development: custom-coded, fast sites with technical SEO. Landing from $349 USD and a 4-6 page site for $899 USD.",
+      "Small business website design and development: custom-coded, fast sites with technical SEO. Landing from $349 USD and a 4-6 page site from $899 USD.",
     keywords:
       "small business website design, website design for small businesses, small business web development, custom website development, web design and development, website redesign services, landing page development, bilingual website development, fast responsive websites, custom coded website, small business website developer, professional web development services",
     heroTitleA: "Small business website design",
@@ -1160,7 +1157,7 @@ const webDevEn: ServiceDetail = {
       "A template ships fast and cheap, and that is a real advantage. Custom code costs more up front and gives you control back: what loads, what gets measured, and what can change later.",
     points: [
       { title: "No templates", text: "Astro and Tailwind, not a visual builder." },
-      { title: "Included from day one", text: "Technical SEO and measurement, never an add-on." },
+      { title: "Included from day one", text: "Base technical SEO and measurement, never an add-on." },
       { title: "No middlemen", text: "You talk to the person writing the code." },
     ],
   },
@@ -1168,17 +1165,17 @@ const webDevEn: ServiceDetail = {
     eyebrow: "// what is included",
     title: "What a custom-built site actually contains",
     subtitle:
-      "Six pieces that ship with every project, not add-ons quoted later. It is what web development services include when a website development company builds the site instead of a page builder.",
+      "Six pieces every project is built with. Which forms and integrations yours includes depends on the package and is set in writing in the proposal.",
   },
   packages: {
     eyebrow: "// project types",
-    title: "Pick the size of your website, with the price published",
+    title: "Pick the size of your website, with its base price",
     subtitle:
-      "The four projects I take on as a small business website developer, what each one includes and what it costs. No surprise quote and no sales call required to see the number.",
+      "The four projects I take on as a small business website developer, what each one includes and its base price. No sales call to see it: the total is confirmed before starting.",
     items: [
       {
         name: "Landing Page",
-        pricePrefix: "",
+        pricePrefix: "From",
         price: "349",
         currency: "USD",
         priceNote: "one-time",
@@ -1195,7 +1192,7 @@ const webDevEn: ServiceDetail = {
       },
       {
         name: "4-6 page website",
-        pricePrefix: "",
+        pricePrefix: "From",
         price: "899",
         currency: "USD",
         priceNote: "one-time",
@@ -1205,14 +1202,14 @@ const webDevEn: ServiceDetail = {
           "4 to 6 strategic pages, one per service",
           "Sales structure and trust blocks",
           "WhatsApp, forms and calendar connected",
-          "Bilingual English and Spanish if you need it",
-          "Local SEO so your city can find you",
+          "Bilingual version available (page count confirmed in the proposal)",
+          "Base local SEO so your city can find you",
         ],
         highlighted: true,
       },
       {
         name: "8-12 page website",
-        pricePrefix: "from",
+        pricePrefix: "From",
         price: "1,499",
         currency: "USD",
         priceNote: "one-time",
@@ -1221,18 +1218,18 @@ const webDevEn: ServiceDetail = {
         features: [
           "8 to 12 complete pages",
           "Pages by service and by city",
-          "Integrations and automation",
-          "Lead capture with instant alerts",
+          "Integrations defined in the proposal",
+          "Quote forms and appointment booking",
           "Advanced technical SEO and launch support",
         ],
         highlighted: false,
       },
       {
         name: "Website redesign",
-        pricePrefix: "from",
+        pricePrefix: "From",
         price: "899",
         currency: "USD",
-        priceNote: "depends on current size",
+        priceNote: "one-time · depends on current size",
         description:
           "Website redesign services for when you have a site that produces nothing: slow, invisible in Google, or nobody fills in the form. It gets rebuilt while keeping the URLs that already rank.",
         features: [
@@ -1246,11 +1243,11 @@ const webDevEn: ServiceDetail = {
       },
     ],
     itemCta: "Request this project",
-    note: "These are real prices, not a reference range: it is what you pay for the scope described. If your project falls outside that scope I tell you before we start, with the exact number, never halfway through.",
+    note: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting. If something falls outside the agreed scope, I tell you the number before doing it, never halfway through.",
     cta: "See full pricing",
     aside: {
       title: "And after launch? The Web Support plan, from $79 USD a month",
-      body: "It is optional: you can leave the site as it is and run for years without paying anything more. If you would rather not deal with it, that plan keeps the page fast, backed up and current, includes three to four minor changes a month and sends you a report of contacts, calls and forms. It is upkeep, not lead generation: it does not bring new clients, it looks after the ones already arriving.",
+      body: "It is optional and separate from the one-time payment. Without it the site keeps working: you only pay your provider to renew the domain and hosting, plus any subscription tools you use. If you would rather not deal with it, that plan keeps the page fast, backed up and current, includes three to four minor changes a month and sends you a report of contacts, calls and forms. It is upkeep, not lead generation: it does not bring new clients, it looks after the ones already arriving.",
       cta: "See the Web Support plan",
     },
   },
@@ -1313,7 +1310,7 @@ const webDevEn: ServiceDetail = {
     no: [
       "You are after the cheapest site on the market: there are twenty-dollar templates and that is a legitimate choice.",
       "You need a web app with users, sessions and an internal dashboard: that is a different kind of project.",
-      "You want the site tomorrow. The real minimum is two weeks.",
+      "You want the site tomorrow. The real minimum is one week, and that is for a landing page.",
       "You expect results without changing anything else: no reviews, no Google profile and no replies, and no website performs miracles.",
     ],
   },
@@ -1327,12 +1324,22 @@ const webDevEn: ServiceDetail = {
       {
         question: "How much does web development for a small business cost?",
         answer:
-          "A landing page is $349 USD, a 4 to 6 page site is $899 USD and an 8 to 12 page site starts at $1,499 USD. They are one-time payments and the price is published: no sales call needed to hear it. If your project falls outside that scope I give you the exact number before we start.",
+          "A landing page from $349 USD, a 4 to 6 page site from $899 USD and an 8 to 12 page site from $1,499 USD, as one-time payments. Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting.",
       },
       {
         question: "How long does development take?",
         answer:
-          "Two to four weeks from the moment I have your copy, your photos and the access I need. A landing page usually ships in two weeks; an 8 to 12 page site runs to four. You get the delivery date in the proposal and I hold to it.",
+          "A landing page, 1 to 2 weeks; a 4 to 6 page site, 2 to 4 weeks; an 8 to 12 page site with integrations, 4 to 6 weeks. The clock starts once I have your copy, photos, access and approvals; if any of those slips, the date moves by the same amount. The delivery date is set in the proposal.",
+      },
+      {
+        question: "What does the one-time payment cover, and what is separate?",
+        answer:
+          "The one-time payment covers design and build, integrating what was agreed (forms, WhatsApp, booking, tracking), testing, launch, review rounds on the agreed scope and initial support after going live. It does not include ongoing monthly improvements or new content every month, nor domain, hosting, email or subscription tools, which you pay each provider. If you want someone to maintain or grow the site afterwards, that is an optional monthly plan: Web Support or Growth+.",
+      },
+      {
+        question: "What do I need to provide, and what changes the quote?",
+        answer:
+          "From you: logo, photos, business details, your list of services, whatever access exists and timely approvals. What moves the quote: the number of pages, a second language and who translates, how much copy has to be written from scratch, integrations (scheduling, payments or other tools), content migration and any special feature. All of it is reviewed before starting and written into the proposal.",
       },
       {
         question: "Do you use WordPress or templates?",
@@ -1347,12 +1354,12 @@ const webDevEn: ServiceDetail = {
       {
         question: "Are domain and hosting included?",
         answer:
-          "Development includes the full setup: domain, hosting, email on your domain, security certificate and going live. You pay the domain and hosting directly to the provider, usually $60 to $120 USD a year, and both stay in your name. I never hold ownership of your site.",
+          "Development includes the full setup: domain, hosting, email on your domain, security certificate and going live. You pay the domain and hosting directly to the provider, usually $60 to $120 USD a year; they renew yearly and stay in your name, and professional email may carry its own subscription. I never hold ownership of your site.",
       },
       {
         question: "I already have a site. Is a rebuild worth it?",
         answer:
-          "It depends on what is failing. If the problem is speed, structure or not showing up in Google, a redesign from $899 USD usually solves it while keeping the URLs that already rank. Book the Express Review and I will record a three-minute video telling you what I found, even if you decide not to rebuild.",
+          "It depends on what is failing. If the problem is speed, structure or not showing up in Google, a redesign from $899 USD usually solves it while keeping the URLs that already rank. Book the Express Review and in 20 minutes I will show you what I found, even if you decide not to rebuild.",
       },
     ],
   },
@@ -1362,7 +1369,7 @@ const webDevEn: ServiceDetail = {
     titleA: "Tell me what you need and I'll send back",
     titleHighlight: "the scope and the price",
     subtitle:
-      "Three fields, nothing else. I reply on WhatsApp in under 24 hours with the scope, the price and the delivery date for your case. If your project is not a fit for me, I'll tell you that too.",
+      "Three fields, nothing else. I reply on WhatsApp in under 24 hours with the next step: if I have what I need, the scope and an estimated investment; if not, the questions still open. If your project is not a fit for me, I'll tell you that too.",
     needLabel: "What you need",
     needOptions: [
       "I have no website and I want one",
@@ -1404,7 +1411,7 @@ const marketingEn: ServiceDetail = {
   },
   offer: {
     eyebrow: "// the offer, piece by piece",
-    title: "Three different jobs, on three different clocks",
+    title: "Two different jobs, on two different clocks",
     subtitle:
       "They are sold together because they reinforce each other, but they are not the same work and they do not pay off at the same speed. Here is what each one does, what you get, and when it shows.",
     items: [
@@ -1415,9 +1422,9 @@ const marketingEn: ServiceDetail = {
           "Showing up when someone in your city searches for your service, in the results and on the map. That means your Google Business Profile, your reviews, and pages on your site by service and by area.",
         deliverablesLabel: "What you get",
         deliverables: [
-          "Google Business Profile created, verified and optimized",
-          "A system to ask for reviews, and replies to every one that lands",
-          "Pages by service and by city, written with original content",
+          "Google Business Profile created and optimized, with verification handled (Google approves it)",
+          "A system to ask for reviews, and replies to reviews",
+          "Pages by service and by city with original content, in the amount the plan sets",
           "Structured data and technical fixes on the site",
           "Map position and new reviews, reported every month",
         ],
@@ -1442,23 +1449,6 @@ const marketingEn: ServiceDetail = {
         timeline:
           "There can be contacts in the first few days, but the first thirty are calibration: that is when you find out which searches are worth it and what a contact actually costs. Ad budget separate, from $300 USD a month.",
       },
-      {
-        icon: "workflow",
-        title: "Follow-up",
-        scope:
-          "What happens after someone writes to you. An automatic reply to the first message, a reminder to whoever went quiet, and a record of every lead so none of them gets lost in notifications.",
-        deliverablesLabel: "What you get",
-        deliverables: [
-          "Instant reply to forms and to WhatsApp",
-          "Automatic reminder to whoever did not answer",
-          "A record of every lead with where it came from",
-          "An alert to your email or phone the moment one lands",
-          "Monthly report of contacts, calls and bookings",
-        ],
-        timelineLabel: "When it shows",
-        timeline:
-          "From the first week, because it does not depend on Google. What it does not do is close: automation answers the first message, the sale is still yours.",
-      },
     ],
   },
   capabilities: {
@@ -1479,15 +1469,15 @@ const marketingEn: ServiceDetail = {
         price: "",
         quoteLabel: "Custom quote",
         currency: "",
-        priceNote: "set after the first meeting and the audit",
+        priceNote: "monthly · set after the first meeting and the diagnosis",
         description:
           "Getting found, not just existing. Google Business Profile, reviews, local SEO and visibility in AI search. No ads: this plan does not buy traffic yet.",
         features: [
           "Site upkeep included",
-          "Google Business Profile created, verified and optimized",
+          "Google Business Profile created and optimized, with verification handled (Google approves it)",
           "Services, hours and service areas kept current",
-          "Review management: a system to ask, and replies to all of them",
-          "Local SEO and AI search optimization",
+          "Review management: a system to ask, and replies to reviews",
+          "Local SEO and content prepared for search engines and AI answers",
           "Monthly report on your Google profile, your SEO and your website",
         ],
         highlighted: true,
@@ -1498,22 +1488,22 @@ const marketingEn: ServiceDetail = {
         price: "",
         quoteLabel: "Custom quote",
         currency: "",
-        priceNote: "set after the first meeting and the audit · 3-month minimum",
+        priceNote: "monthly · set after the first meeting and the diagnosis · 3-month minimum",
         description:
           "The full system, for the business that no longer wants to depend on referrals and good months.",
         features: [
           "Everything in Growth+",
-          "Google Ads and Meta campaigns when your business needs them, with whatever landing pages have to be built",
+          "Google Ads and Meta campaigns when your business needs them; platforms, campaigns and landing pages per the proposal",
           "Full SEO: an initial report on where your SEO stands, what to improve and the monthly plan of work",
-          "Ongoing SEO: monthly content and pages by service and city",
+          "Ongoing SEO: content and pages by service and city, in the amount the proposal sets",
           "Monthly report with full marketing metrics, costs and recommendations",
           "Monthly strategy call with Cristian Posada",
         ],
         highlighted: false,
       },
     ],
-    itemCta: "Book the first meeting",
-    note: "Both plans are quoted the same way: a first meeting to understand your business and what it needs, an audit of your digital presence, and the number and the plan of work come out of that. Growth+ has no lock-in: move up, move down or cancel month to month. Digital Marketing asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
+    itemCta: "Request a first meeting",
+    note: "Both plans are quoted the same way: a first meeting to understand your business and what it needs, a diagnosis of your digital presence, and the number and the plan of work come out of that. Quantity, frequency, platforms and deliverables are set in the approved proposal. Growth+ has no lock-in: move up, move down or cancel month to month. Digital Marketing asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
     cta: "See full pricing",
   },
   standards: {
@@ -1576,7 +1566,7 @@ const marketingEn: ServiceDetail = {
       "You expect local SEO results in three weeks: the real range is three to six months.",
       "You have no site, or the one you have does not convert. Web development comes first.",
       "You want to buy followers or reviews. I do not do it, and it does damage over time.",
-      "There is nobody to answer. Automation handles the first reply; closing is still yours.",
+      "There is nobody to answer the messages that come in: replying and closing are part of your operation.",
     ],
   },
   faq: {
@@ -1614,7 +1604,7 @@ const marketingEn: ServiceDetail = {
       {
         question: "What about AI search?",
         answer:
-          "More and more people ask ChatGPT or Google's AI answer about a service instead of scanning ten links. What does help is having your business, services and service area written in a format those tools can read: structured data, content that answers real questions, and a current Google profile. I also publish an llms.txt file, though it is worth saying plainly: Google has stated that this file does not influence its search results and is not required for its AI features. All of it is included from the Growth+ plan up.",
+          "More and more people ask ChatGPT or Google's AI answer about a service instead of scanning ten links. What does help is having your business, services and service area written in a format those tools can read: structured data, content that answers real questions, and a current Google profile. I also publish an llms.txt file, though it is worth saying plainly: Google has stated that this file does not influence its search results and is not required for its AI features. No agency can guarantee that an AI platform will mention your business; what gets worked on is the information those tools read. It is included from the Growth+ plan up.",
       },
     ],
   },
@@ -1662,7 +1652,7 @@ const hubEn: ServicesHub = {
         title: "Start with the website",
         body: "You have no site, or you have one built in a page builder that loads slowly, or people arrive and nobody messages you. This is small business web development work: you fix the place you are sending people to first, because turning on ads before that is paying for more people to see the problem.",
         forWho: "For anyone with no site, or a site that does not convert.",
-        price: "from $349 USD, one-time",
+        price: "From $349 USD · one-time",
         cta: "See web development",
         href: "webDev",
         highlighted: true,
@@ -1688,7 +1678,7 @@ const hubEn: ServicesHub = {
         highlighted: false,
       },
     ],
-    note: "The two together do exist as the Digital Marketing plan, quoted after the first meeting and the audit, with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: I look at what a client finds when they search your service in your city and record it as a three-minute video.",
+    note: "The two together do exist as the Digital Marketing plan, quoted after the first meeting and the diagnosis, with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: on a 20-minute video call I show you what a client finds when they search your service in your city, plus 3 priorities.",
   },
   faq: {
     eyebrow: "// common questions",
@@ -1700,12 +1690,12 @@ const hubEn: ServicesHub = {
       {
         question: "Does my business need web design or digital marketing?",
         answer:
-          "If you have no website, yours was made in a page builder, or people land and nobody writes, you need web development: you get a custom-coded site with a page per service, forms and WhatsApp wired up and measurement in place, delivered in two to four weeks and registered in your name. If your page already converts but few people reach it, you need small business digital marketing services: you get your Google Business Profile worked on, reviews, local SEO by city and service, campaigns if you run them, and a monthly report of contacts, calls and bookings. Everything else — forms, automation, analytics, AI search optimization — lives inside one of those two, never quoted separately.",
+          "If you have no website, yours was made in a page builder, or people land and nobody writes, you need web development: you get a custom-coded site with a page per service, forms and WhatsApp wired up and measurement in place, delivered in 1 to 6 weeks depending on size and registered in your name. If your page already converts but few people reach it, you need small business digital marketing services: you get your Google Business Profile worked on, reviews, local SEO by city and service, campaigns if you run them, and a monthly report of contacts, calls and bookings. Everything else — forms, analytics, AI search optimization — lives inside one of those two, never quoted separately.",
       },
       {
         question: "Can I hire web development without the digital marketing?",
         answer:
-          "No. Most people start with one. A new site can stand on its own, with no monthly plan, and work well for years. And if you already have a page, we can work on lead generation only. The two together do more, but it is not a mandatory bundle.",
+          "Yes. Most people start with one. A new site can run without a monthly plan: it keeps working as long as you renew the domain and hosting with your provider. And if you already have a page, we can work on lead generation only. The two together do more, but it is not a mandatory bundle.",
       },
       {
         question: "Who does the work: the agency owner or an account executive?",
@@ -1720,7 +1710,7 @@ const hubEn: ServicesHub = {
       {
         question: "How much do web development and digital marketing services cost?",
         answer:
-          "The entry point is the Express Review, and it is free: I look at what a client finds when they search for your service in your city, record it as a three-minute video, and then we spend fifteen minutes on a call. Web development projects have published pricing: a landing page is $349 USD. The marketing plans are quoted after a first meeting and an audit, because what actually has to be worked on varies a lot from one business to the next.",
+          "The entry point is the Express Review, and it is free: on a 20-minute video call I show you what a client finds when they search for your service in your city, plus 3 priorities. Web development projects have published base pricing: a landing page from $349 USD. The marketing plans are quoted after a first meeting and an audit, because what actually has to be worked on varies a lot from one business to the next.",
       },
     ],
   },
@@ -1789,13 +1779,13 @@ export const leadForm: Record<"es" | "en", LeadFormCopy> = {
     submit: "Enviar y recibir respuesta",
     sending: "Enviando…",
     success:
-      "Listo. Te escribo por WhatsApp en menos de 24 horas con el alcance y el precio para tu caso.",
+      "Listo. Te escribo por WhatsApp en menos de 24 horas para entender tu caso y proponerte el siguiente paso.",
     error:
       "No se pudo enviar. Escríbeme por WhatsApp y te atiendo igual de rápido.",
     perks: [
       "Respuesta en menos de 24 horas, por WhatsApp",
       "Te contesto yo, no un ejecutivo de cuenta",
-      "Sin costo y sin llamada de ventas para conocer el precio",
+      "Sin costo y sin llamada de ventas para conocer el precio base",
     ],
     altTitle: "¿Prefieres otra vía?",
     altSchedule: "Agendar la Revisión Express",
@@ -1818,12 +1808,12 @@ export const leadForm: Record<"es" | "en", LeadFormCopy> = {
     submit: "Send and get a reply",
     sending: "Sending…",
     success:
-      "Done. I'll message you on WhatsApp within 24 hours with the scope and the price for your case.",
+      "Done. I'll message you on WhatsApp within 24 hours to understand your case and suggest the next step.",
     error: "That did not send. Message me on WhatsApp and I'll reply just as fast.",
     perks: [
       "A reply in under 24 hours, on WhatsApp",
       "You get me, not an account executive",
-      "No cost and no sales call needed to see the price",
+      "No cost and no sales call needed to see the base price",
     ],
     altTitle: "Prefer another way?",
     altSchedule: "Book the Express Review",

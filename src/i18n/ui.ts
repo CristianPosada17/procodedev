@@ -180,7 +180,7 @@ export const translations = {
       // /servicios/auditoria/ y NO se acredita a un proyecto posterior.
       ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Escribir por WhatsApp",
-      free: "Gratis · 20 min · revisión en vídeo incluida",
+      free: "Gratis · 20 min por videollamada · 3 prioridades claras",
       viewServices: "Ver servicios",
       // Diferenciador principal. Va pegado a cada botón de agenda vía
       // <OfferNote />.
@@ -201,7 +201,7 @@ export const translations = {
       line: "Digital Growth Systems for Small Businesses",
       lineEs: "Sistemas digitales de crecimiento para dueños de negocio",
       stack:
-        "Sitio web · Captación · Contacto · Automatización · Seguimiento · Analítica",
+        "Sitio web · Captación · Contacto · Agenda · Analítica",
       audience:
         "Contratistas · Clínicas y consultorios · Servicios profesionales · Inmobiliarias · Contadores y despachos",
     },
@@ -210,9 +210,9 @@ export const translations = {
       titleA: "Agencia de diseño web y marketing digital",
       titleHighlight: "en Estados Unidos y México",
       titleB: "",
-      subtitle: "Te encuentran. Te escriben. Vendes.",
+      subtitle: "Te encuentran. Te entienden. Te escriben.",
       badges: [
-        "Precios públicos",
+        "Precios base publicados",
         "Sin contratos de 12 meses",
         "Bilingüe inglés/español",
       ],
@@ -240,18 +240,18 @@ export const translations = {
         },
         {
           icon: "workflow",
-          title: "Automatización",
-          description: "Respuesta inmediata, sin trabajo manual.",
+          title: "Agenda",
+          description: "Sistema de citas en línea automático.",
         },
         {
           icon: "repeat",
-          title: "Seguimiento",
-          description: "Recordatorios y reactivación automáticos.",
+          title: "Bilingüe",
+          description: "Español e inglés, con URLs separadas.",
         },
         {
           icon: "trending-up",
           title: "Analítica",
-          description: "Contactos y citas, no visitas.",
+          description: "Formularios, clics y citas, no visitas.",
         },
       ],
     },
@@ -287,7 +287,7 @@ export const translations = {
           icon: "calendar",
           step: "04",
           name: "Te agendan",
-          summary: "Cita en línea y recordatorios.",
+          summary: "Sistema de agenda de citas automático.",
         },
         {
           icon: "repeat",
@@ -335,12 +335,12 @@ export const translations = {
         {
           number: "04",
           title: "Integración y lanzamiento",
-          description: "Conecto formularios, agenda y CRM.",
+          description: "Conecto formularios y agenda, pruebo y publico.",
         },
         {
           number: "05",
-          title: "Optimización",
-          description: "Reviso resultados y mejoro cada mes.",
+          title: "Soporte inicial",
+          description: "Ajustes tras publicar. La mejora mensual es un plan aparte.",
         },
       ],
     },
@@ -364,7 +364,7 @@ export const translations = {
         {
           icon: "workflow",
           title: "Marketing conectado con tu operación",
-          description: "Formularios que califican: del formulario a tu WhatsApp y a tu CRM, sin pasos manuales.",
+          description: "Formularios que hacen las preguntas correctas antes de la primera conversación.",
         },
         {
           icon: "repeat",
@@ -374,7 +374,7 @@ export const translations = {
         {
           icon: "bar-chart",
           title: "Medimos negocio, no visitas",
-          description: "Contactos, llamadas, citas y de dónde vino cada una.",
+          description: "Clics a WhatsApp o a llamar, formularios y citas, y de dónde vino cada uno.",
         },
         {
           icon: "globe",
@@ -436,12 +436,15 @@ export const translations = {
     },
     portfolio: {
       eyebrow: "// portafolio",
-      titleA: "Proyectos reales que",
-      titleHighlight: "generan oportunidades",
+      titleA: "Proyectos reales,",
+      titleHighlight: "en vivo y verificables",
       subtitle:
         "Una selección de sitios que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos en vivo.",
       viewProject: "Ver proyecto",
       resultLabel: "Resultado",
+      challengeLabel: "Necesidad",
+      workLabel: "Trabajo de ProCode",
+      imageAltPrefix: "Captura del sitio web de",
       cta: "Quiero una página web para mi negocio",
       clientsTitle: "Clientes reales",
       clientsNote: "Ejemplos de sitios web para negocios que están en vivo: casos de sitios web pymes con clientes atendiendo por ellos hoy.",
@@ -459,6 +462,8 @@ export const translations = {
           badge: "Contabilidad e impuestos",
           description:
             "Sitio bilingüe para un despacho de contabilidad y bookkeeping en Cincinnati, Ohio: ocho servicios, guía gratuita, WhatsApp directo y SEO local para pequeños negocios.",
+          challenge: "Explicar cada trámite a dueños de negocio hispanos, en su idioma, antes de la primera llamada.",
+          work: "Desarrollo del sitio bilingüe: ocho servicios con ficha, guía gratuita, WhatsApp, preguntas frecuentes y SEO local.",
           tags: ["Sitio web", "Contabilidad", "Bilingüe"],
         },
         {
@@ -471,6 +476,8 @@ export const translations = {
           badge: "Contratistas & construcción",
           description:
             "Sitio institucional para una constructora en Durango: nueve obras construidas con ficha propia, capacidades de ingeniería y ejecución, y datos formales a la vista.",
+          challenge: "Mostrar años de obra entregada que solo existían en fotos sueltas.",
+          work: "Primero, correo profesional, automatizaciones y soporte técnico. Después, el sitio institucional con nueve obras con ficha propia.",
           tags: ["Sitio web", "Construcción", "Portafolio de obra"],
         },
         {
@@ -483,6 +490,8 @@ export const translations = {
           badge: "Salud & bienestar",
           description:
             "Sitio profesional que comunica sus servicios, transmite confianza y facilita que nuevos pacientes agenden su consulta.",
+          challenge: "Dejar de explicar su servicio por mensaje una y otra vez.",
+          work: "Sitio web con los servicios explicados y agenda de citas en línea.",
           tags: ["Sitio web", "Salud", "Captación"],
         },
         {
@@ -495,6 +504,8 @@ export const translations = {
           badge: "Marca personal",
           description:
             "Sitio de marca personal enfocado en posicionar autoridad, mostrar proyectos y convertir visitantes en contactos reales.",
+          challenge: "Reunir trayectoria y proyectos en un solo lugar.",
+          work: "Sitio propio del fundador: no es un proyecto de cliente.",
           tags: ["Marca personal", "Branding", "Conversión"],
         },
         {
@@ -507,6 +518,8 @@ export const translations = {
           badge: "Servicios locales",
           description:
             "Sitio de servicios que destaca su trabajo, transmite profesionalismo y capta solicitudes de cotización.",
+          challenge: "Recibir solicitudes de cotización sin tener que perseguir a cada cliente.",
+          work: "Sitio de servicios con captación de solicitudes de cotización.",
           tags: ["Sitio web", "Servicios", "Negocio local"],
         },
         {
@@ -519,6 +532,8 @@ export const translations = {
           badge: "Inmobiliaria · Demo",
           description:
             "Sitio inmobiliario con catálogo de propiedades, fichas detalladas, agenda de llamadas y captación directa por WhatsApp.",
+          challenge: "Concepto para mostrar qué necesita un asesor inmobiliario. No es cliente.",
+          work: "Demo con catálogo de propiedades, fichas, agenda de llamadas y WhatsApp.",
           tags: ["Sitio web", "Inmobiliaria", "Catálogo"],
         },
         {
@@ -531,6 +546,8 @@ export const translations = {
           badge: "Contabilidad e impuestos · Demo",
           description:
             "Sitio bilingüe para un despacho contable y fiscal en EE. UU.: servicios, agenda de consulta gratuita y captación enfocada en confianza.",
+          challenge: "Concepto para mostrar qué necesita un despacho contable y fiscal. No es cliente.",
+          work: "Demo bilingüe con servicios, agenda de consulta y captación.",
           tags: ["Sitio web", "Bilingüe", "Servicios profesionales"],
         },
       ],
@@ -541,10 +558,10 @@ export const translations = {
       titleHighlight: "venda por ti.",
       titleB: "",
       subtitle:
-        "Paquetes de diseño de páginas web con precio público, en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar y crece a tu ritmo.",
+        "Precios base publicados en dólares, sin llamada de ventas para conocerlos y sin contratos de 12 meses. Elige por dónde empezar; confirmamos el alcance y la inversión antes de iniciar.",
       popular: "Más elegido",
       finePrintTitle: "Letra pequeña",
-      currencyNoteUsd: "Todos los precios están en dólares estadounidenses. El costo de una página web para pequeña empresa y el del mantenimiento web mensual están publicados arriba, sin llamada de ventas para conocerlos.",
+      currencyNoteUsd: "Todos los importes están en dólares estadounidenses (USD). Los proyectos web son de pago único; Soporte Web se cobra mes a mes. Dominio, hosting, correo y herramientas con suscripción se pagan aparte, directo a cada proveedor y a tu nombre.",
       // ── Auditoría Estratégica Integral · el producto de entrada ──
       // Septiembre de 2026: el Diagnóstico de $149 se acreditaba entero al
       // proyecto, así que era un paso de venta disfrazado de producto. La
@@ -562,8 +579,10 @@ export const translations = {
         priceQuote: "A cotizar",
         priceNote: "según el alcance de tu negocio",
         hook: "Cuando sabes que algo no funciona pero no cuál de todas las piezas.",
+        forWho: "Para cuando algo no funciona y no sabes qué pieza es",
+        billing: "pago único",
         description:
-          "Empieza por tu negocio —qué vendes, quién debería comprarlo y qué resultado quieres— y de ahí revisa doce áreas con acceso a tus datos reales: rendimiento, arquitectura, conversión, SEO técnico, keyword research, contenido y canibalización, presencia local, competencia, Google y Meta Ads, captación y medición. Cada hallazgo con evidencia y clasificado por impacto, esfuerzo, urgencia y dependencia. Recibes una estrategia priorizada con roadmap 30/60/90, un vídeo y una llamada. Si contratas desarrollo web, SEO o marketing, la auditoría entra como primera fase del proyecto en vez de cobrarse aparte.",
+          "Empieza por tu negocio y revisa doce áreas con acceso a tus datos reales, de la web y el SEO a los anuncios y la medición. Recibes hallazgos con evidencia, una estrategia priorizada con roadmap 30/60/90, un vídeo y una llamada. Si contratas desarrollo web, SEO o marketing, el diagnóstico que necesita ese servicio va dentro del proyecto y su alcance se define en la propuesta.",
         homeEyebrow: "// el siguiente paso",
         homeTitle: "¿Quieres el plan completo por escrito?",
         prereq:
@@ -594,38 +613,60 @@ export const translations = {
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Lo que ves es lo que pagas por el alcance descrito en cada plan: no es un rango de referencia. Si tu proyecto se sale de ese alcance te paso el número exacto antes de empezar, nunca a mitad del trabajo. Crecimiento+, Marketing Digital y la auditoría se cotizan tras la reunión inicial, porque lo que cuestan depende del estado en el que esté hoy tu negocio.",
+      note: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar. Crecimiento+, Marketing Digital y la Auditoría Estratégica se cotizan tras la reunión inicial, porque dependen del estado de tu negocio.",
+      baseNote: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar.",
+      quotedScopeNote:
+        "En los planes a cotizar, la cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Los honorarios de gestión no incluyen la inversión publicitaria, que pagas directo a Google o a Meta, ni herramientas externas con suscripción.",
+      summaryTitle: "Resumen: desarrollo web",
+      summarySubtitle:
+        "Pago único por construir tu sitio. Precio base, para quién es y qué incluye; el detalle completo está en la página de cada servicio.",
+      monthlySummaryTitle: "Resumen: servicios mensuales",
+      forWhoLabel: "Para quién",
+      detailsLabel: "Ver qué incluye",
+      auditTitle: "Auditoría Estratégica",
+      auditSubtitle:
+        "No es un paquete web: es un diagnóstico independiente para decidir qué hacer primero.",
+      termsTitle: "Condiciones generales",
+      terms: [
+        "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar.",
+        "Los plazos cuentan desde que recibo textos, fotos, accesos y aprobaciones: landing de 1 a 2 semanas, sitio de 4 a 6 páginas de 2 a 4 semanas y de 8 a 12 páginas de 4 a 6 semanas.",
+        "Cada proyecto incluye rondas de revisión sobre el alcance acordado y soporte inicial tras el lanzamiento. Lo que añade páginas o funciones nuevas se cotiza antes de hacerlo.",
+        "Dominio, hosting, correo y herramientas con suscripción se pagan aparte, directo al proveedor, y se renuevan según cada proveedor.",
+        "Soporte Web y Crecimiento+ no tienen permanencia. Marketing Digital pide un mínimo de 3 meses.",
+      ],
       // ── Escalera mensual: soporte → crecimiento → todo incluido ──
       // Sustituye al bloque único de mantenimiento. El objetivo del análisis de
       // mercado era crear techo de expansión: un cliente de $79 puede subir a
       // $349 y de ahí a $1,100 sin cambiar de proveedor.
       monthlyTitle: "Planes mensuales: mantenimiento web y SEO local",
       monthlySubtitle:
-        "El mantenimiento web mensual tiene precio publicado. Crecimiento+ y Marketing Digital se cotizan a tu negocio: primero una reunión inicial para conocerlo y una auditoría, y de ahí sale el alcance y el número.",
+        "El mantenimiento web mensual tiene precio publicado. Crecimiento+ y Marketing Digital se cotizan a tu negocio: primero una reunión inicial para conocerlo y un diagnóstico, y de ahí sale el alcance y el número.",
       monthlyNote:
         "Permanencia: ninguna en Soporte Web ni en Crecimiento+ — subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de 3 meses y, cumplido ese plazo, se cancela igual.",
       monthly: [
         {
           badge: "Base · Continuidad",
           name: "Soporte Web",
-          pricePrefix: "desde",
+          pricePrefix: "Desde",
           price: "79",
           quoteLabel: "",
           currency: "USD / mes",
           currencyMonth: true,
-          priceNote: "según el tamaño de tu página",
+          priceNote: "mensual · según el tamaño de tu sitio",
+          forWho: "Para un sitio publicado que no quieres mantener tú",
+          href: "maintenance",
           commitmentNote: "",
           tagline: "Tu página siempre al día",
           description:
             "No pagas «por si algo se rompe». Yo mantengo tu sitio rápido, seguro y actualizado, te hago los cambios que necesites y cada mes te digo cómo trabajó tu página.",
           features: [
-            "Reporte mensual: contactos, llamadas, clics a WhatsApp y formularios recibidos.",
-            "Monitoreo de disponibilidad y velocidad: tu sitio siempre en línea.",
+            "Reporte mensual: clics a WhatsApp y a llamar, formularios recibidos y citas agendadas.",
+            "Monitoreo de disponibilidad y velocidad, con aviso si el sitio se cae.",
             "Respaldo mensual del sitio: si algo falla, se restaura.",
             "Actualizaciones de seguridad y de plataforma.",
             "Hasta 3–4 cambios menores al mes: textos, fotos, precios, horarios, promociones.",
             "1 recomendación de mejora al mes, basada en tus números.",
-            "Prioridad en soporte ante cualquier urgencia.",
+            "Atención prioritaria cuando algo falla: respuesta en menos de 24 horas.",
           ],
           cta: "Activar mi soporte",
           waText:
@@ -641,27 +682,29 @@ export const translations = {
           currency: "",
           currencyMonth: true,
           priceNote:
-            "Se define tras la reunión inicial y la auditoría de tu negocio",
+            "Mensual · se define tras la reunión inicial y el diagnóstico",
+          forWho: "Para que te encuentren en Google en tu zona",
+          href: "digitalMarketing",
           commitmentNote: "",
           tagline: "Que te encuentren, no solo que existas",
           description:
             "Tener página no sirve si nadie te encuentra. Este plan trabaja tu Perfil de Empresa en Google, tus reseñas y tu visibilidad en las búsquedas con IA, que es por donde ya llega una parte de tus clientes.",
           features: [
             "Todo lo del plan Soporte Web.",
-            "Perfil de Empresa en Google: creación, verificación y optimización completa.",
+            "Perfil de Empresa en Google: creación, gestión de la verificación (la aprueba Google) y optimización.",
             "Servicios, horarios, zonas y datos de tu ficha de Google siempre al día.",
-            "Gestión de reseñas: sistema para pedirlas y respuesta a todas las que llegan.",
-            "Optimización para búsqueda con IA (ChatGPT, Google AI): que te citen cuando pregunten por un negocio como el tuyo.",
-            "Contenido y SEO local: te posiciono para las búsquedas de tu ciudad.",
+            "Gestión de reseñas: sistema para pedirlas y respuesta a las reseñas, con la frecuencia que fije la propuesta.",
+            "Contenido, estructura e información del negocio trabajados para mejorar tu visibilidad en buscadores y en respuestas con IA.",
+            "SEO local y contenido para las búsquedas de tu ciudad, con la cantidad definida en la propuesta.",
             "Reporte mensual de tu Perfil de Empresa en Google, tu SEO y tu página web.",
           ],
-          cta: "Agendar reunión inicial",
+          cta: "Solicitar reunión inicial",
           waText:
             "Hola Cristian, Me interesa el plan Crecimiento+ con Perfil de Empresa en Google, gestión de reseñas y SEO local. ¿Podemos agendar la reunión inicial para cotizarlo?",
           highlighted: true,
         },
         {
-          badge: "Techo · Todo incluido",
+          badge: "Plan completo · Captación",
           name: "Marketing Digital",
           pricePrefix: "",
           price: "",
@@ -669,21 +712,23 @@ export const translations = {
           currency: "",
           currencyMonth: true,
           priceNote:
-            "Se define tras la reunión inicial y la auditoría de tu negocio",
+            "Mensual · se define tras la reunión inicial y el diagnóstico",
+          forWho: "Para captar de forma constante con SEO y anuncios",
+          href: "digitalMarketing",
           commitmentNote:
-            "Contrato mínimo de 3 meses. Los anuncios y el SEO necesitan ese tiempo para dar resultados reales; antes de eso todavía estamos ajustando.",
+            "Contrato mínimo de 3 meses. Los anuncios y el SEO necesitan ese tiempo para dar datos con los que decidir; antes de eso todavía estamos ajustando.",
           tagline: "Un sistema completo de captación",
           description:
             "Para el negocio que ya no quiere depender de las recomendaciones y los meses buenos. Página, anuncios, contenido y SEO trabajando juntos, con un reporte mensual que dice qué costó cada prospecto.",
           features: [
             "Todo lo del plan Crecimiento+.",
-            "Gestión de campañas en Google Ads y Meta cuando tu negocio las necesita, con las landing pages que haga falta crear.",
+            "Gestión de campañas en Google Ads y Meta cuando tu negocio las necesita. Plataformas, campañas y landing pages se definen en la propuesta; la inversión publicitaria se paga aparte.",
             "SEO completo: reporte inicial de cómo está hoy tu SEO, qué se puede mejorar y el plan de trabajo mensual.",
-            "SEO continuo: contenido mensual, enlaces y páginas por servicio y por ciudad.",
+            "SEO continuo: contenido, enlaces y páginas por servicio y por ciudad, con la cantidad mensual que fije la propuesta.",
             "Reporte mensual con las métricas completas de marketing, los costos y las recomendaciones del mes.",
             "Llamada estratégica mensual con Cristian Posada.",
           ],
-          cta: "Agendar reunión inicial",
+          cta: "Solicitar reunión inicial",
           waText:
             "Hola Cristian, Me interesa el plan de Marketing Digital: campañas, SEO completo y reporte mensual. ¿Podemos agendar la reunión inicial para cotizarlo?",
           highlighted: false,
@@ -694,7 +739,10 @@ export const translations = {
           name: "Landing Page",
           price: "349",
           currency: "USD",
-          pricePrefix: "",
+          pricePrefix: "Desde",
+          priceNote: "pago único",
+          forWho: "Para lanzar un servicio, una promoción o una campaña",
+          href: "landingPages",
           tagline: "Empieza a captar clientes ya",
           description:
             "Una sola página, enfocada 100% en convertir. Ideal para lanzar un servicio, una promoción o una campaña sin complicarte.",
@@ -707,14 +755,17 @@ export const translations = {
           ],
           cta: "Quiero mi landing",
           waText:
-            "Hola Cristian, Me interesa la Landing Page ($349 USD). Quiero una página enfocada 100% en captar clientes. ¿Me pueden dar más información?",
+            "Hola Cristian, Me interesa la Landing Page (desde $349 USD). Quiero una página enfocada en captar clientes. ¿Me pueden dar más información?",
           highlighted: false,
         },
         {
           name: "Sitio Web 4–6 páginas",
           price: "899",
           currency: "USD",
-          pricePrefix: "",
+          pricePrefix: "Desde",
+          priceNote: "pago único",
+          forWho: "Para un negocio establecido con varios servicios",
+          href: "webDev",
           tagline: "El favorito de los negocios en crecimiento",
           description:
             "Tu negocio completo en línea: una página por servicio, estructura pensada para vender y confianza desde el primer clic.",
@@ -722,63 +773,74 @@ export const translations = {
             "4 a 6 páginas estratégicas (una por servicio)",
             "Estructura de ventas y confianza",
             "WhatsApp + formularios conectados",
-            "Bilingüe español/inglés si lo necesitas",
+            "Versión bilingüe disponible (el conteo de páginas se confirma en la propuesta)",
             "SEO base para que te encuentren en tu ciudad",
           ],
           cta: "Empezar mi sitio",
           waText:
-            "Hola Cristian, Me interesa el Sitio Web de 4 a 6 páginas ($899 USD). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
+            "Hola Cristian, Me interesa el Sitio Web de 4 a 6 páginas (desde $899 USD). Quiero llevar mi negocio completo a internet con una estructura que venda. ¿Cómo iniciamos?",
           highlighted: true,
         },
         {
           name: "Sitio Web 8–12 páginas",
           price: "1,499",
           currency: "USD",
-          pricePrefix: "desde",
+          pricePrefix: "Desde",
+          priceNote: "pago único",
+          forWho: "Para varias líneas de servicio, ciudades o sucursales",
+          href: "webDev",
           tagline: "Presencia y sistema digital completo",
           description:
             "Una web robusta para negocios con varias sucursales o líneas de servicio: más páginas, integraciones y una operación digital ordenada.",
           features: [
             "8 a 12 páginas completas",
             "Páginas por servicio y por ciudad",
-            "Integraciones y automatización",
-            "Sistema de captación + seguimiento",
+            "Integraciones definidas en la propuesta",
+            "Formularios de cotización y agenda de citas",
             "SEO técnico avanzado y acompañamiento en el lanzamiento",
           ],
           cta: "Cotizar mi web",
           waText:
-            "Hola Cristian, Me interesa el Sitio Web de 8 a 12 páginas (desde $1,499 USD) con integraciones y seguimiento. Me gustaría cotizarlo. ¿Podemos platicar?",
+            "Hola Cristian, Me interesa el Sitio Web de 8 a 12 páginas (desde $1,499 USD) con integraciones. Me gustaría cotizarlo. ¿Podemos platicar?",
           highlighted: false,
         },
       ],
       extras: [
         {
           name: "Rediseño web",
-          price: "desde $899",
-          unit: "USD · según el tamaño actual",
+          price: "Desde $899",
+          unit: "USD · pago único · según el tamaño actual",
+          forWho: "Para un sitio que ya tienes y no está funcionando",
+          href: "webDev",
           description:
             "Renueva imagen, estructura y conversión sobre tu sitio actual, sin empezar de cero.",
         },
         {
           name: "Optimización web",
-          price: "$349",
-          unit: "USD",
+          price: "Desde $349",
+          unit: "USD · pago único",
+          forWho: "Para mejorar velocidad y claridad sin rehacer el sitio",
+          href: "",
           description:
-            "Más velocidad, mejor experiencia y CTAs que sí convierten visitas en mensajes.",
+            "Más velocidad, mejor experiencia en móvil y llamadas a la acción más claras para que escribirte sea fácil.",
         },
         {
           name: "Página adicional",
-          price: "$199",
-          unit: "USD",
+          price: "Desde $199",
+          unit: "USD · pago único",
+          forWho: "Para un sitio que ya hicimos juntos",
+          href: "",
           description:
             "Suma una página extra a un sitio que ya hicimos juntos.",
         },
         {
           name: "Ajustes urgentes",
-          price: "$99",
-          unit: "USD",
+          price: "Desde $99",
+          unit: "USD · pago único",
+          forWho: "Para cambios puntuales fuera de alcance",
+          href: "",
           description:
-            "Cambios rápidos fuera de alcance, resueltos con prioridad el mismo día.",
+            "Cambios puntuales fuera de alcance, atendidos con prioridad. Te confirmo el tiempo de entrega antes de hacerlos.",
         },
       ],
     },
@@ -786,13 +848,11 @@ export const translations = {
       eyebrow: "// integraciones",
       title: "Conecto tus herramientas favoritas",
       subtitle:
-        "Tu página no vive aislada: se conecta para que el seguimiento suceda solo. Una empresa de diseño de páginas web que se detiene en el diseño te deja conectando todo esto a mano.",
+        "WhatsApp, formularios, agenda de citas y medición, conectados al sitio desde el lanzamiento.",
       items: [
-        { icon: "message-circle", name: "WhatsApp", description: "Captación y seguimiento" },
-        { icon: "file-text", name: "Formularios", description: "Registro de prospectos" },
+        { icon: "message-circle", name: "WhatsApp", description: "Contacto directo" },
+        { icon: "file-text", name: "Formularios", description: "Solicitudes de cotización" },
         { icon: "calendar", name: "Calendario", description: "Agenda de citas" },
-        { icon: "database", name: "CRM", description: "Control de oportunidades" },
-        { icon: "mail", name: "Email", description: "Comunicación automatizada" },
         { icon: "trending-up", name: "Analytics", description: "Medición de resultados" },
       ],
     },
@@ -807,18 +867,18 @@ export const translations = {
         {
           question: "¿Cuánto tiempo toma hacer una página web para un negocio?",
           answer:
-            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, y un sitio completo con integraciones de 3 a 6 semanas. Después de la llamada te entrego un cronograma con fechas y entregables claros. Si tienes una fecha que no se mueve —una apertura, una temporada alta, una campaña—, trabajamos hacia atrás desde ella.",
+            "Depende del alcance. Una landing page suele tomar de 1 a 2 semanas, un sitio de 4 a 6 páginas de 2 a 4 semanas y uno de 8 a 12 páginas con integraciones de 4 a 6 semanas, contados desde que tengo textos, fotos, accesos y aprobaciones. En la propuesta te entrego un cronograma con fechas y entregables claros. Si tienes una fecha que no se mueve —una apertura, una temporada alta, una campaña—, trabajamos hacia atrás desde ella.",
         },
         {
           question: "¿Cuánto cuesta una página web para un negocio?",
           answer:
-            "Los planes van desde $349 USD (landing page) hasta $1,499 USD (web completa de 8 a 12 páginas), con el sitio de 4 a 6 páginas en $899 USD. Los precios están publicados: no necesitas una llamada de ventas para conocerlos. En la Revisión Express solo confirmamos cuál te corresponde.",
+            "Una landing page desde $349 USD, un sitio de 4 a 6 páginas desde $899 USD y uno de 8 a 12 páginas desde $1,499 USD, en pago único. Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar. No necesitas una llamada de ventas para conocerlos.",
         },
         {
           question:
             "¿Qué es la Auditoría Estratégica Integral y en qué se diferencia de un proyecto?",
           answer:
-            "La Revisión Express es gratis y es la puerta de entrada: tres minutos de vídeo con lo que se ve desde fuera. La Auditoría Estratégica Integral es otra cosa: cinco días hábiles que empiezan por entender tu negocio y tu objetivo comercial, y de ahí revisan doce áreas con acceso a tus datos reales —rendimiento, arquitectura, conversión, SEO técnico, keyword research, contenido y canibalización, presencia local, competencia, Google y Meta Ads, captación y medición—. Cada hallazgo queda con su evidencia y clasificado por impacto, esfuerzo, urgencia y dependencia, y termina en una estrategia priorizada con roadmap de 30, 60 y 90 días. Un proyecto es la ejecución; la auditoría es el mapa. Se cotiza tras la reunión inicial, y si contratas desarrollo web, SEO o marketing va incluida como primera fase de ese trabajo.",
+            "La Revisión Express es gratis y es la puerta de entrada: una videollamada de 20 minutos con lo que se ve desde fuera y 3 prioridades. La Auditoría Estratégica Integral es otra cosa: cinco días hábiles que empiezan por entender tu negocio y tu objetivo comercial, y de ahí revisan doce áreas con acceso a tus datos reales —rendimiento, arquitectura, conversión, SEO técnico, keyword research, contenido y canibalización, presencia local, competencia, Google y Meta Ads, captación y medición—. Cada hallazgo queda con su evidencia y clasificado por impacto, esfuerzo, urgencia y dependencia, y termina en una estrategia priorizada con roadmap de 30, 60 y 90 días. Un proyecto es la ejecución; la auditoría es el mapa. Se cotiza tras la reunión inicial. Si contratas desarrollo web, SEO o marketing, el diagnóstico que necesita ese servicio va dentro del proyecto y su alcance se define en la propuesta; no es automáticamente la auditoría completa de doce áreas.",
         },
         {
           question: "¿La auditoría se descuenta si después contrato un proyecto?",
@@ -828,12 +888,12 @@ export const translations = {
         {
           question: "¿Qué diferencia hay entre Soporte Web y Crecimiento+?",
           answer:
-            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, gestión de reseñas, SEO local y optimización para que las búsquedas con IA te citen. Uno cuida lo que ya tienes; el otro te trae clientes nuevos. Crecimiento+ no lleva precio de lista porque el trabajo cambia según en qué estado esté tu presencia digital: se cotiza tras la reunión inicial y la auditoría.",
+            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, gestión de reseñas, SEO local y contenido e información del negocio pensados para buscadores y respuestas con IA. Uno cuida lo que ya tienes; el otro trabaja para que más clientes te encuentren. Crecimiento+ no lleva precio de lista porque el trabajo cambia según en qué estado esté tu presencia digital: se cotiza tras la reunión inicial y la auditoría.",
         },
         {
           question: "¿Los planes mensuales tienen contrato de permanencia?",
           answer:
-            "En ninguno hay contrato de 12 meses. Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. El único con compromiso es Marketing Digital: pide un mínimo de 3 meses, porque los anuncios y el SEO no dan resultados reales en 30 días y no quiero cobrarte por un mes suelto que no te va a servir. Cumplido ese plazo, se cancela igual que los demás. Prefiero que te quedes porque funciona, no porque firmaste.",
+            "En ninguno hay contrato de 12 meses. Soporte Web y Crecimiento+ se cancelan de un mes a otro, sin penalización y sin tener que llamar a nadie: me escribes por WhatsApp y listo. El único con compromiso es Marketing Digital: pide un mínimo de 3 meses, porque los anuncios y el SEO no dan datos fiables en 30 días y no quiero cobrarte por un mes suelto que no te va a servir. Cumplido ese plazo, se cancela igual que los demás. Prefiero que te quedes porque funciona, no porque firmaste.",
         },
         {
           question: "¿Trabajas con negocios en Estados Unidos aunque no estés aquí?",
@@ -848,12 +908,7 @@ export const translations = {
         {
           question: "¿El precio de la página web incluye dominio y hosting?",
           answer:
-            "Sí. Te oriento y configuro dominio, hosting y correo profesional. Si ya cuentas con ellos, trabajo sobre tu infraestructura actual sin problema.",
-        },
-        {
-          question: "¿Se puede conectar la página web con WhatsApp, formularios y CRM?",
-          answer:
-            "Por supuesto. Conecto formularios, botones de WhatsApp, calendarios de citas y CRM para que cada prospecto quede registrado y te llegue el aviso al instante. El seguimiento y el cierre los haces tú: mi parte es que el prospecto te llegue completo y a tiempo.",
+            "Incluye configurarlos, no pagarlos. Te oriento y configuro dominio, hosting y correo profesional, y quedan a tu nombre. Su costo lo pagas tú directo al proveedor —el dominio y el hosting suelen sumar entre $60 y $120 USD al año— y se renuevan cada año; el correo profesional puede tener su propia suscripción. Si ya cuentas con ellos, trabajo sobre tu infraestructura actual.",
         },
         {
           question: "¿Puedo editar mi página web yo mismo después?",
@@ -863,7 +918,17 @@ export const translations = {
         {
           question: "¿Qué necesito tener listo para empezar mi página web?",
           answer:
-            "Solo la Revisión Express. En ella entiendo tu negocio, tus servicios, tu cliente ideal y la acción que quieres generar: llamadas, citas o mensajes.",
+            "Para empezar a hablar, nada: basta con la Revisión Express o un mensaje. Para construir el sitio necesito de tu parte el logotipo, fotos, los datos del negocio, la lista de servicios y los accesos al dominio o al hosting si ya los tienes. Los textos los trabajamos juntos; qué parte redacto yo y qué parte aportas tú queda por escrito en la propuesta.",
+        },
+        {
+          question: "¿Qué cuenta como una página y qué como una sección?",
+          answer:
+            "Una página es una dirección propia del sitio: Inicio, cada servicio, Contacto. Una sección es un bloque dentro de una página: testimonios, preguntas frecuentes, un formulario. Los paquetes cuentan páginas, no secciones. Si el sitio es bilingüe, cómo se cuenta cada versión en el otro idioma y quién hace la traducción se confirma en la propuesta.",
+        },
+        {
+          question: "¿Qué pasa después de la entrega?",
+          answer:
+            "Publicamos, revisamos juntos que formularios, WhatsApp y medición funcionen y te entrego los accesos. El proyecto incluye rondas de revisión sobre el alcance acordado y soporte inicial tras el lanzamiento, con la duración que fije la propuesta. Después puedes quedarte solo con el sitio —pagando únicamente dominio, hosting y las herramientas que uses— o contratar Soporte Web, desde $79 USD al mes, si prefieres que alguien lo mantenga.",
         },
       ],
     },
@@ -913,7 +978,7 @@ export const translations = {
       titleA: "¿Prefieres platicarlo? Reserva tu",
       titleHighlight: "Revisión Express",
       subtitle:
-        "Elige tu horario. Antes de la llamada te grabo un vídeo de tres minutos con lo que encuentro. Sin costo y sin llamada de ventas.",
+        "Elige un horario disponible. Reviso tu presencia antes de la llamada y en 20 minutos te muestro 3 prioridades. Sin costo y sin llamada de ventas.",
       // Fachada del widget: en móvil el calendario solo se carga al tocar el
       // botón (el iframe de Calendly pesa más que el resto de la página).
       facadeTitle: "Elige el día y la hora que te acomoden.",
@@ -925,7 +990,13 @@ export const translations = {
       titleA: "Déjame tus datos y te escribo",
       titleHighlight: "en menos de 24 horas",
       subtitle:
-        "La vía más rápida y la que menos te compromete: tu nombre, tu WhatsApp y qué necesitas. Sin agendar nada y sin tecnicismos.",
+        "Tu nombre, tu WhatsApp y qué necesitas, y te contacto para coordinar el siguiente paso. Sin tecnicismos.",
+      routesTitle: "Elige cómo empezar",
+      routes: [
+        { key: "schedule", title: "Agendar", text: "Elige un horario disponible para tu Revisión Express.", cta: "Ver horarios" },
+        { key: "whatsapp", title: "WhatsApp", text: "Resuelve una duda antes de reservar.", cta: "Escribir" },
+        { key: "form", title: "Formulario", text: "Deja tus datos y te contacto para coordinar.", cta: "Ir al formulario" },
+      ],
       toggle: "Prefiero dejar mis datos y que me contacten",
       toggleNote: "Respondo en menos de 24 horas.",
       perks: [
@@ -949,7 +1020,7 @@ export const translations = {
         "Sitio web",
         "Landing page",
         "Rediseño",
-        "Integraciones / automatización",
+        "Integraciones",
         "Otro",
       ],
       submit: "Enviar mensaje",
@@ -961,7 +1032,7 @@ export const translations = {
       eyebrow: "// revisión express",
       title: "¿Listo para dejar de perder clientes entre mensaje y mensaje?",
       subtitle:
-        "Reviso tu presencia digital y te lo grabo en un vídeo de tres minutos. Gratis.",
+        "20 minutos por videollamada para revisar tu presencia digital y salir con 3 prioridades claras. Gratis.",
       ctaPrimary: "Agendar Revisión Express",
       ctaWhatsapp: "Hablar por WhatsApp",
     },
@@ -982,7 +1053,7 @@ export const translations = {
       servicesList: [
         "Páginas web a la medida y rediseño",
         "SEO local y Perfil de Empresa en Google",
-        "Formularios de cotización y automatización",
+        "Formularios de cotización y agenda de citas",
         "Google Ads, Facebook e Instagram",
         "Analítica y reportes de negocio",
       ],
@@ -994,16 +1065,16 @@ export const translations = {
       eyebrow: "// trabajo real",
       titleA: "Sistemas que ya están",
       titleHighlight: "trabajando",
-      subtitle: "Páginas web que generan clientes, en vivo ahora mismo. Ábrelas y júzgalas tú.",
+      subtitle: "Sitios de clientes reales, en vivo ahora mismo. Ábrelos y júzgalos tú.",
       cta: "Ver todo el portafolio",
     },
     // ── Anclaje de precio en el home (hallazgo #10) ──
     priceAnchor: {
       eyebrow: "// inversión",
-      title: "Precios claros, publicados, sin cotización sorpresa",
+      title: "Precios base publicados, sin cotización sorpresa",
       subtitle:
-        "Los precios están en la página, con lo que incluye cada plan.",
-      fromLabel: "desde",
+        "Cada paquete muestra su precio base y lo que incluye. Confirmamos el alcance y la inversión antes de iniciar.",
+      fromLabel: "Desde",
       amount: "349",
       currency: "USD",
       amountNote: "landing page completa · pago único",
@@ -1016,7 +1087,7 @@ export const translations = {
       role: "Desarrollador · Fundador de ProCode Dev",
       title: "El dueño de la agencia es quien hace el trabajo",
       body:
-        "Dirijo ProCode Dev y ejecuto: diseño, desarrollo, SEO y campañas. Un solo responsable desde la primera conversación hasta el seguimiento.",
+        "Dirijo ProCode Dev y ejecuto: diseño, desarrollo, SEO y campañas. Un solo responsable desde la primera conversación hasta la entrega.",
       cta: "Agendar Revisión Express",
     },
     // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
@@ -1029,12 +1100,12 @@ export const translations = {
         {
           question: "Necesito una página web para mi negocio. ¿Por dónde empiezo?",
           answer:
-            "Por el servicio que más te deja, no por el sitio completo. Casi siempre arrancamos con una landing page de $349 USD para ese servicio y, si trae clientes, crecemos a un sitio de 4 a 6 páginas. Así pruebas con poco riesgo y con el precio a la vista.",
+            "Por el servicio que más te deja, no por el sitio completo. Casi siempre arrancamos con una landing page, desde $349 USD, para ese servicio y, si trae clientes, crecemos a un sitio de 4 a 6 páginas. Así pruebas con poco riesgo y con el precio a la vista.",
         },
         {
           question: "¿Cuánto cuesta y por qué no lo veo hasta el final?",
           answer:
-            "Sí lo ves: los precios están publicados. Desde $349 USD una landing page hasta $1,499 USD un sitio completo de 8 a 12 páginas. No hay llamada de ventas para conocerlos ni contratos de 12 meses; en la llamada solo confirmamos cuál te corresponde.",
+            "Sí lo ves: los precios base están publicados. Una landing page desde $349 USD, un sitio de 4 a 6 páginas desde $899 USD y uno de 8 a 12 páginas desde $1,499 USD. El total depende de páginas, idiomas, contenido e integraciones, y lo confirmamos antes de iniciar. No hay llamada de ventas para conocerlos ni contratos de 12 meses.",
         },
         {
           question: "¿La llamada de 20 minutos tiene costo o compromiso?",
@@ -1049,7 +1120,7 @@ export const translations = {
         {
           question: "No sé nada de tecnología. ¿Voy a poder?",
           answer:
-            "Esa es justo la idea. Yo me encargo de dominio, hosting, correo, Perfil de Google y configuración. Tú solo me dices qué servicios das y a quién.",
+            "Esa es justo la idea. Yo configuro dominio, hosting, correo y Perfil de Google, y quedan a tu nombre (el dominio y el hosting se pagan al proveedor). Tú me dices qué servicios das y a quién.",
         },
         {
           question: "¿Y si ya tengo página pero no me sirve?",
@@ -1063,7 +1134,7 @@ export const translations = {
         title:
           "Agencia de Diseño Web y Marketing Digital | ProCode",
         description:
-          "Agencia de diseño web y marketing digital para negocios en Estados Unidos y México: sitio, Google, formularios y seguimiento. Desde $349 USD en 24 h.",
+          "Diseño web y marketing digital para negocios en Estados Unidos y México. Webs a medida desde $349 USD, con formularios, WhatsApp y medición.",
         keywords:
           "agencia de diseño web, agencia de desarrollo web, agencia de diseño web y marketing digital, agencia de páginas web para negocios, empresa de diseño web, agencia de marketing digital, páginas web para pequeñas empresas, sitios web para captar clientes, desarrollador web en español, ProCode Dev",
         heroKicker: "Inicio",
@@ -1072,7 +1143,7 @@ export const translations = {
         title:
           "Diseño Web por Giro de Negocio | ProCode Dev",
         description:
-          "Diseño web para contratistas, consultorios, abogados, inmobiliarias y contadores. Elige tu giro y ve qué cambia en tu caso, con precios públicos en USD.",
+          "Diseño web para contratistas, consultorios, abogados, inmobiliarias y contadores. Elige tu giro y ve qué cambia en tu caso, con precios base en USD.",
         keywords:
           "diseño web por sector, páginas web para negocios por industria, diseño web para contratistas, diseño web para consultorios, diseño web para inmobiliarias, diseño web para contadores, diseño web para abogados, diseño web para negocios locales, marketing digital para pymes, páginas web para pymes",
         heroTitleA: "Diseño web para negocios",
@@ -1108,18 +1179,18 @@ export const translations = {
         title:
           "Precios de Páginas Web para Negocios | ProCode Dev",
         description:
-          "Precio de página web publicado: landing $349, sitio de 4 a 6 páginas $899 y desde $1,499 USD el grande. Cuánto cuesta una página web, sin cotización.",
+          "Cuánto cuesta una página web: landing desde $349, sitio de 4 a 6 páginas desde $899 y de 8 a 12 desde $1,499 USD. Soporte web desde $79 USD al mes.",
         keywords:
           "precio de página web, cuánto cuesta una página web, costo de página web, precios de diseño de páginas web, paquetes de diseño de páginas web, presupuesto para una página web, cotización de diseño web, cuánto cuesta una página web para un negocio, mantenimiento web mensual",
         heroTitleA: "Precios de páginas web",
         heroHighlight: "para negocios",
-        heroSubtitle: "Los precios, sin llamada.",
+        heroSubtitle: "Precios base, sin llamada.",
       },
       contact: {
         title:
           "Contacto y Revisión Express gratis | ProCode Dev",
         description:
-          "Agenda tu Revisión Express gratis o escríbeme por WhatsApp. Respondo en menos de 24 horas, sin llamada de ventas: los precios ya están publicados.",
+          "Agenda tu Revisión Express gratis de 20 minutos, escríbeme por WhatsApp con tus dudas o deja tus datos. Respondo en menos de 24 horas.",
         keywords:
           "agendar Revisión Express, solicitar una propuesta web, hablar con ProCode Dev, desarrollador web en español",
         heroTitleA: "Escríbeme o agenda tu",
@@ -1135,9 +1206,9 @@ export const translations = {
     sectors: {
       promiseEyebrow: "// la promesa",
       promiseTitle:
-        "Tu negocio deja de depender de que alguien se acuerde de darle seguimiento.",
+        "Tu negocio deja de depender solo de las recomendaciones.",
       promiseBody:
-        "Entre el interés y el cliente hay una cadena de pasos manuales. Construyo la infraestructura para que no se rompa.",
+        "Construyo la presencia digital para que el cliente que te busca te encuentre, te entienda y te contacte.",
       rtbTitle: "Por qué puedes creerme",
       rtb: [
         {
@@ -1148,7 +1219,7 @@ export const translations = {
         },
         {
           icon: "receipt",
-          title: "Precios públicos",
+          title: "Precios base publicados",
           description:
             "Están en la página, en dólares. Sin llamada de ventas para conocerlos y sin contratos de 12 meses.",
         },
@@ -1160,9 +1231,9 @@ export const translations = {
         },
         {
           icon: "trending-up",
-          title: "Reporte de contactos reales",
+          title: "Reporte de oportunidades medibles",
           description:
-            "Cada mes te digo cuántas llamadas y mensajes generó tu presencia digital. No cuántas visitas: cuántos clientes potenciales.",
+            "En los planes mensuales te reporto clics a WhatsApp y a llamar, formularios recibidos y citas agendadas. No cuántas visitas: cuántas oportunidades de contacto.",
         },
       ],
       vsTitle: "Frente a lo que ya consideraste",
@@ -1182,12 +1253,12 @@ export const translations = {
         {
           name: "Hibu y similares",
           them: "Contrato de 12 meses, precio que no ves hasta la llamada.",
-          us: "Sin contratos de 12 meses y con los precios publicados en esta misma página.",
+          us: "Sin contratos de 12 meses y con los precios base publicados en este mismo sitio.",
         },
         {
-          name: "Agencia grande de $3,000/mes",
-          them: "Buen trabajo, pero fuera del presupuesto de la mayoría de los negocios.",
-          us: "Una décima parte del costo, con el mismo enfoque en captar clientes reales.",
+          name: "Agencia grande",
+          them: "Buen trabajo, pero con honorarios mensuales fuera del presupuesto de muchos negocios de servicios.",
+          us: "Precios pensados para negocios de servicios, con el mismo enfoque en captar clientes reales.",
         },
       ],
       forTitle: "Diseño web para negocios locales y marketing digital para pymes",
@@ -1240,7 +1311,7 @@ export const translations = {
     common: {
       ctaPrimary: "Book my Express Review",
       ctaWhatsapp: "Message me on WhatsApp",
-      free: "Free · 20 min · video review included",
+      free: "Free · 20-min video call · 3 clear priorities",
       viewServices: "See services",
       guarantee: "I answer every message in under 24 hours.",
       // Scarcity is calendar-free now: it's my capacity, not tax season.
@@ -1251,7 +1322,7 @@ export const translations = {
       line: "Digital Growth Systems for Small Businesses",
       lineEs: "Digital Growth Systems for Small Businesses",
       stack:
-        "Website · Acquisition · Intake · Automation · Follow-Up · Analytics",
+        "Website · Acquisition · Intake · Booking · Analytics",
       audience:
         "Contractors · Clinics & Practices · Professional Services · Real Estate · Accounting & Tax",
     },
@@ -1260,9 +1331,9 @@ export const translations = {
       titleA: "Web design and digital marketing agency",
       titleHighlight: "for U.S. small businesses",
       titleB: "",
-      subtitle: "Found. Contacted. Hired.",
+      subtitle: "Found. Understood. Contacted.",
       badges: [
-        "Public pricing",
+        "Published base pricing",
         "No 12-month contracts",
         "Bilingual English/Spanish",
       ],
@@ -1287,18 +1358,18 @@ export const translations = {
         },
         {
           icon: "workflow",
-          title: "Automation",
-          description: "Instant replies, zero manual work.",
+          title: "Booking",
+          description: "An automatic online booking system.",
         },
         {
           icon: "repeat",
-          title: "Follow-up",
-          description: "Automatic reminders and reactivation.",
+          title: "Bilingual",
+          description: "English and Spanish, on separate URLs.",
         },
         {
           icon: "trending-up",
           title: "Analytics",
-          description: "Contacts and bookings, not visits.",
+          description: "Forms, clicks and bookings, not visits.",
         },
       ],
     },
@@ -1331,7 +1402,7 @@ export const translations = {
           icon: "calendar",
           step: "04",
           name: "They book you",
-          summary: "Online booking and reminders.",
+          summary: "An automatic appointment booking system.",
         },
         {
           icon: "repeat",
@@ -1376,12 +1447,12 @@ export const translations = {
         {
           number: "04",
           title: "Integration & launch",
-          description: "I connect forms, calendar and CRM.",
+          description: "I connect forms and booking, test and publish.",
         },
         {
           number: "05",
-          title: "Optimization",
-          description: "I review results and improve monthly.",
+          title: "Initial support",
+          description: "Fixes after launch. Monthly improvement is a separate plan.",
         },
       ],
     },
@@ -1401,7 +1472,7 @@ export const translations = {
         {
           icon: "workflow",
           title: "Marketing connected to your operation",
-          description: "Forms that qualify: from the form to your WhatsApp and your CRM, with no manual steps.",
+          description: "Forms that ask the right questions before the first conversation.",
         },
         {
           icon: "repeat",
@@ -1411,7 +1482,7 @@ export const translations = {
         {
           icon: "bar-chart",
           title: "We measure business, not visits",
-          description: "Contacts, calls, bookings and where each one came from.",
+          description: "WhatsApp and call taps, forms and bookings, and where each one came from.",
         },
         {
           icon: "globe",
@@ -1465,12 +1536,15 @@ export const translations = {
     },
     portfolio: {
       eyebrow: "// portfolio",
-      titleA: "Real projects that",
-      titleHighlight: "generate opportunities",
+      titleA: "Real projects,",
+      titleHighlight: "live and verifiable",
       subtitle:
         "A selection of professional websites for small businesses that wanted to look sharper and capture better. Click to see them live.",
       viewProject: "View project",
       resultLabel: "Result",
+      challengeLabel: "The need",
+      workLabel: "ProCode's work",
+      imageAltPrefix: "Screenshot of the website of",
       clientsTitle: "Real clients",
       clientsNote: "Small business website examples that are live today: local business web design case studies with real clients behind them.",
       demosTitle: "Demos & concepts",
@@ -1488,6 +1562,8 @@ export const translations = {
           badge: "Accounting & tax",
           description:
             "A bilingual site for a bookkeeping and accounting firm in Cincinnati, Ohio: eight services, a free guide, direct WhatsApp and local SEO for small businesses.",
+          challenge: "Explaining every task to Hispanic business owners, in their language, before the first call.",
+          work: "Built the bilingual site: eight services with their own cards, a free guide, WhatsApp, FAQs and local SEO.",
           tags: ["Website", "Accounting", "Bilingual"],
         },
         {
@@ -1500,6 +1576,8 @@ export const translations = {
           badge: "Contractors & construction",
           description:
             "An institutional site for a construction firm in Durango, Mexico: nine built projects each with its own entry, engineering and execution capabilities, and formal details in plain sight.",
+          challenge: "Showing years of delivered work that only existed as loose photos.",
+          work: "First, professional email, automations and technical support. Later, the institutional site with nine projects, each with its own entry.",
           tags: ["Website", "Construction", "Project portfolio"],
         },
         {
@@ -1512,6 +1590,8 @@ export const translations = {
           badge: "Health & wellness",
           description:
             "A professional site that communicates her services, builds trust and makes it easy for new patients to book a consultation.",
+          challenge: "Stop explaining her service over chat again and again.",
+          work: "A website with her services explained and online appointment booking.",
           tags: ["Website", "Health", "Lead capture"],
         },
         {
@@ -1524,6 +1604,8 @@ export const translations = {
           badge: "Personal brand",
           description:
             "A personal brand site focused on positioning authority, showcasing projects and turning visitors into real contacts.",
+          challenge: "Bringing background and projects together in one place.",
+          work: "The founder's own site: not a client project.",
           tags: ["Personal brand", "Branding", "Conversion"],
         },
         {
@@ -1536,6 +1618,8 @@ export const translations = {
           badge: "Local services",
           description:
             "A services site that highlights their work, conveys professionalism and captures quote requests.",
+          challenge: "Getting quote requests without chasing every client.",
+          work: "A services site that captures quote requests.",
           tags: ["Website", "Services", "Local business"],
         },
         {
@@ -1548,6 +1632,8 @@ export const translations = {
           badge: "Real estate · Demo",
           description:
             "A real estate site with a property catalog, detailed listings, call booking and direct WhatsApp capture.",
+          challenge: "A concept showing what a real estate agent needs. Not a client.",
+          work: "A demo with a property catalog, listing pages, call booking and WhatsApp.",
           tags: ["Website", "Real estate", "Listings"],
         },
         {
@@ -1560,6 +1646,8 @@ export const translations = {
           badge: "Accounting & tax · Demo",
           description:
             "A bilingual site for a U.S. accounting and tax practice: services, free-consult booking and trust-focused lead capture.",
+          challenge: "A concept showing what an accounting and tax practice needs. Not a client.",
+          work: "A bilingual demo with services, consultation booking and lead capture.",
           tags: ["Website", "Bilingual", "Professional services"],
         },
       ],
@@ -1570,10 +1658,10 @@ export const translations = {
       titleHighlight: "sell for you.",
       titleB: "",
       subtitle:
-        "Website design packages with public pricing, in US dollars, no sales call to find out and no 12-month contracts. Choose where to start and grow at your own pace.",
+        "Published base prices in US dollars, no sales call to see them and no 12-month contracts. Choose where to start; we confirm scope and investment before starting.",
       popular: "Most chosen",
       finePrintTitle: "Fine print",
-      currencyNoteUsd: "All prices are in US dollars. What a small business website costs and what monthly maintenance costs are published above, with no sales call needed to hear them.",
+      currencyNoteUsd: "All amounts are in US dollars (USD). Website projects are one-time payments; Web Support is billed monthly. Domain, hosting, email and subscription tools are paid separately, directly to each provider and in your name.",
       // ── Strategic Business Audit · the paid entry point ──
       // See the Spanish block above and src/i18n/audit.ts for the why.
       advisory: {
@@ -1582,8 +1670,10 @@ export const translations = {
         priceQuote: "Quoted",
         priceNote: "based on the scope of your business",
         hook: "For when you know something is off but not which of the pieces it is.",
+        forWho: "For when something is off and you don't know which piece",
+        billing: "one-time",
         description:
-          "It starts with your business — what you sell, who should buy it and what result you want — and from there reviews twelve areas against your real data: performance, architecture, conversion, technical SEO, keyword research, content and cannibalization, local presence, competitors, Google and Meta Ads, intake and measurement. Every finding documented with evidence and classified by impact, effort, urgency and dependency. You get a prioritized strategy with a 30/60/90 roadmap, a video and a call. If you hire web development, SEO or marketing, the audit goes in as the first phase of the project instead of being billed separately.",
+          "It starts with your business and reviews twelve areas against your real data, from the website and SEO to ads and measurement. You get findings with evidence, a prioritized strategy with a 30/60/90 roadmap, a video and a call. If you hire web development, SEO or marketing, the diagnosis that service needs is part of the project and its scope is set in the proposal.",
         homeEyebrow: "// the next step",
         homeTitle: "Want the full plan in writing?",
         prereq:
@@ -1613,38 +1703,60 @@ export const translations = {
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "What you see is what you pay for the scope described in each plan: it is not a reference range. If your project falls outside that scope I give you the exact number before we start, never halfway through the work. Growth+, Digital Marketing and the audit are quoted after the first meeting, because what they cost depends on where your business stands today.",
+      note: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting. Growth+, Digital Marketing and the Strategic Audit are quoted after the first meeting, because they depend on where your business stands.",
+      baseNote: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting.",
+      quotedScopeNote:
+        "For quoted plans, the quantity, frequency, platforms and deliverables are set in the approved proposal. Management fees do not include ad spend, which you pay directly to Google or Meta, or external subscription tools.",
+      summaryTitle: "Summary: web development",
+      summarySubtitle:
+        "A one-time payment to build your site. Base price, who it is for and what it includes; the full detail lives on each service page.",
+      monthlySummaryTitle: "Summary: monthly services",
+      forWhoLabel: "Who it is for",
+      detailsLabel: "See what is included",
+      auditTitle: "Strategic Audit",
+      auditSubtitle:
+        "Not a website package: an independent diagnosis to decide what to do first.",
+      termsTitle: "General terms",
+      terms: [
+        "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting.",
+        "Timelines start once I have copy, photos, access and approvals: a landing page takes 1 to 2 weeks, a 4-6 page site 2 to 4 weeks and an 8-12 page site 4 to 6 weeks.",
+        "Every project includes review rounds on the agreed scope and initial support after launch. Anything that adds pages or new features is quoted before it is done.",
+        "Domain, hosting, email and subscription tools are paid separately, directly to the provider, and renew on each provider's terms.",
+        "Web Support and Growth+ have no lock-in. Digital Marketing asks for a 3-month minimum.",
+      ],
       // ── Monthly ladder: support → growth → all-in ──
       // Replaces the single maintenance block. The market analysis called for a
       // ceiling to expand into: a $79 client can move to $349 and then $1,100
       // without ever changing vendors.
       monthlyTitle: "Monthly plans: website maintenance and local SEO",
       monthlySubtitle:
-        "Monthly website maintenance has published pricing. Growth+ and Digital Marketing are quoted to your business: a first meeting to understand it, an audit, and the scope and the number come out of that.",
+        "Monthly website maintenance has published pricing. Growth+ and Digital Marketing are quoted to your business: a first meeting to understand it, a diagnosis, and the scope and the number come out of that.",
       monthlyNote:
         "Lock-in: none on Web Support or Growth+ — move up, down or cancel from one month to the next. Digital Marketing asks for a 3-month minimum and, once that's met, cancels the same way.",
       monthly: [
         {
           badge: "Base · Continuity",
           name: "Web Support",
-          pricePrefix: "from",
+          pricePrefix: "From",
           price: "79",
           quoteLabel: "",
           currency: "USD / mo",
           currencyMonth: true,
-          priceNote: "depending on the size of your site",
+          priceNote: "monthly · depending on the size of your site",
+          forWho: "For a live site you'd rather not maintain yourself",
+          href: "maintenance",
           commitmentNote: "",
           tagline: "Your site always up to date",
           description:
             "You don't pay \"in case something breaks\". I keep your site fast, secure and updated, make the changes you need, and every month I tell you how your page performed.",
           features: [
-            "Monthly report: contacts, calls, WhatsApp clicks and forms received.",
-            "Uptime and speed monitoring: your site always online.",
+            "Monthly report: WhatsApp and call taps, forms received and bookings.",
+            "Uptime and speed monitoring, with an alert if the site goes down.",
             "Monthly site backup: if something fails, it's restored.",
             "Security and platform updates.",
             "Up to 3–4 minor changes a month: text, photos, prices, hours, promotions.",
             "1 improvement recommendation per month, based on your numbers.",
-            "Priority support for any urgent issue.",
+            "Priority attention when something breaks: a reply within 24 hours.",
           ],
           cta: "Activate my support",
           waText:
@@ -1660,27 +1772,29 @@ export const translations = {
           currency: "",
           currencyMonth: true,
           priceNote:
-            "Set after the first meeting and the audit of your business",
+            "Monthly · set after the first meeting and the diagnosis",
+          forWho: "For getting found on Google in your area",
+          href: "digitalMarketing",
           commitmentNote: "",
           tagline: "Get found, not just exist",
           description:
             "Having a website doesn't help if nobody finds you. This plan works your Google Business Profile, your reviews and your visibility in AI search, which is already where part of your clients come from.",
           features: [
             "Everything in the Web Support plan.",
-            "Google Business Profile: setup, verification and full optimization.",
+            "Google Business Profile: setup, handling the verification process (Google approves it) and optimization.",
             "Services, hours, service areas and profile details kept current.",
-            "Review management: a system to request them and a reply to every one that lands.",
-            "AI search optimization (ChatGPT, Google AI): so you get cited when someone asks for a business like yours.",
-            "Local SEO and content: I position you for searches in your city.",
+            "Review management: a system to request them and replies to reviews, at the frequency set in the proposal.",
+            "Content, structure and business information worked on to improve your visibility in search and AI answers.",
+            "Local SEO and content for searches in your city, in the amount set in the proposal.",
             "Monthly report on your Google Business Profile, your SEO and your website.",
           ],
-          cta: "Book the first meeting",
+          cta: "Request a first meeting",
           waText:
             "Hi Cristian, I'm interested in the Growth+ plan with Google Business Profile, review management and local SEO. Can we book the first meeting to quote it?",
           highlighted: true,
         },
         {
-          badge: "Ceiling · All-in",
+          badge: "Full plan · Acquisition",
           name: "Digital Marketing",
           pricePrefix: "",
           price: "",
@@ -1688,21 +1802,23 @@ export const translations = {
           currency: "",
           currencyMonth: true,
           priceNote:
-            "Set after the first meeting and the audit of your business",
+            "Monthly · set after the first meeting and the diagnosis",
+          forWho: "For steady lead flow from SEO and ads",
+          href: "digitalMarketing",
           commitmentNote:
-            "3-month minimum. Ads and SEO need that long to produce real results; before that we're still tuning.",
+            "3-month minimum. Ads and SEO need that long to produce data worth deciding on; before that we're still tuning.",
           tagline: "A complete client-acquisition system",
           description:
             "For the business that no longer wants to depend on referrals and good months. Website, ads, content and SEO working together, with a monthly report that says what each lead cost.",
           features: [
             "Everything in the Growth+ plan.",
-            "Google Ads and Meta campaign management when your business needs it, with whatever landing pages have to be built.",
+            "Google Ads and Meta campaign management when your business needs it. Platforms, campaigns and landing pages are set in the proposal; ad spend is paid separately.",
             "Full SEO: an initial report on where your SEO stands, what can be improved and the monthly plan of work.",
-            "Ongoing SEO: monthly content, links, and pages per service and per city.",
+            "Ongoing SEO: content, links and pages per service and per city, in the monthly amount set in the proposal.",
             "Monthly report with the full marketing metrics, the costs and the recommendations for the month.",
             "Monthly strategy call with Cristian Posada.",
           ],
-          cta: "Book the first meeting",
+          cta: "Request a first meeting",
           waText:
             "Hi Cristian, I'm interested in the Digital Marketing plan: campaigns, full SEO and the monthly report. Can we book the first meeting to quote it?",
           highlighted: false,
@@ -1713,7 +1829,10 @@ export const translations = {
           name: "Landing Page",
           price: "349",
           currency: "USD",
-          pricePrefix: "",
+          pricePrefix: "From",
+          priceNote: "one-time",
+          forWho: "To launch a service, a promotion or a campaign",
+          href: "landingPages",
           tagline: "Start capturing clients now",
           description:
             "A single page, 100% focused on converting. Ideal to launch a service, a promotion or a campaign without complications.",
@@ -1726,14 +1845,17 @@ export const translations = {
           ],
           cta: "I want my landing",
           waText:
-            "Hi Cristian, I'm interested in the Landing Page ($349 USD). I want a page 100% focused on capturing clients. Can you tell me more?",
+            "Hi Cristian, I'm interested in the Landing Page (from $349 USD). I want a page focused on capturing clients. Can you tell me more?",
           highlighted: false,
         },
         {
           name: "Website 4–6 pages",
           price: "899",
           currency: "USD",
-          pricePrefix: "",
+          pricePrefix: "From",
+          priceNote: "one-time",
+          forWho: "For an established business with several services",
+          href: "webDev",
           tagline: "The favorite of growing businesses",
           description:
             "Your whole business online: a page per service, a structure built to sell and trust from the first click.",
@@ -1741,62 +1863,73 @@ export const translations = {
             "4 to 6 strategic pages (one per service)",
             "Sales and trust structure",
             "WhatsApp + connected forms",
-            "Bilingual English/Spanish if you need it",
+            "Bilingual version available (page count confirmed in the proposal)",
             "Base SEO so you get found in your city",
           ],
           cta: "Start my site",
           waText:
-            "Hi Cristian, I'm interested in the 4–6 page Website ($899 USD). I want to take my whole business online with a structure that sells. How do we start?",
+            "Hi Cristian, I'm interested in the 4–6 page Website (from $899 USD). I want to take my whole business online with a structure that sells. How do we start?",
           highlighted: true,
         },
         {
           name: "Website 8–12 pages",
           price: "1,499",
           currency: "USD",
-          pricePrefix: "from",
+          pricePrefix: "From",
+          priceNote: "one-time",
+          forWho: "For several service lines, cities or locations",
+          href: "webDev",
           tagline: "Full presence and digital system",
           description:
             "A robust site for businesses with several locations or service lines: more pages, integrations and a clean digital operation.",
           features: [
             "8 to 12 complete pages",
             "Pages per service and per city",
-            "Integrations and automation",
-            "Lead capture + follow-up system",
+            "Integrations defined in the proposal",
+            "Quote forms and appointment booking",
             "Advanced technical SEO and launch support",
           ],
           cta: "Quote my site",
           waText:
-            "Hi Cristian, I'm interested in the 8–12 page Website (from $1,499 USD) with integrations and follow-up. I'd like a quote. Can we talk?",
+            "Hi Cristian, I'm interested in the 8–12 page Website (from $1,499 USD) with integrations. I'd like a quote. Can we talk?",
           highlighted: false,
         },
       ],
       extras: [
         {
           name: "Website redesign",
-          price: "from $899",
-          unit: "USD · depends on current size",
+          price: "From $899",
+          unit: "USD · one-time · depends on current size",
+          forWho: "For a site you already have that isn't working",
+          href: "webDev",
           description:
             "Renew image, structure and conversion on your current site without starting from scratch.",
         },
         {
           name: "Website optimization",
-          price: "$349",
-          unit: "USD",
+          price: "From $349",
+          unit: "USD · one-time",
+          forWho: "To improve speed and clarity without a rebuild",
+          href: "",
           description:
-            "More speed, better experience and CTAs that actually turn visits into messages.",
+            "More speed, a better mobile experience and clearer calls to action so contacting you is easy.",
         },
         {
           name: "Extra page",
-          price: "$199",
-          unit: "USD",
+          price: "From $199",
+          unit: "USD · one-time",
+          forWho: "For a site we already built together",
+          href: "",
           description: "Add an extra page to a site you already have with me.",
         },
         {
           name: "Urgent tweaks",
-          price: "$99",
-          unit: "USD",
+          price: "From $99",
+          unit: "USD · one-time",
+          forWho: "For one-off changes outside the scope",
+          href: "",
           description:
-            "Fast out-of-scope changes, resolved with priority the same day.",
+            "One-off out-of-scope changes, handled with priority. I confirm the turnaround before doing them.",
         },
       ],
     },
@@ -1804,13 +1937,11 @@ export const translations = {
       eyebrow: "// integrations",
       title: "I connect your favorite tools",
       subtitle:
-        "Your site doesn't live alone: it connects so follow-up happens on its own. A website design company for small business that stops at the design leaves you wiring all of this yourself.",
+        "WhatsApp, forms, appointment booking and tracking, connected to the site from launch.",
       items: [
-        { icon: "message-circle", name: "WhatsApp", description: "Acquisition and follow-up" },
-        { icon: "file-text", name: "Forms", description: "Lead capture" },
+        { icon: "message-circle", name: "WhatsApp", description: "Direct contact" },
+        { icon: "file-text", name: "Forms", description: "Quote requests" },
         { icon: "calendar", name: "Calendar", description: "Appointment booking" },
-        { icon: "database", name: "CRM", description: "Opportunity tracking" },
-        { icon: "mail", name: "Email", description: "Automated communication" },
         { icon: "trending-up", name: "Analytics", description: "Results measurement" },
       ],
     },
@@ -1825,18 +1956,18 @@ export const translations = {
         {
           question: "How long does it take to build a small business website?",
           answer:
-            "It depends on scope. A landing page usually takes 1 to 2 weeks, and a full site with integrations 3 to 6 weeks. After the call I give you a timeline with clear dates and deliverables. If you have a date that doesn't move — an opening, a busy season, a campaign — we work backwards from it.",
+            "It depends on scope. A landing page usually takes 1 to 2 weeks, a 4-6 page site 2 to 4 weeks and an 8-12 page site with integrations 4 to 6 weeks, counted from when I have copy, photos, access and approvals. The proposal includes a timeline with clear dates and deliverables. If you have a date that doesn't move — an opening, a busy season, a campaign — we work backwards from it.",
         },
         {
           question: "How much does a website cost with you?",
           answer:
-            "Plans range from $349 USD (landing page) to $1,499 USD (full 8–12 page site), with the 4–6 page site at $899 USD. Pricing is published: you don't need a sales call to see it. The free 15-minute call is just to confirm which one fits you.",
+            "A landing page starts at $349 USD, a 4–6 page site at $899 USD and an 8–12 page site at $1,499 USD, as one-time payments. Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting. You don't need a sales call to see them.",
         },
         {
           question:
             "What is the Strategic Business Audit and how is it different from a project?",
           answer:
-            "The Express Review is free and it is the entry point: three minutes of video on what is visible from the outside. The Strategic Business Audit is a different animal: five business days that start by understanding your business and your commercial objective, then cover twelve areas against your real data — performance, architecture, conversion, technical SEO, keyword research, content and cannibalization, local presence, competitors, Google and Meta Ads, intake and measurement. Every finding gets its evidence and is classified by impact, effort, urgency and dependency, and it ends in a prioritized strategy with a 30, 60 and 90-day roadmap. A project is the execution; the audit is the map. It is quoted after the first meeting, and if you hire web development, SEO or marketing it is included as the first phase of that work.",
+            "The Express Review is free and it is the entry point: a 20-minute video call on what is visible from the outside, with 3 priorities. The Strategic Business Audit is a different animal: five business days that start by understanding your business and your commercial objective, then cover twelve areas against your real data — performance, architecture, conversion, technical SEO, keyword research, content and cannibalization, local presence, competitors, Google and Meta Ads, intake and measurement. Every finding gets its evidence and is classified by impact, effort, urgency and dependency, and it ends in a prioritized strategy with a 30, 60 and 90-day roadmap. A project is the execution; the audit is the map. It is quoted after the first meeting. If you hire web development, SEO or marketing, the diagnosis that service needs is part of the project and its scope is set in the proposal; it is not automatically the full twelve-area audit.",
         },
         {
           question: "Is the audit deducted if I later hire a project?",
@@ -1846,12 +1977,12 @@ export const translations = {
         {
           question: "What's the difference between Web Support and Growth+?",
           answer:
-            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile, review management, local SEO and optimization so AI search cites you. One protects what you have; the other brings you new clients. Growth+ carries no list price because the work depends on where your digital presence stands: it is quoted after the first meeting and the audit.",
+            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile, review management, local SEO, and content and business information prepared for search engines and AI answers. One protects what you have; the other works to get more clients to find you. Growth+ carries no list price because the work depends on where your digital presence stands: it is quoted after the first meeting and the audit.",
         },
         {
           question: "Do the monthly plans have a lock-in contract?",
           answer:
-            "There's no 12-month contract on any plan. Web Support and Growth+ cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. The only one with a commitment is Digital Marketing: it asks for a 3-month minimum, because ads and SEO don't produce real results in 30 days and I don't want to charge you for a single month that won't help you. After that, it cancels like the rest. I'd rather you stay because it works than because you signed.",
+            "There's no 12-month contract on any plan. Web Support and Growth+ cancel from one month to the next, with no penalty and no call to anyone: you message me on WhatsApp and that's it. The only one with a commitment is Digital Marketing: it asks for a 3-month minimum, because ads and SEO don't produce reliable data in 30 days and I don't want to charge you for a single month that won't help you. After that, it cancels like the rest. I'd rather you stay because it works than because you signed.",
         },
         {
           question: "Do you work with U.S. businesses even though you're not here?",
@@ -1866,12 +1997,7 @@ export const translations = {
         {
           question: "Does the website price include domain and hosting?",
           answer:
-            "Yes. I guide and set up your domain, hosting and professional email. If you already have them, I work on your current infrastructure without issue.",
-        },
-        {
-          question: "Can the website connect to WhatsApp, forms and a CRM?",
-          answer:
-            "Absolutely. I connect forms, WhatsApp buttons, booking calendars and your CRM so every lead is recorded and pings you the moment it lands. The follow-up and the close stay yours: my part is making sure the lead reaches you complete and on time.",
+            "It includes setting them up, not paying for them. I guide and set up your domain, hosting and professional email, all in your name. You pay the provider directly — domain and hosting usually add up to $60 to $120 USD a year — and they renew yearly; professional email may carry its own subscription. If you already have them, I work on your current infrastructure.",
         },
         {
           question: "Can I edit my website myself afterwards?",
@@ -1881,7 +2007,17 @@ export const translations = {
         {
           question: "What do I need to have ready to start my website?",
           answer:
-            "Just the free 15-minute call. In it I understand your business, your services, your ideal client and the action you want to drive: calls, bookings or messages.",
+            "To start talking, nothing: the Express Review or a message is enough. To build the site I need your logo, photos, business details, your list of services and access to your domain or hosting if you already have them. We work on the copy together; which part I write and which part you provide is set in writing in the proposal.",
+        },
+        {
+          question: "What counts as a page and what counts as a section?",
+          answer:
+            "A page is its own address on the site: Home, each service, Contact. A section is a block inside a page: testimonials, FAQs, a form. Packages count pages, not sections. If the site is bilingual, how each version in the other language is counted and who does the translation is confirmed in the proposal.",
+        },
+        {
+          question: "What happens after delivery?",
+          answer:
+            "We go live, check together that forms, WhatsApp and tracking work, and I hand over the access. The project includes review rounds on the agreed scope and initial support after launch, for the period set in the proposal. After that you can keep the site on your own — paying only for domain, hosting and whatever tools you use — or hire Web Support, from $79 USD a month, if you'd rather someone maintain it.",
         },
       ],
     },
@@ -1931,7 +2067,7 @@ export const translations = {
       titleA: "Rather talk it through? Book your",
       titleHighlight: "Express Review",
       subtitle:
-        "Pick your time. Before the call I record a three-minute video with what I find. No cost, no sales pitch.",
+        "Pick an available time. I review your presence before the call and in 20 minutes I show you 3 priorities. No cost, no sales pitch.",
       facadeTitle: "Pick the day and time that suit you.",
       facadeCta: "See available times",
       facadeNote: "20 minutes, free, and no sales pitch.",
@@ -1941,7 +2077,13 @@ export const translations = {
       titleA: "Leave your details and I'll write back",
       titleHighlight: "in under 24 hours",
       subtitle:
-        "The fastest route and the one that commits you least: your name, your WhatsApp and what you need. Nothing to schedule and no jargon.",
+        "Your name, your WhatsApp and what you need, and I'll contact you to arrange the next step. No jargon.",
+      routesTitle: "Choose how to start",
+      routes: [
+        { key: "schedule", title: "Book", text: "Pick an available time for your Express Review.", cta: "See times" },
+        { key: "whatsapp", title: "WhatsApp", text: "Ask a question before you book.", cta: "Message me" },
+        { key: "form", title: "Form", text: "Leave your details and I'll contact you to arrange it.", cta: "Go to the form" },
+      ],
       toggle: "I'd rather leave my details and be contacted",
       toggleNote: "I reply in under 24 hours.",
       perks: [
@@ -1965,7 +2107,7 @@ export const translations = {
         "Website",
         "Landing page",
         "Redesign",
-        "Integrations / automation",
+        "Integrations",
         "Other",
       ],
       submit: "Send message",
@@ -1977,7 +2119,7 @@ export const translations = {
       eyebrow: "// express review",
       title: "Ready to stop losing clients between messages?",
       subtitle:
-        "I review your digital presence and record it in a three-minute video. Free.",
+        "A 20-minute video call to review your digital presence and leave with 3 clear priorities. Free.",
       ctaPrimary: "Book my Express Review",
       ctaWhatsapp: "Talk on WhatsApp",
     },
@@ -1996,7 +2138,7 @@ export const translations = {
       servicesList: [
         "Custom websites and redesigns",
         "Local SEO and Google Business Profile",
-        "Quote forms and automation",
+        "Quote forms and appointment booking",
         "Google Ads, Facebook and Instagram",
         "Analytics and business reporting",
       ],
@@ -2014,10 +2156,10 @@ export const translations = {
     // ── Price anchor on the home page (finding #10) ──
     priceAnchor: {
       eyebrow: "// investment",
-      title: "Clear, public pricing with no surprise quote",
+      title: "Published base pricing, no surprise quote",
       subtitle:
-        "Prices are on the page, with what each plan includes.",
-      fromLabel: "from",
+        "Every package shows its base price and what it includes. We confirm scope and investment before starting.",
+      fromLabel: "From",
       amount: "349",
       currency: "USD",
       amountNote: "complete landing page · one-time",
@@ -2030,7 +2172,7 @@ export const translations = {
       role: "Developer · Founder of ProCode Dev",
       title: "The agency owner is the one doing the work",
       body:
-        "I run ProCode Dev and I execute: design, development, SEO and campaigns. One person accountable, from the first conversation through follow-up.",
+        "I run ProCode Dev and I execute: design, development, SEO and campaigns. One person accountable, from the first conversation through delivery.",
       cta: "Book my Express Review",
     },
     // ── Objection FAQ before the home page's final CTA (finding #18) ──
@@ -2043,12 +2185,12 @@ export const translations = {
         {
           question: "I need a website for my business. Where do I start?",
           answer:
-            "With the service that pays you best, not the whole site. We usually start with a $349 USD landing page for that one service and, if it brings clients in, grow into a 4–6 page site. Low risk, price in plain sight.",
+            "With the service that pays you best, not the whole site. We usually start with a landing page, from $349 USD, for that one service and, if it brings clients in, grow into a 4–6 page site. Low risk, price in plain sight.",
         },
         {
           question: "What does it cost, and why don't I see it until the end?",
           answer:
-            "You do see it: pricing is published. From $349 USD for a landing page to $1,499 USD for a full 8–12 page site. There's no sales call to find out and no 12-month contracts; on the call we just confirm which one fits you.",
+            "You do see it: base pricing is published. A landing page from $349 USD, a 4–6 page site from $899 USD and an 8–12 page site from $1,499 USD. The total depends on pages, languages, content and integrations, and we confirm it before starting. There's no sales call to find out and no 12-month contracts.",
         },
         {
           question: "Does the 20-minute call cost anything or commit me?",
@@ -2063,7 +2205,7 @@ export const translations = {
         {
           question: "I'm not technical at all. Will I manage?",
           answer:
-            "That's exactly the point. I handle domain, hosting, email, Google profile and setup. You just tell me what services you offer and to whom.",
+            "That's exactly the point. I set up domain, hosting, email and your Google profile, all in your name (domain and hosting are paid to the provider). You tell me what services you offer and to whom.",
         },
         {
           question: "What if I already have a site but it isn't working?",
@@ -2077,7 +2219,7 @@ export const translations = {
         title:
           "Web Design & Digital Marketing Agency | ProCode Dev",
         description:
-          "A web design and digital marketing agency for small businesses across the United States, in English and Spanish. Published pricing from $349 USD.",
+          "Web design and digital marketing for small businesses in the U.S. and Mexico. Custom websites from $349 USD, with forms, WhatsApp and tracking.",
         keywords:
           "web design agency, small business web design agency, website design company for small business, digital marketing agency, web development agency, bilingual website design services, spanish website design services, bilingual web developer, ProCode Dev",
         heroKicker: "Home",
@@ -2086,7 +2228,7 @@ export const translations = {
         title:
           "Website Design by Industry | ProCode Dev",
         description:
-          "Website design for contractors, therapists, attorneys, realtors and tax preparers. Pick your industry and see what changes, with public pricing in USD.",
+          "Website design for contractors, therapists, attorneys, realtors and tax preparers. Pick your industry and see what changes, with base pricing in USD.",
         keywords:
           "contractor website design, therapist website design, real estate website design, tax preparer website design, attorney website design, local business web design, small business digital marketing services, websites by industry",
         heroTitleA: "Website design",
@@ -2118,18 +2260,18 @@ export const translations = {
         title:
           "How Much a Small Business Website Costs | ProCode Dev",
         description:
-          "Website design packages with public pricing: landing $349, 4–6 page site $899, large sites from $1,499 and site upkeep from $79 a month. No 12-month contracts.",
+          "Small business website pricing: landing page from $349, 4–6 page site from $899, 8–12 pages from $1,499 USD and Web Support from $79 USD a month.",
         keywords:
           "how much a small business website costs, small business website pricing, website design packages, how much does a website cost, monthly website maintenance, local SEO plan pricing",
         heroTitleA: "How much a small business",
         heroHighlight: "website costs",
-        heroSubtitle: "The prices, no sales call.",
+        heroSubtitle: "Base prices, no sales call.",
       },
       contact: {
         title:
           "Hire a Small Business Web Designer | ProCode Dev",
         description:
-          "Book your Express Review or message me on WhatsApp. Hire a web designer with no sales call: bilingual website design services and pricing already published.",
+          "Book your free 20-minute Express Review, message me on WhatsApp with questions or leave your details. Bilingual web design with published base pricing.",
         keywords:
           "hire a web designer, bilingual website design services, spanish website design services, bilingual web developer",
         heroTitleA: "Write to me or book a time,",
@@ -2142,9 +2284,9 @@ export const translations = {
     sectors: {
       promiseEyebrow: "// the promise",
       promiseTitle:
-        "Your business stops depending on someone remembering to follow up.",
+        "Your business stops depending on referrals alone.",
       promiseBody:
-        "Between interest and client there's a chain of manual steps. I build the infrastructure so it doesn't break.",
+        "I build the digital presence so the client looking for you finds you, understands you and gets in touch.",
       rtbTitle: "Why you can believe me",
       rtb: [
         {
@@ -2155,7 +2297,7 @@ export const translations = {
         },
         {
           icon: "receipt",
-          title: "Public pricing",
+          title: "Published base pricing",
           description:
             "It's on the page, in dollars. No sales call to find out and no 12-month contracts.",
         },
@@ -2167,9 +2309,9 @@ export const translations = {
         },
         {
           icon: "trending-up",
-          title: "Real contact reporting",
+          title: "Measurable opportunities",
           description:
-            "Every month I tell you how many calls and messages your digital presence generated. Not how many visits: how many potential clients.",
+            "On monthly plans I report WhatsApp and call taps, forms received and bookings. Not how many visits: how many contact opportunities.",
         },
       ],
       vsTitle: "Against what you already considered",
@@ -2189,12 +2331,12 @@ export const translations = {
         {
           name: "Hibu and similar",
           them: "12-month contract, price you don't see until the call.",
-          us: "No 12-month contracts, and pricing published on this very page.",
+          us: "No 12-month contracts, and base pricing published on this very site.",
         },
         {
-          name: "A $3,000/mo large agency",
-          them: "Good work, but outside a small business's budget.",
-          us: "A tenth of the cost, with the same focus on winning real clients.",
+          name: "A large agency",
+          them: "Good work, but monthly fees outside many service businesses' budgets.",
+          us: "Pricing built for service businesses, with the same focus on winning real clients.",
         },
       ],
       forTitle: "Local business web design and small business digital marketing services",
@@ -2288,8 +2430,8 @@ const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
     en: "Hi Cristian, I'm looking at your pricing and I have a question before booking.",
   },
   contact: {
-    es: "Hola Cristian, Prefiero escribirte por aquí en vez de agendar. Te cuento qué necesito.",
-    en: "Hi Cristian, I'd rather message you here than book a slot. Let me tell you what I need.",
+    es: "Hola Cristian, Tengo una duda antes de agendar la Revisión Express. Te cuento qué necesito.",
+    en: "Hi Cristian, I have a question before booking the Express Review. Let me tell you what I need.",
   },
   blog: {
     es: "Hola Cristian, Estaba leyendo un artículo de tu blog y me surgió una duda sobre mi negocio.",
@@ -2347,7 +2489,7 @@ export const relatedLinks: Record<
         {
           label: "Precios de páginas web",
           href: "/precios/",
-          hint: "Todos los paquetes con su precio publicado en USD",
+          hint: "Todos los paquetes con su precio base en USD",
         },
         {
           label: "Diseño web por sector",
@@ -2393,12 +2535,12 @@ export const relatedLinks: Record<
         {
           label: "Diseño y desarrollo de páginas web",
           href: "/servicios/desarrollo-web/",
-          hint: "Qué incluye el sitio de 4 a 6 páginas de $899 USD",
+          hint: "Qué incluye el sitio de 4 a 6 páginas, desde $899 USD",
         },
         {
           label: "Diseño de landing pages",
           href: "/servicios/landing-pages/",
-          hint: "Qué incluye la landing de $349 USD",
+          hint: "Qué incluye la landing, desde $349 USD",
         },
         {
           label: "Mantenimiento web",
@@ -2446,7 +2588,7 @@ export const relatedLinks: Record<
         {
           label: "Website pricing",
           href: "/en/pricing/",
-          hint: "Every package with its published price in USD",
+          hint: "Every package with its base price in USD",
         },
         {
           label: "Website design by industry",
@@ -2492,12 +2634,12 @@ export const relatedLinks: Record<
         {
           label: "Small business website design",
           href: "/en/services/web-development/",
-          hint: "What the $899 USD four-to-six page site includes",
+          hint: "What the four-to-six page site, from $899 USD, includes",
         },
         {
           label: "Landing page design",
           href: "/en/services/landing-pages/",
-          hint: "What the $349 USD landing page includes",
+          hint: "What the landing page, from $349 USD, includes",
         },
         {
           label: "Website maintenance",
@@ -2556,7 +2698,7 @@ export const formSuccess: Record<Lang, FormSuccessCopy> = {
   es: {
     title: "¡Listo, ya me llegó!",
     body:
-      "Recibí tu mensaje. Te escribo por WhatsApp en menos de 24 horas con el alcance, el precio y la fecha para tu caso.",
+      "Recibí tu mensaje. Te escribo por WhatsApp en menos de 24 horas para entender tu caso y proponerte el siguiente paso.",
     guarantee: "Respondo cualquier mensaje en menos de 24 horas.",
     whatsappLabel: "Escribirme por WhatsApp",
     whatsappHint: "¿Tienes una duda y no quieres esperar? Escríbeme directo.",
@@ -2566,7 +2708,7 @@ export const formSuccess: Record<Lang, FormSuccessCopy> = {
   en: {
     title: "Got it — your message is in.",
     body:
-      "I received it. I'll message you on WhatsApp within 24 hours with the scope, the price and the date for your case.",
+      "I received it. I'll message you on WhatsApp within 24 hours to understand your case and suggest the next step.",
     guarantee: "I answer every message within 24 hours.",
     whatsappLabel: "Message me on WhatsApp",
     whatsappHint: "Have a question and don't want to wait? Write to me directly.",
