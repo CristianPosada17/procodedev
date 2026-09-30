@@ -22,7 +22,7 @@ const { lang } = Astro.props as Props;
       const tag = LANDING_TAG[key] ?? "";
       return (
         <div
-          class:list={["lt-panel flex items-center gap-4 rounded-[var(--radius)] p-5", i === 1 && "lg:translate-x-8"]}
+          class:list={["lt-panel flex items-center gap-4 rounded-[var(--radius)] p-5", ["lt-float", "lt-float-2", "lt-float-3"][i % 3], i === 1 && "lg:translate-x-8"]}
         >
           <span class="lt-soft flex h-14 w-14 flex-none items-center justify-center rounded-2xl font-mono text-lg font-bold">
             {tag}

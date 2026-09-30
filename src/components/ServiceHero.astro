@@ -36,7 +36,7 @@ const stats = [
     class="mx-auto grid w-full max-w-[1480px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-10 2xl:max-w-[1600px]"
   >
     {/* Arriba del pliegue: sin `.reveal`, no debe depender de JS. */}
-    <div class="max-w-2xl">
+    <div class="hero-in max-w-2xl">
       {/* Sin subnavegación sobre el H1 («← Servicios · Servicio
           principal»): no se usaba y restaba protagonismo al titular. Las
           migas de pan siguen en el JSON-LD. */}
@@ -102,7 +102,7 @@ const stats = [
       <OfferNote lang={lang} />
     </div>
 
-    <div class="relative">
+    <div class="hero-visual-in relative">
       <div
         class="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[var(--brand)]/8 blur-[90px]"
         aria-hidden="true"

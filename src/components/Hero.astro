@@ -24,9 +24,11 @@ const h = t.hero;
   class="hero-clean relative isolate overflow-hidden"
 >
   <div class="hero-clean-grid tech-grid pointer-events-none absolute inset-0 -z-10 opacity-80" aria-hidden="true"></div>
+  <div class="hero-orb pointer-events-none absolute left-[8%] top-[18%] -z-10 h-64 w-64 rounded-full bg-[var(--brand)]/20 blur-3xl" aria-hidden="true"></div>
+  <div class="hero-orb-2 pointer-events-none absolute right-[6%] top-[30%] -z-10 h-72 w-72 rounded-full bg-[var(--grad-to)]/15 blur-3xl" aria-hidden="true"></div>
 
   <div
-    class="relative mx-auto flex w-full max-w-[1480px] flex-col items-center px-4 pb-20 pt-16 text-center sm:px-6 sm:pt-20 lg:px-10 lg:pb-28 lg:pt-28 2xl:max-w-[1600px]"
+    class="hero-in relative mx-auto flex w-full max-w-[1480px] flex-col items-center px-4 pb-20 pt-16 text-center sm:px-6 sm:pt-20 lg:px-10 lg:pb-28 lg:pt-28 2xl:max-w-[1600px]"
   >
     {/* Above-the-fold: sin `.reveal`. Nada de lo que decide la conversión
         en el primer scroll debe esperar a que corra JS (hallazgo #14). */}

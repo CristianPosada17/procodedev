@@ -70,7 +70,7 @@ const label = es ? "Qué encuentras en esta página" : "What is on this page";
   <ul class="grid gap-3 sm:grid-cols-2">
     {
       blocks.map((b, i) => (
-        <li class:list={[i % 2 === 1 && "sm:translate-y-6"]}>
+        <li class:list={["lt-rise", i % 2 === 1 && "sm:translate-y-6"]} style={`--d: ${200 + i * 120}ms`}>
           <a
             href={b.href}
             data-cta={`precios-mapa-${b.href.slice(1)}`}

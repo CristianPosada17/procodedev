@@ -53,8 +53,8 @@ const action = lang === "es" ? "Una sola acción" : "One single action";
       </div>
       <ul class="mt-4 grid gap-2.5">
         {
-          pieces.slice(0, 4).map((p) => (
-            <li class="flex items-center gap-3 rounded-xl bg-[var(--bg-2)]/70 px-3 py-2.5">
+          pieces.slice(0, 4).map((p, i) => (
+            <li class="lt-rise flex items-center gap-3 rounded-xl bg-[var(--bg-2)]/70 px-3 py-2.5" style={`--d: ${250 + i * 120}ms`}>
               <span class="lt-soft flex h-7 w-7 flex-none items-center justify-center rounded-lg">
                 <Icon name={p.icon as any} class="h-3.5 w-3.5" />
               </span>
@@ -66,7 +66,7 @@ const action = lang === "es" ? "Una sola acción" : "One single action";
     </div>
 
     {/* La misma página en el teléfono */}
-    <div class="lt-panel hidden w-32 rounded-[1.6rem] p-2.5 sm:block">
+    <div class="lt-panel lt-float-2 hidden w-32 rounded-[1.6rem] p-2.5 sm:block">
       <div class="rounded-[1.2rem] bg-[var(--bg-2)] p-3">
         <span class="mx-auto mb-3 block h-1 w-8 rounded-full bg-[var(--text)]/20"></span>
         <span class="lt-skel block h-2 w-full"></span>

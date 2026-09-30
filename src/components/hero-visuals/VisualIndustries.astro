@@ -24,7 +24,7 @@ const label = lang === "es" ? "Elige tu industria" : "Pick your industry";
       SEGMENT_KEYS.map((key, i) => {
         const s = segments[lang][key];
         return (
-          <li class:list={[i === 0 && "col-span-2"]}>
+          <li class:list={["lt-rise", i === 0 && "col-span-2"]} style={`--d: ${200 + i * 110}ms`}>
             <a
               href={PAGES[key][lang]}
               data-cta={`industrias-hero-${key}`}

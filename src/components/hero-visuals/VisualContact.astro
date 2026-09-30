@@ -21,7 +21,7 @@ const reply = t.common.guarantee;
 
 <div class="relative mx-auto grid max-w-xl gap-4 sm:grid-cols-[1.1fr_0.9fr]" aria-hidden="true">
   {/* Agenda */}
-  <div class="lt-panel rounded-[var(--radius-lg)] p-5">
+  <div class="lt-panel lt-float rounded-[var(--radius-lg)] p-5">
     <div class="flex items-center gap-3">
       <span class="lt-soft flex h-9 w-9 items-center justify-center rounded-xl">
         <Icon name="calendar" class="h-4 w-4" />
@@ -38,7 +38,7 @@ const reply = t.common.guarantee;
           <span
             class:list={[
               "flex h-8 items-center justify-center rounded-lg text-[11px] font-semibold",
-              i === 7 ? "lt-dot text-[var(--bg)]" : i % 3 === 0 ? "bg-[var(--tint)] text-[var(--muted)]/50" : "lt-soft",
+              i === 7 ? "lt-dot lt-ping text-[var(--bg)]" : i % 3 === 0 ? "bg-[var(--tint)] text-[var(--muted)]/50" : "lt-soft",
             ]}
           >
             {i + 1}
@@ -49,7 +49,7 @@ const reply = t.common.guarantee;
   </div>
 
   {/* Formulario de dos campos */}
-  <div class="lt-panel flex flex-col rounded-[var(--radius-lg)] p-5 sm:translate-y-8">
+  <div class="lt-panel lt-float-2 flex flex-col rounded-[var(--radius-lg)] p-5 sm:translate-y-8">
     <div class="flex items-center gap-3">
       <span class="lt-soft flex h-9 w-9 items-center justify-center rounded-xl">
         <Icon name="mail" class="h-4 w-4" />

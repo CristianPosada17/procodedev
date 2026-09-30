@@ -40,8 +40,8 @@ const monthly = lang === "es" ? "Plan mensual" : "Monthly plan";
 
     <ul class="grid gap-2 p-4 sm:grid-cols-2">
       {
-        pieces.slice(0, 6).map((p) => (
-          <li class="flex items-center gap-3 rounded-xl bg-[var(--bg-2)]/70 px-3 py-3">
+        pieces.slice(0, 6).map((p, i) => (
+          <li class="lt-rise flex items-center gap-3 rounded-xl bg-[var(--bg-2)]/70 px-3 py-3" style={`--d: ${200 + i * 90}ms`}>
             <span class="lt-soft flex h-8 w-8 flex-none items-center justify-center rounded-lg">
               <Icon name={p.icon as any} class="h-4 w-4" />
             </span>
@@ -59,8 +59,8 @@ const monthly = lang === "es" ? "Plan mensual" : "Monthly plan";
 
     {/* Línea de actividad decorativa: barras de igual altura, sin cifras. */}
     <div class="flex items-end gap-1.5 border-t border-[color:var(--border)] px-5 py-4">
-      {Array.from({ length: 24 }).map(() => (
-        <span class="lt-dot h-6 flex-1 rounded-sm opacity-70"></span>
+      {Array.from({ length: 24 }).map((_, i) => (
+        <span class="lt-dot lt-bars h-6 flex-1 rounded-sm opacity-70" style={`--d: ${-(i * 110)}ms`}></span>
       ))}
     </div>
   </div>
