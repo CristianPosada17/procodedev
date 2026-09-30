@@ -1,11 +1,13 @@
 ---
-import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
+import { translations, CONTACT, conversionHref, type Lang, type PageKey } from "../i18n/ui";
 import Icon from "./Icon.astro";
 
 interface Props {
   lang?: Lang;
+  /** Página que lo contiene: decide si la agenda está aquí o en /contacto/. */
+  page?: PageKey;
 }
-const { lang = "es" } = Astro.props as Props;
+const { lang = "es", page } = Astro.props as Props;
 const t = translations[lang];
 const f = t.founder;
 
@@ -17,53 +19,68 @@ const initials = f.name
   .map((w) => w[0])
   .slice(0, 2)
   .join("");
+
+// Redes confirmadas en CONTACT (src/i18n/ui.ts). Se muestran sin enlace:
+// mientras siga vigente la regla de enlaces externos, solo el footer enlaza
+// a redes. El usuario de cada red sale de su propia URL, no se escribe a mano.
+const handle = (url: string) =>
+  url.replace(/^https?:\/\/(www\.)?[^/]+\//, "").replace(/\/$/, "").replace(/^in\//, "");
+const socials = [
+  { label: "LinkedIn", icon: "linkedin" as const, handle: handle(CONTACT.linkedin) },
+  { label: "Instagram", icon: "instagram" as const, handle: `@${handle(CONTACT.instagram)}` },
+  { label: "Facebook", icon: "facebook" as const, handle: handle(CONTACT.facebook) },
+];
 ---
 
 <section id="quien" class="relative py-10 lg:py-16">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
-    {/* En móvil todo va centrado en una sola columna —foto, titular, nombre,
-        frase y botón— porque la foto pequeña arriba a la izquierda con el
-        texto desalineado debajo se veía desbalanceada. A partir de sm vuelve
-        la fila con la foto en su propia columna. */}
+    {/* La foto ocupa toda la columna izquierda de la tarjeta, de arriba a
+        abajo (en móvil va arriba, a todo el ancho). Antes era un recuadro
+        de 144–280 px que se perdía junto a un texto mucho más alto. */}
     <div
-      class="reveal mx-auto grid max-w-6xl gap-7 rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-8 text-center backdrop-blur-xl sm:grid-cols-[auto_1fr] sm:items-center sm:gap-10 sm:text-left lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-14 lg:p-12"
+      class="reveal mx-auto grid max-w-6xl overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 text-center backdrop-blur-xl md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:text-left"
     >
       <div
-        class="relative mx-auto h-36 w-36 flex-none overflow-hidden rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--brand)]/10 shadow-[0_20px_60px_-30px_var(--halo-card-strong)] sm:mx-0 sm:h-44 sm:w-44 lg:h-auto lg:w-full lg:flex-auto"
+        class="relative aspect-[4/5] w-full overflow-hidden bg-[var(--brand)]/10 sm:aspect-[4/3] md:aspect-auto md:min-h-full"
       >
         <span
-          class="absolute inset-0 flex items-center justify-center font-mono text-3xl font-bold text-[var(--accent)] lg:text-6xl"
+          class="absolute inset-0 flex items-center justify-center font-mono text-6xl font-bold text-[var(--accent)]"
           aria-hidden="true"
         >
           {initials}
         </span>
         <picture>
-          {/* La foto se muestra a 144 px en movil y ~300 px en escritorio;
-              el original de 600x600 y 37 KB era mas de lo necesario. */}
           <source
             type="image/avif"
-            sizes="(min-width: 1024px) 300px, 176px"
-            srcset="/images/cristian-posada-300.avif 300w, /images/cristian-posada-600.avif 600w"
+            sizes="(min-width: 768px) 42vw, 100vw"
+            srcset="/images/cristian-posada-retrato-400.avif 400w, /images/cristian-posada-retrato-795.avif 795w"
           />
           <source
             type="image/webp"
-            sizes="(min-width: 1024px) 300px, 176px"
-            srcset="/images/cristian-posada-300.webp 300w, /images/cristian-posada-600.webp 600w"
+            sizes="(min-width: 768px) 42vw, 100vw"
+            srcset="/images/cristian-posada-retrato-400.webp 400w, /images/cristian-posada-retrato-795.webp 795w"
           />
           <img
-            src="/images/cristian-posada-600.webp"
+            src="/images/cristian-posada-retrato-795.webp"
             alt={`${f.name} — ${f.role}`}
             loading="lazy"
             decoding="async"
-            width="600"
-            height="600"
-            class="relative h-full w-full object-cover lg:aspect-square lg:h-auto"
+            width="795"
+            height="1067"
+            class="absolute inset-0 h-full w-full object-cover object-[50%_15%] md:object-[45%_top]"
             onerror="this.remove()"
           />
         </picture>
+        {/* Degradado hacia la tarjeta para que la foto no termine en seco. */}
+        <div
+          class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--surface)]/70 to-transparent md:inset-y-0 md:left-auto md:right-0 md:h-full md:w-1/4 md:bg-gradient-to-l"
+          aria-hidden="true"
+        >
+        </div>
       </div>
 
-      <div class="flex flex-col items-center sm:items-start">
+      <div class="flex flex-col items-center p-8 md:items-start lg:p-12">
+        {f.eyebrow && <span class="eyebrow mb-3">{f.eyebrow}</span>}
         <h2
           class="text-2xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl"
         >
@@ -81,11 +98,38 @@ const initials = f.name
           {f.body}
         </p>
 
-        <a
-          href={PAGES.contact[lang]}
-          class="mt-7 inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
+        <dl class="mt-6 grid w-full max-w-xl grid-cols-2 gap-3 text-left">
+          {
+            f.highlights.map((h) => (
+              <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 px-4 py-3">
+                <dt class="text-lg font-bold tracking-tight text-[var(--text)]">{h.value}</dt>
+                <dd class="mt-0.5 text-xs leading-5 text-[var(--muted)]">{h.label}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <ul
+          class="mt-6 flex flex-wrap justify-center gap-2 md:justify-start"
+          aria-label={lang === "es" ? "Redes sociales" : "Social profiles"}
         >
-          {f.cta} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+          {
+            socials.map((s) => (
+              <li class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[var(--tint)] px-3 py-1.5 text-xs text-[var(--muted)]">
+                <Icon name={s.icon} class="h-3.5 w-3.5 text-[var(--accent)]" />
+                <span class="font-semibold text-[var(--text)]">{s.label}</span>
+                <span class="font-mono text-[11px]">{s.handle}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <a
+          href={conversionHref(page ?? "blog", lang, "book")}
+          data-cta="fundador-agendar"
+          class="btn-cta mt-8 self-center"
+        >
+          {f.cta} <Icon name="arrow-right" class="h-4 w-4" />
         </a>
       </div>
     </div>

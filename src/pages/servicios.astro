@@ -11,24 +11,25 @@
   explica la oferta, ahora ofrece un camino («quiero una recomendación») sin
   salir de la página; los tres caminos van antes que el detalle de cada
   línea, porque la duda real de quien llega aquí es cuál de los dos necesita;
-  el portafolio entra como prueba; y el formulario corto cierra la página.
+  el portafolio entra como prueba; y agenda + formulario (Nombre y Email)
+  cierran la página.
   Salieron `Integrations` y `WhyProCode`: el espacio que se iba en justificar
   por qué solo hay dos servicios ahora contesta «cuál necesito y qué obtengo».
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import PageHero from "../components/PageHero.astro";
+import LandingHero from "../components/LandingHero.astro";
+import VisualServices from "../components/hero-visuals/VisualServices.astro";
 import ServiceCompare from "../components/ServiceCompare.astro";
 import ServiceLines from "../components/ServiceLines.astro";
 import AuditCallout from "../components/AuditCallout.astro";
 import Portfolio from "../components/Portfolio.astro";
 import Process from "../components/Process.astro";
 import FAQ from "../components/FAQ.astro";
-import ServiceLeadForm from "../components/ServiceLeadForm.astro";
-import FinalCTA from "../components/FinalCTA.astro";
+import LandingConversion from "../components/LandingConversion.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
 import Footer from "../components/Footer.astro";
-import { translations, PAGES, relatedLinks } from "../i18n/ui";
+import { translations, PAGES, relatedLinks, conversionHref } from "../i18n/ui";
 import { serviceLines, servicesHub, SERVICE_KEYS } from "../i18n/services";
 
 const lang = "es";
@@ -72,18 +73,19 @@ const offerCatalog = SERVICE_KEYS.flatMap((key) =>
   <Header lang={lang} page="services" />
   <main>
     {/* Propuesta de valor y, en el mismo bloque, la forma de pedir ayuda. */}
-    <PageHero
+    <LandingHero
       lang={lang}
-      eyebrow={t.services.eyebrow}
+      page="services"
+      eyebrow={t.nav.services}
+      icon="layout"
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
-      ctaLabel={hub.form.ctaLabel}
-      ctaHref="#solicitar"
-      ctaId="hub-servicios-solicitar"
-      ctaSecondaryLabel={t.common.ctaPrimary}
-      ctaSecondaryHref={PAGES.contact[lang]}
-    />
+      lead={meta.description}
+      stats={[{ label: t.priceAnchor.fromLabel, value: `$${t.priceAnchor.amount}`, note: `${t.priceAnchor.currency} · ${t.priceAnchor.amountNote}` }]}
+    >
+      <VisualServices slot="visual" lang={lang} />
+    </LandingHero>
 
     {/* Primero cuál necesitas (con «ayúdame a elegir» como tercer camino),
         después qué obtienes con cada uno. */}
@@ -96,18 +98,18 @@ const offerCatalog = SERVICE_KEYS.flatMap((key) =>
     <ServiceLines lang={lang} variant="hub" />
 
     {/* Prueba antes que proceso: proyectos reales que se pueden abrir. */}
-    <Portfolio lang={lang} />
+    <Portfolio lang={lang} page="services" />
     <Process lang={lang} />
     <FAQ lang={lang} data={hub.faq} />
 
-    <ServiceLeadForm
-      lang={lang}
-      heading={hub.form}
-      service="Desarrollo web y marketing digital para negocios"
-      page="services"
-    />
     <RelatedLinks data={relatedLinks[lang].services} />
-    <FinalCTA lang={lang} />
+    {/* Cierre: agenda (#agendar) y formulario de Nombre y Email (#contacto). */}
+    <LandingConversion
+      lang={lang}
+      page="services"
+      formHeading={hub.form}
+      service="Desarrollo web y marketing digital para negocios"
+    />
   </main>
   <Footer lang={lang} />
 </Layout>

@@ -17,7 +17,8 @@
   «desarrollo web para negocios» contra agencias españolas con diez años de
   dominio, por tráfico que además no le sirve.
 
-  Mercados elegidos por Cristian: Texas, Florida y California.
+  Mercados elegidos por Cristian: Texas, Florida y California. En
+  septiembre de 2026 se añadió México (donde ProCode trabaja).
 
   REGLAS QUE NO SE PUEDEN ROMPER AQUÍ:
 
@@ -38,7 +39,10 @@
 
 import type { SegmentKey } from "./ui";
 
-export const MARKET_KEYS = ["texas", "florida", "california"] as const;
+// México va primero en el menú «Dónde trabajo» (sep 2026). El hub
+// /diseno-web-estados-unidos/ solo lista los estados: US_STATE_KEYS.
+export const MARKET_KEYS = ["mexico", "texas", "florida", "california"] as const;
+export const US_STATE_KEYS = ["texas", "florida", "california"] as const;
 export type MarketKey = (typeof MARKET_KEYS)[number];
 
 export interface MarketBlockItem {
@@ -1042,12 +1046,325 @@ const hubEn: MarketsHub = {
 };
 
 // ═══════════════════════════════════════════════════════════════════════
+// MÉXICO · /diseno-web-mexico/  (30 de septiembre de 2026)
+// Frase principal: "diseño de páginas web en México".
+// Lo que la hace distinta de las de Estados Unidos: aquí ProCode NO es
+// remoto desde otro país. Cristian trabaja desde México, así que no hace
+// falta explicar el huso horario ni el idioma, y sí hace falta ser claro
+// con lo que no cambia (precios en USD).
+// Mismas reglas que el resto del archivo: sin oficinas inventadas, sin
+// cifras de mercado y sin clientes que no estén en el portafolio. El único
+// cliente mexicano que se menciona es Constructora Izcalli (Durango), que
+// está publicado en el portafolio.
+// ═══════════════════════════════════════════════════════════════════════
+
+const mexicoEs: Market = {
+  key: "mexico",
+  name: "México",
+  icon: "map-pin",
+  navLabel: "México",
+  navHint: "Ciudad de México, Monterrey, Guadalajara y todo el país.",
+  cities: [
+    { name: "Ciudad de México", note: "Servicios profesionales, salud y despachos que compiten por las mismas búsquedas en muy poco espacio: gana quien se explica mejor y responde antes." },
+    { name: "Monterrey", note: "Industria, construcción y servicios a empresa: el sitio tiene que verse tan formal como la cotización que viene después." },
+    { name: "Guadalajara", note: "Negocios de servicios y marcas en crecimiento que ya venden por redes y necesitan un sitio que convierta ese tráfico en contactos." },
+    { name: "Resto del país", note: "El trabajo es remoto de principio a fin, así que la ciudad no cambia el proceso: llamada, contenido, revisiones por enlace y publicación." },
+  ],
+  meta: {
+    title: "Diseño de Páginas Web en México | ProCode Dev",
+    description:
+      "Diseño de páginas web en México para negocios de servicios: sitios a la medida, SEO local y captación de clientes. Precios base publicados desde $349 USD.",
+    keywords:
+      "diseño de páginas web en México, diseño web México, páginas web para negocios en México, agencia de diseño web en México, desarrollo web México, diseño de páginas web Ciudad de México, diseño web Monterrey, páginas web Guadalajara, marketing digital para negocios en México, SEO local México",
+    heroTitleA: "Diseño de páginas web en México",
+    heroHighlight: "para negocios de servicios",
+    heroSubtitle: "A la medida, en tu idioma y en tu horario.",
+  },
+  intro: {
+    title: "Por qué un negocio en México necesita algo más que redes",
+    lead:
+      "Muchos negocios en México venden por WhatsApp y redes sociales; el sitio es lo que convierte esa atención en contactos que llegan con la información completa.",
+    points: [
+      { title: "Desde México", text: "Mismo país, mismo idioma y mismo horario laboral." },
+      { title: "Una página por servicio", text: "Cada servicio se encuentra solo en Google." },
+      { title: "Listo para crecer", text: "Versión en inglés cuando vendes fuera del país." },
+    ],
+  },
+  industries: {
+    eyebrow: "// giros con los que trabajo",
+    title: "Negocios en México para los que construyo",
+    subtitle:
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los que más se repiten entre los negocios de servicios.",
+    items: [
+      {
+        icon: "building",
+        segment: "contractors",
+        title: "Construcción y contratistas",
+        description:
+          "Constructoras, remodelación e instalaciones. El portafolio incluye a Constructora Izcalli, en Durango: obra entregada presentada como prueba antes de la primera junta.",
+      },
+      {
+        icon: "users",
+        segment: "health",
+        title: "Salud y bienestar",
+        description:
+          "Consultorios, clínicas y profesionales de la salud que necesitan que el paciente entienda cómo trabajan y agende sin tantos mensajes de ida y vuelta.",
+      },
+      {
+        icon: "briefcase",
+        segment: "professional",
+        title: "Servicios profesionales",
+        description:
+          "Abogados, consultores y agencias. El sitio no vende un producto: vende que se puede confiar en quien contesta.",
+      },
+      {
+        icon: "receipt",
+        segment: "accounting",
+        title: "Contabilidad e impuestos",
+        description:
+          "Despachos contables y fiscales con servicios recurrentes, donde una buena página filtra al cliente antes de la primera llamada.",
+      },
+    ],
+  },
+  context: {
+    eyebrow: "// lo que cambia en México",
+    title: "Tres cosas que tengo en cuenta en un proyecto en México",
+    subtitle:
+      "No es la misma página para un negocio en México que para uno en Estados Unidos. Estas son las diferencias que sí afectan al diseño y al contenido.",
+    items: [
+      {
+        icon: "message-circle",
+        title: "WhatsApp es el canal principal",
+        description:
+          "La mayoría de los clientes prefiere escribir antes que llamar o llenar un formulario largo. El sitio se diseña para que ese primer mensaje llegue con el contexto que necesitas para responder rápido.",
+      },
+      {
+        icon: "smartphone",
+        title: "Se busca desde el teléfono",
+        description:
+          "El cliente compara desde el celular y muchas veces con datos móviles. El sitio se diseña primero para móvil y se optimiza para cargar rápido.",
+      },
+      {
+        icon: "map-pin",
+        title: "Google Maps decide mucho",
+        description:
+          "Para un negocio local, aparecer en el mapa con reseñas y la información completa pesa tanto como el sitio. Por eso el trabajo incluye el Perfil de Empresa en Google cuando el servicio lo contempla.",
+      },
+    ],
+  },
+  remote: {
+    eyebrow: "// cómo trabajamos",
+    title: "Trabajo desde México, en remoto y en tu horario",
+    subtitle:
+      "No importa en qué ciudad esté tu negocio: el proceso es el mismo y no necesitas reuniones presenciales.",
+    items: [
+      {
+        icon: "calendar",
+        title: "Mismo horario laboral",
+        description:
+          "Trabajamos en el mismo país, así que las llamadas y las revisiones se hacen en horario normal de oficina, sin esperar al día siguiente.",
+      },
+      {
+        icon: "message-circle",
+        title: "Comunicación directa",
+        description:
+          "Hablas conmigo, no con un ejecutivo de cuenta. Respondo cualquier mensaje en menos de 24 horas.",
+      },
+      {
+        icon: "lock",
+        title: "Todo queda a tu nombre",
+        description:
+          "Dominio, hosting, correos y cuentas se registran a nombre de tu negocio. Si un día dejamos de trabajar juntos, te llevas todo sin pedirme permiso.",
+      },
+    ],
+  },
+  faq: {
+    eyebrow: "// dudas de negocios en México",
+    titleA: "Lo que preguntan desde",
+    titleHighlight: "México",
+    subtitle: "Las dudas que salen cuando un negocio en México contrata su página web.",
+    items: [
+      {
+        question: "¿Trabajas con negocios de cualquier ciudad de México?",
+        answer:
+          "Sí. Todo el proceso es remoto —llamada inicial, contenido por mensaje o correo, revisiones por enlace y publicación—, así que la ciudad no cambia nada. Trabajamos en el mismo horario laboral.",
+      },
+      {
+        question: "¿Los precios están en pesos?",
+        answer:
+          "Los precios base publicados están en dólares (USD): landing desde $349, sitio de 4 a 6 páginas desde $899 y de 8 a 12 páginas desde $1,499. El total y la forma de pago se confirman en la propuesta, antes de iniciar.",
+      },
+      {
+        question: "¿Puedes hacer el sitio en inglés además de en español?",
+        answer:
+          "Sí. Si vendes fuera de México o atiendes a clientes que buscan en inglés, construyo las dos versiones con URLs separadas para que Google indexe ambas.",
+      },
+      {
+        question: "¿Tienes clientes en México?",
+        answer:
+          "Sí. El portafolio incluye proyectos en México, como Constructora Izcalli en Durango, y negocios que atienden a clientela en Estados Unidos. Todos están publicados en el portafolio.",
+      },
+    ],
+  },
+};
+
+const mexicoEn: Market = {
+  key: "mexico",
+  name: "Mexico",
+  icon: "map-pin",
+  navLabel: "Mexico",
+  navHint: "Mexico City, Monterrey, Guadalajara and nationwide.",
+  cities: [
+    { name: "Mexico City", note: "Professional services, health and firms competing for the same searches in a small space: whoever explains best and replies first wins." },
+    { name: "Monterrey", note: "Industry, construction and B2B services: the site has to look as formal as the quote that follows." },
+    { name: "Guadalajara", note: "Service businesses and growing brands that already sell through social media and need a site that turns that traffic into leads." },
+    { name: "Rest of the country", note: "The work is remote from start to finish, so the city does not change the process: call, content, review links and launch." },
+  ],
+  meta: {
+    title: "Web Design in Mexico | ProCode Dev",
+    description:
+      "Web design in Mexico for service businesses: custom websites, local SEO and lead generation. Published base prices from $349 USD.",
+    keywords:
+      "web design Mexico, website design Mexico, web development Mexico, web design agency Mexico, website for businesses in Mexico, web design Mexico City, web design Monterrey, web design Guadalajara, digital marketing Mexico, local SEO Mexico",
+    heroTitleA: "Web design in Mexico",
+    heroHighlight: "for service businesses",
+    heroSubtitle: "Custom-built, in your language, on your schedule.",
+  },
+  intro: {
+    title: "Why a business in Mexico needs more than social media",
+    lead:
+      "Many businesses in Mexico sell through WhatsApp and social media; the site is what turns that attention into leads that arrive with the full picture.",
+    points: [
+      { title: "From Mexico", text: "Same country, same language, same business hours." },
+      { title: "A page per service", text: "Each service can be found on its own in Google." },
+      { title: "Ready to grow", text: "An English version when you sell abroad." },
+    ],
+  },
+  industries: {
+    eyebrow: "// industries I work with",
+    title: "Businesses in Mexico I build for",
+    subtitle:
+      "Each industry has its own page with what changes in its case. These are the ones that come up most among service businesses.",
+    items: [
+      {
+        icon: "building",
+        segment: "contractors",
+        title: "Construction and contractors",
+        description:
+          "Builders, remodeling and installations. The portfolio includes Constructora Izcalli, in Durango: finished work presented as proof before the first meeting.",
+      },
+      {
+        icon: "users",
+        segment: "health",
+        title: "Health and wellness",
+        description:
+          "Practices, clinics and health professionals who need patients to understand how they work and book without so much back and forth.",
+      },
+      {
+        icon: "briefcase",
+        segment: "professional",
+        title: "Professional services",
+        description:
+          "Lawyers, consultants and agencies. The site is not selling a product: it is selling that whoever answers can be trusted.",
+      },
+      {
+        icon: "receipt",
+        segment: "accounting",
+        title: "Accounting and tax",
+        description:
+          "Accounting and tax firms with recurring services, where a good page qualifies the client before the first call.",
+      },
+    ],
+  },
+  context: {
+    eyebrow: "// what changes in Mexico",
+    title: "Three things I keep in mind on a project in Mexico",
+    subtitle:
+      "A site for a business in Mexico is not the same as one for a U.S. business. These are the differences that actually affect design and content.",
+    items: [
+      {
+        icon: "message-circle",
+        title: "WhatsApp is the main channel",
+        description:
+          "Most customers would rather write than call or fill in a long form. The site is designed so that first message arrives with the context you need to reply fast.",
+      },
+      {
+        icon: "smartphone",
+        title: "People search from their phone",
+        description:
+          "Customers compare on their phone, often on mobile data. The site is designed mobile-first and optimized to load fast.",
+      },
+      {
+        icon: "map-pin",
+        title: "Google Maps decides a lot",
+        description:
+          "For a local business, showing up on the map with reviews and complete information matters as much as the site. That is why the work includes the Google Business Profile when the service covers it.",
+      },
+    ],
+  },
+  remote: {
+    eyebrow: "// how we work",
+    title: "I work from Mexico, remotely and on your schedule",
+    subtitle:
+      "Whatever city your business is in, the process is the same and you do not need in-person meetings.",
+    items: [
+      {
+        icon: "calendar",
+        title: "Same business hours",
+        description:
+          "We work in the same country, so calls and reviews happen during normal office hours, without waiting until the next day.",
+      },
+      {
+        icon: "message-circle",
+        title: "Direct communication",
+        description:
+          "You talk to me, not an account executive. I answer every message within 24 hours.",
+      },
+      {
+        icon: "lock",
+        title: "Everything is in your name",
+        description:
+          "Domain, hosting, email and accounts are registered in the name of your business. If we ever stop working together, you take everything with you.",
+      },
+    ],
+  },
+  faq: {
+    eyebrow: "// questions from businesses in Mexico",
+    titleA: "What people ask from",
+    titleHighlight: "Mexico",
+    subtitle: "The questions that come up when a business in Mexico hires its website.",
+    items: [
+      {
+        question: "Do you work with businesses anywhere in Mexico?",
+        answer:
+          "Yes. The whole process is remote — first call, content by message or email, review links and launch — so the city does not change anything. We work the same business hours.",
+      },
+      {
+        question: "Are prices in pesos?",
+        answer:
+          "Published base prices are in U.S. dollars: a landing page from $349, a 4-6 page site from $899 and an 8-12 page site from $1,499. The total and payment method are confirmed in the proposal, before starting.",
+      },
+      {
+        question: "Can you build the site in English as well as Spanish?",
+        answer:
+          "Yes. If you sell outside Mexico or serve customers who search in English, I build both versions on separate URLs so Google indexes both.",
+      },
+      {
+        question: "Do you have clients in Mexico?",
+        answer:
+          "Yes. The portfolio includes projects in Mexico, such as Constructora Izcalli in Durango, and businesses that serve customers in the United States. They are all published in the portfolio.",
+      },
+    ],
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════════
 // EXPORTS
 // ═══════════════════════════════════════════════════════════════════════
 
 export const markets: Record<"es" | "en", Record<MarketKey, Market>> = {
-  es: { texas: texasEs, florida: floridaEs, california: californiaEs },
-  en: { texas: texasEn, florida: floridaEn, california: californiaEn },
+  es: { mexico: mexicoEs, texas: texasEs, florida: floridaEs, california: californiaEs },
+  en: { mexico: mexicoEn, texas: texasEn, florida: floridaEn, california: californiaEn },
 };
 
 export const marketsHub: Record<"es" | "en", MarketsHub> = {

@@ -170,6 +170,9 @@ en cada uno:
   husos horarios, pagos en dólares con factura, y todo —dominio, hosting,
   correos, Perfil de Empresa en Google y cuentas de anuncios— registrado a
   nombre del negocio del cliente.
+- [México](https://procodedev.com/diseno-web-mexico/): Ciudad de México,
+  Monterrey, Guadalajara y el resto del país. ProCode trabaja desde México, en
+  el mismo horario y en remoto; los precios base publicados siguen en dólares.
 - [Texas](https://procodedev.com/diseno-web-texas/): Houston, Dallas–Fort Worth,
   San Antonio y Austin. Estado de oficios (remodelación, techos, plomería,
   electricidad, climatización); el bilingüe es la base, no un extra. Comparte

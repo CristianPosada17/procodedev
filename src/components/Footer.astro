@@ -140,28 +140,19 @@ const serviceLinks = [
         >
           {t.footer.contactTitle}
         </h3>
+        {/* Septiembre de 2026 (30): los únicos enlaces externos del sitio son
+            las redes de arriba. Correo y WhatsApp se muestran como texto
+            (seleccionable) y la conversión va por la agenda de /contacto/. */}
         <div class="mt-5 grid gap-3 text-sm text-[var(--muted)]">
-          <a
-            href={`mailto:${CONTACT.email}`}
-            class="transition hover:text-[var(--accent)]"
-          >
-            {CONTACT.email}
-          </a>
-          <a
-            href={`https://wa.me/${CONTACT.whatsapp}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="transition hover:text-[var(--accent)]"
-          >
-            {CONTACT.whatsappDisplay}
-          </a>
+          <span class="select-all">{CONTACT.email}</span>
+          <span>WhatsApp · {CONTACT.whatsappDisplay}</span>
           <span>{t.footer.hours}</span>
           <span>{t.footer.location}</span>
         </div>
 
         <a
-          href={PAGES.contact[lang]}
-          class="mt-6 inline-flex rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
+          href={`${PAGES.contact[lang]}#agendar`}
+          class="mt-6 inline-flex min-h-[44px] items-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
         >
           {t.footer.cta}
         </a>

@@ -1,0 +1,86 @@
+---
+/*
+  Visual del hero de una página de giro: el proyecto real (o demo, y así
+  lo dice su etiqueta) que la página declara en `projectId`, dentro de un
+  marco de navegador, con dos piezas de lo que se construye para ese giro
+  flotando alrededor. Cada giro enseña su propio sitio, no una escena
+  genérica.
+*/
+import { translations, type Lang, type SegmentKey } from "../../i18n/ui";
+import { getSegment } from "../../i18n/segments";
+import { LANDING_TAG } from "../landing-theme";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+  segment: SegmentKey;
+}
+const { lang, segment } = Astro.props as Props;
+const t = translations[lang];
+const x = getSegment(lang, segment);
+const tag = LANDING_TAG[segment] ?? "";
+const project = t.portfolio.projects.find((p) => p.id === x.projectId);
+const base = project?.image?.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+const srcset = (ext: string) =>
+  base ? [400, 800, 1200].map((w) => `${base}-${w}.${ext} ${w}w`).join(", ") : undefined;
+const domain = project ? project.url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "") : "";
+const chips = [x.system[1], x.system[3]].filter(Boolean);
+---
+
+<div class="relative px-2 pb-10 sm:px-6 lg:px-0" aria-hidden="true">
+  <div class="lt-panel relative overflow-hidden rounded-[var(--radius-lg)]">
+    <div class="flex items-center gap-2 border-b border-[color:var(--border)] px-4 py-3">
+      <span class="h-2.5 w-2.5 rounded-full bg-[var(--text)]/15"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-[var(--text)]/15"></span>
+      <span class="lt-dot h-2.5 w-2.5 rounded-full"></span>
+      <span class="ml-3 truncate rounded-md bg-[var(--bg-2)] px-3 py-1 font-mono text-[11px] text-[var(--muted)]">
+        {domain}
+      </span>
+      <span class="lt-soft ml-auto rounded-full px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-[0.18em]">
+        {tag}
+      </span>
+    </div>
+    {
+      project && (
+        <picture>
+          <source type="image/avif" sizes="(min-width: 1024px) 46vw, 92vw" srcset={srcset("avif")} />
+          <source type="image/webp" sizes="(min-width: 1024px) 46vw, 92vw" srcset={srcset("webp")} />
+          <img
+            src={base ? `${base}-800.webp` : project.image}
+            alt=""
+            width="1200"
+            height="600"
+            fetchpriority="high"
+            decoding="async"
+            class="block aspect-[2/1] w-full object-cover object-top"
+          />
+        </picture>
+      )
+    }
+    <div class="flex items-center justify-between gap-3 px-5 py-4">
+      <div class="min-w-0">
+        <p class="truncate text-sm font-bold text-[var(--text)]">{project?.name}</p>
+        <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{project?.badge}</p>
+      </div>
+      <span class="lt-soft flex h-10 w-10 flex-none items-center justify-center rounded-xl">
+        <Icon name={x.icon as any} class="h-5 w-5" />
+      </span>
+    </div>
+  </div>
+
+  {
+    chips.map((c, i) => (
+      <div
+        class:list={[
+          "lt-panel absolute hidden max-w-[15rem] items-center gap-3 rounded-2xl px-4 py-3 sm:flex",
+          i === 0 ? "-left-4 top-1/3 lg:-left-10" : "-bottom-2 right-2 lg:-right-6",
+        ]}
+      >
+        <span class="lt-soft flex h-9 w-9 flex-none items-center justify-center rounded-xl">
+          <Icon name={c.icon as any} class="h-4 w-4" />
+        </span>
+        <span class="text-xs font-semibold leading-snug text-[var(--text)]">{c.title}</span>
+      </div>
+    ))
+  }
+</div>

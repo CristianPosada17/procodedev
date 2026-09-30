@@ -1,0 +1,86 @@
+---
+/*
+  Visual del hero de /servicios/seo/: una página de resultados de Google
+  con tu negocio arriba —orgánico y en el mapa—, que es literalmente lo que
+  vende el servicio. Sin posiciones, clics ni porcentajes: son esqueletos,
+  no métricas de ningún cliente.
+*/
+import type { Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+  query: string;
+  pieces: readonly { title: string; icon: string }[];
+}
+const { lang, query, pieces } = Astro.props as Props;
+const you = lang === "es" ? "Tu negocio" : "Your business";
+const domain = lang === "es" ? "tunegocio.com" : "yourbusiness.com";
+const mapLabel = lang === "es" ? "En el mapa" : "On the map";
+---
+
+<div class="relative mx-auto max-w-xl pb-6" aria-hidden="true">
+  <div class="lt-panel overflow-hidden rounded-[var(--radius-lg)]">
+    {/* Barra de búsqueda */}
+    <div class="flex items-center gap-3 border-b border-[color:var(--border)] px-5 py-4">
+      <Icon name="google" class="h-5 w-5 flex-none text-[var(--accent)]" />
+      <div class="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-2">
+        <span class="truncate text-sm text-[var(--text)]">{query}</span>
+        <Icon name="search" class="ml-auto h-4 w-4 flex-none text-[var(--muted)]" />
+      </div>
+    </div>
+
+    <div class="grid gap-4 p-5">
+      {/* Resultado destacado: tu negocio */}
+      <div class="rounded-2xl border border-[color:var(--border-strong)] bg-[var(--accent)]/[0.07] p-4">
+        <div class="flex items-center gap-2">
+          <span class="lt-soft flex h-6 w-6 items-center justify-center rounded-full">
+            <Icon name="globe" class="h-3.5 w-3.5" />
+          </span>
+          <span class="font-mono text-[11px] text-[var(--muted)]">{domain}</span>
+        </div>
+        <p class="mt-2 text-base font-bold text-[var(--accent)]">{you}</p>
+        <span class="lt-skel mt-2 block h-2 w-11/12"></span>
+        <span class="lt-skel mt-1.5 block h-2 w-3/4"></span>
+      </div>
+
+      {/* Mapa local */}
+      <div class="grid grid-cols-[7rem_1fr] gap-3 rounded-2xl border border-[color:var(--border)] p-3">
+        <div class="relative h-20 overflow-hidden rounded-xl bg-[var(--bg-2)]">
+          <div class="tech-grid absolute inset-0 opacity-70"></div>
+          <span class="lt-dot absolute left-1/2 top-1/2 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[var(--bg)] ring-4 ring-[color:var(--border-strong)]">
+            <Icon name="map-pin" class="h-4 w-4" />
+          </span>
+        </div>
+        <div class="flex flex-col justify-center">
+          <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{mapLabel}</p>
+          <p class="mt-1 text-sm font-bold text-[var(--text)]">{you}</p>
+          <span class="lt-skel mt-2 block h-2 w-2/3"></span>
+        </div>
+      </div>
+
+      {/* Resto de resultados, apagados */}
+      {
+        [0, 1].map(() => (
+          <div class="opacity-50">
+            <span class="lt-skel block h-2 w-24"></span>
+            <span class="lt-skel mt-2 block h-3 w-1/2"></span>
+            <span class="lt-skel mt-2 block h-2 w-10/12"></span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  {/* Piezas del servicio */}
+  <ul class="absolute -bottom-1 -left-3 hidden flex-col gap-2 sm:flex lg:-left-10">
+    {
+      pieces.slice(1, 4).map((p) => (
+        <li class="lt-panel inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-[var(--text)]">
+          <Icon name={p.icon as any} class="h-3.5 w-3.5 text-[var(--accent)]" />
+          {p.title}
+        </li>
+      ))
+    }
+  </ul>
+</div>

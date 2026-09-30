@@ -4,24 +4,35 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import ClientLogos from "../components/ClientLogos.astro";
 import GrowthSystem from "../components/GrowthSystem.astro";
+import WhyProCode from "../components/WhyProCode.astro";
+import Process from "../components/Process.astro";
+import CaseStudy from "../components/CaseStudy.astro";
+import ProofStrip from "../components/ProofStrip.astro";
+import Testimonials from "../components/Testimonials.astro";
+import ServiceFit from "../components/ServiceFit.astro";
+import Founder from "../components/Founder.astro";
 import ServiceLines from "../components/ServiceLines.astro";
 import PriceAnchor from "../components/PriceAnchor.astro";
-import WhyProCode from "../components/WhyProCode.astro";
-import ProofStrip from "../components/ProofStrip.astro";
-import CaseStudy from "../components/CaseStudy.astro";
-import Founder from "../components/Founder.astro";
 import Integrations from "../components/Integrations.astro";
-import Testimonials from "../components/Testimonials.astro";
 import FAQ from "../components/FAQ.astro";
-import FinalCTA from "../components/FinalCTA.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
+import LandingConversion from "../components/LandingConversion.astro";
 import Footer from "../components/Footer.astro";
 import { translations, relatedLinks } from "../i18n/ui";
+import { serviceDetails } from "../i18n/services";
 
 const lang = "es";
 const meta = translations[lang].pageMeta.home;
 ---
 
+{/*
+  Estructura común de la página principal y las landings (sep 2026):
+  1 hero · 2 beneficios · 3 cómo se trabaja (+ proyectos) · 4 testimonios ·
+  5 para quién es · 6 fundador · 7 información práctica · 8 preguntas ·
+  9 cierre con agenda (#agendar) y formulario (#contacto).
+  «Para quién es» reutiliza el filtro de Desarrollo Web: es el servicio de
+  entrada del home (landing desde $349) y su copy ya está publicado.
+*/}
 <Layout
   lang={lang}
   page="home"
@@ -32,74 +43,40 @@ const meta = translations[lang].pageMeta.home;
   faqVariant="home"
 >
   <Header lang={lang} page="home" />
-  <main class="home-flow">
+  <main>
+    {/* 1 · Hero + clientes reales */}
     <Hero lang={lang} />
     <ClientLogos lang={lang} />
+
+    {/* 2 · Beneficios */}
     <GrowthSystem lang={lang} />
-    <ServiceLines lang={lang} />
-    <PriceAnchor lang={lang} />
     <WhyProCode lang={lang} />
+
+    {/* 3 · Así es como se trabaja, con proyectos reales */}
+    <Process lang={lang} />
     <CaseStudy lang={lang} variant="home" />
     <ProofStrip lang={lang} />
-    <Founder lang={lang} />
-    <Integrations lang={lang} />
+
+    {/* 4 · Testimonios publicados */}
     <Testimonials lang={lang} />
+
+    {/* 5 · Para quién es y para quién no */}
+    <ServiceFit lang={lang} fit={serviceDetails[lang].webDev.fit} />
+
+    {/* 6 · El desarrollador y fundador */}
+    <Founder lang={lang} page="home" />
+
+    {/* 7 · Información práctica: qué incluye, inversión, herramientas */}
+    <ServiceLines lang={lang} />
+    <PriceAnchor lang={lang} />
+    <Integrations lang={lang} />
+
+    {/* 8 · Preguntas frecuentes */}
     <FAQ lang={lang} variant="home" />
     <RelatedLinks data={relatedLinks[lang].home} />
-    <FinalCTA lang={lang} />
+
+    {/* 9 · Cierre: agenda y formulario en esta misma página */}
+    <LandingConversion lang={lang} page="home" />
   </main>
   <Footer lang={lang} />
 </Layout>
-
-<style is:global>
-  /*
-    Solo móvil: la franja de proyectos reales sube justo después de la tira de
-    valores, para que la primera evidencia visual aparezca en la segunda
-    pantalla en vez de la sexta. A partir de lg el flex se apaga y el orden
-    vuelve exactamente al del DOM, así que el escritorio no cambia.
-  */
-  @media (max-width: 1023px) {
-    main.home-flow {
-      display: flex;
-      flex-direction: column;
-    }
-    /* Evita que un hijo con contenido ancho (la tira animada) desborde. */
-    main.home-flow > * {
-      min-width: 0;
-    }
-    /* El proyecto destacado va justo antes de la franja de proyectos. */
-    main.home-flow > #destacado {
-      order: 1;
-    }
-    main.home-flow > #trabajo {
-      order: 1;
-    }
-    main.home-flow > #sistema {
-      order: 2;
-    }
-    main.home-flow > #servicios {
-      order: 3;
-    }
-    main.home-flow > #inversion {
-      order: 4;
-    }
-    main.home-flow > #por-que {
-      order: 5;
-    }
-    main.home-flow > #quien {
-      order: 6;
-    }
-    main.home-flow > #integraciones {
-      order: 7;
-    }
-    main.home-flow > #testimonios {
-      order: 8;
-    }
-    main.home-flow > #dudas {
-      order: 9;
-    }
-    main.home-flow > #final-cta {
-      order: 10;
-    }
-  }
-</style>

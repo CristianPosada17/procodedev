@@ -5,27 +5,29 @@
   Por qué existe: la confirmación era una línea de texto debajo del botón.
   En un teléfono, después de enviar, esa línea suele quedar fuera de la
   pantalla, así que el visitante no sabía si había pasado algo y muchos
-  reenviaban el formulario. Ahora se abre este diálogo, que además pone el
-  WhatsApp a un toque para quien tiene una duda y no quiere esperar.
+  reenviaban el formulario.
 
-  Se renderiza dentro de cada componente de formulario (ServiceLeadForm y
-  Contact). Expone `window.pcdFormSuccess()`, que es lo que llaman los dos
-  scripts de envío cuando Web3Forms responde que sí.
+  Septiembre de 2026 (30): el atajo de WhatsApp salía del sitio. Ahora el
+  siguiente paso es la agenda de la Revisión Express, dentro de la misma
+  página cuando la tiene (#agendar) o en /contacto/ cuando no.
+
+  Se renderiza dentro de LeadForm. Expone `window.pcdFormSuccess()`, que es
+  lo que llama el script de envío cuando Web3Forms responde que sí.
 
   El marcado se monta una sola vez aunque hubiera dos formularios en la
   misma página: el script comprueba el id antes de registrarse.
 */
 import Icon from "./Icon.astro";
-import { formSuccess, CONTACT, waHref, type Lang, type PageKey } from "../i18n/ui";
+import { formSuccess, conversionHref, type Lang, type PageKey } from "../i18n/ui";
 
 interface Props {
   lang?: Lang;
-  /** Para armar el enlace de WhatsApp con el mensaje de esta página. */
+  /** Para decidir si la agenda está en esta página o en /contacto/. */
   page: PageKey | "blog";
 }
 const { lang = "es", page } = Astro.props as Props;
 const c = formSuccess[lang];
-const wa = waHref(page, lang);
+const bookHref = conversionHref(page, lang, "book");
 
 const script = `
   (function(){
@@ -34,28 +36,29 @@ const script = `
     overlay.dataset.pcdReady = '1';
     var card = overlay.querySelector('[data-card]');
     var closeBtn = overlay.querySelector('[data-close]');
+    var bookBtn = overlay.querySelector('[data-book]');
     var lastFocus = null;
 
-    function close(){
+    function close(restore){
       overlay.hidden = true;
       document.documentElement.style.overflow = '';
-      if(lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+      if(restore !== false && lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
     }
 
     function open(){
       lastFocus = document.activeElement;
       overlay.hidden = false;
       document.documentElement.style.overflow = 'hidden';
-      // El foco al botón de cerrar y no al de WhatsApp: abrir un diálogo
-      // con el foco puesto en el enlace que saca de la página es una forma
-      // elegante de perder al visitante que solo quería confirmar.
       setTimeout(function(){ if(closeBtn) closeBtn.focus({ preventScroll: true }); }, 60);
     }
 
     window.pcdFormSuccess = open;
 
     overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
-    if(closeBtn) closeBtn.addEventListener('click', close);
+    if(closeBtn) closeBtn.addEventListener('click', function(){ close(); });
+    // El ancla de la agenda está debajo del diálogo: hay que cerrarlo (y
+    // soltar el bloqueo de scroll) para que el salto se vea.
+    if(bookBtn) bookBtn.addEventListener('click', function(){ close(false); });
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape' && !overlay.hidden) close();
     });
@@ -105,23 +108,22 @@ const script = `
       {c.guarantee}
     </p>
 
-    <p class="mt-5 text-sm text-[var(--muted)]">{c.whatsappHint}</p>
+    <p class="mt-5 text-sm text-[var(--muted)]">{c.bookHint}</p>
 
     <a
-      href={wa}
-      target="_blank"
-      rel="noopener"
-      data-cta="modal-whatsapp"
-      class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-bold text-[#04231a] transition hover:brightness-110"
+      href={bookHref}
+      data-book
+      data-cta="modal-agendar"
+      class="btn-cta mt-3 w-full"
     >
-      <Icon name="whatsapp" class="h-5 w-5" />
-      {c.whatsappLabel} · {CONTACT.whatsappDisplay}
+      <Icon name="calendar" class="h-4 w-4" />
+      {c.bookLabel}
     </a>
 
     <button
       type="button"
       data-close
-      class="mt-3 w-full rounded-xl border border-[color:var(--border)] px-5 py-3 text-sm font-semibold text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--text)]"
+      class="mt-3 min-h-[48px] w-full rounded-xl border border-[color:var(--border)] px-5 py-3 text-sm font-semibold text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--text)]"
     >
       {c.close}
     </button>

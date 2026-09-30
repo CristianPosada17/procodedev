@@ -6,14 +6,16 @@
   el contenido, que es lo que las hace distintas entre sí, vive en
   src/i18n/markets.ts.
 
-  Orden: portada → por qué este mercado es distinto (intro) → los giros que
-  dominan ahí (con enlace a su página de giro) → lo que cambia en ese estado
-  → prueba real del portafolio → cómo funciona el trabajo a distancia →
-  precios de entrada → dudas → CTA.
+  Orden común de las landings (sep 2026): portada → por qué este mercado es
+  distinto y qué cambia ahí → cómo se trabaja en remoto + proyectos reales →
+  testimonios → los giros que dominan ahí → fundador → zonas y precios de
+  entrada → dudas → cierre con agenda y formulario en la misma página.
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
-import PageHero from "./PageHero.astro";
+import LandingHero from "./LandingHero.astro";
+import VisualMarket from "./hero-visuals/VisualMarket.astro";
+import { LANDING_TAG } from "./landing-theme";
 import ServiceIntro from "./ServiceIntro.astro";
 import ServiceStandards from "./ServiceStandards.astro";
 import MarketIndustries from "./MarketIndustries.astro";
@@ -21,7 +23,9 @@ import MarketCities from "./MarketCities.astro";
 import ProofStrip from "./ProofStrip.astro";
 import PriceAnchor from "./PriceAnchor.astro";
 import FAQ from "./FAQ.astro";
-import FinalCTA from "./FinalCTA.astro";
+import Testimonials from "./Testimonials.astro";
+import Founder from "./Founder.astro";
+import LandingConversion from "./LandingConversion.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { markets, type MarketKey } from "../i18n/markets";
@@ -63,22 +67,57 @@ const offerCatalog = m.industries.items.map((i) => ({
 >
   <Header lang={lang} page={market} />
   <main>
-    <PageHero
+    {/* 1 · Hero: propuesta para el estado, a quién atiende y los dos CTAs.
+        El visual son las ciudades del estado, con su color propio. */}
+    <LandingHero
       lang={lang}
-      eyebrow={`// ${m.name}`}
+      page={market}
+      eyebrow={m.name}
+      icon="map-pin"
       titleA={m.meta.heroTitleA}
       highlight={m.meta.heroHighlight}
       subtitle={m.meta.heroSubtitle}
-    />
+      lead={m.meta.description}
+      stats={[{
+        label: t.priceAnchor.fromLabel,
+        value: `$${t.priceAnchor.amount}`,
+        note: `${t.priceAnchor.currency} · ${t.priceAnchor.amountNote}`,
+      }]}
+    >
+      <VisualMarket slot="visual" lang={lang} market={m} tag={LANDING_TAG[market] ?? ""} />
+    </LandingHero>
+
+    {/* 2 · Beneficios: por qué este mercado es distinto y qué cambia ahí */}
     <ServiceIntro lang={lang} intro={m.intro} icon="map-pin" />
-    <MarketIndustries lang={lang} industries={m.industries} />
-    <MarketCities lang={lang} market={m} />
     <ServiceStandards lang={lang} standards={m.context} id="lo-que-cambia" />
-    <ProofStrip lang={lang} />
+
+    {/* 3 · Así es como se trabaja (en remoto) + proyectos reales */}
     <ServiceStandards lang={lang} standards={m.remote} id="en-remoto" />
+    <ProofStrip lang={lang} />
+
+    {/* 4 · Testimonios publicados */}
+    <Testimonials lang={lang} />
+
+    {/* 5 · Para quién es: los giros que dominan en este estado */}
+    <MarketIndustries lang={lang} industries={m.industries} />
+
+    {/* 6 · El desarrollador y fundador */}
+    <Founder lang={lang} page={market} />
+
+    {/* 7 · Información práctica: zonas que atiendo y precios base */}
+    <MarketCities lang={lang} market={m} />
     <PriceAnchor lang={lang} />
+
+    {/* 8 · Preguntas frecuentes */}
     <FAQ lang={lang} data={m.faq} id="dudas-mercado" />
-    <FinalCTA lang={lang} />
+
+    {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
+    <LandingConversion
+      lang={lang}
+      page={market}
+      close={{ eyebrow: `// ${m.name}`, title: m.meta.heroSubtitle }}
+      service={m.meta.heroTitleA}
+    />
   </main>
   <Footer lang={lang} />
 </Layout>

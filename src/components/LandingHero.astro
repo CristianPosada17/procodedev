@@ -1,0 +1,126 @@
+---
+/*
+  Portada de las landings (septiembre de 2026, 30).
+
+  Toma la composición del hero de Desarrollo Web y Marketing Digital —texto
+  a la izquierda, visual a la derecha, cifras publicadas y los dos CTAs—,
+  que es la que funciona, pero cada landing trae su propio visual (slot
+  "visual"), siempre con la paleta de ProCode (ver
+  hero-visuals/). Así ninguna landing se ve como otra con el texto
+  cambiado: la de SEO enseña un resultado de Google, la de mantenimiento
+  un panel de estado, la de un giro su proyecto real, la de un estado sus
+  ciudades.
+
+  Sin subnavegación encima del H1: las migas de pan siguen en el JSON-LD
+  (Layout.astro), que es donde las usa Google.
+*/
+import { translations, conversionHref, type Lang, type PageKey } from "../i18n/ui";
+import Icon from "./Icon.astro";
+import OfferNote from "./OfferNote.astro";
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+  /** Etiqueta corta sobre el H1 (qué es la página), no navegación. */
+  eyebrow: string;
+  icon: string;
+  titleA: string;
+  highlight: string;
+  subtitle: string;
+  /** Para quién es y qué resuelve: copy ya publicado de la página. */
+  lead?: string;
+  /** Cifras publicadas (precio, plazo…). Nunca inventadas. */
+  stats?: { label: string; value: string; note?: string }[];
+  /** Enlace terciario dentro de la página (p. ej. a los paquetes). */
+  extraLink?: { label: string; href: string };
+}
+const {
+  lang,
+  page,
+  eyebrow,
+  icon,
+  titleA,
+  highlight,
+  subtitle,
+  lead,
+  stats = [],
+  extraLink,
+} = Astro.props as Props;
+const t = translations[lang];
+---
+
+<section class="relative isolate overflow-hidden pb-12 pt-10 lg:pb-20 lg:pt-16">
+  <div class="lt-hero-glow pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div
+    class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-10 2xl:max-w-[1600px]"
+  >
+    {/* Arriba del pliegue: sin `.reveal`, no debe depender de JS. */}
+    <div class="max-w-2xl">
+      <span
+        class="lt-soft inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]"
+      >
+        <Icon name={icon as any} class="h-3.5 w-3.5" />
+        {eyebrow}
+      </span>
+
+      <h1
+        class="mt-6 text-balance text-[2.5rem] font-bold leading-[1.05] tracking-tight text-[var(--text)] sm:text-[3.3rem] lg:text-[3.9rem]"
+      >
+        {titleA}{" "}<span class="grad-text">{highlight}</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[var(--text)]/90">
+        {subtitle}
+      </p>
+      {lead && <p class="mt-3 max-w-2xl text-base leading-7 text-[var(--muted)]">{lead}</p>}
+
+      {
+        stats.length > 0 && (
+          <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-5">
+            {stats.map((stat) => (
+              <div class="border-l-2 border-[color:var(--accent)] pl-4">
+                <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                  {stat.label}
+                </dt>
+                <dd class="mt-1.5 text-2xl font-bold tracking-tight text-[var(--text)]">
+                  {stat.value}
+                  {stat.note && (
+                    <span class="ml-2 align-middle text-xs font-medium text-[var(--muted)]">
+                      {stat.note}
+                    </span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+
+      {/* Las dos opciones de conversión, las dos en esta misma página. */}
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a href={conversionHref(page, lang, "book")} data-cta={`hero-${page}-agendar`} class="btn-cta">
+          {t.common.ctaPrimary}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a href={conversionHref(page, lang, "info")} data-cta={`hero-${page}-info`} class="btn-secondary">
+          {t.contact.ctaInfo}
+        </a>
+        {
+          extraLink && (
+            <a
+              href={extraLink.href}
+              class="inline-flex min-h-[48px] items-center gap-2 rounded-xl px-4 text-sm font-bold text-[var(--muted)] transition hover:text-[var(--accent)]"
+            >
+              {extraLink.label}
+            </a>
+          )
+        }
+      </div>
+
+      <OfferNote lang={lang} />
+    </div>
+
+    <div class="relative">
+      <slot name="visual" />
+    </div>
+  </div>
+</section>

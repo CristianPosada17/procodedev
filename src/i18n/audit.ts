@@ -442,7 +442,7 @@ const auditEs: AuditContent = {
     titleA: "Dime cuál es tu sitio y te digo",
     titleHighlight: "si te conviene auditarlo",
     subtitle:
-      "Tres datos y nada más. Antes de cobrarte nada le doy una mirada rápida a tu negocio y te contesto por WhatsApp en menos de 24 horas: si con la Revisión Express gratis te basta, te lo digo y nos lo ahorramos los dos.",
+      "Dos datos y nada más: tu nombre y tu correo. Antes de cobrarte nada te contesto por correo en menos de 24 horas: si con la Revisión Express gratis te basta, te lo digo y nos lo ahorramos los dos.",
     needLabel: "Qué te trae aquí",
     needOptions: [
       "Llega gente a mi sitio pero nadie contacta",
@@ -761,7 +761,7 @@ const auditEn: AuditContent = {
     titleA: "Tell me which site is yours and I will tell you",
     titleHighlight: "whether auditing it is worth it",
     subtitle:
-      "Three fields, nothing else. Before charging you anything I take a quick look at your business and reply on WhatsApp in under 24 hours: if the free Express Review is enough for you, I will say so and we both save the trouble.",
+      "Two fields, nothing else: your name and email. Before charging you anything I reply by email in under 24 hours: if the free Express Review is enough for you, I will say so and we both save the trouble.",
     needLabel: "What brings you here",
     needOptions: [
       "People reach my site but nobody contacts me",

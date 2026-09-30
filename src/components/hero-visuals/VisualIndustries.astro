@@ -1,0 +1,47 @@
+---
+/*
+  Visual del hero del hub de industrias (/negocios · /en/industries): un
+  mosaico con los cinco giros, cada uno con su icono y su línea de apoyo del
+  menú, y enlazado a su página. Es navegación real, así que no va
+  `aria-hidden`: quien ya sabe su giro salta directo desde el primer
+  pantallazo.
+*/
+import { PAGES, SEGMENT_KEYS, type Lang } from "../../i18n/ui";
+import { segments } from "../../i18n/segments";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const label = lang === "es" ? "Elige tu industria" : "Pick your industry";
+---
+
+<nav aria-label={label} class="relative mx-auto max-w-xl">
+  <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{label}</p>
+  <ul class="grid grid-cols-2 gap-3">
+    {
+      SEGMENT_KEYS.map((key, i) => {
+        const s = segments[lang][key];
+        return (
+          <li class:list={[i === 0 && "col-span-2"]}>
+            <a
+              href={PAGES[key][lang]}
+              data-cta={`industrias-hero-${key}`}
+              class="lt-panel group flex h-full items-start gap-3 rounded-[var(--radius)] p-4 transition hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+            >
+              <span class="lt-soft flex h-10 w-10 flex-none items-center justify-center rounded-xl">
+                <Icon name={s.icon as any} class="h-5 w-5" />
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold leading-snug text-[var(--text)]">{s.navLabel}</span>
+                <span class="mt-0.5 block text-[11px] leading-5 text-[var(--muted)]">{s.navHint}</span>
+              </span>
+              <Icon name="arrow-right" class="ml-auto mt-1 h-4 w-4 flex-none text-[var(--accent)] transition group-hover:translate-x-0.5" />
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

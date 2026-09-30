@@ -6,22 +6,14 @@
   composición: el contenido vive en src/i18n/services.ts y aquí solo se
   decide el orden de los bloques y qué datos estructurados se emiten.
 
-  Orden (revisado en septiembre de 2026 para acortar el recorrido de venta):
+  Orden común de las landings (septiembre de 2026):
+  1 hero · 2 beneficios · 3 cómo se trabaja (+ trabajos reales) ·
+  4 testimonios · 5 para quién es · 6 fundador · 7 qué incluye y paquetes ·
+  8 dudas · 9 cierre con agenda (#agendar) y formulario (#contacto).
 
-  DESARROLLO WEB — hero con el problema comercial y el precio → trabajos
-  reales (Portfolio) antes de cualquier detalle técnico → por
-  qué a la medida → qué incluye → paquetes, cada uno con su propio botón →
-  proceso → estándares técnicos (la tecnología respalda, no encabeza) →
-  filtro honesto → dudas → FORMULARIO → puente al otro servicio.
-
-  MARKETING — hero con la promesa de captación → por qué → la oferta pieza
-  por pieza, con el plazo de cada una → qué incluye → planes, sin el
-  mantenimiento de $79 → integraciones → qué se mide → filtro → dudas →
-  FORMULARIO → puente.
-
-  La regla que cambió: ninguna página de servicio manda a otra URL para
-  poder solicitar. El formulario corto va dentro, y los botones de paquete
-  conservan el plan elegido al llegar a él.
+  Ninguna página de servicio manda a otra URL para convertir: agenda y
+  formulario van dentro, y los botones de paquete conservan el plan elegido
+  al llegar al formulario.
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
@@ -33,13 +25,14 @@ import ServiceStandards from "./ServiceStandards.astro";
 import ServiceFit from "./ServiceFit.astro";
 import ServiceCross from "./ServiceCross.astro";
 import ServiceOffer from "./ServiceOffer.astro";
-import ServiceLeadForm from "./ServiceLeadForm.astro";
 import AuditCallout from "./AuditCallout.astro";
 import Portfolio from "./Portfolio.astro";
 import Integrations from "./Integrations.astro";
 import Process from "./Process.astro";
+import Testimonials from "./Testimonials.astro";
+import Founder from "./Founder.astro";
 import FAQ from "./FAQ.astro";
-import FinalCTA from "./FinalCTA.astro";
+import LandingConversion from "./LandingConversion.astro";
 import RelatedLinks from "./RelatedLinks.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, relatedLinks, type Lang } from "../i18n/ui";
@@ -99,33 +92,48 @@ const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
 >
   <Header lang={lang} page={service} />
   <main>
-    <ServiceHero
-      lang={lang}
-      line={line}
-      meta={d.meta}
-      ctaLabel={d.form.ctaLabel}
-    />
+    {/* 1 · Hero: propuesta, para quién, precio y plazo, y los dos CTAs */}
+    <ServiceHero lang={lang} line={line} meta={d.meta} />
 
-    {/* Desarrollo web: la prueba va antes que el argumento. Quien busca a
-        quién contratar quiere ver trabajo hecho, no leer sobre Astro.
-
-        Aquí va `Portfolio` y NO `ProofStrip`: los dos salen de
-        `t.portfolio.projects` y ProofStrip es un recorte de los tres
-        primeros clientes, así que juntos repetían las mismas tarjetas en la
-        misma página. Portfolio se queda porque separa clientes reales de
-        demos, que es la distinción que hace creíble el bloque. */}
-    {service === "webDev" && <Portfolio lang={lang} />}
-
+    {/* 2 · Beneficios: por qué así (y, en marketing, qué se mide) */}
     <ServiceIntro
       lang={lang}
       intro={d.intro}
       icon={service === "webDev" ? "cpu" : "trending-up"}
     />
+    <ServiceStandards lang={lang} standards={d.standards} />
 
-    {/* Marketing: tres trabajos con plazos distintos, separados a
-        propósito para que no se lean como una sola promesa. */}
-    {d.offer && <ServiceOffer lang={lang} offer={d.offer} />}
+    {/* 3 · Así es como se trabaja. Desarrollo web: los cinco pasos y los
+        trabajos reales (Portfolio separa clientes de demos). Marketing: la
+        oferta pieza por pieza con su plazo y las integraciones — el
+        `Process` describe un proyecto de desarrollo y ahí sonaba a otro
+        servicio. */}
+    {
+      service === "webDev" ? (
+        <>
+          <Process lang={lang} />
+          <Portfolio lang={lang} page={service} />
+        </>
+      ) : (
+        <>
+          {d.offer && <ServiceOffer lang={lang} offer={d.offer} />}
+          <Integrations lang={lang} />
+        </>
+      )
+    }
 
+    {/* 4 · Testimonios publicados */}
+    <Testimonials lang={lang} />
+
+    {/* 5 · Para quién es y para quién no, y la salida para quien duda */}
+    <ServiceFit lang={lang} fit={d.fit} />
+    <AuditCallout lang={lang} />
+
+    {/* 6 · El desarrollador y fundador */}
+    <Founder lang={lang} page={service} />
+
+    {/* 7 · Información práctica: qué incluye y paquetes publicados. Los
+        botones de cada paquete bajan al formulario con el plan elegido. */}
     <ServiceCapabilities
       lang={lang}
       heading={d.capabilities}
@@ -133,46 +141,22 @@ const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
     />
     <ServicePackages lang={lang} packages={d.packages} />
 
-    {/* El bloque `Process` describe los cinco pasos de un proyecto de
-        desarrollo («diseño y desarrollo», «conecto formularios, agenda y
-        CRM»): en la página de marketing sonaba a otro servicio, así que ahí
-        va la prueba de integraciones en su lugar. */}
-    {
-      service === "webDev" ? (
-        <Process lang={lang} />
-      ) : (
-        <Integrations lang={lang} />
-      )
-    }
-
-    {/* La tecnología (o el «qué se mide») respalda la oferta: va después de
-        precio, proceso y prueba, no antes. */}
-    <ServiceStandards lang={lang} standards={d.standards} />
-
-    {/* Salida para quien llegó a esta página y ya no está seguro de que sea
-        la suya. Va antes del filtro honesto a propósito: ahí es justo donde
-        aparece la duda. */}
-    <AuditCallout lang={lang} />
-
-    <ServiceFit lang={lang} fit={d.fit} />
+    {/* 8 · Preguntas frecuentes */}
     <FAQ lang={lang} data={d.faq} id="dudas-servicio" />
 
-    {/* Solicitar sin salir de la página. Los botones de cada paquete
-        aterrizan aquí con el plan ya seleccionado. */}
-    <ServiceLeadForm
-      lang={lang}
-      heading={d.form}
-      service={line.title}
-      page={service}
-    />
-
     <ServiceCross lang={lang} cross={d.cross} target={other} />
-
     {/* Enlazado interno de la matriz SEO: desde Desarrollo Web salen las
         tres puertas con demanda propia (landing, web con SEO, mantenimiento). */}
     {service === "webDev" && <RelatedLinks data={relatedLinks[lang].services} />}
 
-    <FinalCTA lang={lang} />
+    {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
+    <LandingConversion
+      lang={lang}
+      page={service}
+      close={{ eyebrow: `// ${line.title}`, title: line.tagline }}
+      formHeading={d.form}
+      service={line.title}
+    />
   </main>
   <Footer lang={lang} />
 </Layout>

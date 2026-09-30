@@ -18,7 +18,9 @@ const ig = t.integrations;
       <Fragment slot="subtitle">{ig.subtitle}</Fragment>
     </SectionHeading>
 
-    <CardRail class="mt-8 lg:mt-12" grid="md:grid-cols-3 lg:grid-cols-6" peek="narrow" gap="gap-3 sm:gap-4">
+    {/* Son cuatro herramientas: rejilla de cuatro columnas, centrada y con
+        ancho máximo. Con seis columnas quedaban dos huecos a la derecha. */}
+    <CardRail class="mx-auto mt-8 max-w-5xl lg:mt-12" grid="md:grid-cols-2 lg:grid-cols-4" peek="narrow" gap="gap-3 sm:gap-4">
       {
         ig.items.map((it, i) => (
           <div

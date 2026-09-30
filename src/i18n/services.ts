@@ -212,37 +212,6 @@ export interface ServicesHub {
   };
 }
 
-/**
- * Copy compartido del formulario corto que va dentro de cada pagina de
- * servicio. El encabezado lo pone cada pagina (`form` de arriba); esto son
- * las etiquetas, que no tienen por que cambiar entre paginas.
- *
- * Tres campos obligatorios y nada mas: nombre, WhatsApp y que necesita.
- * Correo y mensaje quedan opcionales a proposito — quien apenas compara
- * proveedores no deja tres datos de contacto para preguntar un precio.
- */
-export interface LeadFormCopy {
-  fieldName: string;
-  phName: string;
-  fieldPhone: string;
-  phPhone: string;
-  fieldEmail: string;
-  phEmail: string;
-  fieldMessage: string;
-  phMessage: string;
-  optionalTag: string;
-  interestLabel: string;
-  submit: string;
-  sending: string;
-  success: string;
-  error: string;
-  perks: readonly string[];
-  altTitle: string;
-  altSchedule: string;
-  altWhatsapp: string;
-  privacy: string;
-}
-
 // ═══════════════════════════════════════════════════════════════════════
 // LÍNEAS DE SERVICIO — resumen compartido (home, hub, menú, footer)
 // ═══════════════════════════════════════════════════════════════════════
@@ -621,7 +590,7 @@ const webDevEs: ServiceDetail = {
     titleA: "Cuéntame qué necesitas y te paso",
     titleHighlight: "el alcance y el precio",
     subtitle:
-      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con el siguiente paso: si tengo lo necesario, el alcance y la inversión estimada; si no, las preguntas que faltan. Si tu proyecto no encaja conmigo, también te lo digo.",
+      "Dos datos y nada más: tu nombre y tu correo. Te contesto por correo en menos de 24 horas con el siguiente paso: si tengo lo necesario, el alcance y la inversión estimada; si no, las preguntas que faltan. Si tu proyecto no encaja conmigo, también te lo digo.",
     needLabel: "Qué necesitas",
     needOptions: [
       "No tengo página y quiero una",
@@ -871,7 +840,7 @@ const marketingEs: ServiceDetail = {
     titleA: "Dime qué vendes y dónde, y te digo",
     titleHighlight: "qué te falta para captar",
     subtitle:
-      "Reviso qué encuentra hoy un cliente que busca tu servicio en tu ciudad: tu ficha de Google, tus reseñas, quién sale antes que tú y qué pieza falta. Te contesto por WhatsApp en menos de 24 horas.",
+      "Reviso qué encuentra hoy un cliente que busca tu servicio en tu ciudad: tu ficha de Google, tus reseñas, quién sale antes que tú y qué pieza falta. Te contesto por correo en menos de 24 horas.",
     needLabel: "Qué necesitas",
     needOptions: [
       "No aparezco cuando buscan mi servicio",
@@ -982,7 +951,7 @@ const hubEs: ServicesHub = {
     titleA: "Dime qué vendes y te digo",
     titleHighlight: "cuál de los dos necesitas",
     subtitle:
-      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con cuál de los dos servicios te conviene primero, qué incluye y cuánto cuesta en tu caso. Si la respuesta es que todavía no necesitas contratarme, también te lo digo.",
+      "Dos datos y nada más: tu nombre y tu correo. Te contesto por correo en menos de 24 horas con cuál de los dos servicios te conviene primero, qué incluye y cuánto cuesta en tu caso. Si la respuesta es que todavía no necesitas contratarme, también te lo digo.",
     needLabel: "Qué está pasando hoy",
     needOptions: [
       "No tengo página y quiero una",
@@ -1369,7 +1338,7 @@ const webDevEn: ServiceDetail = {
     titleA: "Tell me what you need and I'll send back",
     titleHighlight: "the scope and the price",
     subtitle:
-      "Three fields, nothing else. I reply on WhatsApp in under 24 hours with the next step: if I have what I need, the scope and an estimated investment; if not, the questions still open. If your project is not a fit for me, I'll tell you that too.",
+      "Two fields, nothing else: your name and email. I reply by email in under 24 hours with the next step: if I have what I need, the scope and an estimated investment; if not, the questions still open. If your project is not a fit for me, I'll tell you that too.",
     needLabel: "What you need",
     needOptions: [
       "I have no website and I want one",
@@ -1614,7 +1583,7 @@ const marketingEn: ServiceDetail = {
     titleA: "Tell me what you sell and where, and I'll tell you",
     titleHighlight: "what is missing",
     subtitle:
-      "I look at what a client finds today when they search your service in your city: your Google profile, your reviews, who ranks above you and which piece is missing. I reply on WhatsApp in under 24 hours.",
+      "I look at what a client finds today when they search your service in your city: your Google profile, your reviews, who ranks above you and which piece is missing. I reply by email in under 24 hours.",
     needLabel: "What you need",
     needOptions: [
       "I do not show up when people search my service",
@@ -1720,7 +1689,7 @@ const hubEn: ServicesHub = {
     titleA: "Tell me what you sell and I'll tell you",
     titleHighlight: "which of the two you need",
     subtitle:
-      "Three fields, nothing else. I reply on WhatsApp in under 24 hours with which of the two services you need first, what it includes and what it costs in your case. If the answer is that you do not need to hire me yet, I'll say that too.",
+      "Two fields, nothing else: your name and email. I reply by email in under 24 hours with which of the two services you need first, what it includes and what it costs in your case. If the answer is that you do not need to hire me yet, I'll say that too.",
     needLabel: "What is happening now",
     needOptions: [
       "I have no website and I want one",
@@ -1751,74 +1720,3 @@ export const servicesHub: Record<"es" | "en", ServicesHub> = {
   en: hubEn,
 };
 
-// ═══════════════════════════════════════════════════════════════════════
-// FORMULARIO CORTO DE LAS PÁGINAS DE SERVICIO
-//
-// El formulario de /contacto pide nombre, teléfono y correo obligatorios.
-// Está bien para quien ya decidió; es demasiado para quien está comparando
-// proveedores y solo quiere saber un precio. Este pide tres cosas —nombre,
-// WhatsApp y qué necesita— y deja correo y mensaje opcionales.
-//
-// Va dentro de cada página de servicio, así que el visitante no tiene que
-// salir a /contacto justo cuando estaba decidiendo.
-// ═══════════════════════════════════════════════════════════════════════
-
-export const leadForm: Record<"es" | "en", LeadFormCopy> = {
-  es: {
-    fieldName: "Nombre",
-    phName: "Ej: María González",
-    fieldPhone: "WhatsApp",
-    phPhone: "614 123 4567",
-    fieldEmail: "Correo",
-    phEmail: "maria@minegocio.com",
-    fieldMessage: "Algo más que deba saber",
-    phMessage:
-      "Ej: tengo un consultorio dental en Houston y quiero que los pacientes agenden solos.",
-    optionalTag: "opcional",
-    interestLabel: "Te interesa",
-    submit: "Enviar y recibir respuesta",
-    sending: "Enviando…",
-    success:
-      "Listo. Te escribo por WhatsApp en menos de 24 horas para entender tu caso y proponerte el siguiente paso.",
-    error:
-      "No se pudo enviar. Escríbeme por WhatsApp y te atiendo igual de rápido.",
-    perks: [
-      "Respuesta en menos de 24 horas, por WhatsApp",
-      "Te contesto yo, no un ejecutivo de cuenta",
-      "Sin costo y sin llamada de ventas para conocer el precio base",
-    ],
-    altTitle: "¿Prefieres otra vía?",
-    altSchedule: "Agendar la Revisión Express",
-    altWhatsapp: "Escribir por WhatsApp",
-    privacy:
-      "Uso tus datos solo para contestarte. Nada de listas de correo ni de compartirlos con terceros.",
-  },
-  en: {
-    fieldName: "Name",
-    phName: "Ex: Maria Gonzalez",
-    fieldPhone: "WhatsApp",
-    phPhone: "(614) 123-4567",
-    fieldEmail: "Email",
-    phEmail: "maria@mybusiness.com",
-    fieldMessage: "Anything else I should know",
-    phMessage:
-      "Ex: I run a dental practice in Houston and I want patients to book themselves.",
-    optionalTag: "optional",
-    interestLabel: "You are interested in",
-    submit: "Send and get a reply",
-    sending: "Sending…",
-    success:
-      "Done. I'll message you on WhatsApp within 24 hours to understand your case and suggest the next step.",
-    error: "That did not send. Message me on WhatsApp and I'll reply just as fast.",
-    perks: [
-      "A reply in under 24 hours, on WhatsApp",
-      "You get me, not an account executive",
-      "No cost and no sales call needed to see the base price",
-    ],
-    altTitle: "Prefer another way?",
-    altSchedule: "Book the Express Review",
-    altWhatsapp: "Message me on WhatsApp",
-    privacy:
-      "I use your details only to reply. No mailing lists and nothing shared with third parties.",
-  },
-};

@@ -1,0 +1,81 @@
+---
+/*
+  Visual del hero de /servicios/landing-pages/: el recorrido que la página
+  vende —anuncio → landing → contacto— y, en el centro, la anatomía de una
+  landing con las piezas reales del servicio (los títulos de «qué incluye»).
+  Una sola acción resaltada, que es justo el argumento: una página, una
+  decisión.
+*/
+import type { Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+  pieces: readonly { title: string; icon: string }[];
+}
+const { lang, pieces } = Astro.props as Props;
+const flow =
+  lang === "es"
+    ? ["Anuncio o post", "Tu landing", "Contacto"]
+    : ["Ad or post", "Your landing", "New lead"];
+const action = lang === "es" ? "Una sola acción" : "One single action";
+---
+
+<div class="relative mx-auto max-w-xl" aria-hidden="true">
+  {/* Recorrido */}
+  <ol class="mb-5 flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)] sm:text-[11px]">
+    {
+      flow.map((step, i) => (
+        <>
+          <li class:list={["rounded-full px-3 py-1.5", i === 1 ? "lt-soft font-bold" : "border border-[color:var(--border)]"]}>
+            {step}
+          </li>
+          {i < flow.length - 1 && <Icon name="arrow-right" class="h-3.5 w-3.5 flex-none text-[var(--accent)]" />}
+        </>
+      ))
+    }
+  </ol>
+
+  <div class="grid grid-cols-[1fr_auto] items-end gap-5">
+    {/* Anatomía de la landing (escritorio) */}
+    <div class="lt-panel rounded-[var(--radius-lg)] p-5">
+      <div class="flex items-center gap-2">
+        <span class="lt-dot h-2 w-2 rounded-full"></span>
+        <span class="lt-skel h-2 w-24"></span>
+        <span class="lt-skel ml-auto h-2 w-10"></span>
+      </div>
+      <div class="mt-5 rounded-2xl border border-[color:var(--border-strong)] p-4">
+        <span class="lt-skel block h-3 w-4/5"></span>
+        <span class="lt-skel mt-2 block h-3 w-3/5"></span>
+        <span class="mt-4 inline-flex rounded-lg bg-[var(--accent)] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--bg)]">
+          {action}
+        </span>
+      </div>
+      <ul class="mt-4 grid gap-2.5">
+        {
+          pieces.slice(0, 4).map((p) => (
+            <li class="flex items-center gap-3 rounded-xl bg-[var(--bg-2)]/70 px-3 py-2.5">
+              <span class="lt-soft flex h-7 w-7 flex-none items-center justify-center rounded-lg">
+                <Icon name={p.icon as any} class="h-3.5 w-3.5" />
+              </span>
+              <span class="text-xs font-semibold text-[var(--text)]">{p.title}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    {/* La misma página en el teléfono */}
+    <div class="lt-panel hidden w-32 rounded-[1.6rem] p-2.5 sm:block">
+      <div class="rounded-[1.2rem] bg-[var(--bg-2)] p-3">
+        <span class="mx-auto mb-3 block h-1 w-8 rounded-full bg-[var(--text)]/20"></span>
+        <span class="lt-skel block h-2 w-full"></span>
+        <span class="lt-skel mt-1.5 block h-2 w-3/4"></span>
+        <span class="mt-3 block h-16 rounded-lg bg-[var(--accent)]/15"></span>
+        <span class="lt-skel mt-3 block h-1.5 w-full"></span>
+        <span class="lt-skel mt-1.5 block h-1.5 w-5/6"></span>
+        <span class="mt-3 block h-6 rounded-md bg-[var(--accent)]"></span>
+      </div>
+    </div>
+  </div>
+</div>

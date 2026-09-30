@@ -16,7 +16,6 @@ interface Project {
 }
 interface Props {
   project: Project;
-  viewProject: string;
   /** Etiqueta del mini-caso con resultado medible (hallazgo #7). */
   resultLabel?: string;
   /** Etiquetas de «necesidad» y «trabajo» y prefijo del texto alternativo,
@@ -24,7 +23,7 @@ interface Props {
   labels?: { challenge: string; work: string; altPrefix: string };
   delay?: number;
 }
-const { project, viewProject, resultLabel, labels, delay = 0 } = Astro.props as Props;
+const { project, resultLabel, labels, delay = 0 } = Astro.props as Props;
 
 // Hallazgo #15: antes 3 de 5 thumbnails venían de s.wordpress.com/mshots,
 // un servicio gratuito de terceros que devuelve placeholders grises y aplica
@@ -41,13 +40,20 @@ const srcset = (ext: string) =>
     : undefined;
 // Movil: la tarjeta ocupa el 92% del ancho. md: dos columnas. lg: tres.
 const SIZES = "(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw";
+// Septiembre de 2026 (30): la tarjeta ya no enlaza al sitio del cliente
+// (ningún enlace de conversión saca al visitante de ProCode). El dominio
+// queda escrito para que se pueda comprobar que el proyecto existe.
+const domain = (() => {
+  try {
+    return new URL(project.url).hostname.replace(/^www./, "");
+  } catch {
+    return "";
+  }
+})();
 ---
 
-<a
-  href={project.url}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="reveal group flex flex-col overflow-hidden rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)] hover:shadow-[0_24px_70px_-30px_var(--halo-card)]"
+<article
+  class="reveal group flex flex-col overflow-hidden rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl transition duration-300 hover:border-[color:var(--border-strong)]"
   style={`--reveal-delay: ${delay}ms`}
 >
   <div class="relative aspect-[2/1] overflow-hidden border-b border-[color:var(--border)] bg-[var(--bg-2)]">
@@ -119,12 +125,11 @@ const SIZES = "(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw";
         ))
       }
     </div>
-    <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--accent)]">
-      {viewProject}
-      <Icon
-        name="arrow-up-right"
-        class="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-      />
-    </span>
+    {domain && (
+      <p class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--muted)]">
+        <Icon name="globe" class="h-4 w-4 text-[var(--accent)]" />
+        <span class="font-mono text-xs">{domain}</span>
+      </p>
+    )}
   </div>
-</a>
+</article>

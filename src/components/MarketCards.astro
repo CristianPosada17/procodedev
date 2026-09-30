@@ -5,7 +5,7 @@
   contenido y no solo como enlace.
 */
 import { PAGES, type Lang } from "../i18n/ui";
-import { markets, MARKET_KEYS, marketsHub } from "../i18n/markets";
+import { markets, US_STATE_KEYS, marketsHub } from "../i18n/markets";
 import SectionHeading from "./SectionHeading.astro";
 import Icon from "./Icon.astro";
 
@@ -14,7 +14,7 @@ interface Props {
 }
 const { lang = "es" } = Astro.props as Props;
 const hub = marketsHub[lang];
-const list = MARKET_KEYS.map((key) => markets[lang][key]);
+const list = US_STATE_KEYS.map((key) => markets[lang][key]);
 ---
 
 <section id="mercados" class="relative py-12 lg:py-20">

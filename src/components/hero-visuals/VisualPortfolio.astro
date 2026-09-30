@@ -1,0 +1,56 @@
+---
+/*
+  Visual del hero de /portafolio/: capturas reales de tres clientes (ni
+  demos ni la marca personal), abiertas en abanico como una mesa de trabajo. Mismas imágenes y
+  variantes responsivas que PortfolioCard.
+*/
+import { translations, type Lang } from "../../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const shots = t.portfolio.projects.filter((p) => p.kind === "client" && p.image).slice(0, 3);
+const srcset = (base: string, ext: string) =>
+  [400, 800, 1200].map((w) => `${base}-${w}.${ext} ${w}w`).join(", ");
+const place = [
+  "relative z-10 w-[88%]",
+  "absolute right-0 top-[26%] z-20 w-[62%]",
+  "absolute -left-2 top-[58%] z-30 w-[54%] sm:-left-6",
+];
+---
+
+<div class="relative mx-auto aspect-[5/4] max-w-xl" aria-hidden="true">
+  {
+    shots.map((p, i) => {
+      const base = p.image!.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+      const domain = p.url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+      return (
+        <figure class:list={["lt-panel overflow-hidden rounded-2xl", place[i]]}>
+          <div class="flex items-center gap-1.5 border-b border-[color:var(--border)] px-3 py-2">
+            <span class="h-2 w-2 rounded-full bg-[var(--text)]/15"></span>
+            <span class="h-2 w-2 rounded-full bg-[var(--text)]/15"></span>
+            <span class="lt-dot h-2 w-2 rounded-full"></span>
+            <span class="ml-2 truncate font-mono text-[10px] text-[var(--muted)]">{domain}</span>
+          </div>
+          <picture>
+            <source type="image/avif" sizes="(min-width: 1024px) 40vw, 80vw" srcset={srcset(base, "avif")} />
+            <source type="image/webp" sizes="(min-width: 1024px) 40vw, 80vw" srcset={srcset(base, "webp")} />
+            <img
+              src={`${base}-800.webp`}
+              alt=""
+              width="1200"
+              height="600"
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchpriority={i === 0 ? "high" : undefined}
+              decoding="async"
+              class="block aspect-[2/1] w-full object-cover object-top"
+            />
+          </picture>
+          <figcaption class="px-3 py-2 text-xs font-bold text-[var(--text)]">{p.name}</figcaption>
+        </figure>
+      );
+    })
+  }
+</div>

@@ -1,0 +1,56 @@
+---
+/*
+  Visual del hero de /servicios/: las dos líneas de servicio, lado a lado
+  y unidas por un solo responsable, que es el argumento de la página
+  («Dos servicios, un solo responsable»). Precio y viñetas salen de
+  serviceLines (services.ts), los mismos que el resto del sitio.
+*/
+import { translations, type Lang } from "../../i18n/ui";
+import { serviceLines, SERVICE_KEYS } from "../../i18n/services";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const owner = lang === "es" ? "Un solo responsable" : "One person accountable";
+---
+
+<div class="relative mx-auto max-w-xl" aria-hidden="true">
+  <div class="grid gap-4 sm:grid-cols-2">
+    {
+      SERVICE_KEYS.map((key, i) => {
+        const line = serviceLines[lang][key];
+        return (
+          <div class:list={["lt-panel flex flex-col rounded-[var(--radius-lg)] p-6", i === 1 && "sm:translate-y-8"]}>
+            <span class="lt-soft flex h-11 w-11 items-center justify-center rounded-xl">
+              <Icon name={line.icon as any} class="h-5 w-5" />
+            </span>
+            <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">{line.eyebrow.replace(/^\/\/\s*/, "")}</p>
+            <p class="mt-1 text-lg font-bold text-[var(--text)]">{line.title}</p>
+            <p class="mt-1 text-xs leading-5 text-[var(--muted)]">{line.tagline}</p>
+            <ul class="mt-4 grid gap-2">
+              {line.bullets.slice(0, 2).map((b) => (
+                <li class="flex items-start gap-2 text-[11px] leading-5 text-[var(--text)]/85">
+                  <Icon name="check" class="mt-0.5 h-3 w-3 flex-none text-[var(--accent)]" strokeWidth={2.6} />
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <p class="mt-auto border-t border-[color:var(--border)] pt-4 text-sm font-bold text-[var(--text)]">
+              {line.priceQuote ? line.priceQuote : `${t.priceAnchor.fromLabel} $${line.price} ${t.priceAnchor.currency}`}
+            </p>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <div class="relative mt-4 flex justify-center sm:mt-12">
+    <span class="lt-panel inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-[var(--text)]">
+      <Icon name="users" class="h-4 w-4 text-[var(--accent)]" />
+      {owner}
+    </span>
+  </div>
+</div>

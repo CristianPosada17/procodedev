@@ -1,0 +1,45 @@
+---
+/*
+  Zona de conversión de la página principal y de las landings estándar.
+
+  Paso 9 de la plantilla: cierre breve (FinalCTA) → agenda (#agendar) →
+  formulario de Nombre y Email (#contacto). Los botones del hero, del
+  cierre, del header y de la barra móvil apuntan a estos dos anclas, así
+  que nadie tiene que salir de la página para convertir.
+
+  Si una página usa este bloque, su PageKey tiene que estar en
+  `IN_PAGE_CONVERSION` (src/i18n/ui.ts); si no, sus botones seguirían
+  mandando a /contacto/.
+*/
+import FinalCTA from "./FinalCTA.astro";
+import Calendly from "./Calendly.astro";
+import LeadForm from "./LeadForm.astro";
+import type { Lang, PageKey } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+  page: PageKey;
+  /** Cierre propio de la landing; si falta, el genérico. */
+  close?: { eyebrow?: string; title?: string; subtitle?: string };
+  /** Encabezado propio del formulario; si falta, el genérico. */
+  formHeading?: {
+    eyebrow: string;
+    titleA: string;
+    titleHighlight: string;
+    subtitle: string;
+  };
+  /** Servicio que viaja en el correo del formulario. */
+  service?: string;
+}
+const { lang, page, close, formHeading, service } = Astro.props as Props;
+---
+
+<FinalCTA
+  lang={lang}
+  page={page}
+  eyebrow={close?.eyebrow}
+  title={close?.title}
+  subtitle={close?.subtitle}
+/>
+<Calendly lang={lang} />
+<LeadForm lang={lang} page={page} heading={formHeading} service={service} />

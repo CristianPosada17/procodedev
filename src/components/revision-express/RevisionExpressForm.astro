@@ -1,25 +1,19 @@
 ---
 /*
-  Formulario de la Revisión Express — NO es ServiceLeadForm.astro.
+  Formulario de la Revisión Express — NO es LeadForm.astro.
 
-  Se usó ServiceLeadForm como referencia técnica (Web3Forms, campos ocultos
-  de atribución, pcdFillAttribution/pcdTrack, botcheck), pero necesita un
-  campo que aquel no tiene —presencia digital— y un select de "reto
-  principal" propio. Por eso vive aislado aquí en vez de tocar el
-  componente compartido.
+  Usa la misma integración técnica que el formulario del resto del sitio
+  (Web3Forms, campos ocultos de atribución, pcdFillAttribution/pcdTrack,
+  botcheck), pero vive aislado porque esta landing tiene reglas propias:
+  su ancla es `#solicitar` (destino del botón «Más información») y, tras un
+  envío correcto, en vez del modal genérico muestra un panel con un único
+  siguiente paso: reservar los 20 minutos en la agenda de esta página.
 
-  Campos obligatorios: solo nombre, WhatsApp y presencia digital (esta
-  última es imprescindible: sin saber qué sitio/perfil revisar no hay
-  Revisión Express que hacer). Negocio, reto y correo/mensaje son
-  opcionales — menos fricción para tráfico frío de redes, que llega con
-  menos intención que quien ya busca "diseño web" en Google.
-
-  Después de un envío exitoso NO se abre el modal genérico (FormSuccessModal,
-  que empuja a WhatsApp): esta oferta necesita un paso siguiente concreto
-  —agendar los 20 minutos—, así que la tarjeta del formulario se sustituye
-  por un panel propio con ese único CTA y la alternativa de WhatsApp.
+  Septiembre de 2026 (30): solo Nombre y Email. Antes pedía también
+  WhatsApp, presencia digital, negocio, reto y mensaje; el enlace de la web
+  y el contexto se piden al coordinar la llamada.
 */
-import { CONTACT, waHref, type Lang } from "../../i18n/ui";
+import { CONTACT, PAGES, type Lang } from "../../i18n/ui";
 import Icon from "../Icon.astro";
 
 interface Props {
@@ -27,20 +21,15 @@ interface Props {
 }
 const { lang = "es" } = Astro.props as Props;
 
-const needOptions = [
-  "Mi web no genera suficientes contactos",
-  "Quiero conseguir más clientes",
-  "Necesito mejorar mi presencia en Google",
-  "Estoy pensando invertir en publicidad",
-  "Necesito una página web",
-  "No sé qué está fallando",
-  "Otro",
-];
-
 const inputClass =
-  "rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[color:var(--border-strong)]";
+  "min-h-[48px] w-full rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-base text-[var(--text)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[color:var(--brand)] focus-visible:ring-2 focus-visible:ring-[color:var(--brand)]/40 sm:text-sm";
 
-const wa = waHref("expressReview", lang);
+const copy = {
+  sending: "Enviando…",
+  ok: "Solicitud enviada",
+  fail: `No se pudo enviar. Inténtalo de nuevo en un momento o escríbeme a ${CONTACT.email}.`,
+  label: "Enviar y recibir información",
+};
 
 const script = `
   (function(){
@@ -50,10 +39,10 @@ const script = `
     var btn = document.getElementById('revex-lead-submit');
     var card = document.getElementById('revex-form-card');
     var success = document.getElementById('revex-success-panel');
-    var SENDING = 'Enviando…';
-    var OK = 'Solicitud enviada';
-    var FAIL = 'No se pudo enviar. Escríbeme por WhatsApp y te atiendo.';
-    var LABEL = 'Solicitar mi revisión gratuita';
+    var SENDING = ${JSON.stringify(copy.sending)};
+    var OK = ${JSON.stringify(copy.ok)};
+    var FAIL = ${JSON.stringify(copy.fail)};
+    var LABEL = ${JSON.stringify(copy.label)};
 
     function show(msg, ok){
       if(!status) return;
@@ -64,6 +53,7 @@ const script = `
 
     form.addEventListener('submit', async function(e){
       e.preventDefault();
+      if(form.reportValidity && !form.reportValidity()) return;
       if(btn){ btn.disabled = true; btn.textContent = SENDING; }
       try {
         if(window.pcdFillAttribution) window.pcdFillAttribution(form);
@@ -84,7 +74,6 @@ const script = `
             lead.form_name = 'revision_express';
             lead.lead_type = 'formulario';
             lead.service = 'Revisión Express ProCode';
-            lead.project_type = data.need || '';
             lead.value = 1;
             lead.currency = 'USD';
             window.pcdTrack('generate_lead', lead, {
@@ -109,17 +98,18 @@ const script = `
 `;
 ---
 
-<section id="solicitar" class="relative scroll-mt-24 py-12 lg:py-20">
+<section id="solicitar" class="relative scroll-mt-24 py-12 lg:py-20" aria-labelledby="revex-form-title">
   <div class="mx-auto w-full max-w-[900px] px-4 sm:px-6 lg:px-8">
     <div class="reveal mx-auto max-w-2xl text-center">
-      <span class="eyebrow">// solicitar revisión express</span>
-      <h2 class="mt-5 text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl">
-        Dime dónde encontrarte y{" "}
-        <span class="grad-text">agendamos tus 20 minutos</span>
+      <span class="eyebrow">// más información sobre la revisión express</span>
+      <h2 id="revex-form-title" class="mt-5 text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl">
+        ¿Prefieres que te escribamos primero?{" "}
+        <span class="grad-text">Déjanos tu nombre y tu correo</span>
       </h2>
       <p class="mx-auto mt-5 max-w-xl text-base leading-8 text-[var(--muted)]">
-        Sin costo y sin compromiso. Al enviarlo eliges tu horario en la
-        agenda; si prefieres, lo coordinamos por WhatsApp.
+        Sin costo y sin compromiso. Te respondo por correo en menos de 24
+        horas con los detalles de la Revisión Express y, cuando quieras,
+        eliges tu horario en la agenda.
       </p>
       <p class="mx-auto mt-4 inline-flex max-w-xl items-center gap-2 rounded-full border border-[color:var(--border)] bg-[var(--tint)] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)]">
         Las reviso yo, a mano · agenda limitada cada semana
@@ -141,7 +131,7 @@ const script = `
         <input
           type="hidden"
           name="subject"
-          value="Solicitud de Revisión Express — procodedev.com"
+          value="Solicitud de información — Revisión Express — procodedev.com"
         />
         <input type="hidden" name="from_name" value="ProCode Dev — Revisión Express" />
         <input
@@ -166,111 +156,35 @@ const script = `
             />
           </label>
           <label class="grid gap-2">
-            <span class="text-sm font-medium text-[var(--text)]">WhatsApp</span>
+            <span class="text-sm font-medium text-[var(--text)]">Email</span>
             <input
-              type="tel"
-              name="phone"
+              type="email"
+              name="email"
               required
-              autocomplete="tel"
-              placeholder="614 123 4567"
+              autocomplete="email"
+              inputmode="email"
+              placeholder="maria@minegocio.com"
               class={inputClass}
             />
           </label>
         </div>
 
-        <label class="grid gap-2">
-          <span class="text-sm font-medium text-[var(--text)]">Página web o redes sociales</span>
-          <input
-            type="text"
-            name="presence"
-            required
-            placeholder="Tu sitio web, Facebook, Instagram o Google Business"
-            class={inputClass}
-          />
-          <span class="text-xs leading-5 text-[var(--muted)]">
-            La necesitamos sí o sí: es lo que vamos a revisar.
-          </span>
-        </label>
-
-        <div class="grid gap-5 sm:grid-cols-2">
-          <label class="grid gap-2">
-            <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
-              Nombre del negocio
-              <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                opcional
-              </span>
-            </span>
-            <input
-              type="text"
-              name="business"
-              placeholder="Ej: Clínica Dental Sonrisa"
-              class={inputClass}
-            />
-          </label>
-          <label class="grid gap-2">
-            <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
-              Principal reto
-              <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                opcional
-              </span>
-            </span>
-            <select
-              name="need"
-              class="rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-sm text-[var(--text)] outline-none transition focus:border-[color:var(--border-strong)]"
-            >
-              <option value="">Prefiero contártelo en la llamada</option>
-              {needOptions.map((opt) => <option value={opt}>{opt}</option>)}
-            </select>
-          </label>
-        </div>
-
-        <label class="grid gap-2">
-          <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
-            Correo
-            <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-              opcional
-            </span>
-          </span>
-          <input
-            type="email"
-            name="email"
-            autocomplete="email"
-            placeholder="maria@minegocio.com"
-            class={inputClass}
-          />
-        </label>
-
-        <label class="grid gap-2">
-          <span class="flex items-center gap-2 text-sm font-medium text-[var(--text)]">
-            Mensaje o contexto adicional
-            <span class="rounded-full border border-[color:var(--border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-              opcional
-            </span>
-          </span>
-          <textarea
-            name="message"
-            rows="3"
-            placeholder="Cuéntame lo que quieras que sepa antes de la llamada."
-            class:list={["resize-none", inputClass]}></textarea>
-        </label>
-
-        <button
-          id="revex-lead-submit"
-          type="submit"
-          class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:bg-[var(--brand-strong)] disabled:opacity-60"
-        >
-          Solicitar mi revisión gratuita
+        <button id="revex-lead-submit" type="submit" class="btn-cta w-full">
+          {copy.label}
         </button>
 
-        <p id="revex-lead-status" class="hidden text-sm" role="status"></p>
+        <p id="revex-lead-status" class="hidden text-sm" role="status" aria-live="polite"></p>
         <p class="text-xs leading-6 text-[var(--muted)]">
           Respondo en menos de 24 horas. Tus datos solo se usan para
-          contactarte.
+          contactarte.{" "}
+          <a href={PAGES.privacy[lang]} class="underline underline-offset-2 hover:text-[var(--accent)]">
+            Aviso de privacidad
+          </a>
         </p>
       </form>
     </div>
 
-    {/* Siguiente paso tras el envío: agendar, no solo "te contactamos". */}
+    {/* Siguiente paso tras el envío: reservar, no solo "te contactamos". */}
     <div
       id="revex-success-panel"
       hidden
@@ -282,32 +196,22 @@ const script = `
         <Icon name="check" class="h-7 w-7 text-[var(--ok)]" />
       </div>
       <p class="mt-5 font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
-        Tu solicitud está lista. Falta un paso.
+        Recibido. Te escribo por correo en menos de 24 horas.
       </p>
       <h3 class="mt-3 text-2xl font-bold tracking-tight text-[var(--text)]">
-        Agenda ahora tus 20 minutos
+        ¿Quieres adelantarte? Reserva tus 20 minutos
       </h3>
       <p class="mx-auto mt-3 max-w-md text-sm leading-7 text-[var(--muted)]">
         Así podemos preparar tu Revisión Express antes de la llamada.
       </p>
-      <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+      <div class="mt-6 flex justify-center">
         <a
           href="#agendar"
           data-cta="revex-success-agendar"
-          class="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:bg-[var(--brand-strong)]"
+          class="btn-cta"
         >
-          Agendar mis 20 minutos
+          Reservar Revisión Express
           <Icon name="arrow-right" class="h-4 w-4" />
-        </a>
-        <a
-          href={wa}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-cta="revex-success-whatsapp"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/10"
-        >
-          <Icon name="whatsapp" class="h-4 w-4 text-emerald-400" />
-          Prefiero coordinar por WhatsApp
         </a>
       </div>
     </div>

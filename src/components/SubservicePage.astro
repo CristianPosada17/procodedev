@@ -6,23 +6,29 @@
   —landing pages, servicio de SEO y mantenimiento web— y que no podían
   rankear desde dentro de /servicios/desarrollo-web/.
 
-  Es más corta que ServiceDetailPage a propósito: quien llega aquí ya sabe
-  qué quiere. Hero → por qué → qué incluye → precio publicado → filtro →
-  dudas → formulario en la misma página → enlaces de vuelta a la página
-  madre y a /precios/ (el enlazado interno que pide la matriz SEO).
+  Sigue el orden común de las landings: hero → beneficios → cómo se
+  trabaja → testimonios → para quién → fundador → qué incluye y precio →
+  dudas (+ enlaces de vuelta a la página madre y a /precios/, que pide la
+  matriz SEO) → cierre con agenda y formulario en la misma página.
 
   El contenido vive en src/i18n/subservices.ts.
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
-import PageHero from "./PageHero.astro";
+import LandingHero from "./LandingHero.astro";
+import VisualLanding from "./hero-visuals/VisualLanding.astro";
+import VisualSeo from "./hero-visuals/VisualSeo.astro";
+import VisualMaintenance from "./hero-visuals/VisualMaintenance.astro";
 import ServiceIntro from "./ServiceIntro.astro";
 import ServiceCapabilities from "./ServiceCapabilities.astro";
 import ServicePackages from "./ServicePackages.astro";
 import ServiceFit from "./ServiceFit.astro";
-import ServiceLeadForm from "./ServiceLeadForm.astro";
+import Process from "./Process.astro";
+import ProofStrip from "./ProofStrip.astro";
+import Testimonials from "./Testimonials.astro";
+import Founder from "./Founder.astro";
 import FAQ from "./FAQ.astro";
-import FinalCTA from "./FinalCTA.astro";
+import LandingConversion from "./LandingConversion.astro";
 import Footer from "./Footer.astro";
 import RelatedLinks from "./RelatedLinks.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
@@ -63,6 +69,22 @@ const offerCatalog = [
 const pricedPackage = d.packages.items.find((p) => !p.quoteLabel && p.price);
 const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
 const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" : "one-time";
+
+// Cifra del hero: la del primer paquete publicado, tal cual sale en su
+// tarjeta; si no hay ninguna con precio (SEO), su «cotización a medida».
+const firstPkg = d.packages.items[0];
+const heroStats = pricedPackage
+  ? [{
+      label: t.priceAnchor.fromLabel,
+      value: `$${pricedPackage.price}`,
+      note: `${pricedPackage.currency} · ${pricedPackage.priceNote}`,
+    }]
+  : firstPkg?.quoteLabel
+    ? [{ label: lang === "es" ? "Inversión" : "Investment", value: firstPkg.quoteLabel }]
+    : [];
+// Búsqueda que se dibuja en el visual de SEO: la primera palabra clave de
+// la propia página.
+const heroQuery = d.meta.keywords.split(",")[0].trim();
 ---
 
 <Layout
@@ -86,21 +108,49 @@ const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" 
 >
   <Header lang={lang} page={service} />
   <main>
-    <PageHero
+    {/* 1 · Hero: propuesta, para quién es, precio publicado y los dos CTAs.
+        El visual es propio de cada subservicio (
+        hero-visuals/): anatomía de una landing, resultado de Google o
+        panel de estado del sitio. */}
+    <LandingHero
       lang={lang}
+      page={service}
       eyebrow={d.badge}
+      icon={d.icon}
       titleA={d.meta.heroTitleA}
       highlight={d.meta.heroHighlight}
       subtitle={d.meta.heroSubtitle}
-      ctaLabel={d.form.ctaLabel}
-      ctaHref="#solicitar"
-      ctaId={`cta-hero-${service}`}
-      ctaSecondaryLabel={d.packages.cta}
-      ctaSecondaryHref={PAGES.pricing[lang]}
-    />
+      lead={`${d.audience}.`}
+      stats={heroStats}
+      extraLink={{ label: lang === "es" ? "Ver paquetes" : "See packages", href: "#paquetes" }}
+    >
+      <Fragment slot="visual">
+        {service === "landingPages" && <VisualLanding lang={lang} pieces={d.capabilities.items} />}
+        {service === "seo" && <VisualSeo lang={lang} query={heroQuery} pieces={d.capabilities.items} />}
+        {service === "maintenance" && <VisualMaintenance lang={lang} pieces={d.capabilities.items} />}
+      </Fragment>
+    </LandingHero>
 
+    {/* 2 · Beneficios: por qué así */}
     <ServiceIntro lang={lang} intro={d.intro} icon={d.icon} />
 
+    {/* 3 · Así es como se trabaja. Los cinco pasos del sitio describen un
+        proyecto de construcción, así que solo van en landing pages. SEO y
+        mantenimiento no tienen un proceso propio publicado (PENDIENTE de
+        definir); ahí esta posición la ocupan los proyectos reales. */}
+    {service === "landingPages" && <Process lang={lang} />}
+    <ProofStrip lang={lang} />
+
+    {/* 4 · Testimonios publicados */}
+    <Testimonials lang={lang} />
+
+    {/* 5 · Para quién es y para quién no */}
+    <ServiceFit lang={lang} fit={d.fit} />
+
+    {/* 6 · El desarrollador y fundador */}
+    <Founder lang={lang} page={service} />
+
+    {/* 7 · Información práctica: qué incluye y precio publicado */}
     <ServiceCapabilities
       lang={lang}
       heading={{
@@ -110,23 +160,20 @@ const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" 
       }}
       items={d.capabilities.items}
     />
-
     <ServicePackages lang={lang} packages={d.packages} />
 
-    <ServiceFit lang={lang} fit={d.fit} />
-
+    {/* 8 · Preguntas frecuentes */}
     <FAQ lang={lang} data={d.faq} id="dudas-servicio" />
-
-    <ServiceLeadForm
-      lang={lang}
-      heading={d.form}
-      service={d.serviceName}
-      page={service}
-    />
-
     <RelatedLinks data={d.related} />
 
-    <FinalCTA lang={lang} />
+    {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
+    <LandingConversion
+      lang={lang}
+      page={service}
+      close={{ eyebrow: `// ${d.navLabel}`, title: d.meta.heroSubtitle }}
+      formHeading={d.form}
+      service={d.serviceName}
+    />
   </main>
   <Footer lang={lang} />
 </Layout>

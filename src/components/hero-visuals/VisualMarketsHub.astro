@@ -1,0 +1,41 @@
+---
+/*
+  Visual del hero del hub de mercados: los tres estados apilados, con la
+  paleta de ProCode y sus ciudades (el `navHint` de markets.ts).
+  Es un resumen de a dónde lleva la página, no una lista de enlaces.
+*/
+import type { Lang } from "../../i18n/ui";
+import { markets, US_STATE_KEYS } from "../../i18n/markets";
+import { LANDING_TAG } from "../landing-theme";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+---
+
+<div class="relative mx-auto grid max-w-xl gap-4" aria-hidden="true">
+  {
+    US_STATE_KEYS.map((key, i) => {
+      const m = markets[lang][key];
+      const tag = LANDING_TAG[key] ?? "";
+      return (
+        <div
+          class:list={["lt-panel flex items-center gap-4 rounded-[var(--radius)] p-5", i === 1 && "lg:translate-x-8"]}
+        >
+          <span class="lt-soft flex h-14 w-14 flex-none items-center justify-center rounded-2xl font-mono text-lg font-bold">
+            {tag}
+          </span>
+          <div class="min-w-0">
+            <p class="text-lg font-bold text-[var(--text)]">{m.name}</p>
+            <p class="mt-0.5 flex items-center gap-1.5 text-sm text-[var(--muted)]">
+              <Icon name="map-pin" class="h-3.5 w-3.5 flex-none text-[var(--accent)]" />
+              <span class="truncate">{m.navHint}</span>
+            </p>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>

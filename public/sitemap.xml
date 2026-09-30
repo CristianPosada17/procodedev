@@ -100,6 +100,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-estados-unidos/" />
   </url>
   <url>
+    <loc>https://procodedev.com/diseno-web-mexico/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-mexico/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-mexico/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-mexico/" />
+  </url>
+  <url>
+    <loc>https://procodedev.com/en/web-design-mexico/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://procodedev.com/diseno-web-mexico/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://procodedev.com/en/web-design-mexico/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://procodedev.com/diseno-web-mexico/" />
+  </url>
+  <url>
     <loc>https://procodedev.com/diseno-web-texas/</loc>
     <lastmod>2026-09-29</lastmod>
     <priority>0.9</priority>

@@ -1,0 +1,104 @@
+---
+/*
+  Visual del hero de /precios/: el mapa de TODA la página, no solo los
+  paquetes web. Cuatro bloques —proyectos web (pago único), servicios
+  mensuales (soporte, crecimiento y marketing digital), adicionales y la
+  Auditoría Estratégica—, cada uno con su precio de entrada tal como sale
+  más abajo y un enlace a su sección. Es navegación real, así que no va
+  `aria-hidden`.
+
+  Las cifras se calculan de los mismos datos que pintan las tarjetas
+  (t.pricing), así que no pueden desincronizarse.
+*/
+import { translations, type Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const p = t.pricing;
+const es = lang === "es";
+
+const num = (s: string) => Number(s.replace(/[^0-9.]/g, "")) || Infinity;
+const minWeb = p.packages.reduce((m, x) => Math.min(m, num(x.price)), Infinity);
+const minMonthly = p.monthly.filter((x) => x.price).reduce((m, x) => Math.min(m, num(x.price)), Infinity);
+const minExtra = p.extras.reduce((m, x) => Math.min(m, num(x.price)), Infinity);
+const fmt = (n: number) => `$${n.toLocaleString("en-US")}`;
+const from = t.priceAnchor.fromLabel;
+
+const blocks = [
+  {
+    href: "#desarrollo-web",
+    icon: "layout",
+    title: p.summaryTitle,
+    price: `${from} ${fmt(minWeb)}`,
+    unit: es ? "pago único" : "one-time",
+    items: p.packages.map((x) => x.name),
+  },
+  {
+    href: "#mensuales",
+    icon: "repeat",
+    title: p.monthlySummaryTitle,
+    price: `${from} ${fmt(minMonthly)}`,
+    unit: es ? "al mes" : "per month",
+    items: p.monthly.map((x) => x.name),
+  },
+  {
+    href: "#adicionales",
+    icon: "plus",
+    title: p.extrasTitle,
+    price: `${from} ${fmt(minExtra)}`,
+    unit: es ? "pago único" : "one-time",
+    items: p.extras.map((x) => x.name),
+  },
+  {
+    href: "#auditoria",
+    icon: "clipboard-check",
+    title: p.auditTitle,
+    price: p.advisory.priceQuote,
+    unit: p.advisory.priceNote,
+    items: [p.advisory.forWho],
+  },
+];
+const label = es ? "Qué encuentras en esta página" : "What is on this page";
+---
+
+<nav aria-label={label} class="relative mx-auto max-w-xl">
+  <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{label}</p>
+  <ul class="grid gap-3 sm:grid-cols-2">
+    {
+      blocks.map((b, i) => (
+        <li class:list={[i % 2 === 1 && "sm:translate-y-6"]}>
+          <a
+            href={b.href}
+            data-cta={`precios-mapa-${b.href.slice(1)}`}
+            class="lt-panel group flex h-full flex-col rounded-[var(--radius-lg)] p-5 transition hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          >
+            <span class="flex items-center gap-3">
+              <span class="lt-soft flex h-9 w-9 flex-none items-center justify-center rounded-xl">
+                <Icon name={b.icon as any} class="h-4 w-4" />
+              </span>
+              <span class="text-sm font-bold text-[var(--text)]">{b.title}</span>
+            </span>
+            <span class="mt-4 text-2xl font-bold tracking-tight text-[var(--text)]">{b.price}</span>
+            <span class="text-[11px] text-[var(--muted)]">{b.unit}</span>
+            <ul class="mt-3 grid gap-1 border-t border-[color:var(--border)] pt-3">
+              {b.items.map((it) => (
+                <li class="flex items-start gap-2 text-[11px] leading-5 text-[var(--text)]/80">
+                  <Icon name="check" class="mt-0.5 h-3 w-3 flex-none text-[var(--accent)]" strokeWidth={2.6} />
+                  {it}
+                </li>
+              ))}
+            </ul>
+            <span class="mt-auto inline-flex items-center gap-1 pt-3 text-xs font-bold text-[var(--accent)]">
+              {es ? "Ver detalle" : "See details"}
+              <Icon name="arrow-right" class="h-3 w-3 transition group-hover:translate-x-0.5" />
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

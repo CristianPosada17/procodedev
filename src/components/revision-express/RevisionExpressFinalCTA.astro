@@ -1,16 +1,15 @@
 ---
 /*
-  CTA final de la landing. No reutiliza FinalCTA.astro: aquél manda a
-  /contacto/, y aquí el botón debe bajar al formulario de esta misma página.
+  CTA final de la landing. No reutiliza FinalCTA.astro: esta landing tiene
+  sus propios dos botones —Reservar Revisión Express (#agendar) y Más
+  información (#solicitar)—, los dos con destino en esta misma página.
 */
-import { waHref, type Lang } from "../../i18n/ui";
+import type { Lang } from "../../i18n/ui";
 import Icon from "../Icon.astro";
 
 interface Props {
   lang?: Lang;
 }
-const { lang = "es" } = Astro.props as Props;
-const wa = waHref("expressReview", lang);
 ---
 
 <section class="relative py-12 lg:py-20">
@@ -32,22 +31,19 @@ const wa = waHref("expressReview", lang);
         </p>
         <div class="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
           <a
-            href="#solicitar"
-            data-cta="revex-cta-final-solicitar"
-            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-7 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+            href="#agendar"
+            data-cta="revex-cta-final-reservar"
+            class="btn-cta px-7"
           >
-            Solicitar mi Revisión Express
-            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+            Reservar Revisión Express
+            <Icon name="arrow-right" class="h-4 w-4" />
           </a>
           <a
-            href={wa}
-            data-cta="revex-cta-final-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-7 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+            href="#solicitar"
+            data-cta="revex-cta-final-info"
+            class="btn-secondary px-7"
           >
-            <Icon name="whatsapp" class="mr-2 h-4 w-4" />
-            Escribir por WhatsApp
+            Más información
           </a>
         </div>
         <p class="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">

@@ -1,0 +1,282 @@
+---
+/*
+  Formulario único de captación (septiembre de 2026).
+
+  Sustituye a Contact.astro (/contacto) y a ServiceLeadForm.astro (páginas
+  de servicio): los dos pedían teléfono, tipo de proyecto, necesidad y
+  mensaje. Ahora todo el sitio pide lo mismo y nada más: Nombre y Email.
+  El resto se pregunta en la respuesta por correo o en la Revisión Express.
+
+  Vive en `#contacto`, que es el destino del CTA secundario «Solicitar más
+  información» (ver `conversionHref` en src/i18n/ui.ts).
+
+  Lo que NO cambió:
+  · Envío a Web3Forms con la misma `access_key`.
+  · Campos ocultos de contexto: servicio, plan elegido en una tarjeta de
+    paquete (`data-plan`) y los cinco de atribución que rellena el motor de
+    medición. No se le piden al visitante, así que no son campos de captación.
+  · Medición: `data-form` dispara `form_start` y el envío emite
+    `generate_lead` con `form_name` "servicio" o "contacto", igual que antes,
+    para no romper la comparación histórica en GA4.
+  · Confirmación con FormSuccessModal y mensaje de error bajo el botón.
+*/
+import { translations, CONTACT, PAGES, conversionHref, type Lang, type PageKey } from "../i18n/ui";
+import Icon from "./Icon.astro";
+import FormSuccessModal from "./FormSuccessModal.astro";
+
+interface Props {
+  lang?: Lang;
+  /** Página que lo contiene: decide el enlace a la agenda y el modal. */
+  page: PageKey;
+  /** Encabezado propio de la landing; si falta, el genérico de contacto. */
+  heading?: {
+    eyebrow: string;
+    titleA: string;
+    titleHighlight: string;
+    subtitle: string;
+  };
+  /** Nombre del servicio que viaja en el correo. Sin él, es /contacto. */
+  service?: string;
+}
+const { lang = "es", page, heading, service } = Astro.props as Props;
+const t = translations[lang];
+const c = t.contact;
+const h = heading ?? c;
+const formName = service ? "servicio" : "contacto";
+const subject = service
+  ? `Solicitud de información — ${service} — procodedev.com`
+  : "Nuevo contacto desde procodedev.com";
+
+const inputClass =
+  "min-h-[48px] w-full rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-3 text-base text-[var(--text)] outline-none transition placeholder:text-[var(--muted)]/70 focus:border-[color:var(--brand)] focus-visible:ring-2 focus-visible:ring-[color:var(--brand)]/40 sm:text-sm";
+
+// Script construido como cadena en el frontmatter (evita que las llaves /
+// ${} de un template literal rompan el parser de Astro).
+const script = `
+  (function(){
+    var form = document.getElementById('lead-form');
+    if(!form) return;
+    var status = document.getElementById('lead-status');
+    var btn = document.getElementById('lead-submit');
+    var planField = form.querySelector('input[name="plan"]');
+    var planChip = document.getElementById('lead-plan-chip');
+    var planChipText = document.getElementById('lead-plan-chip-text');
+    var nameField = form.querySelector('input[name="name"]');
+    var SENDING = ${JSON.stringify(c.sending)};
+    var OK = ${JSON.stringify(c.success)};
+    var FAIL = ${JSON.stringify(c.error)};
+    var LABEL = ${JSON.stringify(c.submit)};
+    var SERVICE = ${JSON.stringify(service ?? "")};
+    var FORM_NAME = ${JSON.stringify(formName)};
+
+    function show(msg, ok){
+      if(!status) return;
+      status.textContent = msg;
+      status.classList.remove('hidden');
+      status.style.color = ok ? 'var(--ok)' : 'var(--err)';
+    }
+
+    // Botón de una tarjeta de paquete: conserva el plan elegido.
+    document.addEventListener('click', function(e){
+      var el = e.target && e.target.closest ? e.target.closest('[data-plan]') : null;
+      if(!el) return;
+      var plan = el.getAttribute('data-plan') || '';
+      if(planField) planField.value = plan;
+      if(planChip && planChipText){
+        planChipText.textContent = plan;
+        planChip.hidden = false;
+      }
+      // El foco al primer campo tras el salto de ancla, no antes: si no,
+      // el navegador cancela el scroll y el bloque nunca se ve entero.
+      setTimeout(function(){ if(nameField) nameField.focus({ preventScroll: true }); }, 450);
+    });
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      // Validación nativa (required + type=email) antes de gastar un envío.
+      if(form.reportValidity && !form.reportValidity()) return;
+      if(btn){ btn.disabled = true; btn.textContent = SENDING; }
+      try {
+        if(window.pcdFillAttribution) window.pcdFillAttribution(form);
+        var data = Object.fromEntries(new FormData(form));
+        var res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await res.json();
+        if(result.success){
+          show(OK, true);
+          if(window.pcdFormSuccess) window.pcdFormSuccess();
+          form.reset();
+          if(planChip) planChip.hidden = true;
+          if(planField) planField.value = '';
+          if(window.pcdTrack){
+            var lead = window.pcdAttribution ? window.pcdAttribution() : {};
+            lead.form_name = FORM_NAME;
+            lead.lead_type = 'formulario';
+            if(SERVICE) lead.service = SERVICE;
+            lead.plan = data.plan || '';
+            lead.value = 1;
+            lead.currency = 'USD';
+            window.pcdTrack('generate_lead', lead, {
+              event: 'Lead',
+              params: {
+                content_name: SERVICE ? 'Formulario de servicio' : 'Formulario de contacto',
+                content_category: SERVICE || 'contacto',
+                value: 1,
+                currency: 'USD'
+              }
+            });
+          } else {
+            if(window.fbq) window.fbq('track','Lead');
+            if(window.gtag) window.gtag('event','generate_lead',{ origen:'formulario_' + FORM_NAME });
+          }
+        } else {
+          show(FAIL, false);
+          if(window.pcdTrack) window.pcdTrack('form_error', { form_name: FORM_NAME, error_type:'rechazado' });
+        }
+      } catch(err){
+        show(FAIL, false);
+        if(window.pcdTrack) window.pcdTrack('form_error', { form_name: FORM_NAME, error_type:'red' });
+      }
+      finally { if(btn){ btn.disabled = false; btn.textContent = LABEL; } }
+    });
+  })();
+`;
+---
+
+<section id="contacto" class="relative scroll-mt-24 py-12 lg:py-20" aria-labelledby="contacto-title">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div
+      class="reveal mx-auto grid max-w-6xl gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:p-12"
+    >
+      <div class="min-w-0">
+        <span class="eyebrow">{h.eyebrow}</span>
+        <h2
+          id="contacto-title"
+          class="mt-5 text-2xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-3xl lg:text-[2.15rem]"
+        >
+          {h.titleA}{" "}<span class="grad-text">{h.titleHighlight}</span>
+        </h2>
+        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{h.subtitle}</p>
+
+        <ul class="mt-7 grid gap-3">
+          {
+            c.perks.map((perk) => (
+              <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
+                  <Icon name="check" class="h-3 w-3" strokeWidth={2.6} />
+                </span>
+                {perk}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-8 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-5">
+          <p class="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+            {c.altTitle}
+          </p>
+          <a
+            href={conversionHref(page, lang, "book")}
+            data-cta={`form-${page}-agendar`}
+            class="mt-3 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-[var(--text)] transition hover:text-[var(--accent)]"
+          >
+            <Icon name="calendar" class="h-4 w-4 text-[var(--accent)]" />
+            {c.altSchedule}
+            <Icon name="arrow-right" class="h-3.5 w-3.5" />
+          </a>
+          {/* Correo visible como texto, no como enlace: la regla vigente es
+              que ningún enlace de conversión saque al visitante del sitio. */}
+          <p class="mt-1 inline-flex items-center gap-2 text-sm text-[var(--muted)]">
+            <Icon name="mail" class="h-4 w-4 text-[var(--accent)]" />
+            <span class="select-all">{CONTACT.email}</span>
+          </p>
+        </div>
+      </div>
+
+      <form
+        id="lead-form"
+        data-form={formName}
+        class="min-w-0 self-start rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7"
+      >
+        <input type="hidden" name="access_key" value={CONTACT.web3formsKey} />
+        {service && <input type="hidden" name="servicio" value={service} />}
+        {/* Lo rellena el botón de la tarjeta de paquete que trajo aquí. */}
+        <input type="hidden" name="plan" value="" />
+        {/* Origen del lead: lo rellena el motor de medición justo antes de
+            enviar, para que el correo ya diga de dónde vino sin abrir GA4. */}
+        <input type="hidden" name="lead_origen" value="" />
+        <input type="hidden" name="lead_campana" value="" />
+        <input type="hidden" name="lead_pagina" value="" />
+        <input type="hidden" name="lead_landing" value="" />
+        <input type="hidden" name="lead_primer_contacto" value="" />
+        <input type="hidden" name="subject" value={subject} />
+        <input type="hidden" name="from_name" value="ProCode Dev — Web" />
+        <input
+          type="checkbox"
+          name="botcheck"
+          class="hidden"
+          style="display:none"
+          tabindex="-1"
+          autocomplete="off"
+        />
+
+        <p
+          id="lead-plan-chip"
+          hidden
+          class="mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/12 px-4 py-3 text-sm text-[var(--text)]"
+        >
+          <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
+            {c.interestLabel}
+          </span>
+          <span id="lead-plan-chip-text" class="font-bold"></span>
+        </p>
+
+        <div class="grid gap-5">
+          <label class="grid gap-2">
+            <span class="text-sm font-medium text-[var(--text)]">{c.fieldName}</span>
+            <input
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              placeholder={c.phName}
+              class={inputClass}
+            />
+          </label>
+
+          <label class="grid gap-2">
+            <span class="text-sm font-medium text-[var(--text)]">{c.fieldEmail}</span>
+            <input
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+              placeholder={c.phEmail}
+              class={inputClass}
+            />
+          </label>
+
+          <button id="lead-submit" type="submit" class="btn-cta w-full">
+            {c.submit}
+          </button>
+
+          <p id="lead-status" class="hidden text-sm" role="status" aria-live="polite"></p>
+          <p class="text-xs leading-6 text-[var(--muted)]">
+            {c.privacy}{" "}
+            <a href={PAGES.privacy[lang]} class="underline underline-offset-2 hover:text-[var(--accent)]">
+              {c.privacyLink}
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<FormSuccessModal lang={lang} page={page} />
+
+<script is:inline set:html={script}></script>

@@ -1,51 +1,63 @@
 ---
-import { translations, PAGES, CONTACT, type Lang } from "../i18n/ui";
+/*
+  Cierre de página: las dos únicas opciones de conversión del sitio.
+
+  · Principal  «Agendar Revisión Express» → #agendar (Calendly)
+  · Secundario «Solicitar más información» → #contacto (Nombre + Email)
+
+  En la página principal y en las landings los dos destinos están en la
+  misma página, justo debajo (ver LandingConversion.astro). En el resto
+  (hubs, precios, portafolio) llevan a /contacto/ con el mismo ancla. La
+  decisión la toma `conversionHref`, no cada página.
+
+  Septiembre de 2026 (30): el botón de WhatsApp salía del sitio y se quitó.
+*/
+import { translations, conversionHref, type Lang, type PageKey } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import OfferNote from "./OfferNote.astro";
 interface Props {
   lang?: Lang;
+  page: PageKey;
+  /** Cierre propio de la landing (su problema y su propuesta de valor). */
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
 }
-const { lang = "es" } = Astro.props as Props;
+const { lang = "es", page, eyebrow, title, subtitle } = Astro.props as Props;
 const t = translations[lang];
 const fc = t.finalCta;
-// Un solo nombre para la oferta de entrada en todo el sitio, el Calendly y
-// los correos: la Revisión Express. Aquí seguía el nombre viejo.
-const waMsg = encodeURIComponent(
-  lang === "es"
-    ? "Hola Cristian 👋 Quiero mi Revisión Express."
-    : "Hi Cristian 👋 I'd like my Express Review.",
-);
 ---
 
-<section id="final-cta" class="relative py-12 lg:py-20">
+<section id="final-cta" class="relative py-12 lg:py-20" aria-labelledby="final-cta-title">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <div
       class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-gradient-to-br from-[var(--brand)]/20 via-[var(--surface)]/60 to-[var(--bg-2)] p-8 text-center backdrop-blur-xl lg:p-16"
     >
       <div class="tech-grid absolute inset-0 opacity-30"></div>
       <div class="relative mx-auto max-w-3xl">
-        <span class="eyebrow">{fc.eyebrow}</span>
-        <h2 class="mt-5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
-          {fc.title}
+        <span class="eyebrow">{eyebrow ?? fc.eyebrow}</span>
+        <h2
+          id="final-cta-title"
+          class="mt-5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl"
+        >
+          {title ?? fc.title}
         </h2>
-        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{fc.subtitle}</p>
-        <div class="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
+        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{subtitle ?? fc.subtitle}</p>
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
           <a
-            href={PAGES.contact[lang]}
+            href={conversionHref(page, lang, "book")}
             data-cta="cta-final-agendar"
-            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-7 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+            class="btn-cta px-7"
           >
-            {fc.ctaPrimary} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+            {t.common.ctaPrimary}
+            <Icon name="arrow-right" class="h-4 w-4" />
           </a>
           <a
-            href={`https://wa.me/${CONTACT.whatsapp}?text=${waMsg}`}
-            data-cta="cta-final-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-7 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
+            href={conversionHref(page, lang, "info")}
+            data-cta="cta-final-info"
+            class="btn-secondary px-7"
           >
-            <Icon name="whatsapp" class="mr-2 h-4 w-4" />
-            {fc.ctaWhatsapp}
+            {t.contact.ctaInfo}
           </a>
         </div>
 

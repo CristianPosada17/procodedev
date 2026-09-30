@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
-import PageHero from "../../components/PageHero.astro";
+import LandingHero from "../../components/LandingHero.astro";
+import VisualIndustries from "../../components/hero-visuals/VisualIndustries.astro";
 import SectorsHub from "../../components/SectorsHub.astro";
 import ProofStrip from "../../components/ProofStrip.astro";
 import PriceAnchor from "../../components/PriceAnchor.astro";
@@ -40,13 +41,19 @@ const sectorList = SEGMENT_KEYS.map((key) => ({
 >
   <Header lang={lang} page="sectors" />
   <main>
-    <PageHero
+    <LandingHero
       lang={lang}
-      eyebrow="// for business owners"
+      page="sectors"
+      eyebrow={t.nav.sectors}
+      icon="briefcase"
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
-    />
+      lead={meta.description}
+      stats={[{ label: t.priceAnchor.fromLabel, value: `$${t.priceAnchor.amount}`, note: `${t.priceAnchor.currency} · ${t.priceAnchor.amountNote}` }]}
+    >
+      <VisualIndustries slot="visual" lang={lang} />
+    </LandingHero>
     <SectorsHub lang={lang} />
     <ProofStrip lang={lang} />
     <PriceAnchor lang={lang} />

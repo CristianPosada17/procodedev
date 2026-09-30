@@ -1,5 +1,5 @@
 ---
-import { translations, PAGES, type Lang } from "../i18n/ui";
+import { translations, conversionHref, type Lang, type PageKey } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 import PortfolioCard from "./PortfolioCard.astro";
@@ -8,8 +8,10 @@ interface Props {
   lang?: Lang;
   /** En /portafolio el H1 de PageHero ya dice esto: no repetirlo (hallazgo #13). */
   showHeading?: boolean;
+  /** Página que lo contiene: decide si la agenda está aquí o en /contacto/. */
+  page?: PageKey;
 }
-const { lang = "es", showHeading = true } = Astro.props as Props;
+const { lang = "es", showHeading = true, page = "portfolio" } = Astro.props as Props;
 const t = translations[lang];
 const p = t.portfolio;
 
@@ -50,7 +52,7 @@ const labels = {
       <CardRail class="mt-6" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide" gap="gap-5 lg:gap-6">
         {
           clients.map((proj, i) => (
-            <PortfolioCard project={proj} viewProject={p.viewProject} resultLabel={p.resultLabel} labels={labels} delay={i * 90} />
+            <PortfolioCard project={proj} resultLabel={p.resultLabel} labels={labels} delay={i * 90} />
           ))
         }
       </CardRail>
@@ -76,7 +78,7 @@ const labels = {
             {demos.map((proj, i) => (
               <PortfolioCard
                 project={proj}
-                viewProject={p.viewProject} resultLabel={p.resultLabel}
+                resultLabel={p.resultLabel}
                 labels={labels}
                 delay={i * 90}
               />
@@ -88,10 +90,11 @@ const labels = {
 
     <div class="reveal mt-12 text-center">
       <a
-        href={PAGES.contact[lang]}
-        class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/20"
+        href={conversionHref(page, lang, "book")}
+        data-cta="portafolio-agendar"
+        class="btn-cta"
       >
-        {p.cta} <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        {p.cta} <Icon name="arrow-right" class="h-4 w-4" />
       </a>
     </div>
   </div>

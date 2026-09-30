@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /formulario
+# Base de conocimiento del asistente del sitio: datos, no una página.
+Disallow: /chatbot/
 
 # Rastreadores de buscadores con IA: acceso explícito. Cuando alguien pregunta
 # a un asistente por un desarrollador web para su negocio, la respuesta solo

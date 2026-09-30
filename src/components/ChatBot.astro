@@ -1,0 +1,451 @@
+---
+/*
+  Asistente ProCode con IA (septiembre de 2026, 30).
+
+  El chat responde DENTRO de la página con un modelo de OpenAI:
+  · El navegador envía la conversación a /api/chat.php (public/api/), que
+    guarda la clave de la API en el servidor, añade el contexto del sitio
+    (/chatbot/<lang>.json, generado en el build) y limita el uso por
+    visitante. La clave nunca llega al navegador.
+  · La IA solo puede contestar con la información del sitio y termina
+    sugiriendo el siguiente paso: agendar la Revisión Express, dejar sus
+    datos en el formulario o escribirle a Cristian por WhatsApp. Esas
+    sugerencias llegan como `actions` y aquí se convierten en botones.
+  · Si la IA no responde (sin configurar, sin saldo, límite de uso o
+    caída), el chat lo dice y ofrece WhatsApp y la agenda: nunca se queda
+    mudo.
+
+  · El texto se pinta siempre con textContent, nunca como HTML.
+  · La conversación se guarda en sessionStorage: sigue ahí al cambiar de
+    página dentro de la misma visita.
+  · El pie avisa de que es un asistente con IA que puede equivocarse.
+  · Accesible: botón con aria-expanded, panel role="dialog", mensajes en
+    una región aria-live, Esc cierra y el foco vuelve al botón.
+*/
+import { CONTACT, PAGES, conversionHref, type Lang, type PageKey } from "../i18n/ui";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+  page?: PageKey | "blog";
+}
+const { lang = "es", page = "blog" } = Astro.props as Props;
+const es = lang === "es";
+const origin = `procodedev.com${Astro.url.pathname}`;
+
+const c = es
+  ? {
+      open: "Abrir chat",
+      close: "Cerrar chat",
+      reset: "Empezar de nuevo",
+      teaser: "¿Tienes una duda? Pregúntame aquí.",
+      name: "Asistente ProCode",
+      status: "Asistente con IA · responde al instante",
+      hello: "¡Hola! 👋 Soy el asistente de ProCode. Puedo resolver tus dudas sobre páginas web, precios, SEO y marketing.",
+      ask: "Elige una pregunta o escríbeme la tuya:",
+      placeholder: "Escribe tu pregunta…",
+      send: "Enviar",
+      foot: "Asistente con IA: puede equivocarse. Para tu caso concreto, te atiende Cristian.",
+      from: "Te escribo desde",
+      error:
+        "Ahora mismo no puedo responder. Puedes escribirle directo a Cristian por WhatsApp o agendar la Revisión Express.",
+      limit:
+        "Hemos hablado bastante por hoy 😊. Para seguir, escríbele a Cristian por WhatsApp o agenda la Revisión Express.",
+      a: {
+        book: "Agendar Revisión Express",
+        info: "Solicitar más información",
+        whatsapp: "Escribir a Cristian por WhatsApp",
+        pricing: "Ver precios",
+        services: "Ver servicios",
+        portfolio: "Ver portafolio",
+      },
+      quick: [
+        "¿Cuánto cuesta una página web?",
+        "¿Hay planes mensuales?",
+        "¿Qué es la Revisión Express?",
+        "¿Hacen marketing digital y SEO?",
+      ],
+    }
+  : {
+      open: "Open chat",
+      close: "Close chat",
+      reset: "Start over",
+      teaser: "Got a question? Ask me here.",
+      name: "ProCode Assistant",
+      status: "AI assistant · replies instantly",
+      hello: "Hi! 👋 I am the ProCode assistant. I can answer your questions about websites, pricing, SEO and marketing.",
+      ask: "Pick a question or type your own:",
+      placeholder: "Type your question…",
+      send: "Send",
+      foot: "AI assistant: it can make mistakes. For your specific case, Cristian takes over.",
+      from: "Writing from",
+      error: "I cannot answer right now. You can message Cristian directly on WhatsApp or book the Express Review.",
+      limit: "We have chatted a lot today 😊. To keep going, message Cristian on WhatsApp or book the Express Review.",
+      a: {
+        book: "Book my Express Review",
+        info: "Request more information",
+        whatsapp: "Message Cristian on WhatsApp",
+        pricing: "See pricing",
+        services: "See services",
+        portfolio: "See portfolio",
+      },
+      quick: [
+        "How much does a website cost?",
+        "Are there monthly plans?",
+        "What is the Express Review?",
+        "Do you do digital marketing and SEO?",
+      ],
+    };
+
+const cfg = {
+  lang,
+  api: "/api/chat.php",
+  wa: CONTACT.whatsapp,
+  from: `${c.from} ${origin}`,
+  links: {
+    book: conversionHref(page, lang, "book"),
+    info: conversionHref(page, lang, "info"),
+    pricing: PAGES.pricing[lang],
+    services: PAGES.services[lang],
+    portfolio: PAGES.portfolio[lang],
+  },
+  c,
+};
+
+const script = `
+(function(){
+  var CFG = ${JSON.stringify(cfg)};
+  var C = CFG.c;
+  var root = document.getElementById('pcd-chat');
+  if(!root) return;
+  var btn = root.querySelector('[data-chat-toggle]');
+  var panel = root.querySelector('[data-chat-panel]');
+  var teaser = root.querySelector('[data-chat-teaser]');
+  var log = root.querySelector('[data-chat-log]');
+  var form = root.querySelector('[data-chat-form]');
+  var input = root.querySelector('[data-chat-input]');
+  var sendBtn = root.querySelector('[data-chat-send]');
+  var resetBtn = root.querySelector('[data-chat-reset]');
+  var SKEY = 'pcd_chat_' + CFG.lang;
+  var history = [];
+  var busy = false;
+
+  function track(name, params, meta){ if(window.pcdTrack) window.pcdTrack(name, params || {}, meta); }
+  function waUrl(text){ return 'https://wa.me/' + CFG.wa + '?text=' + encodeURIComponent((text ? text + '\\n\\n' : '') + '(' + CFG.from + ')'); }
+  function save(){ try { sessionStorage.setItem(SKEY, JSON.stringify(history.slice(-30))); } catch(e){} }
+  function lastUserText(){ for(var i = history.length - 1; i >= 0; i--){ if(history[i].role === 'user') return history[i].text; } return ''; }
+
+  // ───────── Pintar mensajes (siempre con textContent) ─────────
+  function bubble(role, text){
+    var p = document.createElement('p');
+    p.className = role === 'user'
+      ? 'ml-auto w-fit max-w-[85%] whitespace-pre-line rounded-2xl rounded-br-md bg-[var(--brand)] px-4 py-2.5 text-sm text-white'
+      : 'w-fit max-w-[88%] whitespace-pre-line rounded-2xl rounded-bl-md bg-[var(--surface)] px-4 py-2.5 text-sm leading-6 text-[var(--text)]';
+    p.textContent = text;
+    return p;
+  }
+  function actionEl(id){
+    var el = document.createElement('a');
+    if(id === 'whatsapp'){
+      el.href = waUrl(lastUserText());
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    } else {
+      el.href = CFG.links[id];
+      if(el.getAttribute('href').charAt(0) === '#') el.addEventListener('click', function(){ closePanel(false); });
+    }
+    el.setAttribute('data-cta', 'chatbot-' + id);
+    el.className = id === 'book'
+      ? 'inline-flex min-h-[38px] items-center rounded-full bg-[var(--cta)] px-3.5 py-1.5 text-[13px] font-bold text-[var(--cta-ink)] transition hover:bg-[var(--cta-hover)]'
+      : 'inline-flex min-h-[38px] items-center rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-3.5 py-1.5 text-left text-[13px] font-semibold text-[var(--text)] transition hover:bg-[var(--brand)] hover:text-white';
+    el.textContent = C.a[id];
+    return el;
+  }
+  function render(msg){
+    var wrap = document.createElement('div');
+    wrap.className = 'grid gap-2';
+    if(msg.text) wrap.appendChild(bubble(msg.role, msg.text));
+    if(msg.actions && msg.actions.length){
+      var row = document.createElement('div');
+      row.className = 'flex flex-wrap gap-2';
+      msg.actions.forEach(function(id){ if(C.a[id]) row.appendChild(actionEl(id)); });
+      wrap.appendChild(row);
+    }
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+  }
+  function push(msg){ history.push(msg); save(); render(msg); }
+
+  function typingOn(){
+    var t = document.createElement('div');
+    t.setAttribute('data-typing', '');
+    t.className = 'inline-flex w-fit items-center gap-1 rounded-2xl rounded-bl-md bg-[var(--surface)] px-4 py-3';
+    t.setAttribute('aria-hidden', 'true');
+    for(var i = 0; i < 3; i++){ var d = document.createElement('span'); d.className = 'pcd-dot h-1.5 w-1.5 rounded-full bg-[var(--muted)]'; t.appendChild(d); }
+    log.appendChild(t);
+    log.scrollTop = log.scrollHeight;
+    return t;
+  }
+  function setBusy(v){
+    busy = v;
+    if(sendBtn) sendBtn.disabled = v;
+    log.querySelectorAll('[data-quick]').forEach(function(b){ b.disabled = v; });
+  }
+
+  // ───────── Conversación con la IA ─────────
+  function ask(text){
+    text = (text || '').trim().slice(0, 500);
+    if(!text || busy) return;
+    push({ role: 'user', text: text });
+    setBusy(true);
+    var t = typingOn();
+    var messages = history
+      .filter(function(m){ return m.text && (m.role === 'user' || m.role === 'bot'); })
+      .slice(-10)
+      .map(function(m){ return { role: m.role === 'bot' ? 'assistant' : 'user', content: m.text }; });
+    fetch(CFG.api, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lang: CFG.lang, page: location.pathname, messages: messages })
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(d){ return { ok: r.ok, status: r.status, d: d }; });
+    }).then(function(res){
+      t.remove();
+      if(res.ok && res.d && res.d.reply){
+        push({ role: 'bot', text: res.d.reply, actions: res.d.actions || [] });
+        track('chat_answer', { chat_actions: (res.d.actions || []).join(',') });
+      } else {
+        push({ role: 'bot', text: res.status === 429 ? C.limit : C.error, actions: ['whatsapp', 'book'], sys: true });
+        track('chat_error', { error_type: String(res.status) });
+      }
+    }).catch(function(){
+      t.remove();
+      push({ role: 'bot', text: C.error, actions: ['whatsapp', 'book'], sys: true });
+      track('chat_error', { error_type: 'red' });
+    }).then(function(){ setBusy(false); });
+    track('chat_question', { cta_zone: 'chatbot' });
+  }
+
+  // Preguntas rápidas: dentro de la conversación, justo después del saludo,
+  // como respuestas sugeridas alineadas a la derecha. Las responde la IA.
+  function quickList(){
+    var ul = document.createElement('ul');
+    ul.className = 'grid justify-items-end gap-2';
+    C.quick.forEach(function(label, i){
+      var li = document.createElement('li');
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('data-quick', '');
+      b.className = 'inline-flex min-h-[40px] items-center rounded-2xl rounded-br-md border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-3.5 py-2 text-right text-[13px] font-semibold text-[var(--text)] transition hover:bg-[var(--brand)] hover:text-white disabled:opacity-50';
+      b.textContent = label;
+      b.addEventListener('click', function(){ ask(label); track('chat_quick', { chat_intent: String(i + 1) }); });
+      li.appendChild(b);
+      ul.appendChild(li);
+    });
+    log.appendChild(ul);
+  }
+
+  // El saludo y las preguntas sugeridas son locales (no gastan una llamada
+  // a la IA) y no se envían como parte de la conversación.
+  function greetFirst(){
+    if(history.length) return;
+    render({ role: 'bot', text: C.hello });
+    render({ role: 'bot', text: C.ask });
+    quickList();
+  }
+
+  // ───────── Abrir / cerrar ─────────
+  function openPanel(){
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    root.classList.add('is-open');
+    if(teaser) teaser.hidden = true;
+    if(!log.childElementCount) greetFirst();
+    setTimeout(function(){ if(input && window.matchMedia('(min-width: 1024px)').matches) input.focus({ preventScroll: true }); }, 60);
+    track('chat_open', { cta_zone: 'chatbot' });
+  }
+  function closePanel(restore){
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    root.classList.remove('is-open');
+    if(restore !== false) btn.focus({ preventScroll: true });
+  }
+  btn.addEventListener('click', function(){ panel.hidden ? openPanel() : closePanel(); });
+  root.querySelectorAll('[data-chat-close]').forEach(function(b){ b.addEventListener('click', function(){ closePanel(); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !panel.hidden) closePanel(); });
+  if(resetBtn) resetBtn.addEventListener('click', function(){
+    history = []; save(); log.innerHTML = ''; greetFirst();
+  });
+  if(form) form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(busy) return;
+    var text = input.value;
+    input.value = '';
+    ask(text);
+  });
+
+  // Conversación de esta visita, si la hay.
+  try {
+    var saved = JSON.parse(sessionStorage.getItem(SKEY) || '[]');
+    if(Array.isArray(saved) && saved.length){ greetFirst(); history = saved; saved.forEach(render); }
+  } catch(e){}
+
+  // Globo de invitación: una vez por sesión, a los 6 s.
+  try {
+    if(teaser && !sessionStorage.getItem('pcd_chat_teaser')){
+      setTimeout(function(){
+        if(panel.hidden){ teaser.hidden = false; sessionStorage.setItem('pcd_chat_teaser', '1'); }
+      }, 6000);
+    }
+  } catch(e){}
+})();
+`;
+---
+
+<div id="pcd-chat" class="pcd-chat fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[60] flex flex-col items-end gap-3 lg:bottom-6 lg:right-6" data-zone="chatbot">
+  {/* Panel del chat */}
+  <div
+    id="pcd-chat-panel"
+    data-chat-panel
+    hidden
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="pcd-chat-title"
+    class="pcd-chat-panel flex max-h-[min(40rem,calc(100dvh-6.5rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-[color:var(--border-strong)] bg-[var(--surface)] shadow-[var(--shadow-pop)]"
+  >
+    <div class="flex flex-none items-center gap-3 bg-gradient-to-r from-[var(--brand)] to-[var(--brand-strong)] px-4 py-3.5 text-white">
+      <span class="relative flex h-10 w-10 flex-none items-center justify-center rounded-full bg-white/15">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="7" width="16" height="12" rx="4" />
+          <path d="M12 7V4" /><circle cx="12" cy="3.2" r="0.9" fill="currentColor" />
+          <circle cx="9" cy="13" r="1.1" fill="currentColor" stroke="none" /><circle cx="15" cy="13" r="1.1" fill="currentColor" stroke="none" />
+          <path d="M9.5 16.2c1.4.9 3.6.9 5 0" />
+        </svg>
+        <span class="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-[var(--brand)]"></span>
+      </span>
+      <div class="min-w-0">
+        <p id="pcd-chat-title" class="text-sm font-bold">{c.name}</p>
+        <p class="text-[11px] text-white/80">{c.status}</p>
+      </div>
+      <button type="button" data-chat-reset aria-label={c.reset} title={c.reset} class="ml-auto flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-white">
+        <Icon name="repeat" class="h-4 w-4" />
+      </button>
+      <button type="button" data-chat-close aria-label={c.close} class="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-white">
+        <Icon name="close" class="h-4 w-4" />
+      </button>
+    </div>
+
+    {/* Conversación */}
+    <div
+      data-chat-log
+      role="log"
+      aria-live="polite"
+      class="grid min-h-[12rem] flex-1 content-start gap-3 overflow-y-auto overscroll-contain bg-[var(--bg-2)]/60 px-4 py-4"
+    >
+    </div>
+
+    {/* Preguntas rápidas: siempre a mano, en una fila deslizable */}
+
+    <form data-chat-form class="flex flex-none items-center gap-2 border-t border-[color:var(--border)] px-3 py-3">
+      <label class="sr-only" for="pcd-chat-input">{c.placeholder}</label>
+      <input
+        id="pcd-chat-input"
+        data-chat-input
+        type="text"
+        maxlength="400"
+        autocomplete="off"
+        enterkeyhint="send"
+        placeholder={c.placeholder}
+        class="min-h-[44px] min-w-0 flex-1 rounded-full border border-[color:var(--border)] bg-[var(--bg-2)] px-4 text-base text-[var(--text)] outline-none placeholder:text-[var(--muted)]/70 focus:border-[color:var(--brand)] sm:text-sm"
+      />
+      <button type="submit" data-chat-send aria-label={c.send} class="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[var(--brand)] text-white transition hover:bg-[var(--brand-strong)] disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]">
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13" /><path d="M22 2 15 22l-4-9-9-4 20-7z" /></svg>
+      </button>
+    </form>
+    <p class="flex-none px-4 pb-3 text-center text-[10px] leading-4 text-[var(--muted)]">{c.foot}</p>
+  </div>
+
+  {/* Globo de invitación (una vez por sesión) */}
+  <p
+    data-chat-teaser
+    hidden
+    class="pcd-chat-teaser max-w-[15rem] rounded-2xl rounded-br-md border border-[color:var(--border-strong)] bg-[var(--surface)] px-4 py-2.5 text-sm font-semibold text-[var(--text)] shadow-[var(--shadow-pop)]"
+  >
+    {c.teaser}
+  </p>
+
+  {/* Botón flotante */}
+  <button
+    type="button"
+    data-chat-toggle
+    data-cta="chatbot-abrir"
+    aria-expanded="false"
+    aria-controls="pcd-chat-panel"
+    aria-label={c.open}
+    class="pcd-chat-btn relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[var(--brand)] to-[var(--grad-to)] text-white shadow-[0_12px_32px_-8px_var(--halo-brand)] transition hover:scale-105 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)]"
+  >
+    <span class="pcd-chat-ring absolute inset-0 rounded-full" aria-hidden="true"></span>
+    <svg class="pcd-chat-icon-open h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5z" />
+      <circle cx="8.5" cy="9.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="15.5" cy="9.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+    <svg class="pcd-chat-icon-close h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+    <span class="absolute right-0.5 top-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-[var(--bg)]" aria-hidden="true"></span>
+  </button>
+</div>
+
+<style is:global>
+  .pcd-chat-panel {
+    animation: pcd-chat-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+    transform-origin: bottom right;
+  }
+  .pcd-chat-icon-close {
+    display: none;
+  }
+  .pcd-chat.is-open .pcd-chat-icon-open {
+    display: none;
+  }
+  .pcd-chat.is-open .pcd-chat-icon-close {
+    display: block;
+  }
+  .pcd-chat-ring {
+    box-shadow: 0 0 0 0 var(--halo-brand);
+    animation: pcd-chat-pulse 2.6s ease-out infinite;
+  }
+  .pcd-chat.is-open .pcd-chat-ring {
+    animation: none;
+  }
+  .pcd-dot {
+    animation: pcd-typing 1s infinite ease-in-out;
+  }
+  .pcd-dot:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .pcd-dot:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  @keyframes pcd-chat-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pcd-chat-pulse {
+    0% { box-shadow: 0 0 0 0 var(--halo-brand); }
+    70% { box-shadow: 0 0 0 14px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  @keyframes pcd-typing {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-3px); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pcd-chat-panel,
+    .pcd-chat-ring,
+    .pcd-dot {
+      animation: none;
+    }
+  }
+</style>
+
+<script is:inline set:html={script}></script>

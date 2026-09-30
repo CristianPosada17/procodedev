@@ -4,6 +4,7 @@ import {
   PAGES,
   SEGMENT_KEYS,
   getAltPath,
+  conversionHref,
   type Lang,
   type PageKey,
 } from "../i18n/ui";
@@ -20,6 +21,14 @@ interface Props {
 }
 const { lang = "es", page = "home" } = Astro.props as Props;
 const t = translations[lang];
+
+// Destinos de los CTAs: dentro de la página si tiene agenda y formulario,
+// /contacto/ si no. El blog no pasa `page`, así que no se da por hecho que
+// sea el home (que sí tiene #agendar).
+const ctaPage = Astro.props.page ?? "blog";
+const bookHref = conversionHref(ctaPage, lang, "book");
+const infoHref = conversionHref(ctaPage, lang, "info");
+const infoShort = lang === "es" ? "Más información" : "More info";
 
 // El nicho creció de una landing a un hub con seis páginas de oficio. Meterlas
 // todas en la barra dejaría trece enlaces en una sola línea, así que viven en
@@ -372,9 +381,9 @@ const otherLang = lang === "es" ? "EN" : "ES";
         </span>
       </button>
       <a
-        href={PAGES.contact[lang]}
+        href={bookHref}
         data-cta="header-agendar"
-        class="inline-flex rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white shadow-[0_0_35px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+        class="btn-cta px-5"
       >
         {t.nav.cta}
       </a>
@@ -542,16 +551,23 @@ const otherLang = lang === "es" ? "EN" : "ES";
         ))
       }
       {/* Idioma y tema ya no van aquí: viven en la barra, siempre visibles.
-          Al pie del menú queda solo el CTA, a todo el ancho. */}
+          Al pie del menú quedan las dos opciones de conversión. */}
       <div
         class="mt-2 flex items-center gap-3 border-t border-[color:var(--border)] pt-4"
       >
         <a
-          href={PAGES.contact[lang]}
+          href={bookHref}
           data-cta="menu-movil-agendar"
-          class="inline-flex flex-1 items-center justify-center rounded-xl bg-[var(--brand)] px-5 py-3 text-sm font-bold text-white"
+          class="btn-cta flex-1"
         >
           {t.nav.cta}
+        </a>
+        <a
+          href={infoHref}
+          data-cta="menu-movil-info"
+          class="btn-secondary flex-1"
+        >
+          {infoShort}
         </a>
       </div>
     </nav>
@@ -579,6 +595,17 @@ const otherLang = lang === "es" ? "EN" : "ES";
     toggle.setAttribute("aria-expanded", String(open));
     iconOpen?.classList.toggle("hidden", open);
     iconClose?.classList.toggle("hidden", !open);
+  });
+
+  // Un ancla de la misma página no recarga nada: sin esto el menú se
+  // quedaba abierto tapando la sección a la que el visitante acaba de ir.
+  menu?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+    });
   });
 
   // El tema lo aplica y lo guarda `pcdToggleTheme`, definido por el script

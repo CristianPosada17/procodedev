@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import PageHero from "../components/PageHero.astro";
+import LandingHero from "../components/LandingHero.astro";
+import VisualContact from "../components/hero-visuals/VisualContact.astro";
 import Calendly from "../components/Calendly.astro";
-import Contact from "../components/Contact.astro";
+import LeadForm from "../components/LeadForm.astro";
 import Footer from "../components/Footer.astro";
-import { translations, PAGES } from "../i18n/ui";
+import { translations, PAGES, conversionHref } from "../i18n/ui";
 
 const lang = "es";
 const t = translations[lang];
@@ -30,14 +31,20 @@ const meta = t.pageMeta.contact;
 >
   <Header lang={lang} page="contact" />
   <main>
-    <PageHero
+    <LandingHero
       lang={lang}
-      eyebrow={t.calendly.eyebrow}
+      page="contact"
+      eyebrow={t.nav.contact}
+      icon="calendar"
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
-    />
-    <Contact lang={lang} />
+      lead={t.calendly.subtitle}
+      stats={[{ label: lang === "es" ? "Respuesta" : "Reply", value: "< 24 h" }, { label: t.nav.cta, value: "20 min", note: lang === "es" ? "sin costo" : "free" }]}
+    >
+      <VisualContact slot="visual" lang={lang} />
+    </LandingHero>
+    <LeadForm lang={lang} page="contact" />
     <Calendly lang={lang} />
   </main>
   <Footer lang={lang} />

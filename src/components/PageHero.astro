@@ -8,6 +8,9 @@ interface Props {
   titleA: string;
   highlight: string;
   subtitle: string;
+  /** Segunda línea del hero: para quién es y qué resuelve (copy ya publicado
+      de la propia página, p. ej. `audience`). */
+  lead?: string;
   lang?: Lang;
   /** Botón principal del hero. En /servicios apunta al formulario de la
       misma página: antes el bloque de entrada explicaba la oferta y no
@@ -24,6 +27,7 @@ const {
   titleA,
   highlight,
   subtitle,
+  lead,
   lang = "es",
   ctaLabel,
   ctaHref,
@@ -63,14 +67,15 @@ const seq = [...cards, ...cards];
       <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
         {subtitle}
       </p>
+      {lead && <p class="mt-3 max-w-2xl text-base leading-7 text-[var(--text)]/85">{lead}</p>}
 
       {
         ctaLabel && ctaHref && (
-          <div class="mt-8 flex flex-wrap gap-3">
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={ctaHref}
               data-cta={ctaId || "pagehero-cta"}
-              class="inline-flex items-center gap-2 rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
+              class="btn-cta"
             >
               {ctaLabel}
               <Icon name="arrow-right" class="h-4 w-4" />
@@ -79,7 +84,7 @@ const seq = [...cards, ...cards];
               <a
                 href={ctaSecondaryHref}
                 data-cta={`${ctaId || "pagehero"}-secundario`}
-                class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
+                class="btn-secondary"
               >
                 {ctaSecondaryLabel}
               </a>

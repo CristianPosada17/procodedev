@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
-import PageHero from "../../components/PageHero.astro";
+import LandingHero from "../../components/LandingHero.astro";
+import VisualPortfolio from "../../components/hero-visuals/VisualPortfolio.astro";
 import Portfolio from "../../components/Portfolio.astro";
 import CaseStudy from "../../components/CaseStudy.astro";
 import Testimonials from "../../components/Testimonials.astro";
@@ -23,18 +24,26 @@ const meta = t.pageMeta.portfolio;
 >
   <Header lang={lang} page="portfolio" />
   <main>
-    <PageHero
+    <LandingHero
       lang={lang}
-      eyebrow={t.portfolio.eyebrow}
+      page="portfolio"
+      eyebrow={t.nav.portfolio}
+      icon="star"
       titleA={meta.heroTitleA}
       highlight={meta.heroHighlight}
       subtitle={meta.heroSubtitle}
-    />
+      lead={t.proof.subtitle}
+      stats={[
+        { label: lang === "es" ? "Clientes en" : "Clients in", value: lang === "es" ? "2 países" : "2 countries", note: lang === "es" ? "EE. UU. y México" : "US & Mexico" },
+      ]}
+    >
+      <VisualPortfolio slot="visual" lang={lang} />
+    </LandingHero>
     <Portfolio lang={lang} showHeading={false} />
     <CaseStudy lang={lang} />
     <Testimonials lang={lang} />
     <RelatedLinks data={relatedLinks[lang].portfolio} />
-    <FinalCTA lang={lang} />
+    <FinalCTA lang={lang} page="portfolio" />
   </main>
   <Footer lang={lang} />
 </Layout>

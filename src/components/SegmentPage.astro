@@ -1,202 +1,61 @@
 ---
-import { translations, PAGES, waHref, type Lang, type SegmentKey } from "../i18n/ui";
+import { type Lang, type SegmentKey } from "../i18n/ui";
 import { getSegment } from "../i18n/segments";
 import Icon from "./Icon.astro";
-import OfferNote from "./OfferNote.astro";
 import CardRail from "./CardRail.astro";
-import SegmentHeroArt from "./SegmentHeroArt.astro";
-import { SEGMENT_THEME } from "./segment-theme";
+import LandingHero from "./LandingHero.astro";
+import VisualSegment from "./hero-visuals/VisualSegment.astro";
+import SegmentProject from "./SegmentProject.astro";
+import SegmentCrossLinks from "./SegmentCrossLinks.astro";
+import Process from "./Process.astro";
+import Testimonials from "./Testimonials.astro";
+import Founder from "./Founder.astro";
+import PriceAnchor from "./PriceAnchor.astro";
+import LandingConversion from "./LandingConversion.astro";
 
 interface Props {
   lang: Lang;
   segment: SegmentKey;
 }
 const { lang, segment } = Astro.props as Props;
-const t = translations[lang];
 const x = getSegment(lang, segment);
-// Color e identidad visual propios del giro (ver segment-theme.ts).
-const th = SEGMENT_THEME[segment];
 ---
 
 {/*
-  Plantilla única para las seis páginas de oficio. El contenido vive en
-  src/i18n/segments.ts: la estructura se comparte, el copy no. Si dos
-  segmentos terminaran diciendo lo mismo, la culpa sería del texto, no de
-  esta plantilla — y sería motivo para fusionar las dos páginas.
+  Plantilla única para las cinco páginas de giro. El contenido vive en
+  src/i18n/segments.ts: la estructura se comparte, el copy no.
+
+  Orden común de las landings (septiembre de 2026):
+  1 hero · 2 beneficios (lo que construyo para el giro) · 3 cómo se trabaja
+  + proyecto del giro · 4 testimonios · 5 para quién es (los dolores que
+  reconoce el dueño y su calendario) · 6 fundador · 7 inversión · 8 dudas ·
+  9 cierre con agenda (#agendar) y formulario (#contacto) en esta página.
 */}
 
-<!-- ── Hero ── -->
+{/* Si dos segmentos terminaran diciendo lo mismo, la culpa sería del texto,
+    no de esta plantilla — y sería motivo para fusionar las dos páginas. */}
+
+<!-- ── 1 · Hero ── -->
 {/*
-  Cada giro tiene su propio color de acento y su propia escena de fondo, así
-  que abrir dos páginas seguidas ya no se siente como la misma plantilla con
-  otro nombre. La tarjeta del calendario salió del hero (bajó a su propia
-  franja) para que aquí mande el visual.
+  Mismo esquema que Desarrollo Web (texto + visual), pero el visual es el
+  proyecto real del giro, con la paleta de ProCode (azul y cyan): dos
+  páginas de giro seguidas no se parecen entre sí.
 */}
-<section
-  class="segment-hero relative isolate overflow-hidden lg:flex lg:min-h-[34rem] lg:items-center"
-  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2}; --seg-accent-l:${th.accentLight}; --seg-accent2-l:${th.accent2Light};`}
+<LandingHero
+  lang={lang}
+  page={segment}
+  eyebrow={x.navLabel}
+  icon={x.icon}
+  titleA={x.heroTitleA}
+  highlight={x.heroHighlight}
+  subtitle={x.heroSubtitle}
+  lead={x.intro}
 >
-  <div
-    class="segment-hero-art absolute inset-0 -z-10 opacity-50 lg:left-[40%] lg:py-12 lg:pr-8 lg:opacity-80"
-  >
-    <SegmentHeroArt segment={segment} />
-  </div>
-  <div class="segment-hero-glow absolute inset-0 -z-10"></div>
-  <div class="segment-hero-veil absolute inset-0 -z-10"></div>
+  <VisualSegment slot="visual" lang={lang} segment={segment} />
+</LandingHero>
 
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 py-10 sm:px-6 lg:px-10 lg:py-16 2xl:max-w-[1600px]"
-  >
-    <nav
-      class="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]"
-      aria-label="Breadcrumb"
-    >
-      <a href={PAGES.home[lang]} class="transition hover:text-[var(--text)]">
-        {t.nav.home}
-      </a>
-      <span aria-hidden="true">/</span>
-      <a href={PAGES.sectors[lang]} class="transition hover:text-[var(--text)]">
-        {t.nav.sectors}
-      </a>
-      <span aria-hidden="true">/</span>
-      <span class="seg-crumb">{x.navLabel}</span>
-    </nav>
-
-    <div class="mt-8 max-w-xl lg:max-w-[44rem]">
-      <span
-        class="seg-chip inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em]"
-      >
-        <Icon name={x.icon as any} class="h-3.5 w-3.5" />
-        {x.navLabel}
-      </span>
-
-      <h1
-        class="mt-5 text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] drop-shadow-[0_2px_24px_var(--veil-ink)] sm:text-[3.45rem] lg:text-[4.3rem]"
-      >
-        {x.heroTitleA}{" "}<span class="grad-text">{x.heroHighlight}</span>
-      </h1>
-
-      <span class="hero-rule mt-7"></span>
-
-      <p class="mt-6 text-base leading-8 text-[var(--text)]/80 sm:text-lg">
-        {x.heroSubtitle}
-      </p>
-
-      <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-        <a
-          href={PAGES.contact[lang]}
-          class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
-        >
-          {t.common.ctaPrimary}
-          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
-        </a>
-        <a
-          href={PAGES.pricing[lang]}
-          class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/15"
-        >
-          {t.priceAnchor.cta}
-        </a>
-      </div>
-      <OfferNote lang={lang} />
-    </div>
-  </div>
-</section>
-
-<!-- ── Calendario del oficio ── -->
-<section
-  class="relative py-10 lg:py-14"
-  style={`--seg-accent:${th.accent}; --seg-accent2:${th.accent2}; --seg-accent-l:${th.accentLight}; --seg-accent2-l:${th.accent2Light};`}
->
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
-    <div
-      class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-9"
-    >
-      <div class="grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center lg:gap-12">
-        <div class="flex items-start gap-4">
-          <span
-            class="flex h-11 w-11 flex-none items-center justify-center rounded-xl"
-            style={`background:${th.accent}1f; color:${th.accent};`}
-          >
-            <Icon name="calendar" class="h-6 w-6" />
-          </span>
-          <div>
-            <h2 class="text-base font-bold leading-snug text-[var(--text)]">
-              {x.cycleTitle}
-            </h2>
-            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
-              {x.cycleBody}
-            </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {
-            x.cycleMonths.map((m) => (
-              <div class="rounded-xl border border-[color:var(--border)] bg-[var(--tint)] p-4">
-                <p
-                  class="font-mono text-[11px] uppercase tracking-[0.14em]"
-                  style={`color:${th.accent}`}
-                >
-                  {m.label}
-                </p>
-                <p class="mt-1.5 text-xs leading-5 text-[var(--muted)]">
-                  {m.note}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- El proyecto destacado del giro entra aquí, casi al inicio: la prueba va
-     antes del argumento. Quien llega a una página de giro quiere ver un caso
-     real de su oficio antes de leer los dolores y lo que construyo. -->
-<slot />
-
-<!-- ── Dolores del segmento ── -->
-<section class="relative py-10 lg:py-16">
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
-    <div class="reveal max-w-3xl">
-      <h2
-        class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl"
-      >
-        {x.painTitle}
-      </h2>
-      <p class="mt-4 text-base leading-8 text-[var(--muted)]">
-        {x.painSubtitle}
-      </p>
-    </div>
-
-    <ul class="mt-8 grid gap-3 md:grid-cols-2">
-      {
-        x.pains.map((pain, i) => (
-          <li
-            class="reveal flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-5 backdrop-blur-xl"
-            style={`--reveal-delay: ${i * 60}ms`}
-          >
-            <span
-              class="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-lg bg-[var(--tint-2)] text-[var(--muted)]"
-              aria-hidden="true"
-            >
-              <Icon name="minus" class="h-3.5 w-3.5" />
-            </span>
-            <p class="text-sm leading-6 text-[var(--text)]/85">{pain}</p>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
-
-<!-- ── Qué construyo para este oficio ── -->
-<section class="relative py-10 lg:py-16">
+<!-- ── 2 · Beneficios: lo que construyo para este oficio ── -->
+<section id="beneficios" class="relative py-10 lg:py-16">
   <div
     class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
@@ -234,8 +93,105 @@ const th = SEGMENT_THEME[segment];
   </div>
 </section>
 
-<!-- ── FAQ del oficio ── -->
-<section class="relative py-10 lg:py-16">
+<!-- ── 3 · Así es como se trabaja + proyecto real del giro ── -->
+<Process lang={lang} />
+<SegmentProject lang={lang} segment={segment} />
+
+<!-- ── 4 · Testimonios publicados ── -->
+<Testimonials lang={lang} />
+
+<!-- ── 5 · Para quién es: lo que el dueño reconoce de su día a día ── -->
+<section id="para-quien" class="relative py-10 lg:py-16">
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="reveal max-w-3xl">
+      <h2
+        class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl lg:text-4xl"
+      >
+        {x.painTitle}
+      </h2>
+      <p class="mt-4 text-base leading-8 text-[var(--muted)]">
+        {x.painSubtitle}
+      </p>
+    </div>
+
+    <ul class="mt-8 grid gap-3 md:grid-cols-2">
+      {
+        x.pains.map((pain, i) => (
+          <li
+            class="reveal flex items-start gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/50 p-5 backdrop-blur-xl"
+            style={`--reveal-delay: ${i * 60}ms`}
+          >
+            <span
+              class="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-lg bg-[var(--tint-2)] text-[var(--muted)]"
+              aria-hidden="true"
+            >
+              <Icon name="minus" class="h-3.5 w-3.5" />
+            </span>
+            <p class="text-sm leading-6 text-[var(--text)]/85">{pain}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section
+  class="relative py-10 lg:py-14"
+>
+  <div
+    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div
+      class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-9"
+    >
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center lg:gap-12">
+        <div class="flex items-start gap-4">
+          <span
+            class="lt-soft flex h-11 w-11 flex-none items-center justify-center rounded-xl"
+          >
+            <Icon name="calendar" class="h-6 w-6" />
+          </span>
+          <div>
+            <h2 class="text-base font-bold leading-snug text-[var(--text)]">
+              {x.cycleTitle}
+            </h2>
+            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {x.cycleBody}
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {
+            x.cycleMonths.map((m) => (
+              <div class="rounded-xl border border-[color:var(--border)] bg-[var(--tint)] p-4">
+                <p
+                  class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]"
+                >
+                  {m.label}
+                </p>
+                <p class="mt-1.5 text-xs leading-5 text-[var(--muted)]">
+                  {m.note}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6 · El desarrollador y fundador ── -->
+<Founder lang={lang} page={segment} />
+
+<!-- ── 7 · Información práctica: precios base publicados ── -->
+<PriceAnchor lang={lang} />
+
+<!-- ── 8 · Preguntas frecuentes del oficio ── -->
+<section id="preguntas" class="relative py-10 lg:py-16">
   <div class="mx-auto w-full max-w-[900px] px-4 sm:px-6 lg:px-8">
     <h2
       class="reveal text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl"
@@ -265,46 +221,12 @@ const th = SEGMENT_THEME[segment];
   </div>
 </section>
 
-<!-- ── CTA ── -->
-<section class="relative py-10 lg:py-16">
-  <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
-  >
-    <div
-      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface-2)]/80 p-8 text-center backdrop-blur-xl shadow-[0_30px_80px_-40px_var(--halo-card)] lg:p-14"
-    >
-      <div
-        class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--brand)]/10 blur-3xl"
-      >
-      </div>
-      <div class="relative mx-auto max-w-2xl">
-        <h2
-          class="text-2xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-3xl"
-        >
-          {x.ctaTitle}
-        </h2>
-        <p class="mt-4 text-base leading-8 text-[var(--muted)]">{x.ctaBody}</p>
-        <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-          <a
-            href={PAGES.contact[lang]}
-            class="inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_40px_var(--halo-brand)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-strong)]"
-          >
-            {t.common.ctaPrimary}
-            <Icon name="arrow-right" class="ml-2 h-4 w-4" />
-          </a>
-          <a
-            href={waHref(segment, lang)}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-4 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/10"
-          >
-            <Icon name="whatsapp" class="mr-2 h-4 w-4" />
-            {t.common.ctaWhatsapp}
-          </a>
-        </div>
+<SegmentCrossLinks lang={lang} current={segment} />
 
-        <OfferNote lang={lang} align="center" />
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ── 9 · Cierre: agenda y formulario en esta misma página ── -->
+<LandingConversion
+  lang={lang}
+  page={segment}
+  close={{ eyebrow: `// ${x.navLabel}`, title: x.ctaTitle, subtitle: x.ctaBody }}
+  service={x.navLabel}
+/>

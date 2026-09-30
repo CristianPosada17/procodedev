@@ -11,10 +11,8 @@
   el header con su propio CTA) y desaparece si el usuario prefiere no ver
   animaciones (prefers-reduced-motion → salto sin scroll suave).
 
-  Posición: en móvil, encima de la barra fija de MobileCTABar (que ya trae
-  el botón de WhatsApp); en escritorio, abajo a la izquierda, para no pisar
-  el botón de WhatsApp flotante (WhatsAppFloat.astro), que vive abajo a la
-  derecha y solo se muestra en lg+.
+  Posición: abajo a la izquierda, en móvil y en escritorio: la esquina
+  derecha es del asistente de chat (ChatBot.astro).
 */
 import Icon from "../Icon.astro";
 ---
@@ -25,7 +23,7 @@ import Icon from "../Icon.astro";
   data-cta="revex-volver-arriba"
   aria-label="Volver al inicio de la página"
   hidden
-  class="fixed bottom-24 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-[var(--surface)]/90 text-[var(--text)] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[color:var(--accent)] lg:bottom-5 lg:left-5 lg:right-auto"
+  class="fixed bottom-5 left-4 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-[var(--surface)]/90 text-[var(--text)] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[color:var(--accent)] lg:left-5"
 >
   <Icon name="arrow-right" class="h-5 w-5 -rotate-90" strokeWidth={2.2} />
 </button>

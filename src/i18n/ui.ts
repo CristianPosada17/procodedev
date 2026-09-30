@@ -44,6 +44,7 @@ export type PageKey =
   | "realEstate"
   | "accounting"
   | "markets"
+  | "mexico"
   | "texas"
   | "florida"
   | "california"
@@ -105,6 +106,8 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
     es: "/diseno-web-estados-unidos/",
     en: "/en/web-design-united-states/",
   },
+  // México (30 sep 2026): primera del menú «Dónde trabajo».
+  mexico: { es: "/diseno-web-mexico/", en: "/en/web-design-mexico/" },
   texas: { es: "/diseno-web-texas/", en: "/en/web-design-texas/" },
   florida: { es: "/diseno-web-florida/", en: "/en/web-design-florida/" },
   california: { es: "/diseno-web-california/", en: "/en/web-design-california/" },
@@ -161,7 +164,7 @@ export const translations = {
       servicesMenuNote: "Dos servicios, no una lista de veinte.",
       markets: "Dónde trabajo",
       marketsOverview: "Ver cómo funciona en remoto",
-      marketsMenuNote: "Trabajo remoto con negocios de Estados Unidos.",
+      marketsMenuNote: "Trabajo remoto con negocios de México y Estados Unidos.",
       sectors: "Industrias",
       sectorsOverview: "Ver todas las industrias",
       sectorsMenuNote: "Una página por industria, con lo que cada negocio necesita.",
@@ -179,7 +182,6 @@ export const translations = {
       // sigue es la Auditoría Estratégica, que tiene landing propia en
       // /servicios/auditoria/ y NO se acredita a un proyecto posterior.
       ctaPrimary: "Agendar Revisión Express",
-      ctaWhatsapp: "Escribir por WhatsApp",
       free: "Gratis · 20 min por videollamada · 3 prioridades claras",
       viewServices: "Ver servicios",
       // Diferenciador principal. Va pegado a cada botón de agenda vía
@@ -938,8 +940,7 @@ export const translations = {
       titleHighlight: "ganan tiempo",
       titleB: "trabajando conmigo",
       subtitle:
-        "Esto dicen quienes ya trabajan conmigo, con el enlace a su sitio.",
-      visitSite: "Ver su sitio",
+        "Esto dicen quienes ya trabajan conmigo, con el dominio de su sitio para que lo compruebes.",
       items: [
         {
           quote:
@@ -985,48 +986,37 @@ export const translations = {
       facadeCta: "Ver horarios disponibles",
       facadeNote: "20 minutos, sin costo y sin llamada de ventas.",
     },
+    // Formulario único de captación (septiembre de 2026): solo Nombre y
+    // Email en todo el sitio. Lo renderiza LeadForm.astro en #contacto.
     contact: {
-      eyebrow: "// contacto",
-      titleA: "Déjame tus datos y te escribo",
+      // Texto del CTA secundario en todo el sitio. El principal sigue
+      // siendo `common.ctaPrimary` (Agendar Revisión Express → #agendar).
+      ctaInfo: "Solicitar más información",
+      eyebrow: "// solicitar más información",
+      titleA: "Déjame tu nombre y tu correo y te escribo",
       titleHighlight: "en menos de 24 horas",
       subtitle:
-        "Tu nombre, tu WhatsApp y qué necesitas, y te contacto para coordinar el siguiente paso. Sin tecnicismos.",
-      routesTitle: "Elige cómo empezar",
-      routes: [
-        { key: "schedule", title: "Agendar", text: "Elige un horario disponible para tu Revisión Express.", cta: "Ver horarios" },
-        { key: "whatsapp", title: "WhatsApp", text: "Resuelve una duda antes de reservar.", cta: "Escribir" },
-        { key: "form", title: "Formulario", text: "Deja tus datos y te contacto para coordinar.", cta: "Ir al formulario" },
-      ],
-      toggle: "Prefiero dejar mis datos y que me contacten",
-      toggleNote: "Respondo en menos de 24 horas.",
+        "Solo dos datos. Te respondo por correo con la información que necesitas y el siguiente paso, sin tecnicismos.",
       perks: [
         "Respuesta en menos de 24 horas",
         "Te atiendo yo directo, sin intermediarios",
         "Sin costo ni compromiso",
       ],
-      directTitle: "¿Prefieres escribirme directo?",
+      interestLabel: "Te interesa",
+      altTitle: "¿Prefieres hablarlo?",
+      altSchedule: "Agendar la Revisión Express",
       fieldName: "Nombre",
-      fieldEmail: "Correo",
-      fieldPhone: "WhatsApp",
-      fieldType: "Tipo de proyecto",
-      fieldMessage: "Cuéntame sobre tu negocio",
-      optionalTag: "opcional",
+      fieldEmail: "Email",
       phName: "Ej: María González",
       phEmail: "maria@minegocio.com",
-      phPhone: "614 123 4567",
-      phMessage:
-        "Ej: tengo un consultorio dental y quiero que los pacientes agenden solos.",
-      types: [
-        "Sitio web",
-        "Landing page",
-        "Rediseño",
-        "Integraciones",
-        "Otro",
-      ],
-      submit: "Enviar mensaje",
+      submit: "Solicitar más información",
       sending: "Enviando…",
-      success: "¡Gracias! Recibimos tu mensaje y te contactamos muy pronto.",
-      error: "No se pudo enviar. Escríbeme por WhatsApp y te atiendo.",
+      success: "Listo. Te escribo por correo en menos de 24 horas.",
+      error:
+        "No se pudo enviar. Inténtalo de nuevo en un momento o escríbeme a info@procodedev.com.",
+      privacy:
+        "Uso tus datos solo para contestarte. Nada de listas de correo ni de compartirlos con terceros.",
+      privacyLink: "Aviso de privacidad",
     },
     finalCta: {
       eyebrow: "// revisión express",
@@ -1034,7 +1024,6 @@ export const translations = {
       subtitle:
         "20 minutos por videollamada para revisar tu presencia digital y salir con 3 prioridades claras. Gratis.",
       ctaPrimary: "Agendar Revisión Express",
-      ctaWhatsapp: "Hablar por WhatsApp",
     },
     footer: {
       tagline:
@@ -1065,7 +1054,7 @@ export const translations = {
       eyebrow: "// trabajo real",
       titleA: "Sistemas que ya están",
       titleHighlight: "trabajando",
-      subtitle: "Sitios de clientes reales, en vivo ahora mismo. Ábrelos y júzgalos tú.",
+      subtitle: "Sitios de clientes reales, en vivo ahora mismo. Busca el dominio y júzgalos tú.",
       cta: "Ver todo el portafolio",
     },
     // ── Anclaje de precio en el home (hallazgo #10) ──
@@ -1082,12 +1071,20 @@ export const translations = {
     },
     // ── Quién está detrás (hallazgos #11 y #16) ──
     founder: {
-      eyebrow: "",
+      eyebrow: "// el fundador",
       name: "Cristian Posada",
-      role: "Desarrollador · Fundador de ProCode Dev",
-      title: "El dueño de la agencia es quien hace el trabajo",
+      role: "Desarrollador web · Fundador de ProCode Dev",
+      title: "Experiencia internacional al frente de cada proyecto",
       body:
-        "Dirijo ProCode Dev y ejecuto: diseño, desarrollo, SEO y campañas. Un solo responsable desde la primera conversación hasta la entrega.",
+        "Soy desarrollador web desde hace 5 años y he trabajado con empresas internacionales. Fundé ProCode Dev para llevar ese mismo estándar a negocios de servicios: dirijo cada proyecto de principio a fin —estrategia, diseño, desarrollo, SEO y campañas—, con un solo responsable desde la primera conversación hasta la entrega.",
+      // Datos confirmados por Cristian (30 sep 2026) y por el propio sitio
+      // (mercados atendidos e idiomas). No añadir cifras sin confirmar.
+      highlights: [
+        { value: "5 años", label: "en desarrollo web" },
+        { value: "Internacional", label: "trabajo con empresas internacionales" },
+        { value: "EE. UU. y México", label: "negocios que atiendo hoy" },
+        { value: "ES / EN", label: "atención en español e inglés" },
+      ],
       cta: "Agendar Revisión Express",
     },
     // ── FAQ de objeciones antes del CTA final del home (hallazgo #18) ──
@@ -1183,14 +1180,16 @@ export const translations = {
         keywords:
           "precio de página web, cuánto cuesta una página web, costo de página web, precios de diseño de páginas web, paquetes de diseño de páginas web, presupuesto para una página web, cotización de diseño web, cuánto cuesta una página web para un negocio, mantenimiento web mensual",
         heroTitleA: "Precios de páginas web",
-        heroHighlight: "para negocios",
+        heroHighlight: "y marketing digital para negocios",
         heroSubtitle: "Precios base, sin llamada.",
+        heroLead:
+          "Pago único para construir tu sitio, planes mensuales para mantenerlo y hacerlo crecer, servicios adicionales y la Auditoría Estratégica. Lo que tiene precio base está publicado; lo que depende de tu negocio se cotiza tras la reunión inicial.",
       },
       contact: {
         title:
           "Contacto y Revisión Express gratis | ProCode Dev",
         description:
-          "Agenda tu Revisión Express gratis de 20 minutos, escríbeme por WhatsApp con tus dudas o deja tus datos. Respondo en menos de 24 horas.",
+          "Agenda tu Revisión Express gratis de 20 minutos o déjame tu nombre y tu correo. Respondo en menos de 24 horas.",
         keywords:
           "agendar Revisión Express, solicitar una propuesta web, hablar con ProCode Dev, desarrollador web en español",
         heroTitleA: "Escríbeme o agenda tu",
@@ -1296,7 +1295,7 @@ export const translations = {
       servicesMenuNote: "Two services, not a list of twenty.",
       markets: "Where I work",
       marketsOverview: "See how remote works",
-      marketsMenuNote: "Working remotely with U.S. businesses.",
+      marketsMenuNote: "Working remotely with businesses in Mexico and the U.S.",
       sectors: "Industries",
       sectorsOverview: "See all industries",
       sectorsMenuNote: "One page per industry, with what each business needs.",
@@ -1310,7 +1309,6 @@ export const translations = {
     },
     common: {
       ctaPrimary: "Book my Express Review",
-      ctaWhatsapp: "Message me on WhatsApp",
       free: "Free · 20-min video call · 3 clear priorities",
       viewServices: "See services",
       guarantee: "I answer every message in under 24 hours.",
@@ -2027,8 +2025,7 @@ export const translations = {
       titleHighlight: "saving time",
       titleB: "with us",
       subtitle:
-        "What the businesses already working with me say, with a link to their site.",
-      visitSite: "Visit their site",
+        "What the businesses already working with me say, with their site's domain so you can check it.",
       items: [
         {
           quote:
@@ -2072,48 +2069,34 @@ export const translations = {
       facadeCta: "See available times",
       facadeNote: "20 minutes, free, and no sales pitch.",
     },
+    // Single lead form (September 2026): only Name and Email site-wide.
     contact: {
-      eyebrow: "// contact",
-      titleA: "Leave your details and I'll write back",
+      ctaInfo: "Request more information",
+      eyebrow: "// request more information",
+      titleA: "Leave your name and email and I'll write back",
       titleHighlight: "in under 24 hours",
       subtitle:
-        "Your name, your WhatsApp and what you need, and I'll contact you to arrange the next step. No jargon.",
-      routesTitle: "Choose how to start",
-      routes: [
-        { key: "schedule", title: "Book", text: "Pick an available time for your Express Review.", cta: "See times" },
-        { key: "whatsapp", title: "WhatsApp", text: "Ask a question before you book.", cta: "Message me" },
-        { key: "form", title: "Form", text: "Leave your details and I'll contact you to arrange it.", cta: "Go to the form" },
-      ],
-      toggle: "I'd rather leave my details and be contacted",
-      toggleNote: "I reply in under 24 hours.",
+        "Just two details. I'll reply by email with the information you need and the next step. No jargon.",
       perks: [
         "Reply in under 24 hours",
         "You deal with me directly, no middlemen",
         "Free, no commitment",
       ],
-      directTitle: "Prefer to message me directly?",
+      interestLabel: "You are interested in",
+      altTitle: "Rather talk it through?",
+      altSchedule: "Book the Express Review",
       fieldName: "Name",
       fieldEmail: "Email",
-      fieldPhone: "WhatsApp",
-      fieldType: "Project type",
-      fieldMessage: "Tell me about your business",
-      optionalTag: "optional",
       phName: "e.g. Maria Gonzalez",
       phEmail: "maria@mybusiness.com",
-      phPhone: "+1 555 123 4567",
-      phMessage:
-        "e.g. I run a dental practice and I want patients to book on their own.",
-      types: [
-        "Website",
-        "Landing page",
-        "Redesign",
-        "Integrations",
-        "Other",
-      ],
-      submit: "Send message",
+      submit: "Request more information",
       sending: "Sending…",
-      success: "Thanks! We got your message and we'll contact you very soon.",
-      error: "Couldn't send. Message us on WhatsApp and we'll help you.",
+      success: "Done. I'll write back by email within 24 hours.",
+      error:
+        "That did not send. Try again in a moment or email me at info@procodedev.com.",
+      privacy:
+        "I use your details only to reply. No mailing lists and nothing shared with third parties.",
+      privacyLink: "Privacy policy",
     },
     finalCta: {
       eyebrow: "// express review",
@@ -2121,7 +2104,6 @@ export const translations = {
       subtitle:
         "A 20-minute video call to review your digital presence and leave with 3 clear priorities. Free.",
       ctaPrimary: "Book my Express Review",
-      ctaWhatsapp: "Talk on WhatsApp",
     },
     footer: {
       tagline:
@@ -2150,7 +2132,7 @@ export const translations = {
       eyebrow: "// real work",
       titleA: "Systems already",
       titleHighlight: "working",
-      subtitle: "Professional websites for small businesses, live right now. Open them and judge for yourself.",
+      subtitle: "Professional websites for small businesses, live right now. Look up the domain and judge for yourself.",
       cta: "See the full portfolio",
     },
     // ── Price anchor on the home page (finding #10) ──
@@ -2167,12 +2149,18 @@ export const translations = {
     },
     // ── Who's behind it (findings #11 and #16) ──
     founder: {
-      eyebrow: "",
+      eyebrow: "// the founder",
       name: "Cristian Posada",
-      role: "Developer · Founder of ProCode Dev",
-      title: "The agency owner is the one doing the work",
+      role: "Web developer · Founder of ProCode Dev",
+      title: "International experience leading every project",
       body:
-        "I run ProCode Dev and I execute: design, development, SEO and campaigns. One person accountable, from the first conversation through delivery.",
+        "I have been a web developer for 5 years and have worked with international companies. I founded ProCode Dev to bring that same standard to service businesses: I lead every project from start to finish — strategy, design, development, SEO and campaigns — with one person accountable from the first conversation through delivery.",
+      highlights: [
+        { value: "5 years", label: "in web development" },
+        { value: "International", label: "work with international companies" },
+        { value: "US & Mexico", label: "businesses I serve today" },
+        { value: "EN / ES", label: "service in English and Spanish" },
+      ],
       cta: "Book my Express Review",
     },
     // ── Objection FAQ before the home page's final CTA (finding #18) ──
@@ -2264,14 +2252,16 @@ export const translations = {
         keywords:
           "how much a small business website costs, small business website pricing, website design packages, how much does a website cost, monthly website maintenance, local SEO plan pricing",
         heroTitleA: "How much a small business",
-        heroHighlight: "website costs",
+        heroHighlight: "website and digital marketing costs",
         heroSubtitle: "Base prices, no sales call.",
+        heroLead:
+          "A one-time price to build your site, monthly plans to maintain it and make it grow, add-ons and the Strategic Audit. Anything with a base price is published; what depends on your business is quoted after the first meeting.",
       },
       contact: {
         title:
           "Hire a Small Business Web Designer | ProCode Dev",
         description:
-          "Book your free 20-minute Express Review, message me on WhatsApp with questions or leave your details. Bilingual web design with published base pricing.",
+          "Book your free 20-minute Express Review or leave your name and email. Bilingual web design with published base pricing.",
         keywords:
           "hire a web designer, bilingual website design services, spanish website design services, bilingual web developer",
         heroTitleA: "Write to me or book a time,",
@@ -2371,86 +2361,58 @@ export function useTranslations(lang: Lang): Dict {
   return translations[lang];
 }
 
-// ============================================================
-// Mensaje precargado de WhatsApp según la página (hallazgo #17).
-// Antes las 6 páginas mandaban el mismo texto genérico y se perdía
-// el contexto de qué estaba viendo el prospecto al escribir.
-// ============================================================
-const WA_BY_PAGE: Partial<Record<PageKey | "blog", Record<Lang, string>>> = {
-  expressReview: {
-    es: "Hola, vi la Revisión Express de ProCode y me gustaría revisar la presencia digital de mi negocio.",
-    en: "Hi, I saw ProCode's Express Review and I'd like to have my business's digital presence reviewed.",
-  },
-  home: {
-    es: "Hola Cristian, Vi tu página y me interesa una web para mi negocio. ¿Podemos platicar?",
-    en: "Hi Cristian, I saw your site and I'm interested in a website for my business. Can we talk?",
-  },
-  services: {
-    es: "Hola Cristian, Estaba viendo tus servicios y quiero saber cuál le queda a mi negocio.",
-    en: "Hi Cristian, I was looking at your services and I want to know which one fits my business.",
-  },
-  webDev: {
-    es: "Hola Cristian, Estaba viendo tu página de desarrollo web y quiero una página web para mi negocio. ¿Cómo empezamos?",
-    en: "Hi Cristian, I was on your web development page and I want a website for my business. How do we start?",
-  },
-  digitalMarketing: {
-    es: "Hola Cristian, Estaba viendo tu página de marketing digital y quiero que me lleguen más clientes. ¿Podemos platicar?",
-    en: "Hi Cristian, I was on your digital marketing page and I want more clients coming in. Can we talk?",
-  },
-  audit: {
-    es: "Hola Cristian, Me interesa la Auditoría Estratégica Integral. Quiero saber qué está frenando mi negocio y en qué orden resolverlo.",
-    en: "Hi Cristian, I'm interested in the Strategic Business Audit. I want to know what is holding my business back and in what order to fix it.",
-  },
-  landingPages: {
-    es: "Hola Cristian, Quiero una landing page para mi negocio. ¿Me pasas el alcance y la fecha de entrega?",
-    en: "Hi Cristian, I want a landing page for my business. Can you send me the scope and the delivery date?",
-  },
-  seo: {
-    es: "Hola Cristian, Me interesa el servicio de SEO. ¿Podemos agendar la reunión inicial y la auditoría?",
-    en: "Hi Cristian, I'm interested in the SEO service. Can we book the first meeting and the audit?",
-  },
-  maintenance: {
-    es: "Hola Cristian, Me interesa el plan de mantenimiento web. Te cuento cómo está mi sitio.",
-    en: "Hi Cristian, I'm interested in the website maintenance plan. Let me tell you how my site is doing.",
-  },
-  markets: {
-    es: "Hola Cristian, Vi tu página y tengo un negocio en Estados Unidos. Quiero saber cómo trabajas a distancia.",
-    en: "Hi Cristian, I have a business in the U.S. and I'd like to know how you work remotely.",
-  },
-  sectors: {
-    es: "Hola Cristian, Vi tu página para mi giro y quiero saber cómo me puedes ayudar con la presencia digital de mi negocio.",
-    en: "Hi Cristian, I saw your page for my industry and I'd like to know how you can help my business online.",
-  },
-  portfolio: {
-    es: "Hola Cristian, Vi tu portafolio y quiero algo parecido para mi negocio. ¿Cómo empezamos?",
-    en: "Hi Cristian, I saw your portfolio and I want something similar for my business. How do we start?",
-  },
-  pricing: {
-    es: "Hola Cristian, Estoy viendo tus precios y tengo una duda antes de agendar.",
-    en: "Hi Cristian, I'm looking at your pricing and I have a question before booking.",
-  },
-  contact: {
-    es: "Hola Cristian, Tengo una duda antes de agendar la Revisión Express. Te cuento qué necesito.",
-    en: "Hi Cristian, I have a question before booking the Express Review. Let me tell you what I need.",
-  },
-  blog: {
-    es: "Hola Cristian, Estaba leyendo un artículo de tu blog y me surgió una duda sobre mi negocio.",
-    en: "Hi Cristian, I was reading an article on your blog and a question about my business came up.",
-  },
-};
+// ═══════════════════════════════════════════════════════════════════════
+// DESTINOS DE CONVERSIÓN (septiembre de 2026)
+//
+// Dos CTAs en todo el sitio, siempre dentro del sitio:
+//   · principal  «Agendar Revisión Express» → #agendar  (Calendly)
+//   · secundario «Solicitar más información» → #contacto (Nombre + Email)
+//
+// Estas páginas llevan los dos bloques en su propio cuerpo (LandingConversion
+// o, en /contacto, Calendly + LeadForm), así que sus botones bajan por ancla
+// sin cambiar de URL. El resto (blog, hubs, legales) manda a /contacto/ con
+// el mismo ancla. `#agendar` no se renombra: AnalyticsEvents lo usa para
+// contar los clics de agenda.
+//
+// La Revisión Express tiene reglas propias: su formulario vive en
+// #solicitar y no usa la plantilla estándar.
+// ═══════════════════════════════════════════════════════════════════════
 
-export function waHref(page: PageKey | "blog", lang: Lang): string {
-  // Las páginas de segmento heredan el mensaje del hub del nicho: el contexto
-  // («tengo un negocio») es el mismo y evita mantener seis textos casi
-  // idénticos que se desincronizan a la primera edición.
-  const key = (SEGMENT_KEYS as readonly string[]).includes(page)
-    ? "sectors"
-    : (["texas", "florida", "california"] as readonly string[]).includes(page)
-      ? "markets"
-      : page;
-  const text =
-    WA_BY_PAGE[key as PageKey | "blog"]?.[lang] ?? WA_BY_PAGE.home![lang];
-  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+export const IN_PAGE_CONVERSION: readonly PageKey[] = [
+  "home",
+  "webDev",
+  "digitalMarketing",
+  "landingPages",
+  "seo",
+  "maintenance",
+  "audit",
+  "contractors",
+  "health",
+  "professional",
+  "realEstate",
+  "accounting",
+  "markets",
+  "mexico",
+  "texas",
+  "florida",
+  "california",
+  "services",
+  "contact",
+  "expressReview",
+];
+
+export const BOOK_ANCHOR = "#agendar";
+export const INFO_ANCHOR = "#contacto";
+
+export function conversionHref(
+  page: PageKey | "blog",
+  lang: Lang,
+  kind: "book" | "info",
+): string {
+  const inPage = (IN_PAGE_CONVERSION as readonly string[]).includes(page);
+  if (page === "expressReview") return kind === "book" ? BOOK_ANCHOR : "#solicitar";
+  const anchor = kind === "book" ? BOOK_ANCHOR : INFO_ANCHOR;
+  return inPage ? anchor : `${PAGES.contact[lang]}${anchor}`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -2680,16 +2642,16 @@ export const relatedLinks: Record<
 // Antes el envío solo cambiaba una línea de texto debajo del botón: en
 // móvil quedaba fuera de pantalla y mucha gente no sabía si se había
 // enviado. Ahora se abre un diálogo que ocupa la pantalla, confirma con un
-// tick y ofrece WhatsApp ahí mismo para quien tiene una duda y no quiere
-// esperar la respuesta. Lo renderiza FormSuccessModal.astro.
+// tick y ofrece agendar la Revisión Express ahí mismo para quien no quiere
+// esperar la respuesta por correo. Lo renderiza FormSuccessModal.astro.
 // ═══════════════════════════════════════════════════════════════════════
 
 export interface FormSuccessCopy {
   title: string;
   body: string;
   guarantee: string;
-  whatsappLabel: string;
-  whatsappHint: string;
+  bookLabel: string;
+  bookHint: string;
   close: string;
   ariaLabel: string;
 }
@@ -2698,20 +2660,20 @@ export const formSuccess: Record<Lang, FormSuccessCopy> = {
   es: {
     title: "¡Listo, ya me llegó!",
     body:
-      "Recibí tu mensaje. Te escribo por WhatsApp en menos de 24 horas para entender tu caso y proponerte el siguiente paso.",
+      "Recibí tu mensaje. Te escribo por correo en menos de 24 horas para entender tu caso y proponerte el siguiente paso.",
     guarantee: "Respondo cualquier mensaje en menos de 24 horas.",
-    whatsappLabel: "Escribirme por WhatsApp",
-    whatsappHint: "¿Tienes una duda y no quieres esperar? Escríbeme directo.",
+    bookLabel: "Agendar Revisión Express",
+    bookHint: "¿Prefieres no esperar? Elige un horario para tu Revisión Express de 20 minutos.",
     close: "Cerrar",
     ariaLabel: "Confirmación de envío",
   },
   en: {
     title: "Got it — your message is in.",
     body:
-      "I received it. I'll message you on WhatsApp within 24 hours to understand your case and suggest the next step.",
+      "I received it. I'll email you within 24 hours to understand your case and suggest the next step.",
     guarantee: "I answer every message within 24 hours.",
-    whatsappLabel: "Message me on WhatsApp",
-    whatsappHint: "Have a question and don't want to wait? Write to me directly.",
+    bookLabel: "Book my Express Review",
+    bookHint: "Rather not wait? Pick a time for your 20-minute Express Review.",
     close: "Close",
     ariaLabel: "Submission confirmed",
   },

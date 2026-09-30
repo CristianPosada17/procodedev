@@ -26,3 +26,7 @@ pnpm-debug.log*
 # empaquetados temporales para compilar desde Cowork
 *.tgz
 _to_delete/
+
+# Configuración privada del asistente con IA (clave de API). Se sube a
+# Hostinger a mano, FUERA de public_html. Nunca al repositorio.
+private/

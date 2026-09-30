@@ -1,0 +1,73 @@
+---
+/*
+  Visual del hero de /contacto/: las dos formas de empezar que ofrece la
+  página, tal como son —la agenda de la Revisión Express y el formulario
+  de dos campos—, para que se vea el esfuerzo que pide cada una antes de
+  bajar. Los días del calendario son decorativos: no representan huecos
+  reales de la agenda.
+*/
+import { translations, type Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const days = lang === "es" ? ["L", "M", "M", "J", "V"] : ["M", "T", "W", "T", "F"];
+const slot = lang === "es" ? "20 min · videollamada" : "20 min · video call";
+const reply = t.common.guarantee;
+---
+
+<div class="relative mx-auto grid max-w-xl gap-4 sm:grid-cols-[1.1fr_0.9fr]" aria-hidden="true">
+  {/* Agenda */}
+  <div class="lt-panel rounded-[var(--radius-lg)] p-5">
+    <div class="flex items-center gap-3">
+      <span class="lt-soft flex h-9 w-9 items-center justify-center rounded-xl">
+        <Icon name="calendar" class="h-4 w-4" />
+      </span>
+      <div class="min-w-0">
+        <p class="truncate text-sm font-bold text-[var(--text)]">{t.nav.cta}</p>
+        <p class="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">{slot}</p>
+      </div>
+    </div>
+    <div class="mt-5 grid grid-cols-5 gap-1.5 text-center">
+      {days.map((d) => <span class="font-mono text-[10px] text-[var(--muted)]">{d}</span>)}
+      {
+        Array.from({ length: 15 }).map((_, i) => (
+          <span
+            class:list={[
+              "flex h-8 items-center justify-center rounded-lg text-[11px] font-semibold",
+              i === 7 ? "lt-dot text-[var(--bg)]" : i % 3 === 0 ? "bg-[var(--tint)] text-[var(--muted)]/50" : "lt-soft",
+            ]}
+          >
+            {i + 1}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  {/* Formulario de dos campos */}
+  <div class="lt-panel flex flex-col rounded-[var(--radius-lg)] p-5 sm:translate-y-8">
+    <div class="flex items-center gap-3">
+      <span class="lt-soft flex h-9 w-9 items-center justify-center rounded-xl">
+        <Icon name="mail" class="h-4 w-4" />
+      </span>
+      <p class="text-sm font-bold text-[var(--text)]">{t.contact.ctaInfo}</p>
+    </div>
+    <div class="mt-5 grid gap-3">
+      {[t.contact.fieldName, t.contact.fieldEmail].map((f) => (
+        <div>
+          <p class="text-[11px] font-medium text-[var(--muted)]">{f}</p>
+          <span class="mt-1 block h-9 rounded-lg border border-[color:var(--border)] bg-[var(--bg-2)]"></span>
+        </div>
+      ))}
+      <span class="mt-1 block h-9 rounded-lg bg-[var(--brand)]"></span>
+    </div>
+    <p class="mt-4 flex items-start gap-2 text-[11px] leading-5 text-[var(--muted)]">
+      <Icon name="check" class="mt-0.5 h-3 w-3 flex-none text-[var(--accent)]" strokeWidth={2.6} />
+      {reply}
+    </p>
+  </div>
+</div>

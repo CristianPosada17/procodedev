@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { translations, CONTACT, PAGES, type Lang, type PageKey } from "../i18n/ui";
+import { translations, PAGES, BOOK_ANCHOR, INFO_ANCHOR, type Lang, type PageKey } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 import CardRail from "./CardRail.astro";
 interface Props {
@@ -12,8 +12,10 @@ const { lang = "es", showHeading = true } = Astro.props as Props;
 const t = translations[lang];
 const p = t.pricing;
 const adv = p.advisory;
-const waLink = (text: string) =>
-  `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+// Septiembre de 2026 (30): los botones de paquete abrían WhatsApp (fuera del
+// sitio). Ahora llevan al formulario de Nombre y Email de /contacto/.
+const infoHref = `${PAGES.contact[lang]}${INFO_ANCHOR}`;
+const bookHref = `${PAGES.contact[lang]}${BOOK_ANCHOR}`;
 const pageHref = (key: string) =>
   key ? PAGES[key as PageKey][lang] : "";
 
@@ -100,10 +102,8 @@ const cardTone = (strong: boolean) =>
                 ))}
               </ul>
               <a
-                href={waLink(pkg.waText)}
+                href={infoHref}
                 data-cta={`precios-paquete-${ctaSlug(pkg.name)}`}
-                target="_blank"
-                rel="noopener"
                 class:list={[
                   "mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold transition",
                   pkg.highlighted
@@ -111,8 +111,8 @@ const cardTone = (strong: boolean) =>
                     : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/10",
                 ]}
               >
-                <Icon name="whatsapp" class="h-4 w-4" />
                 {pkg.cta}
+                <Icon name="arrow-right" class="h-4 w-4" />
               </a>
               <a
                 href={pageHref(pkg.href)}
@@ -191,10 +191,8 @@ const cardTone = (strong: boolean) =>
                 ))}
               </ul>
               <a
-                href={waLink(plan.waText)}
+                href={infoHref}
                 data-cta={`precios-plan-${ctaSlug(plan.name)}`}
-                target="_blank"
-                rel="noopener"
                 class:list={[
                   "mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold transition",
                   plan.highlighted
@@ -202,8 +200,8 @@ const cardTone = (strong: boolean) =>
                     : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/10",
                 ]}
               >
-                <Icon name="whatsapp" class="h-4 w-4" />
                 {plan.cta}
+                <Icon name="arrow-right" class="h-4 w-4" />
               </a>
               <a
                 href={pageHref(plan.href)}
@@ -301,14 +299,11 @@ const cardTone = (strong: boolean) =>
               {adv.cta}
             </a>
             <a
-              href={waLink(adv.waText)}
-              data-cta="precios-auditoria-whatsapp"
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center justify-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+              href={bookHref}
+              data-cta="precios-auditoria-agendar"
+              class="btn-cta"
             >
-              <Icon name="whatsapp" class="h-4 w-4" />
-              {t.common.ctaWhatsapp}
+              {t.common.ctaPrimary}
             </a>
           </div>
         </div>

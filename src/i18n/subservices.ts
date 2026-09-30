@@ -281,7 +281,7 @@ const landingPagesEs: SubserviceDetail = {
     titleA: "Cuéntame qué vas a promocionar y te paso",
     titleHighlight: "el alcance y la fecha",
     subtitle:
-      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas con el alcance, el precio y la fecha de entrega para tu caso.",
+      "Dos datos y nada más: tu nombre y tu correo. Te contesto por correo en menos de 24 horas con el alcance, el precio y la fecha de entrega para tu caso.",
     needLabel: "Qué necesitas",
     needOptions: [
       "Una landing para una campaña de anuncios",
@@ -492,7 +492,7 @@ const seoEs: SubserviceDetail = {
     titleA: "Cuéntame qué vendes y dónde, y agendamos",
     titleHighlight: "la reunión inicial",
     subtitle:
-      "Tres datos y nada más. Te contesto por WhatsApp en menos de 24 horas para agendar la reunión y explicarte qué revisa la auditoría.",
+      "Dos datos y nada más: tu nombre y tu correo. Te contesto por correo en menos de 24 horas para agendar la reunión y explicarte qué revisa la auditoría.",
     needLabel: "Qué necesitas",
     needOptions: [
       "Auditoría SEO de mi sitio actual",
@@ -699,7 +699,7 @@ const maintenanceEs: SubserviceDetail = {
     titleA: "Cuéntame cómo está tu sitio y te digo",
     titleHighlight: "qué necesita cada mes",
     subtitle:
-      "Tres datos y nada más. Reviso tu sitio y te contesto por WhatsApp en menos de 24 horas con lo que incluye el plan en tu caso.",
+      "Dos datos y nada más: tu nombre y tu correo. Te contesto por correo en menos de 24 horas con lo que incluye el plan en tu caso.",
     needLabel: "Qué necesitas",
     needOptions: [
       "Mantener un sitio que yo ya tengo",
@@ -912,7 +912,7 @@ const landingPagesEn: SubserviceDetail = {
     titleA: "Tell me what you are promoting and I'll send",
     titleHighlight: "the scope and the date",
     subtitle:
-      "Three fields, nothing else. I reply on WhatsApp within 24 hours with the scope, the price and the delivery date for your case.",
+      "Two fields, nothing else: your name and email. I reply by email within 24 hours with the scope, the price and the delivery date for your case.",
     needLabel: "What you need",
     needOptions: [
       "A landing page for an ad campaign",
@@ -1123,7 +1123,7 @@ const seoEn: SubserviceDetail = {
     titleA: "Tell me what you sell and where, and we book",
     titleHighlight: "the first meeting",
     subtitle:
-      "Three fields, nothing else. I reply on WhatsApp in under 24 hours to book the meeting and explain what the audit covers.",
+      "Two fields, nothing else: your name and email. I reply by email in under 24 hours to book the meeting and explain what the audit covers.",
     needLabel: "What you need",
     needOptions: [
       "An SEO audit of my current site",
@@ -1330,7 +1330,7 @@ const maintenanceEn: SubserviceDetail = {
     titleA: "Tell me how your site is doing and I'll say",
     titleHighlight: "what it needs each month",
     subtitle:
-      "Three fields, nothing else. I review your site and reply on WhatsApp within 24 hours with what the plan covers in your case.",
+      "Two fields, nothing else: your name and email. I reply by email within 24 hours with what the plan covers in your case.",
     needLabel: "What you need",
     needOptions: [
       "Maintain a site I already have",

@@ -3,36 +3,30 @@
   Landing completa de la Auditoría Estratégica Integral (ES y EN comparten
   esta composición; el contenido vive en src/i18n/audit.ts).
 
-  Orden, y el porqué de cada posición:
+  Orden común de las landings (septiembre de 2026):
+  1 hero con el informe real como visual · 2 qué recibes · 3 cómo funciona ·
+  4 testimonios · 5 gratis vs. de pago y filtro honesto · 6 fundador ·
+  7 qué se audita · 8 dudas · 9 cierre con agenda y formulario.
 
-  1. Hero — «A cotizar» y, pegada al precio, la regla de cuándo la auditoría
-     va dentro de un proyecto: es la objeción número uno.
-  2. Gratis vs. de pago — antes que nada más. El sitio ya regala la Revisión
-     Express; si esta página no dice en qué se diferencia, o no vende o
-     vende un malentendido.
-  3. Qué se audita — las doce áreas, empezando por el negocio. Es lo que
-     justifica el precio.
-  4. Qué recibes — cuatro entregables concretos más el mockup del informe:
-     «estrategia priorizada» es una promesa hasta que se ve cómo se ve.
-  5. Cómo funciona — las tres fases y los accesos que se piden.
-  6. Cuándo NO vale la pena — el filtro honesto, que aquí pesa más que en
-     una página de servicio: se está pidiendo dinero por adelantado.
-  7. FAQ → formulario → los dos destinos posibles.
+  La comparación gratis/de pago va en el bloque «para quién es» porque es
+  la objeción número uno: el sitio ya regala la Revisión Express, y si esta
+  página no dice en qué se diferencia, o no vende o vende un malentendido.
 
-  Reutiliza `ServiceCapabilities`, `ServiceStandards`, `ServiceFit`, `FAQ` y
-  `ServiceLeadForm`: los bloques ya existían con la forma exacta que necesita
-  esta página, y duplicarlos habría creado dos sitios donde arreglar lo mismo.
+  Reutiliza `ServiceCapabilities`, `ServiceStandards`, `ServiceFit` y `FAQ`:
+  los bloques ya existían con la forma exacta que necesita esta página.
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
-import AuditHero from "./AuditHero.astro";
+import LandingHero from "./LandingHero.astro";
 import AuditVersus from "./AuditVersus.astro";
 import AuditProcess from "./AuditProcess.astro";
 import AuditCross from "./AuditCross.astro";
 import ServiceCapabilities from "./ServiceCapabilities.astro";
 import ServiceStandards from "./ServiceStandards.astro";
 import ServiceFit from "./ServiceFit.astro";
-import ServiceLeadForm from "./ServiceLeadForm.astro";
+import Testimonials from "./Testimonials.astro";
+import Founder from "./Founder.astro";
+import LandingConversion from "./LandingConversion.astro";
 import ServiceShot from "./ServiceShot.astro";
 import FAQ from "./FAQ.astro";
 import Footer from "./Footer.astro";
@@ -77,9 +71,65 @@ const offerCatalog = [
 >
   <Header lang={lang} page="audit" />
   <main>
-    <AuditHero lang={lang} />
-    <AuditVersus lang={lang} />
+    {/* 1 · Hero: el informe real de la auditoría es el visual. Precio a
+        cotizar y plazo como cifras, y los dos CTAs. */}
+    <LandingHero
+      lang={lang}
+      page="audit"
+      eyebrow={a.badge}
+      icon="clipboard-check"
+      titleA={a.meta.heroTitleA}
+      highlight={a.meta.heroHighlight}
+      subtitle={a.meta.heroSubtitle}
+      lead={a.navHint}
+      stats={[
+        { label: a.priceLabel, value: a.priceQuote, note: a.priceNote },
+        { label: a.timelineLabel, value: a.timeline },
+      ]}
+      extraLink={{ label: a.areas.title, href: "#que-se-audita" }}
+    >
+      <div slot="visual" class="relative">
+        <ServiceShot
+          base={a.shot.imageBase}
+          alt={a.shot.imageAlt}
+          eager={true}
+          class="lt-panel"
+          sizes="(min-width: 1024px) 48vw, 92vw"
+        />
+        <p class="lt-panel absolute -top-6 right-4 z-20 hidden items-center gap-3 rounded-2xl px-4 py-3 sm:flex">
+          <span class="lt-soft flex h-10 w-10 items-center justify-center rounded-xl font-mono text-base font-bold">
+            {a.areas.items.length}
+          </span>
+          <span class="text-xs font-semibold leading-snug text-[var(--text)]">
+            {lang === "es" ? "áreas del negocio revisadas" : "business areas reviewed"}
+          </span>
+        </p>
+        <p class="mt-4 text-center text-xs leading-6 text-[var(--muted)]">{a.shot.caption}</p>
+      </div>
+    </LandingHero>
 
+    {/* 2 · Beneficios: qué recibes (el informe ya se ve en el hero). */}
+    <ServiceStandards
+      lang={lang}
+      standards={a.deliverables}
+      id="que-recibes"
+    />
+
+    {/* 3 · Así es como se trabaja: las tres fases y los accesos */}
+    <AuditProcess lang={lang} />
+
+    {/* 4 · Testimonios publicados */}
+    <Testimonials lang={lang} />
+
+    {/* 5 · Para quién es: gratis vs. de pago (la objeción número uno) y el
+        filtro honesto — aquí pesa más: se pide dinero por adelantado. */}
+    <AuditVersus lang={lang} />
+    <ServiceFit lang={lang} fit={a.fit} />
+
+    {/* 6 · El desarrollador y fundador */}
+    <Founder lang={lang} page="audit" />
+
+    {/* 7 · Información práctica: las doce áreas que se auditan */}
     <ServiceCapabilities
       lang={lang}
       heading={{
@@ -91,41 +141,18 @@ const offerCatalog = [
       id="que-se-audita"
     />
 
-    <ServiceStandards
-      lang={lang}
-      standards={a.deliverables}
-      id="que-recibes"
-    />
-
-    {/* El mockup del informe, justo después de describirlo. «Estrategia
-        priorizada» suena igual que «lista de recomendaciones» hasta que se
-        ve la tabla con las cuatro etiquetas y el roadmap debajo. */}
-    <section class="relative pb-4 lg:pb-10">
-      <div class="mx-auto w-full max-w-[1100px] px-4 sm:px-6 lg:px-10">
-        <ServiceShot
-          base={a.shot.imageBase}
-          alt={a.shot.imageAlt}
-          class="reveal"
-          sizes="(min-width: 1024px) 1040px, 92vw"
-        />
-        <p class="reveal mt-4 text-center text-xs leading-6 text-[var(--muted)]">
-          {a.shot.caption}
-        </p>
-      </div>
-    </section>
-
-    <AuditProcess lang={lang} />
-    <ServiceFit lang={lang} fit={a.fit} />
+    {/* 8 · Preguntas frecuentes */}
     <FAQ lang={lang} data={a.faq} id="dudas-auditoria" />
-
-    <ServiceLeadForm
-      lang={lang}
-      heading={a.form}
-      service={a.navLabel}
-      page="audit"
-    />
-
     <AuditCross lang={lang} />
+
+    {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
+    <LandingConversion
+      lang={lang}
+      page="audit"
+      close={{ eyebrow: `// ${a.navLabel}`, title: a.meta.heroSubtitle }}
+      formHeading={a.form}
+      service={a.navLabel}
+    />
   </main>
   <Footer lang={lang} />
 </Layout>
