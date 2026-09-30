@@ -617,10 +617,10 @@ export const translations = {
       baseNote: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar.",
       quotedScopeNote:
         "En los planes a cotizar, la cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Los honorarios de gestión no incluyen la inversión publicitaria, que pagas directo a Google o a Meta, ni herramientas externas con suscripción.",
-      summaryTitle: "Resumen: desarrollo web",
+      summaryTitle: "Desarrollo web",
       summarySubtitle:
         "Pago único por construir tu sitio. Precio base, para quién es y qué incluye; el detalle completo está en la página de cada servicio.",
-      monthlySummaryTitle: "Resumen: servicios mensuales",
+      monthlySummaryTitle: "Servicios mensuales",
       forWhoLabel: "Para quién",
       detailsLabel: "Ver qué incluye",
       auditTitle: "Auditoría Estratégica",
@@ -1707,10 +1707,10 @@ export const translations = {
       baseNote: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting.",
       quotedScopeNote:
         "For quoted plans, the quantity, frequency, platforms and deliverables are set in the approved proposal. Management fees do not include ad spend, which you pay directly to Google or Meta, or external subscription tools.",
-      summaryTitle: "Summary: web development",
+      summaryTitle: "Web development",
       summarySubtitle:
         "A one-time payment to build your site. Base price, who it is for and what it includes; the full detail lives on each service page.",
-      monthlySummaryTitle: "Summary: monthly services",
+      monthlySummaryTitle: "Monthly services",
       forWhoLabel: "Who it is for",
       detailsLabel: "See what is included",
       auditTitle: "Strategic Audit",
