@@ -47,9 +47,9 @@ export interface ServicePackageItem {
   name: string;
   pricePrefix: string;
   price: string;
-  /** Cuando el plan no lleva cifra (Crecimiento+ y Marketing Digital, que se
-      cotizan tras la reunión inicial y la auditoría), este texto sustituye al
-      precio en la tarjeta. Vacío = se muestra el precio normal. */
+  /** Cuando el plan no lleva cifra (se cotiza tras la reunión inicial), este
+      texto sustituye al precio en la tarjeta. Vacío = se muestra el precio
+      normal. */
   quoteLabel?: string;
   currency: string;
   priceNote: string;
@@ -303,10 +303,9 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
       "Campañas en Google Ads, Facebook e Instagram",
       "Reporte mensual de contactos, llamadas y citas",
     ],
-    priceLabel: "inversión",
-    price: "",
-    priceQuote: "A cotizar",
-    priceNote: "tras la reunión inicial y la auditoría",
+    priceLabel: "Desde",
+    price: "499",
+    priceNote: "USD al mes · Crecimiento+",
     timelineLabel: "primeras señales",
     timeline: "30 a 90 días",
     timelineNote:
@@ -618,7 +617,7 @@ const marketingEs: ServiceDetail = {
   meta: {
     title: "Marketing Digital para Negocios | ProCode Dev",
     description:
-      "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y reportes claros. Dos planes, cotizados tras la auditoría.",
+      "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y reportes claros. Planes desde $499 USD al mes.",
     keywords:
       "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
     heroTitleA: "Marketing digital para negocios:",
@@ -685,17 +684,16 @@ const marketingEs: ServiceDetail = {
   },
   packages: {
     eyebrow: "// planes mensuales",
-    title: "Dos planes de marketing digital, cotizados a tu negocio",
+    title: "Dos planes de marketing digital, con precio base publicado",
     subtitle:
-      "Estos dos planes no llevan precio de lista, y es a propósito: lo que cuesta depende de tu giro, tu zona, en qué estado está hoy tu presencia digital y qué hace falta trabajar. Se cotizan después de una reunión inicial para conocer el negocio y de la auditoría. Crecimiento+ se cancela de un mes a otro; Marketing Digital pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo para dar datos con los que decidir.",
+      "Los dos planes tienen precio base publicado: Crecimiento+ desde $499 USD al mes y Marketing Digital desde $899 USD al mes. El total depende de tu giro, tu zona, en qué estado está hoy tu presencia digital y qué hace falta trabajar, y se confirma después de una reunión inicial para conocer el negocio y de la auditoría. Crecimiento+ se cancela de un mes a otro; Marketing Digital pide un mínimo de tres meses porque los anuncios y el SEO necesitan ese tiempo para dar datos con los que decidir.",
     items: [
       {
         name: "Crecimiento+",
-        pricePrefix: "",
-        price: "",
-        quoteLabel: "Cotización a medida",
-        currency: "",
-        priceNote: "mensual · se define tras la reunión inicial y el diagnóstico",
+        pricePrefix: "Desde",
+        price: "499",
+        currency: "USD",
+        priceNote: "al mes · el total se confirma tras la reunión inicial y el diagnóstico",
         description:
           "Que te encuentren, no solo que existas. Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA. Sin anuncios: aquí todavía no se compra tráfico.",
         features: [
@@ -710,11 +708,10 @@ const marketingEs: ServiceDetail = {
       },
       {
         name: "Marketing Digital",
-        pricePrefix: "",
-        price: "",
-        quoteLabel: "Cotización a medida",
-        currency: "",
-        priceNote: "mensual · se define tras la reunión inicial y el diagnóstico · mínimo 3 meses",
+        pricePrefix: "Desde",
+        price: "899",
+        currency: "USD",
+        priceNote: "al mes · el total se confirma tras la reunión inicial y el diagnóstico · mínimo 3 meses",
         description:
           "El sistema completo, para el negocio que ya no quiere depender de las recomendaciones y de los meses buenos.",
         features: [
@@ -729,7 +726,7 @@ const marketingEs: ServiceDetail = {
       },
     ],
     itemCta: "Solicitar reunión inicial",
-    note: "Los dos planes se cotizan igual: una reunión inicial para conocer tu negocio y qué necesita, un diagnóstico de tu presencia digital, y de ahí sale el número y el plan de trabajo. La cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
+    note: "Los precios publicados son el punto de partida. En los dos planes el total se confirma igual: una reunión inicial para conocer tu negocio y qué necesita, un diagnóstico de tu presencia digital, y de ahí sale el número final y el plan de trabajo. La cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
     cta: "Ver todos los precios",
   },
   standards: {
@@ -893,7 +890,7 @@ const hubEs: ServicesHub = {
         title: "Empieza por el marketing",
         body: "Tu página está bien hecha y convierte, pero llega poca gente: tu ficha de Google está incompleta, no tienes reseñas o no apareces cuando alguien busca tu servicio en tu ciudad. Ahí el trabajo es de diseño web y posicionamiento en marcha —visibilidad y reseñas—, no de rediseño.",
         forWho: "Para quien ya tiene sitio y necesita llenarlo.",
-        price: "a cotizar tras la reunión inicial",
+        price: "Desde $499 USD al mes",
         cta: "Ver marketing digital",
         href: "digitalMarketing",
         highlighted: false,
@@ -909,7 +906,7 @@ const hubEs: ServicesHub = {
         highlighted: false,
       },
     ],
-    note: "Los dos juntos existen como plan de Marketing Digital, que se cotiza tras la reunión inicial y el diagnóstico y pide un mínimo de tres meses, pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: en una videollamada de 20 minutos te muestro qué encuentra un cliente al buscar tu servicio en tu ciudad y 3 prioridades.",
+    note: "Los dos juntos existen como plan de Marketing Digital, desde $899 USD al mes con un mínimo de tres meses, pero casi nadie empieza por ahí. Si prefieres hablarlo en vivo, la Revisión Express es gratis: en una videollamada de 20 minutos te muestro qué encuentra un cliente al buscar tu servicio en tu ciudad y 3 prioridades.",
   },
   faq: {
     eyebrow: "// dudas frecuentes",
@@ -941,7 +938,7 @@ const hubEs: ServicesHub = {
       {
         question: "¿Cuánto cuesta contratar servicios de desarrollo web y marketing digital?",
         answer:
-          "El punto de entrada es la Revisión Express, que es gratis: en una videollamada de 20 minutos te muestro qué encuentra un cliente cuando busca tu servicio en tu ciudad y 3 prioridades. Los proyectos de desarrollo web tienen precio base publicado: una landing page desde $349 USD. Los planes de marketing, en cambio, se cotizan después de una reunión inicial y de la auditoría, porque lo que hace falta trabajar cambia mucho de un negocio a otro.",
+          "El punto de entrada es la Revisión Express, que es gratis: en una videollamada de 20 minutos te muestro qué encuentra un cliente cuando busca tu servicio en tu ciudad y 3 prioridades. Los proyectos de desarrollo web tienen precio base publicado: una landing page desde $349 USD. Los planes de marketing también tienen precio base: Crecimiento+ desde $499 USD al mes y Marketing Digital desde $899 USD al mes; el total se confirma después de una reunión inicial y de la auditoría, porque lo que hace falta trabajar cambia mucho de un negocio a otro.",
       },
     ],
   },
@@ -1056,10 +1053,9 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
       "Google Ads, Facebook and Instagram campaigns",
       "Monthly report of contacts, calls and bookings",
     ],
-    priceLabel: "investment",
-    price: "",
-    priceQuote: "Quoted",
-    priceNote: "after the first meeting and the audit",
+    priceLabel: "From",
+    price: "499",
+    priceNote: "USD a month · Growth+",
     timelineLabel: "first signals",
     timeline: "30 to 90 days",
     timelineNote:
@@ -1361,7 +1357,7 @@ const marketingEn: ServiceDetail = {
   meta: {
     title: "Small Business Digital Marketing | ProCode Dev",
     description:
-      "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and clear reporting. Two plans, quoted after the audit.",
+      "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and clear reporting. Plans from $499 USD a month.",
     keywords:
       "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing reporting, local SEO for small businesses",
     heroTitleA: "Local SEO and digital marketing so people",
@@ -1428,17 +1424,16 @@ const marketingEn: ServiceDetail = {
   },
   packages: {
     eyebrow: "// monthly plans",
-    title: "Two digital marketing plans, quoted to your business",
+    title: "Two digital marketing plans, with published base pricing",
     subtitle:
-      "These two plans carry no list price, and that is deliberate: what they cost depends on your trade, your area, where your digital presence stands today and what actually has to be worked on. They are quoted after a first meeting to get to know the business and an audit. Growth+ cancels month to month; Digital Marketing asks for a three-month minimum because ads and SEO need that long to produce numbers worth deciding on.",
+      "Both plans have a published base price: Growth+ from $499 USD a month and Digital Marketing from $899 USD a month. The total depends on your trade, your area, where your digital presence stands today and what actually has to be worked on, and it is confirmed after a first meeting to get to know the business and an audit. Growth+ cancels month to month; Digital Marketing asks for a three-month minimum because ads and SEO need that long to produce numbers worth deciding on.",
     items: [
       {
         name: "Growth+",
-        pricePrefix: "",
-        price: "",
-        quoteLabel: "Custom quote",
-        currency: "",
-        priceNote: "monthly · set after the first meeting and the diagnosis",
+        pricePrefix: "From",
+        price: "499",
+        currency: "USD",
+        priceNote: "a month · total confirmed after the first meeting and the diagnosis",
         description:
           "Getting found, not just existing. Google Business Profile, reviews, local SEO and visibility in AI search. No ads: this plan does not buy traffic yet.",
         features: [
@@ -1453,11 +1448,10 @@ const marketingEn: ServiceDetail = {
       },
       {
         name: "Digital Marketing",
-        pricePrefix: "",
-        price: "",
-        quoteLabel: "Custom quote",
-        currency: "",
-        priceNote: "monthly · set after the first meeting and the diagnosis · 3-month minimum",
+        pricePrefix: "From",
+        price: "899",
+        currency: "USD",
+        priceNote: "a month · total confirmed after the first meeting and the diagnosis · 3-month minimum",
         description:
           "The full system, for the business that no longer wants to depend on referrals and good months.",
         features: [
@@ -1472,7 +1466,7 @@ const marketingEn: ServiceDetail = {
       },
     ],
     itemCta: "Request a first meeting",
-    note: "Both plans are quoted the same way: a first meeting to understand your business and what it needs, a diagnosis of your digital presence, and the number and the plan of work come out of that. Quantity, frequency, platforms and deliverables are set in the approved proposal. Growth+ has no lock-in: move up, move down or cancel month to month. Digital Marketing asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
+    note: "The published prices are the starting point. For both plans the total is confirmed the same way: a first meeting to understand your business and what it needs, a diagnosis of your digital presence, and the final number and the plan of work come out of that. Quantity, frequency, platforms and deliverables are set in the approved proposal. Growth+ has no lock-in: move up, move down or cancel month to month. Digital Marketing asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
     cta: "See full pricing",
   },
   standards: {
@@ -1631,7 +1625,7 @@ const hubEn: ServicesHub = {
         title: "Start with the marketing",
         body: "Your site is well built and it converts, but few people arrive: your Google profile is incomplete, you have no reviews, or you do not show up when someone searches for your service in your city. That is where local SEO services for small businesses come in — visibility and reviews, not redesign.",
         forWho: "For anyone with a site that needs filling.",
-        price: "quoted after the first meeting",
+        price: "From $499 USD a month",
         cta: "See digital marketing",
         href: "digitalMarketing",
         highlighted: false,
@@ -1647,7 +1641,7 @@ const hubEn: ServicesHub = {
         highlighted: false,
       },
     ],
-    note: "The two together do exist as the Digital Marketing plan, quoted after the first meeting and the diagnosis, with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: on a 20-minute video call I show you what a client finds when they search your service in your city, plus 3 priorities.",
+    note: "The two together do exist as the Digital Marketing plan, from $899 USD a month with a three-month minimum — but almost nobody starts there. If you would rather talk it through live, the Express Review is free: on a 20-minute video call I show you what a client finds when they search your service in your city, plus 3 priorities.",
   },
   faq: {
     eyebrow: "// common questions",
@@ -1679,7 +1673,7 @@ const hubEn: ServicesHub = {
       {
         question: "How much do web development and digital marketing services cost?",
         answer:
-          "The entry point is the Express Review, and it is free: on a 20-minute video call I show you what a client finds when they search for your service in your city, plus 3 priorities. Web development projects have published base pricing: a landing page from $349 USD. The marketing plans are quoted after a first meeting and an audit, because what actually has to be worked on varies a lot from one business to the next.",
+          "The entry point is the Express Review, and it is free: on a 20-minute video call I show you what a client finds when they search for your service in your city, plus 3 priorities. Web development projects have published base pricing: a landing page from $349 USD. The marketing plans have a base price too: Growth+ from $499 USD a month and Digital Marketing from $899 USD a month; the total is confirmed after a first meeting and an audit, because what actually has to be worked on varies a lot from one business to the next.",
       },
     ],
   },

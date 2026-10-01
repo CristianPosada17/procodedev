@@ -18,9 +18,10 @@
 
   Reglas heredadas: nada de «negocios pequeños» en español; «small business»
   se queda en inglés; ProCode ES una agencia dirigida por su fundador; cero
-  precios inventados — solo los ya publicados ($349, $899, $1,499 y $79/mes).
-  La landing con sistema de captación, Crecimiento+, Marketing Digital y el
-  SEO NO llevan cifra: «Cotización a medida» (ver procode-planes-sin-precio).
+  precios inventados — solo los ya publicados ($349, $899, $1,499, $79/mes y,
+  desde octubre de 2026, Crecimiento+ desde $499/mes y Marketing Digital desde
+  $899/mes). La landing con sistema de captación y el SEO NO llevan cifra:
+  «Cotización a medida» (ver procode-planes-sin-precio).
 */
 
 import type { Lang } from "./ui";
@@ -221,7 +222,7 @@ const landingPagesEs: SubserviceDetail = {
     ],
     itemCta: "Solicitar este paquete",
     note:
-      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. La landing sola es de pago único, con precio base publicado; la versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio. Las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital, y la inversión publicitaria se paga directo a la plataforma.",
+      "Si después quieres el sitio completo, la landing no se tira: se convierte en una de sus páginas y descuento lo que ya pagaste. La landing sola es de pago único, con precio base publicado; la versión con sistema de captación se cotiza tras la reunión inicial, porque lo que hay que conectar cambia en cada negocio. Las campañas de anuncios, si las quieres gestionadas, van aparte dentro del plan de Marketing Digital (desde $899 USD al mes), y la inversión publicitaria se paga directo a la plataforma.",
     cta: "Ver todos los precios",
   },
   fit: {
@@ -431,7 +432,7 @@ const seoEs: SubserviceDetail = {
     ],
     itemCta: "Solicitar reunión inicial",
     note:
-      "El SEO local tarda de tres a seis meses en madurar y hay que sostenerlo: en cuanto se deja de trabajar, las posiciones se devuelven. Cualquiera que te prometa la primera posición en un mes te está vendiendo humo. Si además necesitas anuncios y campañas, eso vive en el plan de Marketing Digital.",
+      "El SEO local tarda de tres a seis meses en madurar y hay que sostenerlo: en cuanto se deja de trabajar, las posiciones se devuelven. Cualquiera que te prometa la primera posición en un mes te está vendiendo humo. Si además necesitas anuncios y campañas, eso vive en el plan de Marketing Digital, desde $899 USD al mes.",
     cta: "Ver todos los precios",
   },
   fit: {
@@ -602,7 +603,7 @@ const maintenanceEs: SubserviceDetail = {
     eyebrow: "// precio publicado",
     title: "Cuánto cuesta el mantenimiento web",
     subtitle:
-      "El mantenimiento tiene precio base publicado y se paga mes a mes, sin permanencia. Crecimiento+ se cotiza a tu negocio tras la reunión inicial y el diagnóstico.",
+      "Los dos planes tienen precio base publicado y se pagan mes a mes, sin permanencia. En Crecimiento+ el total se confirma tras la reunión inicial y el diagnóstico.",
     items: [
       {
         name: "Mantenimiento",
@@ -624,11 +625,10 @@ const maintenanceEs: SubserviceDetail = {
       },
       {
         name: "Crecimiento+",
-        pricePrefix: "",
-        price: "",
-        quoteLabel: "Cotización a medida",
-        currency: "",
-        priceNote: "mensual · se define tras la reunión inicial y el diagnóstico",
+        pricePrefix: "Desde",
+        price: "499",
+        currency: "USD",
+        priceNote: "al mes · el total se confirma tras la reunión inicial y el diagnóstico",
         description:
           "Cuando además del mantenimiento quieres que te encuentren: Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA.",
         features: [
@@ -852,7 +852,7 @@ const landingPagesEn: SubserviceDetail = {
     ],
     itemCta: "Request this package",
     note:
-      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. The landing page on its own is one-time, with a published base price; the version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business. Managed ad campaigns, if you want them, sit in the Digital Marketing plan, and ad spend is paid directly to the platform.",
+      "If you want the full site later, the landing page is not thrown away: it becomes one of its pages and I credit what you already paid. The landing page on its own is one-time, with a published base price; the version with the lead capture system is quoted after the first meeting, because what has to be wired up changes with every business. Managed ad campaigns, if you want them, sit in the Digital Marketing plan (from $899 USD a month), and ad spend is paid directly to the platform.",
     cta: "See all pricing",
   },
   fit: {
@@ -1062,7 +1062,7 @@ const seoEn: SubserviceDetail = {
     ],
     itemCta: "Request a first meeting",
     note:
-      "Local SEO takes three to six months to mature and has to be sustained: the moment the work stops, the rankings slide back. Anyone promising you the top spot in a month is selling smoke. If you also need ads and campaigns, that lives in the Digital Marketing plan.",
+      "Local SEO takes three to six months to mature and has to be sustained: the moment the work stops, the rankings slide back. Anyone promising you the top spot in a month is selling smoke. If you also need ads and campaigns, that lives in the Digital Marketing plan, from $899 USD a month.",
     cta: "See full pricing",
   },
   fit: {
@@ -1233,7 +1233,7 @@ const maintenanceEn: SubserviceDetail = {
     eyebrow: "// published pricing",
     title: "What website maintenance costs",
     subtitle:
-      "Maintenance has a published base price and is paid monthly, with no commitment. Growth+ is quoted to your business after the first meeting and the diagnosis.",
+      "Both plans have a published base price and are paid monthly, with no commitment. For Growth+ the total is confirmed after the first meeting and the diagnosis.",
     items: [
       {
         name: "Maintenance",
@@ -1255,11 +1255,10 @@ const maintenanceEn: SubserviceDetail = {
       },
       {
         name: "Growth+",
-        pricePrefix: "",
-        price: "",
-        quoteLabel: "Custom quote",
-        currency: "",
-        priceNote: "monthly · set after the first meeting and the diagnosis",
+        pricePrefix: "From",
+        price: "499",
+        currency: "USD",
+        priceNote: "a month · total confirmed after the first meeting and the diagnosis",
         description:
           "When you also want to be found: Google Business Profile, reviews, local SEO and visibility in AI search.",
         features: [

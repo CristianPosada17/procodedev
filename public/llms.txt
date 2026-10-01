@@ -37,18 +37,18 @@ integraciones o complejidad, y se confirma antes de iniciar.
   servicio va dentro del proyecto y su alcance se define en la propuesta; no
   es automáticamente la auditoría completa de doce áreas.
 - Soporte Web: desde $79 USD/mes (hasta 3–4 cambios menores al mes)
-- Crecimiento+ (Perfil de Empresa en Google, reseñas, SEO local): SIN precio
-  publicado. Se cotiza tras una reunión inicial y un diagnóstico del negocio.
+- Crecimiento+ (Perfil de Empresa en Google, reseñas, SEO local): desde $499
+  USD/mes. El total se confirma tras una reunión inicial y un diagnóstico.
 - Marketing Digital (todo lo de Crecimiento+ más campañas, SEO completo y
-  reporte mensual): SIN precio publicado. Se cotiza igual, y pide un contrato
-  mínimo de 3 meses. El presupuesto de anuncios va aparte. Cantidad,
+  reporte mensual): desde $899 USD/mes. El total se confirma igual, y pide un
+  contrato mínimo de 3 meses. El presupuesto de anuncios va aparte. Cantidad,
   frecuencia, plataformas y entregables se definen en la propuesta aprobada.
 - Servicio de SEO (auditoría + keyword research, y SEO mensual): SIN precio
   publicado. Se cotiza tras la reunión inicial y la auditoría.
 
-Los planes de marketing y de SEO no llevan precio de lista a propósito: lo que
-cuesta depende del giro, la zona y del estado en el que esté hoy la presencia
-digital del negocio. Soporte Web y Crecimiento+ se cancelan de un mes a otro,
+Los planes de marketing publican un precio base («desde») y el SEO no lleva
+precio de lista: el total depende del giro, la zona y del estado en el que esté
+hoy la presencia digital del negocio. Soporte Web y Crecimiento+ se cancelan de un mes a otro,
 sin penalización. Marketing Digital pide un mínimo de 3 meses —el tiempo que
 necesitan los anuncios y el SEO para dar datos fiables— y después se cancela
 igual que los demás.
@@ -128,8 +128,9 @@ se cotiza aparte.
    campañas en Google Ads y en Facebook e Instagram cuando el negocio las
    necesita, y un reporte mensual de llamadas, clics a WhatsApp, formularios,
    citas agendadas, origen de cada contacto y costo por prospecto. Planes
-   mensuales: Soporte Web desde $79 USD; Crecimiento+ y Marketing Digital se
-   cotizan tras la reunión inicial y el diagnóstico. Primeras señales en 30 a
+   mensuales: Soporte Web desde $79 USD; Crecimiento+ desde $499 USD y
+   Marketing Digital desde $899 USD, con el total confirmado tras la reunión
+   inicial y el diagnóstico. Primeras señales en 30 a
    90 días; el SEO local madura entre 3 y 6 meses. ProCode NO ofrece
    automatización de seguimiento comercial ni promete ventas: el trabajo llega
    hasta entregar el prospecto; el seguimiento y el cierre son del cliente.

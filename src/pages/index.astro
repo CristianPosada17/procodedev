@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import ClientLogos from "../components/ClientLogos.astro";
+import ValueProposition from "../components/ValueProposition.astro";
 import GrowthSystem from "../components/GrowthSystem.astro";
 import WhyProCode from "../components/WhyProCode.astro";
 import Process from "../components/Process.astro";
@@ -47,6 +48,7 @@ const meta = translations[lang].pageMeta.home;
     {/* 1 · Hero + clientes reales */}
     <Hero lang={lang} />
     <ClientLogos lang={lang} />
+    <ValueProposition lang={lang} />
 
     {/* 2 · Beneficios */}
     <GrowthSystem lang={lang} />

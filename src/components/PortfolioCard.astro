@@ -20,7 +20,7 @@ interface Props {
   resultLabel?: string;
   /** Etiquetas de «necesidad» y «trabajo» y prefijo del texto alternativo,
    *  en el idioma de la página (antes el alt salía siempre en español). */
-  labels?: { challenge: string; work: string; altPrefix: string };
+  labels?: { challenge: string; work: string; altPrefix: string; viewLive?: string };
   delay?: number;
 }
 const { project, resultLabel, labels, delay = 0 } = Astro.props as Props;
@@ -40,9 +40,11 @@ const srcset = (ext: string) =>
     : undefined;
 // Movil: la tarjeta ocupa el 92% del ancho. md: dos columnas. lg: tres.
 const SIZES = "(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw";
-// Septiembre de 2026 (30): la tarjeta ya no enlaza al sitio del cliente
-// (ningún enlace de conversión saca al visitante de ProCode). El dominio
-// queda escrito para que se pueda comprobar que el proyecto existe.
+// Septiembre de 2026 (30): la tarjeta dejó de enlazar al sitio del cliente
+// para no sacar al visitante de ProCode.
+// Octubre de 2026: vuelve el enlace, como botón «Ver Sitio Publicado» en
+// pestaña nueva: quien duda de cómo trabajamos puede revisar el sitio en vivo
+// sin perder el portafolio.
 const domain = (() => {
   try {
     return new URL(project.url).hostname.replace(/^www./, "");
@@ -126,10 +128,22 @@ const domain = (() => {
       }
     </div>
     {domain && (
-      <p class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--muted)]">
-        <Icon name="globe" class="h-4 w-4 text-[var(--accent)]" />
-        <span class="font-mono text-xs">{domain}</span>
-      </p>
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[color:var(--border)] pt-5">
+        <p class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--muted)]">
+          <Icon name="globe" class="h-4 w-4 text-[var(--accent)]" />
+          <span class="font-mono text-xs">{domain}</span>
+        </p>
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener"
+          data-cta={`portafolio-sitio-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
+          class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/10"
+        >
+          {labels?.viewLive ?? "Ver Sitio Publicado"}
+          <Icon name="arrow-up-right" class="h-4 w-4" />
+        </a>
+      </div>
     )}
   </div>
 </article>

@@ -1,0 +1,38 @@
+---
+import { translations, type Lang } from "../i18n/ui";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const v = translations[lang].valueProp;
+const icons = ["layout", "file-text", "calendar", "bar-chart"] as const;
+---
+
+{/*
+  Propuesta de valor del home (octubre de 2026). Va después del hero y los
+  logos: el titular dice qué es ProCode, esta frase dice qué consigue y con
+  qué piezas. Las cuatro piezas repiten el final de la frase para que se
+  lean de un vistazo.
+*/}
+<section id="propuesta" class="relative py-12 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal mx-auto max-w-4xl rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 px-6 py-10 text-center backdrop-blur-xl sm:px-10 lg:px-14 lg:py-14">
+      <span class="eyebrow">{v.eyebrow}</span>
+      <p class="mt-5 text-balance text-xl font-semibold leading-relaxed tracking-tight text-[var(--text)] sm:text-2xl lg:text-[1.75rem] lg:leading-[1.45]">
+        {v.before}{" "}<span class="grad-text">{v.highlight}</span>{v.after}
+      </p>
+      <ul class="mt-8 flex flex-wrap justify-center gap-3">
+        {
+          v.pillars.map((label, i) => (
+            <li class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--tint)] px-4 py-2 text-sm font-semibold text-[var(--text)]">
+              <Icon name={icons[i] ?? "check"} class="h-4 w-4 text-[var(--accent)]" />
+              {label}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

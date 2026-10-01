@@ -138,7 +138,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para contratistas (opcional)",
         description:
-          "Campañas locales y anuncios de temporada para llenar las semanas flojas. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
+          "Campañas locales y anuncios de temporada para llenar las semanas flojas. Se contrata aparte, en el plan de Marketing Digital, desde $899 USD al mes; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año de obra, y qué hace el sistema en cada tramo",
@@ -272,7 +272,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para consultorios (opcional)",
         description:
-          "Campañas para pacientes nuevos de tu zona y campañas de temporada. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
+          "Campañas para pacientes nuevos de tu zona y campañas de temporada. Se contrata aparte, en el plan de Marketing Digital, desde $899 USD al mes; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año de consulta, y qué hace el sistema en cada tramo",
@@ -407,7 +407,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para servicios profesionales (opcional)",
         description:
-          "Campañas y contenido para atraer el tipo de caso que sí te conviene. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
+          "Campañas y contenido para atraer el tipo de caso que sí te conviene. Se contrata aparte, en el plan de Marketing Digital, desde $899 USD al mes; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año profesional, y qué hace el sistema en cada tramo",
@@ -542,7 +542,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing inmobiliario (opcional)",
         description:
-          "Campañas por propiedad y por zona para captar compradores y vendedores. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
+          "Campañas por propiedad y por zona para captar compradores y vendedores. Se contrata aparte, en el plan de Marketing Digital, desde $899 USD al mes; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu año inmobiliario, y qué hace el sistema en cada tramo",
@@ -621,7 +621,7 @@ const es: SegmentDict = {
     heroHighlight: "contadores y despachos contables",
     heroSubtitle: "Clientes todo el año.",
     intro:
-      "Sitio web, Perfil de Empresa en Google, intake de documentos y agenda de citas para despachos contables, preparadores de impuestos, Enrolled Agents, CPAs y bookkeepers.",
+      "Sitios bilingües para despachos contables y preparadores de impuestos que necesitan presentar cada servicio con claridad y organizar mejor las consultas, con formularios, agenda y medición conectados.",
     projectId: "miconta",
     projectEyebrow: "// caso de éxito en tu giro",
     projectTitle: "Un despacho contable que ya está",
@@ -681,7 +681,7 @@ const es: SegmentDict = {
         icon: "zap",
         title: "Marketing para despachos fiscales (opcional)",
         description:
-          "Campañas antes de la temporada y contenido que trae declaraciones nuevas. Se contrata aparte, en un plan mensual que se cotiza tras la reunión inicial; la inversión publicitaria se paga aparte.",
+          "Campañas antes de la temporada y contenido que trae declaraciones nuevas. Se contrata aparte, en el plan de Marketing Digital, desde $899 USD al mes; la inversión publicitaria se paga aparte.",
       },
     ],
     cycleTitle: "Tu calendario, y qué hace el sistema en cada tramo",
@@ -818,7 +818,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Contractor marketing (optional)",
         description:
-          "Local campaigns and seasonal ads to fill the slow weeks. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
+          "Local campaigns and seasonal ads to fill the slow weeks. Hired separately, as the Digital Marketing plan, from $899 USD a month; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your building year, and what the system does in each stretch",
@@ -952,7 +952,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Medical practice marketing (optional)",
         description:
-          "Campaigns for new patients in your area and seasonal campaigns. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
+          "Campaigns for new patients in your area and seasonal campaigns. Hired separately, as the Digital Marketing plan, from $899 USD a month; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your practice year, and what the system does in each stretch",
@@ -1087,7 +1087,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Professional services marketing (optional)",
         description:
-          "Campaigns and content to attract the kind of case that's worth your time. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
+          "Campaigns and content to attract the kind of case that's worth your time. Hired separately, as the Digital Marketing plan, from $899 USD a month; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your professional year, and what the system does in each stretch",
@@ -1222,7 +1222,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Real estate marketing (optional)",
         description:
-          "Per-property and per-area campaigns to win buyers and sellers. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
+          "Per-property and per-area campaigns to win buyers and sellers. Hired separately, as the Digital Marketing plan, from $899 USD a month; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your real estate year, and what the system does in each stretch",
@@ -1297,7 +1297,7 @@ const en: SegmentDict = {
     heroHighlight: "website design",
     heroSubtitle: "Clients all year, not weeks.",
     intro:
-      "Website, Google Business Profile, document intake and appointment booking for accounting firms, tax preparers, enrolled agents, CPAs and bookkeepers.",
+      "Bilingual websites for accounting firms and tax preparers that need to present every service clearly and organize inquiries better, with forms, booking and tracking connected.",
     projectId: "miconta",
     projectEyebrow: "// a case study in your industry",
     projectTitle: "An accounting firm that's already",
@@ -1357,7 +1357,7 @@ const en: SegmentDict = {
         icon: "zap",
         title: "Tax practice marketing (optional)",
         description:
-          "Pre-season campaigns and content that brings in new returns. Hired separately, as a monthly plan quoted after the first meeting; ad spend is paid separately.",
+          "Pre-season campaigns and content that brings in new returns. Hired separately, as the Digital Marketing plan, from $899 USD a month; ad spend is paid separately.",
       },
     ],
     cycleTitle: "Your calendar, and what the system does in each stretch",

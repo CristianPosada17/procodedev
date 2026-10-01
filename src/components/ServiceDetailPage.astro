@@ -52,6 +52,8 @@ const other: ServiceKey =
 // Nodo Service → hasOfferCatalog: las seis capacidades más los paquetes.
 // Es lo que permite que un buscador con IA conteste «qué incluye» y «cuánto
 // cuesta» sin tener que interpretar el diseño de la página.
+const isMonthly = (note: string) => /\bmes\b|month|\/mo\b/i.test(note);
+
 const offerCatalog = [
   ...line.capabilities.map((c) => ({
     title: c.title,
@@ -62,14 +64,17 @@ const offerCatalog = [
       ? `${p.name} — ${p.quoteLabel}`
       : `${p.name} — ${p.pricePrefix ? p.pricePrefix + " " : ""}$${p.price} ${p.currency}`,
     description: p.description,
-    ...(p.quoteLabel || !p.price ? {} : { minPrice: p.price, unit: "one-time" as const }),
+    ...(p.quoteLabel || !p.price
+      ? {}
+      : { minPrice: p.price, unit: isMonthly(p.priceNote) ? ("month" as const) : ("one-time" as const) }),
   })),
 ];
 
-// Marketing Digital no publica cifra: su Offer se emite sin `price` en vez de
-// heredar los $349 de la landing (ver procode-planes-sin-precio).
+// El `price` del Offer sale del primer paquete con cifra de esta página
+// (en Marketing Digital, Crecimiento+ desde $499 al mes), con su periodicidad.
 const pricedPackage = d.packages.items.find((p) => !p.quoteLabel && p.price);
 const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
+const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" : "one-time";
 ---
 
 <Layout
@@ -87,6 +92,7 @@ const offerPrice = pricedPackage ? pricedPackage.price.replace(/,/g, "") : "";
   audience={line.tagline}
   offerCatalog={offerCatalog}
   offerPrice={offerPrice}
+  offerUnit={offerUnit}
   includeFaq={true}
   faqItems={d.faq.items}
 >

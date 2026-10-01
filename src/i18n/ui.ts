@@ -245,6 +245,17 @@ export const translations = {
         "Bilingüe inglés/español",
       ],
     },
+    // Propuesta de valor (octubre de 2026): va justo después del hero y los
+    // logos, para que lo primero que se lea tras el titular sea qué hace
+    // ProCode y para quién. `highlight` es el fragmento que va en degradado.
+    valueProp: {
+      eyebrow: "// qué hace ProCode",
+      before:
+        "ProCode ayuda a negocios de servicios en México y Estados Unidos a explicar mejor lo que ofrecen y convertir su presencia digital en un recorrido claro hacia",
+      highlight: "llamadas, mensajes y citas",
+      after: ", con web, formularios, agenda y medición conectados.",
+      pillars: ["Web", "Formularios", "Agenda", "Medición"],
+    },
     // Las seis capacidades que forman el sistema. Es la traducción visual
     // de la frase de marca: Websites + Client Acquisition + Intake +
     // Automation + Follow-Up + Analytics.
@@ -469,6 +480,7 @@ export const translations = {
       subtitle:
         "Una selección de sitios que construí para negocios que querían verse más profesionales y captar mejor. Haz clic para verlos en vivo.",
       viewProject: "Ver proyecto",
+      viewLive: "Ver Sitio Publicado",
       resultLabel: "Resultado",
       challengeLabel: "Necesidad",
       workLabel: "Trabajo de ProCode",
@@ -641,10 +653,10 @@ export const translations = {
       extrasTitle: "Servicios adicionales",
       extrasSubtitle:
         "Complementos para mantener tu sitio creciendo y actualizado.",
-      note: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar. Crecimiento+, Marketing Digital y la Auditoría Estratégica se cotizan tras la reunión inicial, porque dependen del estado de tu negocio.",
+      note: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar. Crecimiento+ (desde $499 USD/mes) y Marketing Digital (desde $899 USD/mes) confirman su total tras la reunión inicial; la Auditoría Estratégica se cotiza tras esa reunión, porque depende del estado de tu negocio.",
       baseNote: "Los precios publicados corresponden al alcance base de cada servicio. El total puede variar según páginas, idiomas, contenido, integraciones o complejidad. Confirmamos el alcance y la inversión antes de iniciar.",
       quotedScopeNote:
-        "En los planes a cotizar, la cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Los honorarios de gestión no incluyen la inversión publicitaria, que pagas directo a Google o a Meta, ni herramientas externas con suscripción.",
+        "En Crecimiento+ y Marketing Digital, la cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Los honorarios de gestión no incluyen la inversión publicitaria, que pagas directo a Google o a Meta, ni herramientas externas con suscripción.",
       summaryTitle: "Desarrollo web",
       summarySubtitle:
         "Pago único por construir tu sitio. Precio base, para quién es y qué incluye; el detalle completo está en la página de cada servicio.",
@@ -668,7 +680,7 @@ export const translations = {
       // $349 y de ahí a $1,100 sin cambiar de proveedor.
       monthlyTitle: "Planes mensuales: mantenimiento web y SEO local",
       monthlySubtitle:
-        "El mantenimiento web mensual tiene precio publicado. Crecimiento+ y Marketing Digital se cotizan a tu negocio: primero una reunión inicial para conocerlo y un diagnóstico, y de ahí sale el alcance y el número.",
+        "Los tres planes tienen precio base publicado. En Crecimiento+ y Marketing Digital el total se confirma con tu negocio: primero una reunión inicial para conocerlo y un diagnóstico, y de ahí sale el alcance final.",
       monthlyNote:
         "Permanencia: ninguna en Soporte Web ni en Crecimiento+ — subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de 3 meses y, cumplido ese plazo, se cancela igual.",
       monthly: [
@@ -704,13 +716,13 @@ export const translations = {
         {
           badge: "Nuevo · Más recomendado",
           name: "Crecimiento+",
-          pricePrefix: "",
-          price: "",
-          quoteLabel: "Cotización a medida",
-          currency: "",
+          pricePrefix: "Desde",
+          price: "499",
+          quoteLabel: "",
+          currency: "USD / mes",
           currencyMonth: true,
           priceNote:
-            "Mensual · se define tras la reunión inicial y el diagnóstico",
+            "mensual · el total se confirma tras la reunión inicial y el diagnóstico",
           forWho: "Para que te encuentren en Google en tu zona",
           href: "digitalMarketing",
           commitmentNote: "",
@@ -728,19 +740,19 @@ export const translations = {
           ],
           cta: "Solicitar reunión inicial",
           waText:
-            "Hola Cristian, Me interesa el plan Crecimiento+ con Perfil de Empresa en Google, gestión de reseñas y SEO local. ¿Podemos agendar la reunión inicial para cotizarlo?",
+            "Hola Cristian, Me interesa el plan Crecimiento+ (desde $499 USD al mes) con Perfil de Empresa en Google, gestión de reseñas y SEO local. ¿Podemos agendar la reunión inicial?",
           highlighted: true,
         },
         {
           badge: "Plan completo · Captación",
           name: "Marketing Digital",
-          pricePrefix: "",
-          price: "",
-          quoteLabel: "Cotización a medida",
-          currency: "",
+          pricePrefix: "Desde",
+          price: "899",
+          quoteLabel: "",
+          currency: "USD / mes",
           currencyMonth: true,
           priceNote:
-            "Mensual · se define tras la reunión inicial y el diagnóstico",
+            "mensual · el total se confirma tras la reunión inicial y el diagnóstico",
           forWho: "Para captar de forma constante con SEO y anuncios",
           href: "digitalMarketing",
           commitmentNote:
@@ -758,7 +770,7 @@ export const translations = {
           ],
           cta: "Solicitar reunión inicial",
           waText:
-            "Hola Cristian, Me interesa el plan de Marketing Digital: campañas, SEO completo y reporte mensual. ¿Podemos agendar la reunión inicial para cotizarlo?",
+            "Hola Cristian, Me interesa el plan de Marketing Digital (desde $899 USD al mes): campañas, SEO completo y reporte mensual. ¿Podemos agendar la reunión inicial?",
           highlighted: false,
         },
       ],
@@ -916,7 +928,7 @@ export const translations = {
         {
           question: "¿Qué diferencia hay entre Soporte Web y Crecimiento+?",
           answer:
-            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, gestión de reseñas, SEO local y contenido e información del negocio pensados para buscadores y respuestas con IA. Uno cuida lo que ya tienes; el otro trabaja para que más clientes te encuentren. Crecimiento+ no lleva precio de lista porque el trabajo cambia según en qué estado esté tu presencia digital: se cotiza tras la reunión inicial y la auditoría.",
+            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, gestión de reseñas, SEO local y contenido e información del negocio pensados para buscadores y respuestas con IA. Uno cuida lo que ya tienes; el otro trabaja para que más clientes te encuentren. Crecimiento+ empieza desde $499 USD al mes; el total final depende de en qué estado esté tu presencia digital y se confirma tras la reunión inicial y la auditoría.",
         },
         {
           question: "¿Los planes mensuales tienen contrato de permanencia?",
@@ -1181,7 +1193,7 @@ export const translations = {
       services: {
         title: "Servicios de Desarrollo Web y Marketing | ProCode",
         description:
-          "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación cotizados a tu negocio.",
+          "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación desde $499 USD al mes.",
         keywords:
           "servicios de desarrollo web y marketing digital, servicios de desarrollo web, servicios de diseño web, diseño web y marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, desarrollo web para negocios, marketing digital para negocios, diseño web y posicionamiento",
         heroTitleA: "Servicios de desarrollo web y",
@@ -1362,6 +1374,14 @@ export const translations = {
         "No 12-month contracts",
         "Bilingual English/Spanish",
       ],
+    },
+    valueProp: {
+      eyebrow: "// what ProCode does",
+      before:
+        "ProCode helps service businesses in Mexico and the United States explain what they offer more clearly and turn their digital presence into a clear path to",
+      highlight: "calls, messages and appointments",
+      after: ", with website, forms, booking and tracking connected.",
+      pillars: ["Website", "Forms", "Booking", "Tracking"],
     },
     values: {
       eyebrow: "// the system, piece by piece",
@@ -1566,6 +1586,7 @@ export const translations = {
       subtitle:
         "A selection of professional websites for small businesses that wanted to look sharper and capture better. Click to see them live.",
       viewProject: "View project",
+      viewLive: "View Live Site",
       resultLabel: "Result",
       challengeLabel: "The need",
       workLabel: "ProCode's work",
@@ -1728,10 +1749,10 @@ export const translations = {
       },
       extrasTitle: "Add-on services",
       extrasSubtitle: "Extras to keep your site growing and up to date.",
-      note: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting. Growth+, Digital Marketing and the Strategic Audit are quoted after the first meeting, because they depend on where your business stands.",
+      note: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting. Growth+ (from $499 USD/mo) and Digital Marketing (from $899 USD/mo) confirm their total after the first meeting; the Strategic Audit is quoted after that meeting, because it depends on where your business stands.",
       baseNote: "Published prices cover each service's base scope. The total can vary with pages, languages, content, integrations or complexity. We confirm scope and investment before starting.",
       quotedScopeNote:
-        "For quoted plans, the quantity, frequency, platforms and deliverables are set in the approved proposal. Management fees do not include ad spend, which you pay directly to Google or Meta, or external subscription tools.",
+        "For Growth+ and Digital Marketing, the quantity, frequency, platforms and deliverables are set in the approved proposal. Management fees do not include ad spend, which you pay directly to Google or Meta, or external subscription tools.",
       summaryTitle: "Web development",
       summarySubtitle:
         "A one-time payment to build your site. Base price, who it is for and what it includes; the full detail lives on each service page.",
@@ -1755,7 +1776,7 @@ export const translations = {
       // without ever changing vendors.
       monthlyTitle: "Monthly plans: website maintenance and local SEO",
       monthlySubtitle:
-        "Monthly website maintenance has published pricing. Growth+ and Digital Marketing are quoted to your business: a first meeting to understand it, a diagnosis, and the scope and the number come out of that.",
+        "All three plans have a published base price. For Growth+ and Digital Marketing the total is confirmed with your business: a first meeting to understand it, a diagnosis, and the final scope comes out of that.",
       monthlyNote:
         "Lock-in: none on Web Support or Growth+ — move up, down or cancel from one month to the next. Digital Marketing asks for a 3-month minimum and, once that's met, cancels the same way.",
       monthly: [
@@ -1791,13 +1812,13 @@ export const translations = {
         {
           badge: "New · Most recommended",
           name: "Growth+",
-          pricePrefix: "",
-          price: "",
-          quoteLabel: "Custom quote",
-          currency: "",
+          pricePrefix: "From",
+          price: "499",
+          quoteLabel: "",
+          currency: "USD / mo",
           currencyMonth: true,
           priceNote:
-            "Monthly · set after the first meeting and the diagnosis",
+            "monthly · total confirmed after the first meeting and the diagnosis",
           forWho: "For getting found on Google in your area",
           href: "digitalMarketing",
           commitmentNote: "",
@@ -1815,19 +1836,19 @@ export const translations = {
           ],
           cta: "Request a first meeting",
           waText:
-            "Hi Cristian, I'm interested in the Growth+ plan with Google Business Profile, review management and local SEO. Can we book the first meeting to quote it?",
+            "Hi Cristian, I'm interested in the Growth+ plan (from $499 USD/mo) with Google Business Profile, review management and local SEO. Can we book the first meeting?",
           highlighted: true,
         },
         {
           badge: "Full plan · Acquisition",
           name: "Digital Marketing",
-          pricePrefix: "",
-          price: "",
-          quoteLabel: "Custom quote",
-          currency: "",
+          pricePrefix: "From",
+          price: "899",
+          quoteLabel: "",
+          currency: "USD / mo",
           currencyMonth: true,
           priceNote:
-            "Monthly · set after the first meeting and the diagnosis",
+            "monthly · total confirmed after the first meeting and the diagnosis",
           forWho: "For steady lead flow from SEO and ads",
           href: "digitalMarketing",
           commitmentNote:
@@ -1845,7 +1866,7 @@ export const translations = {
           ],
           cta: "Request a first meeting",
           waText:
-            "Hi Cristian, I'm interested in the Digital Marketing plan: campaigns, full SEO and the monthly report. Can we book the first meeting to quote it?",
+            "Hi Cristian, I'm interested in the Digital Marketing plan (from $899 USD/mo): campaigns, full SEO and the monthly report. Can we book the first meeting?",
           highlighted: false,
         },
       ],
@@ -2002,7 +2023,7 @@ export const translations = {
         {
           question: "What's the difference between Web Support and Growth+?",
           answer:
-            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile, review management, local SEO, and content and business information prepared for search engines and AI answers. One protects what you have; the other works to get more clients to find you. Growth+ carries no list price because the work depends on where your digital presence stands: it is quoted after the first meeting and the audit.",
+            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile, review management, local SEO, and content and business information prepared for search engines and AI answers. One protects what you have; the other works to get more clients to find you. Growth+ starts from $499 USD/mo; the final total depends on where your digital presence stands and is confirmed after the first meeting and the audit.",
         },
         {
           question: "Do the monthly plans have a lock-in contract?",
@@ -2254,7 +2275,7 @@ export const translations = {
       services: {
         title: "Web Development & Digital Marketing | ProCode Dev",
         description:
-          "Web development and digital marketing services for small businesses: custom websites from $349 USD and lead generation plans quoted to your business.",
+          "Web development and digital marketing services for small businesses: custom websites from $349 USD and lead generation plans from $499 USD/mo.",
         keywords:
           "web development and digital marketing services, web development services for small business, website design and marketing services, small business web development, small business digital marketing services, local SEO services for small businesses, conversion-focused design",
         heroTitleA: "Web development and",
