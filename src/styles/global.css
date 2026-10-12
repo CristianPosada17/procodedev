@@ -835,3 +835,259 @@ section {
         animation: none !important;
     }
 }
+
+/* ============================================================
+   PORTAFOLIO (octubre de 2026)
+   ------------------------------------------------------------
+   Tarjetas con captura en marco de navegador. Al pasar el cursor:
+   la tarjeta sube, el borde se ilumina, la captura se acerca y
+   aparece el botón «Ver sitio publicado» sobre ella.
+   ============================================================ */
+.pf-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(20px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+.pf-card:hover,
+.pf-card:focus-within {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--brand) 55%, var(--border-strong));
+    box-shadow:
+        var(--shadow-media),
+        0 0 0 1px color-mix(in srgb, var(--brand) 25%, transparent),
+        0 30px 70px -40px color-mix(in srgb, var(--brand) 70%, transparent);
+}
+/* La animación del reveal usa transform: al terminar, el hover manda. */
+.pf-card.reveal.is-visible:hover {
+    transform: translateY(-6px);
+}
+.pf-card-cta {
+    min-height: 100%;
+    border-style: dashed;
+    border-color: var(--border-strong);
+    background:
+        radial-gradient(70% 60% at 50% 0%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 70%),
+        color-mix(in srgb, var(--surface) 60%, transparent);
+}
+
+/* Marco de navegador sobre la captura */
+.pf-shot {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+.pf-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+}
+.pf-dots {
+    display: inline-flex;
+    gap: 0.35rem;
+}
+.pf-dots i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--border-strong);
+}
+.pf-url {
+    flex: 1;
+    max-width: 22rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 999px;
+    padding: 0.15rem 0.75rem;
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    color: var(--muted);
+}
+.pf-img {
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.group:hover .pf-img,
+.pf-shot:focus-visible .pf-img,
+.pf-case-media:focus-visible .pf-img {
+    transform: scale(1.05);
+}
+.pf-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    background: linear-gradient(to top, rgba(2, 6, 23, 0.72), rgba(2, 6, 23, 0.1) 55%, transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+.pf-overlay-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.7rem 1.25rem;
+    background: #fff;
+    color: #0f172a;
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.6);
+    transform: translateY(12px);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pf-shot:hover .pf-overlay,
+.pf-shot:focus-visible .pf-overlay,
+.pf-case-media:hover .pf-overlay,
+.pf-case-media:focus-visible .pf-overlay {
+    opacity: 1;
+}
+.pf-shot:hover .pf-overlay-btn,
+.pf-shot:focus-visible .pf-overlay-btn,
+.pf-case-media:hover .pf-overlay-btn,
+.pf-case-media:focus-visible .pf-overlay-btn {
+    transform: none;
+}
+.pf-arrow {
+    transition: transform 0.3s ease;
+}
+.group:hover .pf-arrow,
+.pf-live-btn:hover .pf-arrow {
+    transform: translate(3px, -3px);
+}
+.pf-live-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: currentColor;
+    box-shadow: 0 0 0 0 currentColor;
+    animation: pf-pulse 2s ease-out infinite;
+}
+@keyframes pf-pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 60%, transparent); }
+    100% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* Caso por industria: captura grande + lectura del caso */
+.pf-case {
+    display: grid;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(20px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+@media (min-width: 1024px) {
+    .pf-case {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+    }
+}
+.pf-case:hover {
+    border-color: color-mix(in srgb, var(--brand) 45%, var(--border-strong));
+    box-shadow: 0 30px 70px -45px color-mix(in srgb, var(--brand) 70%, transparent);
+}
+.pf-case-media {
+    display: block;
+    height: 100%;
+    padding: 0;
+    background: var(--bg-2);
+}
+@media (min-width: 1024px) {
+    .pf-case-media {
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+    }
+    .pf-case-media .pf-shot {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-media);
+        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .pf-case:hover .pf-case-media .pf-shot {
+        transform: translateY(-4px) rotate(-0.4deg);
+    }
+}
+.pf-live-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-strong);
+    background: var(--tint);
+    padding: 0.65rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text);
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+.pf-live-btn:hover {
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+}
+
+/* Atajos a cada industria */
+.pf-chip {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.pf-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 10%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-card,
+    .pf-card:hover,
+    .pf-card.reveal.is-visible:hover,
+    .pf-chip:hover,
+    .pf-img,
+    .group:hover .pf-img,
+    .pf-overlay-btn,
+    .pf-case:hover .pf-case-media .pf-shot {
+        transform: none !important;
+        transition: none !important;
+    }
+    .pf-live-dot {
+        animation: none;
+    }
+}
+
+/* Botón del formulario simple del portafolio: más alto y con brillo, para
+   que sea lo más visible del cierre. */
+.btn-cta.pf-submit {
+    min-height: 58px;
+    font-size: 1.05rem;
+    box-shadow: 0 18px 40px -16px color-mix(in srgb, var(--brand) 85%, transparent);
+}

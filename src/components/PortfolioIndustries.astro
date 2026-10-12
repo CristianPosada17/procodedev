@@ -1,0 +1,231 @@
+---
+/*
+  Detalle del portafolio por industria (octubre de 2026). Aquí sí se explica
+  a fondo cada proyecto: qué es el negocio, qué necesitaba, qué hicimos y
+  cómo lo ayudamos. Solo con lo documentado: nada de cifras inventadas;
+  si un proyecto tiene `result`, aparece solo.
+
+  Las industrias son los giros de src/i18n/segments.ts, en el orden de
+  INDUSTRY_ORDER; un giro sin proyectos no se muestra. Cada bloque enlaza a
+  la página de su giro.
+*/
+import { translations, PAGES, type Lang, type SegmentKey } from "../i18n/ui";
+import { getSegment } from "../i18n/segments";
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const p = translations[lang].portfolio;
+
+// Primero los giros con clientes reales; los que solo tienen demo, al final.
+const INDUSTRY_ORDER: SegmentKey[] = ["accounting", "contractors", "health", "professional", "realEstate"];
+const ORDER = { client: 0, own: 1, demo: 2 } as Record<string, number>;
+const industries = INDUSTRY_ORDER.map((key) => ({
+  key,
+  seg: getSegment(lang, key),
+  href: PAGES[key][lang],
+  projects: p.projects
+    .filter((proj) => proj.industry === key)
+    .sort((a, b) => (ORDER[a.kind] ?? 0) - (ORDER[b.kind] ?? 0)),
+})).filter((ind) => ind.projects.length > 0);
+
+const domainOf = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+};
+const base = (img: string) => img.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+const srcset = (img: string, ext: string) =>
+  [400, 800, 1200].map((w) => `${base(img)}-${w}.${ext} ${w}w`).join(", ");
+const SIZES = "(min-width: 1024px) 52vw, 94vw";
+const statusLabel = (kind: string) =>
+  kind === "demo" ? p.demoLabel : kind === "own" ? p.ownLabel : p.liveLabel;
+const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+---
+
+<section id="industrias" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={p.industriesEyebrow}>
+      <Fragment slot="title">
+        {p.industriesTitleA}{" "}<span class="grad-text">{p.industriesHighlight}</span>
+      </Fragment>
+      <Fragment slot="subtitle">{p.industriesSubtitle}</Fragment>
+    </SectionHeading>
+
+    {/* Atajos a cada industria */}
+    <nav aria-label={p.industryNavLabel} class="reveal mt-8 flex flex-wrap gap-2.5">
+      {
+        industries.map((ind) => (
+          <a href={`#industria-${ind.key}`} class="pf-chip">
+            <Icon name={ind.seg.icon as any} class="h-4 w-4 text-[var(--accent)]" />
+            {ind.seg.navLabel}
+            <span class="font-mono text-[11px] text-[var(--muted)]">{ind.projects.length}</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="mt-12 grid gap-16 lg:mt-16 lg:gap-24">
+      {
+        industries.map((ind) => (
+          <div id={`industria-${ind.key}`} class="scroll-mt-28">
+            <div class="reveal flex flex-wrap items-end justify-between gap-4 border-b border-[color:var(--border)] pb-5">
+              <div class="flex items-center gap-4">
+                <span class="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)]">
+                  <Icon name={ind.seg.icon as any} class="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 class="text-2xl font-bold tracking-tight text-[var(--text)] lg:text-3xl">{ind.seg.navLabel}</h3>
+                  <p class="mt-1 text-sm text-[var(--muted)]">
+                    {ind.projects.length} {ind.projects.length === 1 ? p.projectCount : p.projectsCount}
+                  </p>
+                </div>
+              </div>
+              <a
+                href={ind.href}
+                class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] underline-offset-4 transition hover:underline"
+              >
+                {p.industryLink} {lower(ind.seg.navLabel)}
+                <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            </div>
+
+            <div class="mt-8 grid gap-8 lg:gap-10">
+              {ind.projects.map((proj, j) => {
+                const domain = domainOf(proj.url);
+                return (
+                  <article class="pf-case reveal group">
+                    <a
+                      href={proj.url}
+                      target="_blank"
+                      rel="noopener"
+                      data-cta={`portafolio-sitio-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
+                      aria-label={`${p.viewLive}: ${proj.name}`}
+                      class:list={["pf-case-media", j % 2 === 1 && "lg:order-2"]}
+                    >
+                      <span class="pf-shot block">
+                        <span class="pf-chrome" aria-hidden="true">
+                          <span class="pf-dots"><i></i><i></i><i></i></span>
+                          <span class="pf-url">{domain}</span>
+                        </span>
+                        <span class="relative block aspect-[2/1] overflow-hidden bg-[var(--bg-2)]">
+                          <picture>
+                            <source type="image/avif" sizes={SIZES} srcset={srcset(proj.image, "avif")} />
+                            <source type="image/webp" sizes={SIZES} srcset={srcset(proj.image, "webp")} />
+                            <img
+                              src={`${base(proj.image)}-800.webp`}
+                              alt={`${p.imageAltPrefix} ${proj.name}`}
+                              loading="lazy"
+                              decoding="async"
+                              width="1200"
+                              height="600"
+                              class="pf-img h-full w-full object-cover object-top"
+                            />
+                          </picture>
+                          <span class="pf-overlay" aria-hidden="true">
+                            <span class="pf-overlay-btn">
+                              {p.viewLive}
+                              <Icon name="arrow-up-right" class="h-4 w-4" />
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                    </a>
+
+                    <div class="p-6 sm:p-8 lg:p-10">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span
+                          class:list={[
+                            "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider",
+                            proj.kind === "client"
+                              ? "border-[color:var(--ok)]/40 text-[var(--ok)]"
+                              : "border-[color:var(--border-strong)] text-[var(--muted)]",
+                          ]}
+                        >
+                          {proj.kind === "client" && <span class="pf-live-dot" aria-hidden="true" />}
+                          {statusLabel(proj.kind)}
+                        </span>
+                        {proj.kind !== "demo" && proj.location !== statusLabel(proj.kind) && (
+                          <span class="inline-flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                            <Icon name="map-pin" class="h-3.5 w-3.5 text-[var(--accent)]" />
+                            {proj.location}
+                          </span>
+                        )}
+                      </div>
+
+                      <h4 class="mt-4 text-2xl font-bold tracking-tight text-[var(--text)]">{proj.name}</h4>
+
+                      <dl class="mt-6 grid gap-5 text-[15px] leading-7">
+                        <div>
+                          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">{p.businessLabel}</dt>
+                          <dd class="mt-1 text-[var(--text)]/90">{proj.business}</dd>
+                        </div>
+                        <div>
+                          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">{p.challengeLabel}</dt>
+                          <dd class="mt-1 text-[var(--text)]/90">{proj.challenge}</dd>
+                        </div>
+                        <div>
+                          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">{p.workLabel}</dt>
+                          <dd class="mt-1 text-[var(--text)]/90">{proj.work}</dd>
+                        </div>
+                        <div>
+                          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">{p.improvementsLabel}</dt>
+                          <dd>
+                            <ul class="mt-3 grid gap-2.5">
+                              {proj.improvements.map((item) => (
+                                <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/15 text-[var(--accent)]">
+                                    <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.4} />
+                                  </span>
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </dd>
+                        </div>
+                      </dl>
+
+                      {proj.result && (
+                        <p class="mt-6 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--brand)]/[0.07] px-4 py-3 text-sm leading-6 text-[var(--text)]/90">
+                          <span class="mr-1.5 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]">
+                            {p.resultLabel}
+                          </span>
+                          {proj.result}
+                        </p>
+                      )}
+
+                      <div class="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-[color:var(--border)] pt-6">
+                        <div class="flex flex-wrap gap-2">
+                          {proj.tags.map((tag) => (
+                            <span class="rounded-full border border-[color:var(--border)] px-2.5 py-1 text-[11px] text-[var(--muted)]">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <a
+                          href={proj.url}
+                          target="_blank"
+                          rel="noopener"
+                          data-cta={`portafolio-detalle-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
+                          class="pf-live-btn"
+                        >
+                          {p.viewLive}
+                          <Icon name="arrow-up-right" class="pf-arrow h-4 w-4" />
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

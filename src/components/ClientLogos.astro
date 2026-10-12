@@ -88,7 +88,7 @@ const duration = Math.round(logos.length * SETS * 3.6);
         track.map((logo, i) => (
           <img
             src={logo.src}
-            alt={i < logos.length ? `Logo de ${logo.name}` : ""}
+            alt={i < logos.length ? `${lang === "en" ? "Logo of" : "Logo de"} ${logo.name}` : ""}
             aria-hidden={i >= logos.length ? "true" : undefined}
             loading="lazy"
             decoding="async"

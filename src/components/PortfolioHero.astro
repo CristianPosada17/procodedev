@@ -1,0 +1,30 @@
+---
+/*
+  Hero de /portafolio/ (octubre de 2026): solo título y una descripción
+  breve. Lo primero que se ve debajo son los proyectos, no una columna
+  decorativa: el visitante vino a ver trabajo, no a leer sobre él.
+*/
+import { translations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const p = translations[lang].portfolio;
+---
+
+<section class="relative overflow-hidden pb-4 pt-10 lg:pb-8 lg:pt-20">
+  <div class="lt-hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]" aria-hidden="true"></div>
+  {/* Above-the-fold sin `.reveal`: el H1 no depende de JS (hallazgo #14). */}
+  <div class="hero-in relative mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6">
+    <span class="eyebrow">{p.eyebrow}</span>
+    <h1
+      class="mt-5 text-[2.4rem] font-bold leading-[1.08] tracking-tight text-[var(--text)] sm:text-[3.2rem] lg:text-[4rem]"
+    >
+      {p.heroTitleA}{" "}<span class="grad-text">{p.heroHighlight}</span>
+    </h1>
+    <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+      {p.heroLead}
+    </p>
+  </div>
+</section>

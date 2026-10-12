@@ -38,8 +38,11 @@ interface Props {
   };
   /** Nombre del servicio que viaja en el correo. Sin él, es /contacto. */
   service?: string;
+  /** Versión corta y centrada (portafolio): título, dos campos y un botón
+   *  grande, sin la columna de ventajas ni la de alternativas. */
+  simple?: boolean;
 }
-const { lang = "es", page, heading, service } = Astro.props as Props;
+const { lang = "es", page, heading, service, simple = false } = Astro.props as Props;
 const t = translations[lang];
 const c = t.contact;
 const h = heading ?? c;
@@ -150,7 +153,12 @@ const script = `
 <section id="contacto" class="relative scroll-mt-24 py-12 lg:py-20" aria-labelledby="contacto-title">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <div
-      class="reveal mx-auto grid max-w-6xl gap-10 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:p-12"
+      class:list={[
+        "reveal mx-auto grid rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] backdrop-blur-xl",
+        simple
+          ? "max-w-3xl gap-8 bg-gradient-to-br from-[var(--brand)]/20 via-[var(--surface)]/60 to-[var(--bg-2)] p-6 text-center sm:p-10 lg:p-14"
+          : "max-w-6xl gap-10 bg-[var(--surface)]/60 p-6 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:p-12",
+      ]}
     >
       <div class="min-w-0">
         <span class="eyebrow">{h.eyebrow}</span>
@@ -160,8 +168,9 @@ const script = `
         >
           {h.titleA}{" "}<span class="grad-text">{h.titleHighlight}</span>
         </h2>
-        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{h.subtitle}</p>
+        <p class:list={["mt-5 text-base leading-8 text-[var(--muted)]", simple && "mx-auto max-w-xl"]}>{h.subtitle}</p>
 
+        {!simple && (<Fragment>
         <ul class="mt-7 grid gap-3">
           {
             c.perks.map((perk) => (
@@ -195,12 +204,16 @@ const script = `
             <span class="select-all">{CONTACT.email}</span>
           </p>
         </div>
+        </Fragment>)}
       </div>
 
       <form
         id="lead-form"
         data-form={formName}
-        class="min-w-0 self-start rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7"
+        class:list={[
+          "min-w-0 self-start rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7",
+          simple && "text-left",
+        ]}
       >
         {/* Lo rellena el botón de la tarjeta de paquete que trajo aquí; no
             viaja a Reach, solo al evento generate_lead de GA4. */}
@@ -225,7 +238,7 @@ const script = `
           <span id="lead-plan-chip-text" class="font-bold"></span>
         </p>
 
-        <div class="grid gap-5">
+        <div class:list={["grid gap-5", simple && "sm:grid-cols-2"]}>
           <label class="grid gap-2">
             <span class="text-sm font-medium text-[var(--text)]">{c.fieldName}</span>
             <input
@@ -251,7 +264,7 @@ const script = `
             />
           </label>
 
-          <label class="flex items-start gap-3 text-xs leading-6 text-[var(--muted)]">
+          <label class:list={["flex items-start gap-3 text-xs leading-6 text-[var(--muted)]", simple && "sm:col-span-2"]}>
             <input
               type="checkbox"
               name="consent"
@@ -261,12 +274,12 @@ const script = `
             <span>{c.consent}</span>
           </label>
 
-          <button id="lead-submit" type="submit" class="btn-cta w-full">
+          <button id="lead-submit" type="submit" class:list={["btn-cta w-full", simple && "pf-submit sm:col-span-2"]}>
             {c.submit}
           </button>
 
-          <p id="lead-status" class="hidden text-sm" role="status" aria-live="polite"></p>
-          <p class="text-xs leading-6 text-[var(--muted)]">
+          <p id="lead-status" class:list={["hidden text-sm", simple && "sm:col-span-2"]} role="status" aria-live="polite"></p>
+          <p class:list={["text-xs leading-6 text-[var(--muted)]", simple && "sm:col-span-2"]}>
             {c.privacy}{" "}
             <a href={PAGES.privacy[lang]} class="underline underline-offset-2 hover:text-[var(--accent)]">
               {c.privacyLink}

@@ -486,6 +486,35 @@ export const translations = {
       workLabel: "Trabajo de ProCode",
       imageAltPrefix: "Captura del sitio web de",
       cta: "Quiero una página web para mi negocio",
+      // Rediseño de /portafolio/ (octubre de 2026): hero breve → todos los
+      // proyectos → logos → detalle por industria → formulario.
+      heroTitleA: "Proyectos que ya",
+      heroHighlight: "trabajan por sus negocios",
+      heroLead:
+        "Negocios reales en Estados Unidos y México que hoy atienden clientes desde su página web. Ábrelos en vivo y juzga el trabajo antes de escribirnos.",
+      overviewLabel: "Todos los proyectos",
+      liveLabel: "En vivo",
+      demoLabel: "Demo",
+      ownLabel: "Proyecto propio",
+      yourCardTitle: "Tu negocio puede ser el siguiente",
+      yourCardBody: "Cuéntanos qué vendes y a quién. Te respondemos con una propuesta clara, sin compromiso.",
+      yourCardCta: "Quiero mi página web",
+      industriesEyebrow: "// por industria",
+      industriesTitleA: "Qué hicimos en cada negocio",
+      industriesHighlight: "y cómo los ayudamos",
+      industriesSubtitle:
+        "Elige tu industria: el reto de cada cliente, el trabajo que hicimos y lo que mejoró con su nuevo sitio.",
+      industryNavLabel: "Ir a la industria",
+      businessLabel: "El negocio",
+      improvementsLabel: "Cómo los ayudamos",
+      industryLink: "Ver cómo trabajamos con",
+      projectsCount: "proyectos",
+      projectCount: "proyecto",
+      formEyebrow: "// tu proyecto",
+      formTitleA: "¿Quieres resultados así para",
+      formHighlight: "tu negocio?",
+      formSubtitle:
+        "Déjanos tu nombre y correo. Te escribimos en menos de 24 horas para entender tu negocio y proponerte el siguiente paso.",
       clientsTitle: "Clientes reales",
       clientsNote: "Ejemplos de sitios web para negocios que están en vivo: casos de sitios web pymes con clientes atendiendo por ellos hoy.",
       demosTitle: "Demos y conceptos",
@@ -505,6 +534,16 @@ export const translations = {
           challenge: "Explicar cada trámite a dueños de negocio hispanos, en su idioma, antes de la primera llamada.",
           work: "Desarrollo del sitio bilingüe: ocho servicios con ficha, guía gratuita, WhatsApp, preguntas frecuentes y SEO local.",
           tags: ["Sitio web", "Contabilidad", "Bilingüe"],
+          industry: "accounting",
+          location: "Cincinnati, Ohio · EE. UU.",
+          business:
+            "Despacho de contabilidad, bookkeeping y nómina para pequeños negocios hispanos en Ohio.",
+          improvements: [
+            "Ocho servicios con ficha propia: el cliente encuentra su trámite sin llamar a preguntar.",
+            "Español e inglés en el mismo sitio, para el dueño de negocio hispano en Estados Unidos.",
+            "WhatsApp directo y una guía gratuita que convierte visitas en prospectos con nombre y correo.",
+            "Preguntas frecuentes del giro (LLC, EIN, 1099) y SEO local con datos estructurados para Google.",
+          ],
         },
         {
           id: "izcalli",
@@ -519,6 +558,16 @@ export const translations = {
           challenge: "Mostrar años de obra entregada que solo existían en fotos sueltas.",
           work: "Primero, correo profesional, automatizaciones y soporte técnico. Después, el sitio institucional con nueve obras con ficha propia.",
           tags: ["Sitio web", "Construcción", "Portafolio de obra"],
+          industry: "contractors",
+          location: "Durango · México",
+          business:
+            "Constructora con años de obra entregada: ingeniería, ejecución y proyectos institucionales.",
+          improvements: [
+            "Nueve obras construidas con ficha propia: la prueba que pide quien va a confiar un proyecto grande.",
+            "Datos formales a la vista —razón social, representante legal, dirección y teléfono—.",
+            "Correo profesional, automatizaciones y soporte técnico antes y después del lanzamiento.",
+            "Contacto directo desde cualquier punto del sitio.",
+          ],
         },
         {
           id: "fersilva",
@@ -533,6 +582,15 @@ export const translations = {
           challenge: "Dejar de explicar su servicio por mensaje una y otra vez.",
           work: "Sitio web con los servicios explicados y agenda de citas en línea.",
           tags: ["Sitio web", "Salud", "Captación"],
+          industry: "health",
+          location: "Consulta en línea y presencial",
+          business:
+            "Nutrióloga con consulta privada que atiende pacientes en línea y en consultorio.",
+          improvements: [
+            "Servicios explicados con lo que incluyen y cuánto duran: menos mensajes repitiendo lo mismo.",
+            "Agenda en línea para que el paciente elija horario sin tener que preguntar.",
+            "Formación y enfoque visibles, porque en salud la confianza se decide antes del primer contacto.",
+          ],
         },
         {
           id: "cristian-posada",
@@ -547,6 +605,15 @@ export const translations = {
           challenge: "Reunir trayectoria y proyectos en un solo lugar.",
           work: "Sitio propio del fundador: no es un proyecto de cliente.",
           tags: ["Marca personal", "Branding", "Conversión"],
+          industry: "professional",
+          location: "Proyecto propio",
+          business:
+            "Marca personal del fundador de ProCode: desarrollo web, proyectos y contenido.",
+          improvements: [
+            "Autoridad demostrable —proyectos, trayectoria y contenido— en vez de adjetivos.",
+            "Un solo hub al que apuntan todos los enlaces de redes.",
+            "Contacto que abre WhatsApp con el mensaje ya redactado.",
+          ],
         },
         {
           id: "trejo",
@@ -561,6 +628,16 @@ export const translations = {
           challenge: "Recibir solicitudes de cotización sin tener que perseguir a cada cliente.",
           work: "Sitio de servicios con captación de solicitudes de cotización.",
           tags: ["Sitio web", "Servicios", "Negocio local"],
+          industry: "contractors",
+          location: "Salinas, California · EE. UU.",
+          business:
+            "Empresa de jardinería y paisajismo residencial y comercial en la costa central de California.",
+          improvements: [
+            "Botón «Get a Quote» visible en todo el sitio para pedir cotización sin perseguir a nadie.",
+            "Proyectos destacados con fotos y reseñas de clientes reales para generar confianza.",
+            "Servicios, blog y redes sociales conectados en un solo lugar.",
+            "WhatsApp y chat en vivo para responder rápido a quien está por contratar.",
+          ],
         },
         {
           id: "demo-inmobiliaria",
@@ -575,6 +652,15 @@ export const translations = {
           challenge: "Concepto para mostrar qué necesita un asesor inmobiliario. No es cliente.",
           work: "Demo con catálogo de propiedades, fichas, agenda de llamadas y WhatsApp.",
           tags: ["Sitio web", "Inmobiliaria", "Catálogo"],
+          industry: "realEstate",
+          location: "Demo",
+          business:
+            "Concepto de sitio para una asesora inmobiliaria independiente.",
+          improvements: [
+            "Ficha propia por propiedad, con galería, características y mapa.",
+            "Filtros por zona, precio y tipo de operación.",
+            "Captación directa del prospecto por WhatsApp y agenda de llamadas.",
+          ],
         },
         {
           id: "demo-taxpro",
@@ -589,6 +675,15 @@ export const translations = {
           challenge: "Concepto para mostrar qué necesita un despacho contable y fiscal. No es cliente.",
           work: "Demo bilingüe con servicios, agenda de consulta y captación.",
           tags: ["Sitio web", "Bilingüe", "Servicios profesionales"],
+          industry: "accounting",
+          location: "Demo",
+          business:
+            "Concepto de sitio bilingüe para un despacho fiscal en Houston, Texas.",
+          improvements: [
+            "Servicios fiscales para personas y pequeños negocios explicados en inglés y español.",
+            "Botón de consulta gratuita presente en cada sección.",
+            "Credenciales y reseñas al frente para generar confianza desde el primer vistazo.",
+          ],
         },
       ],
     },
@@ -1597,6 +1692,33 @@ export const translations = {
       demosNote:
         "Projects I built on my own to show what's possible in each sector. They're not clients: I label them as demos so there's no confusion.",
       cta: "I want a website like this for my business",
+      heroTitleA: "Projects already",
+      heroHighlight: "working for their businesses",
+      heroLead:
+        "Real businesses in the U.S. and Mexico serving clients through their website today. Open them live and judge the work before reaching out.",
+      overviewLabel: "All projects",
+      liveLabel: "Live",
+      demoLabel: "Demo",
+      ownLabel: "Own project",
+      yourCardTitle: "Your business could be next",
+      yourCardBody: "Tell us what you sell and to whom. We'll reply with a clear proposal, no strings attached.",
+      yourCardCta: "I want my website",
+      industriesEyebrow: "// by industry",
+      industriesTitleA: "What we did for each business",
+      industriesHighlight: "and how we helped",
+      industriesSubtitle:
+        "Pick your industry: each client's challenge, the work we did and what improved with their new site.",
+      industryNavLabel: "Jump to industry",
+      businessLabel: "The business",
+      improvementsLabel: "How we helped",
+      industryLink: "See how we work with",
+      projectsCount: "projects",
+      projectCount: "project",
+      formEyebrow: "// your project",
+      formTitleA: "Want results like these for",
+      formHighlight: "your business?",
+      formSubtitle:
+        "Leave your name and email. We'll write back within 24 hours to understand your business and suggest the next step.",
       projects: [
         {
           id: "miconta",
@@ -1611,6 +1733,16 @@ export const translations = {
           challenge: "Explaining every task to Hispanic business owners, in their language, before the first call.",
           work: "Built the bilingual site: eight services with their own cards, a free guide, WhatsApp, FAQs and local SEO.",
           tags: ["Website", "Accounting", "Bilingual"],
+          industry: "accounting",
+          location: "Cincinnati, Ohio · USA",
+          business:
+            "An accounting, bookkeeping and payroll firm for Hispanic small businesses in Ohio.",
+          improvements: [
+            "Eight services, each with its own page: clients find what they need without calling to ask.",
+            "English and Spanish on the same site, for Hispanic business owners in the U.S.",
+            "Direct WhatsApp and a free guide that turns visits into leads with a name and email.",
+            "Industry FAQs (LLC, EIN, 1099) and local SEO with structured data for Google.",
+          ],
         },
         {
           id: "izcalli",
@@ -1625,6 +1757,16 @@ export const translations = {
           challenge: "Showing years of delivered work that only existed as loose photos.",
           work: "First, professional email, automations and technical support. Later, the institutional site with nine projects, each with its own entry.",
           tags: ["Website", "Construction", "Project portfolio"],
+          industry: "contractors",
+          location: "Durango · Mexico",
+          business:
+            "A construction firm with years of delivered work: engineering, execution and institutional projects.",
+          improvements: [
+            "Nine built projects, each with its own entry: the proof anyone wants before handing over a big job.",
+            "Formal details in plain sight — legal name, legal representative, address and phone.",
+            "Professional email, automations and technical support before and after launch.",
+            "Direct contact from anywhere on the site.",
+          ],
         },
         {
           id: "fersilva",
@@ -1639,6 +1781,15 @@ export const translations = {
           challenge: "Stop explaining her service over chat again and again.",
           work: "A website with her services explained and online appointment booking.",
           tags: ["Website", "Health", "Lead capture"],
+          industry: "health",
+          location: "Online and in-office visits",
+          business:
+            "A nutritionist with a private practice seeing patients online and in person.",
+          improvements: [
+            "Services explained with what's included and how long they take: fewer repeat messages.",
+            "Online booking so patients pick a slot without having to ask.",
+            "Training and approach in plain sight, because in health trust is decided before first contact.",
+          ],
         },
         {
           id: "cristian-posada",
@@ -1653,6 +1804,15 @@ export const translations = {
           challenge: "Bringing background and projects together in one place.",
           work: "The founder's own site: not a client project.",
           tags: ["Personal brand", "Branding", "Conversion"],
+          industry: "professional",
+          location: "Own project",
+          business:
+            "The personal brand of ProCode's founder: web development, projects and content.",
+          improvements: [
+            "Demonstrable authority — projects, track record and content — instead of adjectives.",
+            "One hub every social link points to.",
+            "Contact that opens WhatsApp with the message already written.",
+          ],
         },
         {
           id: "trejo",
@@ -1667,6 +1827,16 @@ export const translations = {
           challenge: "Getting quote requests without chasing every client.",
           work: "A services site that captures quote requests.",
           tags: ["Website", "Services", "Local business"],
+          industry: "contractors",
+          location: "Salinas, California · USA",
+          business:
+            "A residential and commercial landscaping and gardening company on California's Central Coast.",
+          improvements: [
+            "A \"Get a Quote\" button visible across the site, so requests come in without chasing anyone.",
+            "Featured projects with photos and real client reviews that build trust.",
+            "Services, blog and social media connected in one place.",
+            "WhatsApp and live chat to reply fast to people ready to hire.",
+          ],
         },
         {
           id: "demo-inmobiliaria",
@@ -1681,6 +1851,15 @@ export const translations = {
           challenge: "A concept showing what a real estate agent needs. Not a client.",
           work: "A demo with a property catalog, listing pages, call booking and WhatsApp.",
           tags: ["Website", "Real estate", "Listings"],
+          industry: "realEstate",
+          location: "Demo",
+          business:
+            "A site concept for an independent real estate advisor.",
+          improvements: [
+            "Its own page per property, with gallery, features and map.",
+            "Filters by area, price and deal type.",
+            "Direct lead capture via WhatsApp and call booking.",
+          ],
         },
         {
           id: "demo-taxpro",
@@ -1695,6 +1874,15 @@ export const translations = {
           challenge: "A concept showing what an accounting and tax practice needs. Not a client.",
           work: "A bilingual demo with services, consultation booking and lead capture.",
           tags: ["Website", "Bilingual", "Professional services"],
+          industry: "accounting",
+          location: "Demo",
+          business:
+            "A bilingual site concept for a tax practice in Houston, Texas.",
+          improvements: [
+            "Tax services for individuals and small businesses explained in English and Spanish.",
+            "A free-consult button in every section.",
+            "Credentials and reviews up front to build trust at first glance.",
+          ],
         },
       ],
     },

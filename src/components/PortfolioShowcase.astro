@@ -1,0 +1,145 @@
+---
+/*
+  Primera vista de /portafolio/ (octubre de 2026): todos los proyectos
+  juntos, con captura grande, nombre y una línea de qué es el negocio. El
+  detalle (reto, trabajo, mejoras) vive más abajo, en PortfolioIndustries.
+
+  Cada tarjeta enlaza al sitio en vivo en pestaña nueva. Los demos y el
+  proyecto propio llevan su etiqueta para no leerse como clientes
+  (hallazgo #6). La última celda es una invitación al formulario.
+*/
+import { translations, type Lang } from "../i18n/ui";
+import { getSegment } from "../i18n/segments";
+import Icon from "./Icon.astro";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "es" } = Astro.props as Props;
+const p = translations[lang].portfolio;
+
+// Clientes primero, luego el proyecto propio y al final los demos.
+const ORDER = { client: 0, own: 1, demo: 2 } as Record<string, number>;
+const projects = [...p.projects].sort((a, b) => (ORDER[a.kind] ?? 0) - (ORDER[b.kind] ?? 0));
+
+const domainOf = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+};
+const base = (img: string) => img.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+const srcset = (img: string, ext: string) =>
+  [400, 800, 1200].map((w) => `${base(img)}-${w}.${ext} ${w}w`).join(", ");
+// Dos columnas desde lg: la captura mide casi media pantalla.
+const SIZES = "(min-width: 1024px) 46vw, 94vw";
+const statusLabel = (kind: string) =>
+  kind === "demo" ? p.demoLabel : kind === "own" ? p.ownLabel : p.liveLabel;
+---
+
+<section id="proyectos" class="relative pb-10 pt-6 lg:pb-16 lg:pt-10" aria-labelledby="proyectos-title">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <h2 id="proyectos-title" class="sr-only">{p.overviewLabel}</h2>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:gap-8">
+      {
+        projects.map((proj, i) => {
+          const domain = domainOf(proj.url);
+          const industry = getSegment(lang, proj.industry as any);
+          return (
+            <article class="pf-card reveal group" style={`--reveal-delay: ${(i % 2) * 90}ms`}>
+              <a
+                href={proj.url}
+                target="_blank"
+                rel="noopener"
+                data-cta={`portafolio-sitio-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
+                class="pf-shot block"
+                aria-label={`${p.viewLive}: ${proj.name}`}
+              >
+                <span class="pf-chrome" aria-hidden="true">
+                  <span class="pf-dots"><i></i><i></i><i></i></span>
+                  <span class="pf-url">{domain}</span>
+                </span>
+                <span class="relative block aspect-[2/1] overflow-hidden bg-[var(--bg-2)]">
+                  <picture>
+                    <source type="image/avif" sizes={SIZES} srcset={srcset(proj.image, "avif")} />
+                    <source type="image/webp" sizes={SIZES} srcset={srcset(proj.image, "webp")} />
+                    <img
+                      src={`${base(proj.image)}-800.webp`}
+                      alt={`${p.imageAltPrefix} ${proj.name}`}
+                      loading={i < 2 ? "eager" : "lazy"}
+                      decoding="async"
+                      width="1200"
+                      height="600"
+                      class="pf-img h-full w-full object-cover object-top"
+                    />
+                  </picture>
+                  <span class="pf-overlay" aria-hidden="true">
+                    <span class="pf-overlay-btn">
+                      {p.viewLive}
+                      <Icon name="arrow-up-right" class="h-4 w-4" />
+                    </span>
+                  </span>
+                </span>
+              </a>
+
+              <div class="flex flex-1 flex-col p-6 lg:p-7">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-[var(--brand)]/10 px-3 py-1 text-xs font-semibold text-[var(--accent)]">
+                    <Icon name={industry.icon as any} class="h-3.5 w-3.5" />
+                    {industry.navLabel}
+                  </span>
+                  <span
+                    class:list={[
+                      "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider",
+                      proj.kind === "client"
+                        ? "border-[color:var(--ok)]/40 text-[var(--ok)]"
+                        : "border-[color:var(--border-strong)] text-[var(--muted)]",
+                    ]}
+                  >
+                    {proj.kind === "client" && <span class="pf-live-dot" aria-hidden="true" />}
+                    {statusLabel(proj.kind)}
+                  </span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold tracking-tight text-[var(--text)] lg:text-2xl">
+                  {proj.name}
+                </h3>
+                <p class="mt-2 text-[15px] leading-7 text-[var(--muted)]">{proj.business}</p>
+                <div class="flex-1"></div>
+                <a
+                  href={proj.url}
+                  target="_blank"
+                  rel="noopener"
+                  tabindex="-1"
+                  class="pf-link mt-5 inline-flex items-center gap-2 self-start text-sm font-semibold text-[var(--accent)]"
+                >
+                  <Icon name="globe" class="h-4 w-4" />
+                  <span class="font-mono text-xs">{domain}</span>
+                  <Icon name="arrow-up-right" class="pf-arrow h-4 w-4" />
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+
+      {/* Celda final: el siguiente proyecto puede ser el del visitante. */}
+      <a
+        href="#contacto"
+        data-cta="portafolio-tarjeta-tu-negocio"
+        class="pf-card pf-card-cta reveal group items-center justify-center p-8 text-center lg:p-12"
+      >
+        <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)]/15 text-[var(--accent)] transition duration-300 group-hover:scale-110">
+          <Icon name="plus" class="h-7 w-7" />
+        </span>
+        <span class="mt-6 block text-2xl font-bold tracking-tight text-[var(--text)]">{p.yourCardTitle}</span>
+        <span class="mt-3 block max-w-sm text-[15px] leading-7 text-[var(--muted)]">{p.yourCardBody}</span>
+        <span class="btn-cta mt-7">
+          {p.yourCardCta}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
