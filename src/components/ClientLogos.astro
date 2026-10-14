@@ -8,11 +8,14 @@ const { lang = "es" } = Astro.props as Props;
 
 /*
   ── CÓMO AGREGAR UN LOGO NUEVO ──────────────────────────────────────────────
-  1. Guarda el archivo en  public/images/logos/  como .webp o .png,
+  1. Guarda el archivo en  public/images/logos/  como .webp o .png, a 2x la
+     altura con la que se muestra (p. ej. 128 px de alto para height: 64) —
+     PageSpeed marca los logos más grandes que eso —,
      con FONDO TRANSPARENTE y recortado sin márgenes vacíos.
      Si el logo viene sobre un cuadro blanco, hay que quitarle ese blanco:
      aquí se pintan en un solo color y un fondo blanco se convierte en mancha.
-  2. Copia uno de los bloques de abajo y cambia name / src / height.
+  2. Copia uno de los bloques de abajo y cambia name / src / height, y pon
+     en w / h las medidas reales del archivo.
   3. `height` es la altura en píxeles del logo dentro de la tira. Se ajusta a
      ojo para que TODOS ocupen un área parecida, no la misma altura: los
      logos anchos (tipo Trejo) piden ~46; los cuadrados ~64; los verticales
@@ -22,6 +25,10 @@ type ClientLogo = {
   name: string;
   src: string;
   height: number;
+  /** Medidas reales del archivo (2x la altura en escritorio): el navegador
+      reserva el hueco antes de descargarlo y no hay salto de diseño. */
+  w: number;
+  h: number;
 };
 
 const logos: ClientLogo[] = [
@@ -29,21 +36,29 @@ const logos: ClientLogo[] = [
     name: "Constructora Izcalli",
     src: "/images/logos/logo-izcalli.webp",
     height: 64,
+    w: 171,
+    h: 128,
   },
   {
     name: "Fernanda Silva — Salud y Nutrición",
     src: "/images/logos/logo-fersilva.webp",
     height: 74,
+    w: 118,
+    h: 148,
   },
   {
     name: "Trejo's Landscaping & Gardening",
     src: "/images/logos/logo-trejo.webp",
     height: 46,
+    w: 254,
+    h: 92,
   },
   {
     name: "MiConta Universal — Contabilidad y Bookkeeping",
     src: "/images/logos/logo-miconta.webp",
     height: 70,
+    w: 129,
+    h: 140,
   },
   // ── Cliente nuevo: descomenta y cambia los datos cuando llegue el logo ──
   // {
@@ -90,6 +105,8 @@ const duration = Math.round(logos.length * SETS * 3.6);
             src={logo.src}
             alt={i < logos.length ? `${lang === "en" ? "Logo of" : "Logo de"} ${logo.name}` : ""}
             aria-hidden={i >= logos.length ? "true" : undefined}
+            width={logo.w}
+            height={logo.h}
             loading="lazy"
             decoding="async"
             style={`--logo-h: ${logo.height}px`}

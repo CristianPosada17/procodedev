@@ -68,6 +68,10 @@ const mergedNicheRedirects = {
 export default defineConfig({
   // `site` es necesario para URLs canónicas absolutas, Open Graph y sitemap.
   site: "https://procodedev.com",
+  // PageSpeed (oct 2026): la hoja de estilos (~15 KB comprimida) era la única
+  // petición que bloqueaba el render (~540 ms en móvil). Inline en cada
+  // página quita ese viaje de ida y vuelta de la ruta crítica del LCP.
+  build: { inlineStylesheets: "always" },
   redirects: {
     ...legacyTaxRedirects,
     ...legacySeoRedirects,

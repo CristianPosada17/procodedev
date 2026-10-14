@@ -265,7 +265,9 @@ const engine = `
     window.addEventListener('scroll', function(){
       if (!ticking){ ticking = true; window.requestAnimationFrame(check); }
     }, { passive: true });
-    check();
+    // Sin check() síncrono al cargar: leer scrollHeight ahí forzaba un
+    // reflow (PageSpeed). Solo hace falta si la página abre ya desplazada.
+    if ((window.scrollY || 0) > 0) window.requestAnimationFrame(check);
   })();
 
   // ---------------- Secciones vistas ----------------

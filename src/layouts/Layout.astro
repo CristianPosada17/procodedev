@@ -606,6 +606,7 @@ const jsonLd = {
               behavior: "smooth",
             });
           });
+          if (i === 0) dot.classList.add("is-active");
           dots.appendChild(dot);
         });
 
@@ -635,7 +636,9 @@ const jsonLd = {
           },
           { passive: true },
         );
-        sync();
+        // Sin sync() inicial: leer offsetLeft justo después de insertar los
+        // puntos forzaba un reflow por carrusel (~120 ms en PageSpeed). Al
+        // cargar, la tarjeta visible siempre es la primera.
       });
     </script>
   </body>

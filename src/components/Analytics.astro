@@ -148,9 +148,12 @@ const bootstrap =
   //
   // Se dispara con lo que ocurra primero:
   //   a) la primera interaccion real de la persona, o
-  //   b) 2.5 s despues del evento load (o ya cargada, al entrar en reposo).
+  //   b) 6 s despues del evento load (o ya cargada, al entrar en reposo).
   // El limite superior existe para no perder la sesion de quien abre,
-  // lee y se va sin tocar nada.
+  // lee y se va sin tocar nada. Oct 2026: subio de 2.5 s a 6 s. Con 2.5 s
+  // gtag.js y fbevents.js (~2.6 s de CPU entre los dos) caian dentro de la
+  // ventana de carga: 2,640 ms de TBT y 67 de rendimiento en escritorio.
+  // Casi toda visita real hace scroll antes de 6 s, y eso los carga igual.
   var tagsLoaded = false;
   function loadTags(){
     if (tagsLoaded) return;
@@ -181,7 +184,7 @@ const bootstrap =
 
   function armTimer(){
     var idle = window.requestIdleCallback || function(cb){ return setTimeout(cb, 1); };
-    idle(function(){ setTimeout(loadTags, 2500); }, { timeout: 3000 });
+    idle(function(){ setTimeout(loadTags, 6000); }, { timeout: 3000 });
   }
   if (document.readyState === 'complete') armTimer();
   else window.addEventListener('load', armTimer, { once: true });
