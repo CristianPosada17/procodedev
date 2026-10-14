@@ -50,15 +50,33 @@ export const GET: APIRoute = async ({ site }) => {
     url(alternates.en, lastmod, alternates);
   }
 
-  // Blog (solo en español).
-  const posts = await getCollection("blog");
-  const newest = posts.reduce<Date | undefined>((acc, p) => {
-    const d = p.data.updatedDate ?? p.data.pubDate;
-    return !acc || d > acc ? d : acc;
-  }, undefined);
-  if (newest) url(abs("/blog/"), isoDay(newest));
+  // Blog: español en /blog/, inglés en /en/blog/ (oct 2026). Los artículos
+  // con `translationOf` llevan el par hreflang; el resto va solo.
+  const [posts, enPosts] = await Promise.all([getCollection("blog"), getCollection("blogEn")]);
+  const lastOf = (p: { data: { pubDate: Date; updatedDate?: Date } }) => p.data.updatedDate ?? p.data.pubDate;
+  const newestOf = (list: { data: { pubDate: Date; updatedDate?: Date } }[]) =>
+    list.reduce<Date | undefined>((acc, p) => (!acc || lastOf(p) > acc ? lastOf(p) : acc), undefined);
+  const blogIndex = { es: abs("/blog/"), en: abs("/en/blog/") };
+  const newestEs = newestOf(posts);
+  const newestEn = newestOf(enPosts);
+  if (newestEs) url(blogIndex.es, isoDay(newestEs), newestEn ? blogIndex : undefined);
+  if (newestEn) url(blogIndex.en, isoDay(newestEn), newestEs ? blogIndex : undefined);
+
+  const esIds = new Set(posts.map((p) => p.id));
+  const pairOf = new Map(
+    enPosts
+      .filter((p) => p.data.translationOf && esIds.has(p.data.translationOf))
+      .map((p) => [p.data.translationOf as string, p.id]),
+  );
   for (const post of posts.sort((a, b) => +b.data.pubDate - +a.data.pubDate)) {
-    url(abs(`/blog/${post.id}/`), isoDay(post.data.updatedDate ?? post.data.pubDate));
+    const en = pairOf.get(post.id);
+    const alt = en ? { es: abs(`/blog/${post.id}/`), en: abs(`/en/blog/${en}/`) } : undefined;
+    url(abs(`/blog/${post.id}/`), isoDay(lastOf(post)), alt);
+  }
+  for (const post of enPosts.sort((a, b) => +b.data.pubDate - +a.data.pubDate)) {
+    const es = post.data.translationOf;
+    const alt = es && esIds.has(es) ? { es: abs(`/blog/${es}/`), en: abs(`/en/blog/${post.id}/`) } : undefined;
+    url(abs(`/en/blog/${post.id}/`), isoDay(lastOf(post)), alt);
   }
 
   const body =

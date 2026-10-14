@@ -1,0 +1,112 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+// Blog en inglés (oct 2026). Solo temas con intención de compra en EE. UU.;
+// ver el comentario de `blogEn` en src/content.config.ts.
+const posts = (await getCollection("blogEn")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const siteUrl = Astro.site ?? new URL("https://procodedev.com");
+const blogLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": `${new URL("/en/blog/", siteUrl)}#blog`,
+  name: "ProCode Systems Blog",
+  description:
+    "Guides on small business websites, bilingual sites, local SEO, Google Business Profile and pricing for U.S. business owners.",
+  url: new URL("/en/blog/", siteUrl).toString(),
+  inLanguage: "en-US",
+  publisher: { "@id": `${siteUrl}#organization` },
+  blogPost: posts.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    url: new URL(`/en/blog/${post.id}/`, siteUrl).toString(),
+  })),
+};
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    // Las fechas del frontmatter son medianoche UTC: sin esto, en husos
+    // de América se pintaban un día antes.
+    timeZone: "UTC",
+  });
+---
+
+<Layout
+  lang="en"
+  waPage="blog"
+  title="Small Business Web Design & Local SEO Blog | ProCode Systems"
+  description="Practical guides on small business websites, bilingual English and Spanish sites, local SEO, Google Business Profile and website pricing for U.S. business owners."
+  alternates={{ es: "/blog/", en: "/en/blog/" }}
+  keywords="small business website blog, local seo blog, bilingual website, google business profile, website cost small business"
+  breadcrumbs={[
+    { name: "Home", path: "/en/" },
+    { name: "Blog", path: "/en/blog/" },
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(blogLd)} is:inline />
+  <Header lang="en" altHref="/blog/" />
+
+  <main
+    class="mx-auto w-full max-w-[1480px] px-4 py-20 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+  >
+    <div class="mx-auto max-w-3xl text-center">
+      <div
+        class="mb-5 inline-flex rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-[var(--accent)]"
+      >
+        Blog
+      </div>
+
+      <h1
+        class="text-4xl font-extrabold tracking-tight text-[var(--text)] sm:text-5xl"
+      >
+        Small business web design, local SEO and
+        <span class="grad-text">digital marketing</span>
+      </h1>
+
+      <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">
+        What actually works.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <a
+            href={`/en/blog/${post.id}/`}
+            class="group flex flex-col rounded-3xl border border-[color:var(--border-strong)] bg-[var(--surface)]/70 p-7 shadow-[0_0_60px_var(--aurora-1)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--accent)] hover:shadow-[0_0_80px_var(--halo-brand)]"
+          >
+            <p class="text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
+              {formatDate(post.data.pubDate)}
+            </p>
+
+            <h2 class="mt-3 text-xl font-extrabold leading-tight text-[var(--text)]">
+              {post.data.title}
+            </h2>
+
+            <p class="mt-3 flex-1 text-sm leading-7 text-[var(--muted)]">
+              {post.data.description}
+            </p>
+
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
+              Read article
+              <span class="transition group-hover:translate-x-1">→</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+
+  <Footer lang="en" />
+</Layout>

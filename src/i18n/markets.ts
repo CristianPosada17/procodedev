@@ -20,6 +20,13 @@
   Mercados elegidos por Cristian: Texas, Florida y California. En
   septiembre de 2026 se añadió México (donde ProCode trabaja).
 
+  Octubre de 2026: las páginas dejan de presentarse como «dónde trabajo» y
+  pasan a responder la búsqueda tal como se escribe: «páginas web en
+  Florida», «páginas web en México». Título, H1 y encabezados de sección
+  llevan esa frase; el trabajo remoto se sigue explicando, pero como el
+  cómo, no como el tema de la página. Las URLs no cambian: Texas y Florida
+  ya tenían posición 11 en Search Console y moverlas reiniciaría la señal.
+
   REGLAS QUE NO SE PUEDEN ROMPER AQUÍ:
 
   1. Nada de presencia local falsa. No hay oficina, ni dirección, ni
@@ -39,7 +46,7 @@
 
 import type { SegmentKey } from "./ui";
 
-// México va primero en el menú «Dónde trabajo» (sep 2026). El hub
+// México va primero en el menú «Por zona» (sep 2026). El hub
 // /diseno-web-estados-unidos/ solo lista los estados: US_STATE_KEYS.
 export const MARKET_KEYS = ["mexico", "texas", "florida", "california"] as const;
 export const US_STATE_KEYS = ["texas", "florida", "california"] as const;
@@ -154,12 +161,12 @@ const texasEs: Market = {
     { name: "Austin", note: "Consultoría, marca personal y despachos que le venden a empresa. Menos volumen y más ticket, con el inglés por delante." },
   ],
   meta: {
-    title: "Diseño de Páginas Web en Texas | ProCode Systems",
+    title: "Páginas Web en Texas para Negocios | ProCode Systems",
     description:
-      "Diseño de páginas web en Texas para negocios hispanos: Houston, Dallas, San Antonio y Austin. Sitios bilingües desde $349 USD, en remoto y en tu idioma.",
+      "Páginas web en Texas para negocios: Houston, Dallas, San Antonio y Austin. Sitios bilingües con SEO local y captación, desde $349 USD.",
     keywords:
-      "diseño de páginas web en Texas, diseño web Houston, páginas web para negocios en Texas, agencia de diseño web en Texas, diseño web en español Texas, páginas web para contratistas en Texas, marketing digital en Texas, diseño de páginas web Dallas, páginas web San Antonio, desarrollador web en español en Texas",
-    heroTitleA: "Diseño de páginas web en Texas",
+      "páginas web en Texas, diseño de páginas web en Texas, diseño web Houston, páginas web para negocios en Texas, agencia de diseño web en Texas, diseño web en español Texas, páginas web para contratistas en Texas, marketing digital en Texas, diseño de páginas web Dallas, páginas web San Antonio, desarrollador web en español en Texas",
+    heroTitleA: "Páginas web en Texas",
     heroHighlight: "para negocios hispanos",
     heroSubtitle: "Bilingüe, a la medida, en remoto.",
   },
@@ -175,9 +182,9 @@ const texasEs: Market = {
   },
   industries: {
     eyebrow: "// giros con más peso en el estado",
-    title: "Los negocios de Texas con los que más trabajo",
+    title: "Páginas web en Texas por tipo de negocio",
     subtitle:
-      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten cuando hago páginas web para negocios en Texas.",
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro tipos de negocio que más buscan páginas web en Texas.",
     items: [
       {
         icon: "building",
@@ -211,7 +218,7 @@ const texasEs: Market = {
   },
   context: {
     eyebrow: "// lo que cambia en Texas",
-    title: "Tres cosas que tengo en cuenta en un proyecto texano",
+    title: "Qué necesita una página web en Texas",
     subtitle:
       "No es la misma página para Texas que para California. Estas son las diferencias que sí afectan al diseño y al contenido, y por las que trabajo como agencia de diseño web en Texas y no con una plantilla igual para todos.",
     items: [
@@ -237,7 +244,7 @@ const texasEs: Market = {
   },
   remote: {
     eyebrow: "// cómo funciona a distancia",
-    title: "Trabajo desde México, en tu horario",
+    title: "Cómo se hace tu página web a distancia",
     subtitle:
       "El diseño web en español Texas no necesita que estemos en la misma ciudad. Así es como se lleva un proyecto con un negocio del estado.",
     items: [
@@ -318,12 +325,12 @@ const floridaEs: Market = {
     { name: "Jacksonville", note: "Contratistas y servicios profesionales con clientela mixta, donde el inglés y el español pesan casi lo mismo." },
   ],
   meta: {
-    title: "Diseño de Páginas Web en Florida | ProCode Systems",
+    title: "Páginas Web en Florida para Negocios | ProCode Systems",
     description:
-      "Diseño de páginas web en Florida para negocios hispanos: Miami, Orlando, Tampa y Jacksonville. Sitios bilingües desde $349 USD, en remoto y en español.",
+      "Páginas web en Florida para negocios: Miami, Orlando, Tampa y Jacksonville. Sitios en español e inglés con SEO local y captación, desde $349 USD.",
     keywords:
-      "diseño de páginas web en Florida, diseño web Miami, páginas web para negocios en Florida, agencia de diseño web en Florida, diseño web en español Miami, páginas web para contratistas en Florida, marketing digital en Florida, diseño de páginas web Orlando, páginas web Tampa, desarrollador web en español en Florida",
-    heroTitleA: "Diseño de páginas web en Florida",
+      "páginas web en Florida, diseño de páginas web en Florida, diseño web Miami, páginas web para negocios en Florida, agencia de diseño web en Florida, diseño web en español Miami, páginas web para contratistas en Florida, marketing digital en Florida, diseño de páginas web Orlando, páginas web Tampa, desarrollador web en español en Florida",
+    heroTitleA: "Páginas web en Florida",
     heroHighlight: "para negocios hispanos",
     heroSubtitle: "En español, sin traducciones.",
   },
@@ -339,9 +346,9 @@ const floridaEs: Market = {
   },
   industries: {
     eyebrow: "// giros con más peso en el estado",
-    title: "Los negocios de Florida con los que más trabajo",
+    title: "Páginas web en Florida por tipo de negocio",
     subtitle:
-      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten cuando hago páginas web para negocios en Florida.",
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro tipos de negocio que más buscan páginas web en Florida.",
     items: [
       {
         icon: "map-pin",
@@ -375,7 +382,7 @@ const floridaEs: Market = {
   },
   context: {
     eyebrow: "// lo que cambia en Florida",
-    title: "Tres cosas que tengo en cuenta en un proyecto floridano",
+    title: "Qué necesita una página web en Florida",
     subtitle:
       "El sitio de un negocio de Miami no se parece al de uno de Dallas. Estas son las diferencias que afectan de verdad a la estructura y al contenido, y la razón por la que una agencia de diseño web en Florida no puede usar la misma plantilla que en otro estado.",
     items: [
@@ -401,7 +408,7 @@ const floridaEs: Market = {
   },
   remote: {
     eyebrow: "// cómo funciona a distancia",
-    title: "Trabajo desde México, con una hora de diferencia",
+    title: "Cómo se hace tu página web a distancia",
     subtitle:
       "El proyecto no necesita que estemos en la misma ciudad. Así se lleva con un negocio de Florida.",
     items: [
@@ -482,12 +489,12 @@ const californiaEs: Market = {
     { name: "Área de la Bahía", note: "Servicios profesionales y consultoría de ticket alto, donde el sitio compite por credibilidad y no por precio." },
   ],
   meta: {
-    title: "Diseño de Páginas Web en California | ProCode Systems",
+    title: "Páginas Web en California para Negocios | ProCode Systems",
     description:
-      "Diseño de páginas web en California para negocios hispanos: Los Ángeles, San Diego e Inland Empire. Sitios bilingües desde $349 USD, en remoto y en español.",
+      "Páginas web en California para negocios: Los Ángeles, San Diego e Inland Empire. Sitios bilingües con SEO local y captación, desde $349 USD.",
     keywords:
-      "diseño de páginas web en California, diseño web Los Ángeles, páginas web para negocios en California, agencia de diseño web en California, diseño web en español California, páginas web para contratistas en California, marketing digital en California, diseño de páginas web San Diego, páginas web Inland Empire, desarrollador web en español en California",
-    heroTitleA: "Diseño de páginas web en California",
+      "páginas web en California, diseño de páginas web en California, diseño web Los Ángeles, páginas web para negocios en California, agencia de diseño web en California, diseño web en español California, páginas web para contratistas en California, marketing digital en California, diseño de páginas web San Diego, páginas web Inland Empire, desarrollador web en español en California",
+    heroTitleA: "Páginas web en California",
     heroHighlight: "para negocios hispanos",
     heroSubtitle: "Sin el costo de California.",
   },
@@ -503,9 +510,9 @@ const californiaEs: Market = {
   },
   industries: {
     eyebrow: "// giros con más peso en el estado",
-    title: "Los negocios de California con los que más trabajo",
+    title: "Páginas web en California por tipo de negocio",
     subtitle:
-      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro que más se repiten cuando hago páginas web para negocios en California.",
+      "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los cuatro tipos de negocio que más buscan páginas web en California.",
     items: [
       {
         icon: "building",
@@ -539,7 +546,7 @@ const californiaEs: Market = {
   },
   context: {
     eyebrow: "// lo que cambia en California",
-    title: "Tres cosas que tengo en cuenta en un proyecto californiano",
+    title: "Qué necesita una página web en California",
     subtitle:
       "Es el mercado más competido de los tres, y eso cambia dónde conviene poner el esfuerzo. Es también por lo que una agencia de diseño web en California cobra lo que cobra, y por lo que trabajar en remoto cambia el número.",
     items: [
@@ -565,7 +572,7 @@ const californiaEs: Market = {
   },
   remote: {
     eyebrow: "// cómo funciona a distancia",
-    title: "Trabajo desde México, con dos horas de diferencia",
+    title: "Cómo se hace tu página web a distancia",
     subtitle:
       "El diseño web en español California no necesita oficina en el estado. Así se lleva un proyecto con un negocio de Los Ángeles o San Diego.",
     items: [
@@ -632,12 +639,12 @@ const californiaEs: Market = {
 
 const hubEs: MarketsHub = {
   meta: {
-    title: "Diseño de Páginas Web en Estados Unidos | ProCode Systems",
+    title: "Páginas Web en Estados Unidos para Negocios | ProCode Systems",
     description:
-      "Diseño de páginas web en Estados Unidos para negocios hispanos: sitios bilingües, SEO y captación. En español, en remoto y con precios desde $349 USD.",
+      "Páginas web en Estados Unidos para negocios hispanos: sitios bilingües con SEO local y captación de clientes, en español y con precios desde $349 USD.",
     keywords:
-      "diseño de páginas web en Estados Unidos, diseño web en español para negocios en Estados Unidos, agencia de diseño web en Estados Unidos, páginas web para negocios hispanos en Estados Unidos, desarrollador web en español en Estados Unidos, agencia de marketing digital en Estados Unidos, páginas web bilingües, diseño web para negocios latinos",
-    heroTitleA: "Diseño de páginas web en Estados Unidos",
+      "páginas web en Estados Unidos, diseño de páginas web en Estados Unidos, diseño web en español para negocios en Estados Unidos, agencia de diseño web en Estados Unidos, páginas web para negocios hispanos en Estados Unidos, desarrollador web en español en Estados Unidos, agencia de marketing digital en Estados Unidos, páginas web bilingües, diseño web para negocios latinos",
+    heroTitleA: "Páginas web en Estados Unidos",
     heroHighlight: "para negocios hispanos",
     heroSubtitle: "En tu idioma, en remoto.",
   },
@@ -652,10 +659,10 @@ const hubEs: MarketsHub = {
     ],
   },
   listEyebrow: "// mercados",
-  listTitle: "Los tres estados donde más trabajo",
+  listTitle: "Páginas web por estado",
   listSubtitle:
-    "Cada uno tiene su propia página, con los giros que dominan ahí, lo que cambia en su mercado y cómo funciona el trabajo a distancia desde México. El diseño web en español para negocios en Estados Unidos no es el mismo trabajo en Houston que en Miami, y estas páginas explican en qué se diferencian.",
-  listCta: "Ver el mercado",
+    "Cada estado tiene su propia página con lo que necesita una página web ahí: los tipos de negocio que más la buscan, cómo busca el cliente local y qué cambia en su mercado. Una página web en Houston no se hace igual que una en Miami, y estas páginas explican en qué se diferencian.",
+  listCta: "Ver páginas web en este estado",
   industriesCta: "Ver la página del giro",
   citiesLabel: "Zonas",
   citiesTitle: "Dónde se concentra el trabajo",
@@ -764,12 +771,12 @@ const texasEn: Market = {
     { name: "Austin", note: "Consulting, personal brands and firms selling to companies. Lower volume, higher ticket, English-first." },
   ],
   meta: {
-    title: "Bilingual Web Design in Texas | ProCode Systems",
+    title: "Web Design in Texas for Small Businesses | ProCode Systems",
     description:
-      "Bilingual web design for Texas small businesses in Houston, Dallas, San Antonio and Austin. English and Spanish sites from $349 USD, built remotely.",
+      "Web design in Texas for small businesses in Houston, Dallas, San Antonio and Austin. Bilingual sites with local SEO and lead capture, from $349 USD.",
     keywords:
-      "bilingual web design texas, web design for small businesses in texas, spanish speaking web designer texas, houston web design small business, dallas web design agency, web design for hispanic owned businesses, contractor website design texas, bilingual website developer",
-    heroTitleA: "Bilingual web design in Texas",
+      "web design texas, texas web design, websites in texas, bilingual web design texas, web design for small businesses in texas, spanish speaking web designer texas, houston web design small business, dallas web design agency, web design for hispanic owned businesses, contractor website design texas, bilingual website developer",
+    heroTitleA: "Web design in Texas",
     heroHighlight: "for businesses serving both languages",
     heroSubtitle: "Bilingual, custom-coded, built remotely.",
   },
@@ -785,7 +792,7 @@ const texasEn: Market = {
   },
   industries: {
     eyebrow: "// where the market is",
-    title: "The Texas businesses I work with most",
+    title: "Texas websites by type of business",
     subtitle:
       "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in texas.",
     items: [
@@ -797,7 +804,7 @@ const texasEn: Market = {
   },
   context: {
     eyebrow: "// what changes in Texas",
-    title: "Three things I account for in a Texas project",
+    title: "What a Texas website needs",
     subtitle: "A Texas site is not a California site. These are the differences that actually change structure and content, and why bilingual web design texas is not a template with the state name swapped in.",
     items: [
       { icon: "globe", title: "Bilingual is the baseline, not an add-on", description: "In Houston and San Antonio the same business serves one customer in English and the next in Spanish. A bilingual website developer gives both versions separate URLs and hreflang, so each customer finds their own in Google instead of a machine translation. It is the single biggest advantage in web design for hispanic owned businesses here." },
@@ -807,7 +814,7 @@ const texasEn: Market = {
   },
   remote: {
     eyebrow: "// how remote works",
-    title: "I work from Mexico, on your clock",
+    title: "How your website gets built remotely",
     subtitle: "Hiring a spanish speaking web designer texas businesses can reach does not need us in the same city. Here is how a project runs.",
     items: [
       { icon: "calendar", title: "Same time zone as you", description: "Texas is on Central time, the same as central Mexico for most of the year. When you message mid-morning, it is mid-morning here — no waiting until tomorrow for an answer." },
@@ -843,12 +850,12 @@ const floridaEn: Market = {
     { name: "Jacksonville", note: "Contractors and professional services with a mixed clientele, where English and Spanish carry roughly equal weight." },
   ],
   meta: {
-    title: "Bilingual Web Design in Florida | ProCode Systems",
+    title: "Web Design in Florida for Small Businesses | ProCode Systems",
     description:
-      "Bilingual web design for Florida small businesses in Miami, Orlando, Tampa and Jacksonville. Spanish-first sites from $349 USD, built remotely.",
+      "Web design in Florida for small businesses in Miami, Orlando, Tampa and Jacksonville. English and Spanish sites with local SEO, from $349 USD.",
     keywords:
-      "bilingual web design florida, spanish speaking web designer miami, web design for small businesses in florida, miami web design small business, roofing contractor website design florida, web design for hispanic owned businesses, orlando web design agency, tampa website design",
-    heroTitleA: "Bilingual web design in Florida",
+      "web design florida, florida web design, websites in florida, bilingual web design florida, spanish speaking web designer miami, web design for small businesses in florida, miami web design small business, roofing contractor website design florida, web design for hispanic owned businesses, orlando web design agency, tampa website design",
+    heroTitleA: "Web design in Florida",
     heroHighlight: "where Spanish comes first",
     heroSubtitle: "Spanish first, not translated.",
   },
@@ -864,7 +871,7 @@ const floridaEn: Market = {
   },
   industries: {
     eyebrow: "// where the market is",
-    title: "The Florida businesses I work with most",
+    title: "Florida websites by type of business",
     subtitle: "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in florida.",
     items: [
       { icon: "map-pin", segment: "realEstate", title: "Real estate", description: "Miami moves domestic and international buyers year-round. Listings, lead capture, and a Spanish version that does not read like a translation." },
@@ -875,7 +882,7 @@ const floridaEn: Market = {
   },
   context: {
     eyebrow: "// what changes in Florida",
-    title: "Three things I account for in a Florida project",
+    title: "What a Florida website needs",
     subtitle: "A Miami site does not look like a Dallas site. These are the differences that really affect structure and content, and why bilingual web design florida needs its own approach.",
     items: [
       { icon: "globe", title: "Spanish first, English second", description: "In South Florida the Spanish version usually takes the most traffic. It gets written first, with its own URL and its own content, and English becomes the real second version rather than an afterthought." },
@@ -885,7 +892,7 @@ const floridaEn: Market = {
   },
   remote: {
     eyebrow: "// how remote works",
-    title: "I work from Mexico, one hour behind you",
+    title: "How your website gets built remotely",
     subtitle: "Web design for hispanic owned businesses does not need us in the same city. Here is how a project runs with a Florida business.",
     items: [
       { icon: "calendar", title: "One hour, not an ocean", description: "Florida is on Eastern time, an hour ahead of central Mexico. In practice we overlap the entire working day, and calls land in the Florida morning without either of us starting early." },
@@ -921,12 +928,12 @@ const californiaEn: Market = {
     { name: "Bay Area", note: "High-ticket professional services and consulting, where the site competes on credibility rather than price." },
   ],
   meta: {
-    title: "Bilingual Web Design in California | ProCode Systems",
+    title: "Web Design in California for Small Businesses | ProCode Systems",
     description:
-      "Bilingual web design for California small businesses in Los Angeles, San Diego and the Inland Empire, without local-agency pricing. From $349 USD, remote.",
+      "Web design in California for small businesses in Los Angeles, San Diego and the Inland Empire. Bilingual sites with local SEO, from $349 USD.",
     keywords:
-      "bilingual web design california, spanish speaking web designer los angeles, web design for small businesses in california, los angeles web design small business, san diego website design, web design for hispanic owned businesses, contractor website design california, affordable web design agency california",
-    heroTitleA: "Bilingual web design in California",
+      "web design california, california web design, websites in california, bilingual web design california, spanish speaking web designer los angeles, web design for small businesses in california, los angeles web design small business, san diego website design, web design for hispanic owned businesses, contractor website design california, affordable web design agency california",
+    heroTitleA: "Web design in California",
     heroHighlight: "without local-agency pricing",
     heroSubtitle: "Without California agency overhead.",
   },
@@ -942,7 +949,7 @@ const californiaEn: Market = {
   },
   industries: {
     eyebrow: "// where the market is",
-    title: "The California businesses I work with most",
+    title: "California websites by type of business",
     subtitle: "Each industry has its own page with what changes in that case. These four come up most in web design for small businesses in california.",
     items: [
       { icon: "building", segment: "contractors", title: "Contractors and home services", description: "Remodeling, landscaping, plumbing, solar and cleaning. Contractor website design california faces heavy paid competition, and the Google profile decides the call." },
@@ -953,7 +960,7 @@ const californiaEn: Market = {
   },
   context: {
     eyebrow: "// what changes in California",
-    title: "Three things I account for in a California project",
+    title: "What a California website needs",
     subtitle: "It is the most competitive of the three markets, and that changes where the effort belongs. It is also why bilingual web design california costs what it costs locally, and why remote changes the number.",
     items: [
       { icon: "target", title: "Paid clicks are expensive: organic first", description: "In California, turning on ads before sorting out the Google profile, reviews and service pages burns budget. The order I recommend here is the reverse of other markets: organic visibility first, campaigns second." },
@@ -963,7 +970,7 @@ const californiaEn: Market = {
   },
   remote: {
     eyebrow: "// how remote works",
-    title: "I work from Mexico, two hours ahead",
+    title: "How your website gets built remotely",
     subtitle: "An affordable web design agency california businesses can hire does not need an office in the state. Here is how a project runs in Los Angeles or San Diego.",
     items: [
       { icon: "calendar", title: "Two hours, and in your favor", description: "California runs two hours behind central Mexico. In practice, what you asked for yesterday afternoon is already under way when you open your day, and calls land comfortably in your mid-morning." },
@@ -988,12 +995,12 @@ const californiaEn: Market = {
 
 const hubEn: MarketsHub = {
   meta: {
-    title: "Bilingual Web Design for U.S. Businesses | ProCode Systems",
+    title: "Web Design for U.S. Small Businesses | ProCode Systems",
     description:
       "Bilingual web design for U.S. small businesses in Texas, Florida and California: English and Spanish sites, SEO and lead capture. From $349 USD, built remotely.",
     keywords:
       "bilingual web design, spanish speaking web designer, web design for hispanic owned businesses, bilingual website developer united states, english and spanish website design, web design for small businesses in the united states, spanish website design services, bilingual digital marketing agency",
-    heroTitleA: "Bilingual web design for",
+    heroTitleA: "Web design for",
     heroHighlight: "U.S. small businesses",
     heroSubtitle: "Your language, built remotely.",
   },
@@ -1008,10 +1015,10 @@ const hubEn: MarketsHub = {
     ],
   },
   listEyebrow: "// markets",
-  listTitle: "The three states I work in most",
+  listTitle: "Websites by state",
   listSubtitle:
-    "Each one has its own page, with the industries that dominate there, what changes in that market and how remote work runs from Mexico. Web design for small businesses in the united states is not the same job in Houston as in Miami, and these pages spell out the difference.",
-  listCta: "See this market",
+    "Each state has its own page with what a website needs there: the businesses that search for one most, how local customers search and what changes in that market. A website in Houston is not built like one in Miami, and these pages spell out the difference.",
+  listCta: "See websites in this state",
   industriesCta: "See the industry page",
   citiesLabel: "Areas",
   citiesTitle: "Where the work is concentrated",
@@ -1071,12 +1078,12 @@ const mexicoEs: Market = {
     { name: "Resto del país", note: "El trabajo es remoto de principio a fin, así que la ciudad no cambia el proceso: llamada, contenido, revisiones por enlace y publicación." },
   ],
   meta: {
-    title: "Diseño de Páginas Web en México | ProCode Systems",
+    title: "Páginas Web en México para Negocios | ProCode Systems",
     description:
-      "Diseño de páginas web en México para negocios de servicios: sitios a la medida, SEO local y captación de clientes. Precios base publicados desde $349 USD.",
+      "Páginas web en México para negocios de servicios: sitios a la medida con SEO local, WhatsApp y captación de clientes. Precios base publicados desde $349 USD.",
     keywords:
-      "diseño de páginas web en México, diseño web México, páginas web para negocios en México, agencia de diseño web en México, desarrollo web México, diseño de páginas web Ciudad de México, diseño web Monterrey, páginas web Guadalajara, marketing digital para negocios en México, SEO local México",
-    heroTitleA: "Diseño de páginas web en México",
+      "páginas web en México, diseño de páginas web en México, diseño web México, páginas web para negocios en México, agencia de diseño web en México, desarrollo web México, diseño de páginas web Ciudad de México, diseño web Monterrey, páginas web Guadalajara, marketing digital para negocios en México, SEO local México",
+    heroTitleA: "Páginas web en México",
     heroHighlight: "para negocios de servicios",
     heroSubtitle: "A la medida, en tu idioma y en tu horario.",
   },
@@ -1092,7 +1099,7 @@ const mexicoEs: Market = {
   },
   industries: {
     eyebrow: "// giros con los que trabajo",
-    title: "Negocios en México para los que construyo",
+    title: "Páginas web en México por tipo de negocio",
     subtitle:
       "Cada giro tiene su propia página con lo que cambia en su caso. Estos son los que más se repiten entre los negocios de servicios.",
     items: [
@@ -1128,7 +1135,7 @@ const mexicoEs: Market = {
   },
   context: {
     eyebrow: "// lo que cambia en México",
-    title: "Tres cosas que tengo en cuenta en un proyecto en México",
+    title: "Qué necesita una página web en México",
     subtitle:
       "No es la misma página para un negocio en México que para uno en Estados Unidos. Estas son las diferencias que sí afectan al diseño y al contenido.",
     items: [
@@ -1154,7 +1161,7 @@ const mexicoEs: Market = {
   },
   remote: {
     eyebrow: "// cómo trabajamos",
-    title: "Trabajo desde México, en remoto y en tu horario",
+    title: "Cómo se hace tu página web, sin reuniones presenciales",
     subtitle:
       "No importa en qué ciudad esté tu negocio: el proceso es el mismo y no necesitas reuniones presenciales.",
     items: [
@@ -1221,7 +1228,7 @@ const mexicoEn: Market = {
     { name: "Rest of the country", note: "The work is remote from start to finish, so the city does not change the process: call, content, review links and launch." },
   ],
   meta: {
-    title: "Web Design in Mexico | ProCode Systems",
+    title: "Web Design in Mexico for Businesses | ProCode Systems",
     description:
       "Web design in Mexico for service businesses: custom websites, local SEO and lead generation. Published base prices from $349 USD.",
     keywords:
@@ -1242,7 +1249,7 @@ const mexicoEn: Market = {
   },
   industries: {
     eyebrow: "// industries I work with",
-    title: "Businesses in Mexico I build for",
+    title: "Websites in Mexico by type of business",
     subtitle:
       "Each industry has its own page with what changes in its case. These are the ones that come up most among service businesses.",
     items: [
@@ -1278,7 +1285,7 @@ const mexicoEn: Market = {
   },
   context: {
     eyebrow: "// what changes in Mexico",
-    title: "Three things I keep in mind on a project in Mexico",
+    title: "What a website in Mexico needs",
     subtitle:
       "A site for a business in Mexico is not the same as one for a U.S. business. These are the differences that actually affect design and content.",
     items: [
@@ -1304,7 +1311,7 @@ const mexicoEn: Market = {
   },
   remote: {
     eyebrow: "// how we work",
-    title: "I work from Mexico, remotely and on your schedule",
+    title: "How your website gets built, no in-person meetings",
     subtitle:
       "Whatever city your business is in, the process is the same and you do not need in-person meetings.",
     items: [

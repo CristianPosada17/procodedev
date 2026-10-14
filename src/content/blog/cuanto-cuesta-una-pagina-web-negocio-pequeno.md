@@ -6,6 +6,7 @@ seoDescription: "Los factores que determinan el precio de una página web: alcan
 pubDate: 2026-07-06
 author: "ProCode Systems"
 tags: ["factores que determinan el precio de una página web", "presupuesto de página web", "comparar presupuestos web", "qué encarece una página web"]
+related: ["pricing", "webDev", "landingPages", "maintenance"]
 ---
 
 > **Si lo que buscas es el número:** [los precios base de ProCode están publicados](/precios/) — landing desde $349 USD, sitio de 4 a 6 páginas desde $899 USD y de 8 a 12 páginas desde $1,499 USD. El total depende de páginas, idiomas, contenido e integraciones. Este artículo es la otra mitad: **qué determina el precio de una página web**, para que puedas comparar dos presupuestos cualesquiera y saber cuál te está cobrando de más.

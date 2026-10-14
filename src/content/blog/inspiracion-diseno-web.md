@@ -6,6 +6,7 @@ seoDescription: "Ocho estilos de diseño web con ejemplos de cuándo funciona ca
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["inspiración de diseño web", "estilos de diseño web", "ejemplos de diseño web", "tendencias de diseño web"]
+related: ["webDev", "portfolio", "landingPages", "pricing"]
 ---
 
 Casi todo el mundo busca **inspiración de diseño web** en galerías de premios. El problema es que ahí se premia el riesgo, no la venta: sitios de agencias hechos para impresionar a otras agencias. Copiar eso para un negocio de servicios es la forma más elegante de perder clientes.

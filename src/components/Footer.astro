@@ -18,7 +18,7 @@ const navLinks = [
   { label: t.nav.markets, href: PAGES.markets[lang] },
   { label: t.nav.portfolio, href: PAGES.portfolio[lang] },
   { label: t.nav.pricing, href: PAGES.pricing[lang] },
-  { label: t.nav.blog, href: "/blog/" },
+  { label: t.nav.blog, href: lang === "es" ? "/blog/" : "/en/blog/" },
   { label: t.nav.contact, href: PAGES.contact[lang] },
 ];
 

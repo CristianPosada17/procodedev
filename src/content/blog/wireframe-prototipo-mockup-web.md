@@ -6,6 +6,7 @@ seoDescription: "Qué es un wireframe, un mockup y un prototipo en diseño web, 
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["wireframe", "mockup web", "prototipo web", "diseño web proceso"]
+related: ["webDev", "portfolio", "landingPages", "pricing"]
 ---
 
 Las tres palabras se usan como sinónimos y no lo son. Confundirlas es la causa más común de que un proyecto web se alargue: el cliente aprueba algo creyendo que aprobó otra cosa.

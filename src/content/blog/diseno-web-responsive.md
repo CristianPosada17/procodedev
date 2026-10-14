@@ -6,6 +6,7 @@ seoDescription: "Diseño web responsive explicado sin tecnicismos: qué es, cóm
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["diseño web responsive", "diseño web adaptable", "página web para móviles", "web móvil"]
+related: ["webDev", "maintenance", "audit", "landingPages"]
 ---
 
 **Diseño web responsive** significa que el sitio se reacomoda solo según el tamaño de la pantalla: en el teléfono todo se apila en una columna, en la computadora se reparte en varias. No es una versión aparte del sitio; es el mismo sitio comportándose distinto.

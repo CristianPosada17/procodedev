@@ -37,6 +37,12 @@ const PAGE_REVIEWED: Partial<Record<PageKey, string>> = {
   insuranceAgents: OCT_2026_NICHES,
   realtors: OCT_2026_NICHES,
   landscaping: OCT_2026_NICHES,
+  // Páginas de estado reenfocadas a «páginas web en <estado>».
+  markets: OCT_2026_NICHES,
+  mexico: OCT_2026_NICHES,
+  texas: OCT_2026_NICHES,
+  florida: OCT_2026_NICHES,
+  california: OCT_2026_NICHES,
 };
 
 export const reviewedOn = (page: PageKey): string =>

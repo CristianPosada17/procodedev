@@ -1,138 +1,22 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { getCollection, render } from "astro:content";
+import BlogArticle from "../../components/BlogArticle.astro";
+import { getCollection } from "astro:content";
 
+// La plantilla vive en BlogArticle.astro (compartida con /en/blog/). Aquí
+// solo se generan las rutas y se busca si el artículo tiene versión en
+// inglés, para emitir los hreflang de los dos.
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  const [posts, enPosts] = await Promise.all([getCollection("blog"), getCollection("blogEn")]);
+  return posts.map((post) => {
+    const en = enPosts.find((p) => p.data.translationOf === post.id);
+    return {
+      params: { slug: post.id },
+      props: { post, altPath: en ? `/en/blog/${en.id}/` : undefined },
+    };
+  });
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
-const { title, description, pubDate, updatedDate, author, tags } = post.data;
-
-const siteUrl = Astro.site ?? new URL("https://procodedev.com");
-const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
-
-const formatDate = (date: Date) =>
-  date.toLocaleDateString("es-MX", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-// JSON-LD del artículo para SEO (rich results de artículo).
-const articleLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: title,
-  description: description,
-  datePublished: pubDate.toISOString(),
-  dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { "@type": "Organization", name: author },
-  publisher: {
-    "@type": "Organization",
-    name: "ProCode Systems",
-    url: siteUrl.toString(),
-  },
-  mainEntityOfPage: pageUrl,
-  inLanguage: "es-MX",
-  image: new URL("/og-image.jpg", siteUrl).toString(),
-  keywords: tags.join(", "),
-  isPartOf: { "@id": `${siteUrl}#website` },
-};
+const { post, altPath } = Astro.props;
 ---
 
-<Layout
-  waPage="blog"
-  title={post.data.seoTitle ?? `${title} | ProCode Systems`}
-  description={post.data.seoDescription ?? description}
-  keywords={tags.join(", ")}
-  breadcrumbs={[
-    { name: "Inicio", path: "/" },
-    { name: "Blog", path: "/blog/" },
-    { name: title, path: Astro.url.pathname },
-  ]}
->
-  <Header />
-
-  <main class="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6">
-    <a
-      href="/blog/"
-      class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--brand)]"
-    >
-      <span>←</span> Volver al blog
-    </a>
-
-    <p class="mt-8 text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
-      {formatDate(pubDate)} · {author}
-    </p>
-
-    <h1
-      class="mt-4 text-[2.15rem] font-extrabold leading-tight tracking-tight text-[var(--text)] sm:text-[2.6rem] lg:text-[3.45rem]"
-    >
-      {title}
-    </h1>
-
-    <p class="mt-5 text-lg leading-8 text-[var(--muted)]">{description}</p>
-
-    {
-      tags.length > 0 && (
-        <div class="mt-6 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span class="rounded-lg border border-[color:var(--border)] bg-[var(--brand)]/10 px-3 py-1 text-xs text-[var(--accent)]">
-              #{tag}
-            </span>
-          ))}
-        </div>
-      )
-    }
-
-    <div
-      class="my-8 h-px w-full bg-gradient-to-r from-[var(--accent)]/40 via-[color:var(--border)] to-transparent"
-    >
-    </div>
-
-    <article class="article-content">
-      <Content />
-    </article>
-
-    {
-      /* Sentinela de lectura: cuando esta línea entra en pantalla, el artículo
-        se leyó de arriba abajo. Es la señal que separa «lo leyeron» de
-        «entraron y se fueron». */
-    }
-    <div data-article-end data-article-slug={post.id} aria-hidden="true"></div>
-
-    <!-- CTA al final del artículo -->
-    <div
-      class="mt-14 rounded-3xl border border-[color:var(--border-strong)] bg-[var(--surface)]/80 p-8 text-center shadow-[0_0_70px_var(--aurora-1)] backdrop-blur-xl"
-    >
-      <h2 class="text-2xl font-extrabold text-[var(--text)]">
-        ¿Listo para que tu web trabaje por ti?
-      </h2>
-      <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-[var(--muted)]">
-        Agenda una llamada gratis de 20 minutos y te digo cómo tu negocio puede
-        ahorrar tiempo y captar más clientes. Sin costo y sin llamada de ventas:
-        los precios ya están publicados.
-      </p>
-      <a
-        href="/contacto/"
-        data-cta="blog-cta-final"
-        class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:bg-[var(--brand-strong)]"
-      >
-        Agendar llamada gratis
-        <span class="ml-2">→</span>
-      </a>
-    </div>
-  </main>
-
-  <Footer />
-
-  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
-</Layout>
+<BlogArticle lang="es" post={post} altPath={altPath} />

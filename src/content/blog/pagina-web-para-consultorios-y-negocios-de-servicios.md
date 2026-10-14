@@ -7,6 +7,7 @@ pubDate: 2026-07-15
 updatedDate: 2026-10-13
 author: "ProCode Systems"
 tags: ["negocios de servicios", "desarrollo web", "captación"]
+related: ["health", "dentists", "psychologists", "doctors"]
 ---
 
 Si tu negocio vende servicios —un consultorio dental, un despacho de psicología, una estética, un gimnasio o cualquier práctica profesional— tu página web tiene un trabajo muy claro: **conseguir que un desconocido confíe en ti lo suficiente para agendar una cita**. No vendes un producto que se ve en una foto; vendes confianza, experiencia y resultados. Y eso cambia por completo cómo debe estar hecha tu web.

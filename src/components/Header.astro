@@ -19,6 +19,9 @@ import Icon from "./Icon.astro";
 interface Props {
   lang?: Lang;
   page?: PageKey;
+  /** Destino del cambio de idioma cuando la página no es una PageKey (el
+   *  blog): sin esto el botón ES/EN mandaba siempre a la portada. */
+  altHref?: string;
 }
 const { lang = "es", page = "home" } = Astro.props as Props;
 const t = translations[lang];
@@ -101,11 +104,11 @@ const navItems = [
   { label: t.nav.home, href: PAGES.home[lang], key: "home" },
   { label: t.nav.portfolio, href: PAGES.portfolio[lang], key: "portfolio" },
   { label: t.nav.pricing, href: PAGES.pricing[lang], key: "pricing" },
-  { label: t.nav.blog, href: "/blog/", key: "blog" },
+  { label: t.nav.blog, href: lang === "es" ? "/blog/" : "/en/blog/", key: "blog" },
   { label: t.nav.contact, href: PAGES.contact[lang], key: "contact" },
 ];
 
-const altHref = getAltPath(page, lang);
+const altHref = Astro.props.altHref ?? getAltPath(page, lang);
 const otherLang = lang === "es" ? "EN" : "ES";
 ---
 

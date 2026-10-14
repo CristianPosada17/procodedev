@@ -6,6 +6,7 @@ seoDescription: "Wix, Squarespace, WordPress, Shopify o a la medida: qué plataf
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["plataformas para crear páginas web", "herramientas para crear páginas web", "mejor plataforma para una página web", "constructores de páginas web"]
+related: ["webDev", "landingPages", "pricing", "maintenance"]
 ---
 
 Comparar **plataformas para crear páginas web** es difícil porque casi todas las comparaciones las escribe alguien que cobra comisión por el enlace. Yo vivo de hacer sitios a la medida, así que tengo el sesgo contrario: por eso voy a decirte también cuándo **no** tiene sentido contratarme.

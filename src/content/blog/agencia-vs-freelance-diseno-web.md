@@ -6,6 +6,7 @@ seoDescription: "Agencia de diseño web o freelance: qué cambia en precio, plaz
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["diseñador web freelance", "agencia de diseño web", "contratar diseñador web", "agencia o freelance"]
+related: ["webDev", "pricing", "portfolio", "audit"]
 ---
 
 La pregunta se plantea como si fueran dos categorías limpias, y no lo son. Hay **agencias de diseño web** de dos personas y hay **diseñadores web freelance** con más proceso que una agencia mediana. Lo que de verdad cambia entre una opción y otra son cuatro cosas: precio, plazos, riesgo y qué pasa después de entregar.

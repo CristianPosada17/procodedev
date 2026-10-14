@@ -36,6 +36,9 @@ const formatDate = (date: Date) =>
     year: "numeric",
     month: "long",
     day: "numeric",
+    // Las fechas del frontmatter son medianoche UTC: sin esto, en husos
+    // de América se pintaban un día antes.
+    timeZone: "UTC",
   });
 ---
 
@@ -43,6 +46,7 @@ const formatDate = (date: Date) =>
   waPage="blog"
   title="Blog de Diseño Web, SEO Local y Marketing | ProCode Systems"
   description="Guías prácticas de páginas web, SEO local, Google Maps, automatización y precios para dueños de negocio y pymes en Estados Unidos y México."
+  alternates={{ es: "/blog/", en: "/en/blog/" }}
   keywords="blog de diseño web y SEO local, blog de páginas web para negocios, SEO local, cómo aparecer en google maps, marketing digital para negocios"
   breadcrumbs={[
     { name: "Inicio", path: "/" },
@@ -50,7 +54,7 @@ const formatDate = (date: Date) =>
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(blogLd)} is:inline />
-  <Header />
+  <Header altHref="/en/blog/" />
 
   <main
     class="mx-auto w-full max-w-[1480px] px-4 py-20 sm:px-6 lg:px-10 2xl:max-w-[1600px]"

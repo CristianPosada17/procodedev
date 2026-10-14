@@ -1,0 +1,22 @@
+---
+import BlogArticle from "../../../components/BlogArticle.astro";
+import { getCollection } from "astro:content";
+
+// Artículos del blog en inglés. Si el artículo declara `translationOf`, se
+// enlaza con su versión en español para los hreflang y el botón ES/EN.
+export async function getStaticPaths() {
+  const [posts, esPosts] = await Promise.all([getCollection("blogEn"), getCollection("blog")]);
+  const esIds = new Set(esPosts.map((p) => p.id));
+  return posts.map((post) => {
+    const es = post.data.translationOf;
+    return {
+      params: { slug: post.id },
+      props: { post, altPath: es && esIds.has(es) ? `/blog/${es}/` : undefined },
+    };
+  });
+}
+
+const { post, altPath } = Astro.props;
+---
+
+<BlogArticle lang="en" post={post} altPath={altPath} />

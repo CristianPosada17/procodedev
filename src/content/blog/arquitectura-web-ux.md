@@ -6,6 +6,7 @@ seoDescription: "Cómo se organiza la estructura de un sitio web: jerarquía de 
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["arquitectura web", "UX web", "estructura de un sitio web", "experiencia de usuario"]
+related: ["webDev", "seo", "landingPages", "audit"]
 ---
 
 La **arquitectura web** es cómo se reparte el contenido entre páginas y cómo esas páginas se conectan entre sí. Es la decisión más barata de tomar y la más cara de corregir: cambiar colores es una tarde; cambiar la **estructura de un sitio web** ya indexado significa redirecciones, posiciones perdidas y meses de espera.

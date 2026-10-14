@@ -39,6 +39,11 @@
   # el SEO dejó de venderse pegado al proyecto de página web.
   RewriteRule ^servicios/diseno-web-seo/?$ /servicios/seo/ [L,R=301]
   RewriteRule ^en/services/seo-web-design/?$ /en/services/seo/ [L,R=301]
+
+  # Blog (13 oct 2026): cinco artículos sobre «crear una página web» se
+  # repartían las mismas búsquedas. Se fusionaron en dos guías.
+  RewriteRule ^blog/como-crear-pagina-web-html/?$ /blog/como-crear-pagina-web/ [L,R=301]
+  RewriteRule ^blog/como-crear-pagina-web-negocio/?$ /blog/crear-pagina-web-gratis-negocio/ [L,R=301]
 </IfModule>
 
 # ---------- Compresión ----------

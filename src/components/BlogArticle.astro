@@ -1,0 +1,226 @@
+---
+/*
+  Plantilla de artículo del blog, compartida por /blog/ y /en/blog/
+  (octubre de 2026). Antes vivía dentro de src/pages/blog/[...slug].astro y
+  solo existía en español.
+
+  Novedad: el bloque «Páginas relacionadas». Cada artículo declara en su
+  frontmatter (`related`) las páginas comerciales a las que debe empujar
+  —servicio, giro, estado— y aquí se pintan antes del CTA final. Es el
+  enlace interno que faltaba entre el contenido informativo y las páginas
+  que venden: sin él, la autoridad que gana el blog se quedaba en el blog.
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import Icon from "./Icon.astro";
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { PAGES, type Lang } from "../i18n/ui";
+import { pageLinks } from "../lib/page-links";
+
+interface Props {
+  lang: Lang;
+  post: CollectionEntry<"blog"> | CollectionEntry<"blogEn">;
+  /** Ruta del mismo artículo en el otro idioma, si existe. */
+  altPath?: string;
+}
+const { lang, post, altPath } = Astro.props as Props;
+const { Content } = await render(post);
+const { title, description, pubDate, updatedDate, author, tags, related } = post.data;
+
+const es = lang === "es";
+const blogPath = es ? "/blog/" : "/en/blog/";
+const siteUrl = Astro.site ?? new URL("https://procodedev.com");
+const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString(es ? "es-MX" : "en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    // Las fechas del frontmatter son medianoche UTC: sin esto, en husos
+    // de América se pintaban un día antes.
+    timeZone: "UTC",
+  });
+
+const relatedLinks = pageLinks(related, lang);
+
+const copy = es
+  ? {
+      home: "Inicio",
+      back: "Volver al blog",
+      updated: "Actualizado",
+      relatedEyebrow: "// siguiente paso",
+      relatedTitle: "Páginas relacionadas",
+      relatedBody: "Si este tema es el tuyo, aquí está cómo lo trabajo en la práctica.",
+      ctaTitle: "¿Listo para que tu web trabaje por ti?",
+      ctaBody:
+        "Agenda una llamada gratis de 20 minutos y te digo cómo tu negocio puede ahorrar tiempo y captar más clientes. Sin costo y sin llamada de ventas: los precios ya están publicados.",
+      ctaButton: "Agendar llamada gratis",
+    }
+  : {
+      home: "Home",
+      back: "Back to the blog",
+      updated: "Updated",
+      relatedEyebrow: "// next step",
+      relatedTitle: "Related pages",
+      relatedBody: "If this is your situation, here is how I handle it in practice.",
+      ctaTitle: "Ready for a website that works for you?",
+      ctaBody:
+        "Book a free 20-minute call and I'll tell you how your business can save time and win more clients. No cost and no sales pitch: prices are already published.",
+      ctaButton: "Book a free call",
+    };
+
+// JSON-LD del artículo para SEO (rich results de artículo).
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { "@type": "Organization", name: author },
+  publisher: {
+    "@type": "Organization",
+    name: "ProCode Systems",
+    url: siteUrl.toString(),
+  },
+  mainEntityOfPage: pageUrl,
+  inLanguage: es ? "es-MX" : "en-US",
+  image: new URL("/og-image.jpg", siteUrl).toString(),
+  keywords: tags.join(", "),
+  isPartOf: { "@id": `${siteUrl}#website` },
+};
+
+const selfPath = Astro.url.pathname;
+const alternates = altPath
+  ? es
+    ? { es: selfPath, en: altPath }
+    : { es: altPath, en: selfPath }
+  : undefined;
+---
+
+<Layout
+  lang={lang}
+  waPage="blog"
+  title={post.data.seoTitle ?? `${title} | ProCode Systems`}
+  description={post.data.seoDescription ?? description}
+  keywords={tags.join(", ")}
+  alternates={alternates}
+  breadcrumbs={[
+    { name: copy.home, path: PAGES.home[lang] },
+    { name: "Blog", path: blogPath },
+    { name: title, path: selfPath },
+  ]}
+>
+  <Header lang={lang} altHref={altPath ?? (es ? "/en/blog/" : "/blog/")} />
+
+  <main class="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6">
+    <a
+      href={blogPath}
+      class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--brand)]"
+    >
+      <span>←</span> {copy.back}
+    </a>
+
+    <p class="mt-8 text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
+      {formatDate(pubDate)} · {author}
+      {updatedDate && <span> · {copy.updated} {formatDate(updatedDate)}</span>}
+    </p>
+
+    <h1
+      class="mt-4 text-[2.15rem] font-extrabold leading-tight tracking-tight text-[var(--text)] sm:text-[2.6rem] lg:text-[3.45rem]"
+    >
+      {title}
+    </h1>
+
+    <p class="mt-5 text-lg leading-8 text-[var(--muted)]">{description}</p>
+
+    {
+      tags.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="rounded-lg border border-[color:var(--border)] bg-[var(--brand)]/10 px-3 py-1 text-xs text-[var(--accent)]">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    <div
+      class="my-8 h-px w-full bg-gradient-to-r from-[var(--accent)]/40 via-[color:var(--border)] to-transparent"
+    >
+    </div>
+
+    <article class="article-content">
+      <Content />
+    </article>
+
+    {
+      /* Sentinela de lectura: cuando esta línea entra en pantalla, el artículo
+        se leyó de arriba abajo. Es la señal que separa «lo leyeron» de
+        «entraron y se fueron». */
+    }
+    <div data-article-end data-article-slug={post.id} aria-hidden="true"></div>
+
+    {
+      relatedLinks.length > 0 && (
+        <nav aria-label={copy.relatedTitle} class="mt-14">
+          <p class="font-mono text-xs uppercase tracking-[0.14em] text-[var(--accent)]">
+            {copy.relatedEyebrow}
+          </p>
+          <h2 class="mt-2 text-2xl font-extrabold text-[var(--text)]">{copy.relatedTitle}</h2>
+          <p class="mt-2 text-sm leading-7 text-[var(--muted)]">{copy.relatedBody}</p>
+          <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+            {relatedLinks.map((link, i) => (
+              <li>
+                <a
+                  href={link.href}
+                  data-cta={`blog-relacionada-${i + 1}`}
+                  class="group flex h-full items-start justify-between gap-3 rounded-2xl border border-[color:var(--border)] bg-[var(--surface)]/70 p-5 transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)]"
+                >
+                  <span class="flex flex-col gap-1">
+                    <span class="text-sm font-bold text-[var(--text)]">{link.label}</span>
+                    {link.hint && (
+                      <span class="text-xs leading-6 text-[var(--muted)]">{link.hint}</span>
+                    )}
+                  </span>
+                  <Icon
+                    name="arrow-right"
+                    class="mt-0.5 h-4 w-4 flex-none text-[var(--accent)] transition group-hover:translate-x-0.5"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    <!-- CTA al final del artículo -->
+    <div
+      class="mt-14 rounded-3xl border border-[color:var(--border-strong)] bg-[var(--surface)]/80 p-8 text-center shadow-[0_0_70px_var(--aurora-1)] backdrop-blur-xl"
+    >
+      <h2 class="text-2xl font-extrabold text-[var(--text)]">
+        {copy.ctaTitle}
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-[var(--muted)]">
+        {copy.ctaBody}
+      </p>
+      <a
+        href={PAGES.contact[lang]}
+        data-cta="blog-cta-final"
+        class="mt-6 inline-flex items-center justify-center rounded-xl bg-[var(--brand)] px-6 py-4 text-sm font-bold text-white shadow-[0_0_45px_var(--halo-brand)] transition hover:bg-[var(--brand-strong)]"
+      >
+        {copy.ctaButton}
+        <span class="ml-2">→</span>
+      </a>
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+</Layout>

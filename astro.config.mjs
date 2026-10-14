@@ -35,11 +35,18 @@ const legacySeoRedirects = {
   "/en/services/seo-web-design": "/en/services/seo/",
 };
 
+// Octubre de 2026: artículos del blog que competían por la misma búsqueda,
+// fusionados en una sola guía cada par.
+const legacyBlogRedirects = {
+  "/blog/como-crear-pagina-web-html": "/blog/como-crear-pagina-web/",
+  "/blog/como-crear-pagina-web-negocio": "/blog/crear-pagina-web-gratis-negocio/",
+};
+
 // https://astro.build/config
 export default defineConfig({
   // `site` es necesario para URLs canónicas absolutas, Open Graph y sitemap.
   site: "https://procodedev.com",
-  redirects: { ...legacyTaxRedirects, ...legacySeoRedirects },
+  redirects: { ...legacyTaxRedirects, ...legacySeoRedirects, ...legacyBlogRedirects },
   vite: {
     plugins: [tailwindcss()],
   },

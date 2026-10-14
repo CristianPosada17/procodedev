@@ -67,6 +67,10 @@ interface Props {
    *  estado). Es la forma correcta de decir «atiendo Texas» sin fingir una
    *  dirección física ahí; sin esta prop se declaran EE. UU. y México. */
   areaServed?: string;
+  /** Rutas ES/EN de una página que no es PageKey pero sí existe en los dos
+   *  idiomas: el índice del blog y los artículos con traducción. Con esto se
+   *  emiten sus hreflang en vez de quedarse sin ninguno. */
+  alternates?: { es: string; en: string };
 }
 
 const {
@@ -90,6 +94,7 @@ const {
   itemList,
   audience,
   areaServed,
+  alternates,
 } = Astro.props as Props;
 
 const t = translations[lang];
@@ -147,13 +152,16 @@ const socialImage = new URL(image, siteUrl);
 // distintas de la misma URL en la misma página es exactamente la señal
 // contradictoria que hay que evitar, así que se normalizan aquí.
 const withSlash = (path: string) => (path.endsWith("/") ? path : `${path}/`);
-const esAltURL = new URL(withSlash(PAGES[page].es), siteUrl);
-const enAltURL = new URL(withSlash(PAGES[page].en), siteUrl);
+const altPaths = alternates ?? PAGES[page];
+const esAltURL = new URL(withSlash(altPaths.es), siteUrl);
+const enAltURL = new URL(withSlash(altPaths.en), siteUrl);
 // Solo hay hreflang cuando la página existe en los dos idiomas. Antes el blog
 // (que no pasa `page`) heredaba los de la portada: cada artículo le decía a
 // Google que su versión en español era «/». Y /revision-express/, que solo
 // existe en español, se declaraba a sí misma como versión inglesa.
-const hasAlternates = hasPage && PAGES[page].es !== PAGES[page].en;
+const hasAlternates = alternates
+  ? alternates.es !== alternates.en
+  : hasPage && PAGES[page].es !== PAGES[page].en;
 
 // Datos estructurados (JSON-LD)
 const orgNode = {

@@ -6,6 +6,7 @@ seoDescription: "Qué es el diseño web y en qué se diferencia del desarrollo: 
 pubDate: 2026-09-14
 author: "ProCode Systems"
 tags: ["qué es el diseño web", "diseño web para principiantes", "diseño y desarrollo web", "en qué consiste el diseño web"]
+related: ["webDev", "pricing", "portfolio", "landingPages"]
 ---
 
 **Qué es el diseño web**, dicho corto: decidir cómo se ve y cómo se usa un sitio para que el visitante haga lo que tiene que hacer. No es dibujar una página bonita; es ordenar información para que alguien con prisa entienda y actúe.
