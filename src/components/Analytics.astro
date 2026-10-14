@@ -38,12 +38,13 @@ const cfg = JSON.stringify({
   page,
   group,
   regions: CONSENT_REGIONS,
+  ads: MEASUREMENT.googleAds,
 });
 
 // Sin IDs no se inyecta nada: un sitio sin medir es preferible a un sitio
 // que carga scripts de terceros para nada.
 const bootstrap =
-  GA || PIXEL
+  GA || PIXEL || MEASUREMENT.googleAds
     ? `
 (function(){
   var CFG = ${cfg};
@@ -122,6 +123,9 @@ const bootstrap =
     // eventos disparados mientras tanto quedan en cola y se envian intactos
     // en cuanto la libreria carga.
   }
+  // Google Ads (opcional, ver MEASUREMENT.googleAds). La misma gtag.js
+  // atiende las dos configuraciones; tambien guarda el gclid del anuncio.
+  if (CFG.ads) gtag('config', CFG.ads);
 
   // ---------- 4. Meta Pixel ----------
   if (CFG.pixel) {
@@ -159,16 +163,23 @@ const bootstrap =
     if (tagsLoaded) return;
     tagsLoaded = true;
     var head = document.head || document.getElementsByTagName('head')[0];
-    if (CFG.ga) {
+    // __pcdTagsReady avisa a AnalyticsEvents de que gtag.js ya esta
+    // procesando la cola. Antes de eso, un clic que cambia de pagina se
+    // perderia (la cola muere con la pagina), asi que el motor lo guarda y
+    // lo reenvia en la siguiente.
+    var gid = CFG.ga || CFG.ads;
+    if (gid) {
       var g = document.createElement('script');
       g.async = true;
-      g.src = 'https://www.googletagmanager.com/gtag/js?id=' + CFG.ga;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=' + gid;
+      g.onload = function(){ window.__pcdTagsReady = true; };
       head.appendChild(g);
     }
     if (CFG.pixel) {
       var p = document.createElement('script');
       p.async = true;
       p.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      if (!gid) p.onload = function(){ window.__pcdTagsReady = true; };
       head.appendChild(p);
     }
   }

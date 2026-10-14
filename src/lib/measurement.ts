@@ -17,6 +17,26 @@ export const MEASUREMENT = {
    * GA4). Se deja el hueco por si algún día hay que reverificar con meta.
    */
   gscVerification: "",
+  /**
+   * Google Ads (opcional). Hay dos caminos para que Ads vea las conversiones:
+   *   a) Importar los eventos clave de GA4 (no requiere nada aquí), o
+   *   b) Etiqueta directa de Ads: poner el ID «AW-XXXXXXXXXX» y, por cada
+   *      acción de conversión creada en Ads, su etiqueta (la parte después
+   *      de la barra en `send_to: 'AW-XXXXXXXXXX/abcDEF123'`).
+   * Con el ID vacío no se carga nada de Ads. Una etiqueta vacía = ese evento
+   * no se envía como conversión directa (sigue llegando a GA4).
+   */
+  googleAds: "",
+  googleAdsLabels: {
+    schedule_call: "",
+    generate_lead: "",
+    whatsapp_click: "",
+    express_review_click: "",
+    more_info_click: "",
+    calendly_click: "",
+    phone_click: "",
+    email_click: "",
+  } as Record<string, string>,
 } as const;
 
 /**

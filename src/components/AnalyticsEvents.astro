@@ -5,7 +5,9 @@
 // Expone `window.pcdTrack(nombre, params, meta)` y engancha solo:
 //
 //   · Clics       → whatsapp_click, phone_click, email_click, calendly_click,
-//                   cta_click, nav_click, social_click, outbound_click
+//                   express_review_click (Agendar / Reservar Revisión Express),
+//                   more_info_click (Más información), cta_click, nav_click,
+//                   social_click, outbound_click
 //   · Scroll      → scroll_depth (25/50/75/90 %)
 //   · Secciones   → section_view (qué se ve y qué no de cada página)
 //   · Formularios → form_start, generate_lead
@@ -18,7 +20,7 @@
 // para poder deduplicar si algún día se añade la API de Conversiones.
 // ============================================================
 import { PAGES, type Lang, type PageKey } from "../i18n/ui";
-import { contentGroupFor } from "../lib/measurement";
+import { contentGroupFor, MEASUREMENT } from "../lib/measurement";
 
 interface Props {
   lang?: Lang;
@@ -31,6 +33,9 @@ const cfg = JSON.stringify({
   page,
   group: contentGroupFor(page),
   contactPaths: [PAGES.contact.es, PAGES.contact.en],
+  expressPath: PAGES.expressReview.es,
+  ads: MEASUREMENT.googleAds,
+  adsLabels: MEASUREMENT.googleAdsLabels,
 });
 
 const engine = `
@@ -115,7 +120,53 @@ const engine = `
     return 'pcd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,10);
   }
 
-  function track(name, params, meta){
+  // Envío real a GA4, Google Ads y Meta. Separado de track() para que los
+  // eventos guardados en la página anterior se reenvíen igual.
+  function send(name, params, meta){
+    if (window.gtag) {
+      window.gtag('event', name, params);
+      var label = CFG.ads && CFG.adsLabels && CFG.adsLabels[name];
+      if (label) {
+        var conv = { send_to: CFG.ads + '/' + label, transaction_id: params.event_id };
+        if (params.value) { conv.value = params.value; conv.currency = params.currency || 'USD'; }
+        window.gtag('event', 'conversion', conv);
+      }
+    }
+    if (meta && meta.event && window.fbq) {
+      window.fbq(meta.custom ? 'trackCustom' : 'track', meta.event, meta.params || {}, { eventID: params.event_id });
+    }
+  }
+
+  // ---------------- Clics que cambian de página ----------------
+  // gtag.js y fbevents.js cargan diferidos. Si el clic que cambia de página
+  // llega antes de que carguen (típico en móvil: entra desde el anuncio y
+  // toca el botón del header), la cola muere con la página y el clic no
+  // existe para GA4 ni para Ads. En ese caso se guarda aquí y la página
+  // siguiente (mismo sitio) lo envía.
+  var PENDING = 'pcd_pending';
+  function defer(name, params, meta){
+    try {
+      var list = parse(window.sessionStorage.getItem(PENDING)) || [];
+      list.push({ n: name, p: params, m: meta || null, t: Date.now() });
+      window.sessionStorage.setItem(PENDING, JSON.stringify(list.slice(-10)));
+      return true;
+    } catch(e){ return false; }
+  }
+  (function flush(){
+    var list = parse(safeGet('sessionStorage', PENDING));
+    if (!list || !list.length) return;
+    try { window.sessionStorage.removeItem(PENDING); } catch(e){}
+    var fresh = list.filter(function(x){ return x && x.n && x.p && Date.now() - x.t < 10 * 60 * 1000; });
+    if (!fresh.length) return;
+    if (window.pcdLoadTags) window.pcdLoadTags();
+    fresh.forEach(function(x){
+      x.p.replayed = 1;
+      send(x.n, x.p, x.m);
+      log('[pcd] (reenviado)', x.n, x.p, x.m || '');
+    });
+  })();
+
+  function track(name, params, meta, opts){
     params = params || {};
     params.page_group = CFG.group;
     params.page_key = CFG.page;
@@ -137,11 +188,11 @@ const engine = `
     // ocurran antes de que lleguen quedan en cola y se envian igual.
     if (window.pcdLoadTags) window.pcdLoadTags();
 
-    if (window.gtag) window.gtag('event', name, params);
-
-    if (meta && meta.event && window.fbq) {
-      window.fbq(meta.custom ? 'trackCustom' : 'track', meta.event, meta.params || {}, { eventID: id });
+    if (opts && opts.leaving && !window.__pcdTagsReady && defer(name, params, meta)) {
+      log('[pcd] (en espera hasta la siguiente página)', name, params, meta || '');
+      return;
     }
+    send(name, params, meta);
     log('[pcd]', name, params, meta || '');
   }
   window.pcdTrack = track;
@@ -167,6 +218,69 @@ const engine = `
   }
 
   // ---------------- Clics ----------------
+  function urlOf(href){
+    if (!href) return null;
+    try { return new URL(href, location.href); } catch(e){ return null; }
+  }
+  function bare(p){ return p.charAt(p.length - 1) === '/' ? p.slice(0, -1) : p; }
+  function isContactPath(path){
+    return CFG.contactPaths.some(function(p){ return bare(path) === bare(p); });
+  }
+
+  // Intención del clic. Los CTA del sitio son anclas (#agendar, #contacto,
+  // #solicitar) o enlaces a /contacto/ con esas anclas, así que se decide
+  // por el destino y no por la zona: «Más información» en el header sigue
+  // siendo «Más información», no navegación. El atributo data-cta-intent en el
+  // elemento manda sobre todo lo demás.
+  function intentOf(el, href){
+    var forced = el.getAttribute('data-cta-intent');
+    if (forced) return forced;
+    if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('web.whatsapp.com') > -1 || href.indexOf('whatsapp://') === 0) return 'whatsapp';
+    if (href.indexOf('tel:') === 0) return 'phone';
+    if (href.indexOf('mailto:') === 0) return 'email';
+    if (href.indexOf('calendly.com') > -1) return 'calendly';
+
+    var id = el.getAttribute('data-cta') || '';
+    // Botón «Ver horarios» que monta el calendario incrustado.
+    if (id === 'calendly-cargar') return 'calendly';
+
+    var u = urlOf(href);
+    if (u && u.origin === location.origin) {
+      if (u.hash === '#agendar') return 'book';
+      if (bare(u.pathname) === bare(CFG.expressPath) && bare(location.pathname) !== bare(CFG.expressPath)) return 'book';
+      if (u.hash === '#contacto' || u.hash === '#solicitar') return 'info';
+      if (isContactPath(u.pathname) && !u.hash) return 'info';
+    }
+    // Botones sin destino reconocible: se respeta la convención de ids.
+    if (/-(agendar|reservar)$/.test(id)) return 'book';
+    if (/-info$/.test(id)) return 'info';
+    return '';
+  }
+
+  // ¿Este clic descarga la página actual? Solo importa para enlaces del
+  // propio sitio: son los únicos cuyo evento se puede reenviar después.
+  function leavesPage(el, href, ev){
+    if (el.tagName !== 'A') return false;
+    if (ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.altKey || ev.button === 1) return false;
+    var t = (el.getAttribute('target') || '').toLowerCase();
+    if (t && t !== '_self') return false;
+    if (el.hasAttribute('download')) return false;
+    var u = urlOf(href);
+    if (!u || u.origin !== location.origin) return false;
+    return !(u.pathname === location.pathname && u.search === location.search);
+  }
+
+  // Cada intención tiene su propio evento en GA4: así cada una se puede
+  // marcar como evento clave e importar a Google Ads por separado.
+  var INTENTS = {
+    whatsapp: { name: 'whatsapp_click',       meta: 'ClicWhatsApp', attr: true },
+    phone:    { name: 'phone_click',          meta: 'ClicLlamada' },
+    email:    { name: 'email_click',          meta: 'ClicEmail' },
+    calendly: { name: 'calendly_click',       meta: 'ClicAgendar', attr: true },
+    book:     { name: 'express_review_click', meta: 'ClicAgendar', attr: true },
+    info:     { name: 'more_info_click',      meta: 'ClicMasInfo', attr: true }
+  };
+
   document.addEventListener('click', function(ev){
     var node = ev.target;
     if (!node || typeof node.closest !== 'function') node = node && node.parentElement;
@@ -186,33 +300,25 @@ const engine = `
       section_id: sectionOf(el),
       link_url: href.slice(0,200)
     };
+    var opts = { leaving: leavesPage(el, href, ev) };
 
-    // WhatsApp, teléfono y correo: son CLICS, no contactos. Abrir WhatsApp no
-    // significa que el mensaje se haya enviado ni que haya un cliente, así que
-    // a Meta van como eventos personalizados (ClicWhatsApp, ClicLlamada,
-    // ClicEmail) y no como el estándar «Contact». Los contactos reales son
-    // generate_lead / Lead (formulario enviado) y schedule_call / Schedule
-    // (cita agendada en Calendly).
-    // WhatsApp
-    if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('web.whatsapp.com') > -1) {
-      var wp = attributionParams();
-      for (var k in base) wp[k] = base[k];
-      track('whatsapp_click', wp, { event: 'ClicWhatsApp', custom: true, params: { content_category: CFG.group } });
-      return;
-    }
-    // Teléfono
-    if (href.indexOf('tel:') === 0) {
-      track('phone_click', base, { event: 'ClicLlamada', custom: true, params: { content_category: CFG.group } });
-      return;
-    }
-    // Correo
-    if (href.indexOf('mailto:') === 0) {
-      track('email_click', base, { event: 'ClicEmail', custom: true, params: { content_category: CFG.group } });
-      return;
-    }
-    // Calendly directo (enlace, no el widget embebido)
-    if (href.indexOf('calendly.com') > -1) {
-      track('calendly_click', base, { event: 'ClicAgendar', custom: true, params: { origen: base.cta_zone } });
+    // WhatsApp, teléfono, correo y los CTA de agenda / más información: son
+    // CLICS, no contactos. Abrir WhatsApp no significa que el mensaje se haya
+    // enviado ni que haya un cliente, así que a Meta van como eventos
+    // personalizados (ClicWhatsApp, ClicAgendar, ClicMasInfo...) y no como el
+    // estándar «Contact». Los contactos reales son generate_lead / Lead
+    // (formulario enviado) y schedule_call / Schedule (cita en Calendly).
+    var intent = intentOf(el, href);
+    var def = INTENTS[intent];
+    if (def) {
+      var p = def.attr ? attributionParams() : {};
+      for (var k in base) p[k] = base[k];
+      p.cta_intent = intent;
+      track(def.name, p, {
+        event: def.meta,
+        custom: true,
+        params: { content_category: CFG.group, origen: base.cta_zone, seccion: base.section_id, cta_id: base.cta_id }
+      }, opts);
       return;
     }
     // Enlaces externos
@@ -226,24 +332,13 @@ const engine = `
         return;
       }
     }
-    // Enlace interno hacia la página de contacto / agendar
-    var goesToContact = CFG.contactPaths.some(function(p){
-      var bare = p.charAt(p.length - 1) === '/' ? p.slice(0, -1) : p;
-      return href === bare || href === bare + '/' ||
-             href.indexOf(bare + '#') === 0 || href.indexOf(bare + '/#') === 0;
-    }) || href.indexOf('#agendar') > -1;
-
-    if (goesToContact) {
-      track('cta_click', base, { event: 'ClicAgendar', custom: true, params: { origen: base.cta_zone, seccion: base.section_id } });
-      return;
-    }
     // Navegación (header, footer, menús)
     if (base.cta_zone === 'header' || base.cta_zone === 'footer' || base.cta_zone === 'nav') {
-      track('nav_click', base);
+      track('nav_click', base, null, opts);
       return;
     }
     // Cualquier otro botón o enlace del contenido
-    track('cta_click', base);
+    track('cta_click', base, null, opts);
   }, true);
 
   // ---------------- Profundidad de scroll ----------------
