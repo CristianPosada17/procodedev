@@ -1,10 +1,10 @@
 ---
 title: "Landing page vs. sitio web: ¿cuál necesita tu negocio?"
 description: "Diferencias claras entre una landing page y un sitio web, con ejemplos según el tipo de negocio, para que inviertas en lo que de verdad necesitas."
-seoTitle: "Landing Page vs. Sitio Web: Cuál Necesitas | ProCode Dev"
+seoTitle: "Landing Page vs. Sitio Web: Cuál Necesitas | ProCode Systems"
 seoDescription: "Diferencias claras entre una landing page y un sitio web, con ejemplos por tipo de negocio, para que inviertas en lo que de verdad necesitas hoy."
 pubDate: 2026-06-30
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["landing page", "sitio web", "negocios"]
 ---
 
@@ -44,4 +44,4 @@ Una forma sencilla de decidir:
 
 ---
 
-En **ProCode Dev** te ayudo a decidir sin que te cueste: revisa los [precios publicados](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo exactamente qué necesita tu negocio.
+En **ProCode Systems** te ayudo a decidir sin que te cueste: revisa los [precios publicados](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo exactamente qué necesita tu negocio.

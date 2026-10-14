@@ -1,10 +1,10 @@
 ---
 title: "Cómo crear una página web para un negocio que sí venda"
 description: "Cómo crear una página web para un negocio: qué decidir antes de elegir plataforma, qué secciones necesita de verdad y cómo saber si está funcionando."
-seoTitle: "Cómo Crear una Página Web para un Negocio | ProCode"
+seoTitle: "Cómo Crear una Página Web para un Negocio | ProCode Systems"
 seoDescription: "La guía para dueños de negocio: qué decidir antes de la plataforma, qué secciones necesita el sitio, cuánto invertir y cómo medir si está funcionando."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["cómo crear una página web para un negocio", "página web para mi negocio", "crear página web para empresa", "página web que venda"]
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: "Inspiración de diseño web: 8 estilos y cuándo usar cada uno"
 description: "Inspiración de diseño web explicada por estilos, con el tipo de negocio al que le funciona cada uno y los errores que se copian sin querer."
-seoTitle: "Inspiración de Diseño Web: 8 Estilos | ProCode Dev"
+seoTitle: "Inspiración de Diseño Web: 8 Estilos | ProCode Systems"
 seoDescription: "Ocho estilos de diseño web con ejemplos de cuándo funciona cada uno, a qué negocio le sirve y qué se copia mal cuando solo miras referencias bonitas."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["inspiración de diseño web", "estilos de diseño web", "ejemplos de diseño web", "tendencias de diseño web"]
 ---
 
@@ -32,7 +32,7 @@ Cuándo falla: en negocios cuyo cliente pasa de los 55 años. El contraste bajo 
 
 ## 4. Editorial
 
-Tipografía grande, textos largos, ritmo de revista. Ideal para consultores, abogados y cualquiera que venda **criterio**: lo que compras es cómo piensa esa persona, y eso se demuestra escribiendo.
+Tipografía grande, textos largos, ritmo de revista. Ideal para [consultores](/servicios-profesionales/), [abogados](/abogados/) y cualquiera que venda **criterio**: lo que compras es cómo piensa esa persona, y eso se demuestra escribiendo.
 
 ## 5. Brutalismo
 

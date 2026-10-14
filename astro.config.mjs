@@ -5,20 +5,26 @@ import tailwindcss from "@tailwindcss/vite";
 // oficio y su hub se colapsaron en un solo giro: /contabilidad-e-impuestos.
 // Las URLs viejas ya estaban indexadas, así que se conservan como redirect en
 // vez de devolver 404.
+//
+// Octubre 2026: los preparadores de impuestos volvieron a tener página propia
+// (/preparadores-de-impuestos/, /en/tax-preparers/). Las URLs viejas de
+// impuestos personales, EAs y resolución fiscal apuntan ahora ahí; las de
+// contabilidad (CPAs, bookkeepers, despachos) siguen yendo al giro contable.
+// La fuente de verdad en producción es public/.htaccess (301 de servidor);
+// esto solo cubre `astro dev` y `astro preview`.
 const legacyTaxRedirects = {
-  "/impuestos": "/contabilidad-e-impuestos/",
-  "/preparadores-de-impuestos": "/contabilidad-e-impuestos/",
-  "/enrolled-agents": "/contabilidad-e-impuestos/",
+  "/impuestos": "/preparadores-de-impuestos/",
+  "/enrolled-agents": "/preparadores-de-impuestos/",
+  "/resolucion-fiscal": "/preparadores-de-impuestos/",
   "/cpas": "/contabilidad-e-impuestos/",
   "/bookkeepers": "/contabilidad-e-impuestos/",
-  "/resolucion-fiscal": "/contabilidad-e-impuestos/",
   "/despachos-contables": "/contabilidad-e-impuestos/",
-  "/en/tax-pros": "/en/accounting-and-tax/",
-  "/en/tax-professionals": "/en/accounting-and-tax/",
-  "/en/enrolled-agents": "/en/accounting-and-tax/",
+  "/en/tax-pros": "/en/tax-preparers/",
+  "/en/tax-professionals": "/en/tax-preparers/",
+  "/en/enrolled-agents": "/en/tax-preparers/",
+  "/en/tax-resolution": "/en/tax-preparers/",
   "/en/cpas": "/en/accounting-and-tax/",
   "/en/bookkeepers": "/en/accounting-and-tax/",
-  "/en/tax-resolution": "/en/accounting-and-tax/",
   "/en/accounting-firms": "/en/accounting-and-tax/",
 };
 

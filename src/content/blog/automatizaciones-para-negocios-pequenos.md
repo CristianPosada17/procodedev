@@ -1,10 +1,10 @@
 ---
 title: "Cómo automatizar tu negocio pequeño y recuperar horas cada semana"
 description: "Automatizaciones sencillas para negocios pequeños: WhatsApp, formularios, agenda y seguimiento que trabajan por ti y te devuelven tiempo para vender."
-seoTitle: "Automatizaciones para Negocios Pequeños | ProCode Dev"
+seoTitle: "Automatizaciones para Negocios Pequeños | ProCode Systems"
 seoDescription: "Automatizaciones sencillas para negocios pequeños: WhatsApp, formularios, agenda y seguimiento que trabajan por ti y te devuelven horas cada semana."
 pubDate: 2026-06-09
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["automatización", "productividad", "negocios"]
 ---
 
@@ -42,4 +42,4 @@ Empieza por lo que más tiempo te quita hoy. Una sola automatización bien hecha
 
 ---
 
-En **ProCode Dev** conecto WhatsApp, formularios, agenda y avisos a tu página para que tu operación sea más ligera. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo qué se puede automatizar en tu negocio.
+En **ProCode Systems** conecto WhatsApp, formularios, agenda y avisos a tu página para que tu operación sea más ligera. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo qué se puede automatizar en tu negocio.

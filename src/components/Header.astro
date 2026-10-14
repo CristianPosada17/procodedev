@@ -3,6 +3,7 @@ import {
   translations,
   PAGES,
   SEGMENT_KEYS,
+  NICHE_KEYS,
   getAltPath,
   conversionHref,
   type Lang,
@@ -42,7 +43,7 @@ const segmentItems = SEGMENT_KEYS.map((key) => ({
   icon: segments[lang][key].icon,
 }));
 
-const segmentKeys = SEGMENT_KEYS as readonly string[];
+const segmentKeys = [...SEGMENT_KEYS, ...NICHE_KEYS] as readonly string[];
 const sectorsActive = page === "sectors" || segmentKeys.includes(page);
 
 // Desde la especialización en dos servicios, «Servicios» también es un
@@ -117,12 +118,12 @@ const otherLang = lang === "es" ? "EN" : "ES";
     <a
       href={PAGES.home[lang]}
       class="flex items-center gap-3"
-      aria-label="ProCode Dev"
+      aria-label="ProCode Systems"
     >
       <div class="flex h-12 w-12 items-center justify-center">
         <img
           src="/Logo.webp"
-          alt="Logotipo de ProCode Dev"
+          alt="Logotipo de ProCode Systems"
           width="48"
           height="48"
           class="h-full w-full object-contain"

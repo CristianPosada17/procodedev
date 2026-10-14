@@ -1,10 +1,10 @@
 ---
 title: "Qué es el diseño web: guía para entenderlo sin ser técnico"
 description: "Qué es el diseño web, en qué se diferencia del desarrollo, qué incluye un proyecto real y qué preguntas hacer antes de contratar a alguien."
-seoTitle: "Qué Es el Diseño Web: Guía Simple | ProCode Dev"
+seoTitle: "Qué Es el Diseño Web: Guía Simple | ProCode Systems"
 seoDescription: "Qué es el diseño web y en qué se diferencia del desarrollo: las partes de un proyecto, quién hace qué y las preguntas que conviene hacer antes de pagar."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["qué es el diseño web", "diseño web para principiantes", "diseño y desarrollo web", "en qué consiste el diseño web"]
 ---
 

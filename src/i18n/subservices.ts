@@ -115,7 +115,7 @@ const landingPagesEs: SubserviceDetail = {
   serviceName: "Diseño de landing pages",
   audience: "Negocios que lanzan una campaña o venden un solo servicio",
   meta: {
-    title: "Diseño de Landing Pages para Negocios | ProCode",
+    title: "Diseño de Landing Pages para Negocios | ProCode Systems",
     description:
       "Diseño de landing page para negocios: una sola página enfocada en convertir, lista en 1 a 2 semanas. Desde $349 USD, en pago único.",
     keywords:
@@ -324,7 +324,7 @@ const seoEs: SubserviceDetail = {
   serviceName: "Servicio de SEO",
   audience: "Negocios que quieren aparecer en Google por lo que de verdad se busca",
   meta: {
-    title: "Servicio de SEO para Negocios | ProCode Dev",
+    title: "Servicio de SEO para Negocios | ProCode Systems",
     description:
       "Servicio de SEO para negocios: auditoría inicial, keyword research, SEO técnico, contenido y SEO local, con reporte mensual. Se cotiza tras la reunión inicial.",
     keywords:
@@ -536,7 +536,7 @@ const maintenanceEs: SubserviceDetail = {
   serviceName: "Mantenimiento y soporte de páginas web",
   audience: "Negocios con un sitio publicado que no quieren mantenerlo solos",
   meta: {
-    title: "Mantenimiento Web para Negocios | ProCode Dev",
+    title: "Mantenimiento Web para Negocios | ProCode Systems",
     description:
       "Mantenimiento de páginas web desde $79 USD al mes: actualizaciones, respaldos, monitoreo, cambios menores de contenido y soporte por WhatsApp.",
     keywords:
@@ -745,7 +745,7 @@ const landingPagesEn: SubserviceDetail = {
   serviceName: "Landing page design",
   audience: "Small businesses running a campaign or selling one service",
   meta: {
-    title: "Landing Page Design for Small Business | ProCode",
+    title: "Landing Page Design for Small Business | ProCode Systems",
     description:
       "Landing page design for small businesses: one page built to convert, ready in 1 to 2 weeks. From $349 USD, one-time.",
     keywords:
@@ -954,7 +954,7 @@ const seoEn: SubserviceDetail = {
   serviceName: "SEO service",
   audience: "Businesses that want to show up in Google for what people actually search",
   meta: {
-    title: "SEO Services for Small Businesses | ProCode Dev",
+    title: "SEO Services for Small Businesses | ProCode Systems",
     description:
       "SEO services for small businesses: initial audit, keyword research, technical SEO, content and local SEO, with monthly reporting. Quoted after the first meeting.",
     keywords:
@@ -1166,7 +1166,7 @@ const maintenanceEn: SubserviceDetail = {
   serviceName: "Website maintenance and support",
   audience: "Small businesses with a live site they would rather not maintain",
   meta: {
-    title: "Website Maintenance for Small Business | ProCode",
+    title: "Website Maintenance for Small Business | ProCode Systems",
     description:
       "Website maintenance from $79 USD a month: updates, backups, monitoring, minor content changes and support over WhatsApp.",
     keywords:

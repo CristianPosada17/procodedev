@@ -1,10 +1,10 @@
 ---
 title: "Wireframe, prototipo y mockup: qué es cada uno y para qué sirve"
 description: "Diferencia entre wireframe, mockup y prototipo en un proyecto web, con qué se hace cada uno, cuándo se aprueba y qué pasa si te saltas alguno."
-seoTitle: "Wireframe, Prototipo y Mockup Web: Diferencias | ProCode"
+seoTitle: "Wireframe, Prototipo y Mockup: Diferencias | ProCode Systems"
 seoDescription: "Qué es un wireframe, un mockup y un prototipo en diseño web, en qué orden van, quién aprueba cada etapa y qué sale mal cuando se salta una de ellas."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["wireframe", "mockup web", "prototipo web", "diseño web proceso"]
 ---
 

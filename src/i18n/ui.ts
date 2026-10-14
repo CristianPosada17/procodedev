@@ -1,5 +1,5 @@
 // ============================================================
-// PROCODE DEV — Sistema bilingüe (ES/EN)
+// PROCODE SYSTEMS — Sistema bilingüe (ES/EN)
 // Todo el copy vive aquí. Los componentes leen `t = translations[lang]`.
 // ES es el idioma por defecto (raíz "/"); EN vive bajo "/en/".
 // ============================================================
@@ -43,6 +43,18 @@ export type PageKey =
   | "professional"
   | "realEstate"
   | "accounting"
+  // Nichos (oct 2026): un oficio concreto dentro de cada giro. Ver
+  // src/i18n/niches.ts y NICHE_PARENT más abajo.
+  | "taxPreparers"
+  | "dentists"
+  | "psychologists"
+  | "doctors"
+  | "nutritionists"
+  | "gyms"
+  | "lawyers"
+  | "insuranceAgents"
+  | "realtors"
+  | "landscaping"
   | "markets"
   | "mexico"
   | "texas"
@@ -99,6 +111,19 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   },
   realEstate: { es: "/inmobiliarias/", en: "/en/real-estate/" },
   accounting: { es: "/contabilidad-e-impuestos/", en: "/en/accounting-and-tax/" },
+  // Nichos: URL corta con el oficio, que es como se busca. /preparadores-de-
+  // impuestos/ redirigía a /contabilidad-e-impuestos/ desde agosto de 2026;
+  // en octubre volvió a ser página propia (se quitó el 301).
+  taxPreparers: { es: "/preparadores-de-impuestos/", en: "/en/tax-preparers/" },
+  dentists: { es: "/dentistas/", en: "/en/dentists/" },
+  psychologists: { es: "/psicologos/", en: "/en/therapists/" },
+  doctors: { es: "/medicos/", en: "/en/doctors/" },
+  nutritionists: { es: "/nutriologos/", en: "/en/nutritionists/" },
+  gyms: { es: "/gimnasios/", en: "/en/gyms/" },
+  lawyers: { es: "/abogados/", en: "/en/attorneys/" },
+  insuranceAgents: { es: "/agentes-de-seguros/", en: "/en/insurance-agents/" },
+  realtors: { es: "/asesores-inmobiliarios/", en: "/en/realtors/" },
+  landscaping: { es: "/jardineria-y-landscaping/", en: "/en/landscaping/" },
   // Páginas de mercado (7 sep 2026): el eje geográfico con el que rankean
   // todos los competidores que capturan al negocio hispano en EE. UU.
   // Ver src/i18n/markets.ts para el razonamiento y las reglas.
@@ -132,6 +157,31 @@ export const SEGMENT_KEYS = [
   "accounting",
 ] as const;
 export type SegmentKey = (typeof SEGMENT_KEYS)[number];
+
+/**
+ * Nichos (oct 2026): cada uno cuelga de un giro. El giro enlaza a sus nichos
+ * y cada nicho enlaza al giro y a sus hermanos; el breadcrumb sigue el mismo
+ * camino (Inicio › Industrias › giro › nicho). El orden es el del enlazado.
+ */
+export const NICHE_PARENT = {
+  taxPreparers: "accounting",
+  dentists: "health",
+  psychologists: "health",
+  doctors: "health",
+  nutritionists: "health",
+  gyms: "health",
+  lawyers: "professional",
+  insuranceAgents: "professional",
+  realtors: "realEstate",
+  landscaping: "contractors",
+} as const satisfies Record<string, SegmentKey>;
+export type NicheKey = keyof typeof NICHE_PARENT;
+export const NICHE_KEYS = Object.keys(NICHE_PARENT) as NicheKey[];
+/** Cualquier página que use la plantilla SegmentPage: giro o nicho. */
+export type LandingKey = SegmentKey | NicheKey;
+export const isNiche = (key: string): key is NicheKey => key in NICHE_PARENT;
+export const nichesOf = (segment: SegmentKey): NicheKey[] =>
+  NICHE_KEYS.filter((k) => NICHE_PARENT[k] === segment);
 
 export function getAltPath(page: PageKey, lang: Lang): string {
   const other: Lang = lang === "es" ? "en" : "es";
@@ -388,7 +438,7 @@ export const translations = {
     // «mensajes claros»). Estas cinco solo las puede sostener alguien que
     // trabaja con negocios reales y ve sus números cada mes.
     why: {
-      eyebrow: "// por qué ProCode Dev",
+      eyebrow: "// por qué ProCode Systems",
       titleA: "Technology + Growth + Operations",
       titleHighlight: "para dueños de negocio",
       titleB: "",
@@ -1150,7 +1200,7 @@ export const translations = {
       privacy:
         "Uso tus datos para contestarte. No los vendo ni los comparto, y puedes pedir que los borre cuando quieras.",
       privacyLink: "Aviso de privacidad",
-      consent: "Acepto que ProCode Dev me contacte por correo con la información que solicité.",
+      consent: "Acepto que ProCode Systems me contacte por correo con la información que solicité.",
     },
     finalCta: {
       eyebrow: "// revisión express",
@@ -1161,7 +1211,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "ProCode Dev es una agencia de páginas web para negocios dirigida por Cristian Posada, desarrollador web en español. Páginas web para negocios y páginas web para pequeñas empresas en Estados Unidos y México, con captación, formularios y medición conectados.",
+        "ProCode Systems es una agencia de páginas web para negocios dirigida por Cristian Posada, desarrollador web en español. Páginas web para negocios y páginas web para pequeñas empresas en Estados Unidos y México, con captación, formularios y medición conectados.",
       navTitle: "Navegación",
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
@@ -1207,10 +1257,10 @@ export const translations = {
     founder: {
       eyebrow: "// el fundador",
       name: "Cristian Posada",
-      role: "Desarrollador web · Fundador de ProCode Dev",
+      role: "Desarrollador web · Fundador de ProCode Systems",
       title: "Experiencia internacional al frente de cada proyecto",
       body:
-        "Soy desarrollador web desde hace 5 años y he trabajado con empresas internacionales. Fundé ProCode Dev para llevar ese mismo estándar a negocios de servicios: dirijo cada proyecto de principio a fin —estrategia, diseño, desarrollo, SEO y campañas—, con un solo responsable desde la primera conversación hasta la entrega.",
+        "Soy desarrollador web desde hace 5 años y he trabajado con empresas internacionales. Fundé ProCode Systems para llevar ese mismo estándar a negocios de servicios: dirijo cada proyecto de principio a fin —estrategia, diseño, desarrollo, SEO y campañas—, con un solo responsable desde la primera conversación hasta la entrega.",
       // Datos confirmados por Cristian (30 sep 2026) y por el propio sitio
       // (mercados atendidos e idiomas). No añadir cifras sin confirmar.
       highlights: [
@@ -1263,16 +1313,16 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Agencia de Diseño Web y Marketing Digital | ProCode",
+          "Agencia de Diseño Web y Marketing Digital | ProCode Systems",
         description:
           "Diseño web y marketing digital para negocios en Estados Unidos y México. Webs a medida desde $349 USD, con formularios, WhatsApp y medición.",
         keywords:
-          "agencia de diseño web, agencia de desarrollo web, agencia de diseño web y marketing digital, agencia de páginas web para negocios, empresa de diseño web, agencia de marketing digital, páginas web para pequeñas empresas, sitios web para captar clientes, desarrollador web en español, ProCode Dev",
+          "agencia de diseño web, agencia de desarrollo web, agencia de diseño web y marketing digital, agencia de páginas web para negocios, empresa de diseño web, agencia de marketing digital, páginas web para pequeñas empresas, sitios web para captar clientes, desarrollador web en español, ProCode Systems",
         heroKicker: "Inicio",
       },
       sectors: {
         title:
-          "Diseño Web por Giro de Negocio | ProCode Dev",
+          "Diseño Web por Giro de Negocio | ProCode Systems",
         description:
           "Diseño web para contratistas, consultorios, abogados, inmobiliarias y contadores. Elige tu giro y ve qué cambia en tu caso, con precios base en USD.",
         keywords:
@@ -1286,7 +1336,7 @@ export const translations = {
       // (ver los `meta` de src/i18n/services.ts). Así no se canibalizan ni
       // compiten con el home, que se queda con "diseño de páginas web".
       services: {
-        title: "Servicios de Desarrollo Web y Marketing | ProCode",
+        title: "Servicios de Desarrollo Web y Marketing | ProCode Systems",
         description:
           "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación desde $499 USD al mes.",
         keywords:
@@ -1297,7 +1347,7 @@ export const translations = {
       },
       portfolio: {
         title:
-          "Portafolio: Páginas Web Profesionales | ProCode Dev",
+          "Portafolio: Páginas Web Profesionales | ProCode Systems",
         description:
           "Páginas web profesionales para negocios de contabilidad, salud, construcción y servicios. Sitios en vivo: ábrelos y juzga el trabajo antes de escribirme.",
         keywords:
@@ -1308,7 +1358,7 @@ export const translations = {
       },
       pricing: {
         title:
-          "Precios de Páginas Web para Negocios | ProCode Dev",
+          "Precios de Páginas Web para Negocios | ProCode Systems",
         description:
           "Cuánto cuesta una página web: landing desde $349, sitio de 4 a 6 páginas desde $899 y de 8 a 12 desde $1,499 USD. Soporte web desde $79 USD al mes.",
         keywords:
@@ -1321,11 +1371,11 @@ export const translations = {
       },
       contact: {
         title:
-          "Contacto y Revisión Express gratis | ProCode Dev",
+          "Contacto y Revisión Express gratis | ProCode Systems",
         description:
           "Agenda tu Revisión Express gratis de 20 minutos o déjame tu nombre y tu correo. Respondo en menos de 24 horas.",
         keywords:
-          "agendar Revisión Express, solicitar una propuesta web, hablar con ProCode Dev, desarrollador web en español",
+          "agendar Revisión Express, solicitar una propuesta web, hablar con ProCode Systems, desarrollador web en español",
         heroTitleA: "Escríbeme o agenda tu",
         heroHighlight: "Revisión Express",
         heroSubtitle: "Respondo en menos de 24 horas.",
@@ -1597,7 +1647,7 @@ export const translations = {
       ],
     },
     why: {
-      eyebrow: "// why ProCode Dev",
+      eyebrow: "// why ProCode Systems",
       titleA: "Technology + Growth + Operations",
       titleHighlight: "for business owners",
       titleB: "",
@@ -2333,7 +2383,7 @@ export const translations = {
       privacy:
         "I use your details to reply to you. I never sell or share them, and you can ask me to delete them at any time.",
       privacyLink: "Privacy policy",
-      consent: "I agree that ProCode Dev may contact me by email with the information I requested.",
+      consent: "I agree that ProCode Systems may contact me by email with the information I requested.",
     },
     finalCta: {
       eyebrow: "// express review",
@@ -2344,7 +2394,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "ProCode Dev is a small business web design agency run by Cristian Posada, a bilingual web developer. Website design for small businesses across the United States and Mexico, with client acquisition, qualifying forms and analytics.",
+        "ProCode Systems is a small business web design agency run by Cristian Posada, a bilingual web developer. Website design for small businesses across the United States and Mexico, with client acquisition, qualifying forms and analytics.",
       navTitle: "Navigation",
       servicesTitle: "Services",
       contactTitle: "Contact",
@@ -2388,10 +2438,10 @@ export const translations = {
     founder: {
       eyebrow: "// the founder",
       name: "Cristian Posada",
-      role: "Web developer · Founder of ProCode Dev",
+      role: "Web developer · Founder of ProCode Systems",
       title: "International experience leading every project",
       body:
-        "I have been a web developer for 5 years and have worked with international companies. I founded ProCode Dev to bring that same standard to service businesses: I lead every project from start to finish — strategy, design, development, SEO and campaigns — with one person accountable from the first conversation through delivery.",
+        "I have been a web developer for 5 years and have worked with international companies. I founded ProCode Systems to bring that same standard to service businesses: I lead every project from start to finish — strategy, design, development, SEO and campaigns — with one person accountable from the first conversation through delivery.",
       highlights: [
         { value: "5 years", label: "in web development" },
         { value: "International", label: "work with international companies" },
@@ -2442,16 +2492,16 @@ export const translations = {
     pageMeta: {
       home: {
         title:
-          "Web Design & Digital Marketing Agency | ProCode Dev",
+          "Web Design & Digital Marketing Agency | ProCode Systems",
         description:
           "Web design and digital marketing for small businesses in the U.S. and Mexico. Custom websites from $349 USD, with forms, WhatsApp and tracking.",
         keywords:
-          "web design agency, small business web design agency, website design company for small business, digital marketing agency, web development agency, bilingual website design services, spanish website design services, bilingual web developer, ProCode Dev",
+          "web design agency, small business web design agency, website design company for small business, digital marketing agency, web development agency, bilingual website design services, spanish website design services, bilingual web developer, ProCode Systems",
         heroKicker: "Home",
       },
       sectors: {
         title:
-          "Website Design by Industry | ProCode Dev",
+          "Website Design by Industry | ProCode Systems",
         description:
           "Website design for contractors, therapists, attorneys, realtors and tax preparers. Pick your industry and see what changes, with base pricing in USD.",
         keywords:
@@ -2461,7 +2511,7 @@ export const translations = {
         heroSubtitle: "Built for your industry.",
       },
       services: {
-        title: "Web Development & Digital Marketing | ProCode Dev",
+        title: "Web Development & Digital Marketing | ProCode Systems",
         description:
           "Web development and digital marketing services for small businesses: custom websites from $349 USD and lead generation plans from $499 USD/mo.",
         keywords:
@@ -2472,7 +2522,7 @@ export const translations = {
       },
       portfolio: {
         title:
-          "Portfolio: Small Business Websites | ProCode Dev",
+          "Portfolio: Small Business Websites | ProCode Systems",
         description:
           "Professional websites for small businesses in accounting, health, construction and services. They're live: open them and judge the work before messaging me.",
         keywords:
@@ -2483,7 +2533,7 @@ export const translations = {
       },
       pricing: {
         title:
-          "How Much a Small Business Website Costs | ProCode Dev",
+          "How Much a Small Business Website Costs | ProCode Systems",
         description:
           "Small business website pricing: landing page from $349, 4–6 page site from $899, 8–12 pages from $1,499 USD and Web Support from $79 USD a month.",
         keywords:
@@ -2496,7 +2546,7 @@ export const translations = {
       },
       contact: {
         title:
-          "Hire a Small Business Web Designer | ProCode Dev",
+          "Hire a Small Business Web Designer | ProCode Systems",
         description:
           "Book your free 20-minute Express Review or leave your name and email. Bilingual web design with published base pricing.",
         keywords:
@@ -2628,6 +2678,16 @@ export const IN_PAGE_CONVERSION: readonly PageKey[] = [
   "professional",
   "realEstate",
   "accounting",
+  "taxPreparers",
+  "dentists",
+  "psychologists",
+  "doctors",
+  "nutritionists",
+  "gyms",
+  "lawyers",
+  "insuranceAgents",
+  "realtors",
+  "landscaping",
   "markets",
   "mexico",
   "texas",

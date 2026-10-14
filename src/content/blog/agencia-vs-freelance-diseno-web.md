@@ -1,10 +1,10 @@
 ---
 title: "Agencia o diseñador web freelance: cuál te conviene y por qué"
 description: "Diferencias reales entre contratar una agencia de diseño web o un diseñador web freelance: costos, riesgos, plazos y en qué caso conviene cada uno."
-seoTitle: "Agencia o Diseñador Web Freelance: Cuál Elegir | ProCode"
+seoTitle: "Agencia o Diseñador Freelance: Cuál Elegir | ProCode Systems"
 seoDescription: "Agencia de diseño web o freelance: qué cambia en precio, plazos, riesgo y mantenimiento, y cómo elegir sin quedarte a medio proyecto con un sitio sin terminar."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["diseñador web freelance", "agencia de diseño web", "contratar diseñador web", "agencia o freelance"]
 ---
 

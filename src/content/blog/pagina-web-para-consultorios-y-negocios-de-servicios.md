@@ -1,10 +1,11 @@
 ---
 title: "Página web para consultorios y negocios de servicios: dentistas, psicólogos y más"
 description: "Guía de páginas web para negocios de servicios: dentistas, psicólogos, estéticas, gimnasios y consultorios. Qué debe incluir tu sitio para llenar tu agenda de clientes."
-seoTitle: "Páginas Web para Consultorios y Servicios | ProCode Dev"
+seoTitle: "Páginas Web para Consultorios y Servicios | ProCode Systems"
 seoDescription: "Qué debe incluir la página web de un dentista, psicólogo, estética o consultorio para llenar la agenda: servicios, precios, confianza y citas en línea."
 pubDate: 2026-07-15
-author: "ProCode Dev"
+updatedDate: 2026-10-13
+author: "ProCode Systems"
 tags: ["negocios de servicios", "desarrollo web", "captación"]
 ---
 
@@ -46,11 +47,11 @@ Que aparezcas cuando busquen "psicólogo en [tu ciudad]" o "dentista cerca de m�
 
 ## Ejemplos por tipo de negocio
 
-- **Dentistas y consultorios médicos:** confianza, especialidades, seguros aceptados, agenda en línea y ubicación clara.
-- **Psicólogos y terapeutas:** cercanía, enfoque, modalidad (en línea o presencial), privacidad y primer contacto fácil y sin juicio.
+- **Dentistas y consultorios médicos:** confianza, especialidades, seguros aceptados, agenda en línea y ubicación clara. Lo detallo en [páginas web para dentistas](/dentistas/) y [páginas web para médicos](/medicos/).
+- **Psicólogos y terapeutas:** cercanía, enfoque, modalidad (en línea o presencial), privacidad y primer contacto fácil y sin juicio. Más en [páginas web para psicólogos](/psicologos/); si das consulta de nutrición, en [páginas web para nutriólogos](/nutriologos/).
 - **Estéticas y spas:** portafolio visual de resultados, servicios con precios de referencia, promociones y reservación rápida.
-- **Gimnasios y entrenadores:** planes, horarios, resultados de clientes, primera clase o valoración gratis.
-- **Despachos y profesionales (abogados, contadores):** autoridad, áreas de práctica, casos y un formulario de consulta claro.
+- **Gimnasios y entrenadores:** planes, horarios, resultados de clientes, primera clase o valoración gratis. Ver [páginas web para gimnasios](/gimnasios/).
+- **Despachos y profesionales (abogados, contadores):** autoridad, áreas de práctica, casos y un formulario de consulta claro. Ver [páginas web para abogados](/abogados/) y [diseño web para contadores](/contabilidad-e-impuestos/).
 
 ## El error más caro en negocios de servicios
 
@@ -72,4 +73,4 @@ Depende del alcance. Puedes ver rangos reales en [cuánto cuesta una página web
 
 ---
 
-En **ProCode Dev** creo páginas web para consultorios y negocios de servicios, con agenda en línea, WhatsApp y SEO local para llenar tu calendario. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo cómo atraer más citas.
+En **ProCode Systems** creo [páginas web para consultorios y clínicas](/salud-y-bienestar/) y negocios de servicios, con agenda en línea, WhatsApp y SEO local para llenar tu calendario. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo cómo atraer más citas.

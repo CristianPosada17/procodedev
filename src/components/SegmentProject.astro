@@ -10,14 +10,14 @@
   Si el proyecto declarado no existe en `portfolio.projects`, el componente no
   renderiza nada: es preferible una página sin la sección a una sección rota.
 */
-import { translations, PAGES, type Lang, type SegmentKey } from "../i18n/ui";
+import { translations, PAGES, type Lang, type LandingKey } from "../i18n/ui";
 import { getSegment } from "../i18n/segments";
 import SectionHeading from "./SectionHeading.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
   lang?: Lang;
-  segment: SegmentKey;
+  segment: LandingKey;
 }
 const { lang = "es", segment } = Astro.props as Props;
 const t = translations[lang];

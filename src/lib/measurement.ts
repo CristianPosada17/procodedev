@@ -1,5 +1,5 @@
 // ============================================================
-// PROCODE DEV — Configuración de medición
+// PROCODE SYSTEMS — Configuración de medición
 // IDs, agrupación de contenido y regiones con consentimiento previo.
 // Todo lo que dependa de una cuenta externa vive aquí, no en los
 // componentes: si cambia un ID, se cambia en un solo lugar.
@@ -58,6 +58,16 @@ const GROUP_BY_PAGE: Record<PageKey, ContentGroup> = {
   professional: "giros",
   realEstate: "giros",
   accounting: "giros",
+  taxPreparers: "giros",
+  dentists: "giros",
+  psychologists: "giros",
+  doctors: "giros",
+  nutritionists: "giros",
+  gyms: "giros",
+  lawyers: "giros",
+  insuranceAgents: "giros",
+  realtors: "giros",
+  landscaping: "giros",
   portfolio: "portafolio",
   pricing: "precios",
   contact: "contacto",

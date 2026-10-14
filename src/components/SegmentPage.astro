@@ -1,5 +1,5 @@
 ---
-import { type Lang, type SegmentKey } from "../i18n/ui";
+import { type Lang, type LandingKey } from "../i18n/ui";
 import { getSegment } from "../i18n/segments";
 import Icon from "./Icon.astro";
 import CardRail from "./CardRail.astro";
@@ -15,7 +15,7 @@ import LandingConversion from "./LandingConversion.astro";
 
 interface Props {
   lang: Lang;
-  segment: SegmentKey;
+  segment: LandingKey;
 }
 const { lang, segment } = Astro.props as Props;
 const x = getSegment(lang, segment);

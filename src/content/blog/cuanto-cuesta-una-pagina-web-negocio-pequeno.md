@@ -1,10 +1,10 @@
 ---
 title: "Qué determina el precio de una página web (y qué no)"
 description: "Los seis factores que mueven el precio de una página web, por qué el mismo proyecto se cotiza de $200 a $10,000 USD y cómo comparar dos presupuestos."
-seoTitle: "Qué Determina el Precio de una Página Web | ProCode"
+seoTitle: "Qué Determina el Precio de una Página Web | ProCode Systems"
 seoDescription: "Los factores que determinan el precio de una página web: alcance, contenido, integraciones y quién la hace. Para comparar presupuestos sin pagar de más."
 pubDate: 2026-07-06
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["factores que determinan el precio de una página web", "presupuesto de página web", "comparar presupuestos web", "qué encarece una página web"]
 ---
 
@@ -54,4 +54,4 @@ La mejor forma no es adivinar, es diagnosticar. Define qué acción quieres que 
 
 ---
 
-En **ProCode Dev** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos; [aquí está qué incluye el desarrollo web](/servicios/desarrollo-web/) y [aquí la landing, desde $349 USD](/servicios/landing-pages/). Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).
+En **ProCode Systems** trabajo con negocios que quieren verse más profesionales y captar mejor, sin pagar de más. Los [precios están publicados](/precios/), en dólares y sin llamada de ventas para conocerlos; [aquí está qué incluye el desarrollo web](/servicios/desarrollo-web/) y [aquí la landing, desde $349 USD](/servicios/landing-pages/). Y si prefieres platicarlo, [agenda una llamada gratis de 20 minutos](/contacto/).

@@ -6,67 +6,109 @@
   equivocada desde Google, y al rastreo — cinco páginas hermanas enlazadas
   entre sí y al hub se leen como un cluster temático, no como cinco landings
   sueltas compitiendo por lo mismo.
+
+  Nichos (oct 2026): en una página de giro aparece primero el bloque con sus
+  oficios; en una página de nicho, el bloque enlaza al giro del que cuelga y
+  a los nichos hermanos. Así cada nicho recibe enlaces internos desde su giro
+  (no solo desde el sitemap) y devuelve autoridad hacia arriba.
 */
-import { translations, PAGES, SEGMENT_KEYS, type Lang, type SegmentKey } from "../i18n/ui";
-import { segments } from "../i18n/segments";
+import {
+  translations,
+  PAGES,
+  SEGMENT_KEYS,
+  NICHE_PARENT,
+  isNiche,
+  nichesOf,
+  type Lang,
+  type LandingKey,
+} from "../i18n/ui";
+import { getSegment } from "../i18n/segments";
+import { nicheLinksCopy } from "../i18n/niches";
 import Icon from "./Icon.astro";
 import CardRail from "./CardRail.astro";
 
 interface Props {
   lang?: Lang;
-  current: SegmentKey;
+  current: LandingKey;
 }
 const { lang = "es", current } = Astro.props as Props;
 const t = translations[lang];
-const others = SEGMENT_KEYS.filter((key) => key !== current);
+const n = nicheLinksCopy[lang];
+
+const niche = isNiche(current);
+const parent = niche ? NICHE_PARENT[current] : current;
+// Giro: sus nichos. Nicho: el giro primero y luego los hermanos.
+const tradeKeys: LandingKey[] = niche
+  ? [parent, ...nichesOf(parent).filter((k) => k !== current)]
+  : nichesOf(parent);
+const otherSegments = SEGMENT_KEYS.filter((key) => key !== parent);
+
+const card = (key: LandingKey) => {
+  const s = getSegment(lang, key);
+  return { href: PAGES[key][lang], icon: s.icon, label: s.navLabel, hint: s.navHint };
+};
+const blocks = [
+  tradeKeys.length > 0 && {
+    title: niche ? n.siblingsTitle : n.childrenTitle,
+    subtitle: niche ? n.siblingsSubtitle : n.childrenSubtitle,
+    items: tradeKeys.map(card),
+  },
+  {
+    title: t.sectors.crossTitle,
+    subtitle: t.sectors.crossSubtitle,
+    items: otherSegments.map(card),
+  },
+].filter(Boolean) as { title: string; subtitle: string; items: ReturnType<typeof card>[] }[];
 ---
 
 <section class="relative pb-12 lg:pb-20">
   <div
-    class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+    class="mx-auto flex w-full max-w-[1480px] flex-col gap-6 px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
-    <div
-      class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-10"
-    >
-      <div class="flex flex-col gap-2">
-        <h2 class="text-xl font-bold text-[var(--text)] sm:text-2xl">
-          {t.sectors.crossTitle}
-        </h2>
-        <p class="text-sm leading-7 text-[var(--muted)]">
-          {t.sectors.crossSubtitle}
-        </p>
-      </div>
+    {
+      blocks.map((block, b) => (
+        <div class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-10">
+          <div class="flex flex-col gap-2">
+            <h2 class="text-xl font-bold text-[var(--text)] sm:text-2xl">
+              {block.title}
+            </h2>
+            <p class="text-sm leading-7 text-[var(--muted)]">
+              {block.subtitle}
+            </p>
+          </div>
 
-      <CardRail class="mt-7" grid="md:grid-cols-2 lg:grid-cols-4" peek="normal" gap="gap-3">
-        {
-          others.map((key) => (
+          <CardRail class="mt-7" grid="md:grid-cols-2 lg:grid-cols-4" peek="normal" gap="gap-3">
+            {block.items.map((item) => (
+              <a
+                href={item.href}
+                class="group flex items-start gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-4 transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[var(--brand)]/[0.07]"
+              >
+                <span class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
+                  <Icon name={item.icon as any} class="h-4.5 w-4.5" />
+                </span>
+                <span class="flex flex-col gap-1">
+                  <span class="text-sm font-bold text-[var(--text)]">
+                    {item.label}
+                  </span>
+                  <span class="text-xs leading-6 text-[var(--muted)]">
+                    {item.hint}
+                  </span>
+                </span>
+              </a>
+            ))}
+          </CardRail>
+
+          {b === blocks.length - 1 && (
             <a
-              href={PAGES[key][lang]}
-              class="group flex items-start gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-4 transition hover:-translate-y-0.5 hover:border-[color:var(--border-strong)] hover:bg-[var(--brand)]/[0.07]"
+              href={PAGES.sectors[lang]}
+              class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] transition hover:gap-2.5"
             >
-              <span class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/10 text-[var(--accent)]">
-                <Icon name={segments[lang][key].icon as any} class="h-4.5 w-4.5" />
-              </span>
-              <span class="flex flex-col gap-1">
-                <span class="text-sm font-bold text-[var(--text)]">
-                  {segments[lang][key].navLabel}
-                </span>
-                <span class="text-xs leading-6 text-[var(--muted)]">
-                  {segments[lang][key].navHint}
-                </span>
-              </span>
+              {t.nav.sectorsOverview}
+              <Icon name="arrow-right" class="h-4 w-4" />
             </a>
-          ))
-        }
-      </CardRail>
-
-      <a
-        href={PAGES.sectors[lang]}
-        class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] transition hover:gap-2.5"
-      >
-        {t.nav.sectorsOverview}
-        <Icon name="arrow-right" class="h-4 w-4" />
-      </a>
-    </div>
+          )}
+        </div>
+      ))
+    }
   </div>
 </section>

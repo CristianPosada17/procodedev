@@ -1,10 +1,10 @@
 ---
 title: "Por qué tu página web no vende (7 razones y cómo arreglarlas)"
 description: "¿Tienes página web pero no llegan clientes? Estas son las 7 razones más comunes por las que una web no vende y cómo solucionarlas para convertir visitas en mensajes y ventas."
-seoTitle: "Por Qué tu Página Web No Vende | ProCode Dev"
+seoTitle: "Por Qué tu Página Web No Vende | ProCode Systems"
 seoDescription: "¿Tienes página web pero no llegan clientes? Las 7 razones más comunes por las que una web no vende y cómo arreglar cada una para recibir mensajes."
 pubDate: 2026-07-10
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["conversión", "desarrollo web", "negocios"]
 ---
 
@@ -75,4 +75,4 @@ Los cambios de conversión (mensaje, botones, velocidad) se notan casi de inmedi
 
 ---
 
-En **ProCode Dev** rediseño y optimizo páginas para que dejen de ser un adorno y empiecen a captar clientes. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo exactamente qué está frenando tus ventas.
+En **ProCode Systems** rediseño y optimizo páginas para que dejen de ser un adorno y empiecen a captar clientes. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y te digo exactamente qué está frenando tus ventas.

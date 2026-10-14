@@ -1,10 +1,10 @@
 ---
 title: "Crear una página web gratis para tu negocio: qué se puede y qué no"
 description: "Cómo crear una página web gratis para un negocio, qué opciones existen de verdad, dónde están los límites y cuándo lo gratis termina saliendo caro."
-seoTitle: "Crear una Página Web Gratis para un Negocio | ProCode"
+seoTitle: "Crear una Página Web Gratis para un Negocio | ProCode Systems"
 seoDescription: "Opciones reales para crear una página web gratis para tu negocio, qué limita cada una y en qué momento conviene pagar. Con costos comparados a 5 años."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["crear página web gratis para negocio", "página web gratis", "hacer una página web gratis", "página web gratis para empresa"]
 ---
 

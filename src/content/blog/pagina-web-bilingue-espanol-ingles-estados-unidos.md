@@ -1,10 +1,10 @@
 ---
 title: "Página web bilingüe en español e inglés: por qué el traductor automático te cuesta clientes"
 description: "Guía para hacer una página web bilingüe de verdad: en qué idioma debe ir primero, por qué el plugin traductor te cuesta clientes y cuánto cuesta hacerla bien en Estados Unidos."
-seoTitle: "Página Web Bilingüe Español e Inglés | ProCode Dev"
+seoTitle: "Página Web Bilingüe Español e Inglés | ProCode Systems"
 seoDescription: "Por qué el traductor automático te cuesta clientes, en qué idioma debe ir tu página web bilingüe y cuánto cuesta hacerla bien en Estados Unidos."
 pubDate: 2026-09-07
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["página web bilingüe", "negocios hispanos", "Estados Unidos", "SEO"]
 ---
 

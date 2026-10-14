@@ -1,4 +1,4 @@
-# ProCode Dev
+# ProCode Systems
 
 > Agencia de diseño web y marketing digital para dueños de negocio y pymes en
 > Estados Unidos y México. No solo páginas web: sitio, presencia en Google,
@@ -9,9 +9,9 @@
 Este archivo resume el sitio para asistentes y buscadores con IA. Todo lo que
 aparece aquí está publicado en las páginas enlazadas.
 
-## Qué es ProCode Dev
+## Qué es ProCode Systems
 
-- ProCode Dev es una agencia de diseño web y marketing digital dirigida por su
+- ProCode Systems es una agencia de diseño web y marketing digital dirigida por su
   fundador. Cristian Posada es el dueño y, a la vez, el desarrollador que hace
   el trabajo: quien contesta, construye y mantiene es siempre la misma persona.
   No es una agencia grande con ejecutivos de cuenta ni un freelance suelto.
@@ -106,7 +106,7 @@ Capacidad declarada: 4 proyectos nuevos al mes.
 
 ## Los dos servicios
 
-ProCode Dev vende **exactamente dos servicios**. Todo lo demás (SEO local,
+ProCode Systems vende **exactamente dos servicios**. Todo lo demás (SEO local,
 formularios, agenda de citas, reseñas, analítica, optimización para búsqueda con
 IA) vive dentro de uno de los dos como parte del trabajo, no como un extra que
 se cotiza aparte.
@@ -160,7 +160,7 @@ con su propia página porque así es como la gente las busca.
   WhatsApp desde $79 USD al mes, sin contrato de 12 meses. El hosting y el
   dominio los paga el cliente a su nombre ($60 a $120 USD al año).
 
-## Dónde trabaja ProCode Dev
+## Dónde trabaja ProCode Systems
 
 El trabajo es **100 % remoto desde México**. No hay oficina, dirección ni
 teléfono en Estados Unidos, y el sitio no finge lo contrario. Los tres estados
@@ -200,20 +200,34 @@ página propia por volumen de trabajo, no por exclusividad.
 
 - [Todos los giros](https://procodedev.com/negocios/)
 - [Contratistas y construcción](https://procodedev.com/contratistas/): diseño web
-  para constructoras, remodelación, plomería, electricidad, techos y jardinería,
-  con SEO local para contratistas.
+  para constructoras, remodelación, plomería, electricidad y techos, con SEO
+  local para contratistas.
+  - Oficio: [jardinería y landscaping](https://procodedev.com/jardineria-y-landscaping/).
 - [Salud y bienestar](https://procodedev.com/salud-y-bienestar/): diseño web para
-  consultorios, clínicas, nutriólogos, dentistas, psicólogos y terapeutas, con
-  agenda en línea y SEO local para consultorios.
+  consultorios y clínicas, con agenda en línea y SEO local para consultorios.
+  - Oficios: [dentistas](https://procodedev.com/dentistas/),
+    [psicólogos](https://procodedev.com/psicologos/),
+    [médicos](https://procodedev.com/medicos/),
+    [nutriólogos](https://procodedev.com/nutriologos/) y
+    [gimnasios](https://procodedev.com/gimnasios/).
 - [Servicios profesionales](https://procodedev.com/servicios-profesionales/):
-  diseño web para abogados, agentes de seguros, consultores y marca personal.
+  diseño web para consultores, asesores y marca personal.
+  - Oficios: [abogados](https://procodedev.com/abogados/) y
+    [agentes de seguros](https://procodedev.com/agentes-de-seguros/).
 - [Inmobiliarias](https://procodedev.com/inmobiliarias/): diseño web para
-  inmobiliarias y asesores inmobiliarios, con catálogo de propiedades y
-  generación de prospectos inmobiliarios.
+  inmobiliarias y desarrolladoras, con catálogo de propiedades y generación de
+  prospectos inmobiliarios.
+  - Oficio: [asesores inmobiliarios](https://procodedev.com/asesores-inmobiliarios/).
 - [Contabilidad e impuestos](https://procodedev.com/contabilidad-e-impuestos/):
-  diseño web para contadores y despachos contables, preparadores de impuestos,
-  CPAs, Enrolled Agents y bookkeepers, con SEO local para contadores. Proyecto
-  real en este giro: Mi Conta Universal (Cincinnati, Ohio).
+  diseño web para contadores, despachos contables, CPAs y bookkeepers, con SEO
+  local para contadores. Proyecto real en este giro: Mi Conta Universal
+  (Cincinnati, Ohio).
+  - Oficio: [preparadores de impuestos](https://procodedev.com/preparadores-de-impuestos/)
+    (temporada de impuestos, Enrolled Agents y resolución fiscal).
+
+Cada giro enlaza a sus oficios y cada oficio a su giro; el contenido de cada
+oficio es propio (búsquedas, calendario y preguntas de ese oficio), no una copia
+del giro con otro nombre.
 
 ## English
 
@@ -257,8 +271,19 @@ Same content, same base pricing (all published prices are "From" prices).
   [accounting & tax](https://procodedev.com/en/accounting-and-tax/) — featured
   case study: Mi Conta Universal, a bilingual bookkeeping and accounting firm
   website in Cincinnati, Ohio (https://micontau.com/).
+- Pages by trade, each under its industry:
+  [landscaping](https://procodedev.com/en/landscaping/) (contractors);
+  [dentists](https://procodedev.com/en/dentists/),
+  [therapists](https://procodedev.com/en/therapists/),
+  [doctors](https://procodedev.com/en/doctors/),
+  [nutritionists](https://procodedev.com/en/nutritionists/) and
+  [gyms](https://procodedev.com/en/gyms/) (health & wellness);
+  [attorneys](https://procodedev.com/en/attorneys/) and
+  [insurance agents](https://procodedev.com/en/insurance-agents/) (professional
+  services); [realtors](https://procodedev.com/en/realtors/) (real estate);
+  [tax preparers](https://procodedev.com/en/tax-preparers/) (accounting & tax).
 
-## Qué NO hace ProCode Dev
+## Qué NO hace ProCode Systems
 
 No presta servicios fiscales, contables, legales ni financieros. Construye la
 infraestructura digital de negocios que sí los prestan.

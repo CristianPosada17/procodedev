@@ -23,7 +23,7 @@ collections:
   - name: "blog"
     label: "Artículos del blog"
     label_singular: "Artículo"
-    description: "Crea y edita los artículos del blog de ProCode Dev."
+    description: "Crea y edita los artículos del blog de ProCode Systems."
     folder: "src/content/blog"
     create: true
     # El nombre del archivo se genera del título (ej: mi-articulo.md)
@@ -53,7 +53,7 @@ collections:
           name: "author",
           label: "Autor",
           widget: "string",
-          default: "ProCode Dev",
+          default: "ProCode Systems",
         }
       - {
           name: "tags",

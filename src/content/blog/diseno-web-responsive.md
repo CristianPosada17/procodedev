@@ -1,10 +1,10 @@
 ---
 title: "Qué es el diseño web responsive y por qué decide tus ventas"
 description: "Qué es el diseño web responsive, en qué se nota, cómo comprobar si tu sitio lo es de verdad y los errores más comunes en la versión móvil."
-seoTitle: "Qué Es el Diseño Web Responsive | ProCode Dev"
+seoTitle: "Qué Es el Diseño Web Responsive | ProCode Systems"
 seoDescription: "Diseño web responsive explicado sin tecnicismos: qué es, cómo comprobar en dos minutos si tu sitio funciona en el teléfono y qué arreglar primero."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["diseño web responsive", "diseño web adaptable", "página web para móviles", "web móvil"]
 ---
 

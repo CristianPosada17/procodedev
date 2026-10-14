@@ -1,10 +1,10 @@
 ---
 title: "Las mejores plataformas para crear una página web en 2026"
 description: "Comparación honesta de plataformas para crear páginas web: Wix, Squarespace, WordPress, Shopify y desarrollo a medida, con costos reales y límites."
-seoTitle: "Mejores Plataformas para Crear una Página Web | ProCode"
+seoTitle: "Mejores Plataformas para Crear Página Web | ProCode Systems"
 seoDescription: "Wix, Squarespace, WordPress, Shopify o a la medida: qué plataforma para crear páginas web conviene a cada negocio, con costos reales y sus límites."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["plataformas para crear páginas web", "herramientas para crear páginas web", "mejor plataforma para una página web", "constructores de páginas web"]
 ---
 

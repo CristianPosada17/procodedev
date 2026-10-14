@@ -51,9 +51,9 @@ const TERMS_UPDATED_EN = "September 29, 2026";
 const es: LegalDict = {
   privacy: {
     meta: {
-      title: "Aviso de Privacidad | ProCode Dev",
+      title: "Aviso de Privacidad | ProCode Systems",
       description:
-        "Cómo ProCode Dev recopila, usa y protege los datos de quienes visitan el sitio o piden información, y cómo puedes ejercer tus derechos sobre ellos.",
+        "Cómo ProCode Systems recopila, usa y protege los datos de quienes visitan el sitio o piden información, y cómo puedes ejercer tus derechos sobre ellos.",
     },
     eyebrow: "// legal",
     title: "Aviso de privacidad",
@@ -65,7 +65,7 @@ const es: LegalDict = {
       {
         title: "1. Quién es responsable de tus datos",
         body: [
-          "ProCode Dev es un negocio operado por Cristian Posada, que presta servicios de desarrollo web y presencia digital de forma remota a clientes en Estados Unidos y México.",
+          "ProCode Systems es un negocio operado por Cristian Posada, que presta servicios de desarrollo web y presencia digital de forma remota a clientes en Estados Unidos y México.",
           "Para cualquier asunto relacionado con este aviso o con tus datos personales, el canal de contacto es info@procodedev.com.",
         ],
       },
@@ -144,7 +144,7 @@ const es: LegalDict = {
       {
         title: "9. Menores de edad",
         body: [
-          "Los servicios de ProCode Dev están dirigidos a negocios y profesionales. El sitio no está dirigido a menores de 18 años y no recopilo intencionalmente datos de menores.",
+          "Los servicios de ProCode Systems están dirigidos a negocios y profesionales. El sitio no está dirigido a menores de 18 años y no recopilo intencionalmente datos de menores.",
         ],
       },
       {
@@ -161,9 +161,9 @@ const es: LegalDict = {
 
   terms: {
     meta: {
-      title: "Términos y Condiciones | ProCode Dev",
+      title: "Términos y Condiciones | ProCode Systems",
       description:
-        "Condiciones de uso y contratación de los servicios de ProCode Dev: alcance, precios, pagos, plazos, propiedad del trabajo, planes mensuales y bajas.",
+        "Condiciones de uso y contratación de los servicios de ProCode Systems: alcance, precios, pagos, plazos, propiedad del trabajo, planes mensuales y bajas.",
     },
     eyebrow: "// legal",
     title: "Términos y condiciones",
@@ -175,20 +175,20 @@ const es: LegalDict = {
       {
         title: "1. Aceptación",
         body: [
-          "Al navegar este sitio o contratar un servicio de ProCode Dev —negocio operado por Cristian Posada— aceptas estas condiciones. Si no estás de acuerdo con alguna, lo mejor es que lo hablemos antes de empezar.",
+          "Al navegar este sitio o contratar un servicio de ProCode Systems —negocio operado por Cristian Posada— aceptas estas condiciones. Si no estás de acuerdo con alguna, lo mejor es que lo hablemos antes de empezar.",
         ],
       },
       {
         title: "2. Qué servicios se ofrecen",
         body: [
-          "ProCode Dev construye sistemas digitales de crecimiento: sitios web, landing pages, presencia en Google, formularios, agenda de citas y medición, principalmente para dueños de negocio y pymes en Estados Unidos y México.",
+          "ProCode Systems construye sistemas digitales de crecimiento: sitios web, landing pages, presencia en Google, formularios, agenda de citas y medición, principalmente para dueños de negocio y pymes en Estados Unidos y México.",
           "El alcance concreto de cada proyecto se define por escrito antes de empezar. Lo que no esté descrito ahí no forma parte del alcance, y si surge durante el proyecto te paso el precio antes de ejecutarlo — nunca a mitad del trabajo.",
         ],
       },
       {
-        title: "3. Lo que ProCode Dev no hace",
+        title: "3. Lo que ProCode Systems no hace",
         body: [
-          "ProCode Dev es un proveedor de servicios digitales. No presta servicios fiscales, contables, legales ni financieros, no prepara declaraciones, no representa a nadie ante el IRS y no da asesoría sobre situaciones fiscales concretas.",
+          "ProCode Systems es un proveedor de servicios digitales. No presta servicios fiscales, contables, legales ni financieros, no prepara declaraciones, no representa a nadie ante el IRS y no da asesoría sobre situaciones fiscales concretas.",
           "El contenido del sitio y del blog es informativo y de carácter general. No sustituye la opinión de un profesional autorizado ni constituye asesoría fiscal, legal o financiera para tu caso.",
         ],
       },
@@ -220,7 +220,7 @@ const es: LegalDict = {
         title: "7. Propiedad del trabajo",
         list: [
           "Al liquidar el proyecto, el diseño, los textos y el código desarrollados específicamente para ti son tuyos.",
-          "Los componentes, plantillas, utilidades y metodología propios de ProCode Dev siguen siendo de ProCode Dev y pueden reutilizarse en otros proyectos.",
+          "Los componentes, plantillas, utilidades y metodología propios de ProCode Systems siguen siendo de ProCode Systems y pueden reutilizarse en otros proyectos.",
           "El software de terceros, las fuentes tipográficas, las imágenes con licencia y los servicios externos se rigen por sus propias licencias.",
           "El dominio, el hosting y las cuentas de servicios externos quedan a tu nombre o bajo tu control siempre que así lo acordemos.",
         ],
@@ -245,13 +245,13 @@ const es: LegalDict = {
         title: "10. Garantías y responsabilidad",
         body: [
           "Trabajo para que tu presencia digital funcione mejor y genere más oportunidades, pero no puedo garantizar posiciones específicas en Google, un número determinado de clientes ni un resultado comercial concreto: eso depende también de tu mercado, tu oferta, tu competencia y tu propia operación.",
-          "La responsabilidad de ProCode Dev por cualquier reclamación relacionada con un servicio se limita al importe efectivamente pagado por ese servicio. No respondo por pérdidas indirectas, lucro cesante ni por fallos de proveedores externos (hosting, dominios, plataformas de terceros o interrupciones de servicios ajenos).",
+          "La responsabilidad de ProCode Systems por cualquier reclamación relacionada con un servicio se limita al importe efectivamente pagado por ese servicio. No respondo por pérdidas indirectas, lucro cesante ni por fallos de proveedores externos (hosting, dominios, plataformas de terceros o interrupciones de servicios ajenos).",
         ],
       },
       {
         title: "11. Uso del sitio",
         body: [
-          "El contenido de este sitio —textos, diseño, código e imágenes propias— pertenece a ProCode Dev. Puedes consultarlo y compartirlo citando la fuente, pero no reproducirlo de forma sistemática ni usarlo con fines comerciales sin autorización por escrito.",
+          "El contenido de este sitio —textos, diseño, código e imágenes propias— pertenece a ProCode Systems. Puedes consultarlo y compartirlo citando la fuente, pero no reproducirlo de forma sistemática ni usarlo con fines comerciales sin autorización por escrito.",
         ],
       },
       {
@@ -270,9 +270,9 @@ const es: LegalDict = {
 const en: LegalDict = {
   privacy: {
     meta: {
-      title: "Privacy Policy | ProCode Dev",
+      title: "Privacy Policy | ProCode Systems",
       description:
-        "How ProCode Dev collects, uses and protects the data of people who visit the site or request information, and how you can exercise your rights over it.",
+        "How ProCode Systems collects, uses and protects the data of people who visit the site or request information, and how you can exercise your rights over it.",
     },
     eyebrow: "// legal",
     title: "Privacy policy",
@@ -284,7 +284,7 @@ const en: LegalDict = {
       {
         title: "1. Who is responsible for your data",
         body: [
-          "ProCode Dev is a business operated by Cristian Posada, providing web development and digital presence services remotely to clients in the United States and Mexico.",
+          "ProCode Systems is a business operated by Cristian Posada, providing web development and digital presence services remotely to clients in the United States and Mexico.",
           "For anything related to this policy or to your personal data, the contact channel is info@procodedev.com.",
         ],
       },
@@ -361,7 +361,7 @@ const en: LegalDict = {
       {
         title: "9. Minors",
         body: [
-          "ProCode Dev's services are aimed at businesses and professionals. The site is not directed at anyone under 18 and I do not knowingly collect data from minors.",
+          "ProCode Systems's services are aimed at businesses and professionals. The site is not directed at anyone under 18 and I do not knowingly collect data from minors.",
         ],
       },
       {
@@ -378,9 +378,9 @@ const en: LegalDict = {
 
   terms: {
     meta: {
-      title: "Terms of Service | ProCode Dev",
+      title: "Terms of Service | ProCode Systems",
       description:
-        "Terms for using the site and contracting ProCode Dev services: scope, pricing, payments, timelines, ownership of work, monthly plans and cancellation.",
+        "Terms for using the site and contracting ProCode Systems services: scope, pricing, payments, timelines, ownership of work, monthly plans and cancellation.",
     },
     eyebrow: "// legal",
     title: "Terms of service",
@@ -392,20 +392,20 @@ const en: LegalDict = {
       {
         title: "1. Acceptance",
         body: [
-          "By browsing this site or contracting a service from ProCode Dev — a business operated by Cristian Posada — you accept these terms. If you disagree with any of them, the best move is to raise it before we start.",
+          "By browsing this site or contracting a service from ProCode Systems — a business operated by Cristian Posada — you accept these terms. If you disagree with any of them, the best move is to raise it before we start.",
         ],
       },
       {
         title: "2. What services are offered",
         body: [
-          "ProCode Dev builds digital growth systems: websites, landing pages, Google presence, intake forms, appointment booking and measurement, primarily for small business owners in the United States and Mexico.",
+          "ProCode Systems builds digital growth systems: websites, landing pages, Google presence, intake forms, appointment booking and measurement, primarily for small business owners in the United States and Mexico.",
           "The specific scope of each project is defined in writing before work begins. Anything not described there is out of scope, and if it comes up during the project I give you the price before executing it — never halfway through the work.",
         ],
       },
       {
-        title: "3. What ProCode Dev does not do",
+        title: "3. What ProCode Systems does not do",
         body: [
-          "ProCode Dev is a digital services provider. It does not provide tax, accounting, legal or financial services, does not prepare returns, does not represent anyone before the IRS and does not advise on specific tax situations.",
+          "ProCode Systems is a digital services provider. It does not provide tax, accounting, legal or financial services, does not prepare returns, does not represent anyone before the IRS and does not advise on specific tax situations.",
           "Content on the site and blog is informational and general in nature. It does not replace the opinion of a licensed professional and does not constitute tax, legal or financial advice for your situation.",
         ],
       },
@@ -437,7 +437,7 @@ const en: LegalDict = {
         title: "7. Ownership of the work",
         list: [
           "Once the project is paid in full, the design, copy and code developed specifically for you are yours.",
-          "ProCode Dev's own components, templates, utilities and methodology remain ProCode Dev's and may be reused on other projects.",
+          "ProCode Systems's own components, templates, utilities and methodology remain ProCode Systems's and may be reused on other projects.",
           "Third-party software, typefaces, licensed images and external services are governed by their own licenses.",
           "The domain, hosting and external service accounts are registered in your name or under your control whenever we agree to it.",
         ],
@@ -462,13 +462,13 @@ const en: LegalDict = {
         title: "10. Warranties and liability",
         body: [
           "I work to make your digital presence perform better and generate more opportunities, but I cannot guarantee specific Google rankings, a set number of clients or a particular commercial outcome: that also depends on your market, your offer, your competition and your own operation.",
-          "ProCode Dev's liability for any claim related to a service is limited to the amount actually paid for that service. I am not liable for indirect losses, lost profits, or failures of external providers (hosting, domains, third-party platforms or outages of services outside my control).",
+          "ProCode Systems's liability for any claim related to a service is limited to the amount actually paid for that service. I am not liable for indirect losses, lost profits, or failures of external providers (hosting, domains, third-party platforms or outages of services outside my control).",
         ],
       },
       {
         title: "11. Use of the site",
         body: [
-          "The content of this site — copy, design, code and original images — belongs to ProCode Dev. You may read and share it with attribution, but not reproduce it systematically or use it commercially without written permission.",
+          "The content of this site — copy, design, code and original images — belongs to ProCode Systems. You may read and share it with attribution, but not reproduce it systematically or use it commercially without written permission.",
         ],
       },
       {

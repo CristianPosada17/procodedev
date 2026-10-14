@@ -157,7 +157,7 @@ export interface AuditContent {
 
 const auditEs: AuditContent = {
   meta: {
-    title: "Auditoría SEO, Web y Marketing Digital para Negocios | ProCode",
+    title: "Auditoría SEO, Web y Marketing Digital | ProCode Systems",
     description:
       "Auditoría web, SEO y marketing digital con Keyword Research, competencia, conversión y roadmap 30/60/90. Descubre qué corregir primero y por qué.",
     keywords:
@@ -476,7 +476,7 @@ const auditEs: AuditContent = {
 
 const auditEn: AuditContent = {
   meta: {
-    title: "SEO, Website and Marketing Audit for Small Business | ProCode",
+    title: "SEO & Marketing Audit for Small Business | ProCode Systems",
     description:
       "Website, SEO and digital marketing audit with keyword research, competitor analysis, conversion and a 30/60/90 roadmap. Know what to fix first, and why.",
     keywords:

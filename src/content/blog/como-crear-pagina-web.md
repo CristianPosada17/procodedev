@@ -1,10 +1,10 @@
 ---
 title: "Cómo crear una página web: guía completa paso a paso"
 description: "Cómo crear una página web desde cero: los siete pasos reales, qué cuesta cada opción y cuándo conviene hacerlo tú o contratar a alguien. Sin humo."
-seoTitle: "Cómo Crear una Página Web Paso a Paso | ProCode Dev"
+seoTitle: "Cómo Crear una Página Web Paso a Paso | ProCode Systems"
 seoDescription: "Cómo crear una página web desde cero en siete pasos: dominio, hosting, plataforma, contenido y publicación. Con costos reales y cuándo contratar."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["cómo crear una página web", "crear página web", "diseñar página web", "hacer una página web"]
 ---
 

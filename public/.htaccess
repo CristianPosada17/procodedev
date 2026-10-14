@@ -1,5 +1,5 @@
 # ============================================================
-# ProCode Dev — cabeceras de caché y compresión (Hostinger / Apache)
+# ProCode Systems — cabeceras de caché y compresión (Hostinger / Apache)
 # Añadido el 2026-09-05: Lighthouse reportaba 194 KB re-descargados en
 # cada visita porque el hosting servía /images, /fonts y los iconos con
 # su TTL por defecto.
@@ -27,9 +27,13 @@
   RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
-  # Nicho fiscal anterior → el giro que lo sustituyó.
-  RewriteRule ^(impuestos|preparadores-de-impuestos|enrolled-agents|cpas|bookkeepers|resolucion-fiscal|despachos-contables)/?$ /contabilidad-e-impuestos/ [L,R=301]
-  RewriteRule ^en/(tax-pros|tax-professionals|enrolled-agents|cpas|bookkeepers|tax-resolution|accounting-firms)/?$ /en/accounting-and-tax/ [L,R=301]
+  # Nicho fiscal anterior → la página que lo sustituyó. Octubre 2026:
+  # /preparadores-de-impuestos/ volvió a ser página propia, así que ya NO
+  # está en esta lista; lo fiscal personal va ahí y lo contable, al giro.
+  RewriteRule ^(impuestos|enrolled-agents|resolucion-fiscal)/?$ /preparadores-de-impuestos/ [L,R=301]
+  RewriteRule ^(cpas|bookkeepers|despachos-contables)/?$ /contabilidad-e-impuestos/ [L,R=301]
+  RewriteRule ^en/(tax-pros|tax-professionals|enrolled-agents|tax-resolution)/?$ /en/tax-preparers/ [L,R=301]
+  RewriteRule ^en/(cpas|bookkeepers|accounting-firms)/?$ /en/accounting-and-tax/ [L,R=301]
 
   # «Diseño web con SEO» se separó en un servicio de SEO propio (sep 2026):
   # el SEO dejó de venderse pegado al proyecto de página web.

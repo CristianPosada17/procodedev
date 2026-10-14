@@ -5,6 +5,7 @@ import Analytics from "../components/Analytics.astro";
 import AnalyticsEvents from "../components/AnalyticsEvents.astro";
 import ConsentBanner from "../components/ConsentBanner.astro";
 import { MEASUREMENT } from "../lib/measurement";
+import { CONTENT_REVIEWED as SITE_REVIEWED, reviewedOn } from "../lib/content-dates";
 import {
   translations,
   PAGES,
@@ -93,9 +94,12 @@ const {
 
 const t = translations[lang];
 const htmlLang = lang === "es" ? "es" : "en";
-// Fecha de la última revisión editorial del sitio. Se emite en el JSON-LD y
-// en Open Graph: una página sin señal de frescura compite en desventaja.
-const CONTENT_REVIEWED = "2026-09-29";
+// Fecha de la última revisión editorial de esta página. Se emite en el
+// JSON-LD y en Open Graph: una página sin señal de frescura compite en
+// desventaja. Vive en src/lib/content-dates.ts, que también lee el sitemap.
+// El blog no pasa `page`: usa la fecha general (cada artículo emite la suya).
+const hasPage = Astro.props.page !== undefined;
+const CONTENT_REVIEWED = hasPage ? reviewedOn(page) : SITE_REVIEWED;
 const ogLocale = lang === "es" ? "es_US" : "en_US";
 
 // ============================================================
@@ -145,17 +149,25 @@ const socialImage = new URL(image, siteUrl);
 const withSlash = (path: string) => (path.endsWith("/") ? path : `${path}/`);
 const esAltURL = new URL(withSlash(PAGES[page].es), siteUrl);
 const enAltURL = new URL(withSlash(PAGES[page].en), siteUrl);
+// Solo hay hreflang cuando la página existe en los dos idiomas. Antes el blog
+// (que no pasa `page`) heredaba los de la portada: cada artículo le decía a
+// Google que su versión en español era «/». Y /revision-express/, que solo
+// existe en español, se declaraba a sí misma como versión inglesa.
+const hasAlternates = hasPage && PAGES[page].es !== PAGES[page].en;
 
 // Datos estructurados (JSON-LD)
 const orgNode = {
   "@type": "ProfessionalService",
   "@id": `${siteUrl}#organization`,
-  name: "ProCode Dev",
+  name: "ProCode Systems",
   // Google elige el nombre del sitio entre el JSON-LD, og:site_name y el
   // <title>. Cuando no tiene una señal clara usa el dominio: por eso en
   // site:procodedev.com salía «Procodedev». Los alias declaran las formas
   // que la gente escribe sin dejar de tener un nombre principal.
-  alternateName: ["ProCodeDev", "ProCode"],
+  // Octubre 2026: la marca pasa a ser ProCode Systems, el nombre con el que
+  // están verificadas las redes (sameAs). «ProCode Dev» queda como alias
+  // porque coincide con el dominio y con lo que Google ya tenía indexado.
+  alternateName: ["ProCode Dev", "ProCodeDev", "ProCode"],
   url: siteUrl.toString(),
   image: socialImage.toString(),
   // `logo` es la propiedad que Google lee para el logotipo de la
@@ -213,8 +225,8 @@ const websiteNode = {
   "@type": "WebSite",
   "@id": `${siteUrl}#website`,
   url: siteUrl.toString(),
-  name: "ProCode Dev",
-  alternateName: ["ProCodeDev", "ProCode"],
+  name: "ProCode Systems",
+  alternateName: ["ProCode Dev", "ProCodeDev", "ProCode"],
   description: metaDescription,
   publisher: { "@id": `${siteUrl}#organization` },
   inLanguage: lang === "es" ? "es-US" : "en-US",
@@ -374,8 +386,8 @@ const itemListNode = itemList?.length
 // las generales del sitio.
 const DEFAULT_KEYWORDS =
   lang === "es"
-    ? "páginas web para negocios, sitios web para pymes, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, perfil de empresa en google, SEO local, agencia de SEO, ProCode Dev"
-    : "small business website, website for contractors, website for clinics, real estate agent website, accounting firm website, google business profile, local SEO, SEO agency, bilingual website, ProCode Dev";
+    ? "páginas web para negocios, sitios web para pymes, página web para contratistas, página web para consultorios, página web para inmobiliarias, página web para despachos contables, perfil de empresa en google, SEO local, agencia de SEO, ProCode Systems"
+    : "small business website, website for contractors, website for clinics, real estate agent website, accounting firm website, google business profile, local SEO, SEO agency, bilingual website, ProCode Systems";
 const pageKeywords = keywords ?? DEFAULT_KEYWORDS;
 
 const jsonLd = {
@@ -412,7 +424,7 @@ const jsonLd = {
     <title>{metaTitle}</title>
     <meta name="description" content={metaDescription} />
     <meta name="keywords" content={pageKeywords} />
-    <meta name="author" content="ProCode Dev" />
+    <meta name="author" content="ProCode Systems" />
     <meta
       name="robots"
       content={noindex
@@ -422,13 +434,19 @@ const jsonLd = {
     <meta name="geo.region" content="US" />
     <meta name="geo.placename" content="United States" />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="es" href={esAltURL} />
-    <link rel="alternate" hreflang="en" href={enAltURL} />
-    <link rel="alternate" hreflang="x-default" href={esAltURL} />
+    {
+      hasAlternates && (
+        <>
+          <link rel="alternate" hreflang="es" href={esAltURL} />
+          <link rel="alternate" hreflang="en" href={enAltURL} />
+          <link rel="alternate" hreflang="x-default" href={esAltURL} />
+        </>
+      )
+    }
 
     <!-- ============ OPEN GRAPH ============ -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ProCode Dev" />
+    <meta property="og:site_name" content="ProCode Systems" />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={metaDescription} />
@@ -453,7 +471,7 @@ const jsonLd = {
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="ProCode Dev" />
+    <meta name="apple-mobile-web-app-title" content="ProCode Systems" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="/site.webmanifest" />

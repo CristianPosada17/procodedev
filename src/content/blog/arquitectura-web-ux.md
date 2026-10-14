@@ -1,10 +1,10 @@
 ---
 title: "Arquitectura web y UX: cómo se organiza un sitio que convierte"
 description: "Qué es la arquitectura de un sitio web, cómo se decide la estructura de páginas y qué reglas de UX hacen que un visitante llegue al contacto sin perderse."
-seoTitle: "Arquitectura Web y UX para Negocios | ProCode Dev"
+seoTitle: "Arquitectura Web y UX para Negocios | ProCode Systems"
 seoDescription: "Cómo se organiza la estructura de un sitio web: jerarquía de páginas, menú, enlazado interno y las reglas de UX que llevan al visitante hasta el contacto."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["arquitectura web", "UX web", "estructura de un sitio web", "experiencia de usuario"]
 ---
 

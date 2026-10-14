@@ -1,10 +1,10 @@
 ---
 title: "SEO en la era de la IA: cómo lograr que ChatGPT y Google recomienden tu negocio"
 description: "Cada vez más personas buscan con ChatGPT, Gemini y las respuestas con IA de Google. Aprende cómo optimizar tu página web para que la inteligencia artificial recomiende tu negocio."
-seoTitle: "SEO para IA: Que ChatGPT Recomiende tu Negocio | ProCode"
+seoTitle: "SEO para IA: Que ChatGPT te Recomiende | ProCode Systems"
 seoDescription: "Cada vez más personas buscan con ChatGPT, Gemini y la IA de Google. Cómo optimizar tu página para que la inteligencia artificial recomiende tu negocio."
 pubDate: 2026-07-17
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["SEO", "inteligencia artificial", "negocios"]
 ---
 
@@ -68,4 +68,4 @@ Como el SEO, no es inmediato. Construir presencia, reseñas y contenido consiste
 
 ---
 
-En **ProCode Dev** construyo páginas listas para el SEO de hoy y para las búsquedas con IA: claras, rápidas, confiables y bien estructuradas. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y preparamos tu negocio para que Google —y la IA— te recomienden.
+En **ProCode Systems** construyo páginas listas para el SEO de hoy y para las búsquedas con IA: claras, rápidas, confiables y bien estructuradas. Revisa [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/) y preparamos tu negocio para que Google —y la IA— te recomienden.

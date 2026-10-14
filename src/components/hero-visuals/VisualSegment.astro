@@ -6,14 +6,14 @@
   flotando alrededor. Cada giro enseña su propio sitio, no una escena
   genérica.
 */
-import { translations, type Lang, type SegmentKey } from "../../i18n/ui";
+import { translations, type Lang, type LandingKey } from "../../i18n/ui";
 import { getSegment } from "../../i18n/segments";
 import { LANDING_TAG } from "../landing-theme";
 import Icon from "../Icon.astro";
 
 interface Props {
   lang: Lang;
-  segment: SegmentKey;
+  segment: LandingKey;
 }
 const { lang, segment } = Astro.props as Props;
 const t = translations[lang];

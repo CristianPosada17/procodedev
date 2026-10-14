@@ -4,7 +4,8 @@ description: "Guía de marketing digital para contratistas hispanos en Estados U
 seoTitle: "Marketing Digital para Contratistas Hispanos en EE. UU."
 seoDescription: "Qué funciona en marketing digital para contratistas hispanos en Estados Unidos y en qué orden: ficha de Google, reseñas, web bilingüe, anuncios y seguimiento."
 pubDate: 2026-09-07
-author: "ProCode Dev"
+updatedDate: 2026-10-13
+author: "ProCode Systems"
 tags: ["marketing digital", "contratistas", "Estados Unidos", "SEO local"]
 ---
 
@@ -104,4 +105,4 @@ Construyo la página y el sistema de captación completo desde México, en remot
 
 Si quieres saber qué encuentra hoy un cliente cuando busca tu servicio en tu ciudad, agenda la Revisión Express: reviso tu presencia, en una videollamada de 20 minutos te muestro 3 prioridades. Es gratis y te digo lo que encontré aunque la conclusión sea que todavía no necesitas contratarme.
 
-Puedes ver el detalle en [diseño web para contratistas](/contratistas/) o en [marketing digital para negocios](/servicios/marketing-digital/).
+Puedes ver el detalle en [diseño web para contratistas](/contratistas/) o en [marketing digital para negocios](/servicios/marketing-digital/). Si lo tuyo es jardinería o mantenimiento de áreas verdes, mira [páginas web para jardinería y landscaping](/jardineria-y-landscaping/).

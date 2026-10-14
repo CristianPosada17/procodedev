@@ -37,7 +37,7 @@ const articleLd = {
   author: { "@type": "Organization", name: author },
   publisher: {
     "@type": "Organization",
-    name: "ProCode Dev",
+    name: "ProCode Systems",
     url: siteUrl.toString(),
   },
   mainEntityOfPage: pageUrl,
@@ -50,7 +50,7 @@ const articleLd = {
 
 <Layout
   waPage="blog"
-  title={post.data.seoTitle ?? `${title} | ProCode Dev`}
+  title={post.data.seoTitle ?? `${title} | ProCode Systems`}
   description={post.data.seoDescription ?? description}
   keywords={tags.join(", ")}
   breadcrumbs={[

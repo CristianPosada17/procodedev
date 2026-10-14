@@ -1,10 +1,10 @@
 ---
 title: "¿Página web o redes sociales? Por qué tu negocio necesita ambas"
 description: "Comparamos página web y redes sociales para negocios: qué hace cada una, por qué no son lo mismo y cómo combinarlas para vender más."
-seoTitle: "¿Página Web o Redes Sociales? | ProCode Dev"
+seoTitle: "¿Página Web o Redes Sociales? | ProCode Systems"
 seoDescription: "Qué hace cada una, por qué no son lo mismo y cómo combinar página web y redes sociales para que tu negocio venda más sin duplicar el esfuerzo."
 pubDate: 2026-06-16
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["redes sociales", "sitio web", "estrategia"]
 ---
 
@@ -35,4 +35,4 @@ Redes sin web es como invitar gente a una tienda que no existe. Web sin redes es
 
 ---
 
-Si ya tienes redes pero te falta ese «lugar propio» que convierte, en **ProCode Dev** lo construyo. Mira [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/).
+Si ya tienes redes pero te falta ese «lugar propio» que convierte, en **ProCode Systems** lo construyo. Mira [nuestros precios](/precios/) o [agenda una llamada gratis de 20 minutos](/contacto/).

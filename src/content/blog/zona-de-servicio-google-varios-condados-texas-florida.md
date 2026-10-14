@@ -1,10 +1,10 @@
 ---
 title: "Cómo aparecer en Google Maps si atiendes varios condados: la guía de la zona de servicio"
 description: "Qué es la zona de servicio del Perfil de Empresa, cuántas puedes poner y por qué añadir condados no te hace aparecer en ellos. Con el plan que sí funciona en Texas y Florida."
-seoTitle: "Zona de Servicio en Google: Varios Condados | ProCode"
+seoTitle: "Zona de Servicio en Google: Varios Condados | ProCode Systems"
 seoDescription: "Cómo configurar la zona de servicio en Google si atiendes varios condados en Texas o Florida, y por qué añadir ciudades no te hace aparecer en ellas."
 pubDate: 2026-09-07
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["SEO local", "Google Maps", "zona de servicio", "contratistas"]
 ---
 

@@ -27,7 +27,7 @@ const blog = defineCollection({
               : undefined,
         z.coerce.date().optional()
       ),
-    author: z.string().default("ProCode Dev"),
+    author: z.string().default("ProCode Systems"),
     tags: z.array(z.string()).default([]),
   }),
 });

@@ -9,8 +9,8 @@ import PriceAnchor from "../../components/PriceAnchor.astro";
 import Founder from "../../components/Founder.astro";
 import FAQ from "../../components/FAQ.astro";
 import Footer from "../../components/Footer.astro";
-import { translations, PAGES, SEGMENT_KEYS } from "../../i18n/ui";
-import { segments } from "../../i18n/segments";
+import { translations, PAGES, SEGMENT_KEYS, NICHE_KEYS } from "../../i18n/ui";
+import { segments, getSegment } from "../../i18n/segments";
 
 const lang = "en";
 const t = translations[lang];
@@ -21,7 +21,13 @@ const sectorList = SEGMENT_KEYS.map((key) => ({
   name: segments[lang][key].navLabel,
   description: segments[lang][key].navHint,
   url: PAGES[key][lang],
-}));
+})).concat(
+  NICHE_KEYS.map((key) => ({
+    name: getSegment(lang, key).navLabel,
+    description: getSegment(lang, key).navHint,
+    url: PAGES[key][lang],
+  })),
+);
 ---
 
 <Layout

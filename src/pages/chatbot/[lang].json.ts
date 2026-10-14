@@ -18,11 +18,11 @@
   cambia aquí en el siguiente build; no hay una segunda copia que mantener.
 */
 import type { APIRoute, GetStaticPaths } from "astro";
-import { translations, PAGES, SEGMENT_KEYS, type Lang, type PageKey } from "../../i18n/ui";
+import { translations, PAGES, SEGMENT_KEYS, NICHE_KEYS, type Lang, type PageKey } from "../../i18n/ui";
 import { serviceDetails, serviceLines, servicesHub, SERVICE_KEYS } from "../../i18n/services";
 import { subservices, SUBSERVICE_KEYS } from "../../i18n/subservices";
 import { audit } from "../../i18n/audit";
-import { segments } from "../../i18n/segments";
+import { segments, getSegment } from "../../i18n/segments";
 import { markets, marketsHub, MARKET_KEYS } from "../../i18n/markets";
 
 type QA = { question: string; answer: string };
@@ -75,6 +75,7 @@ export const GET: APIRoute = ({ params }) => {
   for (const k of SUBSERVICE_KEYS) add(subservices[lang][k].faq.items, k, subservices[lang][k].navLabel);
   add(audit[lang].faq.items, "audit", audit[lang].navLabel);
   for (const k of SEGMENT_KEYS) add(segments[lang][k].faq, k, segments[lang][k].navLabel, 0);
+  for (const k of NICHE_KEYS) add(getSegment(lang, k).faq, k, getSegment(lang, k).navLabel, 0);
   add(marketsHub[lang].faq.items, "markets", t.nav.markets);
   for (const k of MARKET_KEYS) add(markets[lang][k].faq.items, k, markets[lang][k].name, 0);
 
@@ -115,8 +116,8 @@ export const GET: APIRoute = ({ params }) => {
       k: `${a.navLabel} ${priceWord} ${a.meta.keywords}`,
     });
   }
-  for (const key of SEGMENT_KEYS) {
-    const s = segments[lang][key];
+  for (const key of [...SEGMENT_KEYS, ...NICHE_KEYS]) {
+    const s = getSegment(lang, key);
     out.push({
       q: `${es ? "Página web para" : "Website for"} ${s.navLabel}: ${s.navHint}`,
       a: `${s.intro} ${es ? "Precios base publicados: landing page desde $349 USD." : "Published base pricing: landing page from $349 USD."}`,

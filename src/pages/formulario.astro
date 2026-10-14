@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="robots" content="noindex, nofollow">
-<title>Información para tu página web · ProCode Dev</title>
+<title>Información para tu página web · ProCode Systems</title>
 <!-- Medición: solo GA4. Este formulario es posventa (el cliente ya compró),
      así que no debe alimentar al Pixel ni a los públicos de anuncios. -->
 <script is:inline>
@@ -38,7 +38,7 @@
 </style>
 <style is:inline>
   :root{
-    /* Tokens alineados con el sistema de diseño de ProCode Dev */
+    /* Tokens alineados con el sistema de diseño de ProCode Systems */
     --brand:#2563eb; --brand-strong:#1d4ed8; --accent:#0ea5e9;
     --tinta:#0f172a; --gris:#475569; --gris2:#94a3b8;
     --linea:#e2e8f0; --linea2:#eef2f7;
@@ -186,8 +186,8 @@
 
 <div class="top" id="topBar">
   <div class="top-in">
-    <img src="/Logo.webp" alt="ProCode Dev" width="30" height="30">
-    <b>ProCode Dev</b>
+    <img src="/Logo.webp" alt="ProCode Systems" width="30" height="30">
+    <b>ProCode Systems</b>
   </div>
   <div class="bar"><i id="bar"></i></div>
   <div class="bar-t" id="barT">0% completado</div>
@@ -434,7 +434,7 @@
   </div>
 
   <div class="end">
-    ProCode Dev · <a href="mailto:info@procodedev.com">info@procodedev.com</a><br>
+    ProCode Systems · <a href="mailto:info@procodedev.com">info@procodedev.com</a><br>
     Tus respuestas se guardan solo en tu teléfono hasta que las envías.
   </div>
 
@@ -640,7 +640,7 @@
         out.push("");
       }
     });
-    out.push("— Enviado desde el formulario de ProCode Dev");
+    out.push("— Enviado desde el formulario de ProCode Systems");
     return out.join("\n");
   }
 
@@ -688,7 +688,7 @@
       body: JSON.stringify({
         access_key: W3F_KEY,
         subject: "Formulario web — " + quien,
-        from_name: "Formulario ProCode Dev",
+        from_name: "Formulario ProCode Systems",
         email: val("correoPub") || val("correoForm") || CORREO_CC,
         message: texto(false)
       })

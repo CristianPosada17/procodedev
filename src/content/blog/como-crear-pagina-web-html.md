@@ -1,10 +1,10 @@
 ---
 title: "Cómo crear una página web con HTML: guía para empezar"
 description: "Cómo crear una página web con HTML desde cero: estructura mínima, CSS, cómo publicarla gratis y hasta dónde llega este camino antes de necesitar más."
-seoTitle: "Cómo Crear una Página Web con HTML | ProCode Dev"
+seoTitle: "Cómo Crear una Página Web con HTML | ProCode Systems"
 seoDescription: "Crea tu primera página web con HTML y CSS paso a paso: estructura mínima, etiquetas esenciales, cómo publicarla gratis y qué límites tiene el método."
 pubDate: 2026-09-14
-author: "ProCode Dev"
+author: "ProCode Systems"
 tags: ["cómo crear una página web con HTML", "página web con HTML", "HTML y CSS para principiantes", "programar una página web"]
 ---
 
