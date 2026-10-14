@@ -34,7 +34,7 @@ When it fails: for businesses whose customers are over 55. Low contrast on dark 
 
 ## 4. Editorial
 
-Large type, long-form text, magazine rhythm. Ideal for [consultants and professional services](/en/professional-services/), [attorneys](/en/attorneys/) and anyone selling **judgment**: what you buy is how that person thinks, and that's shown through writing.
+Large type, long-form text, magazine rhythm. Ideal for [consultants and professional services](/en/professional-services/), [attorneys](/en/professional-services/#attorneys) and anyone selling **judgment**: what you buy is how that person thinks, and that's shown through writing.
 
 ## 5. Brutalism
 

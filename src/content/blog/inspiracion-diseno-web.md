@@ -33,7 +33,7 @@ Cuándo falla: en negocios cuyo cliente pasa de los 55 años. El contraste bajo 
 
 ## 4. Editorial
 
-Tipografía grande, textos largos, ritmo de revista. Ideal para [consultores](/servicios-profesionales/), [abogados](/abogados/) y cualquiera que venda **criterio**: lo que compras es cómo piensa esa persona, y eso se demuestra escribiendo.
+Tipografía grande, textos largos, ritmo de revista. Ideal para [consultores](/servicios-profesionales/), [abogados](/servicios-profesionales/#abogados) y cualquiera que venda **criterio**: lo que compras es cómo piensa esa persona, y eso se demuestra escribiendo.
 
 ## 5. Brutalismo
 

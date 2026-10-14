@@ -1,0 +1,61 @@
+---
+/*
+  Firma de /preparadores-de-impuestos/: las fechas fijas del año fiscal en
+  una línea vertical, y al lado la lista de documentos que el intake pide
+  antes de la cita (se marcan en cascada al entrar en vista).
+*/
+import Icon from "../Icon.astro";
+import type { TimelineSig } from "../../i18n/landing-identity";
+
+interface Props {
+  sig: TimelineSig;
+}
+const { sig } = Astro.props as Props;
+---
+
+<section id="calendario-fiscal" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal max-w-3xl">
+      <span class="eyebrow">{sig.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">{sig.title}</h2>
+      <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{sig.subtitle}</p>
+    </div>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+      <ol class="reveal relative grid gap-7 border-l border-[color:var(--border-strong)] pl-8">
+        {
+          sig.events.map((e, i) => (
+            <li class="sig-pop relative" style={`--d: ${i * 150}ms`}>
+              <span class="absolute -left-[41px] top-0.5 flex h-5 w-5 items-center justify-center rounded-full border-4 border-[var(--bg)] bg-[var(--accent)]" aria-hidden="true"></span>
+              <p class="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[var(--accent)]">{e.date}</p>
+              <h3 class="mt-1.5 text-lg font-bold text-[var(--text)]">{e.title}</h3>
+              <p class="mt-1.5 text-sm leading-7 text-[var(--muted)]">{e.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="reveal lt-panel self-start rounded-[var(--radius-lg)] p-6 sm:p-8">
+        <div class="flex items-center gap-3">
+          <span class="lt-soft flex h-10 w-10 items-center justify-center rounded-xl">
+            <Icon name="file-text" class="h-5 w-5" />
+          </span>
+          <h3 class="text-base font-bold text-[var(--text)]">{sig.checklistTitle}</h3>
+        </div>
+        <ul class="mt-6 grid gap-3">
+          {
+            sig.checklist.map((c, i) => (
+              <li class="sig-pop flex items-center gap-3 rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)]/70 px-4 py-3 text-sm text-[var(--text)]/90" style={`--d: ${i * 120 + 300}ms`}>
+                <span class="flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--accent)] text-[var(--bg)]">
+                  <Icon name="check" class="h-3.5 w-3.5" strokeWidth={2.6} />
+                </span>
+                {c}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6 text-xs leading-6 text-[var(--muted)]">{sig.caption}</p>
+      </div>
+    </div>
+  </div>
+</section>

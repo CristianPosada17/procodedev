@@ -5,6 +5,7 @@ import SegmentPage from "../../components/SegmentPage.astro";
 import Footer from "../../components/Footer.astro";
 import { translations, PAGES } from "../../i18n/ui";
 import { getSegment } from "../../i18n/segments";
+import { specialtyFaq } from "../../i18n/specialties";
 
 const lang = "en";
 const key = "professional" as const;
@@ -19,7 +20,7 @@ const seg = getSegment(lang, key);
   title={seg.meta.title}
   description={seg.meta.description}
   includeFaq={true}
-  faqItems={seg.faq}
+  faqItems={[...seg.faq, ...specialtyFaq(lang, key)]}
   serviceName={seg.intro}
   keywords={seg.meta.keywords}
   offerCatalog={seg.system}

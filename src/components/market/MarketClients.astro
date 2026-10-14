@@ -1,0 +1,68 @@
+---
+/*
+  Proyectos reales más cercanos a un estado. Las demos se distinguen por su
+  `badge` («· Demo»), igual que en el portafolio.
+*/
+import Icon from "../Icon.astro";
+import { translations, PAGES, type Lang } from "../../i18n/ui";
+import type { Clients } from "../../i18n/market-local";
+
+interface Props {
+  lang: Lang;
+  clients: Clients;
+}
+const { lang, clients: c } = Astro.props as Props;
+const t = translations[lang];
+const items = c.items
+  .map((it) => ({ ...it, p: t.portfolio.projects.find((p) => p.id === it.projectId) }))
+  .filter((it) => it.p);
+---
+
+<section id="proyectos" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-3xl">
+        <span class="eyebrow">{c.eyebrow}</span>
+        <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">{c.title}</h2>
+        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{c.subtitle}</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {
+        items.map(({ p, why }, i) => {
+          const base = p!.image.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+          return (
+            <article class="reveal flex flex-col overflow-hidden rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70" style={`--reveal-delay: ${i * 80}ms`}>
+              <picture class="block border-b border-[color:var(--border)]">
+                <source type="image/avif" sizes="(min-width: 768px) 30vw, 92vw" srcset={`${base}-400.avif 400w, ${base}-800.avif 800w`} />
+                <img
+                  src={`${base}-800.webp`}
+                  srcset={`${base}-400.webp 400w, ${base}-800.webp 800w`}
+                  sizes="(min-width: 768px) 30vw, 92vw"
+                  alt={`${t.portfolio.imageAltPrefix} ${p!.name}`}
+                  width="800"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  class="block aspect-[2/1] w-full object-cover object-top"
+                />
+              </picture>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">{p!.badge}</p>
+                <h3 class="mt-2 text-base font-bold text-[var(--text)]">{p!.name}</h3>
+                <p class="mt-1 text-xs text-[var(--muted)]">{p!.location}</p>
+                <p class="mt-4 text-sm leading-7 text-[var(--muted)]">{why}</p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <a href={PAGES.portfolio[lang]} class="reveal mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] transition hover:gap-2.5">
+      {t.proof.cta}
+      <Icon name="arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
+</section>

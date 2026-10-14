@@ -83,7 +83,9 @@ const articleLd = {
   author: { "@type": "Organization", name: author },
   publisher: {
     "@type": "Organization",
+    "@id": new URL("#organization", siteUrl).toString(),
     name: "ProCode Systems",
+    alternateName: "ProCode Dev",
     url: siteUrl.toString(),
   },
   mainEntityOfPage: pageUrl,

@@ -1,0 +1,49 @@
+---
+/*
+  Firma de /inmobiliarias/: portal inmobiliario contra sitio propio, en
+  una tabla de dos columnas. En móvil cada renglón se apila.
+*/
+import Icon from "../Icon.astro";
+import type { CompareSig } from "../../i18n/landing-identity";
+
+interface Props {
+  sig: CompareSig;
+}
+const { sig } = Astro.props as Props;
+---
+
+<section id="portal-o-sitio-propio" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-10">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <span class="eyebrow">{sig.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">{sig.title}</h2>
+      <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{sig.subtitle}</p>
+    </div>
+
+    <div class="reveal mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl">
+      <div class="hidden grid-cols-[1.1fr_1fr_1fr] border-b border-[color:var(--border)] md:grid">
+        <span></span>
+        <span class="px-6 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--muted)]">{sig.colA}</span>
+        <span class="bg-[var(--brand)]/[0.08] px-6 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)]">{sig.colB}</span>
+      </div>
+      {
+        sig.rows.map((r, i) => (
+          <div class="sig-pop grid border-b border-[color:var(--border)] last:border-b-0 md:grid-cols-[1.1fr_1fr_1fr]" style={`--d: ${i * 110}ms`}>
+            <p class="px-6 pt-5 text-sm font-bold text-[var(--text)] md:py-5">{r.label}</p>
+            <p class="flex items-center gap-2 px-6 py-2 text-sm text-[var(--muted)] md:py-5">
+              <span class="font-mono text-[10px] uppercase text-[var(--muted)] md:hidden">{sig.colA}:</span>
+              <Icon name={r.aOk ? "check" : "minus"} class="h-4 w-4 flex-none" />
+              {r.a}
+            </p>
+            <p class="flex items-center gap-2 bg-[var(--brand)]/[0.06] px-6 py-3 text-sm font-semibold text-[var(--text)] md:py-5">
+              <span class="font-mono text-[10px] uppercase text-[var(--accent)] md:hidden">{sig.colB}:</span>
+              <Icon name={r.bOk ? "check" : "minus"} class:list={["h-4 w-4 flex-none", r.bOk ? "text-[var(--accent)]" : "text-[var(--muted)]"]} />
+              {r.b}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="reveal mx-auto mt-6 max-w-3xl text-center text-sm leading-7 text-[var(--muted)]">{sig.caption}</p>
+  </div>
+</section>

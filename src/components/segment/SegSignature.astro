@@ -1,0 +1,22 @@
+---
+/* Elige la sección firma de cada landing según su tipo. */
+import type { Signature } from "../../i18n/landing-identity";
+import SigQuoteFilter from "./SigQuoteFilter.astro";
+import SigBookingWeek from "./SigBookingWeek.astro";
+import SigFunnel from "./SigFunnel.astro";
+import SigCompare from "./SigCompare.astro";
+import SigSeasonChart from "./SigSeasonChart.astro";
+import SigTimeline from "./SigTimeline.astro";
+
+interface Props {
+  sig: Signature;
+}
+const { sig } = Astro.props as Props;
+---
+
+{sig.kind === "quoteFilter" && <SigQuoteFilter sig={sig} />}
+{sig.kind === "bookingWeek" && <SigBookingWeek sig={sig} />}
+{sig.kind === "funnel" && <SigFunnel sig={sig} />}
+{sig.kind === "compare" && <SigCompare sig={sig} />}
+{sig.kind === "seasonChart" && <SigSeasonChart sig={sig} />}
+{sig.kind === "timeline" && <SigTimeline sig={sig} />}

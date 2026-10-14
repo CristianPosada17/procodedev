@@ -6,10 +6,11 @@
   el contenido, que es lo que las hace distintas entre sí, vive en
   src/i18n/markets.ts.
 
-  Orden común de las landings (sep 2026): portada → por qué este mercado es
-  distinto y qué cambia ahí → cómo se trabaja en remoto + proyectos reales →
-  testimonios → los giros que dominan ahí → fundador → zonas y precios de
-  entrada → dudas → cierre con agenda y formulario en la misma página.
+  Orden por defecto (sep 2026, lo conserva México): portada → por qué este
+  mercado es distinto → cómo se trabaja en remoto + proyectos → testimonios
+  → giros → fundador → zonas y precios → dudas → cierre. Desde el 14 oct
+  2026 Texas, Florida y California declaran su propio orden y secciones
+  propias en src/i18n/market-local.ts.
 */
 import Layout from "../layouts/Layout.astro";
 import Header from "./Header.astro";
@@ -27,8 +28,12 @@ import Testimonials from "./Testimonials.astro";
 import Founder from "./Founder.astro";
 import LandingConversion from "./LandingConversion.astro";
 import Footer from "./Footer.astro";
+import MarketRegions from "./market/MarketRegions.astro";
+import MarketSignature from "./market/MarketSignature.astro";
+import MarketClients from "./market/MarketClients.astro";
 import { translations, PAGES, type Lang } from "../i18n/ui";
 import { markets, type MarketKey } from "../i18n/markets";
+import { marketLocal, MARKET_LAYOUT, DEFAULT_MARKET_LAYOUT } from "../i18n/market-local";
 
 interface Props {
   lang: Lang;
@@ -37,6 +42,11 @@ interface Props {
 const { lang, market } = Astro.props as Props;
 const t = translations[lang];
 const m = markets[lang][market];
+// 14 oct 2026: Texas, Florida y California tienen orden, regiones, sección
+// firma y proyectos propios (src/i18n/market-local.ts). México conserva el
+// orden de siempre.
+const local = marketLocal[lang][market];
+const layout = local ? (MARKET_LAYOUT[market] ?? DEFAULT_MARKET_LAYOUT) : DEFAULT_MARKET_LAYOUT;
 
 // El nodo Service declara el estado como `areaServed`, que es la forma
 // correcta de decir «atiendo este territorio» sin fingir una dirección
@@ -87,29 +97,41 @@ const offerCatalog = m.industries.items.map((i) => ({
       <VisualMarket slot="visual" lang={lang} market={m} tag={LANDING_TAG[market] ?? ""} />
     </LandingHero>
 
-    {/* 2 · Beneficios: por qué este mercado es distinto y qué cambia ahí */}
-    <ServiceIntro lang={lang} intro={m.intro} icon="map-pin" />
-    <ServiceStandards lang={lang} standards={m.context} id="lo-que-cambia" />
-
-    {/* 3 · Así es como se trabaja (en remoto) + proyectos reales */}
-    <ServiceStandards lang={lang} standards={m.remote} id="en-remoto" />
-    <ProofStrip lang={lang} />
-
-    {/* 4 · Testimonios publicados */}
-    <Testimonials lang={lang} />
-
-    {/* 5 · Para quién es: los giros que dominan en este estado */}
-    <MarketIndustries lang={lang} industries={m.industries} />
-
-    {/* 6 · El desarrollador y fundador */}
-    <Founder lang={lang} page={market} />
-
-    {/* 7 · Información práctica: zonas que atiendo y precios base */}
-    <MarketCities lang={lang} market={m} />
-    <PriceAnchor lang={lang} />
-
-    {/* 8 · Preguntas frecuentes */}
-    <FAQ lang={lang} data={m.faq} id="dudas-mercado" />
+    {/* Secciones intermedias: el orden lo decide cada estado (layout). */}
+    {
+      layout.map((section) => {
+        switch (section) {
+          case "intro":
+            return <ServiceIntro lang={lang} intro={m.intro} icon="map-pin" />;
+          case "context":
+            return <ServiceStandards lang={lang} standards={m.context} id="lo-que-cambia" />;
+          case "remote":
+            return <ServiceStandards lang={lang} standards={m.remote} id="en-remoto" />;
+          case "proof":
+            return <ProofStrip lang={lang} />;
+          case "testimonials":
+            return <Testimonials lang={lang} />;
+          case "industries":
+            return <MarketIndustries lang={lang} industries={m.industries} />;
+          case "founder":
+            return <Founder lang={lang} page={market} />;
+          case "cities":
+            return <MarketCities lang={lang} market={m} />;
+          case "price":
+            return <PriceAnchor lang={lang} />;
+          case "faq":
+            return <FAQ lang={lang} data={m.faq} id="dudas-mercado" />;
+          case "regions":
+            return local ? <MarketRegions regions={local.regions} /> : null;
+          case "signature":
+            return local ? <MarketSignature lang={lang} sig={local.signature} /> : null;
+          case "clients":
+            return local?.clients ? <MarketClients lang={lang} clients={local.clients} /> : null;
+          default:
+            return null;
+        }
+      })
+    }
 
     {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
     <LandingConversion

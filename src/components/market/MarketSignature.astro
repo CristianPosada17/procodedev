@@ -1,0 +1,167 @@
+---
+/*
+  Sección firma de cada estado (14 oct 2026):
+  · licenses  Texas: quién licencia a cada oficio y qué mostrar en la página
+  · season    Florida: la temporada de huracanes mes por mes
+  · case      California: el cliente real del estado (Trejo Landscaping)
+*/
+import Icon from "../Icon.astro";
+import { translations, PAGES, type Lang } from "../../i18n/ui";
+import type { MarketLocal } from "../../i18n/market-local";
+
+interface Props {
+  lang: Lang;
+  sig: MarketLocal["signature"];
+}
+const { lang, sig } = Astro.props as Props;
+const t = translations[lang];
+const project = sig.kind === "case" ? t.portfolio.projects.find((p) => p.id === sig.projectId) : undefined;
+const base = project?.image?.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+const domain = project ? project.url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "") : "";
+const phaseTone = [
+  "background: var(--tint);",
+  "background: color-mix(in srgb, var(--brand) 40%, transparent);",
+  "background: color-mix(in srgb, var(--accent) 85%, transparent);",
+];
+const wrap = "mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]";
+---
+
+{
+  sig.kind === "licenses" && (
+    <section id="licencias" class="relative py-12 lg:py-20">
+      <div class={wrap}>
+        <div class="reveal max-w-3xl">
+          <span class="eyebrow">{sig.eyebrow}</span>
+          <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">{sig.title}</h2>
+          <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{sig.subtitle}</p>
+        </div>
+        <div class="reveal mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl">
+          <div class="hidden grid-cols-[0.9fr_1.1fr_1.4fr] border-b border-[color:var(--border)] bg-[var(--bg-2)]/70 md:grid">
+            {sig.cols.map((c) => (
+              <span class="px-6 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--muted)]">{c}</span>
+            ))}
+          </div>
+          {sig.rows.map((r, i) => (
+            <div class="sig-pop grid gap-1 border-b border-[color:var(--border)] px-6 py-5 last:border-b-0 md:grid-cols-[0.9fr_1.1fr_1.4fr] md:gap-0 md:px-0 md:py-0" style={`--d: ${i * 120}ms`}>
+              <p class="flex items-center gap-2 text-sm font-bold text-[var(--text)] md:px-6 md:py-5">
+                <span class:list={["h-2 w-2 flex-none rounded-full", r.statewide ? "bg-[var(--accent)]" : "bg-[var(--text)]/25"]}></span>
+                {r.trade}
+              </p>
+              <p class="text-sm leading-6 text-[var(--muted)] md:px-6 md:py-5">{r.who}</p>
+              <p class="text-sm leading-6 text-[var(--text)]/90 md:px-6 md:py-5">{r.show}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-5 text-xs leading-6 text-[var(--muted)]">{sig.caption}</p>
+      </div>
+    </section>
+  )
+}
+
+{
+  sig.kind === "season" && (
+    <section id="temporada" class="relative py-12 lg:py-20">
+      <div class={wrap}>
+        <div class="reveal max-w-3xl">
+          <span class="eyebrow">{sig.eyebrow}</span>
+          <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">{sig.title}</h2>
+          <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{sig.subtitle}</p>
+        </div>
+        <div class="reveal lt-panel mt-10 rounded-[var(--radius-lg)] p-5 sm:p-8">
+          <div class="flex flex-wrap gap-5 text-xs text-[var(--muted)]">
+            {sig.legend.map((l, i) => (
+              <span class="inline-flex items-center gap-2">
+                <span class="h-3 w-3 rounded" style={phaseTone[i]}></span>
+                {l}
+              </span>
+            ))}
+          </div>
+          <div class="mt-6 grid grid-cols-6 gap-2 sm:grid-cols-12">
+            {sig.months.map((m, i) => (
+              <div class="sig-pop flex flex-col items-center gap-2" style={`--d: ${i * 70}ms`}>
+                <span
+                  class:list={["block w-full rounded-lg", sig.phase[i] === 2 && "lt-ping"]}
+                  style={`height: ${[28, 64, 96][sig.phase[i]]}px; ${phaseTone[sig.phase[i]]}`}
+                ></span>
+                <span class="font-mono text-[10px] uppercase text-[var(--muted)]">{m}</span>
+              </div>
+            ))}
+          </div>
+          <p class="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">{sig.caption}</p>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          {sig.points.map((p, i) => (
+            <div class="reveal rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6" style={`--reveal-delay: ${i * 70}ms`}>
+              <span class="font-mono text-xs font-bold text-[var(--accent)]">{String(i + 1).padStart(2, "0")}</span>
+              <h3 class="mt-2 text-base font-bold text-[var(--text)]">{p.title}</h3>
+              <p class="mt-2 text-sm leading-6 text-[var(--muted)]">{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+{
+  sig.kind === "case" && project && (
+    <section id="cliente-real" class="relative py-12 lg:py-20">
+      <div class={wrap}>
+        <div class="reveal grid overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="p-7 sm:p-10">
+            <span class="eyebrow">{sig.eyebrow}</span>
+            <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">{sig.title}</h2>
+            <p class="mt-5 text-base leading-8 text-[var(--muted)]">{sig.subtitle}</p>
+            <dl class="mt-8 grid gap-4 sm:grid-cols-3">
+              {sig.facts.map((f) => (
+                <div class="border-l-2 border-[color:var(--accent)] pl-4">
+                  <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{f.label}</dt>
+                  <dd class="mt-1 text-sm font-bold text-[var(--text)]">{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <h3 class="mt-10 text-base font-bold text-[var(--text)]">{sig.lessonsTitle}</h3>
+            <ul class="mt-4 grid gap-3">
+              {sig.lessons.map((l) => (
+                <li class="flex gap-3 text-sm leading-7 text-[var(--text)]/90">
+                  <span class="mt-1 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-[var(--brand)]/10 text-[var(--accent)]">
+                    <Icon name="check" class="h-3.5 w-3.5" />
+                  </span>
+                  {l}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-8 flex flex-wrap items-center gap-4">
+              <p class="inline-flex items-center gap-2 text-sm text-[var(--muted)]">
+                <Icon name="globe" class="h-4 w-4 text-[var(--accent)]" />
+                <span class="font-mono text-xs">{domain}</span>
+              </p>
+              <a href={PAGES.portfolio[lang]} class="btn-secondary">
+                {t.proof.cta}
+                <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+          <div class="relative flex items-center border-t border-[color:var(--border)] bg-[var(--bg-2)] p-5 sm:p-8 lg:border-l lg:border-t-0">
+            <picture class="block w-full overflow-hidden rounded-[var(--radius)] border border-[color:var(--border)] shadow-[var(--shadow-media)]">
+              <source type="image/avif" sizes="(min-width: 1024px) 40vw, 92vw" srcset={[400, 800, 1200].map((w) => `${base}-${w}.avif ${w}w`).join(", ")} />
+              <source type="image/webp" sizes="(min-width: 1024px) 40vw, 92vw" srcset={[400, 800, 1200].map((w) => `${base}-${w}.webp ${w}w`).join(", ")} />
+              <img
+                src={`${base}-800.webp`}
+                alt={`${t.portfolio.imageAltPrefix} ${project.name}`}
+                width="1200"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="block aspect-[2/1] w-full object-cover object-top"
+              />
+            </picture>
+            <span class="lt-panel lt-float absolute bottom-3 left-3 rounded-full px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--accent)] sm:bottom-6 sm:left-6">
+              {project.location}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

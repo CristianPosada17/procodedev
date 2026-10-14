@@ -1,0 +1,71 @@
+---
+/*
+  Firma de /contabilidad-e-impuestos/ (stacked) y de
+  /jardineria-y-landscaping/ (paired): la forma del año, temporada contra
+  ingreso fijo, en 12 columnas que crecen al entrar en vista (CSS).
+  · stacked  el ingreso fijo abajo y la temporada encima
+  · paired   dos barras lado a lado por mes
+  Escala 0–100 ilustrativa; el pie de gráfico lo aclara.
+*/
+import Icon from "../Icon.astro";
+import type { SeasonChartSig } from "../../i18n/landing-identity";
+
+interface Props {
+  sig: SeasonChartSig;
+}
+const { sig } = Astro.props as Props;
+const max = Math.max(...sig.peak.map((p, i) => (sig.variant === "stacked" ? p + sig.steady[i] : Math.max(p, sig.steady[i]))));
+const pct = (v: number) => `${(v / max) * 100}%`;
+const steadyTone = "background: color-mix(in srgb, var(--accent) 70%, transparent);";
+const peakTone = "background: color-mix(in srgb, var(--brand) 55%, transparent);";
+---
+
+<section id="forma-del-ano" class="relative py-12 lg:py-20">
+  <div class="mx-auto grid w-full max-w-[1480px] gap-10 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-14 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal lg:order-2">
+      <span class="eyebrow">{sig.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">{sig.title}</h2>
+      <p class="mt-5 text-base leading-8 text-[var(--muted)]">{sig.subtitle}</p>
+      <ul class="mt-8 grid gap-4">
+        {
+          sig.points.map((p) => (
+            <li class="flex gap-3">
+              <Icon name="arrow-right" class="mt-1 h-4 w-4 flex-none text-[var(--accent)]" />
+              <p class="text-sm leading-6 text-[var(--muted)]">
+                <span class="font-bold text-[var(--text)]">{p.title}.</span> {p.text}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <figure class="reveal lt-panel rounded-[var(--radius-lg)] p-5 sm:p-7 lg:order-1">
+      <div class="flex flex-wrap gap-5 text-xs text-[var(--muted)]">
+        <span class="inline-flex items-center gap-2"><span class="h-3 w-3 rounded" style={peakTone}></span>{sig.peakLabel}</span>
+        <span class="inline-flex items-center gap-2"><span class="h-3 w-3 rounded" style={steadyTone}></span>{sig.steadyLabel}</span>
+      </div>
+      <div class="mt-6 grid h-64 grid-cols-12 grid-rows-[100%] gap-1.5 border-b border-[color:var(--border-strong)] sm:h-72 sm:gap-2.5" role="img" aria-label={`${sig.peakLabel} / ${sig.steadyLabel}`}>
+        {
+          sig.months.map((_, i) =>
+            sig.variant === "stacked" ? (
+              <div class="flex h-full flex-col justify-end">
+                <span class="sig-grow block rounded-t-md" style={`height: ${pct(sig.peak[i])}; ${peakTone} --d: ${i * 60 + 300}ms`}></span>
+                <span class="sig-grow block" style={`height: ${pct(sig.steady[i])}; ${steadyTone} --d: ${i * 60}ms`}></span>
+              </div>
+            ) : (
+              <div class="flex h-full items-end gap-0.5 sm:gap-1">
+                <span class="sig-grow block flex-1 rounded-t-md" style={`height: ${pct(sig.peak[i])}; ${peakTone} --d: ${i * 60}ms`}></span>
+                <span class="sig-grow block flex-1 rounded-t-md" style={`height: ${pct(sig.steady[i])}; ${steadyTone} --d: ${i * 60 + 200}ms`}></span>
+              </div>
+            ),
+          )
+        }
+      </div>
+      <div class="mt-2 grid grid-cols-12 gap-1.5 text-center font-mono text-[10px] text-[var(--muted)] sm:gap-2.5">
+        {sig.months.map((m) => <span>{m}</span>)}
+      </div>
+      <figcaption class="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">{sig.caption}</figcaption>
+    </figure>
+  </div>
+</section>

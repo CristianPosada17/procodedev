@@ -163,7 +163,7 @@ const texasEs: Market = {
   meta: {
     title: "Páginas Web en Texas para Negocios | ProCode Systems",
     description:
-      "Páginas web en Texas para negocios: Houston, Dallas, San Antonio y Austin. Sitios bilingües con SEO local y captación, desde $349 USD.",
+      "Páginas web en Texas para negocios de Houston, Dallas, San Antonio, Austin, El Paso y el Valle: bilingües, con SEO local y captación, desde $349 USD.",
     keywords:
       "páginas web en Texas, diseño de páginas web en Texas, diseño web Houston, páginas web para negocios en Texas, agencia de diseño web en Texas, diseño web en español Texas, páginas web para contratistas en Texas, marketing digital en Texas, diseño de páginas web Dallas, páginas web San Antonio, desarrollador web en español en Texas",
     heroTitleA: "Páginas web en Texas",
@@ -229,10 +229,10 @@ const texasEs: Market = {
           "En Houston y San Antonio el mismo negocio atiende a un cliente en inglés y al siguiente en español. Por eso las dos versiones van en URLs separadas y con hreflang: cada cliente encuentra la suya en Google, no una traducción automática.",
       },
       {
-        icon: "shield",
-        title: "La licencia y el seguro venden",
+        icon: "zap",
+        title: "Las tormentas mueven la demanda",
         description:
-          "Texas no licencia al contratista general a nivel estatal, pero sí a electricistas, plomeros y climatización. Poner el número de licencia y la póliza a la vista, donde el cliente los busca, es de las cosas que más suben la conversión en este mercado.",
+          "El granizo de primavera en el norte de Texas y las tormentas del Golfo en Houston multiplican la demanda de techos y restauración en cuestión de días. La página necesita un formulario de daños con fotos y la zona de cobertura clara antes de la temporada, no después.",
       },
       {
         icon: "smartphone",
@@ -296,9 +296,9 @@ const texasEs: Market = {
           "Busca por servicio más ciudad, casi siempre desde el teléfono, y compara las tres primeras fichas del mapa antes de llamar. Por eso el trabajo no termina en el sitio: incluye el Perfil de Empresa en Google, las reseñas y las páginas por servicio y por zona, que es lo que decide en qué posición apareces.",
       },
       {
-        question: "¿Tienes clientes en Texas ahora mismo?",
+        question: "¿Qué proyectos puedo revisar antes de contratar?",
         answer:
-          "Mi portafolio está publicado y lo puedes abrir: hay proyectos de construcción, salud, servicios y contabilidad, algunos en México y otros de negocios que atienden a clientela hispana en Estados Unidos. No voy a inventarte una lista de clientes texanos que no tengo; prefiero que juzgues el trabajo por los sitios que sí puedes visitar.",
+          "Todo el portafolio está publicado y lo puedes abrir: proyectos de construcción, salud, servicios y contabilidad en México y en Estados Unidos, incluidos negocios que atienden a clientela hispana. Es la mejor forma de juzgar el trabajo antes de la llamada.",
       },
     ],
   },
@@ -327,7 +327,7 @@ const floridaEs: Market = {
   meta: {
     title: "Páginas Web en Florida para Negocios | ProCode Systems",
     description:
-      "Páginas web en Florida para negocios: Miami, Orlando, Tampa y Jacksonville. Sitios en español e inglés con SEO local y captación, desde $349 USD.",
+      "Páginas web en Florida para negocios de Miami, Fort Lauderdale, Orlando, Tampa y Jacksonville: español primero, SEO local y captación, desde $349 USD.",
     keywords:
       "páginas web en Florida, diseño de páginas web en Florida, diseño web Miami, páginas web para negocios en Florida, agencia de diseño web en Florida, diseño web en español Miami, páginas web para contratistas en Florida, marketing digital en Florida, diseño de páginas web Orlando, páginas web Tampa, desarrollador web en español en Florida",
     heroTitleA: "Páginas web en Florida",
@@ -393,16 +393,16 @@ const floridaEs: Market = {
           "En el sur de Florida la versión en español suele ser la que más tráfico recibe. Se escribe primero en español, con su propia URL y su propio contenido, y el inglés es la segunda versión real, no un añadido.",
       },
       {
-        icon: "calendar",
-        title: "El sitio tiene que aguantar la temporada",
+        icon: "file-text",
+        title: "Muchos trabajos pasan por la aseguradora",
         description:
-          "De junio a noviembre la demanda de techos, restauración y poda se multiplica en cuestión de días. La página se prepara antes: formulario de emergencia y disponibilidad visible, listos antes del pico.",
+          "En techos y restauración, buena parte de los clientes de Florida llegan con un reclamo abierto con su aseguradora. La página explica cómo trabajas en esos casos —sin prometer el resultado del reclamo— y el formulario pide el nombre de la aseguradora para que sepas qué tipo de trabajo es.",
       },
       {
-        icon: "shield",
-        title: "La licencia estatal es argumento de venta",
+        icon: "map-pin",
+        title: "Se trabaja por condado, no por ciudad",
         description:
-          "Florida sí licencia al contratista a nivel estatal, y el cliente lo sabe y lo pregunta. Poner la licencia, el seguro y la zona de cobertura donde se ven ahorra media conversación y filtra al que solo tantea precios.",
+          "Quien da servicio a domicilio en Florida cubre varios condados. La página lo dice por condado —Miami-Dade, Broward, Palm Beach— y el Perfil de Empresa en Google se configura como zona de servicio, sin una dirección de mostrador que no existe.",
       },
     ],
   },
@@ -491,7 +491,7 @@ const californiaEs: Market = {
   meta: {
     title: "Páginas Web en California para Negocios | ProCode Systems",
     description:
-      "Páginas web en California para negocios: Los Ángeles, San Diego e Inland Empire. Sitios bilingües con SEO local y captación, desde $349 USD.",
+      "Páginas web en California para negocios de Los Ángeles, Inland Empire, San Diego, Fresno y Salinas: bilingües, con SEO local y captación, desde $349 USD.",
     keywords:
       "páginas web en California, diseño de páginas web en California, diseño web Los Ángeles, páginas web para negocios en California, agencia de diseño web en California, diseño web en español California, páginas web para contratistas en California, marketing digital en California, diseño de páginas web San Diego, páginas web Inland Empire, desarrollador web en español en California",
     heroTitleA: "Páginas web en California",
@@ -773,7 +773,7 @@ const texasEn: Market = {
   meta: {
     title: "Web Design in Texas for Small Businesses | ProCode Systems",
     description:
-      "Web design in Texas for small businesses in Houston, Dallas, San Antonio and Austin. Bilingual sites with local SEO and lead capture, from $349 USD.",
+      "Web design in Texas for businesses in Houston, Dallas, San Antonio, Austin, El Paso and the Valley: bilingual, with local SEO and lead capture, from $349 USD.",
     keywords:
       "web design texas, texas web design, websites in texas, bilingual web design texas, web design for small businesses in texas, spanish speaking web designer texas, houston web design small business, dallas web design agency, web design for hispanic owned businesses, contractor website design texas, bilingual website developer",
     heroTitleA: "Web design in Texas",
@@ -808,7 +808,7 @@ const texasEn: Market = {
     subtitle: "A Texas site is not a California site. These are the differences that actually change structure and content, and why bilingual web design texas is not a template with the state name swapped in.",
     items: [
       { icon: "globe", title: "Bilingual is the baseline, not an add-on", description: "In Houston and San Antonio the same business serves one customer in English and the next in Spanish. A bilingual website developer gives both versions separate URLs and hreflang, so each customer finds their own in Google instead of a machine translation. It is the single biggest advantage in web design for hispanic owned businesses here." },
-      { icon: "shield", title: "License and insurance sell", description: "Texas does not license general contractors statewide, but it does license electricians, plumbers and HVAC. Putting the license number and the policy where customers look for them is one of the cheapest conversion lifts in this market." },
+      { icon: "zap", title: "Storms move demand", description: "Spring hail in North Texas and Gulf storms in Houston multiply demand for roofing and restoration within days. The site needs a damage form with photos and a clear service area before the season, not after." },
       { icon: "smartphone", title: "Almost everything arrives by phone", description: "Trade customers search from the job site, the truck or a waiting room. The site is designed mobile-first, with sticky call and WhatsApp buttons, and loads in under two seconds on cellular." },
     ],
   },
@@ -852,7 +852,7 @@ const floridaEn: Market = {
   meta: {
     title: "Web Design in Florida for Small Businesses | ProCode Systems",
     description:
-      "Web design in Florida for small businesses in Miami, Orlando, Tampa and Jacksonville. English and Spanish sites with local SEO, from $349 USD.",
+      "Web design in Florida for businesses in Miami, Fort Lauderdale, Orlando, Tampa and Jacksonville: English and Spanish, local SEO, from $349 USD.",
     keywords:
       "web design florida, florida web design, websites in florida, bilingual web design florida, spanish speaking web designer miami, web design for small businesses in florida, miami web design small business, roofing contractor website design florida, web design for hispanic owned businesses, orlando web design agency, tampa website design",
     heroTitleA: "Web design in Florida",
@@ -886,8 +886,8 @@ const floridaEn: Market = {
     subtitle: "A Miami site does not look like a Dallas site. These are the differences that really affect structure and content, and why bilingual web design florida needs its own approach.",
     items: [
       { icon: "globe", title: "Spanish first, English second", description: "In South Florida the Spanish version usually takes the most traffic. It gets written first, with its own URL and its own content, and English becomes the real second version rather than an afterthought." },
-      { icon: "calendar", title: "The site has to survive the season", description: "From June to November, demand for roofing, restoration and tree work multiplies within days. The page is prepared ahead: emergency form and visible availability, ready before the peak." },
-      { icon: "shield", title: "The state license is a selling point", description: "Florida does license contractors at state level, and customers know it and ask. Putting the license, insurance and service area where they are seen saves half a conversation and filters out price shoppers." },
+      { icon: "file-text", title: "Many jobs go through the insurer", description: "In roofing and restoration, a good share of Florida clients arrive with an open claim with their insurer. The site explains how you work in those cases — without promising the claim's outcome — and the form asks for the insurer's name so you know what kind of job it is." },
+      { icon: "map-pin", title: "You work by county, not by city", description: "Service-area businesses in Florida cover several counties. The site says so county by county — Miami-Dade, Broward, Palm Beach — and the Google Business Profile is set up as a service area, with no storefront address that doesn't exist." },
     ],
   },
   remote: {
@@ -930,7 +930,7 @@ const californiaEn: Market = {
   meta: {
     title: "Web Design in California for Small Businesses | ProCode Systems",
     description:
-      "Web design in California for small businesses in Los Angeles, San Diego and the Inland Empire. Bilingual sites with local SEO, from $349 USD.",
+      "Web design in California for businesses in Los Angeles, the Inland Empire, San Diego, Fresno and Salinas: bilingual, with local SEO, from $349 USD.",
     keywords:
       "web design california, california web design, websites in california, bilingual web design california, spanish speaking web designer los angeles, web design for small businesses in california, los angeles web design small business, san diego website design, web design for hispanic owned businesses, contractor website design california, affordable web design agency california",
     heroTitleA: "Web design in California",

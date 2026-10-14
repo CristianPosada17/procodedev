@@ -42,11 +42,38 @@ const legacyBlogRedirects = {
   "/blog/como-crear-pagina-web-negocio": "/blog/crear-pagina-web-gratis-negocio/",
 };
 
+// 14 de octubre de 2026: los oficios de salud, abogados, seguros y asesores
+// inmobiliarios dejan de ser landings propias y pasan a ser secciones con
+// ancla dentro de su giro (ver MERGED_NICHES en src/i18n/ui.ts).
+const mergedNicheRedirects = {
+  "/dentistas": "/salud-y-bienestar/#dentistas",
+  "/psicologos": "/salud-y-bienestar/#psicologos",
+  "/medicos": "/salud-y-bienestar/#medicos",
+  "/nutriologos": "/salud-y-bienestar/#nutriologos",
+  "/gimnasios": "/salud-y-bienestar/#gimnasios",
+  "/abogados": "/servicios-profesionales/#abogados",
+  "/agentes-de-seguros": "/servicios-profesionales/#agentes-de-seguros",
+  "/asesores-inmobiliarios": "/inmobiliarias/#asesores-inmobiliarios",
+  "/en/dentists": "/en/health-and-wellness/#dentists",
+  "/en/therapists": "/en/health-and-wellness/#therapists",
+  "/en/doctors": "/en/health-and-wellness/#doctors",
+  "/en/nutritionists": "/en/health-and-wellness/#nutritionists",
+  "/en/gyms": "/en/health-and-wellness/#gyms",
+  "/en/attorneys": "/en/professional-services/#attorneys",
+  "/en/insurance-agents": "/en/professional-services/#insurance-agents",
+  "/en/realtors": "/en/real-estate/#realtors",
+};
+
 // https://astro.build/config
 export default defineConfig({
   // `site` es necesario para URLs canónicas absolutas, Open Graph y sitemap.
   site: "https://procodedev.com",
-  redirects: { ...legacyTaxRedirects, ...legacySeoRedirects, ...legacyBlogRedirects },
+  redirects: {
+    ...legacyTaxRedirects,
+    ...legacySeoRedirects,
+    ...legacyBlogRedirects,
+    ...mergedNicheRedirects,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

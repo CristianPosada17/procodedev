@@ -7,7 +7,7 @@ pubDate: 2026-07-15
 updatedDate: 2026-10-13
 author: "ProCode Systems"
 tags: ["negocios de servicios", "desarrollo web", "captación"]
-related: ["health", "dentists", "psychologists", "doctors"]
+related: ["health", "professional"]
 ---
 
 Si tu negocio vende servicios —un consultorio dental, un despacho de psicología, una estética, un gimnasio o cualquier práctica profesional— tu página web tiene un trabajo muy claro: **conseguir que un desconocido confíe en ti lo suficiente para agendar una cita**. No vendes un producto que se ve en una foto; vendes confianza, experiencia y resultados. Y eso cambia por completo cómo debe estar hecha tu web.
@@ -48,11 +48,11 @@ Que aparezcas cuando busquen "psicólogo en [tu ciudad]" o "dentista cerca de m�
 
 ## Ejemplos por tipo de negocio
 
-- **Dentistas y consultorios médicos:** confianza, especialidades, seguros aceptados, agenda en línea y ubicación clara. Lo detallo en [páginas web para dentistas](/dentistas/) y [páginas web para médicos](/medicos/).
-- **Psicólogos y terapeutas:** cercanía, enfoque, modalidad (en línea o presencial), privacidad y primer contacto fácil y sin juicio. Más en [páginas web para psicólogos](/psicologos/); si das consulta de nutrición, en [páginas web para nutriólogos](/nutriologos/).
+- **Dentistas y consultorios médicos:** confianza, especialidades, seguros aceptados, agenda en línea y ubicación clara. Lo detallo en [páginas web para dentistas](/salud-y-bienestar/#dentistas) y [páginas web para médicos](/salud-y-bienestar/#medicos).
+- **Psicólogos y terapeutas:** cercanía, enfoque, modalidad (en línea o presencial), privacidad y primer contacto fácil y sin juicio. Más en [páginas web para psicólogos](/salud-y-bienestar/#psicologos); si das consulta de nutrición, en [páginas web para nutriólogos](/salud-y-bienestar/#nutriologos).
 - **Estéticas y spas:** portafolio visual de resultados, servicios con precios de referencia, promociones y reservación rápida.
-- **Gimnasios y entrenadores:** planes, horarios, resultados de clientes, primera clase o valoración gratis. Ver [páginas web para gimnasios](/gimnasios/).
-- **Despachos y profesionales (abogados, contadores):** autoridad, áreas de práctica, casos y un formulario de consulta claro. Ver [páginas web para abogados](/abogados/) y [diseño web para contadores](/contabilidad-e-impuestos/).
+- **Gimnasios y entrenadores:** planes, horarios, resultados de clientes, primera clase o valoración gratis. Ver [páginas web para gimnasios](/salud-y-bienestar/#gimnasios).
+- **Despachos y profesionales (abogados, contadores):** autoridad, áreas de práctica, casos y un formulario de consulta claro. Ver [páginas web para abogados](/servicios-profesionales/#abogados) y [diseño web para contadores](/contabilidad-e-impuestos/).
 
 ## El error más caro en negocios de servicios
 

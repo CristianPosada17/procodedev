@@ -44,16 +44,10 @@ export type PageKey =
   | "realEstate"
   | "accounting"
   // Nichos (oct 2026): un oficio concreto dentro de cada giro. Ver
-  // src/i18n/niches.ts y NICHE_PARENT más abajo.
+  // src/i18n/niches.ts y NICHE_PARENT más abajo. El 14 de octubre de 2026
+  // los oficios de salud, abogados, seguros y asesores inmobiliarios se
+  // fusionaron como secciones de su giro (ver MERGED_NICHES).
   | "taxPreparers"
-  | "dentists"
-  | "psychologists"
-  | "doctors"
-  | "nutritionists"
-  | "gyms"
-  | "lawyers"
-  | "insuranceAgents"
-  | "realtors"
   | "landscaping"
   | "markets"
   | "mexico"
@@ -115,14 +109,6 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   // impuestos/ redirigía a /contabilidad-e-impuestos/ desde agosto de 2026;
   // en octubre volvió a ser página propia (se quitó el 301).
   taxPreparers: { es: "/preparadores-de-impuestos/", en: "/en/tax-preparers/" },
-  dentists: { es: "/dentistas/", en: "/en/dentists/" },
-  psychologists: { es: "/psicologos/", en: "/en/therapists/" },
-  doctors: { es: "/medicos/", en: "/en/doctors/" },
-  nutritionists: { es: "/nutriologos/", en: "/en/nutritionists/" },
-  gyms: { es: "/gimnasios/", en: "/en/gyms/" },
-  lawyers: { es: "/abogados/", en: "/en/attorneys/" },
-  insuranceAgents: { es: "/agentes-de-seguros/", en: "/en/insurance-agents/" },
-  realtors: { es: "/asesores-inmobiliarios/", en: "/en/realtors/" },
   landscaping: { es: "/jardineria-y-landscaping/", en: "/en/landscaping/" },
   // Páginas de mercado (7 sep 2026): el eje geográfico con el que rankean
   // todos los competidores que capturan al negocio hispano en EE. UU.
@@ -165,17 +151,28 @@ export type SegmentKey = (typeof SEGMENT_KEYS)[number];
  */
 export const NICHE_PARENT = {
   taxPreparers: "accounting",
-  dentists: "health",
-  psychologists: "health",
-  doctors: "health",
-  nutritionists: "health",
-  gyms: "health",
-  lawyers: "professional",
-  insuranceAgents: "professional",
-  realtors: "realEstate",
   landscaping: "contractors",
 } as const satisfies Record<string, SegmentKey>;
 export type NicheKey = keyof typeof NICHE_PARENT;
+/**
+ * Oficios fusionados en su giro (14 oct 2026). Eran ocho landings con la
+ * misma plantilla y un tercio del texto compartido: el patrón de página
+ * puerta que castigó el spam update de septiembre. Ahora son secciones con
+ * ancla dentro del giro; las URLs viejas responden 301 hacia el ancla
+ * (public/.htaccess y astro.config.mjs). `id` es el ancla en cada idioma.
+ */
+export const MERGED_NICHES = {
+  dentists: { parent: "health", id: { es: "dentistas", en: "dentists" } },
+  psychologists: { parent: "health", id: { es: "psicologos", en: "therapists" } },
+  doctors: { parent: "health", id: { es: "medicos", en: "doctors" } },
+  nutritionists: { parent: "health", id: { es: "nutriologos", en: "nutritionists" } },
+  gyms: { parent: "health", id: { es: "gimnasios", en: "gyms" } },
+  lawyers: { parent: "professional", id: { es: "abogados", en: "attorneys" } },
+  insuranceAgents: { parent: "professional", id: { es: "agentes-de-seguros", en: "insurance-agents" } },
+  realtors: { parent: "realEstate", id: { es: "asesores-inmobiliarios", en: "realtors" } },
+} as const satisfies Record<string, { parent: SegmentKey; id: Record<Lang, string> }>;
+export type MergedNicheKey = keyof typeof MERGED_NICHES;
+
 export const NICHE_KEYS = Object.keys(NICHE_PARENT) as NicheKey[];
 /** Cualquier página que use la plantilla SegmentPage: giro o nicho. */
 export type LandingKey = SegmentKey | NicheKey;
@@ -285,8 +282,11 @@ export const translations = {
     },
     hero: {
       eyebrow: "// sistemas digitales de crecimiento",
+      // H1 sin geografía (oct 2026): «Estados Unidos y México» competía
+      // con /diseno-web-estados-unidos/ por la misma búsqueda. La Home
+      // se queda con la intención de agencia; la geo, con su página.
       titleA: "Agencia de diseño web y marketing digital",
-      titleHighlight: "en Estados Unidos y México",
+      titleHighlight: "para negocios y pymes",
       titleB: "",
       subtitle: "Te encuentran. Te entienden. Te escriben.",
       badges: [
@@ -1511,7 +1511,7 @@ export const translations = {
     hero: {
       eyebrow: "// digital growth systems",
       titleA: "Web design and digital marketing agency",
-      titleHighlight: "for U.S. small businesses",
+      titleHighlight: "for small businesses",
       titleB: "",
       subtitle: "Found. Understood. Contacted.",
       badges: [

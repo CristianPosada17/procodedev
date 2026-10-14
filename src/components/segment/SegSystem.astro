@@ -1,0 +1,120 @@
+---
+/*
+  «Qué incluye la página de este giro», en cuatro presentaciones. Cada
+  landing elige la suya en IDENTITY (src/i18n/landing-identity.ts) para que
+  dos giros seguidos no se lean como la misma rejilla de tarjetas:
+  · cards     rejilla de tarjetas con icono (la de siempre)
+  · numbered  lista numerada en dos columnas, sin tarjetas
+  · bento     una pieza grande y el resto en mosaico
+  · checklist columna de texto + lista de verificación
+*/
+import Icon from "../Icon.astro";
+import CardRail from "../CardRail.astro";
+import type { SegmentBlock } from "../../i18n/segments";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: SegmentBlock[];
+  variant: "cards" | "numbered" | "bento" | "checklist";
+}
+const { title, subtitle, items, variant } = Astro.props as Props;
+const wrap = "mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]";
+const [lead, ...rest] = items;
+---
+
+<section id="que-incluye" class="relative py-12 lg:py-20">
+  <div class={wrap}>
+    {
+      variant === "checklist" ? (
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div class="reveal lg:sticky lg:top-28 lg:self-start">
+            <h2 class="text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">{title}</h2>
+            <p class="mt-5 text-base leading-8 text-[var(--muted)]">{subtitle}</p>
+          </div>
+          <ul class="grid gap-0 border-t border-[color:var(--border)]">
+            {items.map((b, i) => (
+              <li class="reveal flex gap-5 border-b border-[color:var(--border)] py-6" style={`--reveal-delay: ${i * 60}ms`}>
+                <span class="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full border border-[color:var(--accent)] text-[var(--accent)]">
+                  <Icon name="check" class="h-4 w-4" strokeWidth={2.4} />
+                </span>
+                <div>
+                  <h3 class="text-base font-bold text-[var(--text)]">{b.title}</h3>
+                  <p class="mt-1.5 text-sm leading-7 text-[var(--muted)]">{b.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <>
+          <div class="reveal max-w-3xl">
+            <h2 class="text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">{title}</h2>
+            <p class="mt-4 text-base leading-8 text-[var(--muted)]">{subtitle}</p>
+          </div>
+
+          {variant === "numbered" && (
+            <ol class="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
+              {items.map((b, i) => (
+                <li class="reveal flex gap-5" style={`--reveal-delay: ${i * 60}ms`}>
+                  <span class="grad-text font-mono text-4xl font-bold leading-none tracking-tight">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div class="border-l border-[color:var(--border)] pl-5">
+                    <h3 class="text-base font-bold leading-snug text-[var(--text)]">{b.title}</h3>
+                    <p class="mt-2 text-sm leading-7 text-[var(--muted)]">{b.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
+
+          {variant === "bento" && lead && (
+            <div class="mt-10 grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
+              <article class="reveal lt-panel flex flex-col justify-between rounded-[var(--radius-lg)] p-8 lg:row-span-2">
+                <span class="lt-soft flex h-14 w-14 items-center justify-center rounded-2xl">
+                  <Icon name={lead.icon as any} class="h-7 w-7" />
+                </span>
+                <div class="mt-10">
+                  <h3 class="text-2xl font-bold leading-tight text-[var(--text)]">{lead.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-[var(--muted)]">{lead.description}</p>
+                </div>
+              </article>
+              {rest.map((b, i) => (
+                <article
+                  class="reveal flex gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl"
+                  style={`--reveal-delay: ${(i + 1) * 60}ms`}
+                >
+                  <span class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                    <Icon name={b.icon as any} class="h-5 w-5" />
+                  </span>
+                  <div>
+                    <h3 class="text-sm font-bold leading-snug text-[var(--text)]">{b.title}</h3>
+                    <p class="mt-1.5 text-[13px] leading-6 text-[var(--muted)]">{b.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {variant === "cards" && (
+            <CardRail class="mt-10" grid="md:grid-cols-2 lg:grid-cols-3" peek="wide">
+              {items.map((b, i) => (
+                <article
+                  class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+                  style={`--reveal-delay: ${i * 70}ms`}
+                >
+                  <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
+                    <Icon name={b.icon as any} class="h-6 w-6" />
+                  </span>
+                  <h3 class="mt-5 text-base font-bold leading-snug text-[var(--text)]">{b.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-[var(--muted)]">{b.description}</p>
+                </article>
+              ))}
+            </CardRail>
+          )}
+        </>
+      )
+    }
+  </div>
+</section>

@@ -476,8 +476,13 @@ const jsonLd = {
     {/* El favicon.svg anterior era un trazado de imagetracer (243 KB, miles de
         paths, sin viewBox): a 16 px los navegadores lo descartaban o lo pintaban
         como una mancha. Ahora se sirve un ICO real con 16/32/48 px. */}
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    {/* Google Search solo usa favicons cuadrados de un múltiplo de 48 px
+        (48, 96, 144, 192…). Antes el primer <link> declaraba el ICO como
+        32x32 —tamaño que Google descarta—; ahora van primero los PNG
+        válidos y el ICO (16/32/48) queda como respaldo para navegadores. */}
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="ProCode Systems" />
     <meta name="apple-mobile-web-app-capable" content="yes" />

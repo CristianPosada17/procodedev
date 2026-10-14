@@ -132,8 +132,10 @@ const otherLang = lang === "es" ? "EN" : "ES";
           class="h-full w-full object-contain"
         />
       </div>
-      <span class="text-lg font-bold tracking-tight text-[var(--text)]">
-        ProCode <span class="text-[var(--accent)]">Dev</span>
+      {/* «ProCode Systems» no cabe en una línea junto a los botones a 375 px:
+          en móvil se apila como logotipo de dos renglones. */}
+      <span class="flex flex-col text-base font-bold leading-[1.05] tracking-tight text-[var(--text)] min-[420px]:block min-[420px]:text-lg min-[420px]:leading-normal">
+        <span>ProCode</span> <span class="text-[var(--accent)]">Systems</span>
       </span>
     </a>
 

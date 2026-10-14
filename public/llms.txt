@@ -205,19 +205,19 @@ página propia por volumen de trabajo, no por exclusividad.
   - Oficio: [jardinería y landscaping](https://procodedev.com/jardineria-y-landscaping/).
 - [Salud y bienestar](https://procodedev.com/salud-y-bienestar/): diseño web para
   consultorios y clínicas, con agenda en línea y SEO local para consultorios.
-  - Oficios: [dentistas](https://procodedev.com/dentistas/),
-    [psicólogos](https://procodedev.com/psicologos/),
-    [médicos](https://procodedev.com/medicos/),
-    [nutriólogos](https://procodedev.com/nutriologos/) y
-    [gimnasios](https://procodedev.com/gimnasios/).
+  - Oficios: [dentistas](https://procodedev.com/salud-y-bienestar/#dentistas),
+    [psicólogos](https://procodedev.com/salud-y-bienestar/#psicologos),
+    [médicos](https://procodedev.com/salud-y-bienestar/#medicos),
+    [nutriólogos](https://procodedev.com/salud-y-bienestar/#nutriologos) y
+    [gimnasios](https://procodedev.com/salud-y-bienestar/#gimnasios).
 - [Servicios profesionales](https://procodedev.com/servicios-profesionales/):
   diseño web para consultores, asesores y marca personal.
-  - Oficios: [abogados](https://procodedev.com/abogados/) y
-    [agentes de seguros](https://procodedev.com/agentes-de-seguros/).
+  - Oficios: [abogados](https://procodedev.com/servicios-profesionales/#abogados) y
+    [agentes de seguros](https://procodedev.com/servicios-profesionales/#agentes-de-seguros).
 - [Inmobiliarias](https://procodedev.com/inmobiliarias/): diseño web para
   inmobiliarias y desarrolladoras, con catálogo de propiedades y generación de
   prospectos inmobiliarios.
-  - Oficio: [asesores inmobiliarios](https://procodedev.com/asesores-inmobiliarios/).
+  - Oficio: [asesores inmobiliarios](https://procodedev.com/inmobiliarias/#asesores-inmobiliarios).
 - [Contabilidad e impuestos](https://procodedev.com/contabilidad-e-impuestos/):
   diseño web para contadores, despachos contables, CPAs y bookkeepers, con SEO
   local para contadores. Proyecto real en este giro: Mi Conta Universal
@@ -273,14 +273,14 @@ Same content, same base pricing (all published prices are "From" prices).
   website in Cincinnati, Ohio (https://micontau.com/).
 - Pages by trade, each under its industry:
   [landscaping](https://procodedev.com/en/landscaping/) (contractors);
-  [dentists](https://procodedev.com/en/dentists/),
-  [therapists](https://procodedev.com/en/therapists/),
-  [doctors](https://procodedev.com/en/doctors/),
-  [nutritionists](https://procodedev.com/en/nutritionists/) and
-  [gyms](https://procodedev.com/en/gyms/) (health & wellness);
-  [attorneys](https://procodedev.com/en/attorneys/) and
-  [insurance agents](https://procodedev.com/en/insurance-agents/) (professional
-  services); [realtors](https://procodedev.com/en/realtors/) (real estate);
+  [dentists](https://procodedev.com/en/health-and-wellness/#dentists),
+  [therapists](https://procodedev.com/en/health-and-wellness/#therapists),
+  [doctors](https://procodedev.com/en/health-and-wellness/#doctors),
+  [nutritionists](https://procodedev.com/en/health-and-wellness/#nutritionists) and
+  [gyms](https://procodedev.com/en/health-and-wellness/#gyms) (health & wellness);
+  [attorneys](https://procodedev.com/en/professional-services/#attorneys) and
+  [insurance agents](https://procodedev.com/en/professional-services/#insurance-agents) (professional
+  services); [realtors](https://procodedev.com/en/real-estate/#realtors) (real estate);
   [tax preparers](https://procodedev.com/en/tax-preparers/) (accounting & tax).
 
 ## Qué NO hace ProCode Systems

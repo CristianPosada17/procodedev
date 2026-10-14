@@ -5,11 +5,13 @@ import {
   SEGMENT_KEYS,
   NICHE_KEYS,
   NICHE_PARENT,
+  MERGED_NICHES,
   conversionHref,
   type Lang,
 } from "../i18n/ui";
 import { segments, getSegment } from "../i18n/segments";
 import { nicheLinksCopy } from "../i18n/niches";
+import { specialties } from "../i18n/specialties";
 import Icon from "./Icon.astro";
 import OfferNote from "./OfferNote.astro";
 import CardRail from "./CardRail.astro";
@@ -34,12 +36,26 @@ const segmentCards = SEGMENT_KEYS.map((key) => ({
 // Nichos (oct 2026): enlazados desde el hub para que no dependan solo del
 // sitemap. Se muestran con el giro del que cuelgan como contexto.
 const nicheCopy = nicheLinksCopy[lang];
-const nicheLinks = NICHE_KEYS.map((key) => ({
-  href: PAGES[key][lang],
-  icon: getSegment(lang, key).icon,
-  label: getSegment(lang, key).navLabel,
-  parent: segments[lang][NICHE_PARENT[key]].navLabel,
-}));
+// Desde el 14 oct 2026 la mayoría de los oficios son secciones con ancla
+// dentro de su giro (MERGED_NICHES); solo dos conservan página propia.
+const mergedLinks = Object.values(MERGED_NICHES).map(({ parent, id }) => {
+  const item = specialties[lang][parent]?.items.find((s) => s.id === id[lang]);
+  return {
+    href: `${PAGES[parent][lang]}#${id[lang]}`,
+    icon: item?.icon ?? segments[lang][parent].icon,
+    label: item?.label ?? id[lang],
+    parent: segments[lang][parent].navLabel,
+  };
+});
+const nicheLinks = [
+  ...mergedLinks,
+  ...NICHE_KEYS.map((key) => ({
+    href: PAGES[key][lang],
+    icon: getSegment(lang, key).icon,
+    label: getSegment(lang, key).navLabel,
+    parent: segments[lang][NICHE_PARENT[key]].navLabel,
+  })),
+];
 ---
 
 {/*
@@ -184,10 +200,10 @@ const nicheLinks = NICHE_KEYS.map((key) => ({
 
     <div class="reveal mt-10">
       <h3 class="text-lg font-bold text-[var(--text)] sm:text-xl">
-        {nicheCopy.childrenTitle}
+        {nicheCopy.hubTitle}
       </h3>
       <p class="mt-2 text-sm leading-7 text-[var(--muted)]">
-        {nicheCopy.childrenSubtitle}
+        {nicheCopy.hubSubtitle}
       </p>
       <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {

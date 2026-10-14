@@ -44,6 +44,27 @@
   # repartían las mismas búsquedas. Se fusionaron en dos guías.
   RewriteRule ^blog/como-crear-pagina-web-html/?$ /blog/como-crear-pagina-web/ [L,R=301]
   RewriteRule ^blog/como-crear-pagina-web-negocio/?$ /blog/crear-pagina-web-gratis-negocio/ [L,R=301]
+
+  # Oficios fusionados en su giro (14 oct 2026). Ocho landings con la misma
+  # plantilla y un tercio del texto compartido se leían como páginas puerta.
+  # Ahora son secciones con ancla dentro del giro. NE para que el «#» del
+  # ancla no se escape como %23.
+  RewriteRule ^dentistas/?$ /salud-y-bienestar/#dentistas [L,R=301,NE]
+  RewriteRule ^psicologos/?$ /salud-y-bienestar/#psicologos [L,R=301,NE]
+  RewriteRule ^medicos/?$ /salud-y-bienestar/#medicos [L,R=301,NE]
+  RewriteRule ^nutriologos/?$ /salud-y-bienestar/#nutriologos [L,R=301,NE]
+  RewriteRule ^gimnasios/?$ /salud-y-bienestar/#gimnasios [L,R=301,NE]
+  RewriteRule ^abogados/?$ /servicios-profesionales/#abogados [L,R=301,NE]
+  RewriteRule ^agentes-de-seguros/?$ /servicios-profesionales/#agentes-de-seguros [L,R=301,NE]
+  RewriteRule ^asesores-inmobiliarios/?$ /inmobiliarias/#asesores-inmobiliarios [L,R=301,NE]
+  RewriteRule ^en/dentists/?$ /en/health-and-wellness/#dentists [L,R=301,NE]
+  RewriteRule ^en/therapists/?$ /en/health-and-wellness/#therapists [L,R=301,NE]
+  RewriteRule ^en/doctors/?$ /en/health-and-wellness/#doctors [L,R=301,NE]
+  RewriteRule ^en/nutritionists/?$ /en/health-and-wellness/#nutritionists [L,R=301,NE]
+  RewriteRule ^en/gyms/?$ /en/health-and-wellness/#gyms [L,R=301,NE]
+  RewriteRule ^en/attorneys/?$ /en/professional-services/#attorneys [L,R=301,NE]
+  RewriteRule ^en/insurance-agents/?$ /en/professional-services/#insurance-agents [L,R=301,NE]
+  RewriteRule ^en/realtors/?$ /en/real-estate/#realtors [L,R=301,NE]
 </IfModule>
 
 # ---------- Compresión ----------

@@ -17,32 +17,27 @@ import type { PageKey } from "../i18n/ui";
 export const CONTENT_REVIEWED = "2026-09-29";
 
 const OCT_2026_NICHES = "2026-10-13";
+/** Landings con identidad propia y oficios fusionados en su giro. */
+const OCT_2026_IDENTITY = "2026-10-14";
 
 /** Páginas revisadas después de la fecha general. */
 const PAGE_REVIEWED: Partial<Record<PageKey, string>> = {
-  home: OCT_2026_NICHES,
+  home: OCT_2026_IDENTITY,
   services: OCT_2026_NICHES,
-  sectors: OCT_2026_NICHES,
-  health: OCT_2026_NICHES,
-  professional: OCT_2026_NICHES,
-  realEstate: OCT_2026_NICHES,
-  accounting: OCT_2026_NICHES,
-  taxPreparers: OCT_2026_NICHES,
-  dentists: OCT_2026_NICHES,
-  psychologists: OCT_2026_NICHES,
-  doctors: OCT_2026_NICHES,
-  nutritionists: OCT_2026_NICHES,
-  gyms: OCT_2026_NICHES,
-  lawyers: OCT_2026_NICHES,
-  insuranceAgents: OCT_2026_NICHES,
-  realtors: OCT_2026_NICHES,
-  landscaping: OCT_2026_NICHES,
+  sectors: OCT_2026_IDENTITY,
+  contractors: OCT_2026_IDENTITY,
+  health: OCT_2026_IDENTITY,
+  professional: OCT_2026_IDENTITY,
+  realEstate: OCT_2026_IDENTITY,
+  accounting: OCT_2026_IDENTITY,
+  taxPreparers: OCT_2026_IDENTITY,
+  landscaping: OCT_2026_IDENTITY,
   // Páginas de estado reenfocadas a «páginas web en <estado>».
   markets: OCT_2026_NICHES,
   mexico: OCT_2026_NICHES,
-  texas: OCT_2026_NICHES,
-  florida: OCT_2026_NICHES,
-  california: OCT_2026_NICHES,
+  texas: OCT_2026_IDENTITY,
+  florida: OCT_2026_IDENTITY,
+  california: OCT_2026_IDENTITY,
 };
 
 export const reviewedOn = (page: PageKey): string =>

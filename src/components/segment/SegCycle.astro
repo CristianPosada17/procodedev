@@ -1,0 +1,68 @@
+---
+/*
+  El calendario del giro, en dos presentaciones:
+  · grid      tarjeta con cuatro tramos (la de siempre)
+  · timeline  línea horizontal con un punto por tramo
+*/
+import Icon from "../Icon.astro";
+
+interface Props {
+  title: string;
+  body: string;
+  months: { label: string; note: string }[];
+  variant: "grid" | "timeline";
+}
+const { title, body, months, variant } = Astro.props as Props;
+const wrap = "mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]";
+---
+
+<section id="calendario" class="relative py-12 lg:py-16">
+  <div class={wrap}>
+    {
+      variant === "timeline" ? (
+        <>
+          <div class="reveal max-w-3xl">
+            <h2 class="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">{title}</h2>
+            <p class="mt-4 text-base leading-8 text-[var(--muted)]">{body}</p>
+          </div>
+          <ol class="reveal relative mt-10 grid gap-8 md:grid-cols-4 md:gap-6">
+            <span class="absolute left-[11px] top-3 h-[calc(100%-1.5rem)] w-px bg-[color:var(--border-strong)] md:left-0 md:top-[11px] md:h-px md:w-full" aria-hidden="true"></span>
+            {months.map((m, i) => (
+              <li class="relative pl-10 md:pl-0 md:pt-10">
+                <span
+                  class="lt-ping absolute left-0 top-0.5 h-6 w-6 rounded-full border-4 border-[var(--bg)] bg-[var(--accent)] md:top-0"
+                  style={`--d: ${i * 500}ms`}
+                  aria-hidden="true"
+                ></span>
+                <p class="font-mono text-xs font-bold uppercase tracking-[0.14em] text-[var(--accent)]">{m.label}</p>
+                <p class="mt-2 text-sm leading-6 text-[var(--muted)]">{m.note}</p>
+              </li>
+            ))}
+          </ol>
+        </>
+      ) : (
+        <div class="reveal rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-7 backdrop-blur-xl lg:p-9">
+          <div class="grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-center lg:gap-12">
+            <div class="flex items-start gap-4">
+              <span class="lt-soft flex h-11 w-11 flex-none items-center justify-center rounded-xl">
+                <Icon name="calendar" class="h-6 w-6" />
+              </span>
+              <div>
+                <h2 class="text-base font-bold leading-snug text-[var(--text)]">{title}</h2>
+                <p class="mt-2 text-sm leading-6 text-[var(--muted)]">{body}</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+              {months.map((m) => (
+                <div class="rounded-xl border border-[color:var(--border)] bg-[var(--tint)] p-4">
+                  <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">{m.label}</p>
+                  <p class="mt-1.5 text-xs leading-5 text-[var(--muted)]">{m.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>

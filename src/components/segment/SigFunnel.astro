@@ -1,0 +1,44 @@
+---
+/*
+  Firma de /servicios-profesionales/: el embudo de una consulta. Cada
+  barra se angosta al entrar en vista (CSS). Los anchos son ilustrativos y
+  la nota al pie lo dice.
+*/
+import type { FunnelSig } from "../../i18n/landing-identity";
+
+interface Props {
+  sig: FunnelSig;
+}
+const { sig } = Astro.props as Props;
+---
+
+<section id="filtro-de-casos" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal max-w-3xl">
+      <span class="eyebrow">{sig.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">{sig.title}</h2>
+      <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{sig.subtitle}</p>
+    </div>
+
+    <ol class="reveal mt-12 grid gap-3">
+      {
+        sig.stages.map((s, i) => (
+          <li class="grid items-center gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-8">
+            <div class="relative h-14 overflow-hidden rounded-xl bg-[var(--tint)]">
+              <span
+                class="sig-fill absolute inset-y-0 left-0 rounded-xl"
+                style={`width: ${s.width}%; --d: ${i * 140}ms; background: color-mix(in srgb, var(--brand) ${30 + i * 15}%, transparent);`}
+              ></span>
+              <span class="relative flex h-full items-center gap-3 px-5 text-sm font-bold text-[var(--text)]">
+                <span class="font-mono text-xs text-[var(--accent)]">{String(i + 1).padStart(2, "0")}</span>
+                {s.label}
+              </span>
+            </div>
+            <p class="px-1 text-sm leading-6 text-[var(--muted)]">{s.note}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">{sig.caption}</p>
+  </div>
+</section>

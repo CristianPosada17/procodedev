@@ -1,0 +1,89 @@
+---
+/*
+  Firma de /contratistas/: dos solicitudes de cotización pasando por las
+  mismas preguntas. La buena llega a «vale la pena»; la otra se cae en las
+  preguntas que fallan (tachadas) y recibe una respuesta automática.
+  La animación es CSS: cada renglón aparece en cascada al entrar en vista.
+*/
+import Icon from "../Icon.astro";
+import type { QuoteFilterSig } from "../../i18n/landing-identity";
+
+interface Props {
+  sig: QuoteFilterSig;
+}
+const { sig } = Astro.props as Props;
+---
+
+<section id="filtro-de-cotizacion" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <span class="eyebrow">{sig.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">{sig.title}</h2>
+      <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{sig.subtitle}</p>
+    </div>
+
+    <div class="reveal mt-12 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl">
+      <div class="grid grid-cols-[1fr_1fr] border-b border-[color:var(--border)] text-xs font-bold sm:grid-cols-[1.1fr_1fr_1fr] sm:text-sm">
+        <span class="hidden px-6 py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)] sm:block" aria-hidden="true">·</span>
+        <span class="flex items-center gap-2 border-r border-[color:var(--border)] px-4 py-4 text-[var(--text)] sm:border-l sm:px-6">
+          <span class="lt-dot h-2 w-2 rounded-full"></span>{sig.leadA}
+        </span>
+        <span class="flex items-center gap-2 px-4 py-4 text-[var(--muted)] sm:px-6">
+          <span class="h-2 w-2 rounded-full bg-[var(--text)]/25"></span>{sig.leadB}
+        </span>
+      </div>
+
+      <dl>
+        {
+          sig.fields.map((f, i) => (
+            <div
+              class="sig-pop grid grid-cols-[1fr_1fr] border-b border-[color:var(--border)] sm:grid-cols-[1.1fr_1fr_1fr]"
+              style={`--d: ${i * 160}ms`}
+            >
+              <dt class="col-span-2 px-4 pt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)] sm:col-span-1 sm:px-6 sm:py-4">
+                {f.q}
+              </dt>
+              <dd class="flex items-center gap-2 border-r border-[color:var(--border)] px-4 py-3 text-sm text-[var(--text)] sm:border-l sm:px-6 sm:py-4">
+                <Icon name="check" class="h-4 w-4 flex-none text-[var(--accent)]" strokeWidth={2.4} />
+                {f.a}
+              </dd>
+              <dd
+                class:list={[
+                  "flex items-center gap-2 px-4 py-3 text-sm sm:px-6 sm:py-4",
+                  f.bFails ? "sig-strike text-[var(--muted)]" : "text-[var(--text)]/75",
+                ]}
+              >
+                <Icon
+                  name={f.bFails ? "close" : "minus"}
+                  class="h-4 w-4 flex-none text-[var(--muted)]"
+                  strokeWidth={2.2}
+                />
+                <span>{f.b}</span>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="grid grid-cols-2 sm:grid-cols-[1.1fr_1fr_1fr]">
+        <span class="hidden sm:block" aria-hidden="true"></span>
+        <p
+          class="sig-pop flex items-start gap-2 border-r border-[color:var(--border)] bg-[var(--brand)]/[0.08] px-4 py-5 text-sm font-bold text-[var(--text)] sm:border-l sm:px-6"
+          style={`--d: ${sig.fields.length * 160 + 120}ms`}
+        >
+          <Icon name="arrow-right" class="mt-0.5 h-4 w-4 flex-none text-[var(--accent)]" />
+          {sig.verdictA}
+        </p>
+        <p
+          class="sig-pop flex items-start gap-2 px-4 py-5 text-sm font-semibold text-[var(--muted)] sm:px-6"
+          style={`--d: ${sig.fields.length * 160 + 240}ms`}
+        >
+          <Icon name="message-circle" class="mt-0.5 h-4 w-4 flex-none" />
+          {sig.verdictB}
+        </p>
+      </div>
+    </div>
+
+    <p class="reveal mx-auto mt-6 max-w-3xl text-center text-sm leading-7 text-[var(--muted)]">{sig.note}</p>
+  </div>
+</section>
