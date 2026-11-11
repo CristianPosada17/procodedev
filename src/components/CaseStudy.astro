@@ -57,10 +57,16 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
       <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
         {/* ── Captura del proyecto ── */}
         <div
-          class="flex items-center border-b border-[color:var(--border)] bg-[var(--bg-2)] lg:border-b-0 lg:border-r lg:p-8"
+          class="flex border-b border-[color:var(--border)] bg-[var(--bg-2)] lg:border-b-0 lg:border-r lg:p-8"
         >
+        {/* Noviembre de 2026: la captura es una página larga (1440 px de ancho,
+            de la portada a los proyectos). Se muestra SIEMPRE a todo el ancho,
+            sin zoom ni recorte lateral, y el marco solo corta por abajo: en
+            escritorio ocupa todo el alto de la columna y deja ver más página;
+            en móvil, un 4:5 desde arriba (5:4 en tableta). Las etiquetas van
+            abajo para no tapar el logo del cliente; en móvil, solo el dominio. */}
         <div
-          class="relative block aspect-[2/1] w-full overflow-hidden lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[var(--shadow-media)]"
+          class="relative block aspect-[4/5] w-full overflow-hidden bg-white sm:aspect-[5/4] lg:aspect-auto lg:min-h-[520px] lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[var(--shadow-media)]"
         >
           <picture>
             <source type="image/avif" sizes={SIZES} srcset={srcset("avif")} />
@@ -71,23 +77,30 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
               loading="lazy"
               decoding="async"
               width="1200"
-              height="600"
-              class="h-full w-full object-cover object-top"
+              height="2817"
+              class="absolute inset-x-0 top-0 h-auto w-full"
             />
           </picture>
-          <span
-            class="absolute left-4 top-4 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/85 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur"
-          >
-            {c.badge}
-          </span>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 h-32"
+            style="background: linear-gradient(to top, rgb(0 0 0 / 0.45), transparent);"
+            aria-hidden="true"
+          ></div>
           {/* Dominio escrito, no enlazado: ningún enlace de conversión saca
               al visitante del sitio (septiembre de 2026). */}
-          <span
-            class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[var(--bg)]/85 px-4 py-2 font-mono text-[11px] text-[var(--text)] backdrop-blur"
-          >
-            <Icon name="globe" class="h-3.5 w-3.5 text-[var(--accent)]" />
-            {c.urlLabel}
-          </span>
+          <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-center gap-2">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-[var(--bg)]/85 px-4 py-2 font-mono text-[11px] text-[var(--text)] backdrop-blur"
+            >
+              <Icon name="globe" class="h-3.5 w-3.5 text-[var(--accent)]" />
+              {c.urlLabel}
+            </span>
+            <span
+              class="hidden rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/85 px-3 py-2 font-mono sm:inline-block text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur"
+            >
+              {c.badge}
+            </span>
+          </div>
         </div>
         </div>
 
@@ -155,7 +168,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
 
       {/* ── Cifras verificables (nada estimado, nada inventado) ── */}
       <div
-        class="grid gap-px border-t border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-3"
+        class="grid gap-px border-t border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4"
       >
         {
           c.facts.map((fact) => (

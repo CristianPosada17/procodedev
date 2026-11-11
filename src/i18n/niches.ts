@@ -182,11 +182,11 @@ const es: NicheDict = {
     projectTitle: "Una empresa de landscaping que ya",
     projectHighlight: "recibe cotizaciones en línea",
     projectWhy:
-      "Trejo Landscaping es cliente: jardinería y paisajismo residencial y comercial en Salinas, California. Necesitaba recibir solicitudes de cotización sin perseguir a cada cliente, y hoy las recibe desde cualquier página del sitio.",
+      "Trejos Landscaping & Gardening es cliente: jardinería y paisajismo residencial y comercial en Salinas, California. Rehicimos su sitio de 22 a 102 páginas, en inglés y en español, con una página por cada servicio, SEO completo y su perfil de Google optimizado. Hoy recibe cotizaciones desde cualquier página.",
     projectPoints: [
-      "Botón «Get a Quote» visible en todo el sitio para pedir cotización sin perseguir a nadie.",
-      "Proyectos destacados con fotos y reseñas de clientes reales.",
-      "WhatsApp y chat para responder rápido a quien está por contratar.",
+      "36 servicios con página propia —antes eran 9—, cada uno con formulario de cotización y el servicio ya elegido.",
+      "Reseñas reales de Google (5,0 ★), fotos de proyectos y WhatsApp con mensaje listo en todo el sitio.",
+      "Perfil de Google Business de 3 a 9 categorías y velocidad móvil de 75 a 98 en Google Lighthouse.",
     ],
     painTitle: "Lo que viven casi todas las empresas de landscaping",
     painSubtitle:
@@ -253,7 +253,7 @@ const es: NicheDict = {
       {
         question: "Mis clientes hablan inglés y mi equipo español. ¿En qué idioma la hago?",
         answer:
-          "En los dos. Trejo Landscaping es un buen ejemplo: los clientes residenciales y comerciales buscan en inglés, y muchos clientes hispanos, en español. Cada idioma va en su propia URL para que Google indexe ambos.",
+          "En los dos. Trejos Landscaping es un buen ejemplo: los clientes residenciales y comerciales buscan en inglés, y muchos clientes hispanos, en español. Cada idioma va en su propia URL para que Google indexe ambos.",
       },
       {
         question: "No tengo fotos profesionales. ¿Sirve?",
@@ -429,11 +429,11 @@ const en: NicheDict = {
     projectTitle: "A landscaping company that already",
     projectHighlight: "gets quote requests online",
     projectWhy:
-      "Trejo Landscaping is a client: residential and commercial landscaping in Salinas, California. It needed to receive quote requests without chasing every client, and now gets them from any page of the site.",
+      "Trejos Landscaping & Gardening is a client: residential and commercial landscaping in Salinas, California. We rebuilt their site from 22 to 102 pages, in English and Spanish, with a page for every service, full SEO and an optimized Google profile. Today it gets quote requests from any page.",
     projectPoints: [
-      "A «Get a Quote» button visible across the site, so nobody has to be chased.",
-      "Featured projects with photos and reviews from real clients.",
-      "WhatsApp and chat to reply fast to people about to hire.",
+      "36 services with their own page — up from 9 — each with a quote form that has the service already selected.",
+      "Real Google reviews (5.0 ★), project photos and WhatsApp with a ready-made message across the site.",
+      "A Google Business Profile grown from 3 to 9 categories and mobile speed from 75 to 98 in Google Lighthouse.",
     ],
     painTitle: "What almost every landscaping company deals with",
     painSubtitle:
@@ -500,7 +500,7 @@ const en: NicheDict = {
       {
         question: "My clients speak English and my crew speaks Spanish. Which language?",
         answer:
-          "Both. Trejo Landscaping is a good example: residential and commercial clients search in English, and many Hispanic clients in Spanish. Each language gets its own URL so Google indexes both.",
+          "Both. Trejos Landscaping is a good example: residential and commercial clients search in English, and many Hispanic clients in Spanish. Each language gets its own URL so Google indexes both.",
       },
       {
         question: "I don't have professional photos. Will it work?",

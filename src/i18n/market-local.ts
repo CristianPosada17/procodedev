@@ -291,7 +291,7 @@ const es: Partial<Record<MarketKey, MarketLocal>> = {
         {
           name: "Costa Central",
           area: "Salinas, Monterey, Watsonville",
-          text: "Aquí trabaja Trejo Landscaping, cliente real: jardinería y paisajismo residencial y comercial que recibe cotizaciones desde su sitio.",
+          text: "Aquí trabaja Trejos Landscaping, cliente real: jardinería y paisajismo residencial y comercial con un sitio bilingüe de 102 páginas que recibe cotizaciones.",
           sectors: ["Landscaping", "Contratistas", "Servicios al hogar"],
         },
         {
@@ -305,20 +305,20 @@ const es: Partial<Record<MarketKey, MarketLocal>> = {
     signature: {
       kind: "case",
       eyebrow: "// cliente real en California",
-      title: "Trejo Landscaping: una empresa de Salinas que cotiza en línea",
+      title: "Trejos Landscaping: una empresa de Salinas que cotiza en línea",
       subtitle:
-        "No es una demo. Trejo Landscaping hace jardinería y paisajismo residencial y comercial en la costa central de California, y necesitaba recibir solicitudes de cotización sin perseguir a cada cliente.",
+        "No es una demo. Trejos Landscaping hace jardinería y paisajismo residencial y comercial en la costa central de California. Su sitio pasó de 22 a 102 páginas en inglés y español, con SEO completo, reseñas de Google, pagos en línea y su perfil de Google optimizado.",
       projectId: "trejo",
       facts: [
         { label: "Ubicación", value: "Salinas, California" },
         { label: "Giro", value: "Landscaping residencial y comercial" },
-        { label: "Pieza clave", value: "«Get a Quote» en todo el sitio" },
+        { label: "Resultado", value: "De 22 a 102 páginas, en inglés y español" },
       ],
       lessonsTitle: "Lo que aplica a cualquier negocio de servicios en California",
       lessons: [
-        "El botón de cotización vive en todas las páginas, no solo en contacto: en un mercado caro, cada visita cuenta.",
-        "Proyectos con fotos y reseñas reales antes que anuncios: lo orgánico primero, porque el clic pagado aquí sale caro.",
-        "WhatsApp y chat para contestar rápido: en California el cliente compara tres empresas en la misma tarde.",
+        "Una página por servicio, no una lista: así Google tiene qué mostrar cuando alguien busca «deck builder» o «irrigation» en su ciudad.",
+        "Reseñas reales de Google y SEO antes que anuncios: lo orgánico primero, porque el clic pagado aquí sale caro.",
+        "Cotización y WhatsApp en cada servicio, en inglés y en español: en California el cliente compara tres empresas en la misma tarde.",
       ],
     },
   },
@@ -514,7 +514,7 @@ const en: Partial<Record<MarketKey, MarketLocal>> = {
         {
           name: "Central Coast",
           area: "Salinas, Monterey, Watsonville",
-          text: "Home of Trejo Landscaping, a real client: residential and commercial landscaping that takes quote requests from its site.",
+          text: "Home of Trejos Landscaping, a real client: residential and commercial landscaping with a 102-page bilingual site that takes quote requests.",
           sectors: ["Landscaping", "Contractors", "Home services"],
         },
         {
@@ -528,20 +528,20 @@ const en: Partial<Record<MarketKey, MarketLocal>> = {
     signature: {
       kind: "case",
       eyebrow: "// a real California client",
-      title: "Trejo Landscaping: a Salinas business that quotes online",
+      title: "Trejos Landscaping: a Salinas business that quotes online",
       subtitle:
-        "Not a demo. Trejo Landscaping does residential and commercial landscaping on California's Central Coast, and needed to receive quote requests without chasing every client.",
+        "Not a demo. Trejos Landscaping does residential and commercial landscaping on California's Central Coast. Its site went from 22 to 102 pages in English and Spanish, with full SEO, Google reviews, online payments and an optimized Google profile.",
       projectId: "trejo",
       facts: [
         { label: "Location", value: "Salinas, California" },
         { label: "Industry", value: "Residential and commercial landscaping" },
-        { label: "Key piece", value: "«Get a Quote» on every page" },
+        { label: "Result", value: "From 22 to 102 pages, in English and Spanish" },
       ],
       lessonsTitle: "What applies to any California service business",
       lessons: [
-        "The quote button lives on every page, not just contact: in an expensive market, every visit counts.",
-        "Projects with real photos and reviews before ads: organic first, because paid clicks here are expensive.",
-        "WhatsApp and chat to answer fast: in California clients compare three companies in the same afternoon.",
+        "A page per service, not a list: that way Google has something to show when someone searches «deck builder» or «irrigation» in their city.",
+        "Real Google reviews and SEO before ads: organic first, because paid clicks here are expensive.",
+        "A quote form and WhatsApp on every service, in English and Spanish: in California clients compare three companies in the same afternoon.",
       ],
     },
   },
