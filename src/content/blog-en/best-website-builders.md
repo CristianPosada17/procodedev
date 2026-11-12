@@ -1,10 +1,10 @@
 ---
 title: "The best website builders in 2026: an honest comparison"
 description: "An honest comparison of Wix, Squarespace, WordPress, Shopify and custom development, with real costs over five years, their limits, and who each one is for."
-seoTitle: "Best Website Builders for Small Business in 2026 | ProCode"
+seoTitle: "Best Website Builders for Small Business | ProCode Systems"
 seoDescription: "Wix, Squarespace, WordPress, Shopify or custom: which website platform suits each business, with real five-year costs and their limits."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["best website builders", "website builder comparison", "best platform for a small business website", "wix vs squarespace vs wordpress"]
 translationOf: "mejores-plataformas-crear-pagina-web"
 related: ["webDev", "landingPages", "pricing", "maintenance"]

@@ -161,9 +161,9 @@ const texasEs: Market = {
     { name: "Austin", note: "Consultoría, marca personal y despachos que le venden a empresa. Menos volumen y más ticket, con el inglés por delante." },
   ],
   meta: {
-    title: "Páginas Web en Texas para Negocios | ProCode Systems",
+    title: "Páginas Web en Texas para Negocios Hispanos | ProCode Systems",
     description:
-      "Páginas web en Texas para negocios de Houston, Dallas, San Antonio, Austin, El Paso y el Valle: bilingües, con SEO local y captación, desde $349 USD.",
+      "Páginas web en Texas para negocios hispanos de Houston, Dallas, San Antonio, Austin, El Paso y el Valle. Bilingües, con SEO local y desde $349 USD.",
     keywords:
       "páginas web en Texas, diseño de páginas web en Texas, diseño web Houston, páginas web para negocios en Texas, agencia de diseño web en Texas, diseño web en español Texas, páginas web para contratistas en Texas, marketing digital en Texas, diseño de páginas web Dallas, páginas web San Antonio, desarrollador web en español en Texas",
     heroTitleA: "Páginas web en Texas",
@@ -489,9 +489,9 @@ const californiaEs: Market = {
     { name: "Área de la Bahía", note: "Servicios profesionales y consultoría de ticket alto, donde el sitio compite por credibilidad y no por precio." },
   ],
   meta: {
-    title: "Páginas Web en California para Negocios | ProCode Systems",
+    title: "Páginas Web en California desde $349 USD | ProCode Systems",
     description:
-      "Páginas web en California para negocios de Los Ángeles, Inland Empire, San Diego, Fresno y Salinas: bilingües, con SEO local y captación, desde $349 USD.",
+      "Sitios bilingües para negocios de Los Ángeles, San Diego, el Inland Empire, Fresno y Salinas, con precio publicado y sin el costo de una agencia en California.",
     keywords:
       "páginas web en California, diseño de páginas web en California, diseño web Los Ángeles, páginas web para negocios en California, agencia de diseño web en California, diseño web en español California, páginas web para contratistas en California, marketing digital en California, diseño de páginas web San Diego, páginas web Inland Empire, desarrollador web en español en California",
     heroTitleA: "Páginas web en California",

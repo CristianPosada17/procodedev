@@ -1,10 +1,10 @@
 ---
 title: "Website architecture and UX: how to structure a site that converts"
 description: "What website architecture is, how to decide your page structure, and the UX rules that get a visitor to the contact step without getting lost."
-seoTitle: "Website Architecture and UX for Small Business | ProCode"
+seoTitle: "Website Architecture & UX for Small Business | ProCode Systems"
 seoDescription: "How to structure a website: page hierarchy, menu, internal linking and the UX rules that lead visitors all the way to contacting you."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["website architecture", "website structure", "website ux", "internal linking"]
 translationOf: "arquitectura-web-ux"
 related: ["webDev", "seo", "landingPages", "audit"]

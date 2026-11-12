@@ -5,7 +5,7 @@ seoTitle: "Landing Page vs. Sitio Web: Cuál Necesitas | ProCode Systems"
 seoDescription: "Diferencias entre landing page y sitio web, ejemplos por tipo de negocio, costos de referencia y cuándo empezar por una y crecer a la otra."
 pubDate: 2026-06-30
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["landing page vs sitio web", "landing page", "sitio web", "qué es una landing page"]
 related: ["landingPages", "webDev", "pricing", "digitalMarketing"]
 ---

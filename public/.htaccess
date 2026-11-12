@@ -120,6 +120,29 @@
 
   # El .htaccess no debe filtrarse en ninguna respuesta.
   Header unset X-Powered-By
+
+  # ---------- Cabeceras de seguridad (2026-11-12) ----------
+  # La auditoría SEO marcó como único [Fallo] que solo llegaba la CSP de
+  # Hostinger (upgrade-insecure-requests). `always` las envía también en
+  # redirecciones y errores, no solo en las respuestas 200.
+  #
+  # HSTS: el sitio ya fuerza https con el 301 de arriba; esto le dice al
+  # navegador que ni lo intente por http durante un año. Sin includeSubDomains
+  # ni preload a propósito: no hay que comprometer subdominios que puedan
+  # existir en el hosting (correo, paneles) ni entrar en la lista de Chrome,
+  # que es difícil de deshacer.
+  Header always set Strict-Transport-Security "max-age=31536000"
+  # Que el navegador no "adivine" tipos MIME (un .txt servido como script).
+  Header always set X-Content-Type-Options "nosniff"
+  # Nadie de fuera puede meter el sitio en un iframe (clickjacking). Esto
+  # NO afecta a los iframes que el sitio incrusta (Calendly), solo al revés.
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # El valor por defecto de los navegadores modernos, declarado explícito:
+  # a terceros solo les llega el dominio, nunca la ruta completa.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # El sitio no usa cámara, micrófono ni ubicación: se apagan para la página
+  # y cualquier script de terceros que cargue.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
 
 <IfModule mod_expires.c>

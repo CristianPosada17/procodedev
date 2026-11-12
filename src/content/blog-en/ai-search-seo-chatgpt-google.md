@@ -1,10 +1,10 @@
 ---
 title: "SEO in the age of AI: how to get ChatGPT and Google to recommend your business"
 description: "More people now search with ChatGPT, Gemini and Google's AI answers. How to optimize your website and online presence so AI tools recommend your business."
-seoTitle: "AI Search SEO: Get ChatGPT to Recommend You | ProCode"
+seoTitle: "AI Search SEO: Get ChatGPT to Recommend You | ProCode Systems"
 seoDescription: "More people search with ChatGPT, Gemini and Google's AI answers. How to optimize your website so AI recommends your business."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["ai search seo", "generative engine optimization", "chatgpt seo", "google ai overviews"]
 translationOf: "seo-inteligencia-artificial-chatgpt-google"
 related: ["seo", "digitalMarketing", "audit", "webDev"]

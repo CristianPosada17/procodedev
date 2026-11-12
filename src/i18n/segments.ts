@@ -70,7 +70,7 @@ const es: SegmentDict = {
       title:
         "Diseño Web para Contratistas y Construcción | ProCode Systems",
       description:
-        "Diseño web para constructoras y contratistas: sitio, Perfil de Empresa en Google, formulario de cotización y SEO local para contratistas. Precios base publicados.",
+        "Diseño web para constructoras y contratistas: sitio, Perfil de Empresa en Google, formulario de cotización y SEO local. Precios base publicados.",
       keywords:
         "diseño web para constructoras, páginas web para contratistas, página web para contratistas, diseño web para empresas de remodelación, marketing digital para contratistas, SEO local para contratistas, agencia de marketing para contratistas, página web para plomeros, página web para electricistas, página web para techos, generación de clientes para contratistas",
     },
@@ -211,9 +211,9 @@ const es: SegmentDict = {
     icon: "users",
     meta: {
       title:
-        "Páginas Web para Consultorios, Dentistas y Médicos | ProCode Systems",
+        "Páginas Web para Consultorios y Clínicas | ProCode Systems",
       description:
-        "Páginas web para consultorios y clínicas: dentistas, psicólogos, médicos, nutriólogos y gimnasios, con agenda en línea, formulario de primera consulta y SEO local.",
+        "Páginas web para consultorios y clínicas: dentistas, psicólogos, médicos, nutriólogos y gimnasios, con agenda, formulario de primera consulta y SEO local.",
       keywords:
         "diseño web para consultorios, páginas web para clínicas, páginas web para dentistas, páginas web para psicólogos, páginas web para médicos, páginas web para nutriólogos, páginas web para gimnasios, agenda en línea para pacientes, SEO local para consultorios, marketing para clínicas",
     },
@@ -336,15 +336,15 @@ const es: SegmentDict = {
     icon: "scale",
     meta: {
       title:
-        "Páginas Web para Abogados, Seguros y Consultores | ProCode Systems",
+        "Webs para Abogados, Seguros y Consultores | ProCode Systems",
       description:
         "Páginas web para abogados, agentes de seguros y consultores: una página por área de práctica, formulario que califica el caso, agenda y SEO local. Bilingüe.",
       keywords:
         "diseño web para servicios profesionales, páginas web para abogados, diseño web para despachos jurídicos, páginas web para agentes de seguros, página web para agencia de seguros, diseño web para consultores, sitio web para asesores, marketing para abogados, SEO local para servicios profesionales, formulario de calificación de prospectos",
     },
     heroEyebrow: "// servicios profesionales",
-    heroTitleA: "Diseño web para servicios",
-    heroHighlight: "profesionales y consultores",
+    heroTitleA: "Diseño web para abogados,",
+    heroHighlight: "agentes de seguros y consultores",
     heroSubtitle: "Confianza antes de la llamada.",
     intro:
       "Páginas web para abogados, agentes de seguros, consultores y asesores: autoridad demostrable, una página por área de práctica, formulario que califica el caso y agenda con filtro.",
@@ -1004,14 +1004,14 @@ const en: SegmentDict = {
     icon: "scale",
     meta: {
       title:
-        "Attorney, Insurance Agent & Consultant Websites | ProCode Systems",
+        "Law, Insurance & Consulting Websites | ProCode Systems",
       description:
         "Websites for attorneys, insurance agents and consultants: a page per practice area, an intake form that screens the case, booking and local SEO. Bilingual.",
       keywords:
         "professional services website design, attorney website design, law firm website design, insurance agent website design, insurance agency website, consultant website design, advisor website, legal marketing, local SEO for professional services, lead qualification form",
     },
     heroEyebrow: "// professional services",
-    heroTitleA: "Consultant",
+    heroTitleA: "Attorney, insurance agent & consultant",
     heroHighlight: "website design",
     heroSubtitle: "Trust before the first call.",
     intro:

@@ -1,0 +1,420 @@
+---
+/*
+  Sobre nosotros (12 nov 2026, rediseño). Una sola plantilla para
+  /sobre-nosotros/ y /en/about/; el texto vive en src/i18n/about.ts.
+
+  Composición editorial, pensada para generar confianza antes que para
+  listar datos:
+  1 hero partido: titular + respuesta directa a la izquierda, retrato del
+    fundador enmarcado con dos credenciales flotantes a la derecha ·
+  2 banda de cifras (un <dl> real: el dato sigue siendo texto citable) ·
+  3 historia con cita destacada y firma ·
+  4 «la tercera opción»: agencia grande / ProCode / freelance ·
+  5 cinco compromisos numerados, en columna editorial ·
+  6 sede y mercados, con enlaces internos a cada mercado ·
+  7 logos y testimonios · 8 formulario.
+  Todo con los tokens del tema: se ve igual de bien en claro y oscuro.
+*/
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import ClientLogos from "./ClientLogos.astro";
+import Testimonials from "./Testimonials.astro";
+import LeadForm from "./LeadForm.astro";
+import Icon from "./Icon.astro";
+import { translations, PAGES, conversionHref, type Lang } from "../i18n/ui";
+import { about } from "../i18n/about";
+import { markets, MARKET_KEYS } from "../i18n/markets";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = translations[lang];
+const a = about[lang];
+const bookHref = conversionHref("about", lang, "book");
+
+const marketLinks = [
+  { href: PAGES.markets[lang], label: lang === "es" ? "Estados Unidos" : "United States" },
+  ...MARKET_KEYS.map((key) => ({ href: PAGES[key][lang], label: markets[lang][key].navLabel })),
+];
+
+const wrap = "mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-10";
+
+// Texto con enlaces internos escritos como [texto](/ruta/) en about.ts.
+const parts = (text: string) => {
+  const out: ({ t: string } | { t: string; href: string })[] = [];
+  const re = /\[([^\]]+)\]\((\/[^)\s]*)\)/g;
+  let last = 0;
+  for (const m of text.matchAll(re)) {
+    if (m.index! > last) out.push({ t: text.slice(last, m.index) });
+    out.push({ t: m[1], href: m[2] });
+    last = m.index! + m[0].length;
+  }
+  if (last < text.length) out.push({ t: text.slice(last) });
+  return out;
+};
+const linkClass = "font-semibold text-[var(--accent)] underline decoration-[color:var(--border-strong)] underline-offset-4 transition hover:decoration-[color:var(--accent)]";
+---
+
+<Layout
+  lang={lang}
+  page="about"
+  pageType="AboutPage"
+  title={a.meta.title}
+  description={a.meta.description}
+  keywords={a.meta.keywords}
+  breadcrumbs={[
+    { name: t.nav.home, path: PAGES.home[lang] },
+    { name: a.breadcrumb, path: PAGES.about[lang] },
+  ]}
+>
+  <Header lang={lang} page="about" />
+  <main id="main-content">
+    {/* ── 1 · Hero ─────────────────────────────────────────────── */}
+    <section class="hero-clean relative isolate overflow-hidden">
+      <div class="hero-clean-grid tech-grid pointer-events-none absolute inset-0 -z-10 opacity-70" aria-hidden="true"></div>
+      <div class="hero-orb pointer-events-none absolute left-[4%] top-[12%] -z-10 h-64 w-64 rounded-full bg-[var(--brand)]/20 blur-3xl" aria-hidden="true"></div>
+      <div class="hero-orb-2 pointer-events-none absolute right-[8%] top-[40%] -z-10 h-72 w-72 rounded-full bg-[var(--grad-to)]/15 blur-3xl" aria-hidden="true"></div>
+
+      <div class:list={[wrap, "grid items-center gap-14 pb-20 pt-12 sm:pt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16 lg:pb-28 lg:pt-24"]}>
+        {/* Sin `.reveal`: el H1 no depende de JS. */}
+        <div class="hero-in flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--surface)]/70 px-4 py-1.5 backdrop-blur">
+            <span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)]"></span>
+            <span class="eyebrow">{a.hero.eyebrow}</span>
+          </div>
+
+          <h1 class="mt-7 text-balance text-[2.6rem] font-bold leading-[1.04] tracking-[-0.035em] text-[var(--text)] sm:text-[3.6rem] lg:text-[4.1rem] xl:text-[4.6rem]">
+            {a.hero.titleA}
+            <span class="grad-text block">{a.hero.highlight}</span>
+          </h1>
+
+          <span class="hero-rule mt-8"></span>
+
+          <p class="mt-6 max-w-xl text-lg leading-8 text-[var(--muted)]">
+            {a.hero.lead}
+          </p>
+
+          <div class="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
+            <a href={bookHref} data-cta="nosotros-hero-agendar" class="btn-cta px-8 text-base">
+              {a.hero.ctaPrimary}
+              <Icon name="arrow-right" class="h-4 w-4" />
+            </a>
+            <a href={PAGES.portfolio[lang]} class="btn-secondary px-8 text-base backdrop-blur-sm">
+              {a.hero.ctaSecondary}
+            </a>
+          </div>
+        </div>
+
+        {/* Retrato enmarcado. Es la imagen más grande del primer pliegue
+            (probable LCP), así que carga ya y con prioridad alta. */}
+        <div class="hero-visual-in relative mx-auto w-full max-w-[440px] lg:max-w-none">
+          <div class="about-portrait-ring relative rounded-[2.25rem] p-[1.5px]">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-[calc(2.25rem-1.5px)] bg-[var(--surface)]">
+              <picture>
+                <source
+                  type="image/avif"
+                  sizes="(min-width: 1024px) 440px, 90vw"
+                  srcset="/images/cristian-posada-retrato-400.avif 400w, /images/cristian-posada-retrato-795.avif 795w"
+                />
+                <source
+                  type="image/webp"
+                  sizes="(min-width: 1024px) 440px, 90vw"
+                  srcset="/images/cristian-posada-retrato-400.webp 400w, /images/cristian-posada-retrato-795.webp 795w"
+                />
+                <img
+                  src="/images/cristian-posada-retrato-795.webp"
+                  alt={lang === "es"
+                    ? "Cristian Posada, fundador y desarrollador de ProCode Systems"
+                    : "Cristian Posada, founder and developer at ProCode Systems"}
+                  width="795"
+                  height="1067"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                  class="h-full w-full object-cover object-[50%_15%]"
+                />
+              </picture>
+              <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#060b18]/90 via-[#060b18]/40 to-transparent" aria-hidden="true"></div>
+              <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                <p class="font-head text-2xl font-bold text-white">Cristian Posada</p>
+                <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
+                  {a.hero.badgeRole} · ProCode Systems
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Credenciales flotantes: datos reales, no adornos. */}
+          <div class="lt-panel lt-float absolute -left-3 top-8 hidden rounded-2xl px-4 py-3 sm:block lg:-left-10">
+            <p class="font-head text-2xl font-bold leading-none text-[var(--text)]">{a.hero.badgeReply}</p>
+            <p class="mt-1 max-w-[9.5rem] text-xs leading-5 text-[var(--muted)]">{a.hero.badgeReplyNote}</p>
+          </div>
+          <div class="lt-panel lt-float-2 absolute -right-3 bottom-24 hidden items-center gap-3 rounded-2xl px-4 py-3 sm:flex lg:-right-8">
+            <span class="lt-ping flex h-9 w-9 items-center justify-center rounded-full bg-[var(--brand)]/15 text-[var(--accent)]">
+              <Icon name="map-pin" class="h-4 w-4" />
+            </span>
+            <span class="text-sm font-semibold text-[var(--text)]">{a.hero.badgeLocation}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── 2 · Cifras ───────────────────────────────────────────── */}
+    <section aria-label={lang === "es" ? "ProCode Systems en cifras" : "ProCode Systems in numbers"} class="relative py-6 lg:py-10">
+      <div class={wrap}>
+        <dl class="reveal grid grid-cols-2 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 backdrop-blur-xl lg:grid-cols-4">
+          {
+            a.stats.map((s, i) => (
+              <div
+                class:list={[
+                  "flex flex-col-reverse gap-2 px-6 py-7 sm:px-8 sm:py-9",
+                  i % 2 === 1 && "border-l border-[color:var(--border)]",
+                  i >= 2 && "border-t border-[color:var(--border)] lg:border-t-0",
+                  i === 2 && "lg:border-l",
+                ]}
+              >
+                <dt class="text-sm leading-6 text-[var(--muted)]">{s.label}</dt>
+                <dd class="grad-text font-head text-4xl font-bold tracking-tight sm:text-5xl">{s.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    {/* ── 3 · Historia ─────────────────────────────────────────── */}
+    <section id="historia" class="relative py-16 lg:py-28">
+      <div class:list={[wrap, "grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20"]}>
+        <div class="reveal">
+          <span class="eyebrow">{a.story.eyebrow}</span>
+          <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
+            {a.story.title}
+          </h2>
+          <figure class="relative mt-10 pl-7">
+            <span class="absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-[var(--grad-from)] to-[var(--grad-to)]" aria-hidden="true"></span>
+            <span class="font-head text-6xl leading-none text-[var(--brand)]/40" aria-hidden="true">“</span>
+            <blockquote class="-mt-4 font-head text-2xl font-medium leading-[1.35] tracking-tight text-[var(--text)] sm:text-[1.75rem]">
+              {a.story.quote}
+            </blockquote>
+          </figure>
+        </div>
+
+        <div class="reveal flex flex-col gap-6 lg:pt-14">
+          {
+            a.story.paragraphs.map((p, i) => (
+              <p class:list={[
+                "leading-8",
+                i === 0 ? "text-lg text-[var(--text)] sm:text-xl sm:leading-9" : "text-base text-[var(--muted)] sm:text-lg",
+              ]}>
+                {parts(p).map((x) => ("href" in x ? <a href={x.href} class={linkClass}>{x.t}</a> : x.t))}
+              </p>
+            ))
+          }
+          <div class="mt-4 flex items-center gap-4 border-t border-[color:var(--border)] pt-6">
+            <picture>
+              <source type="image/avif" srcset="/images/cristian-posada-300.avif" />
+              <img
+                src="/images/cristian-posada-300.webp"
+                alt=""
+                width="56"
+                height="56"
+                loading="lazy"
+                decoding="async"
+                class="h-14 w-14 rounded-full object-cover object-top ring-2 ring-[color:var(--border-strong)]"
+              />
+            </picture>
+            <div>
+              <p class="font-head text-lg font-bold text-[var(--text)]">{a.story.signature}</p>
+              <p class="text-sm text-[var(--muted)]">{a.story.signatureRole}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── 4 · La tercera opción ────────────────────────────────── */}
+    <section id="tercera-opcion" class="relative py-16 lg:py-24">
+      <div class={wrap}>
+        <div class="reveal mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+          <span class="eyebrow">{a.options.eyebrow}</span>
+          <h2 class="text-balance text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
+            {a.options.title}
+          </h2>
+          <p class="text-base leading-8 text-[var(--muted)] sm:text-lg">{a.options.subtitle}</p>
+        </div>
+
+        <div class="mt-12 grid items-stretch gap-5 md:grid-cols-3 lg:mt-16 lg:gap-6">
+          {
+            a.options.cols.map((col, i) => (
+              <div
+                class:list={[
+                  "reveal relative flex flex-col rounded-[var(--radius-lg)] p-7 sm:p-8",
+                  col.featured
+                    ? "about-featured order-first md:order-none md:-my-4 md:py-12"
+                    : "border border-[color:var(--border)] bg-[var(--surface)]/50 backdrop-blur-xl",
+                ]}
+                style={`--reveal-delay: ${i * 90}ms`}
+              >
+                {col.tag && (
+                  <span class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[var(--brand)] px-3.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-lg">
+                    {col.tag}
+                  </span>
+                )}
+                <h3 class:list={[
+                  "font-head text-xl font-bold",
+                  col.featured ? "text-[var(--text)]" : "text-[var(--muted)]",
+                ]}>
+                  {col.name}
+                </h3>
+                <ul class="mt-6 flex flex-col gap-4">
+                  {col.points.map((pt) => (
+                    <li class="flex items-start gap-3 text-sm leading-6">
+                      <span
+                        class:list={[
+                          "mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full",
+                          pt.ok
+                            ? "bg-[var(--brand)]/15 text-[var(--accent)]"
+                            : "bg-[var(--tint-2)] text-[var(--muted)]",
+                        ]}
+                        aria-hidden="true"
+                      >
+                        <Icon name={pt.ok ? "check" : "minus"} class="h-3 w-3" strokeWidth={2.6} />
+                      </span>
+                      <span class={pt.ok && col.featured ? "text-[var(--text)]" : "text-[var(--muted)]"}>
+                        <span class="sr-only">{pt.ok ? (lang === "es" ? "Sí: " : "Yes: ") : (lang === "es" ? "No: " : "No: ")}</span>
+                        {pt.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                {col.featured && (
+                  <a href={bookHref} data-cta="nosotros-opciones-agendar" class="btn-cta mt-8 w-full">
+                    {a.hero.ctaPrimary}
+                  </a>
+                )}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ── 5 · Compromisos ──────────────────────────────────────── */}
+    <section id="como-trabajamos" class="relative py-16 lg:py-28">
+      <div class:list={[wrap, "grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"]}>
+        <div class="reveal lg:sticky lg:top-32 lg:self-start">
+          <span class="eyebrow">{a.principles.eyebrow}</span>
+          <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
+            {a.principles.title}
+          </h2>
+          <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{a.principles.subtitle}</p>
+        </div>
+
+        <ol class="flex flex-col">
+          {
+            a.principles.items.map((item, i) => (
+              <li class="reveal group grid grid-cols-[3.5rem_1fr] gap-x-5 border-t border-[color:var(--border)] py-8 first:border-t-0 first:pt-0 sm:grid-cols-[5rem_1fr] sm:gap-x-8">
+                <span class="grad-text font-head text-4xl font-bold leading-none tracking-tight opacity-80 transition group-hover:opacity-100 sm:text-5xl" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 class="font-head text-xl font-bold text-[var(--text)] sm:text-2xl">{item.title}</h3>
+                  <p class="mt-3 max-w-xl text-base leading-7 text-[var(--muted)]">
+                    {parts(item.body).map((x) => ("href" in x ? <a href={x.href} class={linkClass}>{x.t}</a> : x.t))}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    {/* ── 6 · Sede y mercados ──────────────────────────────────── */}
+    <section id="donde-estamos" class="relative py-16 lg:py-24">
+      <div class={wrap}>
+        <div class="reveal grid overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="p-8 sm:p-12">
+            <span class="eyebrow">{a.base.eyebrow}</span>
+            <h2 class="mt-4 text-balance text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">
+              {a.base.title}
+            </h2>
+            <p class="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">{a.base.body}</p>
+
+            <p class="mt-8 font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">{a.base.marketsLabel}</p>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {
+                marketLinks.map((m) => (
+                  <li>
+                    <a
+                      href={m.href}
+                      class="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-[var(--tint)] px-3.5 py-1.5 text-sm font-medium text-[var(--text)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+                    >
+                      {m.label}
+                      <Icon name="arrow-up-right" class="h-3.5 w-3.5 opacity-60" />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="mt-6 inline-flex items-center gap-2 text-sm text-[var(--muted)]">
+              <Icon name="globe" class="h-4 w-4 text-[var(--accent)]" />
+              {a.base.languages}
+            </p>
+          </div>
+
+          {/* Visual de la sede: anillos concéntricos alrededor del pin. */}
+          <div class="relative flex min-h-[280px] items-center justify-center overflow-hidden border-t border-[color:var(--border)] bg-[var(--bg-2)]/60 lg:border-l lg:border-t-0" aria-hidden="true">
+            <div class="tech-grid absolute inset-0 opacity-60"></div>
+            <div class="absolute h-[420px] w-[420px] rounded-full border border-[color:var(--border)]"></div>
+            <div class="absolute h-[300px] w-[300px] rounded-full border border-[color:var(--border)]"></div>
+            <div class="absolute h-[180px] w-[180px] rounded-full border border-[color:var(--border-strong)] bg-[var(--brand)]/5"></div>
+            <div class="relative flex flex-col items-center">
+              <span class="lt-ping flex h-14 w-14 items-center justify-center rounded-full bg-[var(--brand)] text-white shadow-[0_10px_40px_-8px_var(--halo-brand)]">
+                <Icon name="map-pin" class="h-6 w-6" />
+              </span>
+              <p class="mt-4 font-head text-lg font-bold text-[var(--text)]">{a.base.hq}</p>
+              <p class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{a.base.hqNote}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── 7 · Prueba social ────────────────────────────────────── */}
+    <ClientLogos lang={lang} />
+    <Testimonials lang={lang} />
+
+    {/* ── 8 · Formulario ───────────────────────────────────────── */}
+    <LeadForm
+      lang={lang}
+      page="about"
+      simple
+      heading={{
+        eyebrow: a.form.eyebrow,
+        titleA: a.form.titleA,
+        titleHighlight: a.form.highlight,
+        subtitle: a.form.subtitle,
+      }}
+    />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  /* Marco del retrato: filete con el degradado de marca y un halo azul. */
+  .about-portrait-ring {
+    background: linear-gradient(150deg, var(--grad-from), transparent 40%, transparent 60%, var(--grad-to));
+    box-shadow: 0 40px 90px -40px var(--halo-card-strong);
+  }
+  /* Columna destacada de la comparativa. */
+  .about-featured {
+    border: 1px solid var(--border-strong);
+    background:
+      radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 70%),
+      color-mix(in srgb, var(--surface) 92%, transparent);
+    box-shadow: 0 30px 80px -40px var(--halo-card-strong);
+  }
+</style>

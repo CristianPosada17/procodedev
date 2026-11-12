@@ -5,7 +5,7 @@ seoTitle: "7 Elementos de una Página Web que Vende | ProCode Systems"
 seoDescription: "La checklist de lo que necesita una página web para convertir visitas en clientes, con cómo revisar cada punto en tu sitio en menos de una hora."
 pubDate: 2026-06-23
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["página web que vende", "conversión", "diseño web", "checklist página web"]
 related: ["webDev", "audit", "landingPages", "pricing"]
 ---

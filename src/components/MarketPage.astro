@@ -27,6 +27,8 @@ import FAQ from "./FAQ.astro";
 import Testimonials from "./Testimonials.astro";
 import Founder from "./Founder.astro";
 import LandingConversion from "./LandingConversion.astro";
+import RelatedLinks from "./RelatedLinks.astro";
+import { contextBlocks } from "../i18n/context-links";
 import Footer from "./Footer.astro";
 import MarketRegions from "./market/MarketRegions.astro";
 import MarketSignature from "./market/MarketSignature.astro";
@@ -76,7 +78,7 @@ const offerCatalog = m.industries.items.map((i) => ({
   faqItems={m.faq.items}
 >
   <Header lang={lang} page={market} />
-  <main>
+  <main id="main-content">
     {/* 1 · Hero: propuesta para el estado, a quién atiende y los dos CTAs.
         El visual son las ciudades del estado, con su color propio. */}
     <LandingHero
@@ -132,6 +134,8 @@ const offerCatalog = m.industries.items.map((i) => ({
         }
       })
     }
+
+    {contextBlocks[lang][market] && <RelatedLinks data={contextBlocks[lang][market]!} />}
 
     {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
     <LandingConversion

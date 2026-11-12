@@ -23,7 +23,7 @@ const blogSchema = z.object({
             : undefined,
       z.coerce.date().optional()
     ),
-  author: z.string().default("ProCode Systems"),
+  author: z.string().default("Cristian Posada"),
   tags: z.array(z.string()).default([]),
   // Páginas comerciales a las que empuja el artículo (oct 2026): claves de
   // PAGES en src/i18n/ui.ts («webDev», «contractors», «texas»…). Se pintan

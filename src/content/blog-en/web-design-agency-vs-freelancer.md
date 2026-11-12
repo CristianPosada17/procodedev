@@ -1,10 +1,10 @@
 ---
 title: "Web design agency or freelancer: which one is right for you, and why"
 description: "The real differences between hiring a web design agency and a freelance web designer: cost, risk, timelines, what happens after launch, and when each one makes sense."
-seoTitle: "Web Design Agency vs. Freelancer: How to Choose | ProCode"
+seoTitle: "Web Design Agency vs. Freelancer | ProCode Systems"
 seoDescription: "Agency or freelance web designer: what changes in price, timelines, risk and maintenance, and how to choose without ending up with an unfinished site."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["freelance web designer", "web design agency", "hire a web designer", "agency vs freelancer"]
 translationOf: "agencia-vs-freelance-diseno-web"
 related: ["webDev", "pricing", "portfolio", "audit"]

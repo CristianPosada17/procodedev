@@ -1,10 +1,10 @@
 ---
 title: "Websites for medical practices and service businesses: dentists, therapists and more"
 description: "What a website for a dentist, therapist, med spa, gym or professional practice needs to fill the calendar: trust, clear services, online booking and local SEO."
-seoTitle: "Websites for Practices and Service Businesses | ProCode"
+seoTitle: "Websites for Practices and Service Businesses | ProCode Systems"
 seoDescription: "What a dentist, therapist, med spa or practice website needs to fill the calendar: services, trust, online booking and local SEO."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["website for dentists", "therapist website", "medical practice website", "service business website"]
 translationOf: "pagina-web-para-consultorios-y-negocios-de-servicios"
 related: ["health", "professional"]

@@ -1,11 +1,11 @@
 ---
 title: "Marketing digital para contratistas hispanos en Estados Unidos: qué funciona y en qué orden"
 description: "Guía de marketing digital para contratistas hispanos en Estados Unidos: Perfil de Empresa en Google, reseñas, página web bilingüe y anuncios, en el orden que sí da resultados."
-seoTitle: "Marketing Digital para Contratistas Hispanos en EE. UU."
+seoTitle: "Marketing Digital para Contratistas Hispanos | ProCode Systems"
 seoDescription: "Qué funciona en marketing digital para contratistas hispanos en Estados Unidos y en qué orden: ficha de Google, reseñas, web bilingüe, anuncios y seguimiento."
 pubDate: 2026-09-07
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["marketing digital", "contratistas", "Estados Unidos", "SEO local"]
 related: ["contractors", "landscaping", "digitalMarketing", "texas"]
 ---

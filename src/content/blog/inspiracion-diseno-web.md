@@ -4,7 +4,7 @@ description: "Inspiración de diseño web explicada por estilos, con el tipo de 
 seoTitle: "Inspiración de Diseño Web: 8 Estilos | ProCode Systems"
 seoDescription: "Ocho estilos de diseño web con ejemplos de cuándo funciona cada uno, a qué negocio le sirve y qué se copia mal cuando solo miras referencias bonitas."
 pubDate: 2026-09-14
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["inspiración de diseño web", "estilos de diseño web", "ejemplos de diseño web", "tendencias de diseño web"]
 related: ["webDev", "portfolio", "landingPages", "pricing"]
 ---

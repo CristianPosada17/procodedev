@@ -72,6 +72,8 @@ const copy = es
       ctaButton: "Book a free call",
     };
 
+const isFounder = author === "Cristian Posada";
+
 // JSON-LD del artículo para SEO (rich results de artículo).
 const articleLd = {
   "@context": "https://schema.org",
@@ -80,7 +82,11 @@ const articleLd = {
   description: description,
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { "@type": "Organization", name: author },
+  // Nov 2026 (E-E-A-T): los artículos los firma una persona, no la marca.
+  // El nodo Person con este @id lo emite Layout.astro en cada página.
+  author: isFounder
+    ? { "@type": "Person", "@id": new URL("#founder", siteUrl).toString(), name: author, url: new URL(PAGES.about[lang], siteUrl).toString() }
+    : { "@type": "Organization", name: author },
   publisher: {
     "@type": "Organization",
     "@id": new URL("#organization", siteUrl).toString(),
@@ -118,7 +124,7 @@ const alternates = altPath
 >
   <Header lang={lang} altHref={altPath ?? (es ? "/en/blog/" : "/blog/")} />
 
-  <main class="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6">
+  <main id="main-content" class="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6">
     <a
       href={blogPath}
       class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:text-[var(--brand)]"
@@ -127,7 +133,12 @@ const alternates = altPath
     </a>
 
     <p class="mt-8 text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">
-      {formatDate(pubDate)} · {author}
+      {formatDate(pubDate)} ·{" "}
+      {isFounder ? (
+        <a href={PAGES.about[lang]} rel="author" class="underline decoration-[color:var(--border-strong)] underline-offset-4 transition hover:text-[var(--brand)]">{author}</a>
+      ) : (
+        author
+      )}
       {updatedDate && <span> · {copy.updated} {formatDate(updatedDate)}</span>}
     </p>
 

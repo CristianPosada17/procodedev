@@ -4,7 +4,7 @@ description: "Qué es la arquitectura de un sitio web, cómo se decide la estruc
 seoTitle: "Arquitectura Web y UX para Negocios | ProCode Systems"
 seoDescription: "Cómo se organiza la estructura de un sitio web: jerarquía de páginas, menú, enlazado interno y las reglas de UX que llevan al visitante hasta el contacto."
 pubDate: 2026-09-14
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["arquitectura web", "UX web", "estructura de un sitio web", "experiencia de usuario"]
 related: ["webDev", "seo", "landingPages", "audit"]
 ---

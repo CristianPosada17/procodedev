@@ -32,7 +32,7 @@ const t = translations[lang];
 const ctaPage = Astro.props.page ?? "blog";
 const bookHref = conversionHref(ctaPage, lang, "book");
 const infoHref = conversionHref(ctaPage, lang, "info");
-const infoShort = lang === "es" ? "Más información" : "More info";
+const infoShort = lang === "es" ? "Enviar un mensaje" : "Send a message";
 
 // El nicho creció de una landing a un hub con seis páginas de oficio. Meterlas
 // todas en la barra dejaría trece enlaces en una sola línea, así que viven en
@@ -105,6 +105,7 @@ const navItems = [
   { label: t.nav.portfolio, href: PAGES.portfolio[lang], key: "portfolio" },
   { label: t.nav.pricing, href: PAGES.pricing[lang], key: "pricing" },
   { label: t.nav.blog, href: lang === "es" ? "/blog/" : "/en/blog/", key: "blog" },
+  { label: t.nav.about, href: PAGES.about[lang], key: "about" },
   { label: t.nav.contact, href: PAGES.contact[lang], key: "contact" },
 ];
 
@@ -116,7 +117,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
   class="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl"
 >
   <div
-    class="mx-auto flex w-full max-w-[1480px] items-center justify-between px-4 py-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
+    class="mx-auto flex w-full max-w-[1480px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]"
   >
     <a
       href={PAGES.home[lang]}
@@ -136,13 +137,13 @@ const otherLang = lang === "es" ? "EN" : "ES";
       </div>
       {/* «ProCode Systems» no cabe en una línea junto a los botones a 375 px:
           en móvil se apila como logotipo de dos renglones. */}
-      <span class="flex flex-col text-base font-bold leading-[1.05] tracking-tight text-[var(--text)] min-[420px]:block min-[420px]:text-lg min-[420px]:leading-normal">
+      <span class="flex flex-col text-base font-bold leading-[1.05] tracking-tight text-[var(--text)] min-[420px]:block min-[420px]:whitespace-nowrap min-[420px]:text-lg min-[420px]:leading-normal">
         <span>ProCode</span> <span class="text-[var(--accent)]">Systems</span>
       </span>
     </a>
 
     <nav
-      class="hidden items-center gap-7 lg:flex"
+      class="hidden items-center gap-5 whitespace-nowrap min-[1360px]:flex 2xl:gap-7"
       aria-label="Navegación principal"
     >
       <a
@@ -397,13 +398,16 @@ const otherLang = lang === "es" ? "EN" : "ES";
       </a>
     </div>
 
-    {/* ── Controles de móvil ──────────────────────────────────────────────
+    {/* Nov 2026: el menú completo entra desde 1360 px (a 1280 cabía sin
+        un solo píxel de aire y el botón se partía). Entre 1024 y 1279 px ya se desbordaba (1073 px de contenido en 1009 disponibles)
+        antes de añadir «Nosotros»; ahí se usa el menú desplegable.
+        ── Controles de móvil ──────────────────────────────────────────────
         Idioma y tema viven también en la barra, no solo dentro del menú:
         el menú móvil es largo (tres desplegables + cinco enlaces) y estos
         dos controles quedaban hasta el final, donde casi nadie baja.
         Van con `md:hidden` porque a partir de md ya se ve el grupo de
         escritorio de arriba y se duplicarían. */}
-    <div class="flex items-center gap-2 lg:hidden">
+    <div class="flex items-center gap-2 min-[1360px]:hidden">
       <a
         href={altHref}
         class="inline-flex h-10 items-center gap-1.5 rounded-xl border border-[color:var(--border)] bg-[var(--tint)] px-2.5 font-mono text-xs font-medium text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)] md:hidden"
@@ -443,7 +447,7 @@ const otherLang = lang === "es" ? "EN" : "ES";
 
   <div
     id="mobile-menu"
-    class="hidden max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-[color:var(--border)] bg-[var(--bg)]/95 backdrop-blur-xl lg:hidden"
+    class="hidden max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-[color:var(--border)] bg-[var(--bg)]/95 backdrop-blur-xl min-[1360px]:hidden"
   >
     <nav
       class="mx-auto flex w-full max-w-[1480px] flex-col gap-1 px-4 py-4 sm:px-6"

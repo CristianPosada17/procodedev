@@ -524,6 +524,13 @@ const seoEs: SubserviceDetail = {
         href: "/servicios/auditoria/",
         hint: "La revisión completa de tu presencia digital",
       },
+      // Interlinking nov 2026 (Ola 1): el hub /servicios/ solo tenía un enlace
+      // dentro del contenido en todo el sitio.
+      {
+        label: "Los dos servicios de ProCode Systems",
+        href: "/servicios/",
+        hint: "Desarrollo web y marketing digital, lado a lado",
+      },
     ],
   },
 };
@@ -939,7 +946,7 @@ const landingPagesEn: SubserviceDetail = {
       },
       {
         label: "Landing page or website: which one",
-        href: "/blog/landing-page-vs-sitio-web-cual-necesito/",
+        href: "/en/blog/landing-page-vs-website/",
         hint: "The full comparison, selling nothing",
       },
     ],
@@ -956,7 +963,7 @@ const seoEn: SubserviceDetail = {
   meta: {
     title: "SEO Services for Small Businesses | ProCode Systems",
     description:
-      "SEO services for small businesses: initial audit, keyword research, technical SEO, content and local SEO, with monthly reporting. Quoted after the first meeting.",
+      "SEO services for small businesses: initial audit, keyword research, technical SEO, content and local SEO, with a monthly report. Quoted after the first meeting.",
     keywords:
       "seo services, seo agency, small business seo, seo consultant, seo audit, keyword research, technical seo, local seo, on page seo, seo strategy, search engine optimization services, monthly seo",
     heroTitleA: "SEO services",

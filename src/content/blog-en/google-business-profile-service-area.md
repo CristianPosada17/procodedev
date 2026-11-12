@@ -1,10 +1,10 @@
 ---
 title: "Google Business Profile service area: how to show up across multiple counties"
 description: "What the service area in Google Business Profile really does, how many areas you can add, why adding counties doesn't make you rank there, and the plan that does work in Texas and Florida."
-seoTitle: "Google Business Profile Service Area: Multiple Counties"
+seoTitle: "Google Business Profile Service Area | ProCode Systems"
 seoDescription: "How to set up your Google Business Profile service area across several counties, and why adding cities doesn't make you rank in them."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["google business profile service area", "service area business", "local seo", "google maps ranking", "multiple counties"]
 translationOf: "zona-de-servicio-google-varios-condados-texas-florida"
 related: ["seo", "contractors", "texas", "florida"]

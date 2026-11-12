@@ -4,7 +4,7 @@ description: "Simple automations for small businesses: texting, forms, online bo
 seoTitle: "Small Business Automation: Win Back Hours | ProCode Systems"
 seoDescription: "Simple automations for small businesses: forms, online booking, reminders, review requests and follow-up that give you back hours every week."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["small business automation", "automate your business", "online booking", "lead follow-up"]
 translationOf: "automatizaciones-para-negocios-pequenos"
 related: ["webDev", "maintenance", "digitalMarketing", "health"]

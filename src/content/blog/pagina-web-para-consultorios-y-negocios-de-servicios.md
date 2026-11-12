@@ -5,7 +5,7 @@ seoTitle: "Páginas Web para Consultorios y Servicios | ProCode Systems"
 seoDescription: "Qué debe incluir la página web de un dentista, psicólogo, estética o consultorio para llenar la agenda: servicios, precios, confianza y citas en línea."
 pubDate: 2026-07-15
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["negocios de servicios", "desarrollo web", "captación"]
 related: ["health", "professional"]
 ---

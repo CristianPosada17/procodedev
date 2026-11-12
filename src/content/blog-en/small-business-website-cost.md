@@ -1,10 +1,10 @@
 ---
 title: "How much does a small business website cost? What actually drives the price"
 description: "Why the same website gets quoted anywhere from $200 to $10,000, the six factors that really move the price, and how to compare two quotes without overpaying."
-seoTitle: "How Much Does a Small Business Website Cost? | ProCode"
+seoTitle: "How Much Does a Small Business Website Cost? | ProCode Systems"
 seoDescription: "The six factors that drive small business website cost, typical price ranges, and how to compare two web design quotes without overpaying."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["small business website cost", "how much does a website cost", "web design pricing", "website quote"]
 translationOf: "cuanto-cuesta-una-pagina-web-negocio-pequeno"
 related: ["pricing", "webDev", "landingPages", "maintenance"]

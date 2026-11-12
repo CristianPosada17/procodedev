@@ -4,7 +4,7 @@ description: "Guía para hacer una página web bilingüe de verdad: en qué idio
 seoTitle: "Página Web Bilingüe Español e Inglés | ProCode Systems"
 seoDescription: "Por qué el traductor automático te cuesta clientes, en qué idioma debe ir tu página web bilingüe y cuánto cuesta hacerla bien en Estados Unidos."
 pubDate: 2026-09-07
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["página web bilingüe", "negocios hispanos", "Estados Unidos", "SEO"]
 related: ["webDev", "markets", "florida", "texas"]
 ---

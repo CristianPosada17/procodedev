@@ -4,7 +4,7 @@ description: "Diferencias reales entre contratar una agencia de diseño web o un
 seoTitle: "Agencia o Diseñador Freelance: Cuál Elegir | ProCode Systems"
 seoDescription: "Agencia de diseño web o freelance: qué cambia en precio, plazos, riesgo y mantenimiento, y cómo elegir sin quedarte a medio proyecto con un sitio sin terminar."
 pubDate: 2026-09-14
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["diseñador web freelance", "agencia de diseño web", "contratar diseñador web", "agencia o freelance"]
 related: ["webDev", "pricing", "portfolio", "audit"]
 ---
@@ -82,4 +82,4 @@ Quien conteste las cinco con números y sin rodeos es la apuesta segura, sea age
 
 ---
 
-**Dónde encaja ProCode:** es una agencia dirigida por su fundador — hablas con quien programa el sitio, los precios están publicados, y el dominio y el hosting quedan siempre a tu nombre. [Así trabajo el desarrollo web](/servicios/desarrollo-web/), [estos son los precios](/precios/) y [así es el plan de mantenimiento](/servicios/mantenimiento-web/) desde $79 USD al mes.
+**Dónde encaja ProCode:** es una agencia dirigida por su fundador, con un [servicio de desarrollo web para negocios](/servicios/) y otro de marketing digital. Hablas con quien programa el sitio, los precios están publicados, y el dominio y el hosting quedan siempre a tu nombre. [Así trabajo el desarrollo web](/servicios/desarrollo-web/), [estos son los precios](/precios/) y [así es el plan de mantenimiento](/servicios/mantenimiento-web/) desde $79 USD al mes.

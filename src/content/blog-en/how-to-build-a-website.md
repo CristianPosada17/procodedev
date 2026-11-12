@@ -4,7 +4,7 @@ description: "How to build a website from scratch: the seven real steps, what ea
 seoTitle: "How to Build a Website Step by Step | ProCode Systems"
 seoDescription: "How to build a website from scratch in seven steps: domain, hosting, platform, content and launch. With real costs and when it makes sense to hire."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["how to build a website", "how to make a website", "create a website", "website with HTML"]
 translationOf: "como-crear-pagina-web"
 related: ["webDev", "landingPages", "pricing", "maintenance"]

@@ -5,7 +5,7 @@ seoTitle: "Crear una Página Web para tu Negocio Gratis | ProCode Systems"
 seoDescription: "Opciones reales para crear la página web de tu negocio gratis, qué limita cada una, qué secciones necesita un sitio que vende y cuándo conviene pagar."
 pubDate: 2026-09-14
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["crear página web gratis para negocio", "cómo crear una página web para un negocio", "página web para mi negocio", "página web gratis", "página web que venda"]
 related: ["webDev", "landingPages", "pricing", "seo"]
 ---

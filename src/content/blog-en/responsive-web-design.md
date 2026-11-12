@@ -4,7 +4,7 @@ description: "What responsive web design means, how it shows up for real visitor
 seoTitle: "What Is Responsive Web Design? | ProCode Systems"
 seoDescription: "Responsive web design explained without jargon: what it is, how to check in two minutes whether your site works on a phone, and what to fix first."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["responsive web design", "mobile friendly website", "mobile website", "website speed"]
 translationOf: "diseno-web-responsive"
 related: ["webDev", "maintenance", "audit", "landingPages"]

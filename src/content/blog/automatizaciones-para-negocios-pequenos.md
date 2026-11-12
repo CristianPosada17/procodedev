@@ -5,7 +5,7 @@ seoTitle: "Automatizaciones para Negocios Pequeños | ProCode Systems"
 seoDescription: "Automatizaciones sencillas para negocios pequeños: WhatsApp, formularios, agenda, recordatorios y reseñas que te devuelven horas cada semana."
 pubDate: 2026-06-09
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["automatización para negocios", "automatizar negocio pequeño", "agenda en línea", "WhatsApp para negocios"]
 related: ["webDev", "maintenance", "digitalMarketing", "health"]
 ---

@@ -4,7 +4,7 @@ description: "Qué es el diseño web, en qué se diferencia del desarrollo, qué
 seoTitle: "Qué Es el Diseño Web: Guía Simple | ProCode Systems"
 seoDescription: "Qué es el diseño web y en qué se diferencia del desarrollo: las partes de un proyecto, quién hace qué y las preguntas que conviene hacer antes de pagar."
 pubDate: 2026-09-14
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["qué es el diseño web", "diseño web para principiantes", "diseño y desarrollo web", "en qué consiste el diseño web"]
 related: ["webDev", "pricing", "portfolio", "landingPages"]
 ---

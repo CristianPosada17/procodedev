@@ -4,7 +4,7 @@ description: "Qué es el diseño web responsive, en qué se nota, cómo comproba
 seoTitle: "Qué Es el Diseño Web Responsive | ProCode Systems"
 seoDescription: "Diseño web responsive explicado sin tecnicismos: qué es, cómo comprobar en dos minutos si tu sitio funciona en el teléfono y qué arreglar primero."
 pubDate: 2026-09-14
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["diseño web responsive", "diseño web adaptable", "página web para móviles", "web móvil"]
 related: ["webDev", "maintenance", "audit", "landingPages"]
 ---
@@ -62,4 +62,4 @@ Los cinco se pueden hacer sin rehacer el sitio. Si después de eso sigue lento, 
 
 ---
 
-Los sitios que entrego se construyen primero para el teléfono, con imágenes en AVIF y WebP y sin plugins acumulados. [Aquí está cómo](/servicios/desarrollo-web/), y si lo que necesitas es saber qué está frenando el que ya tienes, [eso es la Auditoría Estratégica Integral](/servicios/auditoria/).
+Los sitios que entrego se construyen primero para el teléfono, con imágenes en AVIF y WebP y sin plugins acumulados. [Aquí está cómo](/servicios/desarrollo-web/), y si lo que necesitas es saber qué está frenando el que ya tienes, [eso es la Auditoría Estratégica Integral](/servicios/auditoria/). Si tu negocio está en California, aquí explico el [diseño de sitios web responsive en California](/diseno-web-california/) para negocios que atienden en español e inglés.

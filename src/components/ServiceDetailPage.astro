@@ -36,6 +36,7 @@ import LandingConversion from "./LandingConversion.astro";
 import RelatedLinks from "./RelatedLinks.astro";
 import Footer from "./Footer.astro";
 import { translations, PAGES, relatedLinks, type Lang } from "../i18n/ui";
+import { contextBlocks } from "../i18n/context-links";
 import { serviceLines, serviceDetails, type ServiceKey } from "../i18n/services";
 
 interface Props {
@@ -97,7 +98,7 @@ const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" 
   faqItems={d.faq.items}
 >
   <Header lang={lang} page={service} />
-  <main>
+  <main id="main-content">
     {/* 1 · Hero: propuesta, para quién, precio y plazo, y los dos CTAs */}
     <ServiceHero lang={lang} line={line} meta={d.meta} />
 
@@ -153,7 +154,7 @@ const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" 
     <ServiceCross lang={lang} cross={d.cross} target={other} />
     {/* Enlazado interno de la matriz SEO: desde Desarrollo Web salen las
         tres puertas con demanda propia (landing, web con SEO, mantenimiento). */}
-    {service === "webDev" && <RelatedLinks data={relatedLinks[lang].services} />}
+    {service === "webDev" && <RelatedLinks data={contextBlocks[lang].webDev ?? relatedLinks[lang].services} />}
 
     {/* 9 · Cierre: agenda y formulario (Nombre + Email) en esta página */}
     <LandingConversion

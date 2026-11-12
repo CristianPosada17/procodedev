@@ -1,10 +1,10 @@
 ---
 title: "Digital marketing for contractors: what works, and in what order"
 description: "A practical marketing plan for contractors: Google Business Profile, reviews, a website with a page per service, local SEO and ads, in the order that actually produces jobs."
-seoTitle: "Digital Marketing for Contractors: What Works | ProCode"
+seoTitle: "Digital Marketing for Contractors: What Works | ProCode Systems"
 seoDescription: "The order that works in contractor marketing: Google Business Profile, reviews, a bilingual website, local SEO, ads and fast follow-up."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["contractor marketing", "marketing for contractors", "contractor website", "local seo for contractors", "hispanic contractors"]
 translationOf: "marketing-digital-para-contratistas-hispanos-estados-unidos"
 related: ["contractors", "landscaping", "digitalMarketing", "seo"]

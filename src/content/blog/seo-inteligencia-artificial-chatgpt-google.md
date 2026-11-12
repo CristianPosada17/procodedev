@@ -4,7 +4,7 @@ description: "Cada vez más personas buscan con ChatGPT, Gemini y las respuestas
 seoTitle: "SEO para IA: Que ChatGPT te Recomiende | ProCode Systems"
 seoDescription: "Cada vez más personas buscan con ChatGPT, Gemini y la IA de Google. Cómo optimizar tu página para que la inteligencia artificial recomiende tu negocio."
 pubDate: 2026-07-17
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["SEO", "inteligencia artificial", "negocios"]
 related: ["seo", "digitalMarketing", "audit", "webDev"]
 ---

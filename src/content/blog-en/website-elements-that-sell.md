@@ -4,7 +4,7 @@ description: "A checklist of what a website needs to turn visitors into customer
 seoTitle: "7 Elements of a Website That Sells | ProCode Systems"
 seoDescription: "The checklist of what a website needs to convert visitors into customers, with a quick test for each point you can run on your own site in under an hour."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["website that sells", "website conversion", "website checklist", "small business website"]
 translationOf: "7-elementos-de-una-pagina-web-que-vende"
 related: ["webDev", "audit", "landingPages", "pricing"]

@@ -4,7 +4,7 @@ description: "Comparación honesta de plataformas para crear páginas web: Wix, 
 seoTitle: "Mejores Plataformas para Crear Página Web | ProCode Systems"
 seoDescription: "Wix, Squarespace, WordPress, Shopify o a la medida: qué plataforma para crear páginas web conviene a cada negocio, con costos reales y sus límites."
 pubDate: 2026-09-14
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["plataformas para crear páginas web", "herramientas para crear páginas web", "mejor plataforma para una página web", "constructores de páginas web"]
 related: ["webDev", "landingPages", "pricing", "maintenance"]
 ---

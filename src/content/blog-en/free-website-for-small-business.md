@@ -1,10 +1,10 @@
 ---
 title: "How to create a website for your small business: free or paid, and one that actually sells"
 description: "The free website options that really exist, where their limits are, which sections a business site needs, and how much it makes sense to invest at each stage."
-seoTitle: "Free Website for Your Small Business: What Works | ProCode"
+seoTitle: "Free Website for Small Business: What Works | ProCode Systems"
 seoDescription: "Real options to create a free website for your small business, what limits each one, which sections a site that sells needs, and when to pay."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["free website for small business", "how to create a business website", "small business website", "website that sells"]
 translationOf: "crear-pagina-web-gratis-negocio"
 related: ["webDev", "landingPages", "pricing", "seo"]

@@ -4,7 +4,7 @@ description: "Website vs. social media for small businesses: what each does well
 seoTitle: "Website or Social Media for Your Business? | ProCode Systems"
 seoDescription: "What each one does, the risk of relying only on social media, and how to combine a website and social media so your business sells more."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["website vs social media", "social media for small business", "small business website", "digital strategy"]
 translationOf: "pagina-web-o-redes-sociales-negocio"
 related: ["webDev", "digitalMarketing", "sectors", "pricing"]

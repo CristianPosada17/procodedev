@@ -1,10 +1,10 @@
 ---
 title: "Landing page vs. website: which one does your business need?"
 description: "Clear differences between a landing page and a website, with examples by type of business, reference costs, and when to start with one and grow into the other."
-seoTitle: "Landing Page vs. Website: Which Do You Need? | ProCode"
+seoTitle: "Landing Page vs. Website: Which Do You Need? | ProCode Systems"
 seoDescription: "The differences between a landing page and a website, examples by type of business, reference costs, and when to start with one and grow into the other."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["landing page vs website", "what is a landing page", "small business website", "landing page"]
 translationOf: "landing-page-vs-sitio-web-cual-necesito"
 related: ["landingPages", "webDev", "pricing", "digitalMarketing"]

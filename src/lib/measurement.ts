@@ -61,6 +61,7 @@ export type ContentGroup =
   | "servicios"
   | "giros"
   | "portafolio"
+  | "nosotros"
   | "precios"
   | "contacto"
   | "blog"
@@ -81,6 +82,7 @@ const GROUP_BY_PAGE: Record<PageKey, ContentGroup> = {
   taxPreparers: "giros",
   landscaping: "giros",
   portfolio: "portafolio",
+  about: "nosotros",
   pricing: "precios",
   contact: "contacto",
   privacy: "legal",

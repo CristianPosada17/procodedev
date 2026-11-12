@@ -4,7 +4,7 @@ description: "Los seis factores que mueven el precio de una página web, por qu�
 seoTitle: "Qué Determina el Precio de una Página Web | ProCode Systems"
 seoDescription: "Los factores que determinan el precio de una página web: alcance, contenido, integraciones y quién la hace. Para comparar presupuestos sin pagar de más."
 pubDate: 2026-07-06
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["factores que determinan el precio de una página web", "presupuesto de página web", "comparar presupuestos web", "qué encarece una página web"]
 related: ["pricing", "webDev", "landingPages", "maintenance"]
 ---

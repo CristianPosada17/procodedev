@@ -4,7 +4,7 @@ description: "Have a website but no customers coming in? The seven most common r
 seoTitle: "Why Your Website Isn't Getting Leads | ProCode Systems"
 seoDescription: "Have a website but no leads? The 7 most common reasons a website doesn't convert and how to fix each one to start getting calls and messages."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["website not getting leads", "website conversion", "why my website doesn't sell", "small business website"]
 translationOf: "por-que-mi-pagina-web-no-vende"
 related: ["audit", "webDev", "seo", "landingPages"]

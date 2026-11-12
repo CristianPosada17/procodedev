@@ -207,9 +207,18 @@ const script = `
         </Fragment>)}
       </div>
 
+      {/* WebMCP (auditoría nov 2026): atributos declarativos para que un
+          agente de IA en el navegador pueda usar el formulario como
+          herramienta sin interpretar el DOM. Sin `toolautosubmit` a
+          propósito: el envío lo confirma siempre la persona. Los navegadores
+          que no lo soportan ignoran estos atributos. */}
       <form
         id="lead-form"
         data-form={formName}
+        toolname="request_contact"
+        tooldescription={lang === "es"
+          ? "Pide que ProCode Systems (agencia de diseño web y marketing digital) contacte a la persona por correo. Responde en menos de 24 horas."
+          : "Ask ProCode Systems (web design and digital marketing agency) to contact the person by email. Replies in under 24 hours."}
         class:list={[
           "min-w-0 self-start rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--bg-2)]/70 p-6 lg:p-7",
           simple && "text-left",
@@ -221,6 +230,8 @@ const script = `
         <input
           type="checkbox"
           name="botcheck"
+          aria-label="No rellenar este campo"
+          aria-hidden="true"
           class="hidden"
           style="display:none"
           tabindex="-1"
@@ -246,6 +257,7 @@ const script = `
               name="name"
               required
               autocomplete="name"
+              toolparamdescription={lang === "es" ? "Nombre de la persona que pide el contacto" : "Name of the person requesting contact"}
               placeholder={c.phName}
               class={inputClass}
             />
@@ -259,6 +271,7 @@ const script = `
               required
               autocomplete="email"
               inputmode="email"
+              toolparamdescription={lang === "es" ? "Correo electrónico al que ProCode Systems debe responder" : "Email address ProCode Systems should reply to"}
               placeholder={c.phEmail}
               class={inputClass}
             />
@@ -269,6 +282,7 @@ const script = `
               type="checkbox"
               name="consent"
               required
+              toolparamdescription={lang === "es" ? "La persona acepta que ProCode Systems la contacte por correo (obligatorio)" : "The person agrees to be contacted by ProCode Systems by email (required)"}
               class="mt-1 h-4 w-4 flex-none accent-[var(--brand)]"
             />
             <span>{c.consent}</span>

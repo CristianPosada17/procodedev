@@ -71,6 +71,8 @@ interface Props {
    *  idiomas: el índice del blog y los artículos con traducción. Con esto se
    *  emiten sus hreflang en vez de quedarse sin ninguno. */
   alternates?: { es: string; en: string };
+  /** Tipo schema.org del nodo de la página. «AboutPage» en /sobre-nosotros/. */
+  pageType?: "WebPage" | "AboutPage" | "ContactPage";
 }
 
 const {
@@ -95,6 +97,7 @@ const {
   audience,
   areaServed,
   alternates,
+  pageType = "WebPage",
 } = Astro.props as Props;
 
 const t = translations[lang];
@@ -191,7 +194,16 @@ const orgNode = {
   telephone: "+52-614-241-4255",
   // Los precios publicados son mínimos («Desde»), no un rango cerrado.
   priceRange: lang === "es" ? "Desde $349 USD" : "From $349 USD",
-  founder: { "@type": "Person", name: "Cristian Posada" },
+  founder: { "@id": `${siteUrl}#founder` },
+  // Noviembre 2026 (auditoría SEO, «datos de empresa verificables»): sede
+  // declarada solo a nivel de ciudad. El servicio sigue siendo remoto, así
+  // que no se publica calle ni horario de atención al público.
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Durango",
+    addressRegion: "DGO",
+    addressCountry: "MX",
+  },
   // El mercado principal es el negocio de servicios latino en EE. UU.
   // (análisis de mercado de agosto de 2026). El servicio se presta en remoto,
   // así que no se declara una dirección física de atención al público.
@@ -229,6 +241,31 @@ const orgNode = {
   ],
 };
 
+// El fundador como entidad propia (E-E-A-T): quién está detrás del sitio,
+// con su foto y su perfil verificable. Lo referencian la organización
+// (founder) y la página Sobre nosotros (about/mainEntity).
+const founderNode = {
+  "@type": "Person",
+  "@id": `${siteUrl}#founder`,
+  name: "Cristian Posada",
+  jobTitle: lang === "es" ? "Desarrollador web y fundador" : "Web developer and founder",
+  worksFor: { "@id": `${siteUrl}#organization` },
+  image: new URL("/images/cristian-posada-retrato-795.webp", siteUrl).toString(),
+  url: new URL(PAGES.about[lang], siteUrl).toString(),
+  knowsLanguage: ["es", "en"],
+  knowsAbout: ["Web development", "Technical SEO", "Local SEO", "Digital marketing", "Astro", "Tailwind CSS"],
+  homeLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Durango",
+      addressRegion: "DGO",
+      addressCountry: "MX",
+    },
+  },
+  sameAs: ["https://www.linkedin.com/in/cristian-posada-891401291/"],
+};
+
 const websiteNode = {
   "@type": "WebSite",
   "@id": `${siteUrl}#website`,
@@ -244,7 +281,7 @@ const websiteNode = {
 // pero no la página concreta que se está sirviendo, que es justo lo que un
 // buscador necesita para decidir qué mostrar en el resultado.
 const webPageNode = {
-  "@type": "WebPage",
+  "@type": pageType,
   "@id": `${canonicalURL}#webpage`,
   url: canonicalURL.toString(),
   name: metaTitle,
@@ -252,6 +289,9 @@ const webPageNode = {
   inLanguage: lang === "es" ? "es-US" : "en-US",
   isPartOf: { "@id": `${siteUrl}#website` },
   about: { "@id": `${siteUrl}#organization` },
+  ...(pageType === "AboutPage"
+    ? { mainEntity: { "@id": `${siteUrl}#organization` } }
+    : {}),
   primaryImageOfPage: socialImage.toString(),
   datePublished: "2026-07-31",
   dateModified: CONTENT_REVIEWED,
@@ -402,6 +442,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     orgNode,
+    founderNode,
     websiteNode,
     webPageNode,
     ...(breadcrumbNode ? [breadcrumbNode] : []),
@@ -511,6 +552,21 @@ const jsonLd = {
       crossorigin
     />
 
+    {/* Orígenes de terceros (auditoría nov 2026). dns-prefetch y NO
+        preconnect a propósito: gtag.js y fbevents.js se cargan tras la
+        primera interacción o 6 s después del load (ver Analytics.astro), y
+        un preconnect abierto tan pronto caduca antes de usarse (~10 s) y
+        compite con el LCP. Resolver el DNS de antemano es casi gratis. */}
+    {(MEASUREMENT.ga4 || MEASUREMENT.googleAds) && (
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    )}
+    {MEASUREMENT.metaPixel && (
+      <>
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
+      </>
+    )}
+
     <!-- ============ DATOS ESTRUCTURADOS (JSON-LD) ============ -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
 
@@ -535,6 +591,16 @@ const jsonLd = {
   <body
     class="min-h-screen bg-[var(--bg)] text-[var(--text)] antialiased"
   >
+    {/* Accesibilidad (auditoría nov 2026): primer elemento enfocable de la
+        página. Invisible hasta que llega el foco con Tab; lleva al <main>
+        (todas las páginas lo marcan con id="main-content") y se salta la
+        navegación, que en este sitio son tres desplegables y ocho enlaces. */}
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--brand)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+    >
+      {lang === "es" ? "Saltar al contenido" : "Skip to content"}
+    </a>
     <div class="fixed inset-0 -z-10 overflow-hidden bg-[var(--bg)]">
       {/* El degradado vive en `.page-aurora` (global.css) porque llevaba
           los hex del tema oscuro escritos a mano y no podia cambiar. */}

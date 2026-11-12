@@ -5,7 +5,7 @@ seoTitle: "¿Página Web o Redes Sociales? | ProCode Systems"
 seoDescription: "Qué hace cada una, el riesgo de depender solo de redes y cómo combinar página web y redes sociales para que tu negocio venda más sin duplicar esfuerzo."
 pubDate: 2026-06-16
 updatedDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["página web o redes sociales", "redes sociales para negocios", "sitio web", "estrategia digital"]
 related: ["webDev", "digitalMarketing", "sectors", "pricing"]
 ---

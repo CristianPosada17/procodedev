@@ -4,7 +4,7 @@ description: "What web design is, how it differs from web development, what a re
 seoTitle: "What Is Web Design? A Simple Guide | ProCode Systems"
 seoDescription: "What web design is and how it differs from development: the parts of a project, who does what, and the questions to ask before you pay."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["what is web design", "web design for beginners", "web design and development", "website project"]
 translationOf: "que-es-diseno-web"
 related: ["webDev", "pricing", "portfolio", "landingPages"]

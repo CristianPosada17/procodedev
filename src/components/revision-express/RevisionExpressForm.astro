@@ -123,10 +123,18 @@ const script = `
       id="revex-form-card"
       class="reveal mt-10 rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl sm:p-10"
     >
-      <form id="revex-lead-form" data-form="revision_express" class="grid gap-5">
+      <form
+        id="revex-lead-form"
+        data-form="revision_express"
+        class="grid gap-5"
+        toolname="request_express_review"
+        tooldescription="Solicita la Revisión Express gratuita de ProCode Systems: una videollamada de 20 minutos con 3 prioridades para la página web y la presencia en Google del negocio."
+      >
         <input
           type="checkbox"
           name="botcheck"
+          aria-label="No rellenar este campo"
+          aria-hidden="true"
           class="hidden"
           style="display:none"
           tabindex="-1"
@@ -141,6 +149,7 @@ const script = `
               name="name"
               required
               autocomplete="name"
+              toolparamdescription="Nombre de la persona que solicita la revisión"
               placeholder="Ej: María González"
               class={inputClass}
             />
@@ -153,6 +162,7 @@ const script = `
               required
               autocomplete="email"
               inputmode="email"
+              toolparamdescription="Correo electrónico al que se envía la información de la revisión"
               placeholder="maria@minegocio.com"
               class={inputClass}
             />
@@ -164,6 +174,7 @@ const script = `
             type="checkbox"
             name="consent"
             required
+            toolparamdescription="La persona acepta que ProCode Systems la contacte por correo (obligatorio)"
             class="mt-1 h-4 w-4 flex-none accent-[var(--brand)]"
           />
           <span>Acepto que ProCode Systems me contacte por correo con la información que solicité.</span>

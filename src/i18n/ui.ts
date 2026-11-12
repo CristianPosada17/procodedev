@@ -55,6 +55,9 @@ export type PageKey =
   | "florida"
   | "california"
   | "portfolio"
+  // Sobre nosotros (nov 2026): la auditoría SEO no encontraba página de
+  // «Sobre nosotros», una de las señales de confianza (E-E-A-T) que mira Google.
+  | "about"
   | "pricing"
   | "contact"
   | "privacy"
@@ -123,6 +126,7 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   florida: { es: "/diseno-web-florida/", en: "/en/web-design-florida/" },
   california: { es: "/diseno-web-california/", en: "/en/web-design-california/" },
   portfolio: { es: "/portafolio/", en: "/en/portfolio/" },
+  about: { es: "/sobre-nosotros/", en: "/en/about/" },
   pricing: { es: "/precios/", en: "/en/pricing/" },
   contact: { es: "/contacto/", en: "/en/contact/" },
   privacy: { es: "/aviso-de-privacidad/", en: "/en/privacy-policy/" },
@@ -244,6 +248,7 @@ export const translations = {
       portfolio: "Portafolio",
       pricing: "Precios",
       blog: "Blog",
+      about: "Nosotros",
       contact: "Contacto",
       cta: "Revisión Express",
       themeToLight: "Cambiar a modo claro",
@@ -299,9 +304,13 @@ export const translations = {
     // logos, para que lo primero que se lea tras el titular sea qué hace
     // ProCode y para quién. `highlight` es el fragmento que va en degradado.
     valueProp: {
-      eyebrow: "// qué hace ProCode",
+      // Nov 2026 (revisión de contenido para IA): la primera frase tras el
+      // titular es ahora la respuesta directa —qué es, dónde está, desde
+      // cuánto y para quién—, con el nombre completo de la marca. Es lo que
+      // un buscador con IA toma como resumen de la empresa.
+      eyebrow: "// qué hace ProCode Systems",
       before:
-        "ProCode ayuda a negocios de servicios en México y Estados Unidos a explicar mejor lo que ofrecen y convertir su presencia digital en un recorrido claro hacia",
+        "ProCode Systems es una agencia de diseño web y marketing digital con sede en Durango, México. Diseña páginas web a la medida, desde $349 USD, para que negocios de servicios en Estados Unidos y México conviertan visitas en",
       highlight: "llamadas, mensajes y citas",
       after: ", con web, formularios, agenda y medición conectados.",
       pillars: ["Web", "Formularios", "Agenda", "Medición"],
@@ -370,7 +379,7 @@ export const translations = {
           icon: "clipboard-check",
           step: "03",
           name: "Te contactan",
-          summary: "Formularios que hacen las preguntas.",
+          summary: "Formularios que hacen las preguntas correctas.",
         },
         {
           icon: "calendar",
@@ -439,7 +448,7 @@ export const translations = {
     // trabaja con negocios reales y ve sus números cada mes.
     why: {
       eyebrow: "// por qué ProCode Systems",
-      titleA: "Technology + Growth + Operations",
+      titleA: "Tecnología, crecimiento y operación",
       titleHighlight: "para dueños de negocio",
       titleB: "",
       subtitle:
@@ -1222,7 +1231,7 @@ export const translations = {
       servicesTitle: "Servicios",
       contactTitle: "Contacto",
       hours: "Lunes a Domingo",
-      location: "Atención remota en español en Texas, Florida, California y México",
+      location: "Durango, DGO, México · Atención remota en español en Texas, Florida, California y México",
       cta: "Agendar Revisión Express",
       rights: "Todos los derechos reservados.",
       privacy: "Aviso de privacidad",
@@ -1321,7 +1330,7 @@ export const translations = {
         title:
           "Agencia de Diseño Web y Marketing Digital | ProCode Systems",
         description:
-          "Diseño web y marketing digital para negocios en Estados Unidos y México. Webs a medida desde $349 USD, con formularios, WhatsApp y medición.",
+          "Agencia de diseño web y marketing digital para negocios y pymes en Estados Unidos y México. Páginas a la medida desde $349 USD, en español e inglés.",
         keywords:
           "agencia de diseño web, agencia de desarrollo web, agencia de diseño web y marketing digital, agencia de páginas web para negocios, empresa de diseño web, agencia de marketing digital, páginas web para pequeñas empresas, sitios web para captar clientes, desarrollador web en español, ProCode Systems",
         heroKicker: "Inicio",
@@ -1342,9 +1351,9 @@ export const translations = {
       // (ver los `meta` de src/i18n/services.ts). Así no se canibalizan ni
       // compiten con el home, que se queda con "diseño de páginas web".
       services: {
-        title: "Servicios de Desarrollo Web y Marketing | ProCode Systems",
+        title: "Servicios de Desarrollo Web y Marketing Digital | ProCode Systems",
         description:
-          "Servicios de desarrollo web y marketing digital para negocios: páginas web a la medida desde $349 USD y planes de captación desde $499 USD al mes.",
+          "Servicios de desarrollo web y marketing digital para negocios: páginas a la medida desde $349 USD y planes de captación mensual desde $499 USD.",
         keywords:
           "servicios de desarrollo web y marketing digital, servicios de desarrollo web, servicios de diseño web, diseño web y marketing digital, empresa de diseño de páginas web, servicio de creación de páginas web, desarrollo web para negocios, marketing digital para negocios, diseño web y posicionamiento",
         heroTitleA: "Servicios de desarrollo web y",
@@ -1492,6 +1501,7 @@ export const translations = {
       portfolio: "Portfolio",
       pricing: "Pricing",
       blog: "Blog",
+      about: "About",
       contact: "Contact",
       cta: "Express Review",
       themeToLight: "Switch to light mode",
@@ -1527,9 +1537,9 @@ export const translations = {
       ],
     },
     valueProp: {
-      eyebrow: "// what ProCode does",
+      eyebrow: "// what ProCode Systems does",
       before:
-        "ProCode helps service businesses in Mexico and the United States explain what they offer more clearly and turn their digital presence into a clear path to",
+        "ProCode Systems is a web design and digital marketing agency based in Durango, Mexico. It builds custom websites, from $349 USD, that help service businesses in the US and Mexico turn visits into",
       highlight: "calls, messages and appointments",
       after: ", with website, forms, booking and tracking connected.",
       pillars: ["Website", "Forms", "Booking", "Tracking"],
@@ -1592,7 +1602,7 @@ export const translations = {
           icon: "clipboard-check",
           step: "03",
           name: "They contact you",
-          summary: "Forms that ask the questions.",
+          summary: "Forms that ask the right questions.",
         },
         {
           icon: "calendar",
@@ -2410,7 +2420,7 @@ export const translations = {
       servicesTitle: "Services",
       contactTitle: "Contact",
       hours: "Monday to Sunday",
-      location: "Spanish website design services, remote across Texas, Florida and California",
+      location: "Durango, DGO, Mexico · Spanish website design services, remote across Texas, Florida and California",
       cta: "Book my Express Review",
       rights: "All rights reserved.",
       privacy: "Privacy policy",
@@ -2823,7 +2833,7 @@ export const relatedLinks: Record<
       eyebrow: "// después de ver el trabajo",
       title: "Si quieres uno así para tu negocio",
       body:
-        "Estos son los tres siguientes pasos naturales después de abrir los sitios de arriba.",
+        "Los siguientes pasos naturales después de abrir los sitios de arriba.",
       items: [
         {
           label: "Diseño y desarrollo de páginas web",
@@ -2839,6 +2849,13 @@ export const relatedLinks: Record<
           label: "Diseño web por sector",
           href: "/negocios/",
           hint: "Casos y secciones específicas de tu giro",
+        },
+        // Interlinking nov 2026 (Ola 1): /diseno-web-california/ está en
+        // posición ~18 y el caso de Trejos (Salinas) es la prueba más cercana.
+        {
+          label: "Sitio bilingüe para un negocio de Salinas, California",
+          href: "/diseno-web-california/",
+          hint: "Cómo trabajo las páginas web en California, donde está Trejos Landscaping",
         },
       ],
     },

@@ -4,7 +4,7 @@ description: "Web design inspiration organized by style, with the type of busine
 seoTitle: "Web Design Inspiration: 8 Styles That Work | ProCode Systems"
 seoDescription: "Eight web design styles, when each one works, which business it suits, and what gets copied wrong when you only look at pretty references."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["web design inspiration", "website design styles", "website design examples", "web design trends"]
 translationOf: "inspiracion-diseno-web"
 related: ["webDev", "portfolio", "landingPages", "pricing"]

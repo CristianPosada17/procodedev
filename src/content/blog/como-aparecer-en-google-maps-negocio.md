@@ -4,7 +4,7 @@ description: "Aprende cómo aparecer en Google Maps y en las búsquedas locales 
 seoTitle: "Cómo Aparecer en Google Maps con tu Negocio | ProCode Systems"
 seoDescription: "Guía paso a paso del Perfil de Empresa de Google para aparecer en Maps y en las búsquedas locales, y que más clientes de tu zona te encuentren."
 pubDate: 2026-07-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["SEO local", "Google", "negocios"]
 related: ["seo", "digitalMarketing", "contractors", "health"]
 ---
@@ -45,7 +45,7 @@ Crear el perfil, verificarlo… y abandonarlo. Un Perfil de Empresa sin reseñas
 
 ## Perfil de Empresa y página web: mejor juntos
 
-El perfil te hace visible; tu **página web te convierte**. Muchos clientes te encuentran en el mapa, entran a tu web para ver si transmites confianza y ahí deciden. Si tu sitio está lento o no vende, pierdes al cliente que Google te trajo. Por eso conviene que vayan de la mano. Si tu web no está convirtiendo esas visitas, revisa [por qué tu página no vende](/blog/por-que-mi-pagina-web-no-vende/).
+El perfil te hace visible; tu **página web te convierte**. Muchos clientes te encuentran en el mapa, entran a tu web para ver si transmites confianza y ahí deciden. Si tu sitio está lento o no vende, pierdes al cliente que Google te trajo. Por eso conviene que vayan de la mano. Si tu web no está convirtiendo esas visitas, revisa [por qué tu página no vende](/blog/por-que-mi-pagina-web-no-vende/). Y si tu negocio es de obra, remodelación o jardinería, el siguiente paso está en la [guía de marketing digital para contratistas](/blog/marketing-digital-para-contratistas-hispanos-estados-unidos/), que junta el perfil, la web y las reseñas en un solo plan.
 
 ## Preguntas frecuentes
 

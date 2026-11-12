@@ -4,7 +4,7 @@ description: "How to build a real bilingual English and Spanish website: which l
 seoTitle: "Bilingual Website in English and Spanish | ProCode Systems"
 seoDescription: "Why translation plugins cost you clients, which language should go first on a bilingual website, and what a real English and Spanish site costs."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["bilingual website", "english and spanish website", "spanish website design", "hreflang", "hispanic customers"]
 translationOf: "pagina-web-bilingue-espanol-ingles-estados-unidos"
 related: ["webDev", "seo", "markets", "contractors"]

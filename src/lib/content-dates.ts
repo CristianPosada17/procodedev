@@ -22,7 +22,8 @@ const OCT_2026_IDENTITY = "2026-10-14";
 
 /** Páginas revisadas después de la fecha general. */
 const PAGE_REVIEWED: Partial<Record<PageKey, string>> = {
-  home: OCT_2026_IDENTITY,
+  // 12 nov 2026: propuesta de valor reescrita como respuesta directa.
+  home: "2026-11-12",
   services: OCT_2026_NICHES,
   sectors: OCT_2026_IDENTITY,
   contractors: OCT_2026_IDENTITY,
@@ -38,6 +39,8 @@ const PAGE_REVIEWED: Partial<Record<PageKey, string>> = {
   texas: OCT_2026_IDENTITY,
   florida: OCT_2026_IDENTITY,
   california: OCT_2026_IDENTITY,
+  // Página nueva tras la auditoría SEO del 12 nov 2026.
+  about: "2026-11-12",
 };
 
 export const reviewedOn = (page: PageKey): string =>

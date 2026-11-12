@@ -8,6 +8,8 @@ import LandingHero from "./LandingHero.astro";
 import VisualSegment from "./hero-visuals/VisualSegment.astro";
 import SegmentProject from "./SegmentProject.astro";
 import SegmentCrossLinks from "./SegmentCrossLinks.astro";
+import RelatedLinks from "./RelatedLinks.astro";
+import { contextBlocks } from "../i18n/context-links";
 import Process from "./Process.astro";
 import Testimonials from "./Testimonials.astro";
 import Founder from "./Founder.astro";
@@ -109,6 +111,8 @@ const spec = specialties[lang][segment as keyof (typeof specialties)[Lang]];
     }
   })
 }
+
+{contextBlocks[lang][segment] && <RelatedLinks data={contextBlocks[lang][segment]!} />}
 
 <LandingConversion
   lang={lang}

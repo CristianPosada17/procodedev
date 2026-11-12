@@ -15,7 +15,8 @@ aparece aquí está publicado en las páginas enlazadas.
   fundador. Cristian Posada es el dueño y, a la vez, el desarrollador que hace
   el trabajo: quien contesta, construye y mantiene es siempre la misma persona.
   No es una agencia grande con ejecutivos de cuenta ni un freelance suelto.
-- Trabaja en remoto con negocios de Estados Unidos y México, en español e inglés.
+- Sede: Durango, DGO, México. Trabaja en remoto con negocios de Estados Unidos
+  y México, en español e inglés.
 - Contacto: info@procodedev.com · WhatsApp +52 614 241 4255
 
 ## Precios (base publicados, en USD, sin contratos de 12 meses)
@@ -79,8 +80,15 @@ Capacidad declarada: 4 proyectos nuevos al mes.
   con la comparativa de por dónde conviene empezar.
 - [Precios](https://procodedev.com/precios/): cuánto cuesta una página web para un
   negocio, con paquetes de diseño de páginas web y qué incluye cada plan.
+- [Sobre nosotros](https://procodedev.com/sobre-nosotros/): quién es ProCode
+  Systems, su fundador, la ficha de datos de la empresa y cómo trabaja.
 - [Portafolio](https://procodedev.com/portafolio/): sitios en vivo, con clientes
-  reales y demos marcados como tales. Caso de éxito destacado: Mi Conta Universal
+  reales y demos marcados como tales. Caso de éxito destacado: Trejos
+  Landscaping & Gardening (https://tj-landscaping.com/), empresa de jardinería y
+  paisajismo en Salinas, California — rediseño bilingüe de 22 a 102 páginas
+  (36 servicios en 6 categorías), rendimiento móvil en Lighthouse de 75 a 98,
+  peso del inicio en el celular de 12,7 MB a 1,1 MB y Perfil de Google Business
+  de 3 a 9 categorías. Otro proyecto real: Mi Conta Universal
   (https://micontau.com/), despacho de contabilidad y bookkeeping en Cincinnati,
   Ohio — sitio bilingüe con ocho servicios, WhatsApp directo, guía gratuita como
   imán de prospectos, FAQ con marcado FAQPage y SEO local.
@@ -236,7 +244,7 @@ Same content, same base pricing (all published prices are "From" prices).
 
 - [Home](https://procodedev.com/en/) · [Services](https://procodedev.com/en/services/)
   · [Pricing](https://procodedev.com/en/pricing/) · [Portfolio](https://procodedev.com/en/portfolio/)
-  · [Contact](https://procodedev.com/en/contact/)
+  · [About](https://procodedev.com/en/about/) · [Contact](https://procodedev.com/en/contact/)
 - [Strategic Business Audit](https://procodedev.com/en/services/audit/): five
   business days, no published price. It starts with the business and its
   commercial objective, then audits twelve areas against the client's real

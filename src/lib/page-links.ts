@@ -32,6 +32,7 @@ const FIXED: Record<Lang, Partial<Record<PageKey, { label: string; hint: string 
     contact: { label: "Llamada gratis de 20 minutos", hint: "Te digo qué le falta a tu negocio hoy." },
     services: { label: "Servicios", hint: "Desarrollo web y marketing digital." },
     sectors: { label: "Páginas web por giro", hint: "Qué cambia según el tipo de negocio." },
+    about: { label: "Sobre ProCode Systems", hint: "Quién está detrás y cómo trabajamos." },
   },
   en: {
     pricing: { label: "Pricing", hint: "Every package with its base price in USD." },
@@ -39,6 +40,7 @@ const FIXED: Record<Lang, Partial<Record<PageKey, { label: string; hint: string 
     contact: { label: "Free 20-minute call", hint: "I'll tell you what your business is missing." },
     services: { label: "Services", hint: "Web development and digital marketing." },
     sectors: { label: "Websites by industry", hint: "What changes for each type of business." },
+    about: { label: "About ProCode Systems", hint: "Who is behind it and how we work." },
   },
 };
 

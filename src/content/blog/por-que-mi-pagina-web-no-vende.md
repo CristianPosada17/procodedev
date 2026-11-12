@@ -4,7 +4,7 @@ description: "¿Tienes página web pero no llegan clientes? Estas son las 7 razo
 seoTitle: "Por Qué tu Página Web No Vende | ProCode Systems"
 seoDescription: "¿Tienes página web pero no llegan clientes? Las 7 razones más comunes por las que una web no vende y cómo arreglar cada una para recibir mensajes."
 pubDate: 2026-07-10
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["conversión", "desarrollo web", "negocios"]
 related: ["audit", "webDev", "seo", "landingPages"]
 ---
@@ -61,7 +61,7 @@ El error más común: la web presume "somos líderes, tenemos 10 años, nuestra 
 
 ## Cómo saber cuál es tu problema
 
-No tienes que adivinar. Revisa tu web con estas preguntas: ¿se entiende qué haces en 5 segundos?, ¿hay un botón obvio para contactarte?, ¿abre rápido en celular?, ¿da confianza?, ¿apareces en Google? Cada "no" es una fuga de clientes que se puede tapar.
+No tienes que adivinar. Revisa tu web con estas preguntas: ¿se entiende qué haces en 5 segundos?, ¿hay un botón obvio para contactarte?, ¿abre rápido en celular?, ¿da confianza?, ¿apareces en Google? Cada "no" es una fuga de clientes que se puede tapar. Si quieres la respuesta con datos y no con intuición, eso es una [auditoría de tu sitio y tu captación](/servicios/auditoria/): revisa la web, Google y el seguimiento a cada contacto, y te entrega qué arreglar primero.
 
 ## Preguntas frecuentes
 

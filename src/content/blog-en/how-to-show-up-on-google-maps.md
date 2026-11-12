@@ -1,10 +1,10 @@
 ---
 title: "How to show up on Google Maps: a Google Business Profile guide for your business"
 description: "How to show up on Google Maps and in local search with Google Business Profile: setup step by step, what moves you into the top three, and the mistakes that push you down."
-seoTitle: "How to Show Up on Google Maps With Your Business | ProCode"
+seoTitle: "How to Show Up on Google Maps | ProCode Systems"
 seoDescription: "A step-by-step Google Business Profile guide to show up on Google Maps and in local search, so more customers in your area find you."
 pubDate: 2026-10-13
-author: "ProCode Systems"
+author: "Cristian Posada"
 tags: ["how to show up on google maps", "google business profile", "local seo", "google maps ranking"]
 translationOf: "como-aparecer-en-google-maps-negocio"
 related: ["seo", "digitalMarketing", "contractors", "health"]
