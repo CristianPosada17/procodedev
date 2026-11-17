@@ -190,8 +190,8 @@ export function getAltPath(page: PageKey, lang: Lang): string {
 }
 // Datos de contacto compartidos (no cambian por idioma).
 export const CONTACT = {
-  whatsapp: "526142414255",
-  whatsappDisplay: "+52 614 241 4255",
+  whatsapp: "526188062226",
+  whatsappDisplay: "+52 618 806 2226",
   email: "info@procodedev.com",
   calendly: "https://calendly.com/procodedev/revision-express",
   // Formularios «Más información» de Hostinger Reach, uno por área: cada uno
