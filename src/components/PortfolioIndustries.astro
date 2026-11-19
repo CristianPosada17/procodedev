@@ -21,12 +21,15 @@ const { lang = "es" } = Astro.props as Props;
 const p = translations[lang].portfolio;
 
 // Primero los giros con clientes reales; los que solo tienen demo, al final.
-const INDUSTRY_ORDER: SegmentKey[] = ["accounting", "contractors", "health", "professional", "realEstate"];
+// «apps» no es un giro: agrupa las aplicaciones web (NEXO Finance, nov 2026)
+// y enlaza a Desarrollo web en vez de a una página de giro.
+type CategoryKey = SegmentKey | "apps";
+const INDUSTRY_ORDER: CategoryKey[] = ["accounting", "contractors", "health", "professional", "apps", "realEstate"];
 const ORDER = { client: 0, own: 1, demo: 2 } as Record<string, number>;
 const industries = INDUSTRY_ORDER.map((key) => ({
   key,
-  seg: getSegment(lang, key),
-  href: PAGES[key][lang],
+  seg: key === "apps" ? { navLabel: p.appsLabel, icon: "smartphone" } : getSegment(lang, key),
+  href: key === "apps" ? PAGES.webDev[lang] : PAGES[key][lang],
   projects: p.projects
     .filter((proj) => proj.industry === key)
     .sort((a, b) => (ORDER[a.kind] ?? 0) - (ORDER[b.kind] ?? 0)),
@@ -105,7 +108,7 @@ const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
                       target="_blank"
                       rel="noopener"
                       data-cta={`portafolio-sitio-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
-                      aria-label={`${p.viewLive}: ${proj.name}`}
+                      aria-label={`${proj.viewLabel ?? p.viewLive}: ${proj.name}`}
                       class:list={["pf-case-media", j % 2 === 1 && "lg:order-2"]}
                     >
                       <span class="pf-shot block">
@@ -129,7 +132,7 @@ const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
                           </picture>
                           <span class="pf-overlay" aria-hidden="true">
                             <span class="pf-overlay-btn">
-                              {p.viewLive}
+                              {proj.viewLabel ?? p.viewLive}
                               <Icon name="arrow-up-right" class="h-4 w-4" />
                             </span>
                           </span>
@@ -214,7 +217,7 @@ const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
                           data-cta={`portafolio-detalle-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
                           class="pf-live-btn"
                         >
-                          {p.viewLive}
+                          {proj.viewLabel ?? p.viewLive}
                           <Icon name="arrow-up-right" class="pf-arrow h-4 w-4" />
                         </a>
                       </div>

@@ -91,7 +91,12 @@ Capacidad declarada: 4 proyectos nuevos al mes.
   de 3 a 9 categorías. Otro proyecto real: Mi Conta Universal
   (https://micontau.com/), despacho de contabilidad y bookkeeping en Cincinnati,
   Ohio — sitio bilingüe con ocho servicios, WhatsApp directo, guía gratuita como
-  imán de prospectos, FAQ con marcado FAQPage y SEO local.
+  imán de prospectos, FAQ con marcado FAQPage y SEO local. Aplicación web a la medida:
+  NEXO Finance (https://www.nexo-finance.site/), app de finanzas personales para
+  México (PWA, Next.js, React, TypeScript y Supabase) con contabilidad de partida
+  doble, tarjetas de crédito, presupuestos, metas, plan de deudas, asistente con
+  cifras exactas, importación de CSV y Excel, estados de cuenta y reportes en PDF,
+  Face ID y notificaciones push.
 - [Auditoría Estratégica Integral](https://procodedev.com/servicios/auditoria/):
   cinco días hábiles, sin precio publicado. Empieza por el negocio —qué vende,
   quién debería comprarlo, cómo llegan hoy sus clientes y qué resultado

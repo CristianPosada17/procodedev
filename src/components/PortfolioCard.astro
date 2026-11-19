@@ -10,6 +10,8 @@ interface Project {
   image?: string;
   kind?: string;
   result?: string;
+  /** Texto del botón cuando no es un sitio (p. ej. «Abrir la app»). */
+  viewLabel?: string;
   /** Qué necesitaba el negocio y qué hizo ProCode, solo con lo documentado. */
   challenge?: string;
   work?: string;
@@ -140,7 +142,7 @@ const domain = (() => {
           data-cta={`portafolio-sitio-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
           class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/10"
         >
-          {labels?.viewLive ?? "Ver Sitio Publicado"}
+          {project.viewLabel ?? labels?.viewLive ?? "Ver Sitio Publicado"}
           <Icon name="arrow-up-right" class="h-4 w-4" />
         </a>
       </div>

@@ -34,6 +34,10 @@ const srcset = (img: string, ext: string) =>
   [400, 800, 1200].map((w) => `${base(img)}-${w}.${ext} ${w}w`).join(", ");
 // Dos columnas desde lg: la captura mide casi media pantalla.
 const SIZES = "(min-width: 1024px) 46vw, 94vw";
+// Las apps (NEXO Finance, nov 2026) no son de un giro de src/i18n/segments.ts:
+// van en su propia categoría, con etiqueta e icono propios.
+const categoryOf = (key: string) =>
+  key === "apps" ? { navLabel: p.appsLabel, icon: "smartphone" } : getSegment(lang, key as any);
 const statusLabel = (kind: string) =>
   kind === "demo" ? p.demoLabel : kind === "own" ? p.ownLabel : p.liveLabel;
 ---
@@ -46,7 +50,7 @@ const statusLabel = (kind: string) =>
       {
         projects.map((proj, i) => {
           const domain = domainOf(proj.url);
-          const industry = getSegment(lang, proj.industry as any);
+          const industry = categoryOf(proj.industry);
           return (
             <article class="pf-card reveal group" style={`--reveal-delay: ${(i % 2) * 90}ms`}>
               <a
@@ -55,7 +59,7 @@ const statusLabel = (kind: string) =>
                 rel="noopener"
                 data-cta={`portafolio-sitio-${domain.replace(/[^a-z0-9]+/gi, "-")}`}
                 class="pf-shot block"
-                aria-label={`${p.viewLive}: ${proj.name}`}
+                aria-label={`${proj.viewLabel ?? p.viewLive}: ${proj.name}`}
               >
                 <span class="pf-chrome" aria-hidden="true">
                   <span class="pf-dots"><i></i><i></i><i></i></span>
@@ -77,7 +81,7 @@ const statusLabel = (kind: string) =>
                   </picture>
                   <span class="pf-overlay" aria-hidden="true">
                     <span class="pf-overlay-btn">
-                      {p.viewLive}
+                      {proj.viewLabel ?? p.viewLive}
                       <Icon name="arrow-up-right" class="h-4 w-4" />
                     </span>
                   </span>
