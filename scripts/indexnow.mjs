@@ -43,9 +43,19 @@ if (args.includes("--all")) {
   const xml = await (await fetch(`${SITE}/sitemap.xml`)).text();
   urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 } else {
-  urls = args.map((a) => (a.startsWith("http") ? a : `${SITE}${a.startsWith("/") ? "" : "/"}${a}`));
+  urls = args
+    // Git Bash en Windows convierte «/precios/» en «C:/Program Files/Git/precios/»:
+    // se recupera la ruta original quitando ese prefijo.
+    .map((a) => a.replace(/^[A-Za-z]:[\\/].*?[\\/]Git[\\/]?/, "/").replace(/\\/g, "/"))
+    .map((a) => (a.startsWith("http") ? a : `${SITE}${a.startsWith("/") ? "" : "/"}${a}`));
 }
-urls = [...new Set(urls)].filter((u) => new URL(u).host === HOST);
+urls = [...new Set(urls)].filter((u) => {
+  const url = new URL(u);
+  // Nada de rutas de disco ni espacios: si algo así llega aquí, es un error.
+  const ok = url.host === HOST && !/[:\s]|%20/.test(url.pathname);
+  if (!ok) console.error("Se descarta una URL inválida:", u);
+  return ok;
+});
 if (!urls.length) {
   console.error("No hay URLs de", HOST, "para enviar.");
   process.exit(1);
