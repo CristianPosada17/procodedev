@@ -18,8 +18,14 @@ import Icon from "./Icon.astro";
 interface Props {
   packages: ServiceDetail["packages"];
   lang?: Lang;
+  /** Ancla de la sección. Los paquetes de redes sociales usan otra para no
+      repetir `#paquetes` en la misma página. */
+  id?: string;
+  /** Botones al pie (precios + información). Los paquetes de redes no están
+      en /precios, así que ahí se omiten. */
+  footer?: boolean;
 }
-const { packages: p, lang = "es" } = Astro.props as Props;
+const { packages: p, lang = "es", id = "paquetes", footer = true } = Astro.props as Props;
 const t = translations[lang];
 // La rejilla se ajusta al número real de tarjetas. Con `lg:grid-cols-3`
 // fijas, los dos planes de marketing dejaban una tercera columna vacía a la
@@ -31,7 +37,7 @@ const cols =
 const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
 ---
 
-<section id="paquetes" class="relative py-12 lg:py-20">
+<section id={id} class="relative py-12 lg:py-20">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <SectionHeading eyebrow={p.eyebrow} align="center" max="max-w-3xl">
       <Fragment slot="title">{p.title}</Fragment>
@@ -58,6 +64,7 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
             <h3 class="text-lg font-bold leading-snug text-[var(--text)]">
               {item.name}
             </h3>
+            {!item.hidePrice && (
             <p class="mt-4 flex items-baseline gap-1.5">
               {item.quoteLabel ? (
                 <span class="text-2xl font-bold tracking-tight text-[var(--text)]">
@@ -79,7 +86,8 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
                 </>
               )}
             </p>
-            <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+            )}
+            <p class:list={[item.hidePrice ? "mt-2" : "mt-1", "font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]"]}>
               {item.priceNote}
             </p>
             <p class="mt-4 text-sm leading-7 text-[var(--muted)]">
@@ -123,6 +131,28 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
       {p.note}
     </p>
 
+    {/* Quién graba el contenido según dónde está el negocio (redes). */}
+    {
+      p.recording && (
+        <div class="reveal mx-auto mt-8 max-w-5xl rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-6">
+          <p class="text-center text-sm font-bold text-[var(--text)]">{p.recording.title}</p>
+          <div class="mt-5 grid gap-4 sm:grid-cols-3">
+            {p.recording.items.map((r) => (
+              <div class="flex items-start gap-3">
+                <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
+                  <Icon name={r.icon as any} class="h-4 w-4" />
+                </span>
+                <div>
+                  <p class="text-sm font-bold text-[var(--text)]">{r.title}</p>
+                  <p class="mt-1 text-[13px] leading-6 text-[var(--muted)]">{r.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
     {/* Lo que NO está en la comparación y por qué. En marketing el plan de
         mantenimiento de $79 estaba junto a los planes de captación y hacía
         parecer que competían: no captan lo mismo, ni siquiera captan. */}
@@ -148,6 +178,7 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
       )
     }
 
+    {footer && (
     <div class="reveal mt-7 flex flex-wrap justify-center gap-3">
       <a
         href={PAGES.pricing[lang]}
@@ -164,5 +195,6 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
         {t.contact.ctaInfo}
       </a>
     </div>
+    )}
   </div>
 </section>

@@ -17,14 +17,23 @@ import type { PageKey } from "../i18n/ui";
 export const CONTENT_REVIEWED = "2026-09-29";
 
 const OCT_2026_NICHES = "2026-10-13";
+/** Paquetes de redes sociales y landing de Durango. */
+const NOV_2026_SOCIAL = "2026-11-20";
 /** Landings con identidad propia y oficios fusionados en su giro. */
 const OCT_2026_IDENTITY = "2026-10-14";
 
 /** Páginas revisadas después de la fecha general. */
 const PAGE_REVIEWED: Partial<Record<PageKey, string>> = {
   // 12 nov 2026: propuesta de valor reescrita como respuesta directa.
-  home: "2026-11-12",
-  services: OCT_2026_NICHES,
+  // 20 nov 2026: marketing digital desde $185 (paquetes de redes) en el
+  // resumen de servicios del inicio y del hub.
+  home: NOV_2026_SOCIAL,
+  services: NOV_2026_SOCIAL,
+  // 20 nov 2026: paquetes de redes sociales y publicaciones semanales en
+  // Google en Crecimiento+ (marketing, precios y mantenimiento).
+  digitalMarketing: NOV_2026_SOCIAL,
+  pricing: NOV_2026_SOCIAL,
+  maintenance: NOV_2026_SOCIAL,
   sectors: OCT_2026_IDENTITY,
   contractors: OCT_2026_IDENTITY,
   health: OCT_2026_IDENTITY,
@@ -35,12 +44,15 @@ const PAGE_REVIEWED: Partial<Record<PageKey, string>> = {
   landscaping: OCT_2026_IDENTITY,
   // Páginas de estado reenfocadas a «páginas web en <estado>».
   markets: OCT_2026_NICHES,
-  mexico: OCT_2026_NICHES,
+  // 20 nov 2026: Durango entre las zonas, con enlace a su landing.
+  mexico: NOV_2026_SOCIAL,
   texas: OCT_2026_IDENTITY,
   florida: OCT_2026_IDENTITY,
   california: OCT_2026_IDENTITY,
   // Página nueva tras la auditoría SEO del 12 nov 2026.
   about: "2026-11-12",
+  // Landing local de marketing en Durango (precios en MXN).
+  durango: NOV_2026_SOCIAL,
 };
 
 export const reviewedOn = (page: PageKey): string =>

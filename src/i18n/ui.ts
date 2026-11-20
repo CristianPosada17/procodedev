@@ -67,7 +67,11 @@ export type PageKey =
   // `CONTACT.calendly` — no es una oferta nueva, es su puerta de entrada
   // propia para tráfico de redes, WhatsApp y campañas. Solo existe en
   // español por ahora (ver PAGES.expressReview más abajo).
-  | "expressReview";
+  | "expressReview"
+  // Landing local de marketing en Durango (nov 2026): campaña de captación
+  // de negocios locales, con precios en MXN. Solo español, sin menú propio
+  // (ver src/i18n/durango.ts).
+  | "durango";
 
 // Las rutas llevan barra final a propósito: Astro genera `/contacto/index.html`,
 // así que la canónica del sitio es la versión CON barra. Enlazar sin barra hacía
@@ -136,6 +140,8 @@ export const PAGES: Record<PageKey, Record<Lang, string>> = {
   // Layout.astro pueda seguir generando su hreflang sin necesitar una rama
   // especial; cuando exista /en/express-review/, cambiar solo esta línea.
   expressReview: { es: "/revision-express/", en: "/revision-express/" },
+  // Solo en español, como la Revisión Express: `en` repite la ruta a propósito.
+  durango: { es: "/marketing-digital-durango/", en: "/marketing-digital-durango/" },
 };
 
 /** Giros que cuelgan del hub (orden del menú desplegable). */
@@ -219,7 +225,7 @@ export function reachFormFor(page: PageKey): string {
   if (page === "webDev" || page === "landingPages" || page === "maintenance") {
     return CONTACT.reachForms.webDev;
   }
-  if (page === "digitalMarketing" || page === "seo") {
+  if (page === "digitalMarketing" || page === "seo" || page === "durango") {
     return CONTACT.reachForms.marketing;
   }
   return CONTACT.reachForms.general;
@@ -917,11 +923,12 @@ export const translations = {
           commitmentNote: "",
           tagline: "Que te encuentren, no solo que existas",
           description:
-            "Tener página no sirve si nadie te encuentra. Este plan trabaja tu Perfil de Empresa en Google, tus reseñas y tu visibilidad en las búsquedas con IA, que es por donde ya llega una parte de tus clientes.",
+            "Tener página no sirve si nadie te encuentra. Este plan trabaja tu Perfil de Empresa en Google —con publicaciones cada semana—, tus reseñas y tu visibilidad en las búsquedas con IA, que es por donde ya llega una parte de tus clientes.",
           features: [
             "Todo lo del plan Soporte Web.",
             "Perfil de Empresa en Google: creación, gestión de la verificación (la aprueba Google) y optimización.",
             "Servicios, horarios, zonas y datos de tu ficha de Google siempre al día.",
+            "Publicaciones semanales en tu Perfil de Empresa en Google: novedades, ofertas y trabajos recientes.",
             "Gestión de reseñas: sistema para pedirlas y respuesta a las reseñas, con la frecuencia que fije la propuesta.",
             "Contenido, estructura e información del negocio trabajados para mejorar tu visibilidad en buscadores y en respuestas con IA.",
             "SEO local y contenido para las búsquedas de tu ciudad, con la cantidad definida en la propuesta.",
@@ -929,7 +936,7 @@ export const translations = {
           ],
           cta: "Solicitar reunión inicial",
           waText:
-            "Hola Cristian, Me interesa el plan Crecimiento+ (desde $499 USD al mes) con Perfil de Empresa en Google, gestión de reseñas y SEO local. ¿Podemos agendar la reunión inicial?",
+            "Hola Cristian, Me interesa el plan Crecimiento+ (desde $499 USD al mes) con Perfil de Empresa en Google, publicaciones semanales, gestión de reseñas y SEO local. ¿Podemos agendar la reunión inicial?",
           highlighted: true,
         },
         {
@@ -1117,7 +1124,7 @@ export const translations = {
         {
           question: "¿Qué diferencia hay entre Soporte Web y Crecimiento+?",
           answer:
-            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google, gestión de reseñas, SEO local y contenido e información del negocio pensados para buscadores y respuestas con IA. Uno cuida lo que ya tienes; el otro trabaja para que más clientes te encuentren. Crecimiento+ empieza desde $499 USD al mes; el total final depende de en qué estado esté tu presencia digital y se confirma tras la reunión inicial y la auditoría.",
+            "Soporte Web (desde $79 USD/mes) mantiene tu página viva: seguridad, velocidad, respaldos, cambios menores y tu reporte mensual. Crecimiento+ incluye todo eso y además trabaja para que te encuentren: Perfil de Empresa en Google con publicaciones semanales, gestión de reseñas, SEO local y contenido e información del negocio pensados para buscadores y respuestas con IA. Uno cuida lo que ya tienes; el otro trabaja para que más clientes te encuentren. Crecimiento+ empieza desde $499 USD al mes; el total final depende de en qué estado esté tu presencia digital y se confirma tras la reunión inicial y la auditoría.",
         },
         {
           question: "¿Los planes mensuales tienen contrato de permanencia?",
@@ -2141,11 +2148,12 @@ export const translations = {
           commitmentNote: "",
           tagline: "Get found, not just exist",
           description:
-            "Having a website doesn't help if nobody finds you. This plan works your Google Business Profile, your reviews and your visibility in AI search, which is already where part of your clients come from.",
+            "Having a website doesn't help if nobody finds you. This plan works your Google Business Profile —with posts every week—, your reviews and your visibility in AI search, which is already where part of your clients come from.",
           features: [
             "Everything in the Web Support plan.",
             "Google Business Profile: setup, handling the verification process (Google approves it) and optimization.",
             "Services, hours, service areas and profile details kept current.",
+            "Weekly posts on your Google Business Profile: updates, offers and recent work.",
             "Review management: a system to request them and replies to reviews, at the frequency set in the proposal.",
             "Content, structure and business information worked on to improve your visibility in search and AI answers.",
             "Local SEO and content for searches in your city, in the amount set in the proposal.",
@@ -2153,7 +2161,7 @@ export const translations = {
           ],
           cta: "Request a first meeting",
           waText:
-            "Hi Cristian, I'm interested in the Growth+ plan (from $499 USD/mo) with Google Business Profile, review management and local SEO. Can we book the first meeting?",
+            "Hi Cristian, I'm interested in the Growth+ plan (from $499 USD/mo) with Google Business Profile, weekly posts, review management and local SEO. Can we book the first meeting?",
           highlighted: true,
         },
         {
@@ -2340,7 +2348,7 @@ export const translations = {
         {
           question: "What's the difference between Web Support and Growth+?",
           answer:
-            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile, review management, local SEO, and content and business information prepared for search engines and AI answers. One protects what you have; the other works to get more clients to find you. Growth+ starts from $499 USD/mo; the final total depends on where your digital presence stands and is confirmed after the first meeting and the audit.",
+            "Web Support (from $79 USD/mo) keeps your site alive: security, speed, backups, minor changes and your monthly report. Growth+ includes all of that and also works to get you found: Google Business Profile with weekly posts, review management, local SEO, and content and business information prepared for search engines and AI answers. One protects what you have; the other works to get more clients to find you. Growth+ starts from $499 USD/mo; the final total depends on where your digital presence stands and is confirmed after the first meeting and the audit.",
         },
         {
           question: "Do the monthly plans have a lock-in contract?",
@@ -2775,6 +2783,7 @@ export const IN_PAGE_CONVERSION: readonly PageKey[] = [
   "services",
   "contact",
   "expressReview",
+  "durango",
 ];
 
 export const BOOK_ANCHOR = "#agendar";

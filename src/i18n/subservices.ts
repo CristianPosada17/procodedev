@@ -637,10 +637,11 @@ const maintenanceEs: SubserviceDetail = {
         currency: "USD",
         priceNote: "al mes · el total se confirma tras la reunión inicial y el diagnóstico",
         description:
-          "Cuando además del mantenimiento quieres que te encuentren: Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA.",
+          "Cuando además del mantenimiento quieres que te encuentren: Perfil de Empresa en Google con publicaciones semanales, reseñas, SEO local y visibilidad en las búsquedas con IA.",
         features: [
           "Todo lo del plan de mantenimiento",
           "Perfil de Empresa en Google: creación, gestión de la verificación (la aprueba Google) y optimización",
+          "Publicaciones semanales en tu Perfil de Empresa en Google: novedades, ofertas y trabajos recientes",
           "Gestión de reseñas: sistema para pedirlas y respuesta a las reseñas",
           "SEO local y contenido, en la cantidad que fije la propuesta",
           "Información del negocio preparada para buscadores y respuestas con IA",
@@ -1267,10 +1268,11 @@ const maintenanceEn: SubserviceDetail = {
         currency: "USD",
         priceNote: "a month · total confirmed after the first meeting and the diagnosis",
         description:
-          "When you also want to be found: Google Business Profile, reviews, local SEO and visibility in AI search.",
+          "When you also want to be found: Google Business Profile with weekly posts, reviews, local SEO and visibility in AI search.",
         features: [
           "Everything in the maintenance plan",
           "Google Business Profile: setup, handling verification (Google approves it) and optimization",
+          "Weekly posts on your Google Business Profile: updates, offers and recent work",
           "Review management: a system to ask for them and replies to reviews",
           "Local SEO and content, in the amount the proposal sets",
           "Business information prepared for search engines and AI answers",

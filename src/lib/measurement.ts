@@ -72,6 +72,7 @@ export type ContentGroup =
 const GROUP_BY_PAGE: Record<PageKey, ContentGroup> = {
   home: "home",
   expressReview: "revision-express",
+  durango: "servicios",
   services: "servicios",
   sectors: "giros",
   contractors: "giros",

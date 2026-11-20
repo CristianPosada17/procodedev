@@ -76,7 +76,8 @@ export interface Market {
   navLabel: string;
   navHint: string;
   /** Ciudades donde se concentra el trabajo; cada una con su propia línea. */
-  cities: readonly { name: string; note: string }[];
+  /** `href` opcional: la zona tiene página propia (Durango → su landing). */
+  cities: readonly { name: string; note: string; href?: string; cta?: string }[];
   meta: {
     title: string;
     description: string;
@@ -667,7 +668,7 @@ const hubEs: MarketsHub = {
   citiesLabel: "Zonas",
   citiesTitle: "Dónde se concentra el trabajo",
   citiesSubtitle:
-    "Las cuatro zonas del estado de las que llegan más proyectos, y qué cambia en cada una.",
+    "Las zonas de las que llegan más proyectos, y qué cambia en cada una.",
   how: {
     eyebrow: "// cómo funciona a distancia",
     title: "Cómo se trabaja con un negocio de Estados Unidos desde México",
@@ -1075,6 +1076,7 @@ const mexicoEs: Market = {
     { name: "Ciudad de México", note: "Servicios profesionales, salud y despachos que compiten por las mismas búsquedas en muy poco espacio: gana quien se explica mejor y responde antes." },
     { name: "Monterrey", note: "Industria, construcción y servicios a empresa: el sitio tiene que verse tan formal como la cotización que viene después." },
     { name: "Guadalajara", note: "Negocios de servicios y marcas en crecimiento que ya venden por redes y necesitan un sitio que convierta ese tráfico en contactos." },
+    { name: "Durango", note: "Nuestra sede. Para negocios locales hay planes de redes sociales, contenido y páginas web con precios en pesos, y grabamos el contenido en tu negocio.", href: "/marketing-digital-durango/", cta: "Ver marketing digital en Durango" },
     { name: "Resto del país", note: "El trabajo es remoto de principio a fin, así que la ciudad no cambia el proceso: llamada, contenido, revisiones por enlace y publicación." },
   ],
   meta: {

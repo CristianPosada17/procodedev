@@ -71,6 +71,17 @@ const { offer } = Astro.props as Props;
                 {item.timeline}
               </p>
             </div>
+
+            {item.cta && (
+              <a
+                href={item.cta.href}
+                data-cta={`oferta-${item.title}`}
+                class="mt-5 inline-flex items-center justify-between gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12"
+              >
+                {item.cta.label}
+                <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            )}
           </article>
         ))
       }

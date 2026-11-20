@@ -90,13 +90,25 @@ const servicesActive = page === "services" || serviceKeys.includes(page);
 
 // Mercados: mismo patrón que servicios y giros. El enlace del disparador va
 // al hub, no es solo un abridor de menú.
-const marketItems = MARKET_KEYS.map((key) => ({
-  key,
-  href: PAGES[key][lang],
-  label: markets[lang][key].navLabel,
-  hint: markets[lang][key].navHint,
-  icon: markets[lang][key].icon,
-}));
+const marketItems: { key: string; href: string; label: string; hint: string; icon: string }[] =
+  MARKET_KEYS.map((key) => ({
+    key,
+    href: PAGES[key][lang],
+    label: markets[lang][key].navLabel,
+    hint: markets[lang][key].navHint,
+    icon: markets[lang][key].icon,
+  }));
+// Landing local de Durango (nov 2026): solo existe en español, así que solo
+// aparece en el menú en español, justo debajo de México.
+if (lang === "es") {
+  marketItems.splice(1, 0, {
+    key: "durango",
+    href: PAGES.durango.es,
+    label: "Durango",
+    hint: "Redes Sociales, Contenido y Páginas web",
+    icon: "megaphone",
+  });
+}
 const marketKeys = MARKET_KEYS as readonly string[];
 const marketsActive = page === "markets" || marketKeys.includes(page);
 

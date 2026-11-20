@@ -27,7 +27,6 @@ import ServiceCross from "./ServiceCross.astro";
 import ServiceOffer from "./ServiceOffer.astro";
 import AuditCallout from "./AuditCallout.astro";
 import Portfolio from "./Portfolio.astro";
-import Integrations from "./Integrations.astro";
 import Process from "./Process.astro";
 import Testimonials from "./Testimonials.astro";
 import Founder from "./Founder.astro";
@@ -60,7 +59,7 @@ const offerCatalog = [
     title: c.title,
     description: c.description,
   })),
-  ...d.packages.items.map((p) => ({
+  ...[...d.packages.items, ...(d.social?.items ?? [])].map((p) => ({
     title: p.quoteLabel
       ? `${p.name} — ${p.quoteLabel}`
       : `${p.name} — ${p.pricePrefix ? p.pricePrefix + " " : ""}$${p.price} ${p.currency}`,
@@ -122,31 +121,56 @@ const offerUnit = pricedPackage && isMonthly(pricedPackage.priceNote) ? "month" 
           <Portfolio lang={lang} page={service} />
         </>
       ) : (
-        <>
-          {d.offer && <ServiceOffer lang={lang} offer={d.offer} />}
-          <Integrations lang={lang} />
-        </>
+        d.offer && <ServiceOffer lang={lang} offer={d.offer} />
       )
     }
 
     {/* 4 · Testimonios publicados */}
     <Testimonials lang={lang} />
 
-    {/* 5 · Para quién es y para quién no, y la salida para quien duda */}
-    <ServiceFit lang={lang} fit={d.fit} />
-    <AuditCallout lang={lang} />
+    {/* 5 · Para quién es y para quién no, y la salida para quien duda.
+        En marketing baja hasta después de los planes, justo antes de las
+        dudas. */}
+    {service === "webDev" && (
+      <>
+        <ServiceFit lang={lang} fit={d.fit} />
+        <AuditCallout lang={lang} />
+      </>
+    )}
 
     {/* 6 · El desarrollador y fundador */}
     <Founder lang={lang} page={service} />
 
     {/* 7 · Información práctica: qué incluye y paquetes publicados. Los
         botones de cada paquete bajan al formulario con el plan elegido. */}
-    <ServiceCapabilities
-      lang={lang}
-      heading={d.capabilities}
-      items={line.capabilities}
-    />
-    <ServicePackages lang={lang} packages={d.packages} />
+    {
+      service === "webDev" ? (
+        <>
+          <ServiceCapabilities
+            lang={lang}
+            heading={d.capabilities}
+            items={line.capabilities}
+          />
+          <ServicePackages lang={lang} packages={d.packages} />
+        </>
+      ) : (
+        <>
+          {/* Marketing: primero los planes (SEO/Google y luego redes
+              sociales), después qué incluye y, al final, para quién es. */}
+          <ServicePackages lang={lang} packages={d.packages} />
+          {d.social && (
+            <ServicePackages lang={lang} packages={d.social} id="paquetes-redes" footer={false} />
+          )}
+          <ServiceCapabilities
+            lang={lang}
+            heading={d.capabilities}
+            items={line.capabilities}
+          />
+          <ServiceFit lang={lang} fit={d.fit} />
+          <AuditCallout lang={lang} />
+        </>
+      )
+    }
 
     {/* 8 · Preguntas frecuentes */}
     <FAQ lang={lang} data={d.faq} id="dudas-servicio" />

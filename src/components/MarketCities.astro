@@ -43,6 +43,16 @@ const hub = marketsHub[lang];
               <p class="mt-1.5 text-[13px] leading-6 text-[var(--muted)]">
                 {c.note}
               </p>
+              {c.href && (
+                <a
+                  href={c.href}
+                  data-cta={`zona-${c.name}`}
+                  class="mt-2 inline-flex items-center gap-1.5 text-[13px] font-bold text-[var(--accent)] transition hover:underline"
+                >
+                  {c.cta ?? c.name}
+                  <Icon name="arrow-right" class="h-3.5 w-3.5" />
+                </a>
+              )}
             </div>
           </div>
         ))

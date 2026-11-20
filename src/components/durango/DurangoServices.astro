@@ -1,0 +1,51 @@
+---
+/* 03 · Nuestros servicios: cuatro de marketing + desarrollo web. */
+import { durango } from "../../i18n/durango";
+import SectionHeading from "../SectionHeading.astro";
+import Icon from "../Icon.astro";
+
+const s = durango.services;
+---
+
+<section id="servicios" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={s.eyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{s.title}</Fragment>
+      <Fragment slot="subtitle">{s.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {s.items.map((item, i) => {
+        const wide = "link" in item;
+        return (
+          <article
+            class:list={[
+              "reveal flex flex-col rounded-[var(--radius)] border bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
+              wide
+                ? "border-[color:var(--border-strong)] sm:col-span-2 lg:col-span-4 lg:flex-row lg:items-center lg:gap-8"
+                : "border-[color:var(--border)] hover:border-[color:var(--border-strong)]",
+            ]}
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]">
+              <Icon name={item.icon as any} class="h-5 w-5" />
+            </span>
+            <div class:list={["flex-1", wide ? "mt-5 lg:mt-0" : "mt-5"]}>
+              <h3 class="text-lg font-bold text-[var(--text)]">{item.title}</h3>
+              <p class="mt-2 text-sm leading-7 text-[var(--muted)]">{item.text}</p>
+            </div>
+            {wide && (
+              <a
+                href={(item as any).link.href}
+                class="mt-5 inline-flex items-center gap-2 self-start rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-5 py-3 text-sm font-bold text-[var(--text)] transition hover:bg-[var(--brand)]/12 lg:mt-0 lg:self-center"
+              >
+                {(item as any).link.label}
+                <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

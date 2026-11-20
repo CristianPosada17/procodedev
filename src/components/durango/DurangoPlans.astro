@@ -1,0 +1,161 @@
+---
+/*
+  07 · Planes, en pesos mexicanos.
+  1) Planes de redes (Crecimiento Local destacado: es el que se vende
+     primero). Cada tarjeta dice entregables, grabación, plataformas,
+     seguimiento, publicidad y término — no la lista técnica completa.
+  2) Páginas web (Landing Page destacada: la otra puerta de entrada).
+  3) Planes de posicionamiento en Google.
+  Cada botón baja al formulario con el plan elegido (`data-plan`, lo lee
+  LeadForm.astro).
+*/
+import { durango } from "../../i18n/durango";
+import SectionHeading from "../SectionHeading.astro";
+import Icon from "../Icon.astro";
+
+const p = durango.plans;
+const simpleBlocks = [
+  { id: "paginas-web", data: p.web, unit: "" },
+  { id: "posicionamiento-google", data: p.seo, unit: "" },
+];
+---
+
+<section id="planes" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={p.eyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{p.title}</Fragment>
+      <Fragment slot="subtitle">{p.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {p.items.map((plan, i) => (
+        <article
+          class:list={[
+            "reveal relative flex flex-col rounded-[var(--radius)] border bg-[var(--surface)]/60 p-6 pt-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
+            plan.highlighted
+              ? "max-md:order-first border-[color:var(--brand)] bg-[var(--surface)]/90 shadow-[0_30px_90px_-45px_var(--halo-card-strong)] ring-1 ring-[color:var(--brand)]/40"
+              : "border-[color:var(--border)] hover:border-[color:var(--border-strong)]",
+          ]}
+          style={`--reveal-delay: ${i * 70}ms`}
+        >
+          {plan.highlighted && (
+            <span class="absolute -top-3 left-6 rounded-full bg-[var(--brand)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white">
+              {plan.highlighted}
+            </span>
+          )}
+          <h3 class="text-xl font-bold text-[var(--text)]">{plan.name}</h3>
+          <p class="mt-1 text-sm font-semibold text-[var(--accent)]">{plan.tagline}</p>
+          <p class="mt-5 flex items-baseline gap-1.5">
+            {plan.price ? (
+              <>
+                <span class="text-4xl font-bold tracking-tight text-[var(--text)]">${plan.price}</span>
+                <span class="text-sm font-medium text-[var(--muted)]">{plan.priceNote}</span>
+              </>
+            ) : (
+              <span class="text-2xl font-bold tracking-tight text-[var(--text)]">{plan.priceNote}</span>
+            )}
+          </p>
+          <p class="mt-3 text-sm leading-6 text-[var(--muted)]">{plan.description}</p>
+
+          <dl class="mt-5 grid flex-1 content-start gap-3 border-t border-[color:var(--border)] pt-5">
+            {plan.rows.map((row) => (
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-[var(--brand)]/12 text-[var(--accent)]">
+                  <Icon name={row.icon as any} class="h-3.5 w-3.5" />
+                </span>
+                <div>
+                  <dt class="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">{row.label}</dt>
+                  <dd class="text-[13px] leading-5 text-[var(--text)]">{row.value}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
+
+          <a
+            href="#contacto"
+            data-plan={plan.price ? `${plan.name} — $${plan.price} ${plan.priceNote}` : `${plan.name} — ${plan.priceNote}`}
+            data-cta={`plan-durango-${plan.name}`}
+            class:list={[
+              "mt-6 inline-flex items-center justify-between gap-2 rounded-xl px-5 py-3 text-sm font-bold transition",
+              plan.highlighted
+                ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
+                : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/12",
+            ]}
+          >
+            {plan.cta}
+            <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <p class="reveal mx-auto mt-8 flex max-w-3xl items-start gap-3 rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)]/60 px-5 py-4 text-sm leading-7 text-[var(--muted)]">
+      <Icon name="info" class="mt-1 h-4 w-4 flex-none text-[var(--accent)]" />
+      {p.excludes}
+    </p>
+
+    {simpleBlocks.map((block) => (
+      <div id={block.id} class="mt-20 scroll-mt-24">
+        <SectionHeading eyebrow={block.data.eyebrow} align="center" max="max-w-3xl">
+          <Fragment slot="title">{block.data.title}</Fragment>
+          <Fragment slot="subtitle">{block.data.subtitle}</Fragment>
+        </SectionHeading>
+        <div
+          class:list={[
+            "mt-10 grid gap-5",
+            block.data.items.length === 3 ? "md:grid-cols-3" : "mx-auto max-w-4xl md:grid-cols-2",
+          ]}
+        >
+          {block.data.items.map((item, i) => (
+            <article
+              class:list={[
+                "reveal relative flex flex-col rounded-[var(--radius)] border bg-[var(--surface)]/60 p-6 pt-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1",
+                item.highlighted
+                  ? "max-md:order-first border-[color:var(--brand)] ring-1 ring-[color:var(--brand)]/40 shadow-[0_30px_90px_-45px_var(--halo-card-strong)]"
+                  : "border-[color:var(--border)] hover:border-[color:var(--border-strong)]",
+              ]}
+              style={`--reveal-delay: ${i * 70}ms`}
+            >
+              {item.highlighted && (
+                <span class="absolute -top-3 left-6 rounded-full bg-[var(--brand)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white">
+                  {item.highlighted}
+                </span>
+              )}
+              <h3 class="text-lg font-bold text-[var(--text)]">{item.name}</h3>
+              <p class="mt-4 flex items-baseline gap-1.5">
+                <span class="text-xs font-medium text-[var(--muted)]">Desde</span>
+                <span class="text-3xl font-bold tracking-tight text-[var(--text)]">${item.price}</span>
+              </p>
+              <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">{item.priceNote}</p>
+              <p class="mt-4 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
+              <ul class="mt-5 grid flex-1 content-start gap-2.5 border-t border-[color:var(--border)] pt-5">
+                {item.features.map((f) => (
+                  <li class="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text)]/85">
+                    <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                      <Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} />
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#contacto"
+                data-plan={`${item.name} — desde $${item.price} ${item.priceNote}`}
+                data-cta={`plan-durango-${item.name}`}
+                class:list={[
+                  "mt-6 inline-flex items-center justify-between gap-2 rounded-xl px-5 py-3 text-sm font-bold transition",
+                  item.highlighted
+                    ? "bg-[var(--brand)] text-white hover:bg-[var(--brand-strong)]"
+                    : "border border-[color:var(--border-strong)] bg-[var(--tint)] text-[var(--text)] hover:bg-[var(--brand)]/12",
+                ]}
+              >
+                {block.data.cta}
+                <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

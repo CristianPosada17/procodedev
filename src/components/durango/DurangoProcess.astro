@@ -1,0 +1,108 @@
+---
+/*
+  05 · Cómo trabajamos: cuatro pasos y, al lado, lo que el empresario ve
+  cada mes — un calendario editorial con el estado de cada pieza y el flujo
+  de aprobación. Es la respuesta visual a «¿qué estoy pagando?».
+*/
+import { durango } from "../../i18n/durango";
+import SectionHeading from "../SectionHeading.astro";
+import Icon from "../Icon.astro";
+
+const p = durango.process;
+const statusClass: Record<string, string> = {
+  Programado: "bg-emerald-500/15 text-emerald-500",
+  Aprobado: "bg-sky-500/15 text-sky-500",
+  "En revisión": "bg-amber-500/15 text-amber-500",
+  Borrador: "bg-[var(--muted)]/15 text-[var(--muted)]",
+};
+---
+
+<section id="como-trabajamos" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={p.eyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{p.title}</Fragment>
+      <Fragment slot="subtitle">{p.subtitle}</Fragment>
+    </SectionHeading>
+
+    <div class="mt-12 grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+      <ol class="grid gap-4">
+        {p.steps.map((step, i) => (
+          <li
+            class="reveal flex gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)] font-mono text-sm font-bold text-white">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <h3 class="flex items-center gap-2 text-lg font-bold text-[var(--text)]">
+                {step.title}
+              </h3>
+              <p class="mt-1.5 text-sm leading-7 text-[var(--muted)]">{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="reveal grid gap-5">
+        {/* Calendario editorial */}
+        <div class="rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/80 p-5 shadow-[0_30px_80px_-50px_var(--halo-card-strong)] backdrop-blur-xl">
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-sm font-bold text-[var(--text)]">{p.calendarTitle}</p>
+            <Icon name="calendar" class="h-4 w-4 text-[var(--accent)]" />
+          </div>
+          <div class="mt-4 grid grid-cols-7 gap-1.5">
+            {p.days.map((d) => (
+              <span class="text-center font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">{d}</span>
+            ))}
+            {p.days.map((_, di) => {
+              const entry = p.calendar.find((c) => c.day === di);
+              return (
+                <div class:list={["min-h-[86px] rounded-lg border p-1.5 sm:min-h-[96px] sm:p-2", entry ? "border-[color:var(--border-strong)] bg-[var(--bg-2)]/80" : "border-dashed border-[color:var(--border)]"]}>
+                  {entry && (
+                    <>
+                      <p class="text-[10px] font-bold leading-tight text-[var(--text)] sm:text-[11px]">{entry.type}</p>
+                      <p class="mt-0.5 hidden text-[10px] leading-tight text-[var(--muted)] sm:block">{entry.topic}</p>
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+            {p.calendar.map((c) => (
+              <li class="flex items-center justify-between gap-2 rounded-lg bg-[var(--bg-2)]/60 px-3 py-2">
+                <span class="min-w-0 truncate text-[12px] text-[var(--text)]">
+                  <span class="font-mono text-[10px] text-[var(--muted)]">{p.days[c.day]}</span> · {c.type}: {c.topic}
+                </span>
+                <span class:list={["flex-none rounded-full px-2 py-0.5 text-[10px] font-semibold", statusClass[c.status]]}>{c.status}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Flujo de aprobación */}
+        <div class="rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl">
+          <p class="text-sm font-bold text-[var(--text)]">{p.approvalTitle}</p>
+          <ol class="mt-4 flex flex-wrap items-center gap-2">
+            {p.approval.map((stepName, i) => (
+              <li class="flex items-center gap-2">
+                <span
+                  class:list={[
+                    "rounded-full px-3 py-1.5 text-xs font-semibold",
+                    stepName === "Tu aprobación"
+                      ? "bg-[var(--brand)] text-white"
+                      : "border border-[color:var(--border)] bg-[var(--bg-2)] text-[var(--text)]",
+                  ]}
+                >
+                  {stepName}
+                </span>
+                {i < p.approval.length - 1 && <Icon name="arrow-right" class="h-3.5 w-3.5 text-[var(--muted)]" />}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

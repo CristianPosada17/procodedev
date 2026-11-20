@@ -51,6 +51,10 @@ export interface ServicePackageItem {
       texto sustituye al precio en la tarjeta. Vacío = se muestra el precio
       normal. */
   quoteLabel?: string;
+  /** Oculta la línea de precio en la tarjeta (paquetes de redes: el
+      «Cotizar» ya va en el botón). `quoteLabel` sigue viajando en el plan
+      elegido y en los datos estructurados. */
+  hidePrice?: boolean;
   currency: string;
   priceNote: string;
   description: string;
@@ -96,6 +100,9 @@ export interface ServiceDetail {
     heroTitleA: string;
     heroHighlight: string;
     heroSubtitle: string;
+    /** Botón del hero que baja a los paquetes. Sin él se muestra el enlace
+        discreto «Ver todos los precios». */
+    heroPackagesCta?: string;
   };
   intro: {
     title: string;
@@ -118,7 +125,18 @@ export interface ServiceDetail {
     /** Lo que NO es este servicio pero se confunde con el (en marketing:
         el plan de mantenimiento, que no capta clientes). */
     aside?: { title: string; body: string; cta: string };
+    /** Quién graba el contenido según dónde está el negocio (paquetes de
+        redes sociales): en Durango se graba en persona, fuera de la ciudad
+        se cotiza y fuera de México lo graba el cliente con nuestra guía. */
+    recording?: {
+      title: string;
+      items: readonly { icon: string; title: string; text: string }[];
+    };
   };
+  /** Solo marketing: paquetes de redes sociales (estrategia, contenido,
+      reels, gestión de Facebook e Instagram y Meta Ads). Se muestran después
+      de los planes de SEO/Google, con el mismo formato de tarjeta. */
+  social?: ServiceDetail["packages"];
   /** Solo marketing: las tres piezas separadas, cada una con su alcance,
       sus entregables y su plazo real. */
   offer?: {
@@ -133,6 +151,8 @@ export interface ServiceDetail {
       deliverables: readonly string[];
       timelineLabel: string;
       timeline: string;
+      /** Botón al plan o paquete de la misma página que cubre esta pieza. */
+      cta?: { label: string; href: string };
     }[];
   };
   /** Encabezado del formulario embebido de esta pagina, y la etiqueta del
@@ -296,16 +316,16 @@ const linesEs: Record<ServiceKey, ServiceLine> = {
     title: "Marketing Digital",
     tagline: "Que te encuentren, te escriban y vuelvan a comprarte",
     summary:
-      "Marketing digital para negocios que ya tienen sitio y necesitan llenarlo de la gente correcta: SEO local, Perfil de Empresa en Google, reseñas, anuncios y formularios que califican a cada prospecto, con un reporte mensual en lenguaje de negocio.",
+      "Marketing digital para negocios que ya tienen sitio y necesitan llenarlo de la gente correcta: SEO local, Perfil de Empresa en Google, reseñas, contenido y gestión de Facebook e Instagram, anuncios y formularios que califican a cada prospecto, con un reporte mensual en lenguaje de negocio.",
     bullets: [
       "SEO local por ciudad y por servicio",
       "Perfil de Empresa en Google y reseñas gestionadas",
       "Campañas en Google Ads, Facebook e Instagram",
-      "Reporte mensual de contactos, llamadas y citas",
+      "Contenido, reels y gestión de redes desde $185 USD al mes",
     ],
     priceLabel: "Desde",
-    price: "499",
-    priceNote: "USD al mes · Crecimiento+",
+    price: "185",
+    priceNote: "USD al mes · paquetes de redes sociales",
     timelineLabel: "primeras señales",
     timeline: "30 a 90 días",
     timelineNote:
@@ -617,12 +637,14 @@ const marketingEs: ServiceDetail = {
   meta: {
     title: "Marketing Digital para Negocios | ProCode Systems",
     description:
-      "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y reportes claros. Planes desde $499 USD al mes.",
+      "Marketing digital para negocios: SEO local, Perfil de Empresa en Google, reseñas, anuncios y gestión de Facebook e Instagram. Redes desde $185 USD al mes.",
     keywords:
-      "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes",
+      "marketing digital para negocios, agencia de marketing digital, marketing digital para pequeñas empresas, SEO local, posicionamiento en Google, campañas de Google Ads, publicidad en Facebook e Instagram, perfil de empresa en Google, gestión de reseñas, generación de prospectos para negocios, reportes de marketing digital, marketing digital para pymes, manejo de redes sociales, gestión de Facebook e Instagram, creación de reels para negocios, community manager en Durango",
     heroTitleA: "Marketing digital para negocios:",
-    heroHighlight: "SEO local, Google Ads y reseñas",
-    heroSubtitle: "Más búsquedas, más mensajes.",
+    heroHighlight: "SEO local, Google Ads y redes sociales",
+    heroSubtitle:
+      "Más búsquedas, más mensajes y redes que se ven activas: contenido, reels y gestión de Facebook e Instagram.",
+    heroPackagesCta: "Ver paquetes",
   },
   intro: {
     title: "Qué hace el marketing cuando el negocio ya funciona",
@@ -636,9 +658,9 @@ const marketingEs: ServiceDetail = {
   },
   offer: {
     eyebrow: "// la oferta, pieza por pieza",
-    title: "Dos trabajos distintos, con plazos distintos",
+    title: "Tres trabajos distintos, con plazos distintos",
     subtitle:
-      "Se venden juntos porque se refuerzan, pero no son lo mismo ni rinden al mismo ritmo. Esto es lo que hace cada uno, qué te entrego y en cuánto tiempo se nota.",
+      "Se pueden contratar juntos porque se refuerzan, pero no son lo mismo ni rinden al mismo ritmo. Esto es lo que hace cada uno, qué te entrego y en cuánto tiempo se nota.",
     items: [
       {
         icon: "map-pin",
@@ -649,6 +671,7 @@ const marketingEs: ServiceDetail = {
         deliverables: [
           "Perfil de Empresa en Google creado y optimizado, con la verificación gestionada (la aprueba Google)",
           "Sistema para pedir reseñas y respuesta a las reseñas",
+          "Publicaciones semanales en tu Perfil de Empresa en Google",
           "Páginas por servicio y por ciudad con contenido propio, en la cantidad que fije el plan",
           "Datos estructurados y arreglos técnicos del sitio",
           "Posición en el mapa y reseñas nuevas, reportadas cada mes",
@@ -656,6 +679,7 @@ const marketingEs: ServiceDetail = {
         timelineLabel: "Cuándo se nota",
         timeline:
           "La ficha y las reseñas mueven en semanas. El posicionamiento orgánico madura de 3 a 6 meses, y hay que sostenerlo: si se deja, se pierde terreno.",
+        cta: { label: "Ver plan Crecimiento+", href: "#paquetes" },
       },
       {
         icon: "megaphone",
@@ -673,6 +697,25 @@ const marketingEs: ServiceDetail = {
         timelineLabel: "Cuándo se nota",
         timeline:
           "Puede haber contactos en los primeros días, pero los primeros treinta son de calibración: ahí se descubre qué búsquedas valen la pena y cuánto cuesta cada contacto. Presupuesto aparte, desde $300 USD al mes.",
+        cta: { label: "Ver plan Marketing Digital", href: "#paquetes" },
+      },
+      {
+        icon: "instagram",
+        title: "Redes sociales",
+        scope:
+          "Que tu negocio se vea activo y profesional en Facebook e Instagram, con contenido que explica lo que haces y por qué elegirte. Estrategia, diseño, reels, copy y programación, y publicidad en Meta en el paquete Impulso Digital.",
+        deliverablesLabel: "Qué entrego",
+        deliverables: [
+          "Planeación mensual de contenido con su copy",
+          "Reels, carruseles y diseños estáticos, en la cantidad que fije el paquete",
+          "Sesión de grabación en tu negocio en Durango, o guiones y guía de grabación si estás fuera",
+          "Programación y administración de Facebook e Instagram",
+          "Revisión de resultados cada mes",
+        ],
+        timelineLabel: "Cuándo se nota",
+        timeline:
+          "La constancia y la imagen se notan desde el primer mes. El alcance y los mensajes crecen conforme se acumula contenido, normalmente de 2 a 3 meses; con Meta Ads, los primeros 30 días son de calibración.",
+        cta: { label: "Ver paquetes de redes", href: "#paquetes-redes" },
       },
     ],
   },
@@ -695,11 +738,12 @@ const marketingEs: ServiceDetail = {
         currency: "USD",
         priceNote: "al mes · el total se confirma tras la reunión inicial y el diagnóstico",
         description:
-          "Que te encuentren, no solo que existas. Perfil de Empresa en Google, reseñas, SEO local y visibilidad en las búsquedas con IA. Sin anuncios: aquí todavía no se compra tráfico.",
+          "Que te encuentren, no solo que existas. Perfil de Empresa en Google con publicaciones semanales, reseñas, SEO local y visibilidad en las búsquedas con IA. Sin anuncios: aquí todavía no se compra tráfico.",
         features: [
           "Mantenimiento del sitio incluido",
           "Perfil de Empresa en Google creado y optimizado, con la verificación gestionada (la aprueba Google)",
           "Servicios, horarios y zonas de tu ficha siempre al día",
+          "Publicaciones semanales en tu Perfil de Empresa en Google: novedades, ofertas y trabajos recientes",
           "Gestión de reseñas: sistema para pedirlas y respuesta a las reseñas",
           "SEO local y contenido preparado para buscadores y respuestas con IA",
           "Reporte mensual de tu Perfil de Google, tu SEO y tu página web",
@@ -728,6 +772,110 @@ const marketingEs: ServiceDetail = {
     itemCta: "Solicitar reunión inicial",
     note: "Los precios publicados son el punto de partida. En los dos planes el total se confirma igual: una reunión inicial para conocer tu negocio y qué necesita, un diagnóstico de tu presencia digital, y de ahí sale el número final y el plan de trabajo. La cantidad, la frecuencia, las plataformas y los entregables se definen en la propuesta aprobada. Crecimiento+ no tiene permanencia: subes, bajas o cancelas de un mes a otro. Marketing Digital pide un mínimo de tres meses y, cumplido ese plazo, también se cancela mes a mes. El presupuesto que se invierte en Google Ads y en Meta lo pagas tú directo a la plataforma: yo no cobro comisión sobre tu inversión publicitaria.",
     cta: "Ver todos los precios",
+  },
+  social: {
+    eyebrow: "// redes sociales y publicidad",
+    title: "Paquetes de redes sociales desde $185 USD al mes",
+    subtitle:
+      "Estrategia, contenido, reels, gestión de Facebook e Instagram y publicidad en Meta. Cada paquete se cotiza según tu giro, tu ciudad y el material con el que ya cuentas; el paquete de entrada empieza en $185 USD al mes.",
+    items: [
+      {
+        name: "Presencia",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotizar",
+        hidePrice: true,
+        currency: "USD",
+        priceNote: "al mes · desde $185 USD",
+        description: "Para comenzar a profesionalizar tus redes sociales.",
+        features: [
+          "8 publicaciones al mes: 2 reels, 2 carruseles y 4 diseños estáticos",
+          "Reels sencillos, editados con el material que tú nos envías",
+          "Planeación del mes, copy y programación de cada publicación",
+          "Facebook e Instagram",
+          "Reporte básico mensual",
+        ],
+        highlighted: false,
+      },
+      {
+        name: "Crecimiento Local",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotizar",
+        hidePrice: true,
+        currency: "USD",
+        priceNote: "al mes · se confirma tras la reunión inicial",
+        description:
+          "Contenido constante y con estrategia, grabado en tu negocio, para que tus redes trabajen todo el mes.",
+        features: [
+          "12 publicaciones al mes: 4 reels, 4 carruseles y 4 diseños estáticos",
+          "Estrategia de contenido mensual",
+          "Una sesión de grabación en tu negocio de hasta 2 horas",
+          "Administración de Facebook e Instagram",
+          "Revisión de resultados y reunión mensual",
+        ],
+        highlighted: true,
+      },
+      {
+        name: "Impulso Digital",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotizar",
+        hidePrice: true,
+        currency: "USD",
+        priceNote: "al mes · la inversión en anuncios va aparte",
+        description: "Para negocios listos para invertir en captación de clientes.",
+        features: [
+          "Todo lo del paquete Crecimiento Local",
+          "Planeación y gestión de una campaña de Meta Ads",
+          "Adaptación de creatividades para los anuncios",
+          "Seguimiento de prospectos",
+          "Optimización periódica de la campaña",
+        ],
+        highlighted: false,
+      },
+      {
+        name: "A la medida",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Cotización especial",
+        currency: "USD",
+        priceNote: "según el alcance de tu negocio",
+        description:
+          "Para negocios más grandes o con necesidades específicas, que requieren una estrategia más completa.",
+        features: [
+          "Estrategia por servicio, línea de negocio o sucursal",
+          "Volumen y frecuencia de contenido según lo que necesites",
+          "Campañas de Meta Ads con distintos objetivos y audiencias",
+          "Se puede combinar con SEO local y Google Ads",
+          "Alcance y entregables definidos en la propuesta",
+        ],
+        highlighted: false,
+      },
+    ],
+    itemCta: "Cotizar este paquete",
+    note: "Cada paquete se cotiza después de una reunión inicial para conocer tu negocio. La inversión en anuncios de Meta (Facebook e Instagram) se paga por separado, directo a la plataforma.",
+    cta: "",
+    recording: {
+      title: "¿Quién graba el contenido?",
+      items: [
+        {
+          icon: "map-pin",
+          title: "En Durango",
+          text: "Vamos a tu negocio y grabamos nosotros. Los paquetes Crecimiento Local e Impulso Digital incluyen una sesión de hasta 2 horas al mes.",
+        },
+        {
+          icon: "route",
+          title: "Fuera de Durango, en México",
+          text: "La grabación presencial en tu ciudad se cotiza aparte.",
+        },
+        {
+          icon: "globe",
+          title: "Fuera de México",
+          text: "Tú grabas el material y nos lo envías para edición y programación. Te mandamos toda la estructura: guiones, qué tomas grabar y cómo grabarlas.",
+        },
+      ],
+    },
   },
   standards: {
     eyebrow: "// cómo se mide",
@@ -817,7 +965,12 @@ const marketingEs: ServiceDetail = {
       {
         question: "¿Hacen contenido para redes sociales?",
         answer:
-          "Hago publicaciones mensuales en tu Perfil de Empresa en Google, que es la red que más se parece a una venta local, y contenido de blog que trabaja el SEO. No manejo calendarios de Instagram ni TikTok: prefiero decírtelo antes que hacerlo a medias.",
+          "Sí. Los paquetes de redes sociales incluyen estrategia, reels, carruseles, diseños, copy, programación y administración de Facebook e Instagram, desde $185 USD al mes; el paquete Impulso Digital suma una campaña de Meta Ads. En Durango grabamos el contenido en tu negocio; fuera de la ciudad la grabación presencial se cotiza aparte, y fuera de México tú grabas el material con los guiones y la guía que te enviamos, y nosotros lo editamos y programamos. La inversión en anuncios se paga por separado.",
+      },
+      {
+        question: "¿Mi negocio tiene que estar en Durango para contratar redes sociales?",
+        answer:
+          "No. En Durango vamos a tu negocio a grabar. Si estás en otra ciudad de México, la grabación presencial se cotiza aparte. Si estás fuera de México, grabas tú el material y nos lo envías: te mandamos la estructura de cada video, los guiones y cómo grabarlo, y nosotros hacemos la edición, el diseño y la programación.",
       },
       {
         question: "¿Qué pasa si quiero cancelar?",
@@ -843,6 +996,7 @@ const marketingEs: ServiceDetail = {
       "No aparezco cuando buscan mi servicio",
       "Mi ficha de Google está incompleta o sin reseñas",
       "Quiero empezar con anuncios",
+      "Quiero contenido y manejo de Facebook e Instagram",
       "Me llegan mensajes y se me van sin contestar",
       "Todavía estoy comparando opciones",
     ],
@@ -890,7 +1044,7 @@ const hubEs: ServicesHub = {
         title: "Empieza por el marketing",
         body: "Tu página está bien hecha y convierte, pero llega poca gente: tu ficha de Google está incompleta, no tienes reseñas o no apareces cuando alguien busca tu servicio en tu ciudad. Ahí el trabajo es de diseño web y posicionamiento en marcha —visibilidad y reseñas—, no de rediseño.",
         forWho: "Para quien ya tiene sitio y necesita llenarlo.",
-        price: "Desde $499 USD al mes",
+        price: "Redes desde $185 USD al mes · SEO desde $499",
         cta: "Ver marketing digital",
         href: "digitalMarketing",
         highlighted: false,
@@ -1046,16 +1200,16 @@ const linesEn: Record<ServiceKey, ServiceLine> = {
     title: "Digital Marketing",
     tagline: "Get found, get messaged, get them coming back",
     summary:
-      "Digital marketing services for small businesses that already have a site and need to fill it with the right people: local SEO, Google Business Profile, reviews, ads and forms that qualify every lead, with a monthly report in plain business language.",
+      "Digital marketing services for small businesses that already have a site and need to fill it with the right people: local SEO, Google Business Profile, reviews, Facebook and Instagram content and management, ads and forms that qualify every lead, with a monthly report in plain business language.",
     bullets: [
       "Local SEO by city and by service",
       "Google Business Profile and reviews managed",
       "Google Ads, Facebook and Instagram campaigns",
-      "Monthly report of contacts, calls and bookings",
+      "Content, reels and social management from $185 USD a month",
     ],
     priceLabel: "From",
-    price: "499",
-    priceNote: "USD a month · Growth+",
+    price: "185",
+    priceNote: "USD a month · social media packages",
     timelineLabel: "first signals",
     timeline: "30 to 90 days",
     timelineNote:
@@ -1357,12 +1511,14 @@ const marketingEn: ServiceDetail = {
   meta: {
     title: "Small Business Digital Marketing | ProCode Systems",
     description:
-      "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and clear reporting. Plans from $499 USD a month.",
+      "Digital marketing for small businesses: local SEO, Google Business Profile, reviews, ads and Facebook and Instagram management. Social from $185 USD/mo.",
     keywords:
-      "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing reporting, local SEO for small businesses",
-    heroTitleA: "Local SEO and digital marketing so people",
+      "small business digital marketing, digital marketing services, digital marketing agency, local SEO services, Google Business Profile management, Google Ads management, Facebook and Instagram ads, review management, lead generation for small businesses, marketing reporting, local SEO for small businesses, social media management, Facebook and Instagram management, reels for small businesses",
+    heroTitleA: "Local SEO, social media and ads so people",
     heroHighlight: "find and contact your business",
-    heroSubtitle: "More searches, more messages.",
+    heroSubtitle:
+      "More searches, more messages and social media that looks alive: content, reels and Facebook and Instagram management.",
+    heroPackagesCta: "See packages",
   },
   intro: {
     title: "What marketing does once the business runs",
@@ -1376,9 +1532,9 @@ const marketingEn: ServiceDetail = {
   },
   offer: {
     eyebrow: "// the offer, piece by piece",
-    title: "Two different jobs, on two different clocks",
+    title: "Three different jobs, on three different clocks",
     subtitle:
-      "They are sold together because they reinforce each other, but they are not the same work and they do not pay off at the same speed. Here is what each one does, what you get, and when it shows.",
+      "They can be hired together because they reinforce each other, but they are not the same work and they do not pay off at the same speed. Here is what each one does, what you get, and when it shows.",
     items: [
       {
         icon: "map-pin",
@@ -1389,6 +1545,7 @@ const marketingEn: ServiceDetail = {
         deliverables: [
           "Google Business Profile created and optimized, with verification handled (Google approves it)",
           "A system to ask for reviews, and replies to reviews",
+          "Weekly posts on your Google Business Profile",
           "Pages by service and by city with original content, in the amount the plan sets",
           "Structured data and technical fixes on the site",
           "Map position and new reviews, reported every month",
@@ -1396,6 +1553,7 @@ const marketingEn: ServiceDetail = {
         timelineLabel: "When it shows",
         timeline:
           "The profile and reviews move within weeks. Organic ranking matures over three to six months, and it needs upkeep: drop it and you lose ground.",
+        cta: { label: "See the Growth+ plan", href: "#paquetes" },
       },
       {
         icon: "megaphone",
@@ -1413,6 +1571,25 @@ const marketingEn: ServiceDetail = {
         timelineLabel: "When it shows",
         timeline:
           "There can be contacts in the first few days, but the first thirty are calibration: that is when you find out which searches are worth it and what a contact actually costs. Ad budget separate, from $300 USD a month.",
+        cta: { label: "See the Digital Marketing plan", href: "#paquetes" },
+      },
+      {
+        icon: "instagram",
+        title: "Social media",
+        scope:
+          "Making your business look active and professional on Facebook and Instagram, with content that explains what you do and why to pick you. Strategy, design, reels, copy and scheduling, plus Meta advertising in the Digital Boost package.",
+        deliverablesLabel: "What you get",
+        deliverables: [
+          "A monthly content plan with its copy",
+          "Reels, carousels and static designs, in the amount the package sets",
+          "Scripts and a shooting guide for your own footage, or an on-site shoot in Durango, Mexico",
+          "Scheduling and management of Facebook and Instagram",
+          "A results review every month",
+        ],
+        timelineLabel: "When it shows",
+        timeline:
+          "Consistency and a professional look show from the first month. Reach and messages grow as content builds up, usually over 2 to 3 months; with Meta Ads, the first 30 days are calibration.",
+        cta: { label: "See social media packages", href: "#paquetes-redes" },
       },
     ],
   },
@@ -1435,11 +1612,12 @@ const marketingEn: ServiceDetail = {
         currency: "USD",
         priceNote: "a month · total confirmed after the first meeting and the diagnosis",
         description:
-          "Getting found, not just existing. Google Business Profile, reviews, local SEO and visibility in AI search. No ads: this plan does not buy traffic yet.",
+          "Getting found, not just existing. Google Business Profile with weekly posts, reviews, local SEO and visibility in AI search. No ads: this plan does not buy traffic yet.",
         features: [
           "Site upkeep included",
           "Google Business Profile created and optimized, with verification handled (Google approves it)",
           "Services, hours and service areas kept current",
+          "Weekly posts on your Google Business Profile: updates, offers and recent work",
           "Review management: a system to ask, and replies to reviews",
           "Local SEO and content prepared for search engines and AI answers",
           "Monthly report on your Google profile, your SEO and your website",
@@ -1468,6 +1646,110 @@ const marketingEn: ServiceDetail = {
     itemCta: "Request a first meeting",
     note: "The published prices are the starting point. For both plans the total is confirmed the same way: a first meeting to understand your business and what it needs, a diagnosis of your digital presence, and the final number and the plan of work come out of that. Quantity, frequency, platforms and deliverables are set in the approved proposal. Growth+ has no lock-in: move up, move down or cancel month to month. Digital Marketing asks for a three-month minimum and, once that is met, also cancels month to month. The budget spent on Google Ads and Meta is paid by you directly to the platform: I take no commission on your ad spend.",
     cta: "See full pricing",
+  },
+  social: {
+    eyebrow: "// social media and advertising",
+    title: "Social media packages from $185 USD a month",
+    subtitle:
+      "Strategy, content, reels, Facebook and Instagram management and Meta advertising. Each package is quoted for your trade, your city and the material you already have; the entry package starts at $185 USD a month.",
+    items: [
+      {
+        name: "Presence",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Get a quote",
+        hidePrice: true,
+        currency: "USD",
+        priceNote: "a month · from $185 USD",
+        description: "To start making your social media look professional.",
+        features: [
+          "8 posts a month: 2 reels, 2 carousels and 4 static designs",
+          "Simple reels, edited from the footage you send us",
+          "Monthly planning, copy and scheduling for every post",
+          "Facebook and Instagram",
+          "Basic monthly report",
+        ],
+        highlighted: false,
+      },
+      {
+        name: "Local Growth",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Get a quote",
+        hidePrice: true,
+        currency: "USD",
+        priceNote: "a month · confirmed after the first meeting",
+        description:
+          "Consistent, strategic content shot at your business, so your social media works all month long.",
+        features: [
+          "12 posts a month: 4 reels, 4 carousels and 4 static designs",
+          "Monthly content strategy",
+          "One on-site shoot of up to 2 hours (Durango, Mexico)",
+          "Facebook and Instagram management",
+          "Results review and a monthly meeting",
+        ],
+        highlighted: true,
+      },
+      {
+        name: "Digital Boost",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Get a quote",
+        hidePrice: true,
+        currency: "USD",
+        priceNote: "a month · ad spend is separate",
+        description: "For businesses ready to invest in winning new clients.",
+        features: [
+          "Everything in Local Growth",
+          "Planning and management of one Meta Ads campaign",
+          "Creatives adapted for the ads",
+          "Lead follow-up",
+          "Ongoing campaign optimization",
+        ],
+        highlighted: false,
+      },
+      {
+        name: "Custom",
+        pricePrefix: "",
+        price: "",
+        quoteLabel: "Custom quote",
+        currency: "USD",
+        priceNote: "based on your scope",
+        description:
+          "For larger businesses or specific needs that call for a more complete strategy.",
+        features: [
+          "Strategy by service, business line or location",
+          "Content volume and frequency set to what you need",
+          "Meta Ads campaigns with different goals and audiences",
+          "Can be combined with local SEO and Google Ads",
+          "Scope and deliverables set in the proposal",
+        ],
+        highlighted: false,
+      },
+    ],
+    itemCta: "Quote this package",
+    note: "Every package is quoted after a first meeting to get to know your business. Meta ad spend (Facebook and Instagram) is paid separately, directly to the platform.",
+    cta: "",
+    recording: {
+      title: "Who shoots the content?",
+      items: [
+        {
+          icon: "globe",
+          title: "Outside Mexico",
+          text: "You shoot the footage and send it to us for editing and scheduling. We send you the full structure: scripts, which shots to film and how to film them.",
+        },
+        {
+          icon: "map-pin",
+          title: "In Durango, Mexico",
+          text: "We come to your business and shoot it ourselves. Local Growth and Digital Boost include one session of up to 2 hours a month.",
+        },
+        {
+          icon: "route",
+          title: "Elsewhere in Mexico",
+          text: "An on-site shoot in your city is quoted separately.",
+        },
+      ],
+    },
   },
   standards: {
     eyebrow: "// how it is measured",
@@ -1557,7 +1839,12 @@ const marketingEn: ServiceDetail = {
       {
         question: "Do you handle social media content?",
         answer:
-          "I publish monthly posts on your Google Business Profile, which is the network closest to a local sale, plus blog content that works your SEO. I do not run Instagram or TikTok calendars: I would rather tell you that up front than do it halfway.",
+          "Yes. The social media packages include strategy, reels, carousels, designs, copy, scheduling and Facebook and Instagram management, from $185 USD a month; the Digital Boost package adds a Meta Ads campaign. Outside Mexico you shoot the footage with the scripts and guide we send you, and we edit and schedule it. In Durango, Mexico, we shoot at your business; elsewhere in Mexico an on-site shoot is quoted separately. Ad spend is paid separately.",
+      },
+      {
+        question: "Can you do social media if my business is in the U.S.?",
+        answer:
+          "Yes. You shoot the footage and send it to us: we send you the structure of every video, the scripts and how to film it, and we handle the editing, design and scheduling. On-site shoots are done in Durango, Mexico; elsewhere in Mexico they are quoted separately.",
       },
       {
         question: "What if I want to cancel?",
@@ -1583,6 +1870,7 @@ const marketingEn: ServiceDetail = {
       "I do not show up when people search my service",
       "My Google profile is thin or has no reviews",
       "I want to start running ads",
+      "I want content and Facebook and Instagram management",
       "Messages come in and I lose them",
       "I am still comparing options",
     ],
@@ -1625,7 +1913,7 @@ const hubEn: ServicesHub = {
         title: "Start with the marketing",
         body: "Your site is well built and it converts, but few people arrive: your Google profile is incomplete, you have no reviews, or you do not show up when someone searches for your service in your city. That is where local SEO services for small businesses come in — visibility and reviews, not redesign.",
         forWho: "For anyone with a site that needs filling.",
-        price: "From $499 USD a month",
+        price: "Social from $185 USD a month · SEO from $499",
         cta: "See digital marketing",
         href: "digitalMarketing",
         highlighted: false,

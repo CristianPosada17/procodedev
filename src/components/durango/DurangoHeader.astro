@@ -1,0 +1,72 @@
+---
+/*
+  Header de /marketing-digital-durango/.
+
+  Igual que el de la Revisión Express: una landing de conversión que recibe
+  tráfico de campañas no necesita los menús del sitio. Logo, tres anclas de
+  la propia página (solo en escritorio) y el CTA del diagnóstico.
+*/
+import { PAGES } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+const links = [
+  { label: "Servicios", href: "#servicios" },
+  { label: "Trabajo", href: "#trabajo" },
+  { label: "Planes", href: "#planes" },
+  { label: "Preguntas", href: "#preguntas" },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl">
+  <div class="mx-auto flex w-full max-w-[1480px] items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <a href={PAGES.home.es} class="flex min-w-0 items-center gap-2 sm:gap-3" aria-label="ProCode Systems, inicio">
+      <img
+        src="/Logo-96.webp"
+        srcset="/Logo-96.webp 96w, /Logo-192.webp 192w"
+        sizes="44px"
+        alt=""
+        width="40"
+        height="40"
+        class="h-10 w-10 object-contain"
+      />
+      <span class="whitespace-nowrap text-[15px] font-bold tracking-tight text-[var(--text)] sm:text-lg">
+        ProCode <span class="text-[var(--accent)]">Systems</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Secciones de la página">
+      {links.map((l) => (
+        <a href={l.href} class="text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]">
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Cambiar tema"
+        class="inline-flex h-[38px] w-[38px] items-center justify-center rounded-lg border border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)] transition hover:border-[color:var(--border-strong)] hover:text-[var(--accent)]"
+      >
+        <span class="theme-icon-sun inline-flex"><Icon name="sun" class="h-4 w-4" /></span>
+        <span class="theme-icon-moon inline-flex"><Icon name="moon" class="h-4 w-4" /></span>
+      </button>
+      <a
+        href="#diagnostico"
+        data-cta="header-durango-diagnostico"
+        class="btn-cta min-h-[42px] px-4 py-2.5 text-xs sm:px-5 sm:text-sm"
+      >
+        Diagnóstico<span class="hidden sm:inline">&nbsp;gratuito</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      (window as any).pcdToggleTheme?.();
+    });
+  });
+</script>

@@ -1,0 +1,450 @@
+---
+/*
+  04 · Nuestro trabajo — contenido real por proyecto.
+
+  Una pestaña por cliente (primero el de Durango). En cada una, tres piezas
+  hechas por ProCode con capturas reales del sitio publicado de ese cliente
+  (public/images/trabajo/) y su testimonio ya publicado:
+  · Reel: 4 tomas del sitio en celular, con subtítulos y barra de historia.
+    Avanza solo mientras está en pantalla; se pausa con el botón y se
+    adelanta tocándolo. Con «reducir movimiento» no avanza solo.
+  · Carrusel: 5 láminas deslizables (portada, dos capturas, puntos clave y
+    cierre de ProCode).
+  · Diseño: publicación estática con el testimonio y el sitio en pantalla.
+  Las tipografías van en unidades de contenedor (cqw) para que cada pieza
+  conserve su proporción en cualquier ancho.
+
+  Importante: son piezas SOBRE proyectos de desarrollo web. No presentar
+  esto como administración de redes de esos clientes.
+*/
+import { durango } from "../../i18n/durango";
+import SectionHeading from "../SectionHeading.astro";
+import Icon from "../Icon.astro";
+
+const w = durango.work;
+const img = (id: string, kind: "reel" | "web", n: number) => `/images/trabajo/${id}-${kind}-${n}.webp`;
+---
+
+<section id="trabajo" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <SectionHeading eyebrow={w.eyebrow} align="center" max="max-w-3xl">
+      <Fragment slot="title">{w.title}</Fragment>
+      <Fragment slot="subtitle">{w.subtitle}</Fragment>
+    </SectionHeading>
+
+    {/* Pestañas por proyecto */}
+    <div class="car-track reveal mt-10 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0" data-work-tabs-wrap>
+      <div class="mx-auto flex w-max gap-2 rounded-2xl border border-[color:var(--border)] bg-[var(--surface)]/60 p-1.5 backdrop-blur-xl" role="tablist" aria-label="Proyectos" data-work-tabs>
+        {w.projects.map((p, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-${p.id}`}
+            aria-controls={`panel-${p.id}`}
+            aria-selected={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? 0 : -1}
+            data-tab={p.id}
+            class="flex items-center gap-2.5 whitespace-nowrap rounded-xl px-3.5 py-2.5 text-sm font-semibold text-[var(--muted)] transition hover:text-[var(--text)] aria-selected:bg-[var(--brand)] aria-selected:text-white"
+          >
+            <span class="flex h-7 w-7 flex-none items-center justify-center overflow-hidden rounded-lg bg-white p-0.5">
+              <img src={p.logo} alt="" width="28" height="28" loading="lazy" class="h-full w-full object-contain" />
+            </span>
+            {p.short}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {w.projects.map((p, pi) => (
+      <div
+        id={`panel-${p.id}`}
+        role="tabpanel"
+        aria-labelledby={`tab-${p.id}`}
+        hidden={pi !== 0}
+        data-panel={p.id}
+        class="mt-8"
+        style={`--c-bg: ${p.bg}; --c-accent: ${p.accent};`}
+      >
+        {/* Ficha del proyecto */}
+        <div class="flex flex-col gap-4 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 backdrop-blur-xl lg:flex-row lg:items-center lg:gap-8">
+          <div class="flex items-center gap-4 lg:w-[34%]">
+            <span class="flex h-14 w-14 flex-none items-center justify-center overflow-hidden rounded-2xl bg-white p-1.5">
+              <img src={p.logo} alt={`Logotipo de ${p.name}`} width="56" height="56" loading="lazy" class="h-full w-full object-contain" />
+            </span>
+            <div class="min-w-0">
+              <span class="inline-flex rounded-full bg-emerald-500/12 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-emerald-500">{w.realBadge}</span>
+              <h3 class="mt-1 text-lg font-bold leading-snug text-[var(--text)]">{p.name}</h3>
+              <p class="text-[13px] text-[var(--muted)]">{p.location}</p>
+            </div>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-[var(--accent)]">{p.service}</p>
+            <p class="mt-1 text-sm leading-7 text-[var(--muted)]">{p.summary}</p>
+          </div>
+          <span class="font-mono text-xs text-[var(--muted)] lg:self-center">{p.urlLabel}</span>
+        </div>
+
+        {/* Las tres piezas */}
+        <div class="mt-5 grid items-start gap-6 md:grid-cols-[0.7fr_1fr_1fr]">
+          {/* ── Reel ── */}
+          <figure class="mx-auto w-full max-w-[340px] md:max-w-none">
+            <div
+              class="@container relative aspect-[9/16] cursor-pointer overflow-hidden rounded-[1.4rem] bg-black shadow-[0_30px_80px_-45px_var(--halo-card-strong)] ring-1 ring-[color:var(--border-strong)]"
+              data-reel
+              data-paused="true"
+              role="group"
+              aria-roledescription="reel"
+              aria-label={`Reel: ${p.name}`}
+            >
+              {p.reel.frames.map((text, n) => (
+                <div class="reel-frame absolute inset-0" data-frame data-active={n === 0 ? "true" : "false"}>
+                  <img
+                    src={img(p.id, "reel", n)}
+                    alt={n === 0 ? `Sitio web de ${p.name} visto en un celular` : ""}
+                    width="540"
+                    height="1169"
+                    loading="lazy"
+                    decoding="async"
+                    class="reel-img h-full w-full object-cover object-top"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 via-45% to-black/50"></div>
+                  <p class="absolute inset-x-[7cqw] bottom-[17cqw] text-[length:7cqw] font-bold leading-[1.15] text-white drop-shadow">
+                    {text}
+                  </p>
+                </div>
+              ))}
+
+              {/* Barra de historia y cuenta */}
+              <div class="absolute inset-x-[4cqw] top-[4cqw] flex gap-[1.5cqw]" aria-hidden="true">
+                {p.reel.frames.map(() => (
+                  <span class="h-[3px] flex-1 overflow-hidden rounded-full bg-white/35"><span class="block h-full w-0 rounded-full bg-white" data-seg></span></span>
+                ))}
+              </div>
+              <div class="absolute left-[4cqw] top-[9cqw] flex items-center gap-[2cqw]" aria-hidden="true">
+                <img src="/Logo-96.webp" alt="" width="24" height="24" class="h-[8cqw] w-[8cqw] rounded-full bg-[#0b1220] object-contain p-[1cqw]" />
+                <span class="text-[length:3.6cqw] font-semibold text-white">procode.systems</span>
+              </div>
+
+              <p class="absolute bottom-[6cqw] left-[7cqw] text-[length:3.4cqw] font-medium text-white/75" aria-hidden="true">Sitio por ProCode · {p.urlLabel}</p>
+              <button
+                type="button"
+                data-reel-toggle
+                aria-label="Pausar o reproducir el reel"
+                class="absolute bottom-[4cqw] right-[4cqw] flex h-[11cqw] w-[11cqw] items-center justify-center rounded-full bg-white/20 text-white backdrop-blur transition hover:bg-white/35"
+              >
+                <svg class="icon-play h-[4.5cqw] w-[4.5cqw]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                <svg class="icon-pause h-[4.5cqw] w-[4.5cqw]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" /></svg>
+              </button>
+            </div>
+            <figcaption class="mt-3 px-1">
+              <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">{w.formats.reel}</span>
+              <p class="mt-1 text-[13px] leading-6 text-[var(--muted)]"><span class="font-semibold text-[var(--text)]">{w.showsLabel}:</span> {p.reel.shows}</p>
+            </figcaption>
+          </figure>
+
+          {/* ── Carrusel ── */}
+          <figure class="w-full">
+            <div
+              class="@container relative aspect-[4/5] overflow-hidden rounded-[1.4rem] shadow-[0_30px_80px_-45px_var(--halo-card-strong)] ring-1 ring-[color:var(--border-strong)]"
+              style="background: var(--c-bg);"
+              data-carousel
+              role="group"
+              aria-roledescription="carrusel"
+              aria-label={`Carrusel: ${p.name}`}
+            >
+              <div class="car-track flex h-full snap-x snap-mandatory overflow-x-auto" data-track>
+                {/* 1 · Portada */}
+                <div class="relative flex h-full w-full flex-none snap-center flex-col p-[7cqw] text-white">
+                  <span class="font-mono text-[length:3.2cqw] uppercase tracking-[0.18em]" style="color: var(--c-accent);">{p.carousel.cover.kicker}</span>
+                  <p class="mt-[3cqw] text-[length:8cqw] font-bold leading-[1.08]">{p.carousel.cover.title}</p>
+                  <div class="mt-auto overflow-hidden rounded-[2.4cqw] bg-white shadow-2xl">
+                    <div class="flex gap-[1cqw] bg-[#e5e7eb] px-[2.4cqw] py-[1.6cqw]" aria-hidden="true"><span class="h-[1.6cqw] w-[1.6cqw] rounded-full bg-[#f87171]"></span><span class="h-[1.6cqw] w-[1.6cqw] rounded-full bg-[#fbbf24]"></span><span class="h-[1.6cqw] w-[1.6cqw] rounded-full bg-[#34d399]"></span></div>
+                    <img src={img(p.id, "web", 0)} alt={`Página de inicio del sitio de ${p.name}`} width="1080" height="675" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover object-top" />
+                  </div>
+                </div>
+                {/* 2–3 · Capturas */}
+                {p.carousel.slides.map((title, n) => (
+                  <div class="relative flex h-full w-full flex-none snap-center flex-col p-[7cqw] text-white">
+                    <span class="font-mono text-[length:9cqw] font-bold leading-none" style="color: var(--c-accent);">0{n + 2}</span>
+                    <p class="mt-[3cqw] text-[length:6.6cqw] font-bold leading-[1.1]">{title}</p>
+                    <div class="mt-auto overflow-hidden rounded-[2.4cqw] bg-white shadow-2xl">
+                      <div class="flex gap-[1cqw] bg-[#e5e7eb] px-[2.4cqw] py-[1.6cqw]" aria-hidden="true"><span class="h-[1.6cqw] w-[1.6cqw] rounded-full bg-[#f87171]"></span><span class="h-[1.6cqw] w-[1.6cqw] rounded-full bg-[#fbbf24]"></span><span class="h-[1.6cqw] w-[1.6cqw] rounded-full bg-[#34d399]"></span></div>
+                      <img src={img(p.id, "web", n + 1)} alt="" width="1080" height="675" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover object-top" />
+                    </div>
+                  </div>
+                ))}
+                {/* 4 · Puntos clave */}
+                <div class="relative flex h-full w-full flex-none snap-center flex-col justify-center p-[8cqw] text-white">
+                  <span class="font-mono text-[length:9cqw] font-bold leading-none" style="color: var(--c-accent);">04</span>
+                  <p class="mt-[3cqw] text-[length:7.4cqw] font-bold leading-[1.1]">{p.carousel.points.title}</p>
+                  <ul class="mt-[6cqw] grid gap-[3.6cqw]">
+                    {p.carousel.points.items.map((it) => (
+                      <li class="flex items-start gap-[3cqw] text-[length:4.7cqw] leading-[1.3]">
+                        <span class="mt-[0.4cqw] flex h-[5.4cqw] w-[5.4cqw] flex-none items-center justify-center rounded-full text-[#0b1220]" style="background: var(--c-accent);">
+                          <Icon name="check" class="h-[3.2cqw] w-[3.2cqw]" strokeWidth={3} />
+                        </span>
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* 5 · Cierre */}
+                <div class="relative flex h-full w-full flex-none snap-center flex-col items-center justify-center p-[9cqw] text-center text-white">
+                  <img src="/Logo-192.webp" alt="" width="96" height="96" loading="lazy" class="h-[18cqw] w-[18cqw] object-contain" />
+                  <p class="mt-[6cqw] text-[length:7.6cqw] font-bold leading-[1.1]">{w.cta.title}</p>
+                  <p class="mt-[3cqw] text-[length:4.4cqw] text-white/80">{w.cta.text}</p>
+                  <span class="mt-[6cqw] rounded-full px-[5cqw] py-[2.2cqw] text-[length:4cqw] font-bold text-[#0b1220]" style="background: var(--c-accent);">{w.cta.site}</span>
+                </div>
+              </div>
+
+              <span class="pointer-events-none absolute right-[4cqw] top-[4cqw] rounded-full bg-black/35 px-[2.4cqw] py-[1cqw] font-mono text-[length:3cqw] text-white backdrop-blur" data-count aria-hidden="true">1/5</span>
+              <button type="button" data-prev aria-label="Lámina anterior" class="absolute left-[3cqw] top-1/2 flex h-[10cqw] w-[10cqw] -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-[#0b1220] shadow transition hover:bg-white disabled:opacity-0">
+                <Icon name="arrow-right" class="h-[4.5cqw] w-[4.5cqw] rotate-180" />
+              </button>
+              <button type="button" data-next aria-label="Lámina siguiente" class="absolute right-[3cqw] top-1/2 flex h-[10cqw] w-[10cqw] -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-[#0b1220] shadow transition hover:bg-white disabled:opacity-0">
+                <Icon name="arrow-right" class="h-[4.5cqw] w-[4.5cqw]" />
+              </button>
+              <div class="pointer-events-none absolute inset-x-0 bottom-[3cqw] flex justify-center gap-[1.4cqw]" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((d) => (
+                  <span class:list={["h-[1.6cqw] rounded-full bg-white transition-all", d === 0 ? "w-[5cqw] opacity-100" : "w-[1.6cqw] opacity-50"]} data-dot></span>
+                ))}
+              </div>
+            </div>
+            <figcaption class="mt-3 px-1">
+              <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">{w.formats.carousel}</span>
+              <p class="mt-1 text-[13px] leading-6 text-[var(--muted)]"><span class="font-semibold text-[var(--text)]">{w.showsLabel}:</span> {p.carousel.shows}</p>
+            </figcaption>
+          </figure>
+
+          {/* ── Diseño ── */}
+          <figure class="w-full">
+            <div
+              class="@container relative aspect-[4/5] overflow-hidden rounded-[1.4rem] text-white shadow-[0_30px_80px_-45px_var(--halo-card-strong)] ring-1 ring-[color:var(--border-strong)]"
+              style="background: radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--c-accent) 28%, transparent), transparent 60%), var(--c-bg);"
+            >
+              {/* El relleno va aquí dentro: las unidades cqw del propio
+                  contenedor se resolverían contra el contenedor padre. */}
+              <div class="absolute inset-0 flex flex-col p-[7cqw]">
+              <div class="flex items-center justify-between">
+                <span class="flex h-[11cqw] items-center rounded-full bg-white px-[2.6cqw]">
+                  <img src={p.logo} alt="" width="80" height="40" loading="lazy" class="h-[8cqw] w-auto object-contain" />
+                </span>
+                <span class="rounded-full border border-white/30 px-[2.6cqw] py-[1cqw] font-mono text-[length:2.8cqw] uppercase tracking-[0.14em] text-white/85">{w.realBadge}</span>
+              </div>
+
+              {p.quote ? (
+                <div class="mt-[5cqw]">
+                  <span class="block font-serif text-[length:12cqw] leading-[0.5]" style="color: var(--c-accent);" aria-hidden="true">“</span>
+                  <p class="mt-[1cqw] text-[length:4.3cqw] font-semibold leading-[1.3]">{p.quote}</p>
+                  <p class="mt-[2.6cqw] text-[length:3.4cqw] font-medium" style="color: var(--c-accent);">— {p.quoteBy}</p>
+                </div>
+              ) : (
+                <div class="mt-[7cqw]">
+                  <p class="text-[length:8.6cqw] font-bold leading-[1.05]">{(p.design as any).headline}</p>
+                  <p class="mt-[3cqw] text-[length:4.3cqw] leading-[1.35] text-white/80">{(p.design as any).sub}</p>
+                </div>
+              )}
+
+              {/* Dispositivos */}
+              <div class="relative mt-auto pr-[22cqw] pt-[4cqw]">
+                <div class="overflow-hidden rounded-[2cqw] bg-white shadow-2xl">
+                  <div class="flex gap-[1cqw] bg-[#e5e7eb] px-[2cqw] py-[1.3cqw]" aria-hidden="true"><span class="h-[1.4cqw] w-[1.4cqw] rounded-full bg-[#f87171]"></span><span class="h-[1.4cqw] w-[1.4cqw] rounded-full bg-[#fbbf24]"></span><span class="h-[1.4cqw] w-[1.4cqw] rounded-full bg-[#34d399]"></span></div>
+                  <img src={img(p.id, "web", 0)} alt="" width="1080" height="675" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover object-top" />
+                </div>
+                <div class="absolute -bottom-[1cqw] right-0 w-[25cqw] overflow-hidden rounded-[3.4cqw] border-[1.2cqw] border-[#0b1220] bg-[#0b1220] shadow-2xl">
+                  <img src={img(p.id, "reel", 0)} alt="" width="540" height="1169" loading="lazy" decoding="async" class="aspect-[9/17] w-full object-cover object-top" />
+                </div>
+              </div>
+              <p class="mt-[3.4cqw] text-[length:3cqw] text-white/70">Sitio web por ProCode Systems · {p.urlLabel}</p>
+              </div>
+            </div>
+            <figcaption class="mt-3 px-1">
+              <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">{w.formats.design}</span>
+              <p class="mt-1 text-[13px] leading-6 text-[var(--muted)]"><span class="font-semibold text-[var(--text)]">{w.showsLabel}:</span> {p.design.shows}</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    ))}
+
+    <p class="mx-auto mt-8 max-w-3xl text-center text-[13px] leading-6 text-[var(--muted)]">{w.note}</p>
+  </div>
+</section>
+
+<style>
+  .car-track {
+    scrollbar-width: none;
+  }
+  .car-track::-webkit-scrollbar {
+    display: none;
+  }
+  .reel-frame {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .reel-frame[data-active="true"] {
+    opacity: 1;
+  }
+  .reel-frame[data-active="true"] .reel-img {
+    animation: reel-pan 3.6s ease-out both;
+  }
+  [data-reel][data-paused="true"] .reel-img,
+  [data-reel][data-paused="true"] [data-seg] {
+    animation-play-state: paused;
+  }
+  [data-seg].running {
+    animation: seg-fill 3.6s linear forwards;
+  }
+  [data-reel] .icon-pause {
+    display: block;
+  }
+  [data-reel] .icon-play {
+    display: none;
+  }
+  [data-reel][data-paused="true"] .icon-pause {
+    display: none;
+  }
+  [data-reel][data-paused="true"] .icon-play {
+    display: block;
+  }
+  @keyframes reel-pan {
+    from {
+      transform: scale(1.08) translateY(0);
+    }
+    to {
+      transform: scale(1) translateY(-1.5%);
+    }
+  }
+  @keyframes seg-fill {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reel-frame[data-active="true"] .reel-img {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── Pestañas por proyecto ──
+  document.querySelectorAll<HTMLElement>("[data-work-tabs]").forEach((list) => {
+    const tabs = Array.from(list.querySelectorAll<HTMLButtonElement>("[data-tab]"));
+    const select = (tab: HTMLButtonElement, focus = false) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(`panel-${t.dataset.tab}`);
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("keydown", (e) => {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        e.preventDefault();
+        const next = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+        select(next, true);
+      });
+    });
+  });
+
+  // ── Reels ──
+  document.querySelectorAll<HTMLElement>("[data-reel]").forEach((reel) => {
+    const frames = Array.from(reel.querySelectorAll<HTMLElement>("[data-frame]"));
+    const segs = Array.from(reel.querySelectorAll<HTMLElement>("[data-seg]"));
+    let i = 0;
+    let visible = false;
+    let userPaused = false;
+
+    const sync = () => {
+      reel.dataset.paused = String(reduce || userPaused || !visible);
+    };
+    const show = (n: number) => {
+      i = (n + frames.length) % frames.length;
+      frames.forEach((f, k) => (f.dataset.active = String(k === i)));
+      segs.forEach((s, k) => {
+        s.classList.remove("running");
+        s.style.width = k < i ? "100%" : "0";
+      });
+      const seg = segs[i];
+      if (reduce) {
+        seg.style.width = "100%";
+        return;
+      }
+      void seg.offsetWidth; // reinicia la animación
+      seg.style.width = "";
+      seg.classList.add("running");
+    };
+    segs.forEach((s) => s.addEventListener("animationend", () => show(i + 1)));
+
+    reel.querySelector("[data-reel-toggle]")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      userPaused = !userPaused;
+      sync();
+    });
+    reel.addEventListener("click", () => show(i + 1));
+
+    new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.45 },
+    ).observe(reel);
+
+    show(0);
+    sync();
+  });
+
+  // ── Carruseles ──
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((car) => {
+    const track = car.querySelector<HTMLElement>("[data-track]")!;
+    const dots = Array.from(car.querySelectorAll<HTMLElement>("[data-dot]"));
+    const count = car.querySelector<HTMLElement>("[data-count]");
+    const prev = car.querySelector<HTMLButtonElement>("[data-prev]")!;
+    const next = car.querySelector<HTMLButtonElement>("[data-next]")!;
+    const total = dots.length;
+
+    let idx = 0;
+    const go = (n: number) => {
+      idx = Math.max(0, Math.min(total - 1, n));
+      track.scrollTo({ left: idx * track.clientWidth, behavior: reduce ? "auto" : "smooth" });
+      paint();
+    };
+    const paint = () => {
+      dots.forEach((d, k) => {
+        d.style.width = k === idx ? "5cqw" : "1.6cqw";
+        d.style.opacity = k === idx ? "1" : "0.5";
+      });
+      if (count) count.textContent = `${idx + 1}/${total}`;
+      prev.disabled = idx === 0;
+      next.disabled = idx === total - 1;
+    };
+    // Deslizar con el dedo: el índice sale de la posición al terminar.
+    let t: number | undefined;
+    track.addEventListener(
+      "scroll",
+      () => {
+        clearTimeout(t);
+        t = window.setTimeout(() => {
+          idx = Math.round(track.scrollLeft / (track.clientWidth || 1));
+          paint();
+        }, 120);
+      },
+      { passive: true },
+    );
+    prev.addEventListener("click", () => go(idx - 1));
+    next.addEventListener("click", () => go(idx + 1));
+    paint();
+  });
+</script>

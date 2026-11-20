@@ -73,6 +73,9 @@ interface Props {
   alternates?: { es: string; en: string };
   /** Tipo schema.org del nodo de la página. «AboutPage» en /sobre-nosotros/. */
   pageType?: "WebPage" | "AboutPage" | "ContactPage";
+  /** Moneda de los precios del Offer y del catálogo. USD en todo el sitio
+   *  salvo la landing de Durango, que publica precios locales en MXN. */
+  currency?: "USD" | "MXN";
 }
 
 const {
@@ -96,6 +99,7 @@ const {
   itemList,
   audience,
   areaServed,
+  currency = "USD",
   alternates,
   pageType = "WebPage",
 } = Astro.props as Props;
@@ -342,7 +346,7 @@ const breadcrumbNode = breadcrumbs?.length
 const priceSpec = (min: string, unit: "one-time" | "month" = "one-time") => ({
   "@type": unit === "month" ? "UnitPriceSpecification" : "PriceSpecification",
   minPrice: Number(min.replace(/,/g, "")),
-  priceCurrency: "USD",
+  priceCurrency: currency,
   ...(unit === "month"
     ? {
         unitCode: "MON",
@@ -383,7 +387,7 @@ const serviceNode = serviceName
           : offerPrice === "0"
             ? { priceCurrency: "USD", price: "0" }
             : {
-                priceCurrency: "USD",
+                priceCurrency: currency,
                 priceSpecification: priceSpec(offerPrice ?? "349", offerUnit),
               }),
         availability: "https://schema.org/InStock",

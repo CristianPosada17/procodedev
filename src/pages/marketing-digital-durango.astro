@@ -1,0 +1,100 @@
+---
+/*
+  ─────────────────────────────────────────────────────────────────────────
+  MARKETING DIGITAL EN DURANGO — landing local de conversión (nov 2026)
+  ─────────────────────────────────────────────────────────────────────────
+  Campaña de captación de negocios locales en Durango, México. Precios en
+  pesos mexicanos. Lo que se vende primero: el plan Crecimiento Local y la
+  Landing Page. Todo el texto vive en src/i18n/durango.ts; las secciones
+  exclusivas, en src/components/durango/.
+
+  Orden (de la estructura de conversión acordada):
+  01 Hero + franja de servicios · 02 Problema · 03 Servicios ·
+  04 Trabajo (conceptos demostrativos + caso real) · 05 Cómo trabajamos ·
+  06 Quién está detrás · 07 Planes (redes, web, Google) · 08 Preguntas ·
+  09 Diagnóstico gratuito → agenda (#agendar) → formulario (#contacto).
+
+  Como la Revisión Express, no está en el menú del sitio: el tráfico llega
+  por campañas, redes y WhatsApp, y la página no reparte la atención.
+*/
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import Calendly from "../components/Calendly.astro";
+import LeadForm from "../components/LeadForm.astro";
+
+import DurangoHeader from "../components/durango/DurangoHeader.astro";
+import DurangoHero from "../components/durango/DurangoHero.astro";
+import DurangoProblem from "../components/durango/DurangoProblem.astro";
+import DurangoServices from "../components/durango/DurangoServices.astro";
+import DurangoWork from "../components/durango/DurangoWork.astro";
+import DurangoProcess from "../components/durango/DurangoProcess.astro";
+import DurangoFounder from "../components/durango/DurangoFounder.astro";
+import DurangoPlans from "../components/durango/DurangoPlans.astro";
+import DurangoDiagnostic from "../components/durango/DurangoDiagnostic.astro";
+
+import { PAGES } from "../i18n/ui";
+import { durango as d } from "../i18n/durango";
+
+const lang = "es" as const;
+
+// Catálogo para el nodo Service (JSON-LD), con los precios base en MXN.
+const offerCatalog = [
+  ...d.services.items.map((s) => ({ title: s.title, description: s.text })),
+  ...d.plans.items.map((p) => ({
+    title: p.price ? `${p.name} — $${p.price} MXN al mes` : `${p.name} — ${p.priceNote}`,
+    description: `${p.tagline}. ${p.description}`,
+    ...(p.price ? { minPrice: p.price, unit: "month" as const } : {}),
+  })),
+  ...d.plans.web.items.map((p) => ({
+    title: `${p.name} — desde $${p.price} MXN`,
+    description: p.description,
+    minPrice: p.price,
+    unit: "one-time" as const,
+  })),
+  ...d.plans.seo.items.map((p) => ({
+    title: `${p.name} — desde $${p.price} MXN al mes`,
+    description: p.description,
+    minPrice: p.price,
+    unit: "month" as const,
+  })),
+];
+---
+
+<Layout
+  lang={lang}
+  page="durango"
+  title={d.meta.title}
+  description={d.meta.description}
+  keywords={d.meta.keywords}
+  breadcrumbs={[
+    { name: "Inicio", path: PAGES.home[lang] },
+    { name: "Marketing digital en Durango", path: PAGES.durango[lang] },
+  ]}
+  serviceName={d.meta.serviceName}
+  audience={d.meta.audience}
+  areaServed="Durango, México"
+  offerCatalog={offerCatalog}
+  offerPrice="3,525"
+  offerUnit="month"
+  offerUrl={PAGES.durango[lang]}
+  currency="MXN"
+  includeFaq={true}
+  faqItems={d.faq.items}
+>
+  <DurangoHeader />
+  <main id="main-content">
+    <DurangoHero />
+    <DurangoProblem />
+    <DurangoServices />
+    <DurangoWork />
+    <DurangoProcess />
+    <DurangoFounder />
+    <DurangoPlans />
+    <FAQ lang={lang} data={d.faq} id="preguntas" />
+    <DurangoDiagnostic />
+    <Calendly lang={lang} />
+    <LeadForm lang={lang} page="durango" heading={d.diagnostic.form} service={d.diagnostic.service} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

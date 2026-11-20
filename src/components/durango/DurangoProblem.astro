@@ -1,0 +1,139 @@
+---
+/*
+  02 · Identificación del problema.
+  Lista de situaciones concretas + comparación visual entre una cuenta con
+  contenido improvisado y una con identidad y estrategia. Las cuadrículas
+  son ilustrativas (no imitan ninguna cuenta real).
+*/
+import { durango } from "../../i18n/durango";
+import SectionHeading from "../SectionHeading.astro";
+import Icon from "../Icon.astro";
+
+const p = durango.problem;
+
+// Cuadrícula improvisada: colores y tamaños de texto sin relación entre sí.
+const messy = [
+  { bg: "bg-[#9ca3af]", t: "PROMO!!!", c: "text-yellow-300 text-[13px] font-black" },
+  { bg: "bg-[#f472b6]", t: "feliz lunes", c: "text-white text-[10px] italic" },
+  { bg: "bg-[#57534e]", t: "", c: "" },
+  { bg: "bg-[#22c55e]", t: "ABIERTO", c: "text-red-600 text-[11px] font-black" },
+  { bg: "bg-[#d6d3d1]", t: "foto borrosa", c: "text-stone-500 text-[9px]" },
+  { bg: "bg-[#1d4ed8]", t: "¡¡llámanos!!", c: "text-lime-300 text-[10px] font-bold" },
+  { bg: "bg-[#a16207]", t: "", c: "" },
+  { bg: "bg-[#e11d48]", t: "OFERTA", c: "text-white text-[12px] font-black underline" },
+  { bg: "bg-[#78716c]", t: "...", c: "text-white text-[10px]" },
+];
+// Cuadrícula con estrategia: misma paleta, pilares de contenido reconocibles.
+const clean = [
+  { bg: "from-[#0c4a6e] to-[#0284c7]", t: "Tips", reel: false },
+  { bg: "from-[#0f172a] to-[#334155]", t: "Detrás de cámaras", reel: true },
+  { bg: "from-[#0369a1] to-[#38bdf8]", t: "Testimonio", reel: false },
+  { bg: "from-[#0f172a] to-[#334155]", t: "Nuestro equipo", reel: true },
+  { bg: "from-[#0284c7] to-[#7dd3fc]", t: "Promoción", reel: false },
+  { bg: "from-[#0c4a6e] to-[#0284c7]", t: "Preguntas", reel: false },
+  { bg: "from-[#0369a1] to-[#38bdf8]", t: "Antes y después", reel: true },
+  { bg: "from-[#0c4a6e] to-[#0284c7]", t: "Tips", reel: false },
+  { bg: "from-[#0f172a] to-[#334155]", t: "Proceso", reel: true },
+];
+---
+
+<section id="problema" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div>
+        <SectionHeading eyebrow={p.eyebrow}>
+          <Fragment slot="title">{p.title}</Fragment>
+          <Fragment slot="subtitle">{p.subtitle}</Fragment>
+        </SectionHeading>
+        <ul class="mt-8 grid gap-3">
+          {p.items.map((item, i) => (
+            <li
+              class="reveal flex items-center gap-4 rounded-2xl border border-[color:var(--border)] bg-[var(--surface)]/60 px-5 py-4 backdrop-blur-xl"
+              style={`--reveal-delay: ${i * 60}ms`}
+            >
+              <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
+                <Icon name={item.icon as any} class="h-4 w-4" />
+              </span>
+              <span class="text-[15px] leading-6 text-[var(--text)]">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Comparación visual */}
+      <div class="reveal grid gap-5 sm:grid-cols-2" aria-label="Comparación entre una cuenta improvisada y una con estrategia">
+        {[p.before, p.after].map((side, s) => (
+          <figure
+            class:list={[
+              "rounded-[var(--radius)] border p-4 backdrop-blur-xl",
+              s === 0
+                ? "border-[color:var(--border)] bg-[var(--surface)]/40"
+                : "border-[color:var(--border-strong)] bg-[var(--surface)]/80 shadow-[0_30px_80px_-50px_var(--halo-card-strong)]",
+            ]}
+          >
+            <figcaption
+              class:list={[
+                "mb-4 inline-flex rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em]",
+                s === 0 ? "bg-red-500/12 text-red-400" : "bg-emerald-500/12 text-emerald-400",
+              ]}
+            >
+              {side.label}
+            </figcaption>
+            {/* Cabecera del perfil */}
+            <div class="flex items-center gap-3">
+              <span
+                class:list={[
+                  "flex h-11 w-11 flex-none items-center justify-center rounded-full text-xs font-bold",
+                  s === 0 ? "bg-stone-400 text-white" : "bg-gradient-to-br from-[#0369a1] to-[#38bdf8] text-white ring-2 ring-[#38bdf8]/50 ring-offset-2 ring-offset-[var(--surface)]",
+                ]}
+                aria-hidden="true"
+              >
+                {s === 0 ? "?" : "TN"}
+              </span>
+              <div class="min-w-0">
+                <p class="text-xs font-bold text-[var(--text)]">tunegocio.dgo</p>
+                <p class="truncate text-[11px] text-[var(--muted)]">{side.bio}</p>
+              </div>
+            </div>
+            <p class="mt-3 font-mono text-[10px] text-[var(--muted)]">{side.last}</p>
+
+            {/* Cuadrícula */}
+            <div class="mt-3 grid grid-cols-3 gap-1" aria-hidden="true">
+              {s === 0
+                ? messy.map((m, i) => (
+                    <div class:list={["flex aspect-square items-center justify-center overflow-hidden p-1 text-center", m.bg, i === 4 ? "blur-[1.5px]" : "", i % 4 === 1 ? "rotate-1" : ""]}>
+                      <span class={m.c}>{m.t}</span>
+                    </div>
+                  ))
+                : clean.map((c) => (
+                    <div class:list={["relative flex aspect-square items-end bg-gradient-to-br p-1.5", c.bg]}>
+                      {c.reel && (
+                        <svg viewBox="0 0 24 24" class="absolute right-1.5 top-1.5 h-2.5 w-2.5 text-white/80" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                      )}
+                      <span class="text-[9px] font-semibold leading-tight text-white">{c.t}</span>
+                    </div>
+                  ))}
+            </div>
+
+            <ul class="mt-4 grid gap-1.5">
+              {side.notes.map((n) => (
+                <li class="flex items-center gap-2 text-[12px] text-[var(--text)]/85">
+                  {s === 0 ? (
+                    <span class="flex h-4 w-4 items-center justify-center rounded bg-red-500/15 text-red-400"><Icon name="close" class="h-2.5 w-2.5" strokeWidth={3} /></span>
+                  ) : (
+                    <span class="flex h-4 w-4 items-center justify-center rounded bg-emerald-500/15 text-emerald-400"><Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} /></span>
+                  )}
+                  {n}
+                </li>
+              ))}
+            </ul>
+          </figure>
+        ))}
+      </div>
+    </div>
+
+    <p class="reveal mx-auto mt-12 max-w-3xl rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--brand)]/8 px-6 py-6 text-center text-lg font-semibold leading-8 text-[var(--text)] sm:text-xl">
+      {p.closing}
+    </p>
+  </div>
+</section>

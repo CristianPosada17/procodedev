@@ -1,0 +1,79 @@
+---
+/*
+  06 · Quién está detrás de ProCode.
+  Foto real, presentación corta y, cuando exista, el video de 20–30 s
+  (`durango.founderVideo`). Sin «agencia líder» ni «gran equipo»: un
+  responsable identificable, y la aclaración de que no hay oficina de
+  atención al público.
+*/
+import { durango } from "../../i18n/durango";
+import Icon from "../Icon.astro";
+
+const f = durango.founder;
+const video = durango.founderVideo;
+---
+
+<section id="quien" class="relative py-12 lg:py-20">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal grid overflow-hidden rounded-[var(--radius)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl lg:grid-cols-[0.8fr_1.2fr]">
+      <div class="relative min-h-[360px] bg-[var(--bg-2)]">
+        {video ? (
+          <video
+            class="absolute inset-0 h-full w-full object-cover"
+            src={video}
+            poster={`${f.photo}-795.webp`}
+            controls
+            playsinline
+            preload="metadata"
+            aria-label="Video de presentación de Cristian Posada"
+          />
+        ) : (
+          <picture>
+            <source type="image/avif" srcset={`${f.photo}-400.avif 400w, ${f.photo}-795.avif 795w`} sizes="(min-width: 1024px) 34vw, 92vw" />
+            <img
+              src={`${f.photo}-795.webp`}
+              srcset={`${f.photo}-400.webp 400w, ${f.photo}-795.webp 795w`}
+              sizes="(min-width: 1024px) 34vw, 92vw"
+              alt={f.photoAlt}
+              width="795"
+              height="994"
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover object-top"
+            />
+          </picture>
+        )}
+      </div>
+
+      <div class="p-6 sm:p-10">
+        <span class="eyebrow">{f.eyebrow}</span>
+        <h2 class="mt-4 text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl">{f.title}</h2>
+        <p class="mt-5 text-lg font-bold text-[var(--text)]">
+          {f.name} <span class="font-medium text-[var(--muted)]">· {f.role}</span>
+        </p>
+        {f.body.map((para) => (
+          <p class="mt-3 text-[15px] leading-7 text-[var(--muted)]">{para}</p>
+        ))}
+
+        <ul class="mt-6 grid gap-3 sm:grid-cols-3">
+          {f.points.map((pt) => (
+            <li class="flex items-start gap-2.5 rounded-xl border border-[color:var(--border)] bg-[var(--bg-2)]/60 p-3 text-[13px] leading-5 text-[var(--text)]">
+              <Icon name={pt.icon as any} class="mt-0.5 h-4 w-4 flex-none text-[var(--accent)]" />
+              {pt.text}
+            </li>
+          ))}
+        </ul>
+
+        <p class="mt-6 flex items-start gap-3 rounded-xl bg-[var(--brand)]/8 p-4 text-[13px] leading-6 text-[var(--text)]/85">
+          <Icon name="info" class="mt-0.5 h-4 w-4 flex-none text-[var(--accent)]" />
+          {f.clarification}
+        </p>
+
+        <a href="#diagnostico" data-cta="founder-durango-diagnostico" class="btn-cta mt-7 inline-flex">
+          Hablar con Cristian
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

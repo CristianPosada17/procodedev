@@ -1,0 +1,53 @@
+---
+/*
+  09 · Diagnóstico gratuito — entrada al cierre.
+  Dos caminos que no compiten: intención alta → agenda de 20 min
+  (#agendar, Calendly); intención media → formulario (#contacto) para que
+  revisemos primero el perfil. Los dos bloques van justo debajo.
+*/
+import { durango } from "../../i18n/durango";
+import Icon from "../Icon.astro";
+
+const d = durango.diagnostic;
+---
+
+<section id="diagnostico" class="relative scroll-mt-20 py-12 lg:py-16">
+  <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
+    <div class="reveal relative overflow-hidden rounded-[calc(var(--radius)+8px)] border border-[color:var(--border-strong)] bg-[var(--surface)]/80 p-6 text-center shadow-[0_40px_120px_-60px_var(--halo-card-strong)] backdrop-blur-xl sm:p-12">
+      <div class="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-[var(--brand)]/20 blur-[90px]" aria-hidden="true"></div>
+      <span class="eyebrow relative">{d.eyebrow}</span>
+      <h2 class="relative mx-auto mt-4 max-w-3xl text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl">
+        {d.title}
+      </h2>
+      <p class="relative mx-auto mt-5 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">{d.subtitle}</p>
+
+      <div class="relative mx-auto mt-10 grid max-w-4xl gap-5 text-left md:grid-cols-2">
+        {d.paths.map((path) => (
+          <div
+            class:list={[
+              "flex flex-col rounded-[var(--radius)] border p-6",
+              path.primary
+                ? "border-[color:var(--brand)] bg-[var(--brand)]/10"
+                : "border-[color:var(--border)] bg-[var(--bg-2)]/60",
+            ]}
+          >
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--brand)]/15 text-[var(--accent)]">
+              <Icon name={path.icon as any} class="h-5 w-5" />
+            </span>
+            <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{path.kicker}</p>
+            <h3 class="mt-1 text-xl font-bold text-[var(--text)]">{path.title}</h3>
+            <p class="mt-2 flex-1 text-sm leading-7 text-[var(--muted)]">{path.text}</p>
+            <a
+              href={path.href}
+              data-cta={`diagnostico-durango-${path.primary ? "agendar" : "datos"}`}
+              class:list={["mt-5 w-full justify-center", path.primary ? "btn-cta" : "btn-secondary"]}
+            >
+              {path.cta}
+              {path.primary && <Icon name="arrow-right" class="h-4 w-4" />}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

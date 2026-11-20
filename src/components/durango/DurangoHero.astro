@@ -1,0 +1,155 @@
+---
+/*
+  Hero de la landing de Durango.
+
+  La composición visual NO son gráficos genéricos de likes: es lo que el
+  cliente va a recibir — un reel (video de Cristian trabajando cuando exista
+  `heroVideo`; mientras tanto, su foto como portada), dos publicaciones de
+  ejemplo y la vista de un calendario de contenido.
+*/
+import { durango } from "../../i18n/durango";
+import Icon from "../Icon.astro";
+
+const h = durango.hero;
+const video = durango.heroVideo;
+---
+
+<section class="relative overflow-hidden pb-8 pt-8 lg:pb-14 lg:pt-14">
+  <div class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-10 2xl:max-w-[1600px]">
+    <div class="hero-in max-w-2xl">
+      <span class="eyebrow">{h.eyebrow}</span>
+      <h1 class="mt-4 text-[2.4rem] font-bold leading-[1.06] tracking-tight text-[var(--text)] sm:text-[3.2rem] lg:text-[3.8rem]">
+        {h.title} <span class="grad-text">{h.titleHighlight}</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-8 text-[var(--muted)] sm:text-lg">{h.subtitle}</p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a href="#diagnostico" data-cta="hero-durango-diagnostico" class="btn-cta">
+          {h.cta}
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a href="#planes" data-cta="hero-durango-planes" class="btn-secondary">
+          {h.secondary}
+        </a>
+      </div>
+
+      <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+        {h.facts.map((f) => (
+          <div>
+            <dt class="sr-only">{f.label}</dt>
+            <dd class="text-2xl font-bold tracking-tight text-[var(--text)]">
+              <span class="mr-1 align-middle text-xs font-medium text-[var(--muted)]">Desde</span>{f.value}
+              <span class="ml-1.5 align-middle text-xs font-medium text-[var(--muted)]">{f.label}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p class="mt-4 flex items-center gap-2 text-sm text-[var(--muted)]">
+        <Icon name="map-pin" class="h-4 w-4 text-[var(--accent)]" />
+        {h.note}
+      </p>
+    </div>
+
+    {/* Composición: reel + publicaciones + calendario */}
+    <div class="hero-visual-in relative mx-auto w-full max-w-[560px]" aria-hidden="true">
+      <div class="pointer-events-none absolute -inset-10 rounded-[3rem] bg-[var(--brand)]/10 blur-[90px]"></div>
+
+      <div class="relative grid grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-3 sm:gap-5">
+        {/* Reel: llena el alto de las dos filas de la derecha */}
+        <div class="relative overflow-hidden rounded-[1.6rem] sm:row-span-2 border border-[color:var(--border-strong)] bg-[var(--surface)] shadow-[0_30px_80px_-40px_var(--halo-card-strong)]">
+          <div class="relative h-full min-h-[320px]">
+            {video ? (
+              <video
+                class="absolute inset-0 h-full w-full object-cover"
+                src={video}
+                poster="/images/cristian-posada-retrato-795.webp"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              />
+            ) : (
+              <picture>
+                <source type="image/avif" srcset="/images/cristian-posada-retrato-400.avif 400w, /images/cristian-posada-retrato-795.avif 795w" sizes="(min-width: 1024px) 260px, 45vw" />
+                <img
+                  src="/images/cristian-posada-retrato-400.webp"
+                  srcset="/images/cristian-posada-retrato-400.webp 400w, /images/cristian-posada-retrato-795.webp 795w"
+                  sizes="(min-width: 1024px) 260px, 45vw"
+                  alt=""
+                  width="400"
+                  height="500"
+                  fetchpriority="high"
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              </picture>
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30"></div>
+            <span class="absolute left-3 top-3 rounded-full bg-black/45 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white backdrop-blur">Reel</span>
+            <span class="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur">
+              <svg viewBox="0 0 24 24" class="ml-0.5 h-3.5 w-3.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+            <div class="absolute inset-x-3 bottom-3 text-white">
+              <p class="text-[11px] font-semibold opacity-80">@tunegocio.dgo</p>
+              <p class="mt-1 text-xs font-bold leading-snug sm:text-sm">Detrás de cámaras de tu negocio</p>
+              <div class="mt-3 h-1 overflow-hidden rounded-full bg-white/25"><div class="h-full w-2/5 rounded-full bg-white"></div></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dos publicaciones (desde sm: en un teléfono no caben junto al reel) */}
+        <div class="hidden grid-cols-2 gap-3 sm:grid">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-[#0c4a6e] via-[#0369a1] to-[#38bdf8] p-3 text-white shadow-[0_20px_50px_-30px_var(--halo-card-strong)]">
+            <span class="font-mono text-[8px] uppercase tracking-[0.16em] opacity-80">Carrusel</span>
+            <p class="mt-2 text-[13px] font-bold leading-tight">5 tips que tu cliente agradece</p>
+            <div class="absolute inset-x-0 bottom-2.5 flex justify-center gap-1">
+              <span class="h-1 w-3 rounded-full bg-white"></span><span class="h-1 w-1 rounded-full bg-white/50"></span><span class="h-1 w-1 rounded-full bg-white/50"></span>
+            </div>
+          </div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c2d12] via-[#c2410c] to-[#f59e0b] p-3 text-white shadow-[0_20px_50px_-30px_var(--halo-card-strong)]">
+            <span class="font-mono text-[8px] uppercase tracking-[0.16em] opacity-80">Diseño</span>
+            <p class="mt-2 text-[13px] font-bold leading-tight">Promoción de la semana</p>
+            <span class="absolute bottom-2.5 left-3 rounded-full bg-white px-2 py-0.5 text-[9px] font-bold text-[#7c2d12]">Pide por WhatsApp</span>
+          </div>
+        </div>
+
+        {/* Calendario de contenido */}
+        <div class="self-center rounded-2xl border border-[color:var(--border-strong)] bg-[var(--surface)]/90 p-3 shadow-[0_20px_60px_-35px_var(--halo-card-strong)] backdrop-blur-xl sm:self-auto sm:p-4">
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-bold text-[var(--text)]">Calendario de contenido</p>
+            <span class="font-mono text-[9px] uppercase tracking-[0.14em] text-[var(--accent)]">Semana 2</span>
+          </div>
+          <ul class="mt-3 grid gap-2">
+            {[
+              ["Lun", "Reel", "Detrás de cámaras", "bg-emerald-500"],
+              ["Mié", "Carrusel", "Tips", "bg-sky-500"],
+              ["Vie", "Diseño", "Promoción", "bg-amber-500"],
+            ].map(([d, t, topic, dot]) => (
+              <li class="flex items-center gap-2.5 rounded-lg bg-[var(--bg-2)]/70 px-2.5 py-2">
+                <span class="w-7 font-mono text-[10px] text-[var(--muted)]">{d}</span>
+                <span class:list={["h-2 w-2 flex-none rounded-full", dot]}></span>
+                <span class="text-[11px] font-semibold text-[var(--text)]">{t}</span>
+                <span class="hidden truncate text-[11px] text-[var(--muted)] sm:inline">· {topic}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-3 flex items-center gap-1.5 text-[10px] font-semibold text-emerald-500">
+            <Icon name="check" class="h-3 w-3" strokeWidth={3} /> Aprobado por ti antes de publicar
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Franja de servicios */}
+  <div class="mx-auto mt-12 w-full max-w-[1480px] px-4 sm:px-6 lg:mt-16 lg:px-10 2xl:max-w-[1600px]">
+    <ul class="flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-[color:var(--border)] bg-[var(--surface)]/50 px-3 py-3 text-center backdrop-blur-xl sm:gap-x-3 sm:px-5 sm:py-4">
+      {h.strip.map((s, i) => (
+        <li class="flex items-center gap-3 rounded-full bg-[var(--bg-2)] px-3 py-1.5 text-xs font-semibold text-[var(--text)]/85 sm:bg-transparent sm:p-0 sm:text-sm">
+          {i > 0 && <span class="hidden text-[var(--accent)] sm:inline" aria-hidden="true">·</span>}
+          {s}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
