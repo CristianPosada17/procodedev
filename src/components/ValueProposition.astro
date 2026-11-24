@@ -8,31 +8,163 @@ interface Props {
 const { lang = "es" } = Astro.props as Props;
 const v = translations[lang].valueProp;
 const icons = ["layout", "file-text", "calendar", "bar-chart"] as const;
+const outcomeIcons = ["phone", "message-circle", "calendar"] as const;
+
+// El nombre de la marca va en blanco dentro de la frase; el resto queda en
+// un tono más suave para que la frase se lea como presentación, no como nota.
+const brand = "ProCode Systems";
+const [beforeBrand, afterBrand] = v.before.includes(brand)
+  ? [v.before.slice(0, v.before.indexOf(brand)), v.before.slice(v.before.indexOf(brand) + brand.length)]
+  : ["", v.before];
+const hasBrand = v.before.includes(brand);
 ---
 
 {/*
-  Propuesta de valor del home (octubre de 2026). Va después del hero y los
-  logos: el titular dice qué es ProCode, esta frase dice qué consigue y con
-  qué piezas. Las cuatro piezas repiten el final de la frase para que se
-  lean de un vistazo.
+  Propuesta de valor del home — rediseño visual (noviembre de 2026).
+  El texto es el mismo de octubre (la frase-respuesta que toman los
+  buscadores con IA, ver ui.ts → valueProp); lo que cambia es cómo se ve:
+  · banda navy con hexágonos y halos, igual que las secciones oscuras de
+    lealtad.procodedev.com;
+  · los datos de la frase (sede, precio, mercados, para quién) en cifras;
+  · a la derecha, el sistema en movimiento: visitas → web, formularios,
+    agenda y medición → llamadas, mensajes y citas.
+  Todo el movimiento es CSS (global.css → «PROPUESTA DE VALOR DEL HOME»).
 */}
-<section id="propuesta" class="relative py-12 lg:py-16">
+<section id="propuesta" class="relative py-12 lg:py-20">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
-    <div class="reveal mx-auto max-w-4xl rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--surface)]/60 px-6 py-10 text-center backdrop-blur-xl sm:px-10 lg:px-14 lg:py-14">
-      <span class="eyebrow">{v.eyebrow}</span>
-      <p class="mt-5 text-balance text-xl font-semibold leading-relaxed tracking-tight text-[var(--text)] sm:text-2xl lg:text-[1.75rem] lg:leading-[1.45]">
-        {v.before}{" "}<span class="grad-text">{v.highlight}</span>{v.after}
-      </p>
-      <ul class="mt-8 flex flex-wrap justify-center gap-3">
-        {
-          v.pillars.map((label, i) => (
-            <li class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--tint)] px-4 py-2 text-sm font-semibold text-[var(--text)]">
-              <Icon name={icons[i] ?? "check"} class="h-4 w-4 text-[var(--accent)]" />
-              {label}
-            </li>
-          ))
-        }
-      </ul>
+    <div class="vp-band reveal relative isolate overflow-hidden rounded-[2rem] px-6 py-10 text-white sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+      {/* Fondo: hexágonos que bajan, dos halos y un barrido de luz al entrar. */}
+      <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div class="bg-hex-light hex-drift absolute"></div>
+        <span class="ambient-orb ambient-orb-a opacity-70 [--orb-a:rgba(96,165,250,0.35)]"></span>
+        <span class="ambient-orb ambient-orb-b opacity-80 [--orb-b:rgba(34,211,238,0.22)]"></span>
+        <span class="vp-shine absolute inset-0"></span>
+      </div>
+
+      <div class="grid items-center gap-12 lg:grid-cols-[1.08fr_1fr] lg:gap-16">
+        {/* ── Texto ── */}
+        <div class="reveal reveal-stagger">
+          <span class="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan-200">
+            <span class="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]"></span>
+            {v.eyebrow.replace(/^\/\/\s*/, "")}
+          </span>
+
+          <p class="font-head mt-6 text-balance text-[2.2rem] font-bold leading-[1.04] tracking-[-0.03em] text-white sm:text-[2.9rem] lg:text-[3.3rem]">
+            {v.displayA}{" "}<span class="vp-grad grad-flow">{v.displayB}</span>
+          </p>
+
+          <p class="mt-6 max-w-[38rem] text-pretty text-base leading-[1.75] text-white/70 sm:text-[1.08rem]">
+            {beforeBrand}{hasBrand && <strong class="font-bold text-white">{brand}</strong>}{afterBrand}{" "}<span class="font-semibold text-cyan-200">{v.highlight}</span>{v.after}
+          </p>
+
+          <dl class="mt-9 grid grid-cols-2 border-t border-white/12 sm:grid-cols-4">
+            {
+              v.facts.map((f, i) => (
+                <div
+                  class:list={[
+                    "vp-fact border-white/12 pt-5 pr-3",
+                    i % 2 === 1 && "border-l pl-4 sm:pl-5",
+                    i > 0 && "sm:border-l sm:pl-5",
+                    i > 1 && "mt-5 border-t sm:mt-0 sm:border-t-0",
+                  ]}
+                >
+                  <dt class="font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">{f.label}</dt>
+                  <dd class="mt-1.5 text-base font-bold leading-snug text-white sm:text-[1.05rem]">{f.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+
+        {/* ── Visual: el sistema en movimiento ── */}
+        <div class="reveal reveal-scale relative mx-auto w-full max-w-[34rem] [--reveal-delay:150ms]">
+          <div class="vp-console relative rounded-[1.6rem] p-4 sm:p-5">
+            {/* Barra de la consola */}
+            <div class="flex items-center justify-between px-1">
+              <div class="flex items-center gap-1.5" aria-hidden="true">
+                <i class="h-2.5 w-2.5 rounded-full bg-white/20"></i>
+                <i class="h-2.5 w-2.5 rounded-full bg-white/20"></i>
+                <i class="h-2.5 w-2.5 rounded-full bg-white/20"></i>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-white/55">{v.flowTitle}</span>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-emerald-300">
+                <span class="lt-ping relative h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                {v.flowLive}
+              </span>
+            </div>
+
+            {/* Entrada: visitas */}
+            <div class="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3">
+              <div class="flex items-center gap-3">
+                <span class="vp-node-icon flex h-9 w-9 items-center justify-center rounded-xl">
+                  <Icon name="users" class="h-4.5 w-4.5" />
+                </span>
+                <span class="text-sm font-semibold text-white">{v.flowIn}</span>
+              </div>
+              <span class="vp-bars flex h-7 items-end gap-1" aria-hidden="true">
+                <i class="h-3" style="--d:0ms"></i>
+                <i class="h-5" style="--d:200ms"></i>
+                <i class="h-4" style="--d:400ms"></i>
+                <i class="h-7" style="--d:600ms"></i>
+                <i class="h-5" style="--d:800ms"></i>
+                <i class="h-6" style="--d:1000ms"></i>
+              </span>
+            </div>
+
+            <div class="flex justify-center" aria-hidden="true">
+              <span class="vp-rail h-7 w-0.5"></span>
+            </div>
+
+            {/* Las cuatro piezas, conectadas */}
+            <ul class="grid grid-cols-2 gap-2.5">
+              {
+                v.pillars.map((label, i) => (
+                  <li class="vp-node flex items-center gap-3 rounded-2xl px-3 py-3 sm:px-3.5" style={`--d:${i * 1.5}s`}>
+                    <span class="vp-node-icon hidden h-9 w-9 flex-none items-center justify-center rounded-xl sm:flex">
+                      <Icon name={icons[i] ?? "check"} class="h-4.5 w-4.5" />
+                    </span>
+                    <span class="min-w-0">
+                      <span class="block truncate text-sm font-bold text-white">{label}</span>
+                      <span class="mt-0.5 flex items-center gap-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-emerald-300/90">
+                        <Icon name="check" class="h-2.5 w-2.5" strokeWidth={3} />
+                        {v.flowConnected}
+                      </span>
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+
+            <div class="flex justify-center" aria-hidden="true">
+              <span class="vp-rail h-7 w-0.5" style="--d:1.2s"></span>
+            </div>
+
+            {/* Salida: llamadas, mensajes y citas que van llegando */}
+            <div class="rounded-2xl border border-white/10 bg-black/15 p-3">
+              <p class="px-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">{v.flowOut}</p>
+              <ul class="mt-2.5 grid gap-2">
+                {
+                  v.outcomes.map((label, i) => (
+                    <li class="vp-toast flex items-center gap-3 rounded-xl px-3 py-2.5" style={`--d:${i * 0.9}s`}>
+                      <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-white">
+                        <Icon name={outcomeIcons[i] ?? "check"} class="h-4 w-4" />
+                      </span>
+                      <span class="min-w-0 flex-1 text-sm font-semibold">{label}</span>
+                      <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-slate-500">{v.outcomeTime}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+
+          {/* Etiqueta flotante, como el «+1 sello» de la landing de lealtad */}
+          <span class="lt-float absolute -right-2 -top-4 hidden items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-slate-900 shadow-[0_14px_30px_-12px_rgba(0,0,0,0.6)] sm:inline-flex" aria-hidden="true">
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+            +1 {v.outcomes[2].toLowerCase()}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </section>

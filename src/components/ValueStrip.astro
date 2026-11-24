@@ -1,4 +1,5 @@
 ---
+import MiniUI from "./MiniUI.astro";
 import { translations, type Lang } from "../i18n/ui";
 import Icon from "./Icon.astro";
 import CardRail from "./CardRail.astro";
@@ -15,12 +16,10 @@ const t = translations[lang];
       {
         t.values.items.map((v, i) => (
           <div
-            class="reveal group flex flex-col items-center gap-3 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-5 text-center backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            class="card-pro reveal group flex flex-col items-center gap-3 rounded-[var(--radius)] p-5 text-center"
             style={`--reveal-delay: ${i * 80}ms`}
           >
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
-              <Icon name={v.icon as any} class="h-6 w-6" />
-            </span>
+            <MiniUI kind={v.icon} />
             <h3 class="text-sm font-bold leading-snug text-[var(--text)] sm:text-base">{v.title}</h3>
             <p class="text-xs leading-5 text-[var(--muted)] sm:text-sm">{v.description}</p>
           </div>

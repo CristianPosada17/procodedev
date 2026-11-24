@@ -31,18 +31,18 @@ const fc = t.finalCta;
 <section id="final-cta" class="relative py-12 lg:py-20" aria-labelledby="final-cta-title">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <div
-      class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-gradient-to-br from-[var(--brand)]/20 via-[var(--surface)]/60 to-[var(--bg-2)] p-8 text-center backdrop-blur-xl lg:p-16"
+      class="band-brand reveal rounded-[2rem] p-8 text-center shadow-[0_60px_140px_-60px_rgba(24,64,116,0.9)] sm:p-12 lg:p-20"
     >
-      <div class="tech-grid absolute inset-0 opacity-30"></div>
+      <span class="ambient-orb ambient-orb-b opacity-90 [--orb-b:rgba(34,211,238,0.3)]" aria-hidden="true"></span>
       <div class="relative mx-auto max-w-3xl">
         <span class="eyebrow">{eyebrow ?? fc.eyebrow}</span>
         <h2
           id="final-cta-title"
-          class="mt-5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl"
+          class="mt-6 text-balance text-3xl font-bold leading-[1.04] tracking-[-0.035em] text-white sm:text-5xl lg:text-[3.6rem]"
         >
           {title ?? fc.title}
         </h2>
-        <p class="mt-5 text-base leading-8 text-[var(--muted)]">{subtitle ?? fc.subtitle}</p>
+        <p class="mt-6 text-base leading-8 text-white/75 sm:text-lg">{subtitle ?? fc.subtitle}</p>
         <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
           <a
             href={conversionHref(page, lang, "book")}

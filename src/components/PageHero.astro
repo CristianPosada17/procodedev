@@ -1,4 +1,5 @@
 ---
+import HeroBackdrop from "./HeroBackdrop.astro";
 import { translations, type Lang } from "../i18n/ui";
 import { serviceLines, SERVICE_KEYS } from "../i18n/services";
 import Icon from "./Icon.astro";
@@ -51,7 +52,8 @@ const cards = SERVICE_KEYS.flatMap((key) => {
 const seq = [...cards, ...cards];
 ---
 
-<section class="relative overflow-hidden pb-8 pt-8 lg:pb-14 lg:pt-20">
+<section class="relative isolate overflow-hidden pb-8 pt-8 lg:pb-14 lg:pt-20">
+  <HeroBackdrop />
   <div
     class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 2xl:max-w-[1600px]"
   >

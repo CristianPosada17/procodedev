@@ -1,4 +1,5 @@
 ---
+import MiniUI from "../MiniUI.astro";
 /*
   09 · Diagnóstico gratuito — entrada al cierre.
   Dos caminos que no compiten: intención alta → agenda de 20 min
@@ -31,9 +32,7 @@ const d = durango.diagnostic;
                 : "border-[color:var(--border)] bg-[var(--bg-2)]/60",
             ]}
           >
-            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--brand)]/15 text-[var(--accent)]">
-              <Icon name={path.icon as any} class="h-5 w-5" />
-            </span>
+            <MiniUI kind={path.icon} />
             <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">{path.kicker}</p>
             <h3 class="mt-1 text-xl font-bold text-[var(--text)]">{path.title}</h3>
             <p class="mt-2 flex-1 text-sm leading-7 text-[var(--muted)]">{path.text}</p>

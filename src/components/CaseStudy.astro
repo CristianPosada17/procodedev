@@ -52,7 +52,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
     </SectionHeading>
 
     <div
-      class="reveal mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 backdrop-blur-xl"
+      class="reveal mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/70 shadow-[0_60px_140px_-70px_var(--halo-card-strong)] backdrop-blur-xl"
     >
       <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
         {/* ── Captura del proyecto ── */}
@@ -66,7 +66,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
             en móvil, un 4:5 desde arriba (5:4 en tableta). Las etiquetas van
             abajo para no tapar el logo del cliente; en móvil, solo el dominio. */}
         <div
-          class="relative block aspect-[4/5] w-full overflow-hidden bg-white sm:aspect-[5/4] lg:aspect-auto lg:min-h-[520px] lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[var(--shadow-media)]"
+          class="scroll-host relative block aspect-[4/5] w-full overflow-hidden bg-white sm:aspect-[5/4] lg:aspect-auto lg:min-h-[520px] lg:rounded-[var(--radius)] lg:border lg:border-[color:var(--border)] lg:shadow-[var(--shadow-media)]"
         >
           <picture>
             <source type="image/avif" sizes={SIZES} srcset={srcset("avif")} />
@@ -78,7 +78,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
               decoding="async"
               width="1200"
               height="2817"
-              class="absolute inset-x-0 top-0 h-auto w-full"
+              class="scroll-shot absolute inset-x-0 top-0 h-auto w-full"
             />
           </picture>
           <div
@@ -92,7 +92,7 @@ const SIZES = "(min-width: 1024px) 48vw, 100vw";
             <span
               class="inline-flex items-center gap-2 rounded-full bg-[var(--bg)]/85 px-4 py-2 font-mono text-[11px] text-[var(--text)] backdrop-blur"
             >
-              <Icon name="globe" class="h-3.5 w-3.5 text-[var(--accent)]" />
+              <span class="ui-dot-live" aria-hidden="true"></span>
               {c.urlLabel}
             </span>
             <span

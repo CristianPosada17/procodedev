@@ -579,7 +579,8 @@ const jsonLd = {
         .reveal,
         .reveal-left,
         .reveal-right,
-        .reveal-scale {
+        .reveal-scale,
+        .reveal-stagger > * {
           opacity: 1 !important;
           transform: none !important;
         }
@@ -610,13 +611,21 @@ const jsonLd = {
           los hex del tema oscuro escritos a mano y no podia cambiar. */}
       <div class="page-aurora absolute inset-0"></div>
 
-      <div class="tech-grid absolute inset-0 opacity-40"></div>
+      {/* Capa inmersiva (nov 2026): hexágonos que bajan muy despacio y tres
+          halos que flotan, el mismo lenguaje de lealtad.procodedev.com.
+          Solo transform: no repinta, lo mueve la GPU. */}
+      <div class="bg-hex hex-drift absolute" aria-hidden="true"></div>
+      <div class="ambient-orb ambient-orb-a" aria-hidden="true"></div>
+      <div class="ambient-orb ambient-orb-b" aria-hidden="true"></div>
+      <div class="ambient-orb ambient-orb-c" aria-hidden="true"></div>
 
       <div
         class="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[var(--aurora-blob)] blur-[130px]"
       >
       </div>
     </div>
+    {/* Foco de luz que sigue al cursor (solo con ratón). */}
+    <div class="pointer-spot -z-10" data-pointer-spot aria-hidden="true"></div>
 
     <slot />
 
@@ -649,6 +658,39 @@ const jsonLd = {
           { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
         );
         revealEls.forEach((el) => io.observe(el));
+      }
+
+      // ── Foco que sigue al cursor ─────────────────────────────
+      // Solo con ratón y sin movimiento reducido. Un rAF por cuadro como
+      // máximo: el evento solo guarda la posición.
+      const spot = document.querySelector<HTMLElement>("[data-pointer-spot]");
+      if (
+        spot &&
+        !reduceMotion &&
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches
+      ) {
+        let x = 0;
+        let y = 0;
+        let queued = false;
+        window.addEventListener(
+          "pointermove",
+          (e) => {
+            x = e.clientX;
+            y = e.clientY;
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(() => {
+              spot.style.setProperty("--mx", `${x}px`);
+              spot.style.setProperty("--my", `${y}px`);
+              spot.classList.add("is-on");
+              queued = false;
+            });
+          },
+          { passive: true },
+        );
+        document.documentElement.addEventListener("pointerleave", () =>
+          spot.classList.remove("is-on"),
+        );
       }
 
       // El contador animado de [data-count] se retiró junto con las cifras

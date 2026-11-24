@@ -27,9 +27,7 @@ const s = durango.services;
             ]}
             style={`--reveal-delay: ${i * 70}ms`}
           >
-            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)] ring-1 ring-[color:var(--border-strong)]">
-              <Icon name={item.icon as any} class="h-5 w-5" />
-            </span>
+            <span class="mt-1.5 h-3 w-3 flex-none rounded-full bg-gradient-to-br from-[var(--brand)] to-[var(--accent)] shadow-[0_0_14px_var(--accent)]" aria-hidden="true"></span>
             <div class:list={["flex-1", wide ? "mt-5 lg:mt-0" : "mt-5"]}>
               <h3 class="text-lg font-bold text-[var(--text)]">{item.title}</h3>
               <p class="mt-2 text-sm leading-7 text-[var(--muted)]">{item.text}</p>

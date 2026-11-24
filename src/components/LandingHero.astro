@@ -1,4 +1,5 @@
 ---
+import HeroBackdrop from "./HeroBackdrop.astro";
 /*
   Portada de las landings (septiembre de 2026, 30).
 
@@ -51,6 +52,7 @@ const t = translations[lang];
 
 <section class="relative isolate overflow-hidden pb-12 pt-10 lg:pb-20 lg:pt-16">
   <div class="lt-hero-glow pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+  <HeroBackdrop />
   <div
     class="mx-auto grid w-full max-w-[1480px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-10 2xl:max-w-[1600px]"
   >
@@ -59,7 +61,7 @@ const t = translations[lang];
       <span
         class="lt-soft inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]"
       >
-        <Icon name={icon as any} class="h-3.5 w-3.5" />
+        <span class="h-1.5 w-1.5 flex-none rounded-full bg-current shadow-[0_0_8px_currentColor]" aria-hidden="true"></span>
         {eyebrow}
       </span>
 

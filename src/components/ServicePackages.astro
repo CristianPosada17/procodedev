@@ -139,9 +139,7 @@ const gridWidth = count === 2 ? "mx-auto max-w-4xl" : "";
           <div class="mt-5 grid gap-4 sm:grid-cols-3">
             {p.recording.items.map((r) => (
               <div class="flex items-start gap-3">
-                <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
-                  <Icon name={r.icon as any} class="h-4 w-4" />
-                </span>
+                <span class="mt-1.5 h-3 w-3 flex-none rounded-full bg-gradient-to-br from-[var(--brand)] to-[var(--accent)] shadow-[0_0_14px_var(--accent)]" aria-hidden="true"></span>
                 <div>
                   <p class="text-sm font-bold text-[var(--text)]">{r.title}</p>
                   <p class="mt-1 text-[13px] leading-6 text-[var(--muted)]">{r.text}</p>

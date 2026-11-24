@@ -10,7 +10,7 @@ const t = translations[lang];
 const p = t.process;
 ---
 
-<section id="proceso" class="relative py-12 lg:py-20">
+<section id="proceso" class="band-ink py-16 lg:py-28">
   <div class="mx-auto w-full max-w-[1480px] px-4 sm:px-6 lg:px-10 2xl:max-w-[1600px]">
     <SectionHeading eyebrow={p.eyebrow}>
       <Fragment slot="title">
@@ -19,25 +19,31 @@ const p = t.process;
       <Fragment slot="subtitle">{p.subtitle}</Fragment>
     </SectionHeading>
 
-    <CardRail class="mt-8 lg:mt-12" grid="md:grid-cols-3 lg:grid-cols-5" peek="normal">
-      {
-        p.steps.map((step, i) => (
-          <div
-            class="reveal relative flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
-            style={`--reveal-delay: ${i * 90}ms`}
-          >
-            <span class="font-mono text-3xl font-bold text-[var(--brand)]/40">
-              {step.number}
-            </span>
-            <h3 class="mt-4 text-base font-bold text-[var(--text)]">
-              {step.title}
-            </h3>
-            <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
-              {step.description}
-            </p>
-          </div>
-        ))
-      }
-    </CardRail>
+    {/* Nov 2026: línea de tiempo luminosa sobre banda navy. */}
+    <div class="relative mt-12 lg:mt-20">
+      <div class="pointer-events-none absolute inset-x-0 top-[1.6rem] hidden h-px bg-white/10 md:block" aria-hidden="true">
+        <span class="draw-x reveal absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"></span>
+        <span class="flow-line absolute inset-0"></span>
+      </div>
+      <CardRail grid="md:grid-cols-3 lg:grid-cols-5" peek="normal" gap="gap-4 lg:gap-6">
+        {
+          p.steps.map((step, i) => (
+            <div class="reveal group relative flex flex-col" style={`--reveal-delay: ${i * 110}ms`}>
+              <span class="relative z-10 flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-2xl border border-[color:var(--border-strong)] bg-[#0b1838] font-mono text-sm font-bold text-white shadow-[0_0_30px_-6px_var(--accent)] transition duration-500 group-hover:scale-110">
+                <span class="num-mark text-lg">{step.number}</span>
+              </span>
+              <div class="card-pro mt-5 flex flex-1 flex-col rounded-[var(--radius)] p-6">
+                <h3 class="text-lg font-bold text-[var(--text)]">
+                  {step.title}
+                </h3>
+                <p class="mt-2 text-sm leading-6 text-[var(--muted)]">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </CardRail>
+    </div>
   </div>
 </section>

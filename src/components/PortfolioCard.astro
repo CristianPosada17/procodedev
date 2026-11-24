@@ -57,9 +57,16 @@ const domain = (() => {
 ---
 
 <article
-  class="reveal group flex flex-col overflow-hidden rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 backdrop-blur-xl transition duration-300 hover:border-[color:var(--border-strong)]"
+  class="card-pro reveal group flex flex-col overflow-hidden rounded-[var(--radius)]"
   style={`--reveal-delay: ${delay}ms`}
 >
+  {/* Nov 2026: barra de navegador sobre la captura. */}
+  <div class="flex items-center gap-1.5 border-b border-[color:var(--border)] bg-[var(--bg-2)] px-4 py-2.5" aria-hidden="true">
+    <i class="h-2 w-2 rounded-full bg-[#f87171]/70"></i>
+    <i class="h-2 w-2 rounded-full bg-[#fbbf24]/70"></i>
+    <i class="h-2 w-2 rounded-full bg-[#34d399]/70"></i>
+    <span class="ml-2 truncate rounded-full bg-[var(--tint)] px-3 py-0.5 font-mono text-[10px] text-[var(--muted)]">{domain}</span>
+  </div>
   <div class="relative aspect-[2/1] overflow-hidden border-b border-[color:var(--border)] bg-[var(--bg-2)]">
     <picture>
       <source type="image/avif" sizes={SIZES} srcset={srcset("avif")} />
@@ -71,7 +78,7 @@ const domain = (() => {
         decoding="async"
         width="1200"
         height="600"
-        class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+        class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-[1.06]"
       />
     </picture>
     <span class="absolute left-3 top-3 rounded-full border border-[color:var(--border-strong)] bg-[var(--bg)]/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] backdrop-blur">

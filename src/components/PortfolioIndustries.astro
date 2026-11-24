@@ -65,7 +65,7 @@ const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
       {
         industries.map((ind) => (
           <a href={`#industria-${ind.key}`} class="pf-chip">
-            <Icon name={ind.seg.icon as any} class="h-4 w-4 text-[var(--accent)]" />
+            <span class="h-1.5 w-1.5 flex-none rounded-full bg-current shadow-[0_0_8px_currentColor]" aria-hidden="true"></span>
             {ind.seg.navLabel}
             <span class="font-mono text-[11px] text-[var(--muted)]">{ind.projects.length}</span>
           </a>
@@ -79,9 +79,7 @@ const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
           <div id={`industria-${ind.key}`} class="scroll-mt-28">
             <div class="reveal flex flex-wrap items-end justify-between gap-4 border-b border-[color:var(--border)] pb-5">
               <div class="flex items-center gap-4">
-                <span class="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--brand)]/12 text-[var(--accent)]">
-                  <Icon name={ind.seg.icon as any} class="h-6 w-6" />
-                </span>
+                <span class="mt-1.5 h-3 w-3 flex-none rounded-full bg-gradient-to-br from-[var(--brand)] to-[var(--accent)] shadow-[0_0_14px_var(--accent)]" aria-hidden="true"></span>
                 <div>
                   <h3 class="text-2xl font-bold tracking-tight text-[var(--text)] lg:text-3xl">{ind.seg.navLabel}</h3>
                   <p class="mt-1 text-sm text-[var(--muted)]">

@@ -73,7 +73,7 @@ const linkClass = "font-semibold text-[var(--accent)] underline decoration-[colo
   <main id="main-content">
     {/* ── 1 · Hero ─────────────────────────────────────────────── */}
     <section class="hero-clean relative isolate overflow-hidden">
-      <div class="hero-clean-grid tech-grid pointer-events-none absolute inset-0 -z-10 opacity-70" aria-hidden="true"></div>
+      <div class="hero-clean-grid pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true"><div class="bg-hex hex-drift absolute"></div></div>
       <div class="hero-orb pointer-events-none absolute left-[4%] top-[12%] -z-10 h-64 w-64 rounded-full bg-[var(--brand)]/20 blur-3xl" aria-hidden="true"></div>
       <div class="hero-orb-2 pointer-events-none absolute right-[8%] top-[40%] -z-10 h-72 w-72 rounded-full bg-[var(--grad-to)]/15 blur-3xl" aria-hidden="true"></div>
 
@@ -82,7 +82,7 @@ const linkClass = "font-semibold text-[var(--accent)] underline decoration-[colo
         <div class="hero-in flex flex-col items-start">
           <div class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--surface)]/70 px-4 py-1.5 backdrop-blur">
             <span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)]"></span>
-            <span class="eyebrow">{a.hero.eyebrow}</span>
+            <span class="eyebrow eyebrow-bare">{a.hero.eyebrow}</span>
           </div>
 
           <h1 class="mt-7 text-balance text-[2.6rem] font-bold leading-[1.04] tracking-[-0.035em] text-[var(--text)] sm:text-[3.6rem] lg:text-[4.1rem] xl:text-[4.6rem]">

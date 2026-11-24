@@ -44,7 +44,7 @@ const items = translations[lang].testimonials.items.filter((t) =>
       {
         items.map((item, i) => (
           <figure
-            class="reveal flex flex-col rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/70 p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
+            class="card-pro reveal flex flex-col rounded-[var(--radius)] p-7"
             style={`--reveal-delay: ${i * 90}ms`}
           >
             <div class="font-mono text-3xl text-[var(--brand)]/50">“</div>

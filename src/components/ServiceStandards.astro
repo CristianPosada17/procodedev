@@ -1,4 +1,5 @@
 ---
+import MiniUI from "./MiniUI.astro";
 /*
   Estándares técnicos (desarrollo web) o métricas del reporte (marketing).
   Son afirmaciones verificables, no adjetivos: es lo que separa una página
@@ -47,9 +48,7 @@ const { standards: s } = Astro.props as Props;
                 class="reveal border-t border-[color:var(--border)] pt-5"
                 style={`--reveal-delay: ${i * 60}ms`}
               >
-                <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
-                  <Icon name={item.icon as any} class="h-5 w-5" />
-                </span>
+                <MiniUI kind={item.icon} />
                 <h3 class="mt-4 text-base font-bold leading-snug text-[var(--text)]">
                   {item.title}
                 </h3>

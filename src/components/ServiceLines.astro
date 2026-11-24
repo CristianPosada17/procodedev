@@ -13,9 +13,10 @@
              con las frases comerciales que la gente busca).
 */
 import { translations, PAGES, type Lang } from "../i18n/ui";
-import { serviceLines, SERVICE_KEYS, servicesHub } from "../i18n/services";
+import { serviceLines, SERVICE_KEYS, servicesHub, loyaltyLine } from "../i18n/services";
 import Icon from "./Icon.astro";
 import ServiceShot from "./ServiceShot.astro";
+import LoyaltyShot from "./LoyaltyShot.astro";
 
 interface Props {
   lang?: Lang;
@@ -25,6 +26,7 @@ const { lang = "es", variant = "home" } = Astro.props as Props;
 const t = translations[lang];
 const hub = servicesHub[lang];
 const lines = SERVICE_KEYS.map((key) => serviceLines[lang][key]);
+const loyalty = loyaltyLine[lang];
 ---
 
 <section id="servicios" class="relative py-12 lg:py-20">
@@ -82,7 +84,7 @@ const lines = SERVICE_KEYS.map((key) => serviceLines[lang][key]);
                           : "border-[color:var(--border)] bg-[var(--tint)] text-[var(--muted)]",
                       ]}
                     >
-                      <Icon name={line.icon as any} class="h-3.5 w-3.5" />
+                      <span class="h-1.5 w-1.5 flex-none rounded-full bg-current shadow-[0_0_8px_currentColor]" aria-hidden="true"></span>
                       {line.badge}
                     </span>
                     <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
@@ -165,9 +167,7 @@ const lines = SERVICE_KEYS.map((key) => serviceLines[lang][key]);
                   <div class="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
                     {line.capabilities.map((cap) => (
                       <div class="flex items-start gap-3">
-                        <span class="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)] ring-1 ring-[color:var(--border)]">
-                          <Icon name={cap.icon as any} class="h-4.5 w-4.5" />
-                        </span>
+                        <span class="mt-1.5 h-3 w-3 flex-none rounded-full bg-gradient-to-br from-[var(--brand)] to-[var(--accent)] shadow-[0_0_14px_var(--accent)]" aria-hidden="true"></span>
                         <div class="min-w-0">
                           <p class="text-sm font-bold text-[var(--text)]">
                             {cap.title}
@@ -185,6 +185,86 @@ const lines = SERVICE_KEYS.map((key) => serviceLines[lang][key]);
           );
         })
       }
+
+      {/* Producto ProCode Loyalty (nov 2026): vive en su subdominio, aquí
+          solo se presenta con el mismo formato que los dos servicios. */}
+      <article class="reveal relative overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border-strong)] bg-[var(--surface)]/60 p-6 backdrop-blur-xl transition duration-300 sm:p-8 lg:p-10">
+        <span
+          class="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#facc15,transparent)]"
+          aria-hidden="true"
+        />
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-amber-300/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--cta-border)]">
+                <span class="lt-ping relative h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                {loyalty.badge}
+              </span>
+              <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                {loyalty.eyebrow}
+              </span>
+            </div>
+
+            <h3 class="mt-5 text-[1.9rem] font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-[2.4rem]">
+              {loyalty.title}
+            </h3>
+            <p class="mt-3 text-lg font-semibold leading-8 text-[var(--accent)]">
+              {loyalty.tagline}
+            </p>
+            <p class="mt-4 text-base leading-8 text-[var(--muted)]">
+              {loyalty.summary}
+            </p>
+
+            <ul class="mt-6 grid gap-3">
+              {loyalty.bullets.map((b) => (
+                <li class="flex items-start gap-3 text-sm leading-6 text-[var(--text)]/90">
+                  <span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded bg-[var(--brand)]/15 text-[var(--accent)]">
+                    <Icon name="check" class="h-3 w-3" strokeWidth={3} />
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+
+            <dl class="mt-7 flex flex-wrap gap-x-10 gap-y-4 border-t border-[color:var(--border)] pt-6">
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                  {loyalty.priceLabel}
+                </dt>
+                <dd class="mt-1 text-2xl font-bold text-[var(--text)]">
+                  {loyalty.price}
+                  <span class="ml-2 align-middle text-xs font-medium text-[var(--muted)]">
+                    {loyalty.priceNote}
+                  </span>
+                </dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">
+                  {loyalty.trialLabel}
+                </dt>
+                <dd class="mt-1 text-2xl font-bold text-[var(--text)]">
+                  {loyalty.trial}
+                </dd>
+              </div>
+            </dl>
+
+            <a
+              href={loyalty.href}
+              target="_blank"
+              rel="noopener"
+              data-cta="servicio-loyalty"
+              class="mt-7 inline-flex items-center gap-2 rounded-xl border border-[color:var(--border-strong)] bg-[var(--tint)] px-6 py-3.5 text-sm font-bold text-[var(--text)] transition hover:-translate-y-0.5 hover:bg-[var(--brand)]/12"
+            >
+              {loyalty.cta}
+              <Icon name="arrow-up-right" class="h-4 w-4" />
+            </a>
+          </div>
+
+          <div>
+            <LoyaltyShot card={loyalty.card} />
+          </div>
+        </div>
+      </article>
     </div>
 
     {

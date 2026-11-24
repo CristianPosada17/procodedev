@@ -2,7 +2,7 @@
 import { translations, type Lang } from "../i18n/ui";
 import SectionHeading from "./SectionHeading.astro";
 import CardRail from "./CardRail.astro";
-import Icon from "./Icon.astro";
+import MiniUI from "./MiniUI.astro";
 interface Props {
   lang?: Lang;
 }
@@ -20,21 +20,24 @@ const ig = t.integrations;
 
     {/* Son cuatro herramientas: rejilla de cuatro columnas, centrada y con
         ancho máximo. Con seis columnas quedaban dos huecos a la derecha. */}
-    <CardRail class="mx-auto mt-8 max-w-5xl lg:mt-12" grid="md:grid-cols-2 lg:grid-cols-4" peek="narrow" gap="gap-3 sm:gap-4">
+    <div class="relative mx-auto mt-10 max-w-6xl lg:mt-14">
+    <span class="flow-line pointer-events-none absolute inset-x-[8%] top-[4.5rem] hidden h-px bg-[color:var(--border)] lg:block" aria-hidden="true"></span>
+    <CardRail grid="md:grid-cols-2 lg:grid-cols-4" peek="normal" gap="gap-4 lg:gap-6">
       {
         ig.items.map((it, i) => (
           <div
-            class="reveal flex flex-col items-center gap-2 rounded-[var(--radius)] border border-[color:var(--border)] bg-[var(--surface)]/60 p-4 text-center sm:gap-3 sm:p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[color:var(--border-strong)]"
-            style={`--reveal-delay: ${i * 60}ms`}
+            class="card-pro reveal flex flex-col gap-4 rounded-[var(--radius)] p-4 text-center"
+            style={`--reveal-delay: ${i * 80}ms`}
           >
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--brand)]/10 text-[var(--accent)]">
-              <Icon name={it.icon as any} class="h-6 w-6" />
-            </span>
-            <h3 class="text-sm font-bold text-[var(--text)]">{it.name}</h3>
-            <p class="text-xs leading-5 text-[var(--muted)]">{it.description}</p>
+            <MiniUI kind={it.icon} />
+            <div class="px-1 pb-2">
+              <h3 class="text-base font-bold text-[var(--text)]">{it.name}</h3>
+              <p class="mt-1 text-sm leading-5 text-[var(--muted)]">{it.description}</p>
+            </div>
           </div>
         ))
       }
     </CardRail>
+    </div>
   </div>
 </section>

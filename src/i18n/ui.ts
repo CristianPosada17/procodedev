@@ -320,6 +320,24 @@ export const translations = {
       highlight: "llamadas, mensajes y citas",
       after: ", con web, formularios, agenda y medición conectados.",
       pillars: ["Web", "Formularios", "Agenda", "Medición"],
+      // Nov 2026 (rediseño visual): los mismos datos de la frase, separados
+      // en cifras para leerlos de un vistazo, y las etiquetas del visual
+      // animado (visitas → cuatro piezas → resultados).
+      facts: [
+        { label: "Sede", value: "Durango, México" },
+        { label: "Desde", value: "$349 USD" },
+        { label: "Mercados", value: "EE. UU. y México" },
+        { label: "Para", value: "Negocios de servicios" },
+      ],
+      displayA: "De visita a cliente,",
+      displayB: "con un solo sistema.",
+      flowTitle: "Tu sistema de captación",
+      flowLive: "en vivo",
+      flowIn: "Visitas a tu sitio",
+      flowConnected: "conectado",
+      flowOut: "Resultados",
+      outcomes: ["Llamada entrante", "Mensaje nuevo", "Cita agendada"],
+      outcomeTime: "ahora",
     },
     // Las seis capacidades que forman el sistema. Es la traducción visual
     // de la frase de marca: Websites + Client Acquisition + Intake +
@@ -1579,6 +1597,21 @@ export const translations = {
       highlight: "calls, messages and appointments",
       after: ", with website, forms, booking and tracking connected.",
       pillars: ["Website", "Forms", "Booking", "Tracking"],
+      facts: [
+        { label: "Based in", value: "Durango, Mexico" },
+        { label: "From", value: "$349 USD" },
+        { label: "Markets", value: "US and Mexico" },
+        { label: "For", value: "Service businesses" },
+      ],
+      displayA: "From visit to client,",
+      displayB: "in one connected system.",
+      flowTitle: "Your lead system",
+      flowLive: "live",
+      flowIn: "Visits to your site",
+      flowConnected: "connected",
+      flowOut: "Results",
+      outcomes: ["Incoming call", "New message", "Appointment booked"],
+      outcomeTime: "now",
     },
     values: {
       eyebrow: "// the system, piece by piece",

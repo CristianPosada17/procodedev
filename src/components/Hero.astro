@@ -23,12 +23,17 @@ const h = t.hero;
   id="inicio"
   class="hero-clean relative isolate overflow-hidden"
 >
-  <div class="hero-clean-grid tech-grid pointer-events-none absolute inset-0 -z-10 opacity-80" aria-hidden="true"></div>
+  {/* Nov 2026: la rejilla cuadrada pasó a hexágonos que bajan despacio
+      (mismo motivo que lealtad.procodedev.com) y se sumó un tercer halo. */}
+  <div class="hero-clean-grid pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div class="bg-hex hex-drift absolute opacity-90"></div>
+  </div>
   <div class="hero-orb pointer-events-none absolute left-[8%] top-[18%] -z-10 h-64 w-64 rounded-full bg-[var(--brand)]/20 blur-3xl" aria-hidden="true"></div>
   <div class="hero-orb-2 pointer-events-none absolute right-[6%] top-[30%] -z-10 h-72 w-72 rounded-full bg-[var(--grad-to)]/15 blur-3xl" aria-hidden="true"></div>
+  <div class="hero-orb pointer-events-none absolute bottom-[8%] left-[38%] -z-10 h-56 w-[28rem] rounded-full bg-indigo-500/10 blur-3xl [animation-delay:-4s]" aria-hidden="true"></div>
 
   <div
-    class="hero-in relative mx-auto flex w-full max-w-[1480px] flex-col items-center px-4 pb-20 pt-16 text-center sm:px-6 sm:pt-20 lg:px-10 lg:pb-28 lg:pt-28 2xl:max-w-[1600px]"
+    class="hero-in relative mx-auto flex w-full max-w-[1480px] flex-col items-center px-4 pb-20 pt-9 text-center sm:px-6 sm:pt-12 lg:px-10 lg:pb-28 lg:pt-14 2xl:max-w-[1600px]"
   >
     {/* Above-the-fold: sin `.reveal`. Nada de lo que decide la conversión
         en el primer scroll debe esperar a que corra JS (hallazgo #14). */}
@@ -36,14 +41,14 @@ const h = t.hero;
       class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[var(--surface)]/70 px-4 py-1.5 backdrop-blur"
     >
       <span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)]"></span>
-      <span class="eyebrow">{h.eyebrow.replace(/^\/\/\s*/, "")}</span>
+      <span class="eyebrow eyebrow-bare">{h.eyebrow.replace(/^\/\/\s*/, "")}</span>
     </span>
 
     <h1
       class="mt-7 max-w-[18ch] text-balance text-[2.9rem] font-bold leading-[1.02] tracking-[-0.035em] text-[var(--text)] sm:text-[4.2rem] lg:max-w-[20ch] lg:text-[5.4rem] xl:text-[6.2rem]"
     >
       {h.titleA}{" "}
-      <span class="grad-text">{h.titleHighlight}</span>{h.titleB && " " + h.titleB}
+      <span class="grad-text grad-flow">{h.titleHighlight}</span>{h.titleB && " " + h.titleB}
     </h1>
 
     <span class="hero-rule mt-8"></span>

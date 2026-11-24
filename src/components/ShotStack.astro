@@ -1,0 +1,59 @@
+---
+/*
+  Pila de capturas reales de proyectos (noviembre de 2026).
+  Da imagen a secciones que antes eran solo texto e iconos: dos o tres
+  sitios publicados, en marco de navegador, inclinados y flotando.
+  Las capturas son las del portafolio (public/images/proyecto-*), con sus
+  versiones AVIF/WebP de 400/800/1200.
+*/
+interface Props {
+  shots?: string[];
+  class?: string;
+  /** Texto alternativo común; cada captura añade su dominio. */
+  alt?: string;
+}
+const {
+  shots = ["proyecto-izcalli", "proyecto-fersilva", "proyecto-trejo-landscaping"],
+  class: cls = "",
+  alt = "",
+} = Astro.props as Props;
+
+const domain = (id: string) => id.replace(/^proyecto-/, "").replace(/-/g, " ");
+const srcset = (id: string, ext: string) =>
+  [400, 800, 1200].map((w) => `/images/${id}-${w}.${ext} ${w}w`).join(", ");
+const pos = [
+  "relative z-20 w-[82%] lt-float",
+  "absolute right-0 top-[38%] z-30 w-[62%] lt-float-2",
+  "absolute -left-2 top-[62%] z-10 w-[48%] opacity-90 lt-float-3",
+];
+---
+
+<div class:list={["relative pb-[24%]", cls]}>
+  {
+    shots.slice(0, 3).map((id, i) => (
+      <div class={pos[i]}>
+        <div class="media-frame !rounded-xl">
+          <div class="flex items-center gap-1.5 border-b border-[color:var(--border)] bg-[var(--surface)] px-3 py-2" aria-hidden="true">
+            <i class="h-2 w-2 rounded-full bg-[#f87171]/70" />
+            <i class="h-2 w-2 rounded-full bg-[#fbbf24]/70" />
+            <i class="h-2 w-2 rounded-full bg-[#34d399]/70" />
+            <span class="ml-2 h-2 flex-1 rounded-full bg-[var(--tint-2)]" />
+          </div>
+          <picture>
+            <source type="image/avif" sizes="(min-width: 1024px) 30vw, 80vw" srcset={srcset(id, "avif")} />
+            <source type="image/webp" sizes="(min-width: 1024px) 30vw, 80vw" srcset={srcset(id, "webp")} />
+            <img
+              src={`/images/${id}-800.webp`}
+              alt={alt ? `${alt} — ${domain(id)}` : ""}
+              width="1200"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[2/1]"
+            />
+          </picture>
+        </div>
+      </div>
+    ))
+  }
+</div>

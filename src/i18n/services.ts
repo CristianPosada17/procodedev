@@ -1992,6 +1992,107 @@ export const serviceLines: Record<"es" | "en", Record<ServiceKey, ServiceLine>> 
   en: linesEn,
 };
 
+// ═══════════════════════════════════════════════════════════════════════
+// PRODUCTO: PROCODE LOYALTY (noviembre de 2026)
+// ───────────────────────────────────────────────────────────────────────
+// Tarjetas de fidelidad digitales. Vive en su propio subdominio
+// (lealtad.procodedev.com) y aquí solo se presenta: no entra en
+// SERVICE_KEYS porque no tiene página, paquetes ni formulario en este
+// sitio. Precio y condiciones copiados de la landing; si cambian allá,
+// se cambian aquí.
+// ═══════════════════════════════════════════════════════════════════════
+
+export interface LoyaltyLine {
+  href: string;
+  badge: string;
+  eyebrow: string;
+  navLabel: string;
+  navHint: string;
+  menuNote: string;
+  title: string;
+  tagline: string;
+  summary: string;
+  bullets: string[];
+  priceLabel: string;
+  price: string;
+  priceNote: string;
+  trialLabel: string;
+  trial: string;
+  cta: string;
+  card: {
+    business: string;
+    kind: string;
+    customer: string;
+    reward: string;
+    toast: string;
+  };
+}
+
+export const loyaltyLine: Record<"es" | "en", LoyaltyLine> = {
+  es: {
+    href: "https://lealtad.procodedev.com/",
+    badge: "Nuevo",
+    eyebrow: "// producto ProCode",
+    navLabel: "Tarjetas de fidelidad",
+    navHint: "Sellos, puntos y recompensas en el Wallet.",
+    menuNote: "Producto ProCode",
+    title: "ProCode Loyalty",
+    tagline: "Haz que tus clientes vuelvan",
+    summary:
+      "Tarjetas de fidelidad digitales para barberías, salones de belleza y negocios que quieren crecer. Convierte cada visita en una oportunidad para fidelizar con sellos, puntos y recompensas, sin que tus clientes descarguen otra aplicación.",
+    bullets: [
+      "Tarjetas digitales con la identidad de tu negocio",
+      "Apple Wallet y Google Wallet, sin descargar apps",
+      "Sellos, puntos, monedero y recompensas",
+      "Clientes ilimitados, avisos automáticos y panel de administración",
+    ],
+    priceLabel: "Plan único",
+    price: "$399",
+    priceNote: "MXN al mes · IVA incluido",
+    trialLabel: "prueba",
+    trial: "15 días gratis",
+    cta: "Conocer ProCode Loyalty",
+    card: {
+      business: "Tu negocio",
+      kind: "Tarjeta de cliente frecuente",
+      customer: "Juan Pérez",
+      reward: "6 visitas = 1 corte gratis",
+      toast: "+1 sello · visita registrada",
+    },
+  },
+  en: {
+    href: "https://lealtad.procodedev.com/",
+    badge: "New",
+    eyebrow: "// a ProCode product",
+    navLabel: "Digital loyalty cards",
+    navHint: "Stamps, points and rewards in the Wallet.",
+    menuNote: "ProCode product",
+    title: "ProCode Loyalty",
+    tagline: "Bring your customers back",
+    summary:
+      "Digital loyalty cards for barbershops, beauty salons and growing businesses. Turn every visit into a chance to build loyalty with stamps, points and rewards — without asking customers to download another app.",
+    bullets: [
+      "Digital cards with your business's branding",
+      "Apple Wallet and Google Wallet, no app downloads",
+      "Stamps, points, store credit and rewards",
+      "Unlimited customers, automatic reminders and an admin dashboard",
+    ],
+    priceLabel: "One plan",
+    price: "$399",
+    priceNote: "MXN per month · VAT included",
+    trialLabel: "trial",
+    trial: "15 days free",
+    cta: "Explore ProCode Loyalty",
+    card: {
+      business: "Your business",
+      kind: "Frequent customer card",
+      customer: "John Smith",
+      reward: "6 visits = 1 free haircut",
+      toast: "+1 stamp · visit logged",
+    },
+  },
+};
+
 export const serviceDetails: Record<"es" | "en", Record<ServiceKey, ServiceDetail>> = {
   es: { webDev: webDevEs, digitalMarketing: marketingEs },
   en: { webDev: webDevEn, digitalMarketing: marketingEn },

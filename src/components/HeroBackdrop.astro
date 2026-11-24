@@ -1,0 +1,17 @@
+---
+/*
+  Fondo inmersivo de los heroes internos (noviembre de 2026): hexágonos que
+  bajan despacio, desvanecidos hacia los bordes, y tres halos que flotan.
+  Mismo lenguaje que el hero del home y que lealtad.procodedev.com.
+  Va como primer hijo de un <section> con `relative isolate overflow-hidden`.
+*/
+---
+
+<div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <div class="hex-fade absolute inset-0 overflow-hidden">
+    <div class="bg-hex hex-drift absolute"></div>
+  </div>
+  <span class="hero-orb absolute left-[4%] top-[12%] h-72 w-72 rounded-full bg-[var(--brand)]/20 blur-3xl"></span>
+  <span class="hero-orb-2 absolute right-[4%] top-[20%] h-80 w-80 rounded-full bg-[var(--grad-to)]/15 blur-3xl"></span>
+  <span class="hero-orb absolute bottom-0 left-[40%] h-56 w-[30rem] rounded-full bg-indigo-500/10 blur-3xl [animation-delay:-5s]"></span>
+</div>

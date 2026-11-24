@@ -1,0 +1,268 @@
+---
+/*
+  Mini interfaces dibujadas en HTML (noviembre de 2026).
+  Sustituyen a los iconos de las tarjetas en todo el sitio: en lugar de un
+  pictograma genérico, cada tarjeta enseña un trocito de producto que se
+  mueve (un buscador, reseñas, un formulario llenándose, una agenda…).
+  `kind` recibe el mismo nombre de icono que ya traen los datos de i18n,
+  así que ningún texto ni dato cambia. Es decorativo: aria-hidden.
+  Estilos en global.css → «Mini interfaces».
+*/
+interface Props {
+  kind?: string;
+  class?: string;
+}
+const { kind = "layout", class: cls = "" } = Astro.props as Props;
+
+// Cada nombre de icono cae en una de estas escenas.
+const map: Record<string, string> = {
+  search: "search",
+  shield: "trust",
+  star: "trust",
+  handshake: "trust",
+  lock: "trust",
+  "clipboard-check": "form",
+  "file-text": "form",
+  pen: "form",
+  receipt: "form",
+  calculator: "form",
+  calendar: "calendar",
+  repeat: "loyalty",
+  diamond: "loyalty",
+  workflow: "flow",
+  route: "flow",
+  link: "flow",
+  settings: "flow",
+  database: "flow",
+  cpu: "flow",
+  "bar-chart": "chart",
+  "trending-up": "chart",
+  scale: "chart",
+  globe: "lang",
+  "message-circle": "chat",
+  whatsapp: "chat",
+  phone: "chat",
+  mail: "mail",
+  megaphone: "mail",
+  layout: "browser",
+  sparkles: "browser",
+  briefcase: "browser",
+  building: "browser",
+  info: "browser",
+  target: "target",
+  zap: "speed",
+  "map-pin": "map",
+  smartphone: "phone",
+  users: "people",
+};
+const scene = map[kind] ?? "browser";
+---
+
+<div class:list={["ui-screen h-28 w-full p-3", cls]} aria-hidden="true">
+  {scene === "search" && (
+    <div class="flex h-full flex-col gap-2">
+      <div class="flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[var(--surface)] px-3 py-1.5">
+        <span class="h-2.5 w-2.5 flex-none rounded-full border-2 border-[var(--accent)]"></span>
+        <span class="ui-line ui-line-strong ui-type w-2/3"></span>
+      </div>
+      <div class="ui-pop flex items-center gap-2 rounded-lg border border-[color:var(--border-strong)] bg-[var(--brand)]/10 px-2.5 py-1.5" style="--d:.6s">
+        <span class="ui-chip flex h-4 w-4 flex-none items-center justify-center rounded font-mono text-[8px] font-bold">1</span>
+        <span class="flex-1 space-y-1"><span class="ui-line ui-accent w-3/4"></span><span class="ui-line w-1/2"></span></span>
+      </div>
+      <div class="flex items-center gap-2 px-2.5 opacity-60">
+        <span class="h-4 w-4 flex-none rounded bg-[var(--tint-2)]"></span>
+        <span class="flex-1 space-y-1"><span class="ui-line w-2/3"></span><span class="ui-line w-1/3"></span></span>
+      </div>
+    </div>
+  )}
+
+  {scene === "trust" && (
+    <div class="flex h-full flex-col justify-center gap-2.5">
+      {[0, 1].map((r) => (
+        <div class="ui-pop flex items-center gap-2.5 rounded-lg bg-[var(--surface)] px-2.5 py-2" style={`--d:${r * 0.7}s`}>
+          <span class="h-6 w-6 flex-none rounded-full bg-gradient-to-br from-[var(--grad-from)] to-[var(--grad-to)] opacity-80"></span>
+          <span class="flex-1 space-y-1.5">
+            <span class="flex gap-0.5">{[0, 1, 2, 3, 4].map(() => <i class="ui-star" />)}</span>
+            <span class="ui-line w-4/5"></span>
+          </span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {scene === "form" && (
+    <div class="flex h-full flex-col justify-center gap-2">
+      <div class="rounded-md border border-[color:var(--border)] bg-[var(--surface)] px-2.5 py-1.5"><span class="ui-line ui-line-strong ui-type w-1/2"></span></div>
+      <div class="rounded-md border border-[color:var(--border)] bg-[var(--surface)] px-2.5 py-1.5"><span class="ui-line ui-line-strong ui-type w-3/4" style="--d:.5s"></span></div>
+      <div class="flex items-center justify-between">
+        <span class="ui-line w-1/4"></span>
+        <span class="ui-pop ui-accent h-5 w-16 rounded-md" style="--d:1.2s"></span>
+      </div>
+    </div>
+  )}
+
+  {scene === "calendar" && (
+    <div class="flex h-full gap-3">
+      <div class="grid flex-1 grid-cols-7 content-center gap-1">
+        {Array.from({ length: 21 }, (_, i) => (
+          <span class:list={["aspect-square rounded-[3px]", i === 11 ? "ui-pop ui-accent" : "bg-[var(--tint-2)]"]} style={i === 11 ? "--d:.4s" : undefined} />
+        ))}
+      </div>
+      <div class="flex w-[38%] flex-col justify-center gap-1.5">
+        <span class="ui-chip rounded-md px-2 py-1"><span class="ui-line ui-accent w-full"></span></span>
+        <span class="rounded-md border border-[color:var(--border)] px-2 py-1"><span class="ui-line w-3/4"></span></span>
+        <span class="rounded-md border border-[color:var(--border)] px-2 py-1"><span class="ui-line w-2/3"></span></span>
+      </div>
+    </div>
+  )}
+
+  {scene === "loyalty" && (
+    <div class="flex h-full flex-col justify-center gap-2.5 rounded-lg bg-gradient-to-br from-[#1f4f86] to-[#12335f] p-2.5">
+      <span class="ui-line w-1/3 bg-white/50"></span>
+      <div class="grid grid-cols-6 gap-1.5">
+        {Array.from({ length: 6 }, (_, i) => (
+          <span class="relative aspect-square rounded-full border border-dashed border-white/40">
+            {i < 4 && <span class="ui-pop absolute inset-[2px] rounded-full bg-gradient-to-br from-amber-200 to-yellow-500" style={`--d:${i * 0.35}s`} />}
+          </span>
+        ))}
+      </div>
+      <span class="ui-line w-1/2 bg-white/30"></span>
+    </div>
+  )}
+
+  {scene === "flow" && (
+    <div class="relative flex h-full items-center justify-between px-1">
+      <span class="flow-line absolute inset-x-6 top-1/2 h-px -translate-y-1/2 bg-[color:var(--border-strong)]"></span>
+      {[0, 1, 2].map((n) => (
+        <span class="vp-node relative flex h-12 w-12 flex-col items-center justify-center gap-1 rounded-xl !bg-[var(--surface)]" style={`--d:${n * 1.5}s`}>
+          <span class="ui-line ui-accent w-6"></span>
+          <span class="ui-line w-4"></span>
+        </span>
+      ))}
+    </div>
+  )}
+
+  {scene === "chart" && (
+    <div class="flex h-full flex-col">
+      <div class="flex items-center justify-between">
+        <span class="ui-line ui-line-strong w-1/3"></span>
+        <span class="ui-chip rounded-full px-1.5 py-0.5"><span class="ui-line ui-accent w-6"></span></span>
+      </div>
+      <div class="mt-auto flex h-[70%] items-end gap-1.5">
+        {[35, 50, 42, 64, 58, 78, 72, 95].map((h, i) => (
+          <span class="ui-bar flex-1 rounded-t-[3px] bg-gradient-to-t from-[var(--brand)] to-[var(--accent)]" style={`height:${h}%;--d:${i * 140}ms`} />
+        ))}
+      </div>
+    </div>
+  )}
+
+  {scene === "lang" && (
+    <div class="grid h-full grid-cols-2 gap-2">
+      {["ES", "EN"].map((l, i) => (
+        <div class:list={["flex flex-col gap-1.5 rounded-lg border p-2", i === 0 ? "border-[color:var(--border-strong)] bg-[var(--brand)]/10" : "border-[color:var(--border)] bg-[var(--surface)]"]}>
+          <span class="ui-chip w-fit rounded px-1.5 font-mono text-[9px] font-bold">{l}</span>
+          <span class="ui-line ui-line-strong w-full"></span>
+          <span class="ui-line w-3/4"></span>
+          <span class="ui-line w-1/2"></span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {scene === "chat" && (
+    <div class="flex h-full flex-col justify-center gap-1.5">
+      <span class="ui-pop w-3/5 rounded-xl rounded-bl-sm bg-[var(--surface)] px-2.5 py-2" style="--d:0s"><span class="ui-line w-full"></span></span>
+      <span class="ui-pop ml-auto w-1/2 rounded-xl rounded-br-sm bg-gradient-to-r from-[var(--brand)] to-[var(--accent)] px-2.5 py-2" style="--d:.7s"><span class="ui-line w-full bg-white/70"></span></span>
+      <span class="ui-pop w-2/5 rounded-xl rounded-bl-sm bg-[var(--surface)] px-2.5 py-2" style="--d:1.4s"><span class="ui-line w-full"></span></span>
+    </div>
+  )}
+
+  {scene === "mail" && (
+    <div class="flex h-full flex-col justify-center gap-1.5">
+      {[0, 1, 2].map((n) => (
+        <div class:list={["ui-pop flex items-center gap-2 rounded-lg px-2 py-1.5", n === 0 ? "bg-[var(--brand)]/12 ring-1 ring-[color:var(--border-strong)]" : "bg-[var(--surface)]"]} style={`--d:${n * 0.5}s`}>
+          <span class:list={["h-2 w-2 flex-none rounded-full", n === 0 ? "bg-[var(--accent)]" : "bg-[var(--tint-2)]"]}></span>
+          <span class="ui-line ui-line-strong w-1/4"></span>
+          <span class="ui-line flex-1"></span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {scene === "browser" && (
+    <div class="flex h-full flex-col overflow-hidden rounded-lg border border-[color:var(--border)] bg-[var(--surface)]">
+      <div class="flex items-center gap-1 border-b border-[color:var(--border)] px-2 py-1">
+        <i class="h-1.5 w-1.5 rounded-full bg-[var(--tint-2)]"></i><i class="h-1.5 w-1.5 rounded-full bg-[var(--tint-2)]"></i><i class="h-1.5 w-1.5 rounded-full bg-[var(--tint-2)]"></i>
+        <span class="ml-2 h-1.5 flex-1 rounded-full bg-[var(--tint-2)]"></span>
+      </div>
+      <div class="grid flex-1 grid-cols-[1.3fr_1fr] items-center gap-2 p-2">
+        <div class="space-y-1.5">
+          <span class="ui-line ui-line-strong ui-type w-full"></span>
+          <span class="ui-line ui-line-strong ui-type w-2/3" style="--d:.3s"></span>
+          <span class="ui-pop ui-accent mt-1 block h-3 w-10 rounded" style="--d:.9s"></span>
+        </div>
+        <div class="h-full rounded-md bg-gradient-to-br from-[var(--brand)]/40 to-[var(--accent)]/30"></div>
+      </div>
+    </div>
+  )}
+
+  {scene === "target" && (
+    <div class="relative flex h-full items-center justify-center">
+      {[5.5, 4, 2.5].map((s, i) => (
+        <span class="absolute rounded-full border border-[color:var(--border-strong)]" style={`width:${s}rem;height:${s}rem;opacity:${0.4 + i * 0.25}`} />
+      ))}
+      <span class="lt-ping relative h-3 w-3 rounded-full bg-[var(--accent)]"></span>
+    </div>
+  )}
+
+  {scene === "speed" && (
+    <div class="flex h-full flex-col justify-center gap-2.5">
+      {[92, 76, 100].map((w, i) => (
+        <div class="flex items-center gap-2">
+          <span class="ui-line w-1/4"></span>
+          <span class="h-2 flex-1 overflow-hidden rounded-full bg-[var(--tint-2)]">
+            <span class="ui-type block h-full rounded-full bg-gradient-to-r from-emerald-400 to-[var(--accent)]" style={`width:${w}%;--d:${i * 0.3}s`} />
+          </span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {scene === "map" && (
+    <div class="relative h-full overflow-hidden rounded-lg bg-[var(--surface)]">
+      <span class="absolute inset-0 opacity-60 [background-image:linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] [background-size:16px_16px]"></span>
+      <span class="absolute left-[20%] top-[30%] h-[2px] w-[55%] rotate-12 bg-[var(--border-strong)]"></span>
+      {[[30, 40], [62, 28], [48, 64]].map(([x, y], i) => (
+        <span class="ui-pop absolute h-3 w-3 rounded-full rounded-br-none bg-gradient-to-br from-[var(--brand)] to-[var(--accent)] shadow-[0_0_12px_var(--accent)] [transform:rotate(45deg)]" style={`left:${x}%;top:${y}%;--d:${i * 0.5}s`} />
+      ))}
+    </div>
+  )}
+
+  {scene === "phone" && (
+    <div class="flex h-full items-center justify-center gap-3">
+      <div class="flex h-full w-14 flex-col gap-1 rounded-xl border-2 border-[color:var(--border-strong)] bg-[var(--surface)] p-1.5">
+        <span class="h-6 rounded bg-gradient-to-br from-[var(--brand)]/50 to-[var(--accent)]/40"></span>
+        <span class="ui-line ui-line-strong w-full"></span>
+        <span class="ui-line w-2/3"></span>
+        <span class="ui-pop ui-accent mt-auto h-2.5 w-full rounded"></span>
+      </div>
+      <div class="flex h-[80%] w-24 flex-col gap-1 rounded-lg border border-[color:var(--border)] bg-[var(--surface)] p-1.5 opacity-70">
+        <span class="h-6 rounded bg-[var(--tint-2)]"></span>
+        <span class="ui-line w-full"></span>
+        <span class="ui-line w-1/2"></span>
+      </div>
+    </div>
+  )}
+
+  {scene === "people" && (
+    <div class="flex h-full flex-col justify-center gap-2.5">
+      <div class="flex -space-x-2">
+        {[0, 1, 2, 3].map((n) => (
+          <span class="ui-pop h-8 w-8 rounded-full border-2 border-[var(--bg-2)] bg-gradient-to-br from-[var(--grad-from)] to-[var(--grad-to)]" style={`--d:${n * 0.3}s;opacity:${1 - n * 0.15}`} />
+        ))}
+      </div>
+      <span class="ui-line ui-line-strong w-2/3"></span>
+      <span class="ui-line w-1/2"></span>
+    </div>
+  )}
+</div>

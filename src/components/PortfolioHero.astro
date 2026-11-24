@@ -1,4 +1,5 @@
 ---
+import HeroBackdrop from "./HeroBackdrop.astro";
 /*
   Hero de /portafolio/ (octubre de 2026): solo título y una descripción
   breve. Lo primero que se ve debajo son los proyectos, no una columna
@@ -13,7 +14,8 @@ const { lang = "es" } = Astro.props as Props;
 const p = translations[lang].portfolio;
 ---
 
-<section class="relative overflow-hidden pb-4 pt-10 lg:pb-8 lg:pt-20">
+<section class="relative isolate overflow-hidden pb-4 pt-10 lg:pb-8 lg:pt-20">
+  <HeroBackdrop />
   <div class="lt-hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]" aria-hidden="true"></div>
   {/* Above-the-fold sin `.reveal`: el H1 no depende de JS (hallazgo #14). */}
   <div class="hero-in relative mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6">

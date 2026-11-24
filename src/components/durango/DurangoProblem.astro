@@ -51,9 +51,7 @@ const clean = [
               class="reveal flex items-center gap-4 rounded-2xl border border-[color:var(--border)] bg-[var(--surface)]/60 px-5 py-4 backdrop-blur-xl"
               style={`--reveal-delay: ${i * 60}ms`}
             >
-              <span class="flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-[var(--brand)]/12 text-[var(--accent)]">
-                <Icon name={item.icon as any} class="h-4 w-4" />
-              </span>
+              <span class="mt-1.5 h-3 w-3 flex-none rounded-full bg-gradient-to-br from-[var(--brand)] to-[var(--accent)] shadow-[0_0_14px_var(--accent)]" aria-hidden="true"></span>
               <span class="text-[15px] leading-6 text-[var(--text)]">{item.text}</span>
             </li>
           ))}

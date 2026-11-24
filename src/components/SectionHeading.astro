@@ -9,14 +9,14 @@ const alignClasses =
   align === "center" ? "mx-auto text-center items-center" : "items-start";
 ---
 
-<div class:list={["reveal flex flex-col gap-4", alignClasses, max]}>
+<div class:list={["reveal reveal-stagger flex flex-col gap-5", alignClasses, max]}>
   {eyebrow && <span class="eyebrow">{eyebrow}</span>}
   <h2
-    class="text-3xl font-bold leading-[1.1] tracking-tight text-[var(--text)] sm:text-4xl lg:text-5xl"
+    class="section-title text-balance font-bold text-[var(--text)]"
   >
     <slot name="title" />
   </h2>
-  <p class="text-base leading-8 text-[var(--muted)] sm:text-lg">
+  <p class="text-pretty text-base leading-8 text-[var(--muted)] sm:text-lg">
     <slot name="subtitle" />
   </p>
 </div>
